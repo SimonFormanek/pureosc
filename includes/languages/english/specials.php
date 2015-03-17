@@ -21,6 +21,7 @@ define('NAVBAR_TITLE', 'Specials');
 define('HEADING_TITLE', 'Get Them While They\'re Hot!');
 
 define('TEXT_NO_PRODUCTS', 'There are no special offers available.');
+
 /*
 ************************************************************************
 ************** Custom Filenames can be defined below here **************
@@ -28,8 +29,9 @@ define('TEXT_NO_PRODUCTS', 'There are no special offers available.');
 ************************************************************************
 */
 // Definition for SEO Header Tags Reloaded
-  define('META_SEO_TITLE', 'Special Offers Page'); 
-  define('META_SEO_DESCRIPTION', 'Specials Description'); 
-// keywords are USELESS unless you are selling into China 
-// and want to be listed in Baidu Search Engine
-// define('META_SEO_KEYWORDS', 'special offers, reduced prices');
+define('META_SEO_TITLE', 'Special Offers Page');
+define('META_SEO_DESCRIPTION', 'Specials Description');
+/*
+keywords are USELESS unless you are selling into China and want to be listed in Baidu Search Engine
+*/
+define('META_SEO_KEYWORDS', 'special offers, reduced prices');
