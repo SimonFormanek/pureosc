@@ -144,12 +144,11 @@
     if (tep_not_null($product_info['products_image'])) {
       $photoset_layout = '1';
       $pi_query = tep_db_query("select image, htmlcontent from " . TABLE_PRODUCTS_IMAGES . " where products_id = '" . (int)$product_info['products_id'] . "' order by sort_order");
-
       if (tep_db_num_rows($pi_query) > 0) {
         $photoset_layout = '1' . (tep_db_num_rows($pi_query) > 1 ? tep_db_num_rows($pi_query) - 1 : '');
 /* ** EOF alteration for SEO Header Tags RELOADED ** */
 ?>
-    <div id="piGal" data-imgcount="<?php echo $photoset_layout; ?>">
+    <div class="piGal pull-right" data-imgcount="<?php echo $photoset_layout; ?>">
 
 <?php
         $pi_counter = 0;
@@ -175,12 +174,16 @@
       } else {
 ?>
 
+<<<<<<< HEAD
 <?php /* ** Altered for SEO Header Tags RELOADED **
     <div id="piGal">
 */ ?>
     <div id="piGal" class="pull-right">
 <?php /* ** EOF alteration for SEO Header Tags RELOADED ** */ ?>
 
+=======
+    <div class="piGal pull-right">
+>>>>>>> ea93840e90ac43238c6974081ef446c126767643
       <?php echo tep_image(DIR_WS_IMAGES . $product_info['products_image'], addslashes($product_info['products_name'])); ?>
     </div>
 
