@@ -8,5 +8,8 @@
 # cache
 /includes/work/
 
+# Development Files
+/*.bak
+
 # Miscellaneous
 admin/.DS_Store
