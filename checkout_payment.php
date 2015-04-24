@@ -232,8 +232,8 @@
 ?>
 
           <tr>
-            <td>1<?php echo $selection[$i]['fields'][$j]['title']; ?></td>
-            <td>2<?php echo $selection[$i]['fields'][$j]['field']; ?></td>
+            <td><?php echo $selection[$i]['fields'][$j]['title']; ?></td>
+            <td><?php echo $selection[$i]['fields'][$j]['field']; ?></td>
           </tr>
 
 <?php
