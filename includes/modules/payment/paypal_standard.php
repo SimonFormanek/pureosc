@@ -8,6 +8,8 @@
   Copyright (c) 2014 osCommerce
 
   Released under the GNU General Public License
+  
+  Credit Class, Gift Vouchers & Discount Coupons osC2.3.3.4 (CCGV) added -- http://addons.oscommerce.com/info/9020
 */
 
   class paypal_standard {
@@ -254,6 +256,10 @@
             tep_db_perform(TABLE_ORDERS_PRODUCTS, $sql_data_array);
 
             $order_products_id = tep_db_insert_id();
+			
+			/* ** Altered for CCGV ** */
+			$order_total_modules->update_credit_account($i);
+			/* **EOF alteration for CCGV ** */
 
             $attributes_exist = '0';
             if (isset($order->products[$i]['attributes'])) {
@@ -495,14 +501,22 @@
     }
 
     function before_process() {
+	/* ** Altered for CCGV **
       global $customer_id, $order, $order_totals, $sendto, $billto, $languages_id, $payment, $currencies, $cart, $cart_PayPal_Standard_ID, $$payment, $HTTP_GET_VARS, $HTTP_POST_VARS, $messageStack;
 
       $result = false;
-
+	*/
+	global $customer_id, $order, $order_totals, $sendto, $billto, $languages_id, $payment, $currencies, $cart, $cart_PayPal_Standard_ID, $$payment, $HTTP_GET_VARS, $HTTP_POST_VARS, $messageStack, $order_total_modules;
+	  
+	  $result = false;
+	  
+	  $order_total_modules->apply_credit();
+	/* **EOF alteration for CCGV ** */
+	
       if ( isset($HTTP_POST_VARS['receiver_email']) && (($HTTP_POST_VARS['receiver_email'] == MODULE_PAYMENT_PAYPAL_STANDARD_ID) || (defined('MODULE_PAYMENT_PAYPAL_STANDARD_PRIMARY_ID') && tep_not_null(MODULE_PAYMENT_PAYPAL_STANDARD_PRIMARY_ID) && ($HTTP_POST_VARS['receiver_email'] == MODULE_PAYMENT_PAYPAL_STANDARD_PRIMARY_ID))) ) {
         $parameters = 'cmd=_notify-validate';
 
-        foreach ($HTTP_POST_VARS as $key => $value) {
+        foreach ($HTTP_POST_VARS as $key => $value) {	
           $parameters .= '&' . $key . '=' . urlencode(stripslashes($value));
         }
 

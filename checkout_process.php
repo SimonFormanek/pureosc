@@ -66,6 +66,10 @@
 
 /* ** Altered for CCGV ** MOVED FUNCTION FURTHER UP IN CODE */
 // load the before_process function from the payment modules
+  require_once(DIR_WS_CLASSES . 'order_total.php');
+  $order_total_modules = new order_total;
+  $order_totals = $order_total_modules->process();    
+ 
   $payment_modules->before_process();
 /* ** EOF alterations for CCGV ** */  
 
@@ -89,10 +93,6 @@
     tep_redirect(tep_href_link(FILENAME_CHECKOUT_PAYMENT, 'error_message=' . urlencode(ERROR_NO_PAYMENT_MODULE_SELECTED), 'SSL'));
   }
 
-  require(DIR_WS_CLASSES . 'order_total.php');
-  $order_total_modules = new order_total;
-
-  $order_totals = $order_total_modules->process();
 /* ** Altered for CCGV ** MOVED FUNCTION FURTHER UP IN CODE
 // load the before_process function from the payment modules
   $payment_modules->before_process();
