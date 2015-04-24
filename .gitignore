@@ -2,6 +2,11 @@
 ###### osCommerce #######
 #########################
 
-configure.php
+# Thumbnails
+/includes/modules/kiss_image_thumbnailer/thumbs/
 
+# cache
+/includes/work/
 
+# Miscellaneous
+admin/.DS_Store
