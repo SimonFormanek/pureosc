@@ -13,6 +13,9 @@ The idea of this fork is to create an up-to-date bootstrap osCommerce with speci
 
 Addons have been specially commented so to easily find changes. All original code will remain, but they will be commented out for any changes.  
 All changes can be found by doing a search for the special commenting system of asterisks.  
+
+##ALL CORE CHANGES SHOULD BE SUBMITED TO https://github.com/gburton/Responsive-osCommerce  
+THIS REPO IS FOR ADDON ADDITIONS/FIXES ONLY##
 __:::Current Add-on Listing:::__  
 
 SEO Header Tags Reloaded added -- http://addons.oscommerce.com/info/8864  
@@ -27,6 +30,7 @@ Alternative Administration System added - http://addons.oscommerce.com/info/9135
 Gergely SMTP Email Addition - http://forums.oscommerce.com/topic/94340-smtp-authentication-and-oscommerce/page-2#entry1697522  
 Security Pro R11 -- http://addons.oscommerce.com/info/7708  
 MailBEEZ Customer Relations Manager added -- http://www.mailbeez.com/quickstart/?id=1  
+Credit Class, Gift Vouchers & Discount Coupons osC2.3.3.4 (CCGV) added -- http://addons.oscommerce.com/info/9020  
   
 This is an attempt to get a strong working osc with some addons. This is NOT an independent project. Without the help of MANY coders that have contributed to osCommerce, this would not be possible. I did not code any of the modules, addons, or base software that you see here. Much of the effort has been completed by Gary Burton from osCommerce.  
   
