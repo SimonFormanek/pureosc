@@ -43,7 +43,7 @@ define('EMAIL_NOTIFICATIONS_PRODUCTS', 'View or change my product notification l
 */
 // CCGV
 define('GIFT_VOUCHER_COUPON', 'Gift Voucher/Coupon:');
-define('CCGV_BALANCE', '<FONT COLOR="#ff0000">Gift Voucher Balance:</FONT> ');
+define('CCGV_BALANCE', 'Gift Voucher Balance:');
 define('CCGV_SENDVOUCHER', 'Send Gift Voucher.');
 define('CCGV_FAQ', 'Gift Voucher FAQ.');
 ?>

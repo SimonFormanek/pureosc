@@ -7,13 +7,6 @@
 
   Copyright (c) 2007 osCommerce
   
-  Edited by 2014 Newburns Design and Technology
-  *************************************************
-  ************ New addon definitions **************
-  ************        Below          **************
-  *************************************************
-  SEO Header Tags Reloaded added -- http://addons.oscommerce.com/info/8864
-  
   Released under the GNU General Public License
 */
 
@@ -31,7 +24,7 @@ define('TEXT_NOW', '\' now');
 define('TEXT_ALL_CATEGORIES', 'All Categories');
 define('TEXT_ALL_MANUFACTURERS', 'All Manufacturers');
 
-/* ** Altered for SEO Header Tags Reloaded ** */
+// seo
 if ( ($category_depth == 'top') && (!isset($HTTP_GET_VARS['manufacturers_id'])) ) {
   define('META_SEO_TITLE', 'Index Page Title');
   define('META_SEO_DESCRIPTION', 'This is the description of your site to be used in the META Description Element');
