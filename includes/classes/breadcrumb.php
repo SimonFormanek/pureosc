@@ -5,14 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2003 osCommerce
-  
-  Edited by 2014 Newburns Design and Technology
-  *************************************************
-  ************ New addon definitions **************
-  ************        Below          **************
-  *************************************************
-  SEO Header Tags Reloaded added -- http://addons.oscommerce.com/info/8864
+  Copyright (c) 2015 osCommerce
   
   Released under the GNU General Public License
 */
