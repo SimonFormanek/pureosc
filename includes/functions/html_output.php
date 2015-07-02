@@ -85,29 +85,52 @@
 */
 // New HTML image wrapper function modified for KISS Image Thumbnailer by FWR Media
   function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '', $responsive = true, $bootstrap_css = '') {
+    // Include the Database installation file if executed for the first time.
+    if ( !defined('KISSIT_MAIN_PRODUCT_WATERMARK_SIZE') ) require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/db_install.php';
     // If width and height are not numeric then we can't do anything with it
-    if ( !is_numeric ( $width ) || !is_numeric ( $height ) ) return tep_image_legacy( $src, $alt, $width, $height, $parameters, $responsive, $bootstrap_css );
+    if ( !is_numeric ( $width ) || !is_numeric ( $height ) ) return tep_image_legacy( $src, $alt, $width, $height, $parameters );
     require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/classes/Image_Helper.php';
     $attributes = array( 'alt' => $alt, 'width' => $width, 'height' => $height );
+    
+    if (tep_not_null($width) && tep_not_null($height)) {
+      $image .= ' width="' . tep_output_string($width) . '" height="' . tep_output_string($height) . '"';
+    }
+
+    $bs_parameters .= ' class="';
+
+    if (tep_not_null($responsive) && ($responsive === true)) {
+      $bs_parameters .= 'img-responsive';
+    }
+
+    if (tep_not_null($bootstrap_css)) $bs_parameters .= ' ' . $bootstrap_css;
+
+    $bs_parameters .= '"';
+
+    if (tep_not_null($parameters)) $bs_parameters .= ' ' . $parameters;
+
     $image = new Image_Helper( array( 'src'                   => $src,
                                       'attributes'            => $attributes,
-                                      'parameters'            => $parameters,
+                                      'parameters'            => $bs_parameters,
                                       'default_missing_image' => DIR_WS_IMAGES . 'no_image_available_150_150.gif',
                                       'isXhtml'               => true,
-                                      'thumbs_dir_path'       => DIR_WS_MODULES . 'kiss_image_thumbnailer/thumbs/',
+                                      'thumbs_dir_path'       => DIR_WS_IMAGES . 'thumbs/',
                                       'thumb_quality'         => 75,
                                       'thumb_background_rgb' => array( 'red'   => 255,
                                                                        'green' => 255,
                                                                        'blue'  => 255 ) ) );
     if ( false === $image_assembled = $image->assemble() ) {
-      return tep_image_legacy( $src, $alt, $width, $height, $parameters, $responsive, $bootstrap_css );
+      return tep_image_legacy( $src, $alt, $width, $height, $parameters );
     }
+
+    
     return $image_assembled;
   } // end function
-////
+
+  ////
 // The HTML image wrapper function
   function tep_image_legacy($src, $alt = '', $width = '', $height = '', $parameters = '', $responsive = true, $bootstrap_css = '') {
 /* ** EOF Alteration for KISS Image Thumbnailer ** */
+
     if ( (empty($src) || ($src == DIR_WS_IMAGES)) && (IMAGE_REQUIRED == 'false') ) {
       return false;
     }

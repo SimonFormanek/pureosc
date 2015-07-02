@@ -6,16 +6,17 @@
   * Once thumbnails have been created the system has been designed to use very minimal resources.
   *  
   * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU Public License)
-  * @package KISS Image Thumbnailer
+  * @package KISS Image Thumbnailer BS
   * @link http://www.fwrmedia.co.uk
   * @copyright Copyright 2008-2009 FWR Media ( Robert Fisher )
   * @author Robert Fisher, FWR Media, http://www.fwrmedia.co.uk 
-  * @lastdev $Author:: FWR Media                                        $:  Author of last commit
-  * @lastmod $Date:: 2012-07-14 09:19:13 +0100 (Sat, 14 Jul 2012)       $:  Date of last commit
-  * @version $Rev:: 9                                                   $:  Revision of last commit
-  * @Id $Id:: Image_Helper.php 9 2012-07-14 08:19:13Z FWR Media         $:  Full Details
+  * @lastdev $Author:: @raiwa  info@sarplataygemas.com       $:  Author of last commit
+  * @lastmod $Date:: 2015-01-28       			     $:  Date of last commit
+  * @version $Rev:: 10 BS                                    $:  Revision of last commit
+  * @Id $Id:: Image_Helper.php 10 BS 2015-01-28 @raiwa       $:  Full Details
   */
   require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/classes/Image.php';
+
   /**
   * Helper class to create valid thumbnails on the fly within the tep_image() wrapper
   *  
@@ -123,7 +124,7 @@
       $width = (int)$this->_calculated_width;
       $height = (int)$this->_calculated_height;
       $this->_html = '<img width="' . $width . '" height="' . $height . '" src="' . $this->src . '" title="' . $alt_title . '" alt="' . $alt_title . '"';
-      if ( false !== $parameters ) $this->_html .= ' ' . tep_output_string( $parameters );
+      if ( false !== $parameters ) $this->_html .= ' ' .  html_entity_decode(tep_output_string( $parameters ));
       $this->_html .= $this->isXhtml ? ' />' : '>';  
     } // end method
     /**

@@ -12,10 +12,13 @@
   * @link http://www.fwrmedia.co.uk
   * @copyright Copyright 2008-2009 FWR Media ( Robert Fisher )
   * @author Robert Fisher, FWR Media, http://www.fwrmedia.co.uk 
-  * @lastdev $Author:: FWR Media                                        $:  Author of last commit
-  * @lastmod $Date:: 2012-07-08 12:05:35 +0100 (Sun, 08 Jul 2012)       $:  Date of last commit
-  * @version $Rev:: 7                                                   $:  Revision of last commit
-  * @Id $Id:: Image.php 7 2012-07-08 11:05:35Z FWR Media                $:  Full Details
+  * @lastdev $Author:: @raiwa  info@sarplataygemas.com       $:  Author of last commit
+  * @lastmod $Date:: 2015-06-25       			     						 $:  Date of last commit
+  * @version $Rev:: 14                                       $:  Revision of last commit
+  * @Id $Id:: Image.php 14 2015-06-25 @raiwa                 $:  Full Details
+  
+  * $Rev:: 14 Added Watermark support in line 277 + function in 320 by @oboy
+  *
   */
   class Image {
     /**
@@ -142,6 +145,7 @@
           break;
         case self::IMAGETYPE_PNG :
           $quality = is_null ( $quality ) ? 0 : $quality;
+          $quality = ($quality > 9) ? $quality=floor($quality / 10) : $quality;
           $filters = is_null ( $filters ) ? null : $filters;
           return imagepng ( $this->_image, $save_in, $quality, $filters );
           break;
@@ -220,7 +224,7 @@
           // Get the original image's transparent color's RGB values
           $trnprt_color = @imagecolorsforindex ( $this->_image, $trnprt_indx );
           // Allocate the same color in the new image resource
-          $trnprt_indx = @imagecolorallocate ( $image, $trnprt_color ['red'], $trnprt_color ['green'], $trnprt_color ['blue'] );
+          $trnprt_indx = @imagecolorallocate ( $image, $this->_thumb_background_rgb['red'], $this->_thumb_background_rgb['green'], $this->_thumb_background_rgb['blue'] );
           // Completely fill the background of the new image with allocated color.
           imagefill ( $image, 0, 0, $trnprt_indx );
           // Set the background color for new image to transparent
@@ -265,13 +269,26 @@
       //$this->debugIndividualImage( 'logo_goodridgeSuz.gif', $max_width . ' :: ' .  $max_height );
       $new_image = imagecreatetruecolor ( $max_width, $max_height );
       $this->_handleTransparentColor ( $new_image );
-      imagecopyresampled ( $new_image, $this->_image, 0, 0, 0, 0, $max_width, $max_height, $this->_width, $this->_height );
+      if (  KISS_DISABLE_UPSIZE == 'true' && ($this->_width < $max_width || $this->_height < $max_height) ) {
+        $new_image = $this->_image;
+      } else {
+        imagecopyresampled ( $new_image, $this->_image, 0, 0, 0, 0, $max_width, $max_height, $this->_width, $this->_height );
+      }
+	  // BOF added for watermark support
+	  if ( ($max_width > KISSIT_MAIN_PRODUCT_WATERMARK_MIN_IMAGE_WIDTH || $max_height > KISSIT_MAIN_PRODUCT_WATERMARK_MIN_IMAGE_HEIGHT) && KISSIT_MAIN_PRODUCT_WATERMARK_SIZE != 0 ) {
+		  $info = pathinfo($this->_filename);
+          $image_name = $info['basename'];
+		  if (strpos($image_name,'no_image') === false ){
+			  $new_image = $this->_watermark($new_image,$max_width,$max_height);
+		  }
+	  }
+	  // EOF
       $this->_image = $new_image;
       if ( $this->_take_resize_dimensions_as_absolute ) {
         // the image has scaled badly we need to add a background
         $info = pathinfo($this->_filename);
         $image_name = $info['basename'];
-        if ( $max_width < $this->_requested_thumbnail_width || $max_height < $this->_requested_thumbnail_height ) {
+        if ( ($max_width < $this->_requested_thumbnail_width || $max_height < $this->_requested_thumbnail_height) || (KISS_DISABLE_UPSIZE == 'true' && ($this->_width < $max_width || $this->_height < $max_height)) ) {
           $thumb_background = imagecreatetruecolor ( $this->_requested_thumbnail_width, $this->_requested_thumbnail_height );
           $background_color = imagecolorallocate ( $thumb_background, $this->_thumb_background_rgb['red'], $this->_thumb_background_rgb['green'], $this->_thumb_background_rgb['blue'] );
           imagefill ( $thumb_background, 0, 0, $background_color );
@@ -279,11 +296,8 @@
           $dst_y = 0;
           $new_image_width = imagesx ( $new_image );
           $new_image_height = imagesy ( $new_image );
-          if ( $this->_requested_thumbnail_width > $new_image_width ) {
-            $dst_x = floor( ( $this->_requested_thumbnail_width - $new_image_width ) /2 );
-          } elseif( $this->_requested_thumbnail_height > $new_image_height ) {
-            $dst_y = floor( ( $this->_requested_thumbnail_height - $new_image_height ) /2 );
-          }
+          $dst_x = floor( ( $this->_requested_thumbnail_width - $new_image_width ) /2 );
+          $dst_y = floor( ( $this->_requested_thumbnail_height - $new_image_height ) /2 );
           imagecopyresampled ( $thumb_background, $new_image, $dst_x, $dst_y, 0, 0, $new_image_width, $new_image_height, $new_image_width, $new_image_height );
           $this->_image = $thumb_background;
         }
@@ -302,4 +316,52 @@
         die ( 'Image target was: ' . $image_target . '<br />Message: ' . $message );
       }  
     } // end method
+		// BOF added for watermark support
+	protected function _watermark ( $new_image, $new_width, $new_height ) {
+		$stamp = imagecreatefrompng('./images/'.KISSIT_MAIN_PRODUCT_WATERMARK_IMAGE);
+		$sx = imagesx($stamp);
+		$sy = imagesy($stamp);
+		
+		$ratio_stamp = $sx/$sy;
+		$new_sx = $new_width*KISSIT_MAIN_PRODUCT_WATERMARK_SIZE;
+		$new_sy = $new_height*KISSIT_MAIN_PRODUCT_WATERMARK_SIZE;
+		if ($new_sx/$new_sy > $ratio_stamp) {
+		$new_sx = $new_sy*$ratio_stamp;
+		} else {
+		$new_sy = $new_sx/$ratio_stamp;
+		}
+		$new_stamp = imagecreatetruecolor ( $new_sx, $new_sy);	
+		imagealphablending($new_stamp, false);
+		imagesavealpha($new_stamp,true);
+		$transparent = imagecolorallocatealpha($new_image, 255, 255, 255, 127);
+		imagefilledrectangle($new_stamp, 0, 0, $new_sx, $new_sy, $transparent);	
+		imagecopyresampled ( $new_stamp, $stamp, 0,0,0,0, $new_sx, $new_sy, $sx, $sy);
+		$stamp = $new_stamp;
+		$sx = imagesx($stamp);
+		$sy = imagesy($stamp);
+		switch( KISSIT_MAIN_PRODUCT_WATERMARK_PLACEMENT ) {
+          case 'top-right' :
+          	$xoffset = (imagesx($new_image) - $sx);
+		  	$yoffset = 0;
+          	break;
+		  case 'top-left' :
+          	$xoffset = 0;
+		  	$yoffset = 0;
+          	break;
+		  case 'bottom-right' :
+          	$xoffset = (imagesx($new_image) - $sx);
+		  	$yoffset = (imagesy($new_image) - $sy);
+          	break;
+		  case 'bottom-left' :
+		  	$xoffset = 0;
+		  	$yoffset = (imagesy($new_image) - $sy);
+          	break;
+		  default :
+		  	$xoffset = (imagesx($new_image) - $sx)*0.5;
+		  	$yoffset = (imagesy($new_image) - $sy)*0.5;
+		}
+		imagecopy($new_image, $stamp, $xoffset , $yoffset , 0, 0, $sx, $sy);
+		return  $new_image;	
+	}
+	// EOF added for watermark support
   } // end class
