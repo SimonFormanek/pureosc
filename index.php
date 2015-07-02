@@ -186,8 +186,8 @@ if (tep_not_null($category['categories_description'])) {
           $HTTP_GET_VARS['sort'] = $i+1 . 'a';
           $listing_sql .= " order by pd.products_name";
 */		  
-		if ($column_list[$i] == 'PRODUCT_LIST_MODEL') {
-          $HTTP_GET_VARS['sort'] = $i+1 . 'd';
+		if ($column_list[$i] == 'PRODUCT_LIST_NAME') {
+          $HTTP_GET_VARS['sort'] = $i+1 . 'a';
           $listing_sql .= " order by p.products_model desc";
 /* ** EOF alteration for default sort type and sorting order ** */		  
           break;
