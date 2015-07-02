@@ -3,13 +3,14 @@
 #########################
 
 # Thumbnails
-/includes/modules/kiss_image_thumbnailer/thumbs/
+includes/modules/kiss_image_thumbnailer/thumbs/
+images/thumbs/
 
 # cache
-/includes/work/
+includes/work/
 
 # Development Files
-/*.bak
+*.bak
 
 # Miscellaneous
 admin/.DS_Store
