@@ -174,3 +174,5 @@ Purchase Without Account (PWA)
 ==============================
 1. In Admin =>Modules => Content install and configure the modul 'Login without Account Form'.
 2. To activate the datepicker on the page, go to  Admin -> Modules -> Header Tags, choose the entry Datepicker JQuery and click Edit. In the file list choose account_pwa.php and click Save.
+3. Your introduction text....Change in includes/languages/english/modules/content/login/cm_pwa_login.php
+** NOTE ** Input a textual disclaimer for any digital download content. Customer will be able to checkout, but will not be able to download.
