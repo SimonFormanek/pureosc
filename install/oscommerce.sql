@@ -1811,6 +1811,13 @@ INSERT into configuration (configuration_title, configuration_key, configuration
 INSERT into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) values ('Select your credit card payment method', 'ORDER_EDITOR_CREDIT_CARD', 'Credit Card', 'Order Editor will display the credit card fields when this payment method is selected.', '72', '6', now(), now(), NULL, 'tep_cfg_pull_down_payment_methods(');
 INSERT into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) values ('Attach PDF Invoice to New Order Email', 'ORDER_EDITOR_ADD_PDF_INVOICE_EMAIL', 'false', 'When you send a new Order Email a PDF Invoice kan be attach to your email. This function only works if the contribution PDF Invoice is installed. NOT INSTALLED BY DEFAULT', '72', '15', now(), now(), NULL, 'tep_cfg_select_option(array(\'true\', \'false\'),');
 
+# SEO Header Tags RELOADED BS
+CREATE TABLE  information (
+  information_seo_title VARCHAR( 255 ) NULL DEFAULT NULL,
+  information_seo_meta_description TEXT NULL DEFAULT NULL,
+  information_seo_meta_keywords VARCHAR( 255 ) NULL DEFAULT NULL
+) ENGINE = INNODB CHARACTER SET utf8;
+
 # Mail Manager Templating System
 DROP TABLE IF EXISTS mm_newsletters;
 CREATE TABLE mm_newsletters (
