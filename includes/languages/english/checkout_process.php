@@ -13,7 +13,8 @@
   ************        Below          **************
   *************************************************
   Mail Manager added -- http://addons.oscommerce.com/info/9133/v,23
-
+  Purchase Without Account (PWA) added -- http://addons.oscommerce.com/info/9142
+  
   Released under the GNU General Public License
 */
 
@@ -41,4 +42,7 @@ define('TEXT_EMAIL_VIA', 'via');
 */
 // Mail Manager
   define('EMAIL_TEXT_CONFIRM', 'New purchase from ');
+  
+// Purchase Without Account
+  define('EMAIL_WARNING', 'NOTE: This email address has been submitted by a visitor to our online-shop. If you were not this visitor, please send a message to:  ' . STORE_OWNER_EMAIL_ADDRESS . 'Thank you for your purchase and have a nice day.');  
 ?>

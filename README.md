@@ -31,6 +31,7 @@ Gergely SMTP Email Addition - http://forums.oscommerce.com/topic/94340-smtp-auth
 Security Pro R11 -- http://addons.oscommerce.com/info/7708  
 MailBEEZ Customer Relations Manager added -- http://www.mailbeez.com/quickstart/?id=1  
 Credit Class, Gift Vouchers & Discount Coupons osC2.3.3.4 (CCGV) added -- http://addons.oscommerce.com/info/9020  
+Purchase Without Account (PWA) added -- http://addons.oscommerce.com/info/9142
   
 This is an attempt to get a strong working osc with some addons. This is NOT an independent project. Without the help of MANY coders that have contributed to osCommerce, this would not be possible. I did not code any of the modules, addons, or base software that you see here. Much of the effort has been completed by Gary Burton from osCommerce.  
   
@@ -168,3 +169,8 @@ Database Conversion Script
 This script will change a 2.3.4 Database into a fully useable database for osCommerce-234-Bootstrap.
 
 http://forums.oscommerce.com/topic/399678-234normal-to-234responsive-database-conversion-script/
+
+Purchase Without Account (PWA)
+==============================
+1. In Admin =>Modules => Content install and configure the modul 'Login without Account Form'.
+2. To activate the datepicker on the page, go to  Admin -> Modules -> Header Tags, choose the entry Datepicker JQuery and click Edit. In the file list choose account_pwa.php and click Save.

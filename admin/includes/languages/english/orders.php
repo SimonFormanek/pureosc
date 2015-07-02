@@ -13,6 +13,7 @@
   ************        Below          **************
   *************************************************
   Mail Manager added -- http://addons.oscommerce.com/info/9133/v,23
+  Purchase Without Account (PWA) -- http://addons.oscommerce.com/info/9142
 
   Released under the GNU General Public License
 */
@@ -92,4 +93,7 @@ define('WARNING_ORDER_NOT_UPDATED', 'Warning: Nothing to change. The order was n
 */
 // Mail Manager
   define('EMAIL_HTML_STATUS_UPDATE','Your order has been updated to: ');
+  
+// Purchase Without Account
+  define('GUEST', 'Guest');  
 ?>

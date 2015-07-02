@@ -15,6 +15,7 @@
   Order Editor added -- http://addons.oscommerce.com/info/7844
   Credit Class, Gift Vouchers & Discount Coupons osC2.3.3.4 (CCGV) added -- http://addons.oscommerce.com/info/9020  
   Mail Manager added -- http://addons.oscommerce.com/info/9133/v,23
+  Purchase Without Account (PWA) added -- http://addons.oscommerce.com/info/9142
 
   Released under the GNU General Public License
 */
@@ -284,8 +285,18 @@ $order_total_modules->apply_credit(); // CCGV
   $email_order = STORE_NAME . "\n" . 
                  EMAIL_SEPARATOR . "\n" . 
                  EMAIL_TEXT_ORDER_NUMBER . ' ' . $insert_id . "\n" .
+/* ** Altered for PWA ** 				 
                  EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false) . "\n" .
                  EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n\n";
+*/
+       if(!tep_session_is_registered('customer_is_guest')) {         
+  $email_order .=              EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false) . "\n";
+  }
+  $email_order .= EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n\n";
+       if(tep_session_is_registered('customer_is_guest')) {         
+  $email_order .=              EMAIL_WARNING . "\n\n"; 
+  }
+/* ** EOE for PWA ** */  
   if ($order->info['comments']) {
     $email_order .= tep_db_output($order->info['comments']) . "\n\n";
   }
@@ -347,7 +358,11 @@ $order_total_modules->apply_credit(); // CCGV
   $order_total_modules->clear_posts();// CCGV
 /* ** EOF alterations for CCGV ** */
 
+/* ** Altered for PWA **
   tep_redirect(tep_href_link(FILENAME_CHECKOUT_SUCCESS, '', 'SSL'));
+*/
+  tep_session_is_registered('customer_is_guest') ? tep_redirect(tep_href_link('checkout_success_pwa.php', '', 'SSL')) : tep_redirect(tep_href_link(FILENAME_CHECKOUT_SUCCESS, '', 'SSL'));
+/* ** EOE for PWA ** */  
 
   require(DIR_WS_INCLUDES . 'application_bottom.php');
 ?>
