@@ -284,16 +284,16 @@ $order_total_modules->apply_credit(); // CCGV
 // lets start with the email confirmation
   $email_order = STORE_NAME . "\n" . 
                  EMAIL_SEPARATOR . "\n" . 
-                 EMAIL_TEXT_ORDER_NUMBER . ' ' . $insert_id . "\n" .
+                 EMAIL_TEXT_ORDER_NUMBER . ' ' . $insert_id . "\n";
 /* ** Altered for PWA ** 				 
                  EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false) . "\n" .
                  EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n\n";
 */
-       if(!tep_session_is_registered('customer_is_guest')) {         
+  if(!tep_session_is_registered('customer_is_guest')) {      
   $email_order .=              EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false) . "\n";
   }
   $email_order .= EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n\n";
-       if(tep_session_is_registered('customer_is_guest')) {         
+       if(tep_session_is_registered('customer_is_guest')) {    
   $email_order .=              EMAIL_WARNING . "\n\n"; 
   }
 /* ** EOE for PWA ** */  
