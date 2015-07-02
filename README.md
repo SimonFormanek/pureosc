@@ -22,7 +22,7 @@ SEO Header Tags Reloaded added -- http://addons.oscommerce.com/info/8864
 Order Editor added - http://addons.oscommerce.com/info/7844  
 Mail Manager added - http://forums.oscommerce.com/topic/397966-mail-manager-for-osc-v23/  
 Custom Default Sort Order and Type - http://forums.oscommerce.com/topic/308798-product-listing-sort-order/  
-KISS Image Thumbnailer added - http://addons.oscommerce.com/info/8492  
+KISS Image Thumbnailer added - http://addons.oscommerce.com/info/9206  
 Custom change for product attribute sort ordering added - http://forums.oscommerce.com/topic/123629-sorting-attributes/  
 Manual Order Maker added - http://addons.oscommerce.com/info/8334/v,23  
 Database Check Tool 1.4 added - http://addons.oscommerce.com/info/9087  
