@@ -286,6 +286,9 @@ define('PRODUCT_UNSUBSCRIBED', '%s has been removed from your Notification List'
 define('PRODUCT_ADDED', '%s has been added to your Cart');
 define('PRODUCT_REMOVED', '%s has been removed from your Cart');
 
+// bootstrap helper
+define('MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION', '');
+
 // sorting product_listing module
 define('TEXT_SORT_BY', 'Sort By ');
 
