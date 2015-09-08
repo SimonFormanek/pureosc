@@ -107,15 +107,14 @@ define('ERROR_CANNOT_LINK_TO_SAME_CATEGORY', 'Error: Can not link products in th
 define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Error: Catalog images directory is not writeable: ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CATALOG_IMAGE_DIRECTORY_DOES_NOT_EXIST', 'Error: Catalog images directory does not exist: ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Error: Category cannot be moved into child category.');
-/*
-************************************************************************
+
+define('TEXT_CATEGORIES_DESCRIPTION', 'Category Description:<br><small>shows in category page</small>');
+define('TEXT_EDIT_CATEGORIES_DESCRIPTION', 'Edit the Category Description:');
+/* ************************************************************************
 ************** Custom Filenames can be defined below here **************
 **************               Raymond Burns                **************
-************************************************************************
-*/
+************************************************************************ */
 // Definition for SEO Header Tags Reloaded
-  define('TEXT_CATEGORIES_DESCRIPTION', 'Category Description:<br><small>shows in category page</small>');
-  define('TEXT_EDIT_CATEGORIES_DESCRIPTION', 'Edit the Category Description:');
   define('TEXT_PRODUCTS_SEO_TITLE', 'Products Title for SEO:<br><small>Replaces the product name in the &lt;title&gt; Meta Element.<br>Leave blank to default to product name.</small>');
   define('TEXT_CATEGORIES_SEO_TITLE', 'Category Title for SEO:<br><small>Replaces the category name in the &lt;title&gt; Meta Element.<br>Leave blank to default to category name.</small>');
   define('TEXT_EDIT_CATEGORIES_SEO_TITLE', 'Edit the Category Title for SEO:');
@@ -126,4 +125,3 @@ define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Error: Category cannot be moved 
   define('TEXT_PRODUCTS_SEO_DESCRIPTION', 'Product Meta Description for SEO:<br><small>Add a &lt;description&gt; Meta Element.</small>');
   define('TEXT_PRODUCTS_SEO_KEYWORDS', 'Product Meta Keywords for SEO:<br><small>Add a &lt;keyword&gt; Meta Element.<br>Must be comma separated.</small>');
   define('TEXT_PRODUCTS_MINI_DESCRIPTION', 'Product Mini Description:<br><small>Used in the "product list" in Category Pages.</small>');
-?>

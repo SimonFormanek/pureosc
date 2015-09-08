@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2014 osCommerce
+  Copyright (c) 2015 osCommerce
   
   Edited by 2014 Newburns Design and Technology
   *************************************************
@@ -18,7 +18,7 @@
   Order Editor added -- http://addons.oscommerce.com/info/7844
   Credit Class, Gift Vouchers & Discount Coupons osC2.3.3.4 (CCGV) added -- http://addons.oscommerce.com/info/9020 
   Mail Manager added -- http://addons.oscommerce.com/info/9133/v,23   
-  
+
   Released under the GNU General Public License
 */
 
@@ -1506,16 +1506,15 @@ return tep_draw_password_field('configuration_value', $password);
     }
   }
 
-/* ** Altered for SEO Header Tags Reloaded ** */
   function tep_get_category_description($category_id, $language_id) {
-    $category_query = tep_db_query("select categories_description from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id = '" . (int)$category_id . "' and language_id = '" . (int)$language_id . "'");
+    $category_query = tep_db_query("select categories_description from categories_description where categories_id = '" . (int)$category_id . "' and language_id = '" . (int)$language_id . "'");
     $category = tep_db_fetch_array($category_query);
 
     return $category['categories_description'];
   }
   
   function tep_get_manufacturer_description($manufacturer_id, $language_id) {
-    $manufacturer_query = tep_db_query("select manufacturers_description from " . TABLE_MANUFACTURERS_INFO . " where manufacturers_id = '" . (int)$manufacturer_id . "' and languages_id = '" . (int)$language_id . "'");
+    $manufacturer_query = tep_db_query("select manufacturers_description from manufacturers_info where manufacturers_id = '" . (int)$manufacturer_id . "' and languages_id = '" . (int)$language_id . "'");
     $manufacturer = tep_db_fetch_array($manufacturer_query);
 
     return $manufacturer['manufacturers_description'];
@@ -1789,6 +1788,3 @@ return $output;
 	$mimemessage->send($mail, $email_address, $sender_name, $sender, $output_subject, $output_content_html, $output_content_txt);
   }
 /* ** EOF alterations for Mail Manager ** */
-
-?>
-

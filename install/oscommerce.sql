@@ -3,7 +3,7 @@
 # osCommerce, Open Source E-Commerce Solutions
 # http://www.oscommerce.com
 #
-# Copyright (c) 2014 osCommerce
+# Copyright (c) 2015 osCommerce
 #
 # Gergely SMTP Email Addition
 # Alternative Administration System
@@ -116,11 +116,11 @@ CREATE TABLE categories_description (
    categories_id int DEFAULT '0' NOT NULL,
    language_id int DEFAULT '1' NOT NULL,
    categories_name varchar(32) NOT NULL,
-# SEO Header Tags Reloaded
-  categories_description TEXT NULL,
-  categories_seo_title VARCHAR(128) NULL,
-  categories_seo_description TEXT NULL,
-  categories_seo_keywords VARCHAR(128) NULL,
+   categories_description TEXT NULL,
+ # SEO Header Tags Reloaded
+   categories_seo_title VARCHAR(128) NULL,
+   categories_seo_description TEXT NULL,
+   categories_seo_keywords VARCHAR(128) NULL,
 # EOF SEO Header Tags Reloaded
    PRIMARY KEY (categories_id, language_id),
    KEY idx_categories_name (categories_name)
@@ -268,8 +268,8 @@ CREATE TABLE manufacturers_info (
   manufacturers_url varchar(255) NOT NULL,
   url_clicked int(5) NOT NULL default '0',
   date_last_click datetime NULL,
-# SEO Header Tags Reloaded
   manufacturers_description TEXT NULL,
+# SEO Header Tags Reloaded
   manufacturers_seo_description TEXT NULL,
   manufacturers_seo_keywords VARCHAR(128) NULL,
 # EOF SEO Header Tags Reloaded
@@ -683,27 +683,27 @@ INSERT INTO categories VALUES ('19', 'subcategory_action_games.gif', '2', '0', n
 INSERT INTO categories VALUES ('20', 'subcategory_strategy.gif', '2', '0', now(), null);
 INSERT INTO categories VALUES ('21', 'category_gadgets.png', '0', '4', now(), null);
 
-INSERT INTO categories_description VALUES ( '1', '1', 'Hardware', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '2', '1', 'Software', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '3', '1', 'DVD Movies', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '4', '1', 'Graphics Cards', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '5', '1', 'Printers', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '6', '1', 'Monitors', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '7', '1', 'Speakers', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '8', '1', 'Keyboards', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '9', '1', 'Mice', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '10', '1', 'Action', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '11', '1', 'Science Fiction', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '12', '1', 'Comedy', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '13', '1', 'Cartoons', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '14', '1', 'Thriller', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '15', '1', 'Drama', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '16', '1', 'Memory', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '17', '1', 'CDROM Drives', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '18', '1', 'Simulation', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '19', '1', 'Action', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '20', '1', 'Strategy', NULL, NULL, NULL, NULL);
-INSERT INTO categories_description VALUES ( '21', '1', 'Gadgets', NULL, NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '1', '1', 'Hardware', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '2', '1', 'Software', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '3', '1', 'DVD Movies', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '4', '1', 'Graphics Cards', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '5', '1', 'Printers', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '6', '1', 'Monitors', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '7', '1', 'Speakers', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '8', '1', 'Keyboards', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '9', '1', 'Mice', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '10', '1', 'Action', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '11', '1', 'Science Fiction', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '12', '1', 'Comedy', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '13', '1', 'Cartoons', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '14', '1', 'Thriller', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '15', '1', 'Drama', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '16', '1', 'Memory', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '17', '1', 'CDROM Drives', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '18', '1', 'Simulation', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '19', '1', 'Action', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '20', '1', 'Strategy', '', NULL, NULL, NULL);
+INSERT INTO categories_description VALUES ( '21', '1', 'Gadgets', '', NULL, NULL, NULL);
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Store Name', 'STORE_NAME', 'osCommerce', 'The name of my store', '1', '1', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Store Owner', 'STORE_OWNER', 'Harald Ponce de Leon', 'The name of my store owner', '1', '2', now());

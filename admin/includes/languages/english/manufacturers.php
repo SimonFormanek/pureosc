@@ -46,16 +46,15 @@ define('TEXT_DELETE_WARNING_PRODUCTS', '<strong>WARNING:</strong> There are %s p
 
 define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Error: I can not write to this directory. Please set the right user permissions on: %s');
 define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Error: Directory does not exist: %s');
-/*
-************************************************************************
-************** Custom Filenames can be defined below here **************
-**************               Raymond Burns                **************
-************************************************************************
-*/
-// Definition for SEO Header Tags Reloaded
+
 define('TEXT_MANUFACTURERS_DESCRIPTION', 'Manufacturer Description:<br><small>shows in manufacturer page</small>');
 define('TEXT_EDIT_MANUFACTURERS_DESCRIPTION', 'Edit the Manufacturer Description:');
+
+/* ************************************************************************
+************** Custom Filenames can be defined below here **************
+**************               Raymond Burns                **************
+************************************************************************ */
+// Definition for SEO Header Tags Reloaded
 define('TEXT_MANUFACTURERS_SEO_TITLE', 'Manufacturers SEO Title:<br><small>Over-rides the Manufacturers Name in the TITLE element of the page.</small>');
 define('TEXT_MANUFACTURERS_SEO_DESCRIPTION', 'Manufacturer Meta Description for SEO:<br><small>Add a &lt;description&gt; Meta Element.</small>');
 define('TEXT_MANUFACTURERS_SEO_KEYWORDS', 'Manufacturer Meta Keywords for SEO:<br><small>Add a &lt;keyword&gt; Meta Element.<br>Must be comma separated.</small>');
-?>

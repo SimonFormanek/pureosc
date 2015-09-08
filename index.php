@@ -43,11 +43,7 @@
   require(DIR_WS_INCLUDES . 'template_top.php');
 
   if ($category_depth == 'nested') {
-/* ** Altered for SEO Header Tags RELOADED **
-    $category_query = tep_db_query("select cd.categories_name, c.categories_image from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd where c.categories_id = '" . (int)$current_category_id . "' and cd.categories_id = '" . (int)$current_category_id . "' and cd.language_id = '" . (int)$languages_id . "'");
-*/
     $category_query = tep_db_query("select cd.categories_name, c.categories_image, cd.categories_description from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd where c.categories_id = '" . (int)$current_category_id . "' and cd.categories_id = '" . (int)$current_category_id . "' and cd.language_id = '" . (int)$languages_id . "'");
-/* ** EOF alteration for SEO Header Tags RELOADED ** */
     $category = tep_db_fetch_array($category_query);
 ?>
 
@@ -60,15 +56,13 @@
     echo $messageStack->output('product_action');
   }
 ?>
+
 <?php
-/* ** Altered for SEO Header Tags RELOADED ** */
 if (tep_not_null($category['categories_description'])) {
-  ?>
-  <div class="alert alert-info"><?php echo $category['categories_description']; ?></div>
-  <?php
-}
-/* ** EOF alteration for SEO Header Tags RELOADED ** */
+  echo '<div class="well well-sm">' . $category['categories_description'] . '</div>';
+}  
 ?>
+
 <div class="contentContainer">
   <div class="contentText">
     <div class="row">
@@ -225,11 +219,11 @@ if (tep_not_null($category['categories_description'])) {
 /* ** Altered for SEO Header Tags RELOADED **
     $catname = HEADING_TITLE;
     if (isset($HTTP_GET_VARS['manufacturers_id']) && !empty($HTTP_GET_VARS['manufacturers_id'])) {
-      $image = tep_db_query("select manufacturers_image, manufacturers_name as catname from " . TABLE_MANUFACTURERS . " where manufacturers_id = '" . (int)$HTTP_GET_VARS['manufacturers_id'] . "'");
+      $image = tep_db_query("select m.manufacturers_image, m.manufacturers_name as catname, mi.manufacturers_description as catdesc from manufacturers m, manufacturers_info mi where m.manufacturers_id = '" . (int)$HTTP_GET_VARS['manufacturers_id'] . "' and m.manufacturers_id = mi.manufacturers_id and mi.languages_id = '" . (int)$languages_id . "'");
       $image = tep_db_fetch_array($image);
       $catname = $image['catname'];
     } elseif ($current_category_id) {
-      $image = tep_db_query("select c.categories_image, cd.categories_name as catname from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd where c.categories_id = '" . (int)$current_category_id . "' and c.categories_id = cd.categories_id and cd.language_id = '" . (int)$languages_id . "'");
+      $image = tep_db_query("select c.categories_image, cd.categories_name as catname, cd.categories_description as catdesc from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd where c.categories_id = '" . (int)$current_category_id . "' and c.categories_id = cd.categories_id and cd.language_id = '" . (int)$languages_id . "'");
       $image = tep_db_fetch_array($image);
       $catname = $image['catname'];
     }
@@ -252,15 +246,10 @@ if (tep_not_null($category['categories_description'])) {
 </div>
 
 <?php
-/* ** Altered for SEO Header Tags RELOADED ** */
 if (tep_not_null($image['catdesc'])) {
-  ?>
-  <div class="alert alert-info"><?php echo $image['catdesc']; ?></div>
-  <?php
+  echo '<div class="well well-sm">' . $image['catdesc'] . '</div>';
 }
-/* ** EOF alteration for SEO Header Tags RELOADED ** */
 ?>
-
 <div class="contentContainer">
 
 <?php
