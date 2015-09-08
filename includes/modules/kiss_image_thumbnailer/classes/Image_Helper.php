@@ -11,8 +11,8 @@
   * @copyright Copyright 2008-2009 FWR Media ( Robert Fisher )
   * @author Robert Fisher, FWR Media, http://www.fwrmedia.co.uk 
   * @lastdev $Author:: @raiwa  info@sarplataygemas.com       $:  Author of last commit
-  * @lastmod $Date:: 2015-01-28       			     $:  Date of last commit
-  * @version $Rev:: 10 BS                                    $:  Revision of last commit
+  * @lastmod $Date:: 2015-08-14       			     						 $:  Date of last commit
+  * @version $Rev:: 19 BS                                    $:  Revision of last commit
   * @Id $Id:: Image_Helper.php 10 BS 2015-01-28 @raiwa       $:  Full Details
   */
   require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/classes/Image.php';
@@ -75,11 +75,13 @@
         $this->src = $this->_thumb_src;
         return 'no_thumb_required';
       }
-      if ( !$this->_original_image_info = getimagesize ( $this->src ) ) {
-        return 'abort';
-      } 
-      if (!in_array ( $this->_original_image_info['mime'], $this->_valid_mime ) ) {
-        return 'abort';
+      if ( KISSIT_MAIN_PRODUCT_WATERMARK_SIZE == 0 ) {
+      	if ( !$this->_original_image_info = getimagesize ( $this->src ) ) {
+      		return 'abort';
+      	} 
+      	if (!in_array ( $this->_original_image_info['mime'], $this->_valid_mime ) ) {
+      		return 'abort';
+      	}
       }
     } // end method
     /**

@@ -22,7 +22,7 @@ SEO Header Tags Reloaded added -- http://addons.oscommerce.com/info/8864
 Order Editor added - http://addons.oscommerce.com/info/7844  
 Mail Manager added - http://forums.oscommerce.com/topic/397966-mail-manager-for-osc-v23/  
 Custom Default Sort Order and Type - http://forums.oscommerce.com/topic/308798-product-listing-sort-order/  
-KISS Image Thumbnailer added - http://addons.oscommerce.com/info/9206  
+KISS Image Thumbnailer r20 added - http://addons.oscommerce.com/info/9206  
 Custom change for product attribute sort ordering added - http://forums.oscommerce.com/topic/123629-sorting-attributes/  
 Manual Order Maker added - http://addons.oscommerce.com/info/8334/v,23  
 Database Check Tool 1.4 added - http://addons.oscommerce.com/info/9087  
@@ -99,9 +99,9 @@ Alternative Administration System
 =================================
 1. If osCommerce was already installed, and the default oscommerce installation is not ran, then import the appropriate sql file located in SQL_changes
 2. Configure the AAS installation via the AAS left column boxes
-3. **BE SURE** that the following files are writeable by your WWW user
-	../catalog/admin/ext/aas/plugins/product_images/
-	../catalog/admin/ext/aas_modules/
+3. **BE SURE that the following files are writeable by your WWW user**  
+	**../catalog/admin/ext/aas/plugins/product_images/**  
+	**../catalog/admin/ext/aas_modules/**  
 
 Database Check Tool 1.8.1
 =========================
@@ -117,11 +117,11 @@ with this... so just take the extra moment(s) necessary to avoid costly errors.
 
 KISS Image Thumbnailer
 ======================
-By default, KISS Image Thumbnailer does not alter standard bootstrap view of products.
-The function is available for use, but not implemented.
-Be sure to change the KISSit Image Heigh and Width in ../catalog/includes/configure.php
-The following directory(ies) needs to be writeable by the WWW user:
-	../catalog/includes/modules/kiss_image_thumbnailer/thumbs/
+KISS IT configurations can be found under the Configuration >> Images option  
+If any changes are made to these options, thumbs must be reset using the KissIT Reset thumbs option  
+  
+**The following directory(ies) needs to be writeable by the WWW user:**
+	**../catalog/includes/modules/kiss_image_thumbnailer/thumbs/**
 	
 Security Pro R11
 ================

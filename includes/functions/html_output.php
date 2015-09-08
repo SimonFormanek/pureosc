@@ -86,9 +86,9 @@
 // New HTML image wrapper function modified for KISS Image Thumbnailer by FWR Media
   function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '', $responsive = true, $bootstrap_css = '') {
     // Include the Database installation file if executed for the first time.
-    if ( !defined('KISSIT_MAIN_PRODUCT_WATERMARK_SIZE') ) require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/db_install.php';
+    if ( !defined('KISSIT_RESET_IMAGE_THUMBS') ) require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/db_install.php';
     // If width and height are not numeric then we can't do anything with it
-    if ( !is_numeric ( $width ) || !is_numeric ( $height ) ) return tep_image_legacy( $src, $alt, $width, $height, $parameters );
+    if ( !is_numeric ( $width ) || !is_numeric ( $height ) ) return tep_image_legacy( $src, $alt, $width, $height, $parameters, $responsive, $bootstrap_css );
     require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/classes/Image_Helper.php';
     $attributes = array( 'alt' => $alt, 'width' => $width, 'height' => $height );
     
@@ -96,7 +96,7 @@
       $image .= ' width="' . tep_output_string($width) . '" height="' . tep_output_string($height) . '"';
     }
 
-    $bs_parameters .= ' class="';
+    $bs_parameters = ' class="';
 
     if (tep_not_null($responsive) && ($responsive === true)) {
       $bs_parameters .= 'img-responsive';
@@ -119,7 +119,7 @@
                                                                        'green' => 255,
                                                                        'blue'  => 255 ) ) );
     if ( false === $image_assembled = $image->assemble() ) {
-      return tep_image_legacy( $src, $alt, $width, $height, $parameters );
+      return tep_image_legacy( $src, $alt, $width, $height, $parameters, $responsive, $bootstrap_css );
     }
 
     

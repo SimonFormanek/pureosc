@@ -1788,3 +1788,18 @@ return $output;
 	$mimemessage->send($mail, $email_address, $sender_name, $sender, $output_subject, $output_content_html, $output_content_txt);
   }
 /* ** EOF alterations for Mail Manager ** */
+/* ** BOF alterations for KISS IT ** */
+// Function to reset KISSit image thumbs cache entries
+// Gergely Toth
+  function tep_cfg_reset_thumbs_cache( $action = 'false' ) {
+        if ($action == 'reset' ) {
+          $mask = "../images/thumbs/*.jpg";
+          array_map( "unlink", glob( $mask ) );
+          $mask = "../images/thumbs/*.gif";
+          array_map( "unlink", glob( $mask ) );
+          $mask = "../images/thumbs/*.png";
+          array_map( "unlink", glob( $mask ) );
+          tep_db_query( "UPDATE configuration SET configuration_value='false' WHERE configuration_key='KISSIT_RESET_IMAGE_THUMBS'" );
+        }
+  }
+/* ** EOF alterations for KISS IT ** */

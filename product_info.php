@@ -127,8 +127,10 @@
           if (tep_not_null($pi['htmlcontent'])) {
             $pi_html[] = '<div id="piGalDiv_' . $pi_counter . '">' . $pi['htmlcontent'] . '</div>';
           }
-
-          echo tep_image(DIR_WS_IMAGES . $pi['image'], '', (($pi_counter > 1 )? round(KISSIT_MAIN_PRODUCT_IMAGE_WIDTH/(($pi_total <= 5)? $pi_total-1 : 5)) : KISSIT_MAIN_PRODUCT_IMAGE_WIDTH), (($pi_counter > 1 )? round(KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT/(($pi_total <= 5)? $pi_total-1 : 5)) : KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT), 'id="piGalImg_' . $pi_counter . '" data-highres="'. DIR_WS_IMAGES . $pi['image'] .'"');
+/* ** BOF alterations for KISS IT ** */
+		  list($width, $height) = file_exists(DIR_WS_IMAGES . $pi['image'])? getimagesize(DIR_WS_IMAGES . $pi['image']) : array(150,150); 
+          echo tep_image(DIR_WS_IMAGES . $pi['image'], addslashes($product_info['products_name']) . ' ' . $pi_counter, (($pi_counter > 1 )? round(KISSIT_MAIN_PRODUCT_IMAGE_WIDTH/(($pi_total <= 5)? $pi_total-1 : 5)) : KISSIT_MAIN_PRODUCT_IMAGE_WIDTH), (($pi_counter > 1 )? round(KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT/(($pi_total <= 5)? $pi_total-1 : 5)) : KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT), 'id="piGalImg_' . $pi_counter . '" '. ((KISSIT_MAIN_PRODUCT_WATERMARK_SIZE > 0)? preg_replace('%<img width="[0-9 ]+" height="[0-9 ]+" src="(.*)title=.+%', 'data-highres="$1', tep_image(DIR_WS_IMAGES . $pi['image'], null, $width, $height)) : 'data-highres="'. DIR_WS_IMAGES . $pi['image'] . '"'));
+/* ** EOF alterations for KISS IT ** */		  
         }
 ?>
 
@@ -138,6 +140,7 @@
         if ( !empty($pi_html) ) {
           echo '    <div style="display: none;">' . implode('', $pi_html) . '</div>';
         }
+/* ** BOF alterations for KISS IT ** 		
       } else {
 ?>
 
@@ -145,7 +148,14 @@
     <div class="piGal pull-right">
       <?php echo tep_image(DIR_WS_IMAGES . $product_info['products_image'], addslashes($product_info['products_name']), KISSIT_MAIN_PRODUCT_IMAGE_WIDTH, KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT, 'id="piGalImg_' . $pi_counter . '" data-highres="'. DIR_WS_IMAGES . $product_info['products_image'] .'"'); ?>
     </div>
-
+*/
+	  } else {
+      	list($width, $height) = file_exists(DIR_WS_IMAGES . $product_info['products_image'])? getimagesize(DIR_WS_IMAGES . $product_info['products_image']) : array(150,150); 
+?>
+    <div id="piGal">
+      <?php echo tep_image(DIR_WS_IMAGES . $product_info['products_image'], addslashes($product_info['products_name']), KISSIT_MAIN_PRODUCT_IMAGE_WIDTH, KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT, ((KISSIT_MAIN_PRODUCT_WATERMARK_SIZE > 0)? preg_replace('%<img width="[0-9 ]+" height="[0-9 ]+" src="(.*)title=.+%', 'data-highres="$1', tep_image(DIR_WS_IMAGES . $product_info['products_image'], null, $width, $height)) : 'data-highres="'. DIR_WS_IMAGES . $product_info['products_image'] . '"')); ?>
+    </div>
+<?php /* ** EOF alterations for KISS IT ** */ ?>
 <?php
       }
     }
