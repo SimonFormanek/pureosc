@@ -47,7 +47,7 @@ $delivery_address = "\n" . $order->delivery['name'] . "<br />";
 	if ($order->delivery['company']) {
 		  	$delivery_address .= $order->delivery['company'] . "<br />";
 	}
-	 $billing_address .= $order->delivery['street_address'] . "<br />";
+	 $delivery_address .= $order->delivery['street_address'] . "<br />";
 	if ($order->delivery['suburb']) {
 				$delivery_address .= $order->delivery['suburb'] . ", ";
 	}
