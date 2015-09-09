@@ -598,6 +598,8 @@ if ($action == 'update_downloads') {
 		
 				/*  ** Altered for Mail Manager ** */
 				//get status of mail manager create account  email
+				$oID = tep_db_prepare_input($_GET['oID']);
+				$insert_id = $oID;
 				$mail_manager_status_query = tep_db_query("select status, template, htmlcontent, txtcontent from  " . TABLE_MM_RESPONSEMAIL . "  where mail_id = '2'");
 				$mail_manager_status = tep_db_fetch_array($mail_manager_status_query);
 		
