@@ -595,53 +595,50 @@ if ($action == 'update_downloads') {
 			  if (isset($_GET['notify_comments']) && ($_GET['notify_comments'] == 'true')) {
 			   $notify_comments = sprintf(EMAIL_TEXT_COMMENTS_UPDATE, oe_iconv($_GET['comments'])) . "\n\n";
 			  }
-// bof order editor 5_0_8			  
-//			  $email = STORE_NAME . "\n" .
-//			           EMAIL_SEPARATOR . "\n" . 
-//					   EMAIL_TEXT_ORDER_NUMBER . ' ' . $_GET['oID'] . "\n" . 
-//	                   EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $_GET['oID'], 'SSL') . "\n" . 
-//					   EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . 
-//					   sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$_GET['status']]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
-//BEGIN SEND HTML MAIL//			  
-//			  $email = STORE_NAME . "\n" .
-//			           EMAIL_SEPARATOR . "\n" . 
-//					   EMAIL_TEXT_ORDER_NUMBER . ' ' . (int)$oID . "\n" . 
-//                       EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
-//					   EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
-
-	     if (FILENAME_EMAIL_STATUS !== 'FILENAME_EMAIL_STATUS'     ) {
-		   //Prepare variables for html email//
-   		   $Varlogo = ''.VARLOGO.'' ;
-		   $Vartable1 = ''.VARTABLE1.'' ;
-		   $Vartable2 = ''.VARTABLE2.'' ;
-
-		   $Vartext1 = ' <b>' . EMAIL_TEXT_DEAR . ' ' . $check_status['customers_name'] .' </b><br>' . EMAIL_MESSAGE_GREETING ;
-		   $Vartext2 = '    ' . EMAIL_TEXT_ORDER_NUMBER . ' <STRONG> ' . $oID . '</STRONG><br>' . EMAIL_TEXT_DATE_ORDERED . ': <strong>' . tep_date_long($check_status['date_purchased']) . '</strong><br><a href="' . HTTP_SERVER . DIR_WS_CATALOG . 'account_history_info.php?order_id=' . $oID .'">' . EMAIL_TEXT_INVOICE_URL . '</a>' ; 
-
-		   $Varbody = EMAIL_TEXT_COMMENTS_UPDATE_HTML . ' ' . $comments . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]);
-
-		   $Varmailfooter = ''.VARMAILFOOTER.'' ;
-
-		   $Varhttp = ''.VARHTTP.'';
-		   $Varstyle = ''.VARSTYLE.'';
-
-		   //Check if HTML emails is set to true
-		   if (EMAIL_USE_HTML == 'true') {	
-
-		     //Prepare HTML email
-			 require(DIR_WS_MODULES . 'email/html_orders.php');
-			 $email = $html_email_orders;
-			
-		   } else {		
-
-			  //Send text email
-			  $email = STORE_NAME . "\n" .
-			           EMAIL_SEPARATOR . "\n" . 
-					   EMAIL_TEXT_ORDER_NUMBER . ' ' . $_GET['oID'] . "\n" . 
-                       EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
-					   EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
-		   }
-	     }	
+		
+				/*  ** Altered for Mail Manager ** */
+				//get status of mail manager create account  email
+				$mail_manager_status_query = tep_db_query("select status, template, htmlcontent, txtcontent from  " . TABLE_MM_RESPONSEMAIL . "  where mail_id = '2'");
+				$mail_manager_status = tep_db_fetch_array($mail_manager_status_query);
+		
+		
+				if (FILENAME_EMAIL_STATUS !== 'FILENAME_EMAIL_STATUS'     ) {
+					//Prepare variables for html email//
+					$Varlogo = ''.VARLOGO.'' ;
+					$Vartable1 = ''.VARTABLE1.'' ;
+					$Vartable2 = ''.VARTABLE2.'' ;
+					$Vartext1 = ' <b>' . EMAIL_TEXT_DEAR . ' ' . $check_status['customers_name'] .' </b><br>' . EMAIL_MESSAGE_GREETING ;
+					$Vartext2 = '    ' . EMAIL_TEXT_ORDER_NUMBER . ' <STRONG> ' . $oID . '</STRONG><br>' . EMAIL_TEXT_DATE_ORDERED . ': <strong>' . tep_date_long($check_status['date_purchased']) . '</strong><br><a href="' . HTTP_SERVER . DIR_WS_CATALOG . 'account_history_info.php?order_id=' . $oID .'">' . EMAIL_TEXT_INVOICE_URL . '</a>' ; 
+					$Varbody = EMAIL_TEXT_COMMENTS_UPDATE_HTML . ' ' . $comments . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]);
+					$Varmailfooter = ''.VARMAILFOOTER.'' ;
+					$Varhttp = ''.VARHTTP.'';
+					$Varstyle = ''.VARSTYLE.'';
+		
+					// send Mail Manager email
+					if (isset($mail_manager_status['status']) && ($mail_manager_status['status'] == '1')) {	
+						include(DIR_WS_MODULES.'mail_manager/status_update.php');
+					} else {
+						//Send text email
+						$email = STORE_NAME . "\n" .
+							EMAIL_SEPARATOR . "\n" . 
+							EMAIL_TEXT_ORDER_NUMBER . ' ' . $_GET['oID'] . "\n" . 
+							EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
+							EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
+						}
+				} else {		// send standaard email if html email is not installed
+					// send Mail Manager email
+					if (isset($mail_manager_status['status']) && ($mail_manager_status['status'] == '1')) {	
+						include(DIR_WS_MODULES.'mail_manager/status_update.php');
+					} else {
+						//Send text email
+						$email = STORE_NAME . "\n" .
+							EMAIL_SEPARATOR . "\n" . 
+							EMAIL_TEXT_ORDER_NUMBER . ' ' . $_GET['oID'] . "\n" . 
+							EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
+							EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
+						}
+				}		 
+	    
 
 //END SEND HTML MAIL//		
 // eof order editor 5_0_8
