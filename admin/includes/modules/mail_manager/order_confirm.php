@@ -1,7 +1,7 @@
 <?php
 /*
 order_confirm.php, 2011
-mail manager for oscommerce
+Admin mail manager for oscommerce 
 Copyright (c) 2011 Niora http://www.css-oscommerce.com
 Released under the GNU General Public License
 */
@@ -27,12 +27,35 @@ $order_date = EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG);
 if(tep_session_is_registered('customer_is_guest')) {
 $invoice_url = EMAIL_WARNING . "\n\n";
 }else{
-  $invoice_url = EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false);
+  $invoice_url = EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false);
 }
 
+$billing_address = "\n" . $order->billing['name'] . "<br />";
+	if ($order->billing['company']) {
+		  	$billing_address .= $order->billing['company'] . "<br />";
+	}
+	 $billing_address .= $order->billing['street_address'] . "<br />";
+	if ($order->billing['suburb']) {
+				$billing_address .= $order->billing['suburb'] . ", ";
+	}
+	if ($order->billing['state']) {
+		  	$billing_address .= $order->billing['state'] . " ";
+	}
+	$billing_address .= $order->billing['postcode'] . "<br />" . $order->billing['country'] . "<br>";
+	
+$delivery_address = "\n" . $order->delivery['name'] . "<br />";
+	if ($order->delivery['company']) {
+		  	$delivery_address .= $order->delivery['company'] . "<br />";
+	}
+	 $delivery_address .= $order->delivery['street_address'] . "<br />";
+	if ($order->delivery['suburb']) {
+				$delivery_address .= $order->delivery['suburb'] . ", ";
+	}
+	if ($order->delivery['state']) {
+		  	$delivery_address .= $order->delivery['state'] . " ";
+	}
+	$delivery_address .= $order->delivery['postcode'] . "<br />" . $order->delivery['country'] . "<br>";
 
-$delivery_address = tep_address_label($customer_id, $sendto, 0, '', '<br />');
-$billing_address = tep_address_label($customer_id, $billto, 0, '', '<br />');
 $order_comments = $order->info['comments'];
 $paymentmethod = $order->info['payment_method'];
 $ccardtype = $order->info['cc_type'];

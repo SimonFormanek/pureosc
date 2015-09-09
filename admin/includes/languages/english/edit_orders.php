@@ -157,4 +157,10 @@ define('AJAX_INPUT_NEW_EMAIL_COMMENTS', 'Please input any comments you may have 
 define('AJAX_SUCCESS_EMAIL_SENT', 'Success!  A new order confirmation email was sent to %s');
 define('AJAX_WORKING', 'Working, please wait....');
 
+// Mail Manager
+  define('EMAIL_TEXT_CONFIRM', 'New purchase from ');
+  define('EMAIL_HTML_STATUS_UPDATE','Your order has been updated to: ');
+
+// Purchase Without Account
+  define('EMAIL_WARNING', 'NOTE: This email address has been submitted by a visitor to our online-shop. If you were not this visitor, please send a message to:  ' . STORE_OWNER_EMAIL_ADDRESS . 'Thank you for your purchase and have a nice day.');
 ?>

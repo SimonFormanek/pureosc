@@ -595,62 +595,52 @@ if ($action == 'update_downloads') {
 			  if (isset($_GET['notify_comments']) && ($_GET['notify_comments'] == 'true')) {
 			   $notify_comments = sprintf(EMAIL_TEXT_COMMENTS_UPDATE, oe_iconv($_GET['comments'])) . "\n\n";
 			  }
-// bof order editor 5_0_8			  
-//			  $email = STORE_NAME . "\n" .
-//			           EMAIL_SEPARATOR . "\n" . 
-//					   EMAIL_TEXT_ORDER_NUMBER . ' ' . $_GET['oID'] . "\n" . 
-//	                   EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $_GET['oID'], 'SSL') . "\n" . 
-//					   EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . 
-//					   sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$_GET['status']]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
-//BEGIN SEND HTML MAIL//			  
-//			  $email = STORE_NAME . "\n" .
-//			           EMAIL_SEPARATOR . "\n" . 
-//					   EMAIL_TEXT_ORDER_NUMBER . ' ' . (int)$oID . "\n" . 
-//                       EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
-//					   EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
-
-	     if (FILENAME_EMAIL_STATUS !== 'FILENAME_EMAIL_STATUS'     ) {
-		   //Prepare variables for html email//
-   		   $Varlogo = ''.VARLOGO.'' ;
-		   $Vartable1 = ''.VARTABLE1.'' ;
-		   $Vartable2 = ''.VARTABLE2.'' ;
-
-		   $Vartext1 = ' <b>' . EMAIL_TEXT_DEAR . ' ' . $check_status['customers_name'] .' </b><br>' . EMAIL_MESSAGE_GREETING ;
-		   $Vartext2 = '    ' . EMAIL_TEXT_ORDER_NUMBER . ' <STRONG> ' . $oID . '</STRONG><br>' . EMAIL_TEXT_DATE_ORDERED . ': <strong>' . tep_date_long($check_status['date_purchased']) . '</strong><br><a href="' . HTTP_SERVER . DIR_WS_CATALOG . 'account_history_info.php?order_id=' . $oID .'">' . EMAIL_TEXT_INVOICE_URL . '</a>' ; 
-
-		   $Varbody = EMAIL_TEXT_COMMENTS_UPDATE_HTML . ' ' . $comments . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]);
-
-		   $Varmailfooter = ''.VARMAILFOOTER.'' ;
-
-		   $Varhttp = ''.VARHTTP.'';
-		   $Varstyle = ''.VARSTYLE.'';
-
-		   //Check if HTML emails is set to true
-		   if (EMAIL_USE_HTML == 'true') {	
-
-		     //Prepare HTML email
-			 require(DIR_WS_MODULES . 'email/html_orders.php');
-			 $email = $html_email_orders;
-			
-		   } else {		
-
-			  //Send text email
-			  $email = STORE_NAME . "\n" .
-			           EMAIL_SEPARATOR . "\n" . 
-					   EMAIL_TEXT_ORDER_NUMBER . ' ' . $_GET['oID'] . "\n" . 
-                       EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
-					   EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
-		   }
-	     } else {		// send standaard email if html email is not installed
-
-		    //Send text email
-	    	$email = STORE_NAME . "\n" .
-			           EMAIL_SEPARATOR . "\n" . 
-					   EMAIL_TEXT_ORDER_NUMBER . ' ' . $_GET['oID'] . "\n" . 
-                       EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
-					   EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
-	     }		
-	
+		
+				/*  ** Altered for Mail Manager ** */
+				//get status of mail manager create account  email
+				$oID = tep_db_prepare_input($_GET['oID']);
+				$insert_id = $oID;
+				$mail_manager_status_query = tep_db_query("select status, template, htmlcontent, txtcontent from  " . TABLE_MM_RESPONSEMAIL . "  where mail_id = '2'");
+				$mail_manager_status = tep_db_fetch_array($mail_manager_status_query);
+		
+		
+				if (FILENAME_EMAIL_STATUS !== 'FILENAME_EMAIL_STATUS'     ) {
+					//Prepare variables for html email//
+					$Varlogo = ''.VARLOGO.'' ;
+					$Vartable1 = ''.VARTABLE1.'' ;
+					$Vartable2 = ''.VARTABLE2.'' ;
+					$Vartext1 = ' <b>' . EMAIL_TEXT_DEAR . ' ' . $check_status['customers_name'] .' </b><br>' . EMAIL_MESSAGE_GREETING ;
+					$Vartext2 = '    ' . EMAIL_TEXT_ORDER_NUMBER . ' <STRONG> ' . $oID . '</STRONG><br>' . EMAIL_TEXT_DATE_ORDERED . ': <strong>' . tep_date_long($check_status['date_purchased']) . '</strong><br><a href="' . HTTP_SERVER . DIR_WS_CATALOG . 'account_history_info.php?order_id=' . $oID .'">' . EMAIL_TEXT_INVOICE_URL . '</a>' ; 
+					$Varbody = EMAIL_TEXT_COMMENTS_UPDATE_HTML . ' ' . $comments . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]);
+					$Varmailfooter = ''.VARMAILFOOTER.'' ;
+					$Varhttp = ''.VARHTTP.'';
+					$Varstyle = ''.VARSTYLE.'';
+		
+					// send Mail Manager email
+					if (isset($mail_manager_status['status']) && ($mail_manager_status['status'] == '1')) {	
+						include(DIR_WS_MODULES.'mail_manager/status_update.php');
+					} else {
+						//Send text email
+						$email = STORE_NAME . "\n" .
+							EMAIL_SEPARATOR . "\n" . 
+							EMAIL_TEXT_ORDER_NUMBER . ' ' . $_GET['oID'] . "\n" . 
+							EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
+							EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
+						}
+				} else {		// send standaard email if html email is not installed
+					// send Mail Manager email
+					if (isset($mail_manager_status['status']) && ($mail_manager_status['status'] == '1')) {	
+						include(DIR_WS_MODULES.'mail_manager/status_update.php');
+					} else {
+						//Send text email
+						$email = STORE_NAME . "\n" .
+							EMAIL_SEPARATOR . "\n" . 
+							EMAIL_TEXT_ORDER_NUMBER . ' ' . $_GET['oID'] . "\n" . 
+							EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
+							EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
+						}
+				}		 
+	    
 
 //END SEND HTML MAIL//		
 // eof order editor 5_0_8
@@ -941,58 +931,41 @@ if (tep_db_num_rows($orders_history_query)) {
   //13. new order email 
    
     if ($action == 'new_order_email')  {
-	
+		
+		/* ** BOF alteration for Mail Manager ** */
 		$oID = tep_db_prepare_input($_GET['oID']);
+		$insert_id = $oID;
+		
 		$order = new manualOrder($oID);
 		
-// bof order editor 5 0 9
-		$order_totals_table_beginn = '<table border="0" cellpadding="5" cellspacing="0">';
-		$order_totals_zelle_beginn = '<tr><td width="280" style="font-size: 12px">';
-		$order_totals_zelle_mitte = '</td><td style="font-size: 12px" align="right">';
-		$order_totals_zelle_end = '</td></tr>';
-		$order_totals_table_end = '</table>';
-
-
 		// initialized for the email confirmation
-		if (EMAIL_USE_HTML == 'true'){
-  		$products_ordered = $order_totals_table_beginn;
-		} else{
   		$products_ordered = '';
-		}
-
-  	$subtotal = 0;
-  	$total_tax = 0;
-
-// eof order editor 5 0 9		
+		$subtotal = 0;
+		$total_tax = 0;
 		
 		for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {
 	  	//loop all the products in the order
 		 	$products_ordered_attributes = '';
+			
+		// Raymond Burns not sure about code below. THIS SEEMS TO BE DEPRECATED CODE TO BE REMOVED
 	  	if ( (isset($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0) ) {
 	    	for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
 					$products_ordered_attributes .= "\n\t" . $order->products[$i]['attributes'][$j]['option'] . ' ' . $order->products[$i]['attributes'][$j]['value'];
-      	}
+			}
     	}
-	
-// bof order editor 5 0 9
-//	   	$products_ordered .= $order->products[$i]['qty'] . ' x ' . $order->products[$i]['name'] . $products_model . ' = ' . $currencies->format(tep_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']) * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . $products_ordered_attributes . "\n";
-//		}
-			$total_weight += ($order->products[$i]['qty'] * $order->products[$i]['weight']);
-    	$total_tax += tep_calculate_tax($total_products_price, $products_tax) * $order->products[$i]['qty'];
-    	$total_cost += $total_products_price;
-      if (EMAIL_USE_HTML == 'true'){
-          if ($order->products[$i]['model']) {
-          	$products_ordered .= $order_totals_zelle_beginn . $order->products[$i]['qty'] . ' x ' . $order->products[$i]['name'] . ' (' . $order->products[$i]['model'] . ') = ' . $order_totals_zelle_mitte . $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']) . $products_ordered_attributes . $order_totals_zelle_end;
-	  			} else {
-          	$products_ordered .= $order_totals_zelle_beginn . $order->products[$i]['qty'] . ' x ' . $order->products[$i]['name'] . ' = ' . $order_totals_zelle_mitte . $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']) . $products_ordered_attributes . $order_totals_zelle_end;
-	  			}	
-      } else {
+		
+		/* ** Altered for CCGV ** */
+		$total_weight += ($order->products[$i]['qty'] * $order->products[$i]['weight']);
+		$total_tax += tep_calculate_tax($total_products_price, $products_tax) * $order->products[$i]['qty'];
+		$total_cost += $total_products_price;
+		/* ** EOF alterations for CCGV ** */
         if ($order->products[$i]['model']) { 
-					$products_ordered .= $order->products[$i]['qty'] . ' x ' . $order->products[$i]['name'] . ' (' . $order->products[$i]['model'] . ') = ' . $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']) . $products_ordered_attributes . "\n";	
+					/* ** Altered for Mail Manager **/
+					$products_ordered .= $order->products[$i]['qty'] . ' x ' . $order->products[$i]['name'] . ' (' . $order->products[$i]['model'] . ') = ' . $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']) . $products_ordered_attributes . "\n".'<br />';
 				} else {
-					$products_ordered .= $order->products[$i]['qty'] . ' x ' . $order->products[$i]['name'] . ' = ' . $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']) . $products_ordered_attributes . "\n";	
+					$products_ordered .= $order->products[$i]['qty'] . ' x ' . $order->products[$i]['name'] . ' = ' . $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']) . $products_ordered_attributes . "\n".'<br />';
 				}
-   		}
+				/* ** EOF alteration for Mail Manager **/
  		} 
  		
     	$Text_Billing_Adress= "\n" . EMAIL_TEXT_BILLING_ADDRESS . "\n" .
@@ -1030,69 +1003,13 @@ if (tep_db_num_rows($orders_history_query)) {
 			$Text_Delivery_Address .= $order->delivery['postcode'] . "\n" .	$order->delivery['country'] . "\n";
  		
 		$standaard_email = 'false' ;
-		if ( FILENAME_EMAIL_ORDER_TEXT !== FILENAME_EMAIL_ORDER_TEXT ) {	
-			// only use if email order text is installed 
-  		if (EMAIL_USE_HTML == 'true'){
-  				$products_ordered .= $order_totals_table_end;
-			}
- 			if (EMAIL_USE_HTML == 'true'){
-  				$text_query = tep_db_query("SELECT * FROM eorder_text where eorder_text_id = '2' and language_id = '" . $languages_id . "'");	
-			} else{
-  				$text_query = tep_db_query("SELECT * FROM eorder_text where eorder_text_id = '1' and language_id = '" . $languages_id . "'");
-			}
-      
-      $werte = tep_db_fetch_array($text_query);
-      $text = $werte["eorder_text_one"];
-			$text = preg_replace('/<-STORE_NAME->/', STORE_NAME, $text);
-			$text = preg_replace('/<-insert_id->/', $oID, $text);
-			$text = preg_replace('/<-INVOICE_URL->/', tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL', false), $text);
-			$text = preg_replace('/<-DATE_ORDERED->/', tep_date_long( $order->info[ 'date_purchased' ] ), $text ) ;
-			if ($order->info['comments']) {
-				$text = preg_replace('/<-Customer_Comments->/', tep_db_output($order->info['comments']), $text);
-	  	} else{
-	  		$text = preg_replace('/<-Customer_Comments->/', '', $text);
-	  	}  
-			$text = preg_replace('/<-Item_List->/', $products_ordered, $text);
-			if (EMAIL_USE_HTML == 'true'){	
-	    	$list_total = $order_totals_table_beginn;
-	    	for ($i=0, $n=sizeof($order->totals); $i<$n; $i++) {
-					$list_total .= $order_totals_zelle_beginn . strip_tags($order->totals[$i]['title']) . $order_totals_zelle_mitte . strip_tags($order->totals[$i]['text']) . $order_totals_zelle_end;	
-				}
-	    	$list_total .= $order_totals_table_end;
-			} else{
-	    	for ($i=0, $n=sizeof($order->totals); $i<$n; $i++) {
-					$list_total .= strip_tags($order->totals[$i]['title']) . ' ' . strip_tags($order->totals[$i]['text']) . "\n";
-				}
-			}	
-			$text = preg_replace('/<-List_Total->/', $list_total, $text);
-			if ($order->content_type != 'virtual') {
-				$text = preg_replace('/<-DELIVERY_Adress->/', $Text_Delivery_Address , $text);				
-			}
-			elseif($order->content_type == 'virtual') {	
-					if ((DOWNLOAD_ENABLED == 'true') && isset($attributes_values['products_attributes_filename']) && tep_not_null($attributes_values['products_attributes_filename'])) {
-		  			$text = preg_replace('/<-DELIVERY_Adress->/', EMAIL_TEXT_DOWNLOAD_SHIPPING . "\n" . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL', false), $text);
-					} else{
-		  			$text = preg_replace('/<-DELIVERY_Adress->/', '', $text);
-					}	
-			} else{
-	  		$text = preg_replace('/<-DELIVERY_Adress->/', '', $text);
-			}
-			$text = preg_replace('/<-BILL_Adress->/', $Text_Billing_Adress, $text); 
-			$text = preg_replace('/<-Payment_Modul_Text->/', $order->info['payment_method'], $text);
-	    $text = preg_replace('/<-Payment_Modul_Text_Footer->/', EMAIL_TEXT_FOOTER, $text);	  	
-	  
-			$text = preg_replace('/<-FIRMENANSCHRIFT->/', STORE_NAME_ADDRESS, $text);
-			$text = preg_replace('/<-FINANZAMT->/', OWNER_BANK_FA, $text);
-			$text = preg_replace('/<-STEUERNUMMER->/', OWNER_BANK_TAX_NUMBER, $text);
-			$text = preg_replace('/<-USTID->/', OWNER_BANK_UST_NUMBER, $text);
-			$text = preg_replace('/<-BANKNAME->/', OWNER_BANK_NAME, $text);
-			$text = preg_replace('/<-KONTOINHABER->/', OWNER_BANK_ACCOUNT, $text);
-			$text = preg_replace('/<-BLZ->/', STORE_OWNER_BLZ, $text);
-			$text = preg_replace('/<-KONTONUMMER->/', OWNER_BANK, $text);
-			$text = preg_replace('/<-SWIFT->/', OWNER_BANK_SWIFT, $text);
-			$text = preg_replace('/<-IBAN->/', OWNER_BANK_IBAN, $text);
-		  
-	  	$email_order = $text;	
+		/*  ** Altered for Mail Manager ** */
+		//get status of mail manager create account  email
+		$mail_manager_status_query = tep_db_query("select status, template, htmlcontent, txtcontent from  " . TABLE_MM_RESPONSEMAIL . "  where mail_id = '1'");
+		$mail_manager_status = tep_db_fetch_array($mail_manager_status_query);
+
+		if (isset($mail_manager_status['status']) && ($mail_manager_status['status'] == '1')) {	
+			include(DIR_WS_MODULES.'mail_manager/order_confirm.php');
    	 } else {
    	 	// the contribution Email HTML is not installed so we must use the standaard text email
    	 	$standaard_email = 'true' ;
@@ -1125,14 +1042,6 @@ if (tep_db_num_rows($orders_history_query)) {
 	  	$email_order .= EMAIL_TEXT_PAYMENT_METHOD . "\n" . 
     		              EMAIL_SEPARATOR . "\n";
 	    $email_order .= $order->info['payment_method'] . "\n\n";
-		
-		        
-		//	if ( ($order->info['payment_method'] == ORDER_EDITOR_SEND_INFO_PAYMENT_METHOD) && (EMAIL_TEXT_PAYMENT_INFO) ) { 
-		//     $email_order .= EMAIL_TEXT_PAYMENT_INFO . "\n\n";
-		//   }
-		//I'm not entirely sure what the purpose of this is so it is being shelved for now
-	}
-// eof order editor 5 0 9	
 
 		if (EMAIL_TEXT_FOOTER) {
 			$email_order .= EMAIL_TEXT_FOOTER . "\n\n";
@@ -1148,10 +1057,8 @@ if (tep_db_num_rows($orders_history_query)) {
 	  // picture mode
 	  $email_order = tep_add_base_ref($email_order);
 
-	  //send the email to the customer
-// bof order editor 5_0_8 	  
-//	  tep_mail($order->customer['name'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
-	  //tep_mail($order->customer['name'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+	  //send the email to the customer after check for PDF attachment
+
 // bof added for pdfinvoice email attachment:
     if (FILENAME_PDF_INVOICE    !== 'FILENAME_PDF_INVOICE'    ) {
     	 if ( ORDER_EDITOR_ADD_PDF_INVOICE_EMAIL == 'true' ) {
@@ -1178,11 +1085,7 @@ if (tep_db_num_rows($orders_history_query)) {
         // send vanilla e-mail - if email attachment option is false
         tep_mail($order->customer['name'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS );
       }
-    } else {
-        // send vanilla e-mail - if email attachment option is false
-        tep_mail($order->customer['name'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
-    }  
-    
+    }     
 // eof added for pdfinvoice email attachment:
 
 // eof order editor 5_0_8
@@ -1190,7 +1093,8 @@ if (tep_db_num_rows($orders_history_query)) {
    // send emails to other people as necessary
   if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
     tep_mail('', SEND_EXTRA_ORDER_EMAILS_TO, EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
-  } 
+	}  
+  }
 
   ?>
 	
