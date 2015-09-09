@@ -27,7 +27,7 @@ $order_date = EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG);
 if(tep_session_is_registered('customer_is_guest')) {
 $invoice_url = EMAIL_WARNING . "\n\n";
 }else{
-  $invoice_url = EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false);
+  $invoice_url = EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false);
 }
 
 $billing_address = "\n" . $order->billing['name'] . "<br />";
