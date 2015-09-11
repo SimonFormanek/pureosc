@@ -121,7 +121,26 @@ KISS IT configurations can be found under the Configuration >> Images option
 If any changes are made to these options, thumbs must be reset using the KissIT Reset thumbs option  
   
 **The following directory(ies) needs to be writeable by the WWW user:**
-	**../catalog/includes/modules/kiss_image_thumbnailer/thumbs/**
+	**../catalog/images/thumbs/**
+	
+Configuration Settings in Admin:
+A. Admin : Configure : Images : KissIT Product Main Image Width : default: 450 (px)
+B. Admin : Configure : Images : KissIT Product Main Image Height : default : 600 (px)
+  This settings will limits the max. image size for the product_info.php image. A thumbnail with that size is also shown in the Colorbox pop-up.
+  Smaller images shown in product_info.php with Photoset and Colorbox will be downsized from this thumbnail size.
+  Do not use this feature if you wish to show the full image size of the original image in the Colorbox Pop-Up.
+C.  Admin : Configure : Images : KissIT Disable image upsize : Default : true
+  If set to “true” it will prevent images which are smaller than the required thumbnail size to be upsized and show “unsharp”. The smaller images will be pasted in original size on a white background. The result will be an image with      the required thumbnail size.
+D.  Admin : Configure : Images : KissIT Product Watermark Size: Default : 0.6
+KissIT Product Main Watermark size relativ to the image size (1.0=100%, 0.5 = 50%, 0=no watermark).
+E.  Admin : Configure : Images : KissIT Watermark File Name: Default : watermark.png
+Name of Watermark image file placed in the folder /images. Remember to use a png file with transparent background.
+F.  Admin : Configure : Images : KissIT Watermark position in image: Default : center
+Position of the watermark in the image reletiv within the image.
+G.  Admin : Configure : Images : KissIT min image width to apply Watermark: Default : 60
+The minimum width of thumbnail images to apply the watermark.
+H.  Admin : Configure : Images : KissIT min image height to apply Watermark: Default : 60
+The minimum height of thumbnail images to apply the watermark.
 	
 Security Pro R11
 ================
