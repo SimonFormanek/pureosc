@@ -19,8 +19,11 @@ admin/.htaccess
 
 # Cache and Images
 includes/modules/kiss_image_thumbnailer/thumbs/
-!images/thumbs/.htaccess
+!images
+images/*
+!images/thumbs
 images/thumbs/*
+!images/thumbs/.htaccess
 mailhive/cloudbeez/cloudloader/install.log
 
 # Ignore all testing files
