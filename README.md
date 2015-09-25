@@ -7,16 +7,17 @@ I take NO credit for any addons or developments.
 
 
 osCommerce 2.3.4 with Bootstrap UI and some necessary Addons...  
+##This should not be confused with the work of Gary Burton main osCommerce 2.3.4 Bootstrap Edge version at https://github.com/gburton/Responsive-osCommerce  
   
 The idea of this fork is to create an up-to-date bootstrap osCommerce with specific addons.  
-##THIS IS NOT THE PREFERRED INSTALLATION##, but it does give a base for a working store with the following addons.  
+##THIS IS NOT THE PREFERRED INSTALLATION  
+__It does give a base for a working store with the following addons  
 
 Addons have been specially commented so to easily find changes. All original code will remain, but they will be commented out for any changes.  
 All changes can be found by doing a search for the special commenting system of asterisks.  
 
-##ALL CORE CHANGES SHOULD BE SUBMITED TO https://github.com/gburton/Responsive-osCommerce  
-THIS REPO IS FOR ADDON ADDITIONS/FIXES ONLY##
-__:::Current Add-on Listing:::__  
+THIS REPO IS FOR ADDON ADDITIONS/FIXES ONLY  
+__:::Current Add-on Listing:::  
 
 SEO Header Tags Reloaded added -- http://addons.oscommerce.com/info/8864  
 Order Editor added - http://addons.oscommerce.com/info/7844  
@@ -33,34 +34,11 @@ MailBEEZ Customer Relations Manager added -- http://www.mailbeez.com/quickstart/
 Credit Class, Gift Vouchers & Discount Coupons osC2.3.3.4 (CCGV) added -- http://addons.oscommerce.com/info/9020  
 Purchase Without Account (PWA) added -- http://addons.oscommerce.com/info/9142
   
-This is an attempt to get a strong working osc with some addons. This is NOT an independent project. Without the help of MANY coders that have contributed to osCommerce, this would not be possible. I did not code any of the modules, addons, or base software that you see here. Much of the effort has been completed by Gary Burton from osCommerce.  
+This is an attempt to get a strong working osc with some addons. This is NOT an independent project. Without the help of MANY coders that have contributed to osCommerce, this would not be possible. I did not code any of the modules, addons, or base software that you see here. 
   
 IF YOU HAVE CREATED A PRIVATE ADDON THAT YOU SEE LISTED HERE AND IT IS NOT AVAILABLE TO THE GENERAL PUBLIC, please list it within the issues, and I will have it removed.
   
 Links and descriptions will be used for all addon changes. Please contribute if you can.
-
-**In the words of Gary Burton:**  
-This will be an ongoing COMMUNITY effort.  
-
-If you cannot code, you can still help;
-
-Check out the demo site at http://template.me.uk/2334bs3/ - have a look around and note any areas that you feel need attention, then post your feedback at http://forums.oscommerce.com/topic/396152-bootstrap-3-in-2334-responsive-from-the-get-go/
-
-Are you a Coder ?
-Please fork this project and start coding.  Let me know your Github Project URL by posting at http://forums.oscommerce.com/topic/396152-bootstrap-3-in-2334-responsive-from-the-get-go/   
-
-Not a Coder ...
-Please support this project by giving as much feedback as you possibly can.  Or by donating beer to the coders.
-
-How to keep a clean Master copy using Github
-============================================
-
-I have put together a couple of videos.
-1.  shows how to create a new Github account and Fork this project.
-2.  shows how to check for new commits to this project and pull them into your own Fork.
-
-You can find these videos at http://forums.oscommerce.com/topic/396152-bootstrap-3-in-2334-responsive-from-the-get-go/?p=1709648
-
 
 Installation
 ============
