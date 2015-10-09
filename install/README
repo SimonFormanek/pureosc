@@ -1,0 +1,3 @@
+install default version is oscommerce_czech.sql, to change it (see available versions):
+rm oscommerce.sql
+ln -s oscommerce_demo.sql oscommerce.sql (english demo)
