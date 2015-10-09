@@ -177,7 +177,7 @@
 // start the session
   $session_started = false;
   if (SESSION_FORCE_COOKIE_USE == 'True') {
-    tep_setcookie('cookie_test', 'please_accept_for_session', time()+60*60*24*30, $cookie_path, $cookie_domain);
+    tep_setcookie('cookie_test', 'please_accept_for_session', 0, $cookie_path, $cookie_domain); //PURE:BUGFIX privacy - session expires: 0 = only session cookies 
 
     if (isset($HTTP_COOKIE_VARS['cookie_test'])) {
       tep_session_start();
