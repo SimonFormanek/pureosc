@@ -31,5 +31,3 @@ mailhive/cloudbeez/cloudloader/install.log
 
 # Miscellaneous
 admin/.DS_Store
-includes/configure.php
-admin/includes/configure.php

@@ -33,7 +33,8 @@
   if (file_exists('includes/local/configure.php')) { // for developers
     include('includes/local/configure.php');
   } else {
-    include('includes/configure.php');
+    include('../oscconfig/configure.php');
+    include('../oscconfig/dbconfigure.php');
   }
 
   if (DB_SERVER == '') {
