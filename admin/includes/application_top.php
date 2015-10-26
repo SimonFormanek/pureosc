@@ -249,4 +249,8 @@
                         array('title' => TEXT_CACHE_MANUFACTURERS, 'code' => 'manufacturers', 'file' => 'manufacturers_box-language.cache', 'multiple' => true),
                         array('title' => TEXT_CACHE_ALSO_PURCHASED, 'code' => 'also_purchased', 'file' => 'also_purchased-language.cache', 'multiple' => true)
                        );
+
+/* Enable KCFinder, the filemanager in ckeditor */
+$_SESSION['KCFINDER'] = array();
+$_SESSION['KCFINDER']['disabled'] = false;
 ?>

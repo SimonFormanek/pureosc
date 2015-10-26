@@ -96,6 +96,8 @@
           tep_reset_cache_block('categories');
           tep_reset_cache_block('also_purchased');
         }
+	//pure:new create thumbnails
+	exec('curl ' . HTTP_CATALOG_SERVER . '/index.php?cPath=' . $cPath . ' > /dev/null 2>&1');
 
         tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $categories_id));
         break;
@@ -336,8 +338,12 @@
           tep_reset_cache_block('categories');
           tep_reset_cache_block('also_purchased');
         }
-
-        tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id));
+	//pure:new create thumbnails
+	exec('curl ' . HTTP_CATALOG_SERVER . '/index.php?cPath=' . $cPath . ' > /dev/null 2>&1');
+	$urlproduct = HTTP_CATALOG_SERVER . '/product_info.php?cPath=' . $cPath . '&products_id=' . $products_id;
+	tep_redirect($urlproduct);
+	
+        //back: FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id;
         break;
       case 'copy_to_confirm':
         if (isset($HTTP_POST_VARS['products_id']) && isset($HTTP_POST_VARS['categories_id'])) {
@@ -594,7 +600,7 @@ updateGross();
             <td><table border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="main" valign="top"><?php echo tep_image(tep_catalog_href_link(DIR_WS_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']); ?>&nbsp;</td>
-                <td class="main"><?php echo tep_draw_textarea_field('products_description[' . $languages[$i]['id'] . ']', 'soft', '70', '15', (empty($pInfo->products_id) ? '' : tep_get_products_description($pInfo->products_id, $languages[$i]['id']))); ?></td>
+                <td class="main"><?php echo tep_draw_textarea_field_ckeditor('products_description[' . $languages[$i]['id'] . ']', 'soft', '70', '15', (empty($pInfo->products_id) ? '' : tep_get_products_description($pInfo->products_id, $languages[$i]['id']))); ?></td>
               </tr>
             </table></td>
           </tr>
@@ -612,7 +618,7 @@ updateGross();
             <td><table border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="main" valign="top"><?php echo tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']); ?>&nbsp;</td>
-                <td class="main"><?php echo tep_draw_textarea_field('products_mini_description[' . $languages[$i]['id'] . ']', 'soft', '70', '7', (empty($pInfo->products_id) ? '' : tep_get_products_mini_description($pInfo->products_id, $languages[$i]['id']))); ?></td>
+                <td class="main"><?php echo tep_draw_textarea_field_ckeditor('products_mini_description[' . $languages[$i]['id'] . ']', 'soft', '70', '7', (empty($pInfo->products_id) ? '' : tep_get_products_mini_description($pInfo->products_id, $languages[$i]['id']))); ?></td>
               </tr>
             </table></td>
           </tr>
@@ -735,7 +741,7 @@ function showPiDelConfirm(piId) {
             <td><table border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="main" valign="top"><?php echo tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']); ?>&nbsp;</td>
-                <td class="main"><?php echo tep_draw_textarea_field('products_seo_description[' . $languages[$i]['id'] . ']', 'soft', '70', '15', (empty($pInfo->products_id) ? '' : tep_get_products_seo_description($pInfo->products_id, $languages[$i]['id']))); ?></td>
+                <td class="main"><?php echo tep_draw_textarea_field('products_seo_description[' . $languages[$i]['id'] . ']', 'soft', '70', '3', (empty($pInfo->products_id) ? '' : tep_get_products_seo_description($pInfo->products_id, $languages[$i]['id']))); ?></td>
               </tr>
             </table></td>
           </tr>
@@ -1030,7 +1036,7 @@ $('#products_date_available').datepicker({
           $category_seo_title_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']) . '&nbsp;' . tep_draw_input_field('categories_seo_title[' . $languages[$i]['id'] . ']', NULL, 'style="width: 300px;"');
         }
         for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-          $category_seo_description_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name'], '', '', 'style="vertical-align: top;"') . '&nbsp;' . tep_draw_textarea_field('categories_seo_description[' . $languages[$i]['id'] . ']', 'soft', '80', '10');
+          $category_seo_description_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name'], '', '', 'style="vertical-align: top;"') . '&nbsp;' . tep_draw_textarea_field('categories_seo_description[' . $languages[$i]['id'] . ']', 'soft', '80', '3');
         }
         for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
           $category_seo_keywords_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']) . '&nbsp;' . tep_draw_input_field('categories_seo_keywords[' . $languages[$i]['id'] . ']', NULL, 'style="width: 300px;" placeholder="' . PLACEHOLDER_COMMA_SEPARATION . '"');
@@ -1068,13 +1074,13 @@ $('#products_date_available').datepicker({
           $category_seo_title_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']) . '&nbsp;' . tep_draw_input_field('categories_seo_title[' . $languages[$i]['id'] . ']', tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id']), 'style="width: 300px;"');
         }
         for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-          $category_seo_description_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name'], '', '', 'style="vertical-align: top;"') . '&nbsp;' . tep_draw_textarea_field('categories_seo_description[' . $languages[$i]['id'] . ']', 'soft', '80', '10', tep_get_category_seo_description($cInfo->categories_id, $languages[$i]['id']));
+          $category_seo_description_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name'], '', '', 'style="vertical-align: top;"') . '&nbsp;' . tep_draw_textarea_field('categories_seo_description[' . $languages[$i]['id'] . ']', 'soft', '60', '3', tep_get_category_seo_description($cInfo->categories_id, $languages[$i]['id']));
         }
         for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
           $category_seo_keywords_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']) . '&nbsp;' . tep_draw_input_field('categories_seo_keywords[' . $languages[$i]['id'] . ']', tep_get_category_seo_keywords($cInfo->categories_id, $languages[$i]['id']), 'style="width: 300px;" placeholder="' . PLACEHOLDER_COMMA_SEPARATION . '"');
         }
         for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-          $category_description_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name'], '', '', 'style="vertical-align: top;"') . '&nbsp;' . tep_draw_textarea_field('categories_description[' . $languages[$i]['id'] . ']', 'soft', '80', '10', tep_get_category_description($cInfo->categories_id, $languages[$i]['id']));
+          $category_description_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name'], '', '', 'style="vertical-align: top;"') . '&nbsp;' . tep_draw_textarea_field_ckeditor('categories_description[' . $languages[$i]['id'] . ']', 'soft', '80', '10', tep_get_category_description($cInfo->categories_id, $languages[$i]['id']));
 		}
 
         $contents[] = array('text' => '<br />' . TEXT_EDIT_CATEGORIES_NAME . $category_inputs_string);

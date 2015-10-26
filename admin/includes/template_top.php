@@ -37,6 +37,29 @@ $.datepicker.setDefaults($.datepicker.regional['<?php echo JQUERY_DATEPICKER_I18
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/flot/jquery.flot.time.min.js', '', 'SSL'); ?>"></script>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <script type="text/javascript" src="includes/general.js"></script>
+<?php
+//this code block is optional - if you want the ability to turn the editor on and off in admin add this - its not necessary and is not needed to make the editor work
+
+if (!defined('USE_CKEDITOR_ADMIN_TEXTAREA')) {
+tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_id, configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function) values ('', 'Use CKEditor', 'USE_CKEDITOR_ADMIN_TEXTAREA','true','Use CKEditor for WYSIWYG editing of textarea fields in admin',1,99,now(),'tep_cfg_select_option(array(\'true\', \'false\'),' )");
+define ('USE_CKEDITOR_ADMIN_TEXTAREA','true');
+}
+if (USE_CKEDITOR_ADMIN_TEXTAREA == "true") {
+?>
+
+
+<script type="text/javascript" src="<?php echo tep_href_link('ext/ckeditor/ckeditor.js'); ?>"></script>
+<!-- If you would rather use ckeditor.js file from a CDN uncomment the line below and comment the line above - if the version number has changed remember to change the version number - you'll actually find the line of code on the ck editor web site for your version -->
+<!-- <script src="//cdn.ckeditor.com/4.4.4/full/ckeditor.js"></script> -->
+<script type="text/javascript" src="<?php echo tep_href_link('ext/ckeditor/adapters/jquery.js'); ?>"></script>
+<script type="text/javascript">
+CKEDITOR.replace( 'ckeditor' );
+</script>
+
+<?php
+// the closing brace here forms part of the php code block above
+} //if you decide to leave out the php code block above then comment or remove this too
+?>
 </head>
 <body>
 

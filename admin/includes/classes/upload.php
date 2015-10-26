@@ -63,7 +63,8 @@
         }
 
         $this->set_file($file);
-        $this->set_filename($file['name']);
+	//pure:new added file sanisation (accented chars to ascii and spaces to dashes)
+        $this->set_filename(preg_replace("/[\s_]/", "-", preg_replace("/[\s-]+/", " ", preg_replace("/[^a-z0-9_\s-\.]/", "", strtolower(iconv("utf-8", "ascii//TRANSLIT", $file['name']))))));
         $this->set_tmp_filename($file['tmp_name']);
 
         return $this->check_destination();

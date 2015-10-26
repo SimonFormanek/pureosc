@@ -2,6 +2,11 @@
 ###### osCommerce #######
 #########################
 
+### = commented for devel
+#!!! admin commented for shop checkout !!!!!
+#admin
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 includes/configure.php
 admin/includes/configure.php
 includes/work/*
@@ -20,9 +25,9 @@ admin/.htaccess
 # Cache and Images
 includes/modules/kiss_image_thumbnailer/thumbs/
 !images
-images/*
+###images/*
 !images/thumbs
-images/thumbs/*
+###images/thumbs/*
 !images/thumbs/.htaccess
 mailhive/cloudbeez/cloudloader/install.log
 
