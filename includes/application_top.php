@@ -329,7 +329,8 @@
   require(DIR_WS_CLASSES . 'alertbox.php');
   require(DIR_WS_CLASSES . 'message_stack.php');
   $messageStack = new messageStack;
-
+  //SEO URLs
+  require(DIR_WS_CLASSES . 'seo_friendly_urls.php');
 // Shopping cart actions
   if (isset($HTTP_GET_VARS['action'])) {
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled

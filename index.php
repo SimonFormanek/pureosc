@@ -18,8 +18,15 @@
   Released under the GNU General Public License
 */
 
+  //SEO URLs
   require('includes/application_top.php');
-
+  if(isset($seo_friendly_urls) && $seo_friendly_urls->enabled && $seo_friendly_urls->page_type!='category'){
+  if($seo_friendly_urls->include_page!=''){
+  $PHP_SELF=$seo_friendly_urls->include_page;
+  include $seo_friendly_urls->include_page;
+  exit;
+  }
+  }
 // the following cPath references come from application_top.php
   $category_depth = 'top';
   if (isset($cPath) && tep_not_null($cPath)) {
