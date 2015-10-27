@@ -359,3 +359,15 @@ define('MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION', '<p>Content Width can be 12 o
   define('BOX_MM_EMAIL', 'Send Email');
   define('BOX_MM_RESPONSEMAIL', 'Response Mail');
   define('BOX_TOOLS_MAIL_MANAGER', 'Mail Manager');
+
+// BOF Order Maker
+define('TABLE_HEADING_EDIT_ORDERS', 'To modify the order');
+define('TEXT_IMAGE_CREATE','Create Order');
+define('TEXT_INFO_CUSTOMER_SERVICE_ID','Entered by:');
+define('IMAGE_CREATE_ORDER', 'Create New Order');
+define('BOX_CUSTOMERS_CREATE_ORDER', 'Create Order');
+// EOF Order Maker
+// BOF Create Account 
+define('BOX_CUSTOMERS_CREATE_ACCOUNT', 'Create Customer');
+define('IMAGE_CONTINUE', 'Continue');
+// EOF Create Account

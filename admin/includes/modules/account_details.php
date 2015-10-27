@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2002 osCommerce
+  Copyright (c) 2015 osCommerce
 
   Released under the GNU General Public License
   
@@ -433,52 +433,5 @@ elseif
       </tr>
     </table></td>
   </tr>
-<?php/*
-<?php
-  if (!$is_read_only) {
-?>
-  <tr>
-    <td class="formAreaTitle"><br><?php echo CATEGORY_PASSWORD; ?></td>
-  </tr>
-  <tr>
-    <td class="main"><table border="0" width="100%" cellspacing="0" cellpadding="2" class="formArea">
-      <tr>
-        <td class="main"><table border="0" cellspacing="0" cellpadding="2">
-          <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_PASSWORD; ?></td>
-            <td class="main">&nbsp;
-<?php
-    if ($error) {
-      if ($entry_password_error) {
-        echo tep_draw_password_field('password') . '&nbsp;' . ENTRY_PASSWORD_ERROR;
-      } else {
-        echo PASSWORD_HIDDEN . tep_draw_hidden_field('password') . tep_draw_hidden_field('confirmation');
-      }
-    } else {
-      echo tep_draw_password_field('password') . '&nbsp;' . ENTRY_PASSWORD_TEXT;
-    }
-?></td>
-         </tr>
-<?php
-    if ( (!$error) || ($entry_password_error) ) {
-?>
-          <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_PASSWORD_CONFIRMATION; ?></td>
-            <td class="main">&nbsp;
-<?php
-      echo tep_draw_password_field('confirmation') . '&nbsp;' . ENTRY_PASSWORD_CONFIRMATION_TEXT;
-?></td>
-          </tr>
-<?php
-    }
-?>
-        </table></td>
-      </tr>
-    </table></td>
-  </tr>
-*/ ?>
 
-<?php
- // }
-?>
 </table>

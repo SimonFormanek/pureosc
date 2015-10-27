@@ -10,10 +10,11 @@
   Released under the GNU General Public License
 */
 
-  require('includes/application_top.php');
-
+	require('includes/application_top.php');
+	require(DIR_WS_INCLUDES . 'template_top.php');
+	require('includes/form_check.js.php');
+	
   // #### Get Available Customers
-
   $query = tep_db_query("select a.customers_id, a.customers_firstname, a.customers_lastname, b.entry_company, b.entry_city, c.zone_code from " . TABLE_CUSTOMERS . " AS a, " . TABLE_ADDRESS_BOOK . " AS b LEFT JOIN " . TABLE_ZONES . " as c ON (b.entry_zone_id = c.zone_id) WHERE a.customers_default_address_id = b.address_book_id  ORDER BY entry_company,customers_lastname");
   $result = $query;
 
@@ -71,11 +72,8 @@
  	  $address = tep_db_fetch_array($address_query);
 	}
 
-    require(DIR_WS_LANGUAGES . $language . '/' . FILENAME_CREATE_ORDER_PROCESS);
-
   // #### Generate Page
-
- require('includes/form_check.js.php'); ?>
+ ?>
 <script language="javascript" type="text/javascript"><!--
 function selectExisting() {
   document.create_order.customers_create_type.value = 'existing';
@@ -110,27 +108,19 @@ function selectorsExtras(status) {
 <?php } ?> 
 }
 //--></script>
-</head>
-
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" onLoad="selectorsExtras(true)">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'template_top.php'); ?>
-<!-- header_eof //-->		
+<?php 
 	
-  <!-- body //-->
-  <table border="0" width="100%" cellspacing="2" cellpadding="2">
-    <tr>
-      <td width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="0" cellpadding="2" class="columnLeft">
-  </table></td>
-  <!-- body_text //-->
+?>
 
-  <td valign="top">
+  <table border="0" width="100%" cellspacing="0" cellpadding="2">
+    <tr>
+      <td>
     <table border="0" width="100%" cellspacing="0" cellpadding="0">
         <tr>
           <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
         </tr>
     </table>
-    <br>
+    <br />
     <table border="0" width="100%" class="dataTableHeadingRow">
       <tr>
         <td class="dataTableHeadingContent">&nbsp;&nbsp;<?php echo TEXT_STEP_1; ?></td>
@@ -221,7 +211,7 @@ function selectorsExtras(status) {
       </tr>
     </table>
     <?php if (!empty($_GET['message'])) { ?>
-    <br>
+    <br />
     <table border="0" width="100%" style=" background-color:#FF0000; height:40px;">
       <tr>
         <td class="dataTableHeadingContent">&nbsp;&nbsp;<?php echo $_GET['message']; ?></td>
@@ -238,11 +228,7 @@ function selectorsExtras(status) {
     <?php echo tep_draw_form('create_order', FILENAME_CREATE_ORDER_PROCESS, '', 'post', 'onsubmit="return check_form(this);" id="create_order"') . tep_draw_hidden_field('customers_create_type', 'existing', 'id="customers_create_type"') . tep_hide_session_id(); ?>
     <table border="0" cellpadding="3" cellspacing="0" width="500">
     <tr>
-      <td><?php
-          //onSubmit="return check_form();"
-          require(DIR_WS_MODULES . 'create_order_details.php');
-        ?>
-      </td>
+      <td><?php require(DIR_WS_MODULES . 'create_order_details.php'); ?></td>
     </tr>
     <tr>
       <td><?php echo tep_draw_separator('pixel_trans.gif', '100%', '10'); ?></td>
@@ -250,27 +236,20 @@ function selectorsExtras(status) {
     <tr>
       <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
         <tr>
-          <td class="main"><?php echo '<a href="' . tep_href_link(FILENAME_DEFAULT, '', 'SSL') . '">' . tep_image_button('button_back.gif', IMAGE_BACK) . '</a>'; ?></td>
-          <td class="main" align="right"><?php echo tep_image_submit('button_save.gif', IMAGE_SAVE); ?></td>
+          <td class="main"><?php echo tep_draw_button(IMAGE_BACK, 'triangle-1-w', tep_href_link(FILENAME_DEFAULT, '', 'SSL')); ?></td>
+          <td class="main" align="right"><?php echo tep_draw_button(IMAGE_SAVE, 'disk'); ?></td>
         </tr>
       </table></td>
     </tr>
   </table></form></td>
-<!-- body_text_eof //-->
   </tr>
 </table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'template_bottom.php'); ?>
-<!-- footer_eof //-->
-<br>
+<br />
 <script language="javascript" type="text/javascript"><!--
 selectorsExtras(true);
 //--></script>
 
-</body>
-</html>
 <?php 
 require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+require(DIR_WS_INCLUDES . 'template_bottom.php'); 
 ?>

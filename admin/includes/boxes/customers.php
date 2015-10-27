@@ -18,7 +18,12 @@
         'title' => BOX_CUSTOMERS_CUSTOMERS,
         'link' => tep_href_link(FILENAME_CUSTOMERS)
       ),
-/* ** Altered for Manual Order Maker ** */	  
+/* ** Altered for Manual Order Maker and Create Order ** */	  
+       array(
+        'code' => FILENAME_CREATE_ACCOUNT,
+        'title' => BOX_CUSTOMERS_CREATE_ACCOUNT,
+        'link' => tep_href_link(FILENAME_CREATE_ACCOUNT)
+      ),	  
       array(
         'code' => FILENAME_CREATE_ORDER,
         'title' => BOX_CUSTOMERS_CREATE_ORDER,
