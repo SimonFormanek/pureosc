@@ -132,8 +132,10 @@
 <?php /* ** EOF alteration for Manual Order Maker ** */ ?>
 <?php /* ** Altered for Order Editor ** PHP TAGS CHANGED BELOW            
 			<td class="smallText" align="right">< ?php echo tep_draw_button(IMAGE_ORDERS_INVOICE, 'document', tep_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $HTTP_GET_VARS['oID']), null, array('newwindow' => true)) . tep_draw_button(IMAGE_ORDERS_PACKINGSLIP, 'document', tep_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $HTTP_GET_VARS['oID']), null, array('newwindow' => true)) . tep_draw_button(IMAGE_BACK, 'triangle-1-w', tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('action')))); ? ></td>
-*/ ?>
+old version:
 	    <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_EDIT, 'document', tep_href_link(FILENAME_ORDERS_EDIT, tep_get_all_get_params(array('oID', 'action')) . 'oID=' . $HTTP_GET_VARS['oID'] . '&action=edit')) . tep_draw_button(IMAGE_ORDERS_INVOICE, 'document', tep_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $HTTP_GET_VARS['oID'])) . tep_draw_button(IMAGE_ORDERS_PACKINGSLIP, 'document', tep_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $HTTP_GET_VARS['oID']), null, array('newwindow' => true)) . tep_draw_button(IMAGE_BACK, 'triangle-1-w', tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('action')))); ?></td>
+*/ ?>
+	    <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_CREATE_ORDER, 'plus', tep_href_link(FILENAME_CREATE_ORDER)) . tep_draw_button(IMAGE_EDIT, 'pencil', tep_href_link(FILENAME_ORDERS_EDIT, 'oID=' . $HTTP_GET_VARS['oID']), null, array('newwindow' => true)) . tep_draw_button(IMAGE_ORDERS_INVOICE, 'document', tep_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $HTTP_GET_VARS['oID']), null, array('newwindow' => true)) . tep_draw_button(IMAGE_ORDERS_PACKINGSLIP, 'document', tep_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $HTTP_GET_VARS['oID']), null, array('newwindow' => true)) . tep_draw_button(IMAGE_BACK, 'triangle-1-w', tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('action')))); ?></td>
 <?php /* ** EOF alteration for Order Editor ** */ ?>
           </tr>
         </table></td>
@@ -383,7 +385,9 @@
 /* ** Altered by Manual Order Maker **
       $orders_query_raw = "select o.orders_id, o.customers_name, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$languages_id . "' and ot.class = 'ot_total' order by o.orders_id DESC";
 */
-      $orders_query_raw = "select o.orders_id, o.customers_name,  " . ( defined('MODULE_CONTENT_PWA_LOGIN_STATUS') ? "o.customers_guest, " : '' ) . " o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.customer_service_id, s.orders_status_name, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$languages_id . "' and ot.class = 'ot_total' order by o.orders_id DESC";
+//old      $orders_query_raw = "select o.orders_id, o.customers_name,  " . ( defined('MODULE_CONTENT_PWA_LOGIN_STATUS') ? "o.customers_guest, " : '' ) . " o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.customer_service_id, s.orders_status_name, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$languages_id . "' and ot.class = 'ot_total' order by o.orders_id DESC";
+      $orders_query_raw = "select o.orders_id, o.customers_name, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.customer_service_id, s.orders_status_name, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$languages_id . "' and ot.class = 'ot_total' order by o.orders_id DESC";
+
 /* ** EOE for Order Maker ** */
 /* ** EOE for PWA ** */
     }
@@ -420,6 +424,12 @@
                   </tr>
                 </table></td>
               </tr>
+
+          <!-- BOF Order Maker -->
+              <tr>
+                <td align="right" colspan="5" class="smallText"><?php echo tep_draw_button(IMAGE_CREATE_ORDER, 'plus', tep_href_link(FILENAME_CREATE_ORDER)); ?></td>
+              </tr>	
+          <!-- EOF Order Maker -->
             </table></td>
 <?php
   $heading = array();
@@ -450,7 +460,7 @@
         if (tep_not_null($oInfo->last_modified)) $contents[] = array('text' => TEXT_DATE_ORDER_LAST_MODIFIED . ' ' . tep_date_short($oInfo->last_modified));
         $contents[] = array('text' => '<br />' . TEXT_INFO_PAYMENT_METHOD . ' '  . $oInfo->payment_method);
 /* ** Altered for Manual Order Maker ** */
-       $contents[] = array('text' => '<br>' . TEXT_INFO_CUSTOMER_SERVICE_ID . ' '  . $oInfo->customer_service_id);
+       $contents[] = array('text' => '<br />' . TEXT_INFO_CUSTOMER_SERVICE_ID . ' '  . $oInfo->customer_service_id);
 /* ** EOF alteration for Manual Order Maker ** */
       }
       break;

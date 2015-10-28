@@ -13,7 +13,7 @@
 ?>
 <table border="0" width="100%" cellspacing="0" cellpadding="2">
   <tr>
-    <td class="main"><table border="0" width="100%" cellspacing="0" cellpadding="2" class="formArea">
+	 <td class="main"><table border="0" width="100%" cellspacing="0" cellpadding="2" class="formArea">
       <tr>
         <td class="main"><table border="0" cellspacing="0" cellpadding="2">
           <tr>
@@ -107,7 +107,7 @@
 			  } elseif (!empty($address['entry_state']))  {
 			    $state = $address['entry_state'];
 			  }
-              echo tep_draw_input_field('entry_state', $state) . '&nbsp;' . ENTRY_STATE_TEXT;
+              echo '&nbsp;' . tep_draw_input_field('entry_state', $state) . '&nbsp;' . ENTRY_STATE_TEXT;
             ?>
             </td>
           </tr>
@@ -117,9 +117,9 @@
             <td class="main">
               <?php
                 if ($address['entry_country_id']){
-                  echo tep_draw_pull_down_menu('entry_country', tep_get_countries(), $address['entry_country_id']);
+                  echo '&nbsp;' . tep_draw_pull_down_menu('entry_country', tep_get_countries(), $address['entry_country_id']);
                 }else{
-                  echo tep_draw_pull_down_menu('entry_country', tep_get_countries(), STORE_COUNTRY);
+                  echo '&nbsp;' . tep_draw_pull_down_menu('entry_country', tep_get_countries(), STORE_COUNTRY);
                 }
                 tep_draw_hidden_field('step', '3');
               ?>
@@ -142,7 +142,7 @@
           </tr>
           <tr>
             <td class="main">&nbsp;<?php echo ENTRY_FAX_NUMBER; ?></td>
-            <td class="main"> <?php echo tep_draw_input_field('customers_fax', $account['customers_fax']) . '&nbsp;' . ENTRY_FAX_NUMBER_TEXT; ?></td>
+            <td class="main"> <?php echo '&nbsp;' . tep_draw_input_field('customers_fax', $account['customers_fax']) . '&nbsp;' . ENTRY_FAX_NUMBER_TEXT; ?></td>
           </tr>
         </table></td>
       </tr>
@@ -156,12 +156,12 @@
       <tr>
         <td class="main"><table border="0" cellspacing="0" cellpadding="2">
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_ACCOUNT_PASSWORD; ?></td>
+            <td class="main">&nbsp;<?php echo ENTRY_ACCOUNT_PASSWORD . ':'; ?></td>
             <td class="main">&nbsp;<?php echo tep_draw_input_field('customers_password', '', 'id="customers_password"') . '&nbsp;' . ENTRY_ACCOUNT_PASSWORD_TEXT; ?> </td>
           </tr>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_NEWSLETTER_SUBSCRIBE; ?></td>
-            <td class="main"> <?php echo tep_draw_input_field('customers_newsletter', $account['customers_newsletter'], 'id="customers_newsletter"') . '&nbsp;' . ENTRY_NEWSLETTER_SUBSCRIBE_TEXT; ?></td>
+            <td class="main">&nbsp;<?php echo ENTRY_NEWSLETTER_SUBSCRIBE . ':'; ?></td>
+            <td class="main"><?php echo '&nbsp;' . tep_draw_input_field('customers_newsletter', $account['customers_newsletter'], 'id="customers_newsletter"') . '&nbsp;' . ENTRY_NEWSLETTER_SUBSCRIBE_TEXT; ?></td>
           </tr>
         </table></td>
       </tr>

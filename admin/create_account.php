@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2002 osCommerce
+  Copyright (c) 2015 osCommerce
 
   Released under the GNU General Public License
    
@@ -15,28 +15,15 @@
 */
 
   require('includes/application_top.php');
-
-  require(DIR_WS_LANGUAGES . $language . '/' . FILENAME_CREATE_ACCOUNT);
-
-require('includes/form_check.js.php'); ?>
-</head>
-<body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF">
-<!-- header //-->
-<?php
   require(DIR_WS_INCLUDES . 'template_top.php');
+  require('includes/form_check.js.php'); 
 ?>
-<!-- header_eof //-->
-
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-
-    </table></td>
-<!-- body_text //-->
-    <td width="100%" valign="top"><form name="account_edit" method="post" <?php echo 'action="' . tep_href_link(FILENAME_CREATE_ACCOUNT_PROCESS, '', 'SSL') . '"'; ?> onSubmit="return check_form();"><input type="hidden" name="action" value="process"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
+	<form name="account_edit" method="post" <?php echo 'action="' . tep_href_link(FILENAME_CREATE_ACCOUNT_PROCESS, '', 'SSL') . '"'; ?> onSubmit="return check_form();">
+		<input type="hidden" name="action" value="process">
+	<table border="0" width="50%" cellspacing="0" cellpadding="2">
+		<tr>
+			<td>
+	<table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
             <td class="pageHeading"><?php echo HEADING_TITLE_CREATE_ACCOUNT; ?></td>
           </tr>
@@ -66,22 +53,10 @@ require('includes/form_check.js.php'); ?>
         </td>
       </tr>
       <tr>
-        <td align="right" class="main"><br><?php echo tep_image_submit('button_confirm.gif', IMAGE_BUTTON_CONTINUE); ?></td>
+        <td align="right" class="main"><br /><?php echo tep_draw_button(IMAGE_CONTINUE, 'triangle-1-e'); ?></td>
       </tr>
-    </table></form></td>
-<!-- body_text_eof //-->
-    <td width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="0" cellpadding="2">
-    </table></td>
-  </tr>
-</table>
-<!-- body_eof //-->
-
-<!-- footer //-->
+    </table></form>
 <?php
-    require(DIR_WS_INCLUDES . 'template_bottom.php');
+	require(DIR_WS_INCLUDES . 'template_bottom.php');
+	require(DIR_WS_INCLUDES . 'application_bottom.php');
 ?>
-<!-- footer_eof //-->
-<br>
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>

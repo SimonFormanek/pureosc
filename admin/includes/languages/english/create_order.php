@@ -45,8 +45,8 @@ define('ENTRY_COMPANY', 'Company Name:');
 define('ENTRY_COMPANY_ERROR', '');
 define('ENTRY_COMPANY_TEXT', '');
 define('ENTRY_GENDER', 'Gender:');
-define('ENTRY_GENDER_FEMALE', 'Female:');
-define('ENTRY_GENDER_MALE', 'Male:');
+define('ENTRY_GENDER_FEMALE', 'Female');
+define('ENTRY_GENDER_MALE', 'Male');
 define('ENTRY_GENDER_ERROR', '&nbsp;');
 define('ENTRY_GENDER_TEXT', '&nbsp;');
 define('ENTRY_FIRST_NAME', 'First Name:');
@@ -120,7 +120,7 @@ define('ACCOUNT_EXTRAS','Account Extras');
 define('ENTRY_ACCOUNT_PASSWORD','Password');
 define('ENTRY_NEWSLETTER_SUBSCRIBE','Newsletter');
 define('ENTRY_ACCOUNT_PASSWORD_TEXT','');
-define('ENTRY_NEWSLETTER_SUBSCRIBE_TEXT','1 = subscribed, or 0 (Zero) = not subscribed.');
+define('ENTRY_NEWSLETTER_SUBSCRIBE_TEXT','1 => Yes, 0 => No');
 
 
 ?>
