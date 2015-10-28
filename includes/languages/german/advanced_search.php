@@ -55,4 +55,6 @@ define('ERROR_PRICE_FROM_MUST_BE_NUM', '<b>Preis ab</b> muss eine Zahl sein');
 define('ERROR_PRICE_TO_MUST_BE_NUM', '<b>Preis bis</b> muss eine Zahl sein');
 define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM', '<b>Preis bis</b> muss grö&szlig;er oder gleich <b>Preis ab</b> sein.');
 define('ERROR_INVALID_KEYWORDS', 'Suchbegriff unzul&aumässig');
+//pure:new
+define('IMAGE_BUTTON_BACK_ADVANCED_SEARCH','back to advanced search');
 ?>

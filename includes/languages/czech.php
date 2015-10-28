@@ -346,3 +346,5 @@ define('USER_LOCALIZATION', '<abbr title="Vybraný jazyk">L:</abbr> %s <abbr tit
   define('BOX_MM_TEMPLATES', 'Template Manager');
   define('BOX_MM_EMAIL', 'Zaslat e-mail');
   define('BOX_MM_RESPONSEMAIL', 'Response Mail');
+//pure:new link to advanced search
+  define('IMAGE_BUTTON_ADVANCED_SEARCH_LINK','podrobné');
