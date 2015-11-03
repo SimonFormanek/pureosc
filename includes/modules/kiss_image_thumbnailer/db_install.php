@@ -11,10 +11,11 @@
   * @copyright Copyright 2008-2009 FWR Media ( Robert Fisher )
   * @author Robert Fisher, FWR Media, http://www.fwrmedia.co.uk 
   * @lastdev $Author:: @raiwa  info@sarplataygemas.com       $:  Author of last commit
-  * @lastmod $Date:: 2015-07-27       			     						 $:  Date of last commit
-  * @version $Rev:: 17                                       $:  Revision of last commit
+  * @lastmod $Date:: 2015-09-24       			     						 $:  Date of last commit
+  * @version $Rev:: 21                                       $:  Revision of last commit
   * @Id $Id:: Image.php 14 2015-06-25 @raiwa                 $:  Full Details
   
+  * $Rev:: 21 Added Thumbs Main directory support in line 69-75 by @raiwa
   * $Rev:: 17 Added Reset Thumbs support in line 61-66 by @gergely
   * $Rev:: 14 Added Watermark support in line 44-60 by @oboy
 
@@ -43,7 +44,7 @@
 	}	  
 
 	// Added for watermark support
-	if ( KISSIT_IMAGE_MODULE < 14) {
+	if ( KISSIT_IMAGE_MODULE < 14 || !defined('KISSIT_MAIN_PRODUCT_WATERMARK_SIZE') ) {
 		define('KISSIT_MAIN_PRODUCT_WATERMARK_SIZE', '0.6');
 		define('KISSIT_MAIN_PRODUCT_WATERMARK_IMAGE', 'watermark.png');
     define('KISSIT_MAIN_PRODUCT_WATERMARK_MIN_IMAGE_WIDTH', '60');
@@ -58,11 +59,18 @@
 		tep_db_query("UPDATE `configuration` SET `configuration_value`='14'  WHERE configuration_key= 'KISSIT_IMAGE_MODULE';");
   }
 
-	if ( KISSIT_IMAGE_MODULE < 17) {
+	if ( KISSIT_IMAGE_MODULE < 17 || !defined('KISSIT_RESET_IMAGE_THUMBS') ) {
 		tep_db_query("INSERT INTO configuration (configuration_title,configuration_key,configuration_value,configuration_description,configuration_group_id,sort_order,date_added, use_function, set_function) VALUES 
 			('KissIT Reset thumbs', 'KISSIT_RESET_IMAGE_THUMBS', 'false', 'Reset thumbs cache.', '4', '28', NOW(), 'tep_cfg_reset_thumbs_cache', '" . tep_db_input("tep_cfg_select_option(array('reset', 'false'), ") . "')
 				");
   		tep_db_query("UPDATE `configuration` SET `configuration_value`='17'  WHERE configuration_key= 'KISSIT_IMAGE_MODULE';");
   }
 
+  if ( KISSIT_IMAGE_MODULE < 21 || !defined('KISSIT_THUMBS_MAIN_DIR') ) {
+  	define('KISSIT_THUMBS_MAIN_DIR', 'thumbs/');
+		tep_db_query("INSERT INTO configuration (configuration_title,configuration_key,configuration_value,configuration_description,configuration_group_id,sort_order,date_added,set_function) VALUES 
+			('KissIT thumb directory', 'KISSIT_THUMBS_MAIN_DIR', '" . tep_db_input(KISSIT_THUMBS_MAIN_DIR) . "', 'The name of the thumbs directory inside \"images\".<br>default: \'thumbs\'<br>Please, reset thumbs if you change it.', '4', '29', NOW(), null)
+				");
+  		tep_db_query("UPDATE `configuration` SET `configuration_value`='21'  WHERE configuration_key= 'KISSIT_IMAGE_MODULE';");
+  }
 ?>

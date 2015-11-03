@@ -67,7 +67,7 @@
       }
       $image_path_parts = pathinfo ( $this->src );
       $this->_image_name = $image_path_parts['basename'];
-      $this->_thumb_filename = $this->attributes['width'] . 'x' . $this->attributes['height'] . '_' . $this->_image_name;
+      $this->_thumb_filename = $this->_image_name;
       $this->_thumb_src = $this->thumbs_dir_path . $this->_thumb_filename;
       if ( is_readable ( $this->_thumb_src ) ) {
         $this->_calculated_width = $this->attributes['width'];

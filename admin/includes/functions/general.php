@@ -1789,17 +1789,25 @@ return $output;
   }
 /* ** EOF alterations for Mail Manager ** */
 /* ** BOF alterations for KISS IT ** */
+// Function to reset KISSit image thumbs cache entries and directories
+    function tep_destroy_thumbs_dir( $dir = '' ) { 
+    if (!is_dir($dir) || is_link($dir)) return unlink($dir); 
+    foreach (scandir($dir) as $file) { 
+	if ($file == '.' || $file == '..') continue; 
+      if (!tep_destroy_thumbs_dir($dir . '/' . $file)) { 
+        chmod($dir . '/' . $file, 0777); 
+        if (!tep_destroy_thumbs_dir($dir . '/' . $file)) return false; 
+      }; 
+    } 
+    return rmdir($dir); 
+  }
+
 // Function to reset KISSit image thumbs cache entries
-// Gergely Toth
   function tep_cfg_reset_thumbs_cache( $action = 'false' ) {
-        if ($action == 'reset' ) {
-          $mask = "../images/thumbs/*.jpg";
-          array_map( "unlink", glob( $mask ) );
-          $mask = "../images/thumbs/*.gif";
-          array_map( "unlink", glob( $mask ) );
-          $mask = "../images/thumbs/*.png";
-          array_map( "unlink", glob( $mask ) );
-          tep_db_query( "UPDATE configuration SET configuration_value='false' WHERE configuration_key='KISSIT_RESET_IMAGE_THUMBS'" );
-        }
+    if ($action == 'reset' ) {
+    $dir = '../' . DIR_WS_IMAGES . KISSIT_THUMBS_MAIN_DIR;
+    tep_destroy_thumbs_dir($dir);
+    tep_db_query( "UPDATE configuration SET configuration_value='false' WHERE configuration_key='KISSIT_RESET_IMAGE_THUMBS'" );
+    }
   }
 /* ** EOF alterations for KISS IT ** */

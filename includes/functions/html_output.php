@@ -86,9 +86,50 @@
 // New HTML image wrapper function modified for KISS Image Thumbnailer by FWR Media
   function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '', $responsive = true, $bootstrap_css = '') {
     // Include the Database installation file if executed for the first time.
-    if ( !defined('KISSIT_RESET_IMAGE_THUMBS') ) require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/db_install.php';
+    if ( !defined('KISSIT_THUMBS_MAIN_DIR') ) require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/db_install.php';
     // If width and height are not numeric then we can't do anything with it
     if ( !is_numeric ( $width ) || !is_numeric ( $height ) ) return tep_image_legacy( $src, $alt, $width, $height, $parameters, $responsive, $bootstrap_css );
+
+    // Create thumbs main dir and .htaccess.	
+	if(!is_dir(DIR_WS_IMAGES . KISSIT_THUMBS_MAIN_DIR))mkdir(DIR_WS_IMAGES . KISSIT_THUMBS_MAIN_DIR, 0777);
+      if ( !is_file(DIR_WS_IMAGES . KISSIT_THUMBS_MAIN_DIR . '.htaccess') ) {
+        $hpname = DIR_WS_IMAGES . KISSIT_THUMBS_MAIN_DIR . '.htaccess';
+	    //define .htaccess content
+         $htacces = '
+<FilesMatch "\.(php([0-9]|s)?|s?p?html|cgi|pl|exe)$">
+   Order Deny,Allow
+   Deny from all
+</FilesMatch>';
+
+        if ($hp = fopen($hpname,'w')) {
+	  fwrite($hp,$htacces);
+	  fclose($hp);
+        } 
+      }
+    // Create thumbs sub dirs and .htaccess.	
+    $thumbs_dir_path = str_replace(DIR_WS_IMAGES, DIR_WS_IMAGES . KISSIT_THUMBS_MAIN_DIR . $width .'_'.$height.'/', dirname($src) . '/');
+    $thumbs_dir = '';
+    $thumbs_dir_paths = explode("/",$thumbs_dir_path);
+    for ($i=0, $n=sizeof($thumbs_dir_paths); $i<$n; $i++) {
+	$thumbs_dir .= $thumbs_dir_paths[$i] . '/';
+	if(!is_dir($thumbs_dir))mkdir($thumbs_dir, 0777);
+	// create .htacces protection like in main image dir
+	if (($i==$n-1) && (!is_file($thumbs_dir . '.htaccess')) ) {
+	    $hpname = $thumbs_dir . '.htaccess';
+	    //define .htaccess content
+	    $htacces = '
+<FilesMatch "\.(php([0-9]|s)?|s?p?html|cgi|pl|exe)$">
+   Order Deny,Allow
+   Deny from all
+</FilesMatch>';
+    	if ($hp = fopen($hpname,'w')) {
+    	    fwrite($hp,$htacces);
+    	    fclose($hp);
+    	} 
+        }
+       } // end for
+        // End create subdirectory and .htaccess.	
+  
     require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/classes/Image_Helper.php';
     $attributes = array( 'alt' => $alt, 'width' => $width, 'height' => $height );
     
@@ -113,7 +154,7 @@
                                       'parameters'            => $bs_parameters,
                                       'default_missing_image' => DIR_WS_IMAGES . 'no_image_available_150_150.gif',
                                       'isXhtml'               => true,
-                                      'thumbs_dir_path'       => DIR_WS_IMAGES . 'thumbs/',
+                                      'thumbs_dir_path'       => $thumbs_dir_path,
                                       'thumb_quality'         => 75,
                                       'thumb_background_rgb' => array( 'red'   => 255,
                                                                        'green' => 255,
@@ -125,6 +166,7 @@
     
     return $image_assembled;
   } // end function
+
 
   ////
 // The HTML image wrapper function
