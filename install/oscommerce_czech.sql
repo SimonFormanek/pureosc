@@ -1132,11 +1132,18 @@ INSERT INTO currencies VALUES (1,'U.S. Dollar','USD','$','','.',',','2','1.0000'
 INSERT INTO currencies VALUES (2,'Euro','EUR','','�','.',',','2','1.0000', now());
 INSERT INTO currencies VALUES (3,'Česká Koruna','CZK','','Kč',',','.','2','1.0000',now());
 
+<<<<<<< HEAD
 INSERT INTO languages VALUES (1,'English','en','icon.gif','english',2);
 INSERT INTO languages VALUES (2,'Deutsch','de','icon.gif','german',3);
 INSERT INTO languages VALUES (3,'Español','es','icon.gif','espanol',3);
 #czech is default
 INSERT INTO languages VALUES (4,'Czech','cs','icon.gif','czech',1);
+=======
+INSERT INTO languages VALUES (1,'English','en','USD','icon.gif','english',1,'');
+INSERT INTO languages VALUES (2,'Deutsch','de','EUR','icon.gif','german',2,'');
+INSERT INTO languages VALUES (3,'Español','es','EUR','icon.gif','espanol',3,'');
+INSERT INTO languages VALUES (4,'Czech','cs','CZK','icon.gif','czech',4,'');
+>>>>>>> ad3aadb79504b91b104eac18af485941b7b8d7be
 #todo
 #initial state
 INSERT INTO orders_status VALUES (1,1,'Pending',1,0);
@@ -5794,7 +5801,8 @@ INSERT into configuration (configuration_title, configuration_key, configuration
 INSERT into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) values ('Attach PDF Invoice to New Order Email', 'ORDER_EDITOR_ADD_PDF_INVOICE_EMAIL', 'false', 'When you send a new Order Email a PDF Invoice kan be attach to your email. This function only works if the contribution PDF Invoice is installed. NOT INSTALLED BY DEFAULT', '72', '15', now(), now(), NULL, 'tep_cfg_select_option(array(\'true\', \'false\'),');
 
 # SEO Header Tags RELOADED BS
-CREATE TABLE  information (
+DROP TABLE IF EXISTS information;
+CREATE TABLE information (
   information_seo_title VARCHAR( 255 ) NULL DEFAULT NULL,
   information_seo_meta_description TEXT NULL DEFAULT NULL,
   information_seo_meta_keywords VARCHAR( 255 ) NULL DEFAULT NULL
