@@ -14,7 +14,7 @@ fi
 /usr/bin/mysqldump --opt ${DUMPSET} ${DBNAME} \
 categories \
 categories_description \
-coupons \ 
+coupons \
 coupons_description \
 products \
 products_attributes \
@@ -25,4 +25,4 @@ products_options_values  \
 products_options_values_to_products_options \
 products_to_categories \
 specials \
-| gzip  > ${DBNAME}_customers_catalog.sql.gz
+| gzip  > ${DBNAME}_catalog.sql.gz
