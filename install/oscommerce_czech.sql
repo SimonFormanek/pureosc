@@ -19,6 +19,10 @@
 #       * Please take note of the table structure, and use this
 #         structure as a standard for future modifications!
 
+#pureHTML modifications: 
+#pure:new = new line
+#pure:modified = modifications of default configuration values
+
 DROP TABLE IF EXISTS action_recorder;
 CREATE TABLE action_recorder (
   id int NOT NULL auto_increment,
@@ -434,12 +438,12 @@ CREATE TABLE products (
   manufacturers_id int NULL,
   products_ordered int NOT NULL default '0',
   products_custom_date datetime,
-  sort_order int(10) NULL,
+  products_sort_order int(10) NULL,
   PRIMARY KEY (products_id),
   KEY idx_products_model (products_model),
   KEY idx_products_date_available (products_date_available),
   KEY idx_products_custom_date (products_custom_date),
-  KEY idx_sort_order (sort_order)
+  KEY idx_products_sort_order (products_sort_order)
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 DROP TABLE IF EXISTS products_attributes;
@@ -672,7 +676,8 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) VALUES ('Zone', 'STORE_ZONE', '918', 'The zone my store is located in', '1', '7', 'tep_cfg_get_zone_name', 'tep_cfg_pull_down_zone_list(', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Expected Sort Order', 'EXPECTED_PRODUCTS_SORT', 'desc', 'This is the sort order used in the expected products box.', '1', '8', 'tep_cfg_select_option(array(\'asc\', \'desc\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Expected Sort Field', 'EXPECTED_PRODUCTS_FIELD', 'date_expected', 'The column to sort by in the expected products box.', '1', '9', 'tep_cfg_select_option(array(\'products_name\', \'date_expected\'), ', now());
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Switch To Default Language Currency', 'USE_DEFAULT_LANGUAGE_CURRENCY', 'false', 'Automatically switch to the language\'s currency when it is changed', '1', '10', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
+#pure:modified  Switch To Default Language Currency TRUE
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Switch To Default Language Currency', 'USE_DEFAULT_LANGUAGE_CURRENCY', 'true', 'Automatically switch to the language\'s currency when it is changed', '1', '10', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Send Extra Order Emails To', 'SEND_EXTRA_ORDER_EMAILS_TO', '', 'Send extra order emails to the following email addresses, in this format: Name 1 &lt;email@address1&gt;, Name 2 &lt;email@address2&gt;', '1', '11', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Use Search-Engine Safe URLs', 'SEARCH_ENGINE_FRIENDLY_URLS', 'false', 'Use search-engine safe urls for all site links', '1', '12', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Cart After Adding Product', 'DISPLAY_CART', 'true', 'Display the shopping cart after adding a product (or return back to their origin)', '1', '14', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
@@ -681,14 +686,10 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Store Address', 'STORE_ADDRESS', 'Address Line 1\nAddress Line 2\nCountry\nPhone', 'This is the Address of my store used on printable documents and displayed online', '1', '18', 'tep_cfg_textarea(', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Store Phone', 'STORE_PHONE', '555-1234', 'This is the phone number of my store used on printable documents and displayed online', '1', '19', 'tep_cfg_textarea(', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Tax Decimal Places', 'TAX_DECIMAL_PLACES', '0', 'Pad the tax value this amount of decimal places', '1', '20', now());
-#pure:change display prices with tax: true
+#pure:modified display prices with tax: true
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Prices with Tax', 'DISPLAY_PRICE_WITH_TAX', 'true', 'Display prices with tax included (true) or add the tax at the end (false)', '1', '21', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
 #pure:new NEW_PRODUCTS_SORT_ORDER
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('New products Sort Order', 'NEW_PRODUCTS_SORT_ORDER', 'p.products_date_available DESC, p.products_date_added DESC', 'Possible value: \"p.products_date_available DESC, p.products_date_added DESC\" OR for Date Products \"p.products_custom_date\"', '1', '22', now());
-
-
-
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Prices with Tax', 'DISPLAY_PRICE_WITH_TAX', 'true', 'Display prices with tax included (true) or add the tax at the end (false)', '1', '21', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('New products Sort Order', 'NEW_PRODUCTS_SORT_ORDER', 'products_date_available DESC, products_date_added DESC', 'Example settings: \"products_date_available DESC, products_date_added DESC\" OR for Date Products \"products_custom_date\"', '1', '22', now());
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('First Name', 'ENTRY_FIRST_NAME_MIN_LENGTH', '2', 'Minimum length of first name', '2', '1', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Last Name', 'ENTRY_LAST_NAME_MIN_LENGTH', '2', 'Minimum length of last name', '2', '2', now());
@@ -758,6 +759,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) VALUES ('Shipping Zone', 'MODULE_SHIPPING_FLAT_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '0', 'tep_get_zone_class_title', 'tep_cfg_pull_down_zone_classes(', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Sort Order', 'MODULE_SHIPPING_FLAT_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Default Currency', 'DEFAULT_CURRENCY', 'CZK', 'Default Currency', '6', '0', now());
+#pure:modified DEFAULT_LANGUAGE set to cs
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Default Language', 'DEFAULT_LANGUAGE', 'cs', 'Default Language', '6', '0', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Default Order Status For New Orders', 'DEFAULT_ORDERS_STATUS_ID', '1', 'When a new order is created, this order status will be assigned to it.', '6', '0', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display Shipping', 'MODULE_ORDER_TOTAL_SHIPPING_STATUS', 'true', 'Do you want to display the order shipping cost?', '6', '1','tep_cfg_select_option(array(\'true\', \'false\'), ', now());
@@ -814,8 +816,8 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Custom date sort key','PRODUCT_LIST_CUSTOM_DATE','10', 'Sort by event date',8,10,now());
 #pure:new order by products_date_available
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Sort order sort key','PRODUCT_LIST_SORT_ORDER','11', 'Sort by sort order',8,11,now());
-#default sort order
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Default sort order', 'PRODUCT_LIST_DEFAULT_SORT_ORDER', 'p.products_date_available DESC, p.products_date_added DESC, pd.products_name', 'Possible values: \"p.products_date_available DESC, p.products_date_added DESC, pd.products_name\" OR \"p.products_custom_date\" OR \"p.sort_order, pd.products_name\"', '8', '12', now());
+#pure:new default sort order
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Default sort order', 'PRODUCT_LIST_DEFAULT_SORT_ORDER', 'products_date_available DESC, products_date_added DESC, products_name', 'Example settings: \"products_date_available DESC, products_date_added DESC, products_name\" OR \"products_custom_date\" OR \"products_sort_order, products_name\"', '8', '12', now());
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Display Category/Manufacturer Filter (0=disable; 1=enable)', 'PRODUCT_LIST_FILTER', '1', 'Do you want to display the Category/Manufacturer Filter?', '8', '12', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Location of Prev/Next Navigation Bar (1-top, 2-bottom, 3-both)', 'PREV_NEXT_BAR_LOCATION', '2', 'Sets the location of the Prev/Next Navigation Bar (1-top, 2-bottom, 3-both)', '8', '13', now());
@@ -867,7 +869,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Last Update Check Time', 'LAST_UPDATE_CHECK_TIME', '', 'Last time a check for new versions of osCommerce was run', '6', '0', now());
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Store Logo', 'STORE_LOGO', 'store_logo.png', 'This is the filename of your Store Logo.  This should be updated at admin > configuration > Store Logo', 6, 1000, now());
-#pure: changed page-width to container (max 1142px width)
+#pure:modified page-width set to container (max 1142px width)
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Bootstrap Container', 'BOOTSTRAP_CONTAINER', 'container', 'What type of container should the page content be shown in? See http://getbootstrap.com/css/#overview-container', '16', '1', 'tep_cfg_select_option(array(\'container-fluid\', \'container\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Bootstrap Content', 'BOOTSTRAP_CONTENT', '8', 'What width should the page content default to?  (8 = two thirds width, 6 = half width, 4 = one third width) Note that the Side Column(s) will adjust automatically.', '16', '2', 'tep_cfg_select_option(array(\'8\', \'6\', \'4\'), ', now());
 
@@ -1132,19 +1134,13 @@ INSERT INTO currencies VALUES (1,'U.S. Dollar','USD','$','','.',',','2','1.0000'
 INSERT INTO currencies VALUES (2,'Euro','EUR','','�','.',',','2','1.0000', now());
 INSERT INTO currencies VALUES (3,'Česká Koruna','CZK','','Kč',',','.','2','1.0000',now());
 
-<<<<<<< HEAD
 INSERT INTO languages VALUES (1,'English','en','icon.gif','english',2);
+#pure:new new languages added
 INSERT INTO languages VALUES (2,'Deutsch','de','icon.gif','german',3);
-INSERT INTO languages VALUES (3,'Español','es','icon.gif','espanol',3);
-#czech is default
+INSERT INTO languages VALUES (3,'Español','es','icon.gif','espanol',4);
+#pure:new czech is default
 INSERT INTO languages VALUES (4,'Czech','cs','icon.gif','czech',1);
-=======
-INSERT INTO languages VALUES (1,'English','en','USD','icon.gif','english',1,'');
-INSERT INTO languages VALUES (2,'Deutsch','de','EUR','icon.gif','german',2,'');
-INSERT INTO languages VALUES (3,'Español','es','EUR','icon.gif','espanol',3,'');
-INSERT INTO languages VALUES (4,'Czech','cs','CZK','icon.gif','czech',4,'');
->>>>>>> ad3aadb79504b91b104eac18af485941b7b8d7be
-#todo
+#pure:new all new languages settings, more statuses
 #initial state
 INSERT INTO orders_status VALUES (1,1,'Pending',1,0);
 INSERT INTO orders_status VALUES (1,2,'Offen',1,0);
@@ -1206,7 +1202,7 @@ INSERT INTO orders_status VALUES (102,1,'Paid by PayPal',1,1);
 INSERT INTO orders_status VALUES (102,2,'Paid by PayPal',1,1);
 INSERT INTO orders_status VALUES (102,3,'Paid by PayPal',1,1);
 INSERT INTO orders_status VALUES (102,4,'Zaplaceno PayPal',1,1);
-
+#EOF pure:new all new languages settings, more statuses
 
 INSERT INTO sec_directory_whitelist values (null, 'admin/backups');
 INSERT INTO sec_directory_whitelist values (null, 'admin/images/graphs');
@@ -1215,14 +1211,13 @@ INSERT INTO sec_directory_whitelist values (null, 'images/banners');
 INSERT INTO sec_directory_whitelist values (null, 'includes/work');
 INSERT INTO sec_directory_whitelist values (null, 'pub');
 
-#czech vat DPH as EU
+#pure:modified czech vat DPH as EU
 INSERT INTO `tax_class` VALUES (1,'VAT (DPH) 15%','cz VAT 15%',now(),now()),(2,'VAT (DPH) 21%','cz VAT 21%',now(),now()),(3,'VAT (DPH) 10%','cz VAT 10%',now(),now());
 INSERT INTO `tax_rates` VALUES (1,1,1,1,15.0000,'VAT (DPH) 15%',now(),now()),(2,1,2,2,21.0000,'cz VAT (DPH) 21%',now(),now()), (3,1,3,3,10.0000,'cz VAT (DPH) 10%',now(),now());
-
+#pure:modified EU VAT = czech DPH
 INSERT INTO `geo_zones` VALUES (1,'EU','',now(),now());
-
-#INSERT INTO `zones_to_geo_zones` VALUES (1,14,0,1,NULL,'2014-06-12 10:25:07'),(2,21,0,1,NULL,'2014-06-12 10:10:56'),(3,33,0,1,NULL,'2014-06-12 10:11:17'),(4,53,0,1,NULL,'2014-06-12 10:24:16'),(5,55,0,1,NULL,'2014-06-12 10:32:33'),(6,56,0,1,NULL,'2014-04-24 16:41:15'),(7,57,0,1,NULL,'2014-06-12 10:11:46'),(8,67,0,1,NULL,'2014-06-12 10:33:40'),(9,72,0,1,NULL,'2014-06-12 10:22:47'),(10,73,0,1,NULL,'2014-06-12 10:12:09'),(11,81,0,1,NULL,'2014-06-12 10:12:31'),(12,84,0,1,NULL,'2014-06-12 10:18:06'),(13,97,0,1,NULL,'2014-06-12 10:19:11'),(14,103,0,1,NULL,'2014-06-12 10:34:07'),(15,105,0,1,NULL,'2014-06-12 10:18:31'),(16,117,0,1,NULL,'2014-06-12 10:34:52'),(17,123,0,1,NULL,'2014-06-15 00:27:03'),(18,124,0,1,NULL,'2014-06-12 10:35:11'),(19,132,0,1,NULL,'2014-06-12 10:19:41'),(20,150,0,1,NULL,'2014-06-12 10:20:00'),(21,170,0,1,NULL,'2014-06-12 10:12:47'),(22,171,0,1,NULL,'2014-06-12 10:20:31'),(23,175,0,1,NULL,'2014-06-12 10:20:50'),(24,189,0,1,NULL,'2014-06-12 10:21:12'),(25,190,0,1,NULL,'2014-06-12 10:21:34'),(26,195,0,1,NULL,'2014-06-12 10:36:03'),(27,203,0,1,NULL,'2014-06-12 10:36:23'),(28,222,0,1,NULL,'2014-06-12 10:36:47');
- INSERT INTO `zones_to_geo_zones` VALUES (1,14,0,1,NULL,now()),(2,21,0,1,NULL,now()),(3,33,0,1,NULL,now()),(4,53,0,1,NULL,now()),(5,55,0,1,NULL,now()),(6,56,0,1,NULL,now()),(7,57,0,1,NULL,now()),(8,67,0,1,NULL,now()),(9,72,0,1,NULL,now()),(10,73,0,1,NULL,now()),(11,81,0,1,NULL,now()),(12,84,0,1,NULL,now()),(13,97,0,1,NULL,now()),(14,103,0,1,NULL,now()),(15,105,0,1,NULL,now()),(16,117,0,1,NULL,now()),(17,123,0,1,NULL,now()),(18,124,0,1,NULL,now()),(19,132,0,1,NULL,now()),(20,150,0,1,NULL,now()),(21,170,0,1,NULL,now()),(22,171,0,1,NULL,now()),(23,175,0,1,NULL,now()),(24,189,0,1,NULL,now()),(25,190,0,1,NULL,now()),(26,195,0,1,NULL,now()),(27,203,0,1,NULL,now()),(28,222,0,1,NULL,now());
+#pure:modified EU countries
+INSERT INTO `zones_to_geo_zones` VALUES (1,14,0,1,NULL,now()),(2,21,0,1,NULL,now()),(3,33,0,1,NULL,now()),(4,53,0,1,NULL,now()),(5,55,0,1,NULL,now()),(6,56,0,1,NULL,now()),(7,57,0,1,NULL,now()),(8,67,0,1,NULL,now()),(9,72,0,1,NULL,now()),(10,73,0,1,NULL,now()),(11,81,0,1,NULL,now()),(12,84,0,1,NULL,now()),(13,97,0,1,NULL,now()),(14,103,0,1,NULL,now()),(15,105,0,1,NULL,now()),(16,117,0,1,NULL,now()),(17,123,0,1,NULL,now()),(18,124,0,1,NULL,now()),(19,132,0,1,NULL,now()),(20,150,0,1,NULL,now()),(21,170,0,1,NULL,now()),(22,171,0,1,NULL,now()),(23,175,0,1,NULL,now()),(24,189,0,1,NULL,now()),(25,190,0,1,NULL,now()),(26,195,0,1,NULL,now()),(27,203,0,1,NULL,now()),(28,222,0,1,NULL,now());
 
 #Adds World Zones - Editted from http://addons.oscommerce.com/info/1792
 INSERT INTO zones VALUES (1, 1, 'BDS', 'Badakhshan');
@@ -5918,20 +5913,3 @@ CREATE TABLE mm_bulkmail (
   date_sent datetime DEFAULT NULL,
   PRIMARY KEY (`bulkmail_id`) 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
