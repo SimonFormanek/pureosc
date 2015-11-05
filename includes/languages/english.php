@@ -278,7 +278,11 @@ define('TABLE_HEADING_QUANTITY', 'Quantity');
 define('TABLE_HEADING_PRICE', 'Price');
 define('TABLE_HEADING_WEIGHT', 'Weight');
 define('TABLE_HEADING_BUY_NOW', 'Buy Now');
-define('TABLE_HEADING_LATEST_ADDED', 'Latest Products');
+//define('TABLE_HEADING_LATEST_ADDED', 'Latest Products');
+define('TABLE_HEADING_DATE_AVAILABLE','Latest Products');
+define('TABLE_HEADING_CUSTOM_DATE','Evet\'s Date');
+define('TABLE_HEADING_SORT_ORDER','Sort Order');
+
 
 // product notifications
 define('PRODUCT_SUBSCRIBED', '%s has been added to your Notification List');
@@ -346,3 +350,5 @@ define('USER_LOCALIZATION', '<abbr title="Selected Language">L:</abbr> %s <abbr 
   define('BOX_MM_TEMPLATES', 'Template Manager');
   define('BOX_MM_EMAIL', 'Send Email');
   define('BOX_MM_RESPONSEMAIL', 'Response Mail');
+//pure:new link to advanced search
+  define('IMAGE_BUTTON_ADVANCED_SEARCH_LINK','advanced');

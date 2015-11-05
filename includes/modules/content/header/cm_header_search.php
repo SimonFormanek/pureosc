@@ -39,10 +39,10 @@
 
 
       $search_box = '<div class="searchbox-margin">';
-      $search_box .= tep_draw_form('quick_find', tep_href_link('advanced_search_result.php', '', $request_type, false), 'get', 'class="form-horizontal"');
+      $search_box .= tep_draw_form('quick_find', tep_href_link('advanced_search_result.php', '', $request_type, false), 'get', 'class="form-horizontal"') . tep_draw_hidden_field('search_in_description', '1');
       $search_box .= '  <div class="input-group">' .
-                          tep_draw_input_field('keywords', '', 'required placeholder="' . TEXT_SEARCH_PLACEHOLDER . '"', 'search') . '<span class="input-group-btn"><button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button></span>' .
-                      '  </div>';
+                          tep_draw_input_field('keywords', '', 'required placeholder="' . TEXT_SEARCH_PLACEHOLDER . '"', 'search') . '<span class="input-group-btn">' .  tep_draw_button(IMAGE_BUTTON_ADVANCED_SEARCH_LINK, '', tep_href_link(FILENAME_ADVANCED_SEARCH, tep_get_all_get_params(array('sort', 'page',)), 'NONSSL', true, false)) . '<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>' . '</span>' .
+                      '</div>';
       $search_box .=  tep_hide_session_id() . '</form>';
       $search_box .= '</div>';
 

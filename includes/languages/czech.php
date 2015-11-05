@@ -278,7 +278,10 @@ define('TABLE_HEADING_QUANTITY', 'Množství');
 define('TABLE_HEADING_PRICE', 'Cena');
 define('TABLE_HEADING_WEIGHT', 'Váha');
 define('TABLE_HEADING_BUY_NOW', 'Koupit');
-define('TABLE_HEADING_LATEST_ADDED', 'Poslední zboží');
+//pure: removed define('TABLE_HEADING_LATEST_ADDED', 'Poslední zboží');
+define('TABLE_HEADING_DATE_AVAILABLE','Nejnovější zboží');
+define('TABLE_HEADING_CUSTOM_DATE','Podle data');
+define('TABLE_HEADING_SORT_ORDER','Pořadí');
 
 // product notifications
 define('PRODUCT_SUBSCRIBED', '%s bylo přidána do vašeho seznamu');
@@ -346,3 +349,5 @@ define('USER_LOCALIZATION', '<abbr title="Vybraný jazyk">L:</abbr> %s <abbr tit
   define('BOX_MM_TEMPLATES', 'Template Manager');
   define('BOX_MM_EMAIL', 'Zaslat e-mail');
   define('BOX_MM_RESPONSEMAIL', 'Response Mail');
+//pure:new link to advanced search
+  define('IMAGE_BUTTON_ADVANCED_SEARCH_LINK','podrobné');

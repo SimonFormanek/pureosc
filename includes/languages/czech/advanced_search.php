@@ -10,11 +10,11 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE_1', 'Pokročilé hledání');
-define('NAVBAR_TITLE_2', 'Výsledky hledání');
+define('NAVBAR_TITLE_1', 'Pokročilé vyhledávání');
+define('NAVBAR_TITLE_2', 'Výsledky vyhledávání');
 
-define('HEADING_TITLE_1', 'Pokročilé hledání');
-define('HEADING_TITLE_2', 'Vyhledávací kritéria produktů');
+define('HEADING_TITLE_1', 'Pokročilé vyhledávání');
+define('HEADING_TITLE_2', 'Výsledky vyhledávání');
 
 define('HEADING_SEARCH_CRITERIA', 'Vyhledávací kritéria');
 
@@ -36,7 +36,7 @@ define('HEADING_SEARCH_HELP', 'Pomoc s vyhledáváním');
 define('TEXT_SEARCH_HELP', 'Klíčová slova můžete oddělovat AND a/nebo OR pro lepší výsledky.<br /><br />For example, <u>Microsoft AND mouse</u> would generate a result set that contain both words. However, for <u>mouse OR keyboard</u>, the result set returned would contain both or either words.<br /><br />Exact matches can be searched for by enclosing keywords in double-quotes.<br /><br />For example, <u>"notebook computer"</u> would generate a result set which match the exact string.<br /><br />Brackets can be used for further c.<br /><br />For example, <u>Microsoft and (keyboard or mouse or "visual basic")</u>.');
 define('TEXT_CLOSE_WINDOW', '<u>zavřít okno</u> [x]');
 
-define('TEXT_NO_PRODUCTS', 'Produkt dle vašich kritérí nebyl nalezen.');
+define('TEXT_NO_PRODUCTS', 'Produkt dle zadaných kritérí nebyl nalezen. Zkuste upravit vyhledávací dotaz.');
 
 define('ERROR_AT_LEAST_ONE_INPUT', 'Musíte vyplnit jedno z polí.');
 define('ERROR_INVALID_FROM_DATE', 'špatně datum Od.');
@@ -46,4 +46,6 @@ define('ERROR_PRICE_FROM_MUST_BE_NUM', 'cena Od musí být číslo.');
 define('ERROR_PRICE_TO_MUST_BE_NUM', 'cena musí být číslo.');
 define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM', 'cena Do musí být vyšší než cena Od.');
 define('ERROR_INVALID_KEYWORDS', 'špatné klíčové slovo.');
+//pure:new
+define('IMAGE_BUTTON_BACK_ADVANCED_SEARCH','zpět na podrobné vyhledávání');
 ?>

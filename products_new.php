@@ -32,7 +32,10 @@
                        'PRODUCT_LIST_QUANTITY' => PRODUCT_LIST_QUANTITY,
                        'PRODUCT_LIST_WEIGHT' => PRODUCT_LIST_WEIGHT,
                        'PRODUCT_LIST_IMAGE' => PRODUCT_LIST_IMAGE,
-                       'PRODUCT_LIST_BUY_NOW' => PRODUCT_LIST_BUY_NOW);
+                       'PRODUCT_LIST_BUY_NOW' => PRODUCT_LIST_BUY_NOW,
+            	       'PRODUCT_LIST_DATE_AVAILABLE' => PRODUCT_LIST_DATE_AVAILABLE,
+                       'PRODUCT_LIST_CUSTOM_DATE' => PRODUCT_LIST_CUSTOM_DATE,
+                       'PRODUCT_LIST_SORT_ORDER' => PRODUCT_LIST_SORT_ORDER);
 
   asort($define_list);
 
@@ -66,6 +69,15 @@
       case 'PRODUCT_LIST_WEIGHT':
         $select_column_list .= 'p.products_weight, ';
         break;
+      case 'PRODUCT_LIST_DATE_AVAILABLE':
+        $select_column_list .= 'p.products_date_available, ';
+        break;
+      case 'PRODUCT_LIST_CUSTOM_DATE':
+        $select_column_list .= 'p.products_custom_date, ';
+        break;
+      case 'PRODUCT_LIST_SORT_ORDER':
+        $select_column_list .= 'p.products_sort_order, ';
+        break;
     }
   }
 
@@ -75,7 +87,7 @@
     for ($i=0, $n=sizeof($column_list); $i<$n; $i++) {
       if ($column_list[$i] == 'PRODUCT_LIST_ID') {
         $HTTP_GET_VARS['sort'] = $i+1 . 'd';
-        $listing_sql .= " order by p.products_id DESC";
+        $listing_sql .= " ORDER BY " . NEW_PRODUCTS_SORT_ORDER;
         break;
       }
     }

@@ -79,8 +79,14 @@
               case 'PRODUCT_LIST_BUY_NOW':
               $lc_text = TABLE_HEADING_BUY_NOW;
               break;
-              case 'PRODUCT_LIST_ID':
-              $lc_text = TABLE_HEADING_LATEST_ADDED;
+              case 'PRODUCT_LIST_DATE_AVAILABLE':
+              $lc_text = TABLE_HEADING_DATE_AVAILABLE;
+              break;
+              case 'PRODUCT_LIST_CUSTOM_DATE':
+              $lc_text = TABLE_HEADING_CUSTOM_DATE;
+              break;
+              case 'PRODUCT_LIST_SORT_ORDER':
+              $lc_text = TABLE_HEADING_SORT_ORDER;
               break;
             }
 
