@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_PRODUCT_META_TITLE', 'Product Meta');
-  define('MODULE_HEADER_TAGS_PRODUCT_META_DESCRIPTION', 'Add the META elements defined when setting up the product, to the header of the product page');
+  define('MODULE_HEADER_TAGS_PRODUCT_META_TITLE', 'Product Meta',true);
+  define('MODULE_HEADER_TAGS_PRODUCT_META_DESCRIPTION', 'Add the META elements defined when setting up the product, to the header of the product page',true);
 

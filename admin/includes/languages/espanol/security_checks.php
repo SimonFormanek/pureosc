@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Verificaciones de Seguridad');
+define('HEADING_TITLE', 'Verificaciones de Seguridad',true);
 
-define('TABLE_HEADING_TITLE', 'Título');
-define('TABLE_HEADING_MODULE', 'Módulo');
-define('TABLE_HEADING_INFO', 'Información');
+define('TABLE_HEADING_TITLE', 'Título',true);
+define('TABLE_HEADING_MODULE', 'Módulo',true);
+define('TABLE_HEADING_INFO', 'Información',true);
 ?>

@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ACTION_RECORDER_CONTACT_US_TITLE', 'Contáctenos');
-  define('MODULE_ACTION_RECORDER_CONTACT_US_DESCRIPTION', 'Registro del uso de la característica Contáctanos.');
+  define('MODULE_ACTION_RECORDER_CONTACT_US_TITLE', 'Contáctenos',true);
+  define('MODULE_ACTION_RECORDER_CONTACT_US_DESCRIPTION', 'Registro del uso de la característica Contáctanos.',true);
 ?>

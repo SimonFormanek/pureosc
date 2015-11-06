@@ -19,20 +19,20 @@
 */
 
 define('EMAIL_TEXT_SUBJECT', 'Vaše objednávka na serveru ' . STORE_NAME);
-define('EMAIL_TEXT_ORDER_NUMBER', 'Variabilní symbol:');
-define('EMAIL_TEXT_INVOICE_URL', 'Detail faktury:');
-define('EMAIL_TEXT_DATE_ORDERED', 'Datum objednávky:');
-define('EMAIL_TEXT_PRODUCTS', 'Zboží');
-define('EMAIL_TEXT_SUBTOTAL', 'Mezisoučet:');
-define('EMAIL_TEXT_TAX', 'Daň:        ');
-define('EMAIL_TEXT_SHIPPING', 'Dodání: ');
-define('EMAIL_TEXT_TOTAL', 'Celkem:    ');
-define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Adresa doručení');
-define('EMAIL_TEXT_BILLING_ADDRESS', 'fakturační adresa');
-define('EMAIL_TEXT_PAYMENT_METHOD', 'Způsob platby');
+define('EMAIL_TEXT_ORDER_NUMBER', 'Variabilní symbol:',true);
+define('EMAIL_TEXT_INVOICE_URL', 'Detail faktury:',true);
+define('EMAIL_TEXT_DATE_ORDERED', 'Datum objednávky:',true);
+define('EMAIL_TEXT_PRODUCTS', 'Zboží',true);
+define('EMAIL_TEXT_SUBTOTAL', 'Mezisoučet:',true);
+define('EMAIL_TEXT_TAX', 'Daň:        ',true);
+define('EMAIL_TEXT_SHIPPING', 'Dodání: ',true);
+define('EMAIL_TEXT_TOTAL', 'Celkem:    ',true);
+define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Adresa doručení',true);
+define('EMAIL_TEXT_BILLING_ADDRESS', 'fakturační adresa',true);
+define('EMAIL_TEXT_PAYMENT_METHOD', 'Způsob platby',true);
 
-define('EMAIL_SEPARATOR', '------------------------------------------------------');
-define('TEXT_EMAIL_VIA', 'via');
+define('EMAIL_SEPARATOR', '------------------------------------------------------',true);
+define('TEXT_EMAIL_VIA', 'via',true);
 
 /*
 ************************************************************************
@@ -41,8 +41,8 @@ define('TEXT_EMAIL_VIA', 'via');
 ************************************************************************
 */
 // Mail Manager
-  define('EMAIL_TEXT_CONFIRM', 'Nová objednávka z ');
+  define('EMAIL_TEXT_CONFIRM', 'Nová objednávka z ',true);
   
 // Purchase Without Account
-  define('EMAIL_WARNING', 'NOTE: Emailová adresa byla potvrzena návštěvníkem našeho online-obchodu. Pokud nesjte návštěvník, prosíme zašlete zprávu:  ' . STORE_OWNER_EMAIL_ADDRESS . 'Děkujeme za vaši objednávku. Přejeme vám pěkný den.');  
+  define('EMAIL_WARNING', 'NOTE: Emailová adresa byla potvrzena návštěvníkem našeho online-obchodu. Pokud nesjte návštěvník, prosíme zašlete zprávu:  ' . STORE_OWNER_EMAIL_ADDRESS . 'Děkujeme za vaši objednávku. Přejeme vám pěkný den.',true);  
 ?>

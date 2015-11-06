@@ -10,13 +10,13 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_FOOTER_INFORMATION_TITLE', 'Information Links Block');
-  define('MODULE_CONTENT_FOOTER_INFORMATION_DESCRIPTION', 'Adds Information Links Block to the Footer Area of your site');
+  define('MODULE_CONTENT_FOOTER_INFORMATION_TITLE', 'Information Links Block',true);
+  define('MODULE_CONTENT_FOOTER_INFORMATION_DESCRIPTION', 'Adds Information Links Block to the Footer Area of your site',true);
 
-  define('MODULE_CONTENT_FOOTER_INFORMATION_HEADING_TITLE', 'Information');
+  define('MODULE_CONTENT_FOOTER_INFORMATION_HEADING_TITLE', 'Information',true);
 
-  define('MODULE_CONTENT_FOOTER_INFORMATION_SHIPPING', 'Shipping & Returns');
-  define('MODULE_CONTENT_FOOTER_INFORMATION_PRIVACY', 'Privacy & Cookie Policy');
-  define('MODULE_CONTENT_FOOTER_INFORMATION_CONDITIONS', 'Terms & Conditions');
-  define('MODULE_CONTENT_FOOTER_INFORMATION_CONTACT', 'Contact Us');
+  define('MODULE_CONTENT_FOOTER_INFORMATION_SHIPPING', 'Shipping & Returns',true);
+  define('MODULE_CONTENT_FOOTER_INFORMATION_PRIVACY', 'Privacy & Cookie Policy',true);
+  define('MODULE_CONTENT_FOOTER_INFORMATION_CONDITIONS', 'Terms & Conditions',true);
+  define('MODULE_CONTENT_FOOTER_INFORMATION_CONTACT', 'Contact Us',true);
 

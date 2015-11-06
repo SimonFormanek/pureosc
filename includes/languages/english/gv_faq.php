@@ -12,8 +12,8 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Gift Voucher FAQ');
-define('HEADING_TITLE', 'Gift Voucher FAQ');
+define('NAVBAR_TITLE', 'Gift Voucher FAQ',true);
+define('HEADING_TITLE', 'Gift Voucher FAQ',true);
 
 define('TEXT_INFORMATION', '<a name="Top"></a>
   <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=1','NONSSL').'">Purchasing Gift Vouchers</a><br>
@@ -24,7 +24,7 @@ define('TEXT_INFORMATION', '<a name="Top"></a>
 ');
 switch ($_GET['faq_item']) {
   case '1':
-define('SUB_HEADING_TITLE','Purchasing Gift Vouchers.');
+define('SUB_HEADING_TITLE','Purchasing Gift Vouchers.',true);
 define('SUB_HEADING_TEXT','Gift Vouchers are purchased just like any other item in our store. You can 
   pay for them using the stores standard payment method(s).
   Once purchased the value of the Gift Voucher will be added to your own personal 
@@ -33,7 +33,7 @@ define('SUB_HEADING_TEXT','Gift Vouchers are purchased just like any other item 
   link to a page where you can send the Gift Voucher to someone via email.');
   break;
   case '2':
-define('SUB_HEADING_TITLE','How to Send Gift Vouchers.');
+define('SUB_HEADING_TITLE','How to Send Gift Vouchers.',true);
 define('SUB_HEADING_TEXT','To send a Gift Voucher you need to go to our Send Gift Voucher Page. You can 
   find the link to this page in the Shopping Cart Box in the right hand column of each page.
   When you send a Gift Voucher, you need to specify the following:
@@ -47,7 +47,7 @@ define('SUB_HEADING_TEXT','To send a Gift Voucher you need to go to our Send Gif
   the email is actually sent.');  
   break;
   case '3':
-  define('SUB_HEADING_TITLE','Buying with Gift Vouchers.');
+  define('SUB_HEADING_TITLE','Buying with Gift Vouchers.',true);
   define('SUB_HEADING_TEXT','If you have funds in your Gift Voucher Account, you can use those funds to 
   purchase other items in out store. At the checkout stage, an extra box will 
   appear. Ticking this box will apply those funds in your Gift Voucher Account. 
@@ -58,7 +58,7 @@ define('SUB_HEADING_TEXT','To send a Gift Voucher you need to go to our Send Gif
   future.');
   break;
   case '4':
-  define('SUB_HEADING_TITLE','Redeeming Gift Vouchers.');
+  define('SUB_HEADING_TITLE','Redeeming Gift Vouchers.',true);
   define('SUB_HEADING_TEXT','If you receive a Gift Voucher by email it will contain details of who sent 
   you the Gift Voucher, along with possibly a short message from them. The Email 
   will also contain a link to redeem the voucher. You will need to Login or Create an Account before
@@ -71,14 +71,14 @@ define('SUB_HEADING_TEXT','To send a Gift Voucher you need to go to our Send Gif
 there will be a tick box and button to redeem your Gift Voucher balance against that purchase.');
   break;
   case '5':
-  define('SUB_HEADING_TITLE','When problems occur.');
+  define('SUB_HEADING_TITLE','When problems occur.',true);
   define('SUB_HEADING_TEXT','For any queries regarding the Gift Voucher System, please contact the store 
   by email at '. STORE_OWNER_EMAIL_ADDRESS . '. Please make sure you give 
   as much information as possible in the email. ');
   break;
   default:
-  define('SUB_HEADING_TITLE','');
-  define('SUB_HEADING_TEXT','Please choose from one of the questions above.');
+  define('SUB_HEADING_TITLE','',true);
+  define('SUB_HEADING_TEXT','Please choose from one of the questions above.',true);
 
   }
 ?>

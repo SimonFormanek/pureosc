@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_CFG_MODULE_BOXES_TITLE', 'Boxes');
+define('MODULE_CFG_MODULE_BOXES_TITLE', 'Boxes',true);
 ?>

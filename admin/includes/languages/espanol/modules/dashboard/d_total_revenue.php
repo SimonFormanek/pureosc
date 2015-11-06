@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_TITLE', 'Tabla de Ingreso Total (últimos 30 días)');
-define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_DESCRIPTION', 'Mostrar el gráfico del Ingreso Total de los últimos 30 días');
-define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_CHART_LINK', 'Ingreso Total');
+define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_TITLE', 'Tabla de Ingreso Total (últimos 30 días)',true);
+define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_DESCRIPTION', 'Mostrar el gráfico del Ingreso Total de los últimos 30 días',true);
+define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_CHART_LINK', 'Ingreso Total',true);
 ?>

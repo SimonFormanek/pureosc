@@ -10,11 +10,11 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Bezpečnost - práva adresáře');
+define('HEADING_TITLE', 'Bezpečnost - práva adresáře',true);
 
-define('TABLE_HEADING_DIRECTORIES', 'Adresáře');
-define('TABLE_HEADING_WRITABLE', 'K uložení');
-define('TABLE_HEADING_RECOMMENDED', 'Doporučeno');
+define('TABLE_HEADING_DIRECTORIES', 'Adresáře',true);
+define('TABLE_HEADING_WRITABLE', 'K uložení',true);
+define('TABLE_HEADING_RECOMMENDED', 'Doporučeno',true);
 
-define('TEXT_DIRECTORY', 'Adresář:');
+define('TEXT_DIRECTORY', 'Adresář:',true);
 ?>

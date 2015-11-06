@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_CFG_MODULE_HEADER_TAGS_TITLE', 'Etiquetas de cabecera');
+define('MODULE_CFG_MODULE_HEADER_TAGS_TITLE', 'Etiquetas de cabecera',true);
 ?>

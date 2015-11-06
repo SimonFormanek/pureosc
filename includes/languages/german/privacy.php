@@ -12,11 +12,11 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Privatsphäre und Datenschutz');
+define('NAVBAR_TITLE', 'Privatsphäre und Datenschutz',true);
 
-define('HEADING_TITLE', 'Privatsphäre und Datenschutz');
+define('HEADING_TITLE', 'Privatsphäre und Datenschutz',true);
 
 
-define('TEXT_INFORMATION', 'Geben Sie Ihre Privatsphäre und Datenschutz Informationen hier ein! ');
+define('TEXT_INFORMATION', 'Geben Sie Ihre Privatsphäre und Datenschutz Informationen hier ein! ',true);
 
 ?>

@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('TEXT_COUNT_CUSTOMERS', 'Los clientes que reciben boletín: %s');
+define('TEXT_COUNT_CUSTOMERS', 'Los clientes que reciben boletín: %s',true);
 ?>

@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_TITLE', 'Facebook');
-  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_DESCRIPTION', 'Compartir productos con Facebook.');
-  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_PUBLIC_TITLE', 'Compartir con Facebook');
+  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_TITLE', 'Facebook',true);
+  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_DESCRIPTION', 'Compartir productos con Facebook.',true);
+  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_PUBLIC_TITLE', 'Compartir con Facebook',true);
 ?>

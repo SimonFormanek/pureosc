@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-  define('MODULES_ADMIN_MENU_TOOLS_SECURITY_CHECKS', 'Sicherheitschecks');
+  define('MODULES_ADMIN_MENU_TOOLS_SECURITY_CHECKS', 'Sicherheitschecks',true);
 ?>

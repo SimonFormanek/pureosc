@@ -17,11 +17,11 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Create an Account');
+define('NAVBAR_TITLE', 'Create an Account',true);
 
-define('HEADING_TITLE', 'My Account Information');
+define('HEADING_TITLE', 'My Account Information',true);
 
-define('TEXT_ORIGIN_LOGIN', '<font color="#FF0000"><small><strong>NOTE:</strong></small></font> If you already have an account with us, please login at the <a href="%s"><u>login page</u></a>.');
+define('TEXT_ORIGIN_LOGIN', '<font color="#FF0000"><small><strong>NOTE:</strong></small></font> If you already have an account with us, please login at the <a href="%s"><u>login page</u></a>.',true);
 
 define('EMAIL_SUBJECT', 'Welcome to ' . STORE_NAME);
 define('EMAIL_GREET_MR', 'Dear Mr. %s,' . "\n\n");
@@ -38,9 +38,9 @@ define('EMAIL_WARNING', '<strong>Note:</strong> This email address was given to 
 ************************************************************************
 */
 // CCGV
-  define('EMAIL_GV_INCENTIVE_HEADER', "\n\n" .'As part of our welcome to new customers, we have sent you an e-Gift Voucher worth %s');
-  define('EMAIL_GV_REDEEM', 'The redeem code for the e-Gift Voucher is %s, you can enter the redeem code when checking out while making a purchase');
-  define('EMAIL_GV_LINK', 'or by following this link ');
+  define('EMAIL_GV_INCENTIVE_HEADER', "\n\n" .'As part of our welcome to new customers, we have sent you an e-Gift Voucher worth %s',true);
+  define('EMAIL_GV_REDEEM', 'The redeem code for the e-Gift Voucher is %s, you can enter the redeem code when checking out while making a purchase',true);
+  define('EMAIL_GV_LINK', 'or by following this link ',true);
   define('EMAIL_COUPON_INCENTIVE_HEADER', 'Congratulations, to make your first visit to our online shop a more rewarding experience we are sending you an e-Discount Coupon.' . "\n" . ' Below are details of the Discount Coupon created just for you' . "\n");
-  define('EMAIL_COUPON_REDEEM', 'To use the coupon enter the redeem code which is %s during checkout while making a purchase');
+  define('EMAIL_COUPON_REDEEM', 'To use the coupon enter the redeem code which is %s during checkout while making a purchase',true);
 ?>

@@ -10,17 +10,17 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Hodnocení');
+define('NAVBAR_TITLE', 'Hodnocení',true);
 
-define('SUB_TITLE_FROM', 'Od:');
-define('SUB_TITLE_REVIEW', 'Hodnocení:');
-define('SUB_TITLE_RATING', 'Hodnota:');
+define('SUB_TITLE_FROM', 'Od:',true);
+define('SUB_TITLE_REVIEW', 'Hodnocení:',true);
+define('SUB_TITLE_RATING', 'Hodnota:',true);
 
-define('TEXT_NO_HTML', '<small><font color="#ff0000"><strong>NOTE:</strong></font></small>&nbsp;HTML není interpretováno!');
-define('TEXT_BAD', '<small><font color="#ff0000"><strong>špatné</strong></font></small>');
-define('TEXT_GOOD', '<small><font color="#ff0000"><strong>dobré</strong></font></small>');
+define('TEXT_NO_HTML', '<small><font color="#ff0000"><strong>NOTE:</strong></font></small>&nbsp;HTML není interpretováno!',true);
+define('TEXT_BAD', '<small><font color="#ff0000"><strong>špatné</strong></font></small>',true);
+define('TEXT_GOOD', '<small><font color="#ff0000"><strong>dobré</strong></font></small>',true);
 
-define('TEXT_REVIEW_RECEIVED', 'Děkujeme za Vaš hodnocení. Bylo zasláno provozovateli obchodu.');
+define('TEXT_REVIEW_RECEIVED', 'Děkujeme za Vaš hodnocení. Bylo zasláno provozovateli obchodu.',true);
 
-define('TEXT_CLICK_TO_ENLARGE', 'klikněte pro zvětšení');
+define('TEXT_CLICK_TO_ENLARGE', 'klikněte pro zvětšení',true);
 ?>

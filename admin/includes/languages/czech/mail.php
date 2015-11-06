@@ -10,16 +10,16 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Email zákazníkům');
+define('HEADING_TITLE', 'Email zákazníkům',true);
 
-define('TEXT_CUSTOMER', 'Zákazník:');
-define('TEXT_SUBJECT', 'Předmět:');
-define('TEXT_FROM', 'Od koho:');
-define('TEXT_MESSAGE', 'Zpráva:');
-define('TEXT_SELECT_CUSTOMER', 'Výběr zákazníka');
-define('TEXT_ALL_CUSTOMERS', 'Všichni zákazníci');
-define('TEXT_NEWSLETTER_CUSTOMERS', 'Všichni adresáti novinek');
+define('TEXT_CUSTOMER', 'Zákazník:',true);
+define('TEXT_SUBJECT', 'Předmět:',true);
+define('TEXT_FROM', 'Od koho:',true);
+define('TEXT_MESSAGE', 'Zpráva:',true);
+define('TEXT_SELECT_CUSTOMER', 'Výběr zákazníka',true);
+define('TEXT_ALL_CUSTOMERS', 'Všichni zákazníci',true);
+define('TEXT_NEWSLETTER_CUSTOMERS', 'Všichni adresáti novinek',true);
 
-define('NOTICE_EMAIL_SENT_TO', 'pozn.: e-mail zaslán: %s');
-define('ERROR_NO_CUSTOMER_SELECTED', 'Chyba: nebyl vybrán žádný zákazník.');
+define('NOTICE_EMAIL_SENT_TO', 'pozn.: e-mail zaslán: %s',true);
+define('ERROR_NO_CUSTOMER_SELECTED', 'Chyba: nebyl vybrán žádný zákazník.',true);
 ?>

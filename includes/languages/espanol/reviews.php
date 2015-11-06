@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Comentarios');
-define('HEADING_TITLE', 'Leer lo que estàn diciendo los demàs');
-define('TEXT_OF_5_STARS', '%s de 5 Estrellas!');
+define('NAVBAR_TITLE', 'Comentarios',true);
+define('HEADING_TITLE', 'Leer lo que estàn diciendo los demàs',true);
+define('TEXT_OF_5_STARS', '%s de 5 Estrellas!',true);
 ?>

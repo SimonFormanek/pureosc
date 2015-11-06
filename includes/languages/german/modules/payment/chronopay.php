@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_PAYMENT_CHRONOPAY_TEXT_TITLE', 'ChronoPay');
-  define('MODULE_PAYMENT_CHRONOPAY_TEXT_PUBLIC_TITLE', 'Kreditkarte');
-  define('MODULE_PAYMENT_CHRONOPAY_TEXT_DESCRIPTION', '<img src="images/icon_popup.gif" border="0">&nbsp;<a href="http://www.chronopay.com" target="_blank" style="text-decoration: underline; font-weight: bold;">ChronoPay-Webseite besuchen</a>');
+  define('MODULE_PAYMENT_CHRONOPAY_TEXT_TITLE', 'ChronoPay',true);
+  define('MODULE_PAYMENT_CHRONOPAY_TEXT_PUBLIC_TITLE', 'Kreditkarte',true);
+  define('MODULE_PAYMENT_CHRONOPAY_TEXT_DESCRIPTION', '<img src="images/icon_popup.gif" border="0">&nbsp;<a href="http://www.chronopay.com" target="_blank" style="text-decoration: underline; font-weight: bold;">ChronoPay-Webseite besuchen</a>',true);
 ?>

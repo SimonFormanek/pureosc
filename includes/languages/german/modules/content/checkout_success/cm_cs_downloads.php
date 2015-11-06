@@ -10,11 +10,11 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_CHECKOUT_SUCCESS_DOWNLOADS_TITLE', 'Produktdownloads');
-  define('MODULE_CONTENT_CHECKOUT_SUCCESS_DOWNLOADS_DESCRIPTION', 'Show ordered product download links on the checkout success page');
+  define('MODULE_CONTENT_CHECKOUT_SUCCESS_DOWNLOADS_TITLE', 'Produktdownloads',true);
+  define('MODULE_CONTENT_CHECKOUT_SUCCESS_DOWNLOADS_DESCRIPTION', 'Show ordered product download links on the checkout success page',true);
 
-  define('TABLE_HEADING_DOWNLOAD_DATE', 'Expiry date: ');
-  define('TABLE_HEADING_DOWNLOAD_COUNT', ' downloads remaining');
-  define('HEADING_DOWNLOAD', 'Download your products here:');
-  define('FOOTER_DOWNLOAD', 'You can also download your products at a later time at \'%s\'');
+  define('TABLE_HEADING_DOWNLOAD_DATE', 'Expiry date: ',true);
+  define('TABLE_HEADING_DOWNLOAD_COUNT', ' downloads remaining',true);
+  define('HEADING_DOWNLOAD', 'Download your products here:',true);
+  define('FOOTER_DOWNLOAD', 'You can also download your products at a later time at \'%s\'',true);
 ?>

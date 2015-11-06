@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_ROBOT_NOINDEX_TITLE', 'Robot para no Indexar');
-  define('MODULE_HEADER_TAGS_ROBOT_NOINDEX_DESCRIPTION', 'Adicionar cabecera de robot para no indexar a la página especifica');
+  define('MODULE_HEADER_TAGS_ROBOT_NOINDEX_TITLE', 'Robot para no Indexar',true);
+  define('MODULE_HEADER_TAGS_ROBOT_NOINDEX_DESCRIPTION', 'Adicionar cabecera de robot para no indexar a la página especifica',true);
 ?>

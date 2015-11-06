@@ -17,40 +17,40 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Reviews');
+define('HEADING_TITLE', 'Reviews',true);
 
-define('TABLE_HEADING_PRODUCTS', 'Products');
-define('TABLE_HEADING_RATING', 'Rating');
-define('TABLE_HEADING_DATE_ADDED', 'Date Added');
-define('TABLE_HEADING_ACTION', 'Action');
-define('TABLE_HEADING_STATUS', 'Status');
+define('TABLE_HEADING_PRODUCTS', 'Products',true);
+define('TABLE_HEADING_RATING', 'Rating',true);
+define('TABLE_HEADING_DATE_ADDED', 'Date Added',true);
+define('TABLE_HEADING_ACTION', 'Action',true);
+define('TABLE_HEADING_STATUS', 'Status',true);
 
-define('ENTRY_PRODUCT', 'Product:');
-define('ENTRY_FROM', 'From:');
-define('ENTRY_DATE', 'Date:');
-define('ENTRY_REVIEW', 'Review:');
-define('ENTRY_REVIEW_TEXT', '<small><font color="#ff0000"><strong>NOTE:</strong></font></small>&nbsp;HTML is not translated!&nbsp;');
-define('ENTRY_RATING', 'Rating:');
+define('ENTRY_PRODUCT', 'Product:',true);
+define('ENTRY_FROM', 'From:',true);
+define('ENTRY_DATE', 'Date:',true);
+define('ENTRY_REVIEW', 'Review:',true);
+define('ENTRY_REVIEW_TEXT', '<small><font color="#ff0000"><strong>NOTE:</strong></font></small>&nbsp;HTML is not translated!&nbsp;',true);
+define('ENTRY_RATING', 'Rating:',true);
 
-define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Are you sure you want to delete this review?');
+define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Are you sure you want to delete this review?',true);
 
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
-define('TEXT_INFO_IMAGE_NONEXISTENT', 'IMAGE DOES NOT EXIST');
-define('TEXT_INFO_REVIEW_AUTHOR', 'Author:');
-define('TEXT_INFO_REVIEW_RATING', 'Rating:');
-define('TEXT_INFO_REVIEW_READ', 'Read:');
-define('TEXT_INFO_REVIEW_SIZE', 'Size:');
-define('TEXT_INFO_REVIEW_STATUS', 'Review Status:');
-define('TEXT_INFO_PRODUCTS_AVERAGE_RATING', 'Average Rating:');
+define('TEXT_INFO_DATE_ADDED', 'Date Added:',true);
+define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:',true);
+define('TEXT_INFO_IMAGE_NONEXISTENT', 'IMAGE DOES NOT EXIST',true);
+define('TEXT_INFO_REVIEW_AUTHOR', 'Author:',true);
+define('TEXT_INFO_REVIEW_RATING', 'Rating:',true);
+define('TEXT_INFO_REVIEW_READ', 'Read:',true);
+define('TEXT_INFO_REVIEW_SIZE', 'Size:',true);
+define('TEXT_INFO_REVIEW_STATUS', 'Review Status:',true);
+define('TEXT_INFO_PRODUCTS_AVERAGE_RATING', 'Average Rating:',true);
 
-define('TEXT_REVIEW_PUBLISHED', 'Published');
-define('TEXT_REVIEW_NOT_PUBLISHED', 'Not Published');
+define('TEXT_REVIEW_PUBLISHED', 'Published',true);
+define('TEXT_REVIEW_NOT_PUBLISHED', 'Not Published',true);
 
-define('TEXT_OF_5_STARS', '%s of 5 Stars!');
-define('TEXT_GOOD', '<small><font color="#ff0000"><strong>GOOD</strong></font></small>');
-define('TEXT_BAD', '<small><font color="#ff0000"><strong>BAD</strong></font></small>');
-define('TEXT_INFO_HEADING_DELETE_REVIEW', 'Delete Review');
+define('TEXT_OF_5_STARS', '%s of 5 Stars!',true);
+define('TEXT_GOOD', '<small><font color="#ff0000"><strong>GOOD</strong></font></small>',true);
+define('TEXT_BAD', '<small><font color="#ff0000"><strong>BAD</strong></font></small>',true);
+define('TEXT_INFO_HEADING_DELETE_REVIEW', 'Delete Review',true);
 /*
 ************************************************************************
 ************** Custom Filenames can be defined below here **************
@@ -59,14 +59,14 @@ define('TEXT_INFO_HEADING_DELETE_REVIEW', 'Delete Review');
 */
 // Definition for SEO Header Tags Reloaded
 // admin add reviews
-define('IMAGE_BUTTON_ADD_REVIEW', 'Add A Review');
+define('IMAGE_BUTTON_ADD_REVIEW', 'Add A Review',true);
 // admin add testimonials
-define('IMAGE_BUTTON_ADD_TESTIMONIAL', 'Add A Testimonial');
-define('ENTRY_TESTIMONIAL', 'Testimonial:');
-define('ENTRY_NAME', 'Name:');
-define('TEXT_IMAGE_NONEXISTENT', 'No Image');
-define('ADMIN_TESTIMONIAL', 'Site Testimonial');
-define('TABLE_HEADING_TESTIMONIAL', 'Testimonial');
-define('IMAGE_ICON_TESTIMONIAL_YES', 'Testimonial');
-define('IMAGE_ICON_TESTIMONIAL_NO', 'Review');
+define('IMAGE_BUTTON_ADD_TESTIMONIAL', 'Add A Testimonial',true);
+define('ENTRY_TESTIMONIAL', 'Testimonial:',true);
+define('ENTRY_NAME', 'Name:',true);
+define('TEXT_IMAGE_NONEXISTENT', 'No Image',true);
+define('ADMIN_TESTIMONIAL', 'Site Testimonial',true);
+define('TABLE_HEADING_TESTIMONIAL', 'Testimonial',true);
+define('IMAGE_ICON_TESTIMONIAL_YES', 'Testimonial',true);
+define('IMAGE_ICON_TESTIMONIAL_NO', 'Review',true);
 ?>

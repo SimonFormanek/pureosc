@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ORDER_TOTAL_TOTAL_TITLE', 'Gesamtsumme');
-  define('MODULE_ORDER_TOTAL_TOTAL_DESCRIPTION', 'Gesamtsumme der Bestellung');
+  define('MODULE_ORDER_TOTAL_TOTAL_TITLE', 'Gesamtsumme',true);
+  define('MODULE_ORDER_TOTAL_TOTAL_DESCRIPTION', 'Gesamtsumme der Bestellung',true);
 ?>

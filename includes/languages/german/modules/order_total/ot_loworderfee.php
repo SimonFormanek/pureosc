@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ORDER_TOTAL_LOWORDERFEE_TITLE', 'Kleinbestellungszuschlag');
-  define('MODULE_ORDER_TOTAL_LOWORDERFEE_DESCRIPTION', 'Kleinbestellungszuschlag');
+  define('MODULE_ORDER_TOTAL_LOWORDERFEE_TITLE', 'Kleinbestellungszuschlag',true);
+  define('MODULE_ORDER_TOTAL_LOWORDERFEE_DESCRIPTION', 'Kleinbestellungszuschlag',true);
 ?>

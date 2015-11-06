@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_ADMIN_DASHBOARD_CUSTOMERS_TITLE', 'Clientes');
-define('MODULE_ADMIN_DASHBOARD_CUSTOMERS_DESCRIPTION', 'Mostrar los nuevos Clientes');
-define('MODULE_ADMIN_DASHBOARD_CUSTOMERS_DATE', 'Fecha');
+define('MODULE_ADMIN_DASHBOARD_CUSTOMERS_TITLE', 'Clientes',true);
+define('MODULE_ADMIN_DASHBOARD_CUSTOMERS_DESCRIPTION', 'Mostrar los nuevos Clientes',true);
+define('MODULE_ADMIN_DASHBOARD_CUSTOMERS_DATE', 'Fecha',true);
 ?>

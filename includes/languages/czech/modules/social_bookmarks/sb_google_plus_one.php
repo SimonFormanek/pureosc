@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_ONE_TITLE', 'Google+ +1 Button');
-  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_ONE_DESCRIPTION', 'Recommend products through Google+ +1 Button.');
-  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_ONE_PUBLIC_TITLE', 'Recommend on Google+');
+  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_ONE_TITLE', 'Google+ +1 Button',true);
+  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_ONE_DESCRIPTION', 'Recommend products through Google+ +1 Button.',true);
+  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_ONE_PUBLIC_TITLE', 'Recommend on Google+',true);
 ?>

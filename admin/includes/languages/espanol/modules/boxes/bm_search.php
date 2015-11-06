@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_SEARCH_TITLE', 'Buscar');
-  define('MODULE_BOXES_SEARCH_DESCRIPTION', 'Mostrar campo de búsqueda');
-  define('MODULE_BOXES_SEARCH_BOX_TITLE', 'Búsqueda Rápida');
-  define('MODULE_BOXES_SEARCH_BOX_TEXT', 'Use palabras clave para encontrar el producto que busca.');
-  define('MODULE_BOXES_SEARCH_BOX_ADVANCED_SEARCH', 'Búsqueda Avanzada');
+  define('MODULE_BOXES_SEARCH_TITLE', 'Buscar',true);
+  define('MODULE_BOXES_SEARCH_DESCRIPTION', 'Mostrar campo de búsqueda',true);
+  define('MODULE_BOXES_SEARCH_BOX_TITLE', 'Búsqueda Rápida',true);
+  define('MODULE_BOXES_SEARCH_BOX_TEXT', 'Use palabras clave para encontrar el producto que busca.',true);
+  define('MODULE_BOXES_SEARCH_BOX_ADVANCED_SEARCH', 'Búsqueda Avanzada',true);
 ?>

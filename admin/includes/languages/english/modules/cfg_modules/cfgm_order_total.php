@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_CFG_MODULE_ORDER_TOTAL_TITLE', 'Order Total');
+define('MODULE_CFG_MODULE_ORDER_TOTAL_TITLE', 'Order Total',true);
 ?>

@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_FRONT_PAGE_BANNER_ROTATOR_TITLE', 'Carousel Banners For Home Page');
-  define('MODULE_FRONT_PAGE_BANNER_ROTATOR_DESCRIPTION', 'Adds a carousel to Home Page with banner images set from Banner Manager.');
+  define('MODULE_FRONT_PAGE_BANNER_ROTATOR_TITLE', 'Carousel Banners For Home Page',true);
+  define('MODULE_FRONT_PAGE_BANNER_ROTATOR_DESCRIPTION', 'Adds a carousel to Home Page with banner images set from Banner Manager.',true);
   
    
 ?>

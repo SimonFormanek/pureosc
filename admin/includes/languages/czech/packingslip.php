@@ -10,11 +10,11 @@
   Released under the GNU General Public License
 */
 
-define('TABLE_HEADING_COMMENTS', 'Komentáře');
-define('TABLE_HEADING_PRODUCTS_MODEL', 'Model');
-define('TABLE_HEADING_PRODUCTS', 'Zboží');
+define('TABLE_HEADING_COMMENTS', 'Komentáře',true);
+define('TABLE_HEADING_PRODUCTS_MODEL', 'Model',true);
+define('TABLE_HEADING_PRODUCTS', 'Zboží',true);
 
-define('ENTRY_SOLD_TO', 'Adresa plátce:');
-define('ENTRY_SHIP_TO', 'Adresa dodání:');
-define('ENTRY_PAYMENT_METHOD', 'Způsob platby:');
+define('ENTRY_SOLD_TO', 'Adresa plátce:',true);
+define('ENTRY_SHIP_TO', 'Adresa dodání:',true);
+define('ENTRY_PAYMENT_METHOD', 'Způsob platby:',true);
 ?>

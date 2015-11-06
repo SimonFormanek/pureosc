@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Reviews');
-define('HEADING_TITLE', 'Read What Others Are Saying');
-define('TEXT_OF_5_STARS', '%s of 5 Stars!');
+define('NAVBAR_TITLE', 'Reviews',true);
+define('HEADING_TITLE', 'Read What Others Are Saying',true);
+define('TEXT_OF_5_STARS', '%s of 5 Stars!',true);
 
-define('REVIEWS_TEXT_READ_MORE', 'Read More');
+define('REVIEWS_TEXT_READ_MORE', 'Read More',true);

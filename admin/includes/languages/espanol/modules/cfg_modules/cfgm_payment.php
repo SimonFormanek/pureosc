@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_CFG_MODULE_PAYMENT_TITLE', 'Pago');
+define('MODULE_CFG_MODULE_PAYMENT_TITLE', 'Pago',true);
 ?>

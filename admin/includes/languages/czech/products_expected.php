@@ -10,11 +10,11 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Očekávané zboží');
+define('HEADING_TITLE', 'Očekávané zboží',true);
 
-define('TABLE_HEADING_PRODUCTS', 'Zboží');
-define('TABLE_HEADING_DATE_EXPECTED', 'Datum dodání');
-define('TABLE_HEADING_ACTION', 'Provést');
+define('TABLE_HEADING_PRODUCTS', 'Zboží',true);
+define('TABLE_HEADING_DATE_EXPECTED', 'Datum dodání',true);
+define('TABLE_HEADING_ACTION', 'Provést',true);
 
-define('TEXT_INFO_DATE_EXPECTED', 'Datum dodání:');
+define('TEXT_INFO_DATE_EXPECTED', 'Datum dodání:',true);
 ?>

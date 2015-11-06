@@ -10,11 +10,11 @@
   Released under the GNU General Public License
 */
 
-define('TABLE_HEADING_CONFIGURATION_TITLE', 'Název');
-define('TABLE_HEADING_CONFIGURATION_VALUE', 'Hodnota');
-define('TABLE_HEADING_ACTION', 'Provést');
+define('TABLE_HEADING_CONFIGURATION_TITLE', 'Název',true);
+define('TABLE_HEADING_CONFIGURATION_VALUE', 'Hodnota',true);
+define('TABLE_HEADING_ACTION', 'Provést',true);
 
-define('TEXT_INFO_EDIT_INTRO', 'Proveďte potřebné změny');
-define('TEXT_INFO_DATE_ADDED', 'Datum vložení:');
-define('TEXT_INFO_LAST_MODIFIED', 'Poslední změna:');
+define('TEXT_INFO_EDIT_INTRO', 'Proveďte potřebné změny',true);
+define('TEXT_INFO_DATE_ADDED', 'Datum vložení:',true);
+define('TEXT_INFO_LAST_MODIFIED', 'Poslední změna:',true);
 ?>

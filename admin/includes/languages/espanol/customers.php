@@ -10,23 +10,23 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Clientes');
-define('HEADING_TITLE_SEARCH', 'Buscar:');
+define('HEADING_TITLE', 'Clientes',true);
+define('HEADING_TITLE_SEARCH', 'Buscar:',true);
 
-define('TABLE_HEADING_FIRSTNAME', 'Nombre');
-define('TABLE_HEADING_LASTNAME', 'Apellidos');
-define('TABLE_HEADING_ACCOUNT_CREATED', 'Cuenta Creada');
-define('TABLE_HEADING_ACTION', 'Acción');
+define('TABLE_HEADING_FIRSTNAME', 'Nombre',true);
+define('TABLE_HEADING_LASTNAME', 'Apellidos',true);
+define('TABLE_HEADING_ACCOUNT_CREATED', 'Cuenta Creada',true);
+define('TABLE_HEADING_ACTION', 'Acción',true);
 
-define('TEXT_DATE_ACCOUNT_CREATED', 'Cuenta Creada:');
-define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Ultima Modificación:');
-define('TEXT_INFO_DATE_LAST_LOGON', 'Ultima Visita:');
-define('TEXT_INFO_NUMBER_OF_LOGONS', 'Número de visitas:');
-define('TEXT_INFO_COUNTRY', 'País:');
-define('TEXT_INFO_NUMBER_OF_REVIEWS', 'Número de Comentarios:');
-define('TEXT_DELETE_INTRO', 'Seguro que desea eliminar este cliente ?');
-define('TEXT_DELETE_REVIEWS', 'Eliminar %s comentario(s)');
-define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Eliminar Cliente');
-define('TYPE_BELOW', 'Escriba debajo');
-define('PLEASE_SELECT', 'Seleccionar uno');
+define('TEXT_DATE_ACCOUNT_CREATED', 'Cuenta Creada:',true);
+define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Ultima Modificación:',true);
+define('TEXT_INFO_DATE_LAST_LOGON', 'Ultima Visita:',true);
+define('TEXT_INFO_NUMBER_OF_LOGONS', 'Número de visitas:',true);
+define('TEXT_INFO_COUNTRY', 'País:',true);
+define('TEXT_INFO_NUMBER_OF_REVIEWS', 'Número de Comentarios:',true);
+define('TEXT_DELETE_INTRO', 'Seguro que desea eliminar este cliente ?',true);
+define('TEXT_DELETE_REVIEWS', 'Eliminar %s comentario(s)',true);
+define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Eliminar Cliente',true);
+define('TYPE_BELOW', 'Escriba debajo',true);
+define('PLEASE_SELECT', 'Seleccionar uno',true);
 ?>

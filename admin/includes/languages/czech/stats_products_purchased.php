@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Nejprodávanější zboží');
+define('HEADING_TITLE', 'Nejprodávanější zboží',true);
 
-define('TABLE_HEADING_NUMBER', 'číslo');
-define('TABLE_HEADING_PRODUCTS', 'zboží');
-define('TABLE_HEADING_PURCHASED', 'prodáno');
+define('TABLE_HEADING_NUMBER', 'číslo',true);
+define('TABLE_HEADING_PRODUCTS', 'zboží',true);
+define('TABLE_HEADING_PURCHASED', 'prodáno',true);
 ?>

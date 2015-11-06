@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_SOCIAL_BOOKMARKS_EMAIL_TITLE', 'E-Mail');
-  define('MODULE_SOCIAL_BOOKMARKS_EMAIL_DESCRIPTION', 'Artikel via e-mail empfehlen.');
-  define('MODULE_SOCIAL_BOOKMARKS_EMAIL_PUBLIC_TITLE', 'Empfehlen via E-Mail');
+  define('MODULE_SOCIAL_BOOKMARKS_EMAIL_TITLE', 'E-Mail',true);
+  define('MODULE_SOCIAL_BOOKMARKS_EMAIL_DESCRIPTION', 'Artikel via e-mail empfehlen.',true);
+  define('MODULE_SOCIAL_BOOKMARKS_EMAIL_PUBLIC_TITLE', 'Empfehlen via E-Mail',true);
 ?>

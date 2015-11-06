@@ -18,21 +18,21 @@
   Released under the GNU General Public License
 */
 
-define('EMAIL_TEXT_SUBJECT', 'Order Process');
-define('EMAIL_TEXT_ORDER_NUMBER', 'Order Number:');
-define('EMAIL_TEXT_INVOICE_URL', 'Detailed Invoice:');
-define('EMAIL_TEXT_DATE_ORDERED', 'Date Ordered:');
-define('EMAIL_TEXT_PRODUCTS', 'Products');
-define('EMAIL_TEXT_SUBTOTAL', 'Sub-Total:');
-define('EMAIL_TEXT_TAX', 'Tax:        ');
-define('EMAIL_TEXT_SHIPPING', 'Shipping: ');
-define('EMAIL_TEXT_TOTAL', 'Total:    ');
-define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Delivery Address');
-define('EMAIL_TEXT_BILLING_ADDRESS', 'Billing Address');
-define('EMAIL_TEXT_PAYMENT_METHOD', 'Payment Method');
+define('EMAIL_TEXT_SUBJECT', 'Order Process',true);
+define('EMAIL_TEXT_ORDER_NUMBER', 'Order Number:',true);
+define('EMAIL_TEXT_INVOICE_URL', 'Detailed Invoice:',true);
+define('EMAIL_TEXT_DATE_ORDERED', 'Date Ordered:',true);
+define('EMAIL_TEXT_PRODUCTS', 'Products',true);
+define('EMAIL_TEXT_SUBTOTAL', 'Sub-Total:',true);
+define('EMAIL_TEXT_TAX', 'Tax:        ',true);
+define('EMAIL_TEXT_SHIPPING', 'Shipping: ',true);
+define('EMAIL_TEXT_TOTAL', 'Total:    ',true);
+define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Delivery Address',true);
+define('EMAIL_TEXT_BILLING_ADDRESS', 'Billing Address',true);
+define('EMAIL_TEXT_PAYMENT_METHOD', 'Payment Method',true);
 
-define('EMAIL_SEPARATOR', '------------------------------------------------------');
-define('TEXT_EMAIL_VIA', 'via');
+define('EMAIL_SEPARATOR', '------------------------------------------------------',true);
+define('TEXT_EMAIL_VIA', 'via',true);
 
 /*
 ************************************************************************
@@ -41,8 +41,8 @@ define('TEXT_EMAIL_VIA', 'via');
 ************************************************************************
 */
 // Mail Manager
-  define('EMAIL_TEXT_CONFIRM', 'New purchase from ');
+  define('EMAIL_TEXT_CONFIRM', 'New purchase from ',true);
   
 // Purchase Without Account
-  define('EMAIL_WARNING', 'NOTE: This email address has been submitted by a visitor to our online-shop. If you were not this visitor, please send a message to:  ' . STORE_OWNER_EMAIL_ADDRESS . 'Thank you for your purchase and have a nice day.');  
+  define('EMAIL_WARNING', 'NOTE: This email address has been submitted by a visitor to our online-shop. If you were not this visitor, please send a message to:  ' . STORE_OWNER_EMAIL_ADDRESS . 'Thank you for your purchase and have a nice day.',true);  
 ?>

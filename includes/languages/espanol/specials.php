@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Ofertas');
-define('HEADING_TITLE', '¡Adquierelas mientras están calientes!');
+define('NAVBAR_TITLE', 'Ofertas',true);
+define('HEADING_TITLE', '¡Adquierelas mientras están calientes!',true);
 ?>

@@ -10,21 +10,21 @@
   Released under the GNU General Public License
 */
 
-define('TABLE_HEADING_COMMENTS', 'Kommentar');
-define('TABLE_HEADING_PRODUCTS_MODEL', 'Artikel-Nr.');
-define('TABLE_HEADING_PRODUCTS', 'Artikel');
-define('TABLE_HEADING_TAX', 'MwSt.');
-define('TABLE_HEADING_TOTAL', 'Summe');
-define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Preis (exkl.)');
-define('TABLE_HEADING_PRICE_INCLUDING_TAX', 'Preis (inkl.)');
-define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Summe (exkl.)');
-define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Summe (inkl.)');
+define('TABLE_HEADING_COMMENTS', 'Kommentar',true);
+define('TABLE_HEADING_PRODUCTS_MODEL', 'Artikel-Nr.',true);
+define('TABLE_HEADING_PRODUCTS', 'Artikel',true);
+define('TABLE_HEADING_TAX', 'MwSt.',true);
+define('TABLE_HEADING_TOTAL', 'Summe',true);
+define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Preis (exkl.)',true);
+define('TABLE_HEADING_PRICE_INCLUDING_TAX', 'Preis (inkl.)',true);
+define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Summe (exkl.)',true);
+define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Summe (inkl.)',true);
 
-define('ENTRY_SOLD_TO', 'Rechnungsanschrift:');
-define('ENTRY_SHIP_TO', 'Lieferanschrift:');
-define('ENTRY_PAYMENT_METHOD', 'Zahlungsweise:');
-define('ENTRY_SUB_TOTAL', 'Zwischensumme:');
-define('ENTRY_TAX', 'MwSt.:');
-define('ENTRY_SHIPPING', 'Versandkosten:');
-define('ENTRY_TOTAL', 'Gesamtsumme:');
+define('ENTRY_SOLD_TO', 'Rechnungsanschrift:',true);
+define('ENTRY_SHIP_TO', 'Lieferanschrift:',true);
+define('ENTRY_PAYMENT_METHOD', 'Zahlungsweise:',true);
+define('ENTRY_SUB_TOTAL', 'Zwischensumme:',true);
+define('ENTRY_TAX', 'MwSt.:',true);
+define('ENTRY_SHIPPING', 'Versandkosten:',true);
+define('ENTRY_TOTAL', 'Gesamtsumme:',true);
 ?>

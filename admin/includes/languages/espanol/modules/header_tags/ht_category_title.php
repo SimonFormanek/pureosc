@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_CATEGORY_TITLE_TITLE', 'Título de la categoría');
-  define('MODULE_HEADER_TAGS_CATEGORY_TITLE_DESCRIPTION', 'Adicionar el título de la categoría actual para el título de la página');
+  define('MODULE_HEADER_TAGS_CATEGORY_TITLE_TITLE', 'Título de la categoría',true);
+  define('MODULE_HEADER_TAGS_CATEGORY_TITLE_DESCRIPTION', 'Adicionar el título de la categoría actual para el título de la página',true);
 ?>

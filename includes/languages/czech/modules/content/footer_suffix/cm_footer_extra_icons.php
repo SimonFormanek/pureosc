@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_FOOTER_EXTRA_ICONS_TITLE', 'Payment Icons');
-  define('MODULE_CONTENT_FOOTER_EXTRA_ICONS_DESCRIPTION', 'Adds a Payment Icons Block to the Extra Footer Area of your site');
+  define('MODULE_CONTENT_FOOTER_EXTRA_ICONS_TITLE', 'Payment Icons',true);
+  define('MODULE_CONTENT_FOOTER_EXTRA_ICONS_DESCRIPTION', 'Adds a Payment Icons Block to the Extra Footer Area of your site',true);
   
   define('MODULE_CONTENT_FOOTER_EXTRA_ICONS_TEXT', '
   <p>

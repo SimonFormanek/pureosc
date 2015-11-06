@@ -10,13 +10,13 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Comentarios');
-define('HEADING_TITLE', ' %s Comentarios');
-define('SUB_TITLE_PRODUCT', 'Producto:');
-define('SUB_TITLE_FROM', 'De:');
-define('SUB_TITLE_DATE', 'Fecha:');
-define('SUB_TITLE_REVIEW', 'Comentario:');
-define('SUB_TITLE_RATING', 'Valoración:');
-define('TEXT_OF_5_STARS', '%s de 5 Estrellas!');
-define('TEXT_CLICK_TO_ENLARGE', 'Haga click para ampliar');
+define('NAVBAR_TITLE', 'Comentarios',true);
+define('HEADING_TITLE', ' %s Comentarios',true);
+define('SUB_TITLE_PRODUCT', 'Producto:',true);
+define('SUB_TITLE_FROM', 'De:',true);
+define('SUB_TITLE_DATE', 'Fecha:',true);
+define('SUB_TITLE_REVIEW', 'Comentario:',true);
+define('SUB_TITLE_RATING', 'Valoración:',true);
+define('TEXT_OF_5_STARS', '%s de 5 Estrellas!',true);
+define('TEXT_CLICK_TO_ENLARGE', 'Haga click para ampliar',true);
 ?>

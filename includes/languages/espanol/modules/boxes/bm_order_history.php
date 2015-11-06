@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_ORDER_HISTORY_TITLE', 'Histórico de pedidos');
-  define('MODULE_BOXES_ORDER_HISTORY_DESCRIPTION', 'Mostrar los productos solicitados previamente por los Clientes');
-  define('MODULE_BOXES_ORDER_HISTORY_BOX_TITLE', 'Histórico de pedidos');
+  define('MODULE_BOXES_ORDER_HISTORY_TITLE', 'Histórico de pedidos',true);
+  define('MODULE_BOXES_ORDER_HISTORY_DESCRIPTION', 'Mostrar los productos solicitados previamente por los Clientes',true);
+  define('MODULE_BOXES_ORDER_HISTORY_BOX_TITLE', 'Histórico de pedidos',true);
 ?>

@@ -10,10 +10,10 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_ADMIN_DASHBOARD_REVIEWS_TITLE', 'Comentarios');
-define('MODULE_ADMIN_DASHBOARD_REVIEWS_DESCRIPTION', 'Mostrar los últimos comentarios');
-define('MODULE_ADMIN_DASHBOARD_REVIEWS_REVIEWER', 'Revisor/Crítico');
-define('MODULE_ADMIN_DASHBOARD_REVIEWS_DATE', 'Fecha');
-define('MODULE_ADMIN_DASHBOARD_REVIEWS_RATING', 'Clasificación');
-define('MODULE_ADMIN_DASHBOARD_REVIEWS_REVIEW_STATUS', 'Estado');
+define('MODULE_ADMIN_DASHBOARD_REVIEWS_TITLE', 'Comentarios',true);
+define('MODULE_ADMIN_DASHBOARD_REVIEWS_DESCRIPTION', 'Mostrar los últimos comentarios',true);
+define('MODULE_ADMIN_DASHBOARD_REVIEWS_REVIEWER', 'Revisor/Crítico',true);
+define('MODULE_ADMIN_DASHBOARD_REVIEWS_DATE', 'Fecha',true);
+define('MODULE_ADMIN_DASHBOARD_REVIEWS_RATING', 'Clasificación',true);
+define('MODULE_ADMIN_DASHBOARD_REVIEWS_REVIEW_STATUS', 'Estado',true);
 ?>

@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_ADMIN_DASHBOARD_ORDERS_TITLE', 'Bestellungen');
-define('MODULE_ADMIN_DASHBOARD_ORDERS_DESCRIPTION', 'Die letzten Bestellungen');
-define('MODULE_ADMIN_DASHBOARD_ORDERS_TOTAL', 'Total');
-define('MODULE_ADMIN_DASHBOARD_ORDERS_DATE', 'Datum');
-define('MODULE_ADMIN_DASHBOARD_ORDERS_ORDER_STATUS', 'Status');
+define('MODULE_ADMIN_DASHBOARD_ORDERS_TITLE', 'Bestellungen',true);
+define('MODULE_ADMIN_DASHBOARD_ORDERS_DESCRIPTION', 'Die letzten Bestellungen',true);
+define('MODULE_ADMIN_DASHBOARD_ORDERS_TOTAL', 'Total',true);
+define('MODULE_ADMIN_DASHBOARD_ORDERS_DATE', 'Datum',true);
+define('MODULE_ADMIN_DASHBOARD_ORDERS_ORDER_STATUS', 'Status',true);
 ?>

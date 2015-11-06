@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ORDER_TOTAL_SUBTOTAL_TITLE', 'SubTotal');
-  define('MODULE_ORDER_TOTAL_SUBTOTAL_DESCRIPTION', 'SubTotal del pedido');
+  define('MODULE_ORDER_TOTAL_SUBTOTAL_TITLE', 'SubTotal',true);
+  define('MODULE_ORDER_TOTAL_SUBTOTAL_DESCRIPTION', 'SubTotal del pedido',true);
 ?>

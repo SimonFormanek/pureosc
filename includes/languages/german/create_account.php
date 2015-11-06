@@ -10,11 +10,11 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Konto erstellen');
+define('NAVBAR_TITLE', 'Konto erstellen',true);
 
-define('HEADING_TITLE', 'Informationen zu Ihrem Kundenkonto');
+define('HEADING_TITLE', 'Informationen zu Ihrem Kundenkonto',true);
 
-define('TEXT_ORIGIN_LOGIN', '<font color="#FF0000"><small><b>ACHTUNG:</b></font></small> Wenn Sie bereits ein Konto besitzen, so melden Sie sich bitte <a href="%s"><u><b>hier</b></u></a> an.');
+define('TEXT_ORIGIN_LOGIN', '<font color="#FF0000"><small><b>ACHTUNG:</b></font></small> Wenn Sie bereits ein Konto besitzen, so melden Sie sich bitte <a href="%s"><u><b>hier</b></u></a> an.',true);
 
 define('EMAIL_SUBJECT', 'Willkommen bei' . STORE_NAME);
 define('EMAIL_GREET_MR', 'Sehr geehrter Herr %s,' . "\n\n");

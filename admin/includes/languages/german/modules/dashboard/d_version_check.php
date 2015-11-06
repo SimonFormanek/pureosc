@@ -10,10 +10,10 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_TITLE', 'Versions Check');
-define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_DESCRIPTION', 'Zeige die Version Check Resultate');
-define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_DATE', 'Zuletzt geprüft');
-define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_CHECK_NOW', 'Prüfe jetzt');
-define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_NEVER', 'Nie');
-define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_UPDATE_AVAILABLE', 'Ein update füer osCommerce Online Merchant ist verfüegbar!');
+define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_TITLE', 'Versions Check',true);
+define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_DESCRIPTION', 'Zeige die Version Check Resultate',true);
+define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_DATE', 'Zuletzt geprüft',true);
+define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_CHECK_NOW', 'Prüfe jetzt',true);
+define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_NEVER', 'Nie',true);
+define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_UPDATE_AVAILABLE', 'Ein update füer osCommerce Online Merchant ist verfüegbar!',true);
 ?>

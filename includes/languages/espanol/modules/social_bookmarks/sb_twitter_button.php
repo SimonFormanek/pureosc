@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_BUTTON_TITLE', 'Botón Twitter');
-  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_BUTTON_DESCRIPTION', 'Compartir productos con el Botón de Twitter.');
-  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_BUTTON_PUBLIC_TITLE', 'Tweet');
+  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_BUTTON_TITLE', 'Botón Twitter',true);
+  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_BUTTON_DESCRIPTION', 'Compartir productos con el Botón de Twitter.',true);
+  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_BUTTON_PUBLIC_TITLE', 'Tweet',true);
 ?>

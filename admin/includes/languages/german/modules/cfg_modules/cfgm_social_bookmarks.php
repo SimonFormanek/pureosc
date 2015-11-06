@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_CFG_MODULE_SOCIAL_BOOKMARKS_TITLE', 'Soziale Bookmarks');
+define('MODULE_CFG_MODULE_SOCIAL_BOOKMARKS_TITLE', 'Soziale Bookmarks',true);
 ?>

@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_SOCIAL_BOOKMARKS_DIGG_TITLE', 'Digg');
-  define('MODULE_SOCIAL_BOOKMARKS_DIGG_DESCRIPTION', 'Artikel über Digg empfehlen.');
-  define('MODULE_SOCIAL_BOOKMARKS_DIGG_PUBLIC_TITLE', 'Empfehlen über Digg');
+  define('MODULE_SOCIAL_BOOKMARKS_DIGG_TITLE', 'Digg',true);
+  define('MODULE_SOCIAL_BOOKMARKS_DIGG_DESCRIPTION', 'Artikel über Digg empfehlen.',true);
+  define('MODULE_SOCIAL_BOOKMARKS_DIGG_PUBLIC_TITLE', 'Empfehlen über Digg',true);
 ?>

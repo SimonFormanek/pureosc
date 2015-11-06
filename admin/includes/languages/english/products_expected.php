@@ -10,11 +10,11 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Products Expected');
+define('HEADING_TITLE', 'Products Expected',true);
 
-define('TABLE_HEADING_PRODUCTS', 'Products');
-define('TABLE_HEADING_DATE_EXPECTED', 'Date Expected');
-define('TABLE_HEADING_ACTION', 'Action');
+define('TABLE_HEADING_PRODUCTS', 'Products',true);
+define('TABLE_HEADING_DATE_EXPECTED', 'Date Expected',true);
+define('TABLE_HEADING_ACTION', 'Action',true);
 
-define('TEXT_INFO_DATE_EXPECTED', 'Date Expected:');
+define('TEXT_INFO_DATE_EXPECTED', 'Date Expected:',true);
 ?>

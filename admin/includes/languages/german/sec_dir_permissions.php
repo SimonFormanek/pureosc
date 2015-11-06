@@ -10,11 +10,11 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Verzeichnis Sicherheit/Lesezugriffsrecht');
+define('HEADING_TITLE', 'Verzeichnis Sicherheit/Lesezugriffsrecht',true);
 
-define('TABLE_HEADING_DIRECTORIES', 'Directories/Verzeichnisse');
-define('TABLE_HEADING_WRITABLE', 'beschreibbar');
-define('TABLE_HEADING_RECOMMENDED', ' vorgeschlagen');
+define('TABLE_HEADING_DIRECTORIES', 'Directories/Verzeichnisse',true);
+define('TABLE_HEADING_WRITABLE', 'beschreibbar',true);
+define('TABLE_HEADING_RECOMMENDED', ' vorgeschlagen',true);
 
-define('TEXT_DIRECTORY', 'Directory/Verzeichnis:');
+define('TEXT_DIRECTORY', 'Directory/Verzeichnis:',true);
 ?>

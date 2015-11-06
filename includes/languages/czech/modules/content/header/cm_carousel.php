@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_FRONT_PAGE_BANNER_ROTATOR_TITLE', 'Rotátor Banerů - Home Page');
-  define('MODULE_FRONT_PAGE_BANNER_ROTATOR_DESCRIPTION', 'Přidává rotátor bannerů na Home Page - vkládaných do Banerů.');
+  define('MODULE_FRONT_PAGE_BANNER_ROTATOR_TITLE', 'Rotátor Banerů - Home Page',true);
+  define('MODULE_FRONT_PAGE_BANNER_ROTATOR_DESCRIPTION', 'Přidává rotátor bannerů na Home Page - vkládaných do Banerů.',true);
   
   
   
