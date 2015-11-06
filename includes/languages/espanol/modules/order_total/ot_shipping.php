@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ORDER_TOTAL_SHIPPING_TITLE', 'Envío');
-  define('MODULE_ORDER_TOTAL_SHIPPING_DESCRIPTION', 'Costos de envío del pedido');
+  define('MODULE_ORDER_TOTAL_SHIPPING_TITLE', 'Envío',true);
+  define('MODULE_ORDER_TOTAL_SHIPPING_DESCRIPTION', 'Costos de envío del pedido',true);
 
-  define('FREE_SHIPPING_TITLE', 'Envío Gratis');
-  define('FREE_SHIPPING_DESCRIPTION', 'Envío gratuito para pedidos superiores %s');
+  define('FREE_SHIPPING_TITLE', 'Envío Gratis',true);
+  define('FREE_SHIPPING_DESCRIPTION', 'Envío gratuito para pedidos superiores %s',true);
 ?>

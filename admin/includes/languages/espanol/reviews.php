@@ -10,38 +10,38 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Comentarios');
+define('HEADING_TITLE', 'Comentarios',true);
 
-define('TABLE_HEADING_PRODUCTS', 'Productos');
-define('TABLE_HEADING_RATING', 'Valoración');
-define('TABLE_HEADING_DATE_ADDED', 'Fecha Alta');
-define('TABLE_HEADING_ACTION', 'Acción');
-define('TABLE_HEADING_STATUS', 'Estado');
+define('TABLE_HEADING_PRODUCTS', 'Productos',true);
+define('TABLE_HEADING_RATING', 'Valoración',true);
+define('TABLE_HEADING_DATE_ADDED', 'Fecha Alta',true);
+define('TABLE_HEADING_ACTION', 'Acción',true);
+define('TABLE_HEADING_STATUS', 'Estado',true);
 
-define('ENTRY_PRODUCT', 'Producto:');
-define('ENTRY_FROM', 'De:');
-define('ENTRY_DATE', 'Fecha:');
-define('ENTRY_REVIEW', 'Comentario:');
-define('ENTRY_REVIEW_TEXT', '<small><font color="#ff0000"><strong>NOTA:</strong></font></small>&nbsp;¡no se traduce el código HTML!&nbsp;');
-define('ENTRY_RATING', 'Valoración:');
+define('ENTRY_PRODUCT', 'Producto:',true);
+define('ENTRY_FROM', 'De:',true);
+define('ENTRY_DATE', 'Fecha:',true);
+define('ENTRY_REVIEW', 'Comentario:',true);
+define('ENTRY_REVIEW_TEXT', '<small><font color="#ff0000"><strong>NOTA:</strong></font></small>&nbsp;¡no se traduce el código HTML!&nbsp;',true);
+define('ENTRY_RATING', 'Valoración:',true);
 
-define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Seguro que desea eliminar este comentario ?');
+define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Seguro que desea eliminar este comentario ?',true);
 
-define('TEXT_INFO_DATE_ADDED', 'Fecha Alta:');
-define('TEXT_INFO_LAST_MODIFIED', 'Ultima Modificación:');
-define('TEXT_INFO_IMAGE_NONEXISTENT', 'NO EXISTE IMAGEN');
-define('TEXT_INFO_REVIEW_AUTHOR', 'Autor:');
-define('TEXT_INFO_REVIEW_RATING', 'Valoración:');
-define('TEXT_INFO_REVIEW_READ', 'Leer:');
-define('TEXT_INFO_REVIEW_SIZE', 'Tamaño:');
-define('TEXT_INFO_REVIEW_STATUS', 'Estado del comentario:');
-define('TEXT_INFO_PRODUCTS_AVERAGE_RATING', 'Valoración Media:');
+define('TEXT_INFO_DATE_ADDED', 'Fecha Alta:',true);
+define('TEXT_INFO_LAST_MODIFIED', 'Ultima Modificación:',true);
+define('TEXT_INFO_IMAGE_NONEXISTENT', 'NO EXISTE IMAGEN',true);
+define('TEXT_INFO_REVIEW_AUTHOR', 'Autor:',true);
+define('TEXT_INFO_REVIEW_RATING', 'Valoración:',true);
+define('TEXT_INFO_REVIEW_READ', 'Leer:',true);
+define('TEXT_INFO_REVIEW_SIZE', 'Tamaño:',true);
+define('TEXT_INFO_REVIEW_STATUS', 'Estado del comentario:',true);
+define('TEXT_INFO_PRODUCTS_AVERAGE_RATING', 'Valoración Media:',true);
 
-define('TEXT_REVIEW_PUBLISHED', 'Publicado');
-define('TEXT_REVIEW_NOT_PUBLISHED', 'No Publicado');
+define('TEXT_REVIEW_PUBLISHED', 'Publicado',true);
+define('TEXT_REVIEW_NOT_PUBLISHED', 'No Publicado',true);
 
-define('TEXT_OF_5_STARS', '%s de 5 Estrellas!');
-define('TEXT_GOOD', '<small><font color="#ff0000"><strong>BUENO</strong></font></small>');
-define('TEXT_BAD', '<small><font color="#ff0000"><strong>MALO</strong></font></small>');
-define('TEXT_INFO_HEADING_DELETE_REVIEW', 'Eliminar Comentario');
+define('TEXT_OF_5_STARS', '%s de 5 Estrellas!',true);
+define('TEXT_GOOD', '<small><font color="#ff0000"><strong>BUENO</strong></font></small>',true);
+define('TEXT_BAD', '<small><font color="#ff0000"><strong>MALO</strong></font></small>',true);
+define('TEXT_INFO_HEADING_DELETE_REVIEW', 'Eliminar Comentario',true);
 ?>

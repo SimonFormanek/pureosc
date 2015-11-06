@@ -10,13 +10,13 @@
   Released under the GNU General Public License
 */
 
-define('TABLE_HEADING_MODULES', 'Moduly');
-define('TABLE_HEADING_SORT_ORDER', 'Pořadí');
-define('TABLE_HEADING_ACTION', 'Instalovat -odstranit');
+define('TABLE_HEADING_MODULES', 'Moduly',true);
+define('TABLE_HEADING_SORT_ORDER', 'Pořadí',true);
+define('TABLE_HEADING_ACTION', 'Instalovat -odstranit',true);
 
-define('TEXT_INFO_VERSION', 'Verze:');
-define('TEXT_INFO_ONLINE_STATUS', 'online status');
-define('TEXT_INFO_API_VERSION', 'API Version:');
+define('TEXT_INFO_VERSION', 'Verze:',true);
+define('TEXT_INFO_ONLINE_STATUS', 'online status',true);
+define('TEXT_INFO_API_VERSION', 'API Version:',true);
 
-define('TEXT_MODULE_DIRECTORY', 'Řízení modulů:');
+define('TEXT_MODULE_DIRECTORY', 'Řízení modulů:',true);
 ?>

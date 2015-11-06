@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_HEADER_MESSAGESTACK_TITLE', 'Message Stack Notifications');
-  define('MODULE_CONTENT_HEADER_MESSAGESTACK_DESCRIPTION', 'Show the Message Stack Notifications on your site.');
+  define('MODULE_CONTENT_HEADER_MESSAGESTACK_TITLE', 'Message Stack Notifications',true);
+  define('MODULE_CONTENT_HEADER_MESSAGESTACK_DESCRIPTION', 'Show the Message Stack Notifications on your site.',true);
   

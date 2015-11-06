@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Kunden mit den höchsten Umsätzen');
+define('HEADING_TITLE', 'Kunden mit den höchsten Umsätzen',true);
 
-define('TABLE_HEADING_NUMBER', 'Nr.');
-define('TABLE_HEADING_CUSTOMERS', 'Kunde');
-define('TABLE_HEADING_TOTAL_PURCHASED', 'Gesamtsumme');
+define('TABLE_HEADING_NUMBER', 'Nr.',true);
+define('TABLE_HEADING_CUSTOMERS', 'Kunde',true);
+define('TABLE_HEADING_TOTAL_PURCHASED', 'Gesamtsumme',true);
 ?>

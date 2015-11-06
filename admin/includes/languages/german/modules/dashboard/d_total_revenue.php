@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_TITLE', 'Total Umsatz Chart (letzte 30 Tage)');
-define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_DESCRIPTION', 'Zeige den Total-Umsatz Chart der letzten 30 Tage');
-define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_CHART_LINK', 'Total Umsatz');
+define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_TITLE', 'Total Umsatz Chart (letzte 30 Tage)',true);
+define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_DESCRIPTION', 'Zeige den Total-Umsatz Chart der letzten 30 Tage',true);
+define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_CHART_LINK', 'Total Umsatz',true);
 ?>

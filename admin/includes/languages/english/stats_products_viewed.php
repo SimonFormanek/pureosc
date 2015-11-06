@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Best Viewed Products');
+define('HEADING_TITLE', 'Best Viewed Products',true);
 
-define('TABLE_HEADING_NUMBER', 'No.');
-define('TABLE_HEADING_PRODUCTS', 'Products');
-define('TABLE_HEADING_VIEWED', 'Viewed');
+define('TABLE_HEADING_NUMBER', 'No.',true);
+define('TABLE_HEADING_PRODUCTS', 'Products',true);
+define('TABLE_HEADING_VIEWED', 'Viewed',true);
 ?>

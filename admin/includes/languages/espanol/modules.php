@@ -10,13 +10,13 @@
   Released under the GNU General Public License
 */
 
-define('TABLE_HEADING_MODULES', 'Módulos');
-define('TABLE_HEADING_SORT_ORDER', 'Orden');
-define('TABLE_HEADING_ACTION', 'Acción');
+define('TABLE_HEADING_MODULES', 'Módulos',true);
+define('TABLE_HEADING_SORT_ORDER', 'Orden',true);
+define('TABLE_HEADING_ACTION', 'Acción',true);
 
-define('TEXT_INFO_VERSION', 'Versión:');
-define('TEXT_INFO_ONLINE_STATUS', 'Estado de conexión');
-define('TEXT_INFO_API_VERSION', 'Versión de la API:');
+define('TEXT_INFO_VERSION', 'Versión:',true);
+define('TEXT_INFO_ONLINE_STATUS', 'Estado de conexión',true);
+define('TEXT_INFO_API_VERSION', 'Versión de la API:',true);
 
-define('TEXT_MODULE_DIRECTORY', 'Directorio de Módulos:');
+define('TEXT_MODULE_DIRECTORY', 'Directorio de Módulos:',true);
 ?>

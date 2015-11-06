@@ -11,11 +11,11 @@
   versión
 */
 
-define('HEADING_TITLE', 'Seguridad en los Permisos de directorios');
+define('HEADING_TITLE', 'Seguridad en los Permisos de directorios',true);
 
-define('TABLE_HEADING_DIRECTORIES', 'Directorios');
-define('TABLE_HEADING_WRITABLE', 'Modificable');
-define('TABLE_HEADING_RECOMMENDED', 'Recomendado');
+define('TABLE_HEADING_DIRECTORIES', 'Directorios',true);
+define('TABLE_HEADING_WRITABLE', 'Modificable',true);
+define('TABLE_HEADING_RECOMMENDED', 'Recomendado',true);
 
-define('TEXT_DIRECTORY', 'Directorio:');
+define('TEXT_DIRECTORY', 'Directorio:',true);
 ?>

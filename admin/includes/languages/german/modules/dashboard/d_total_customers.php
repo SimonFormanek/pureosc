@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_TITLE', 'Total Kunden Chart (letzten 30 Tage)');
-define('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_DESCRIPTION', 'Zeige den Kundenchart der letzten 30 Tage');
-define('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_CHART_LINK', 'Total Kunden');
+define('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_TITLE', 'Total Kunden Chart (letzten 30 Tage)',true);
+define('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_DESCRIPTION', 'Zeige den Kundenchart der letzten 30 Tage',true);
+define('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_CHART_LINK', 'Total Kunden',true);
 ?>

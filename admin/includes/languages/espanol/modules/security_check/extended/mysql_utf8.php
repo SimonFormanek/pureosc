@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_SECURITY_CHECK_EXTENDED_MYSQL_UTF8_TITLE', 'MySQL UTF-8');
-define('MODULE_SECURITY_CHECK_EXTENDED_MYSQL_UTF8_ERROR', 'Algunas tablas de la base de datos deben ser convertidos a UTF-8 (utf8_unicode_ci). Por favor revise las tablas en Herramientas -> Tablas de la base de datos.');
+define('MODULE_SECURITY_CHECK_EXTENDED_MYSQL_UTF8_TITLE', 'MySQL UTF-8',true);
+define('MODULE_SECURITY_CHECK_EXTENDED_MYSQL_UTF8_ERROR', 'Algunas tablas de la base de datos deben ser convertidos a UTF-8 (utf8_unicode_ci). Por favor revise las tablas en Herramientas -> Tablas de la base de datos.',true);
 ?>

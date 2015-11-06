@@ -10,12 +10,12 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'New Products');
-define('HEADING_TITLE', 'New Products');
+define('NAVBAR_TITLE', 'New Products',true);
+define('HEADING_TITLE', 'New Products',true);
 
-define('TEXT_DATE_ADDED', 'Date Added:');
-define('TEXT_MANUFACTURER', 'Manufacturer:');
-define('TEXT_PRICE', 'Price:');
+define('TEXT_DATE_ADDED', 'Date Added:',true);
+define('TEXT_MANUFACTURER', 'Manufacturer:',true);
+define('TEXT_PRICE', 'Price:',true);
 
-define('TEXT_NO_PRODUCTS', 'There are no new products to show.');
+define('TEXT_NO_PRODUCTS', 'There are no new products to show.',true);
 

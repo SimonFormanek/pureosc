@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Best Customer Orders-Total');
+define('HEADING_TITLE', 'Best Customer Orders-Total',true);
 
-define('TABLE_HEADING_NUMBER', 'No.');
-define('TABLE_HEADING_CUSTOMERS', 'Customers');
-define('TABLE_HEADING_TOTAL_PURCHASED', 'Total Purchased');
+define('TABLE_HEADING_NUMBER', 'No.',true);
+define('TABLE_HEADING_CUSTOMERS', 'Customers',true);
+define('TABLE_HEADING_TOTAL_PURCHASED', 'Total Purchased',true);
 ?>

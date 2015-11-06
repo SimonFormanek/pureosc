@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ORDER_TOTAL_TAX_TITLE', 'Steuern');
-  define('MODULE_ORDER_TOTAL_TAX_DESCRIPTION', 'Auftrags Steuern');
+  define('MODULE_ORDER_TOTAL_TAX_TITLE', 'Steuern',true);
+  define('MODULE_ORDER_TOTAL_TAX_DESCRIPTION', 'Auftrags Steuern',true);
 ?>

@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_CREATE', 'Überprüfe Kunden-details');
+define('HEADING_CREATE', 'Überprüfe Kunden-details',true);
 define('DEFAULT_PAYMENT_METHOD', "Vorauskasse");
 define('TEXT_SUBTOTAL', "Zwischensumme :");
 define('TEXT_DISCOUNT', "Rabatt :");

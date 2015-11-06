@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Hodnocení');
+define('NAVBAR_TITLE', 'Hodnocení',true);
 
-define('TEXT_CLICK_TO_ENLARGE', 'klikněte pro zvětšení');
+define('TEXT_CLICK_TO_ENLARGE', 'klikněte pro zvětšení',true);
 
-define('TEXT_OF_5_STARS', '%s z 5 hvězdiček!');
+define('TEXT_OF_5_STARS', '%s z 5 hvězdiček!',true);
 ?>

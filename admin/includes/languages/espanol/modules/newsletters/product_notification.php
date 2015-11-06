@@ -10,15 +10,15 @@
   Released under the GNU General Public License
 */
 
-define('TEXT_COUNT_CUSTOMERS', 'Los clientes que reciben boletín: %s');
-define('TEXT_PRODUCTS', 'Productos');
-define('TEXT_SELECTED_PRODUCTS', 'Productos seleccionados');
+define('TEXT_COUNT_CUSTOMERS', 'Los clientes que reciben boletín: %s',true);
+define('TEXT_PRODUCTS', 'Productos',true);
+define('TEXT_SELECTED_PRODUCTS', 'Productos seleccionados',true);
 
-define('JS_PLEASE_SELECT_PRODUCTS', 'Por favor seleccione algunos productos.');
+define('JS_PLEASE_SELECT_PRODUCTS', 'Por favor seleccione algunos productos.',true);
 
-define('BUTTON_GLOBAL', 'Global');
-define('BUTTON_SELECT', '>>>');
-define('BUTTON_UNSELECT', '<<<');
-define('BUTTON_SUBMIT', 'Enviar');
-define('BUTTON_CANCEL', 'Cancelar');
+define('BUTTON_GLOBAL', 'Global',true);
+define('BUTTON_SELECT', '>>>',true);
+define('BUTTON_UNSELECT', '<<<',true);
+define('BUTTON_SUBMIT', 'Enviar',true);
+define('BUTTON_CANCEL', 'Cancelar',true);
 ?>

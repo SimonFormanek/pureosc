@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_CFG_MODULE_ACTION_RECORDER_TITLE', 'Action Recorder');
+define('MODULE_CFG_MODULE_ACTION_RECORDER_TITLE', 'Action Recorder',true);
 ?>

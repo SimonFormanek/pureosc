@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_LANGUAGES_TITLE', 'Idiomas');
-  define('MODULE_BOXES_LANGUAGES_DESCRIPTION', 'Mostrar Idiomas disponibles');
-  define('MODULE_BOXES_LANGUAGES_BOX_TITLE', 'Idiomas');
+  define('MODULE_BOXES_LANGUAGES_TITLE', 'Idiomas',true);
+  define('MODULE_BOXES_LANGUAGES_DESCRIPTION', 'Mostrar Idiomas disponibles',true);
+  define('MODULE_BOXES_LANGUAGES_BOX_TITLE', 'Idiomas',true);
 ?>

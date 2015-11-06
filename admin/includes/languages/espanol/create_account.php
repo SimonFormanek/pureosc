@@ -10,12 +10,12 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE_CREATE_ACCOUNT', 'Create an new Customer Account');
-define('PULL_DOWN_DEFAULT', 'Please select');
+define('HEADING_TITLE_CREATE_ACCOUNT', 'Create an new Customer Account',true);
+define('PULL_DOWN_DEFAULT', 'Please select',true);
 
-define('HEADING_TITLE_CREATE_ACCOUNT_SUCCESS', 'New Account sucessfully created');
+define('HEADING_TITLE_CREATE_ACCOUNT_SUCCESS', 'New Account sucessfully created',true);
 
-define('EMAIL_PASS_1', 'Your password: ');
+define('EMAIL_PASS_1', 'Your password: ',true);
 define('EMAIL_PASS_2', "\n" . 'You can change it after login.' . "\n\n");
 
 define('EMAIL_SUBJECT', 'Welcome to ' . STORE_NAME);

@@ -7,8 +7,8 @@
  Released under the GNU General Public License
  */
 
-  define('MODULE_PAYMENT_INPAY_TEXT_TITLE', 'Inpay - Transferencias instant&aacute;neas en banca en l&iacute;nea');
-  define('MODULE_PAYMENT_INPAY_TEXT_PUBLIC_TITLE', 'Pague con su banco en l&iacute;nea - instant&aacute;neo y 100% seguro');
+  define('MODULE_PAYMENT_INPAY_TEXT_TITLE', 'Inpay - Transferencias instant&aacute;neas en banca en l&iacute;nea',true);
+  define('MODULE_PAYMENT_INPAY_TEXT_PUBLIC_TITLE', 'Pague con su banco en l&iacute;nea - instant&aacute;neo y 100% seguro',true);
   define('MODULE_PAYMENT_INPAY_TEXT_PUBLIC_HTML', '<img src="https://resources.inpay.com/images/oscommerce/inpay_checkout.png" alt="Pagos seguros mediante inpay" /><br /><br />
   <table cellspacing="5">
   	  <tr><td><img src="https://resources.inpay.com/images/oscommerce/inpay_check.png" alt="100% pagos seguros a trav&eacute;s inpay" /></td><td class="main">100% pagos seguros a trav&eacute;s inpay <span style="color: #666;">- nuestro nivel de seguridad coincide con la seguridad de su banco en l&iacute;nea.</span></td></tr>
@@ -28,19 +28,19 @@ Al ofrecer a sus clientes la opci&oacute;n de pago inpay aumenta su cuota de mer
 Con inpay no hay riesgo de fraude de tarjetas de cr&eacute;dito o cualquier tipo de devoluci&oacute;n de cargo. Esto significa que cuando a usted le pagan se queda con el pago! Con inpay incluso se puede vender a los clientes de \'alto riesgo\' las regiones incluyen las partes de Asia y Europa del Este.<br /><br />
   <a href="http://inpay.com/" style="text-decoration: underline;" target="_blank">Leer m&aacute;s o reg&iacute;strese en inpay.com</a><br />');
   // ------------- e-mail settings ---------------------------------
-  define('EMAIL_TEXT_SUBJECT', 'Pago confirmado por inpay');
-  define('EMAIL_TEXT_ORDER_NUMBER', 'N&uacute;mero de Pedido:');
-  define('EMAIL_TEXT_INVOICE_URL', 'Detalle de la Factura:');
-  define('EMAIL_TEXT_DATE_ORDERED', 'Fecha de pedido:');
-  define('EMAIL_TEXT_PRODUCTS', 'Productos');
-  define('EMAIL_TEXT_SUBTOTAL', 'SubTotal:');
-  define('EMAIL_TEXT_TAX', 'Impuesto:        ');
-  define('EMAIL_TEXT_SHIPPING', 'Env&iacute;o: ');
-  define('EMAIL_TEXT_TOTAL', 'Total:    ');
-  define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Direcci&oacute;n de entrega');
-  define('EMAIL_TEXT_BILLING_ADDRESS', 'Direcci&oacute;n de facturaci&oacute;n');
-  define('EMAIL_TEXT_PAYMENT_METHOD', 'M&eacute;todo de pago');
-  define('EMAIL_SEPARATOR', '------------------------------------------------------');
-  define('TEXT_EMAIL_VIA', 'v&iacute;a');
+  define('EMAIL_TEXT_SUBJECT', 'Pago confirmado por inpay',true);
+  define('EMAIL_TEXT_ORDER_NUMBER', 'N&uacute;mero de Pedido:',true);
+  define('EMAIL_TEXT_INVOICE_URL', 'Detalle de la Factura:',true);
+  define('EMAIL_TEXT_DATE_ORDERED', 'Fecha de pedido:',true);
+  define('EMAIL_TEXT_PRODUCTS', 'Productos',true);
+  define('EMAIL_TEXT_SUBTOTAL', 'SubTotal:',true);
+  define('EMAIL_TEXT_TAX', 'Impuesto:        ',true);
+  define('EMAIL_TEXT_SHIPPING', 'Env&iacute;o: ',true);
+  define('EMAIL_TEXT_TOTAL', 'Total:    ',true);
+  define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Direcci&oacute;n de entrega',true);
+  define('EMAIL_TEXT_BILLING_ADDRESS', 'Direcci&oacute;n de facturaci&oacute;n',true);
+  define('EMAIL_TEXT_PAYMENT_METHOD', 'M&eacute;todo de pago',true);
+  define('EMAIL_SEPARATOR', '------------------------------------------------------',true);
+  define('TEXT_EMAIL_VIA', 'v&iacute;a',true);
   
 ?>

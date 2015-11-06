@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Login');
-define('HEADING_TITLE', 'Welcome, Please Sign In');
+define('NAVBAR_TITLE', 'Login',true);
+define('HEADING_TITLE', 'Welcome, Please Sign In',true);

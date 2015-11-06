@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Dodání a reklamace');
-define('HEADING_TITLE', 'Dodání a reklamace');
+define('NAVBAR_TITLE', 'Dodání a reklamace',true);
+define('HEADING_TITLE', 'Dodání a reklamace',true);
 
-define('TEXT_INFORMATION', 'Informace o dodání a reklamacích.');
+define('TEXT_INFORMATION', 'Informace o dodání a reklamacích.',true);
 ?>

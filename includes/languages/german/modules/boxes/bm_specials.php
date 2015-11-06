@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_SPECIALS_TITLE', 'Angebote');
-  define('MODULE_BOXES_SPECIALS_DESCRIPTION', 'Zeige Produkt-Angebote');
-  define('MODULE_BOXES_SPECIALS_BOX_TITLE', 'Angebote');
+  define('MODULE_BOXES_SPECIALS_TITLE', 'Angebote',true);
+  define('MODULE_BOXES_SPECIALS_DESCRIPTION', 'Zeige Produkt-Angebote',true);
+  define('MODULE_BOXES_SPECIALS_BOX_TITLE', 'Angebote',true);
 ?>

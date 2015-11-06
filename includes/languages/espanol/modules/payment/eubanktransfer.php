@@ -12,7 +12,7 @@ Copyright (c) 2013 osCommerce
 Released under the GNU General Public License
 */
 
-define('MODULE_PAYMENT_EU_BANKTRANSFER_TEXT_TITLE', 'Transferencia por Banco Europeo');
+define('MODULE_PAYMENT_EU_BANKTRANSFER_TEXT_TITLE', 'Transferencia por Banco Europeo',true);
 define('MODULE_PAYMENT_EU_BANKTRANSFER_TEXT_DESCRIPTION', '' .
 '<br />Favor de transferir el total a la siguiente cuenta bancaria. Escriba su nombre y su número de factura en el campo de asunto.<br />' .
 '<br />Cuenta: ' . MODULE_PAYMENT_EU_ACCOUNT_HOLDER .

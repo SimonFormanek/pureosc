@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_WHATS_NEW_TITLE', 'Que es lo Nuevo');
-  define('MODULE_BOXES_WHATS_NEW_DESCRIPTION', 'Mostrar los productos más nuevos');
-  define('MODULE_BOXES_WHATS_NEW_BOX_TITLE', 'Que es lo Nuevo ?');
+  define('MODULE_BOXES_WHATS_NEW_TITLE', 'Que es lo Nuevo',true);
+  define('MODULE_BOXES_WHATS_NEW_DESCRIPTION', 'Mostrar los productos más nuevos',true);
+  define('MODULE_BOXES_WHATS_NEW_BOX_TITLE', 'Que es lo Nuevo ?',true);
 ?>

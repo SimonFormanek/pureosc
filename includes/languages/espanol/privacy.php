@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Confidencialidad');
-define('HEADING_TITLE', 'Confidencialidad');
+define('NAVBAR_TITLE', 'Confidencialidad',true);
+define('HEADING_TITLE', 'Confidencialidad',true);
 
 define('TEXT_INFORMATION', 'Introduzca sus condiciones de uso aquí!
 ');

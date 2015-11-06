@@ -10,10 +10,10 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_CREATE_ACCOUNT_LINK_TITLE', 'Kundenkonto erstellen');
-  define('MODULE_CONTENT_CREATE_ACCOUNT_LINK_DESCRIPTION', 'Zeige Kundenkonto erstellen auf der Login Seite.');
+  define('MODULE_CONTENT_CREATE_ACCOUNT_LINK_TITLE', 'Kundenkonto erstellen',true);
+  define('MODULE_CONTENT_CREATE_ACCOUNT_LINK_DESCRIPTION', 'Zeige Kundenkonto erstellen auf der Login Seite.',true);
 
-  define('MODULE_CONTENT_LOGIN_HEADING_NEW_CUSTOMER', 'Neuer Kunde');
-  define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER', 'Ich m&oml;chte gerne Kunde werden.');
-  define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER_INTRODUCTION', 'Mit dem anlegen eines Kundenkontos bei ' . STORE_NAME . ' k&oml;nnen Sie schneller einkaufen, bekommen Bestellstatusmeldungen, und k&oml;nnen Ihre fr&uml;heren Bestellungen einsehen.');
+  define('MODULE_CONTENT_LOGIN_HEADING_NEW_CUSTOMER', 'Neuer Kunde',true);
+  define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER', 'Ich m&oml;chte gerne Kunde werden.',true);
+  define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER_INTRODUCTION', 'Mit dem anlegen eines Kundenkontos bei ' . STORE_NAME . ' k&oml;nnen Sie schneller einkaufen, bekommen Bestellstatusmeldungen, und k&oml;nnen Ihre fr&uml;heren Bestellungen einsehen.',true);
 ?>

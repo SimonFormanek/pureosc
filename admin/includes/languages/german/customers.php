@@ -10,23 +10,23 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Kunden');
-define('HEADING_TITLE_SEARCH', 'Suche:');
+define('HEADING_TITLE', 'Kunden',true);
+define('HEADING_TITLE_SEARCH', 'Suche:',true);
 
-define('TABLE_HEADING_FIRSTNAME', 'Vorname');
-define('TABLE_HEADING_LASTNAME', 'Nachname');
-define('TABLE_HEADING_ACCOUNT_CREATED', 'Zugang erstellt am');
-define('TABLE_HEADING_ACTION', 'Aktion');
+define('TABLE_HEADING_FIRSTNAME', 'Vorname',true);
+define('TABLE_HEADING_LASTNAME', 'Nachname',true);
+define('TABLE_HEADING_ACCOUNT_CREATED', 'Zugang erstellt am',true);
+define('TABLE_HEADING_ACTION', 'Aktion',true);
 
-define('TEXT_DATE_ACCOUNT_CREATED', 'Zugang erstellt am:');
-define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'letzte änderung:');
-define('TEXT_INFO_DATE_LAST_LOGON', 'letzte Anmeldung:');
-define('TEXT_INFO_NUMBER_OF_LOGONS', 'Anzahl der Anmeldungen:');
-define('TEXT_INFO_COUNTRY', 'Land:');
-define('TEXT_INFO_NUMBER_OF_REVIEWS', 'Anzahl der Artikelbewertungen:');
-define('TEXT_DELETE_INTRO', 'Wollen Sie diesen Kunden wirklich löschen?');
-define('TEXT_DELETE_REVIEWS', '%s Bewertung(en) löschen');
-define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Kunden löschen');
-define('TYPE_BELOW', 'Bitte unten eingeben');
-define('PLEASE_SELECT', 'Auswählen');
+define('TEXT_DATE_ACCOUNT_CREATED', 'Zugang erstellt am:',true);
+define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'letzte änderung:',true);
+define('TEXT_INFO_DATE_LAST_LOGON', 'letzte Anmeldung:',true);
+define('TEXT_INFO_NUMBER_OF_LOGONS', 'Anzahl der Anmeldungen:',true);
+define('TEXT_INFO_COUNTRY', 'Land:',true);
+define('TEXT_INFO_NUMBER_OF_REVIEWS', 'Anzahl der Artikelbewertungen:',true);
+define('TEXT_DELETE_INTRO', 'Wollen Sie diesen Kunden wirklich löschen?',true);
+define('TEXT_DELETE_REVIEWS', '%s Bewertung(en) löschen',true);
+define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Kunden löschen',true);
+define('TYPE_BELOW', 'Bitte unten eingeben',true);
+define('PLEASE_SELECT', 'Auswählen',true);
 ?>

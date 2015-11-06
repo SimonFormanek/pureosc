@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_PAGES_TITLE_TITLE', 'Pages Title');
-  define('MODULE_HEADER_TAGS_PAGES_TITLE_DESCRIPTION', 'Add the TITLE element defined when editing the pages (eg: specials.php), to the header of the page');
+  define('MODULE_HEADER_TAGS_PAGES_TITLE_TITLE', 'Pages Title',true);
+  define('MODULE_HEADER_TAGS_PAGES_TITLE_DESCRIPTION', 'Add the TITLE element defined when editing the pages (eg: specials.php), to the header of the page',true);
 

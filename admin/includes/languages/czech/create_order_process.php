@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_CREATE', 'Check Customer Details');
+define('HEADING_CREATE', 'Check Customer Details',true);
 define('DEFAULT_PAYMENT_METHOD', "Payment on Local Pickup. We accept cash, Interac, Visa and Master Card.");
 define('TEXT_SUBTOTAL', "Subtotal :");
 define('TEXT_DISCOUNT', "Discount :");

@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_MANUFACTURERS_TITLE', 'Fabricantes');
-  define('MODULE_BOXES_MANUFACTURERS_DESCRIPTION', 'Mostrar lista de Fabricantes');
-  define('MODULE_BOXES_MANUFACTURERS_BOX_TITLE', 'Fabricantes');
+  define('MODULE_BOXES_MANUFACTURERS_TITLE', 'Fabricantes',true);
+  define('MODULE_BOXES_MANUFACTURERS_DESCRIPTION', 'Mostrar lista de Fabricantes',true);
+  define('MODULE_BOXES_MANUFACTURERS_BOX_TITLE', 'Fabricantes',true);
 ?>

@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_CFG_MODULE_SHIPPING_TITLE', 'Shipping');
+define('MODULE_CFG_MODULE_SHIPPING_TITLE', 'Shipping',true);
 ?>

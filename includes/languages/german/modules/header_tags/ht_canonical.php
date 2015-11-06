@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_CANONICAL_TITLE', 'Canonical Headline Verbindungen');
-  define('MODULE_HEADER_TAGS_CANONICAL_DESCRIPTION', 'Hinzufügen Canonical Headline Links zu Kategorie und Produktseiten');
+  define('MODULE_HEADER_TAGS_CANONICAL_TITLE', 'Canonical Headline Verbindungen',true);
+  define('MODULE_HEADER_TAGS_CANONICAL_DESCRIPTION', 'Hinzufügen Canonical Headline Links zu Kategorie und Produktseiten',true);
 ?>

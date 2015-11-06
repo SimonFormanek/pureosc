@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE_1', 'Checkout');
-define('NAVBAR_TITLE_2', 'Success');
+define('NAVBAR_TITLE_1', 'Checkout',true);
+define('NAVBAR_TITLE_2', 'Success',true);
 
-define('HEADING_TITLE', 'Your Order Has Been Processed!');
+define('HEADING_TITLE', 'Your Order Has Been Processed!',true);
 
-define('TABLE_HEADING_COMMENTS', 'Enter a comment for the order processed');
+define('TABLE_HEADING_COMMENTS', 'Enter a comment for the order processed',true);

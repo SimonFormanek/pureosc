@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_TITLE', 'Facebook Like');
-  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_DESCRIPTION', 'Artikel über Facebook Like empfehlen.');
-  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_PUBLIC_TITLE', 'Empfehlen über Facebook');
+  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_TITLE', 'Facebook Like',true);
+  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_DESCRIPTION', 'Artikel über Facebook Like empfehlen.',true);
+  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_PUBLIC_TITLE', 'Empfehlen über Facebook',true);
 ?>

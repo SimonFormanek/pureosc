@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ACTION_RECORDER_TELL_A_FRIEND_TITLE', 'Empfehlen');
-  define('MODULE_ACTION_RECORDER_TELL_A_FRIEND_DESCRIPTION', 'Loggt die Verwendung des Empfehlen-Features.');
+  define('MODULE_ACTION_RECORDER_TELL_A_FRIEND_TITLE', 'Empfehlen',true);
+  define('MODULE_ACTION_RECORDER_TELL_A_FRIEND_DESCRIPTION', 'Loggt die Verwendung des Empfehlen-Features.',true);
 ?>

@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_TITLE', 'Ultimas conexión del Administrador');
-define('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_DESCRIPTION', 'Mostrar los últimos inicios de sesión exitosos y fallidos del Administrador');
-define('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_DATE', 'Fecha');
+define('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_TITLE', 'Ultimas conexión del Administrador',true);
+define('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_DESCRIPTION', 'Mostrar los últimos inicios de sesión exitosos y fallidos del Administrador',true);
+define('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_DATE', 'Fecha',true);
 ?>

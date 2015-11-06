@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Podmínky použití');
-define('HEADING_TITLE', 'Podmínky použití');
+define('NAVBAR_TITLE', 'Podmínky použití',true);
+define('HEADING_TITLE', 'Podmínky použití',true);
 
-define('TEXT_INFORMATION', 'Informace.');
+define('TEXT_INFORMATION', 'Informace.',true);
 ?>

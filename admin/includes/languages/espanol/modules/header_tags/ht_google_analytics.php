@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_TITLE', 'Google Analytics');
-  define('MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_DESCRIPTION', 'Adicionar Google Analytics a la tienda');
+  define('MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_TITLE', 'Google Analytics',true);
+  define('MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_DESCRIPTION', 'Adicionar Google Analytics a la tienda',true);
 ?>

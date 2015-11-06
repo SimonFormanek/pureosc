@@ -10,10 +10,10 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE_1', 'Kasse');
-define('NAVBAR_TITLE_2', 'Erfolg');
+define('NAVBAR_TITLE_1', 'Kasse',true);
+define('NAVBAR_TITLE_2', 'Erfolg',true);
 
-define('HEADING_TITLE', 'Ihr Bestellung ist ausgeführt worden.');
+define('HEADING_TITLE', 'Ihr Bestellung ist ausgeführt worden.',true);
 
-define('TABLE_HEADING_COMMENTS', 'Tragen Sie eine Anmerkung für die Bestellung ein');
+define('TABLE_HEADING_COMMENTS', 'Tragen Sie eine Anmerkung für die Bestellung ein',true);
 ?>

@@ -10,12 +10,12 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE_1', 'Ihr Konto');
-define('NAVBAR_TITLE_2', 'Ihre persönliche Daten ändern');
+define('NAVBAR_TITLE_1', 'Ihr Konto',true);
+define('NAVBAR_TITLE_2', 'Ihre persönliche Daten ändern',true);
 
-define('HEADING_TITLE', 'Ihre persönliche Daten ändern');
+define('HEADING_TITLE', 'Ihre persönliche Daten ändern',true);
 
-define('MY_ACCOUNT_TITLE', 'Ihr Konto');
+define('MY_ACCOUNT_TITLE', 'Ihr Konto',true);
 
-define('SUCCESS_ACCOUNT_UPDATED', 'Ihre Daten wurden erfolgreich aktualisiert!');
+define('SUCCESS_ACCOUNT_UPDATED', 'Ihre Daten wurden erfolgreich aktualisiert!',true);
 ?>

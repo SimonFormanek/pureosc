@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_BEST_SELLERS_TITLE', 'Bestseller');
-  define('MODULE_BOXES_BEST_SELLERS_DESCRIPTION', 'Zeige Bestseller');
-  define('MODULE_BOXES_BEST_SELLERS_BOX_TITLE', 'Bestseller');
+  define('MODULE_BOXES_BEST_SELLERS_TITLE', 'Bestseller',true);
+  define('MODULE_BOXES_BEST_SELLERS_DESCRIPTION', 'Zeige Bestseller',true);
+  define('MODULE_BOXES_BEST_SELLERS_BOX_TITLE', 'Bestseller',true);
 ?>

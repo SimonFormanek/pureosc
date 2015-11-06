@@ -10,39 +10,39 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Tax Zones');
+define('HEADING_TITLE', 'Tax Zones',true);
 
-define('TABLE_HEADING_COUNTRY', 'Country');
-define('TABLE_HEADING_COUNTRY_ZONE', 'Zone');
-define('TABLE_HEADING_TAX_ZONES', 'Tax Zones');
-define('TABLE_HEADING_ACTION', 'Action');
+define('TABLE_HEADING_COUNTRY', 'Country',true);
+define('TABLE_HEADING_COUNTRY_ZONE', 'Zone',true);
+define('TABLE_HEADING_TAX_ZONES', 'Tax Zones',true);
+define('TABLE_HEADING_ACTION', 'Action',true);
 
-define('TEXT_INFO_HEADING_NEW_ZONE', 'New Zone');
-define('TEXT_INFO_NEW_ZONE_INTRO', 'Please enter the new zone information');
+define('TEXT_INFO_HEADING_NEW_ZONE', 'New Zone',true);
+define('TEXT_INFO_NEW_ZONE_INTRO', 'Please enter the new zone information',true);
 
-define('TEXT_INFO_HEADING_EDIT_ZONE', 'Edit Zone');
-define('TEXT_INFO_EDIT_ZONE_INTRO', 'Please make any necessary changes');
+define('TEXT_INFO_HEADING_EDIT_ZONE', 'Edit Zone',true);
+define('TEXT_INFO_EDIT_ZONE_INTRO', 'Please make any necessary changes',true);
 
-define('TEXT_INFO_HEADING_DELETE_ZONE', 'Delete Zone');
-define('TEXT_INFO_DELETE_ZONE_INTRO', 'Are you sure you want to delete this zone?');
+define('TEXT_INFO_HEADING_DELETE_ZONE', 'Delete Zone',true);
+define('TEXT_INFO_DELETE_ZONE_INTRO', 'Are you sure you want to delete this zone?',true);
 
-define('TEXT_INFO_HEADING_NEW_SUB_ZONE', 'New Sub Zone');
-define('TEXT_INFO_NEW_SUB_ZONE_INTRO', 'Please enter the new sub zone information');
+define('TEXT_INFO_HEADING_NEW_SUB_ZONE', 'New Sub Zone',true);
+define('TEXT_INFO_NEW_SUB_ZONE_INTRO', 'Please enter the new sub zone information',true);
 
-define('TEXT_INFO_HEADING_EDIT_SUB_ZONE', 'Edit Sub Zone');
-define('TEXT_INFO_EDIT_SUB_ZONE_INTRO', 'Please make any necessary changes');
+define('TEXT_INFO_HEADING_EDIT_SUB_ZONE', 'Edit Sub Zone',true);
+define('TEXT_INFO_EDIT_SUB_ZONE_INTRO', 'Please make any necessary changes',true);
 
-define('TEXT_INFO_HEADING_DELETE_SUB_ZONE', 'Delete Sub Zone');
-define('TEXT_INFO_DELETE_SUB_ZONE_INTRO', 'Are you sure you want to delete this sub zone?');
+define('TEXT_INFO_HEADING_DELETE_SUB_ZONE', 'Delete Sub Zone',true);
+define('TEXT_INFO_DELETE_SUB_ZONE_INTRO', 'Are you sure you want to delete this sub zone?',true);
 
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
-define('TEXT_INFO_ZONE_NAME', 'Zone Name:');
-define('TEXT_INFO_NUMBER_ZONES', 'Number of Zones:');
-define('TEXT_INFO_ZONE_DESCRIPTION', 'Description:');
-define('TEXT_INFO_COUNTRY', 'Country:');
-define('TEXT_INFO_COUNTRY_ZONE', 'Zone:');
-define('TYPE_BELOW', 'All Zones');
-define('PLEASE_SELECT', 'All Zones');
-define('TEXT_ALL_COUNTRIES', 'All Countries');
+define('TEXT_INFO_DATE_ADDED', 'Date Added:',true);
+define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:',true);
+define('TEXT_INFO_ZONE_NAME', 'Zone Name:',true);
+define('TEXT_INFO_NUMBER_ZONES', 'Number of Zones:',true);
+define('TEXT_INFO_ZONE_DESCRIPTION', 'Description:',true);
+define('TEXT_INFO_COUNTRY', 'Country:',true);
+define('TEXT_INFO_COUNTRY_ZONE', 'Zone:',true);
+define('TYPE_BELOW', 'All Zones',true);
+define('PLEASE_SELECT', 'All Zones',true);
+define('TEXT_ALL_COUNTRIES', 'All Countries',true);
 ?>

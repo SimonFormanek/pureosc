@@ -10,12 +10,12 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_CARD_ACCEPTANCE_TITLE', 'Platební karty');
-  define('MODULE_BOXES_CARD_ACCEPTANCE_DESCRIPTION', 'ukázat loga platebních karet');
+  define('MODULE_BOXES_CARD_ACCEPTANCE_TITLE', 'Platební karty',true);
+  define('MODULE_BOXES_CARD_ACCEPTANCE_DESCRIPTION', 'ukázat loga platebních karet',true);
 
-  define('MODULE_BOXES_CARD_ACCEPTANCE_SHOWN_CARDS', 'Ukázat karty');
-  define('MODULE_BOXES_CARD_ACCEPTANCE_NEW_CARDS', 'Nové karty');
-  define('MODULE_BOXES_CARD_ACCEPTANCE_DRAG_HERE', 'přetáhnout sem');
+  define('MODULE_BOXES_CARD_ACCEPTANCE_SHOWN_CARDS', 'Ukázat karty',true);
+  define('MODULE_BOXES_CARD_ACCEPTANCE_NEW_CARDS', 'Nové karty',true);
+  define('MODULE_BOXES_CARD_ACCEPTANCE_DRAG_HERE', 'přetáhnout sem',true);
 
-  define('MODULE_BOXES_CARD_ACCEPTANCE_BOX_TITLE', 'Přijímáme platby');
+  define('MODULE_BOXES_CARD_ACCEPTANCE_BOX_TITLE', 'Přijímáme platby',true);
 ?>

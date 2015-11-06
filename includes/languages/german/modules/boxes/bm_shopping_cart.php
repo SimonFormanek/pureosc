@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_SHOPPING_CART_TITLE', 'Einkaufswagen');
-  define('MODULE_BOXES_SHOPPING_CART_DESCRIPTION', ' zeige gekaufte Produkte');
-  define('MODULE_BOXES_SHOPPING_CART_BOX_TITLE', 'Einkaufswagen');
-  define('MODULE_BOXES_SHOPPING_CART_BOX_CART_EMPTY', '0 Waren');
+  define('MODULE_BOXES_SHOPPING_CART_TITLE', 'Einkaufswagen',true);
+  define('MODULE_BOXES_SHOPPING_CART_DESCRIPTION', ' zeige gekaufte Produkte',true);
+  define('MODULE_BOXES_SHOPPING_CART_BOX_TITLE', 'Einkaufswagen',true);
+  define('MODULE_BOXES_SHOPPING_CART_BOX_CART_EMPTY', '0 Waren',true);
 ?>

@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_CFG_MODULE_DASHBOARD_TITLE', 'Tablero de Mando');
+define('MODULE_CFG_MODULE_DASHBOARD_TITLE', 'Tablero de Mando',true);
 ?>

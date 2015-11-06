@@ -7,8 +7,8 @@
  Released under the GNU General Public License
  */
 
-  define('MODULE_PAYMENT_INPAY_TEXT_TITLE', 'Inpay - instant online bank transfers');
-  define('MODULE_PAYMENT_INPAY_TEXT_PUBLIC_TITLE', 'Pay with your online bank - instant and 100% secure');
+  define('MODULE_PAYMENT_INPAY_TEXT_TITLE', 'Inpay - instant online bank transfers',true);
+  define('MODULE_PAYMENT_INPAY_TEXT_PUBLIC_TITLE', 'Pay with your online bank - instant and 100% secure',true);
   define('MODULE_PAYMENT_INPAY_TEXT_PUBLIC_HTML', '<img src="https://resources.inpay.com/images/oscommerce/inpay_checkout.png" alt="Secure checkouts using inpay" /><br /><br />
   <table cellspacing="5">
   	  <tr><td><img src="https://resources.inpay.com/images/oscommerce/inpay_check.png" alt="100% Secure payments using inpay" /></td><td class="main">100% Secure payments using inpay <span style="color: #666;">- our security level matches the security of your online bank.</span></td></tr>
@@ -28,19 +28,19 @@ By offering your customers the inpay payment option you increase your market sha
 With inpay there is no risk of credit card fraud or any kind of chargebacks. This means that when you get paid you stay paid! With inpay you can even sell to customers from \'high risk\' regions including all parts of Asia and Eastern Europe.<br /><br />
   <a href="http://inpay.com/" style="text-decoration: underline;" target="_blank">Read more or signup at inpay.com</a><br />');
   // ------------- e-mail settings ---------------------------------
-  define('EMAIL_TEXT_SUBJECT', 'Payment confirmed by inpay');
-  define('EMAIL_TEXT_ORDER_NUMBER', 'Order Number:');
-  define('EMAIL_TEXT_INVOICE_URL', 'Detailed Invoice:');
-  define('EMAIL_TEXT_DATE_ORDERED', 'Date Ordered:');
-  define('EMAIL_TEXT_PRODUCTS', 'Products');
-  define('EMAIL_TEXT_SUBTOTAL', 'Sub-Total:');
-  define('EMAIL_TEXT_TAX', 'Tax:        ');
-  define('EMAIL_TEXT_SHIPPING', 'Shipping: ');
-  define('EMAIL_TEXT_TOTAL', 'Total:    ');
-  define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Delivery Address');
-  define('EMAIL_TEXT_BILLING_ADDRESS', 'Billing Address');
-  define('EMAIL_TEXT_PAYMENT_METHOD', 'Payment Method');
-  define('EMAIL_SEPARATOR', '------------------------------------------------------');
-  define('TEXT_EMAIL_VIA', 'via'); 
+  define('EMAIL_TEXT_SUBJECT', 'Payment confirmed by inpay',true);
+  define('EMAIL_TEXT_ORDER_NUMBER', 'Order Number:',true);
+  define('EMAIL_TEXT_INVOICE_URL', 'Detailed Invoice:',true);
+  define('EMAIL_TEXT_DATE_ORDERED', 'Date Ordered:',true);
+  define('EMAIL_TEXT_PRODUCTS', 'Products',true);
+  define('EMAIL_TEXT_SUBTOTAL', 'Sub-Total:',true);
+  define('EMAIL_TEXT_TAX', 'Tax:        ',true);
+  define('EMAIL_TEXT_SHIPPING', 'Shipping: ',true);
+  define('EMAIL_TEXT_TOTAL', 'Total:    ',true);
+  define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Delivery Address',true);
+  define('EMAIL_TEXT_BILLING_ADDRESS', 'Billing Address',true);
+  define('EMAIL_TEXT_PAYMENT_METHOD', 'Payment Method',true);
+  define('EMAIL_SEPARATOR', '------------------------------------------------------',true);
+  define('TEXT_EMAIL_VIA', 'via',true); 
   
 ?>

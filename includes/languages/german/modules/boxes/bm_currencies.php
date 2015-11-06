@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_CURRENCIES_TITLE', 'Währungen');
-  define('MODULE_BOXES_CURRENCIES_DESCRIPTION', 'Zeige alle Währungen');
-  define('MODULE_BOXES_CURRENCIES_BOX_TITLE', 'Währungen');
+  define('MODULE_BOXES_CURRENCIES_TITLE', 'Währungen',true);
+  define('MODULE_BOXES_CURRENCIES_DESCRIPTION', 'Zeige alle Währungen',true);
+  define('MODULE_BOXES_CURRENCIES_BOX_TITLE', 'Währungen',true);
 ?>

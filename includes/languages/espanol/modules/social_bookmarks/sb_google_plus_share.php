@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_TITLE', 'Google+ Share');
-  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_DESCRIPTION', 'Compartir productos con Google+.');
-  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_PUBLIC_TITLE', 'Compartir con Google+');
+  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_TITLE', 'Google+ Share',true);
+  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_DESCRIPTION', 'Compartir productos con Google+.',true);
+  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_PUBLIC_TITLE', 'Compartir con Google+',true);
 ?>

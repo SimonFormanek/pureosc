@@ -10,19 +10,19 @@
   Released under the GNU General Public License
 */
 
-define('EMAIL_TEXT_SUBJECT', 'Bestellung');
-define('EMAIL_TEXT_ORDER_NUMBER', 'Bestellnummer:');
-define('EMAIL_TEXT_INVOICE_URL', 'Detailierte Bestellübersicht:');
-define('EMAIL_TEXT_DATE_ORDERED', 'Bestelldatum:');
-define('EMAIL_TEXT_PRODUCTS', 'Artikel');
-define('EMAIL_TEXT_SUBTOTAL', 'Zwischensumme:');
-define('EMAIL_TEXT_TAX', 'MwSt.');
-define('EMAIL_TEXT_SHIPPING', 'Versandkosten:');
-define('EMAIL_TEXT_TOTAL', 'Summe:        ');
-define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Lieferanschrift');
-define('EMAIL_TEXT_BILLING_ADDRESS', 'Rechnungsanschrift');
-define('EMAIL_TEXT_PAYMENT_METHOD', 'Zahlungsweise');
+define('EMAIL_TEXT_SUBJECT', 'Bestellung',true);
+define('EMAIL_TEXT_ORDER_NUMBER', 'Bestellnummer:',true);
+define('EMAIL_TEXT_INVOICE_URL', 'Detailierte Bestellübersicht:',true);
+define('EMAIL_TEXT_DATE_ORDERED', 'Bestelldatum:',true);
+define('EMAIL_TEXT_PRODUCTS', 'Artikel',true);
+define('EMAIL_TEXT_SUBTOTAL', 'Zwischensumme:',true);
+define('EMAIL_TEXT_TAX', 'MwSt.',true);
+define('EMAIL_TEXT_SHIPPING', 'Versandkosten:',true);
+define('EMAIL_TEXT_TOTAL', 'Summe:        ',true);
+define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Lieferanschrift',true);
+define('EMAIL_TEXT_BILLING_ADDRESS', 'Rechnungsanschrift',true);
+define('EMAIL_TEXT_PAYMENT_METHOD', 'Zahlungsweise',true);
 
-define('EMAIL_SEPARATOR', '------------------------------------------------------');
-define('TEXT_EMAIL_VIA', 'durch');
+define('EMAIL_SEPARATOR', '------------------------------------------------------',true);
+define('TEXT_EMAIL_VIA', 'durch',true);
 ?>

@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_TITLE', 'Twitter');
-  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_DESCRIPTION', 'Artikel über Twitter empfehlen.');
-  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_PUBLIC_TITLE', 'Empfehlen über Twitter');
+  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_TITLE', 'Twitter',true);
+  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_DESCRIPTION', 'Artikel über Twitter empfehlen.',true);
+  define('MODULE_SOCIAL_BOOKMARKS_TWITTER_PUBLIC_TITLE', 'Empfehlen über Twitter',true);
 ?>

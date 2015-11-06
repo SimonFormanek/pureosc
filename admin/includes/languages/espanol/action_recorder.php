@@ -10,19 +10,19 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Grabadora de acciones');
+define('HEADING_TITLE', 'Grabadora de acciones',true);
 
-define('TABLE_HEADING_MODULE', 'Módulo');
-define('TABLE_HEADING_CUSTOMER', 'Cliente');
-define('TABLE_HEADING_DATE_ADDED', 'Fecha');
-define('TABLE_HEADING_ACTION', 'Acción');
+define('TABLE_HEADING_MODULE', 'Módulo',true);
+define('TABLE_HEADING_CUSTOMER', 'Cliente',true);
+define('TABLE_HEADING_DATE_ADDED', 'Fecha',true);
+define('TABLE_HEADING_ACTION', 'Acción',true);
 
-define('TEXT_FILTER_SEARCH', 'Buscar:');
-define('TEXT_ALL_MODULES', '-- Todos los Módulos --');
-define('TEXT_GUEST', 'Invitado');
+define('TEXT_FILTER_SEARCH', 'Buscar:',true);
+define('TEXT_ALL_MODULES', '-- Todos los Módulos --',true);
+define('TEXT_GUEST', 'Invitado',true);
 
-define('TEXT_INFO_IDENTIFIER', 'Identificador:');
-define('TEXT_INFO_DATE_ADDED', 'Fecha de Alta:');
+define('TEXT_INFO_IDENTIFIER', 'Identificador:',true);
+define('TEXT_INFO_DATE_ADDED', 'Fecha de Alta:',true);
 
-define('SUCCESS_EXPIRED_ENTRIES', 'Exito: %s entradas vencidas se eliminaron.');
+define('SUCCESS_EXPIRED_ENTRIES', 'Exito: %s entradas vencidas se eliminaron.',true);
 ?>
