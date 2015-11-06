@@ -14,7 +14,7 @@ define('TEXT_MAIN', '',true);
 define('TABLE_HEADING_NEW_PRODUCTS', 'New Products For %s',true);
 define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Upcoming Products',true);
 define('TABLE_HEADING_DATE_EXPECTED', 'Date Expected',true);
-define('HEADING_TITLE', 'Welcome to ' . STORE_NAME);
+define('HEADING_TITLE','Welcome' . STORE_NAME,true);
 
 define('TEXT_NO_PRODUCTS', 'There are no products available in this category.',true);
 define('TEXT_NUMBER_OF_PRODUCTS', 'Number of Products: ',true);

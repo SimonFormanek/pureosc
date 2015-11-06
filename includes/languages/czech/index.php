@@ -14,7 +14,7 @@ define('TEXT_MAIN', '',true);
 define('TABLE_HEADING_NEW_PRODUCTS', 'Novinky %s',true);
 define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Připravujeme',true);
 define('TABLE_HEADING_DATE_EXPECTED', 'Bude k dispozici',true);
-define('HEADING_TITLE', 'Home/Nová kategorie ' . STORE_NAME);
+define('HEADING_TITLE', 'Vítejte na serveru ' . STORE_NAME,true);
 
 define('TEXT_NO_PRODUCTS', 'V této kategorii není žádné zboží.',true);
 define('TEXT_NUMBER_OF_PRODUCTS', 'Počet: ',true);
@@ -33,3 +33,4 @@ if ( ($category_depth == 'top') && (!isset($HTTP_GET_VARS['manufacturers_id'])) 
   */
   define('META_SEO_KEYWORDS', 'these, are, the, comma, separated, keywords, used in the META keywords Element',true);
 }
+

@@ -258,12 +258,16 @@ if (tep_not_null($category['categories_description'])) {
     }
 /* ** EOF alteration for SEO Header Tags RELOADED ** */
 ?>
+<?php
+    if (tep_not_null(HEADING_TITLE)) {
+?>
 
 <div class="page-header">
   <h1><?php echo $catname; ?></h1>
 </div>
 
 <?php
+    }
 if (tep_not_null($image['catdesc'])) {
   echo '<div class="well well-sm">' . $image['catdesc'] . '</div>';
 }
@@ -317,11 +321,16 @@ if (tep_not_null($image['catdesc'])) {
 ?>
 
 <div class="contentContainer">
+<?php
+    if (tep_not_null(TEXT_GREETING_GUEST)) {
+?>
+
   <div class="contentText">
     <?php echo tep_customer_greeting(); ?>
   </div>
 
 <?php
+    }
     if (tep_not_null(TEXT_MAIN)) {
 ?>
 

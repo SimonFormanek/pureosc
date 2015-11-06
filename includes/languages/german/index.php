@@ -14,7 +14,7 @@ define('TEXT_MAIN', 'Wilkommen',true); // entweder entfernen oder anderen Text w
 define('TABLE_HEADING_NEW_PRODUCTS', 'Neue Produkte im %s',true);
 define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Wann ist was verfügbar',true);
 define('TABLE_HEADING_DATE_EXPECTED', 'Datum',true);
-define('HEADING_TITLE', 'Willkommen bei ' . STORE_NAME);
+define('HEADING_TITLE', 'Willkommen bei ' . STORE_NAME,true);
 define('TABLE_HEADING_IMAGE', '',true);
 define('TABLE_HEADING_MODEL', 'Artikel-Nr.',true);
 define('TABLE_HEADING_PRODUCTS', 'Produktname',true);
