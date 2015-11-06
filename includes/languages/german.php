@@ -224,7 +224,7 @@ define('ICON_WARNING', 'Warnung',true);
 
 define('TEXT_GREETING_PERSONAL', 'Schön, dass Sie wieder da sind <span class="greetUser">%s!</span> Möchten Sie die <a href="%s"><u>neuen Produkte</u></a> ansehen?',true);
 define('TEXT_GREETING_PERSONAL_RELOGON', '<small>Wenn Sie nicht %s sind, melden Sie sich bitte <a href="%s"><u>hier</u></a> mit Ihrem Kundenkonto an.</small>',true);
-define('TEXT_GREETING_GUEST', 'Herzlich willkommen <span class="greetUser">Gast!</span> Möchten Sie sich <a href="%s"><u>anmelden</u></a>? Oder wollen Sie ein <a href="%s"><u>Kundenkonto</u></a> eröffnen?',true);
+define('TEXT_GREETING_GUEST','',true); //Herzlich willkommen <span class="greetUser">Gast!</span> Möchten Sie sich <a href="%s"><u>anmelden</u></a>? Oder wollen Sie ein <a href="%s"><u>Kundenkonto</u></a> eröffnen?
 
 define('TEXT_SORT_PRODUCTS', 'Sortierung der Artikel ist ',true);
 define('TEXT_DESCENDINGLY', 'absteigend',true);

@@ -317,11 +317,16 @@ if (tep_not_null($image['catdesc'])) {
 ?>
 
 <div class="contentContainer">
+<?php
+    if (tep_not_null(TEXT_GREETING_GUEST)) {
+?>
+
   <div class="contentText">
     <?php echo tep_customer_greeting(); ?>
   </div>
 
 <?php
+    }
     if (tep_not_null(TEXT_MAIN)) {
 ?>
 
