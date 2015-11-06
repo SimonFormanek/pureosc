@@ -77,7 +77,7 @@ define('TEXT_SORT_ORDER', 'Sort Order:');
 
 define('TEXT_PRODUCTS_STATUS', 'Products Status:');
 define('TEXT_PRODUCTS_DATE_AVAILABLE', 'Date Available:');
-define('TEXT_PRODUCTS_CUSTOM_DATE','Datum konání:');
+define('TEXT_PRODUCTS_CUSTOM_DATE','Třídění dle data zájezdu:');
 define('TEXT_PRODUCTS_SORT_ORDER','Pořadí:');
 define('TEXT_PRODUCT_AVAILABLE', 'In Stock');
 define('TEXT_PRODUCT_NOT_AVAILABLE', 'Out of Stock');
