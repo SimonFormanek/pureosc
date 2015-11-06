@@ -1,4 +1,7 @@
 #for MAIN GIT REPO or ADMIN SERVER INSTANCE
+#install IGNORED
+install
+
 #images NOT ignored
 !images
 #images/*

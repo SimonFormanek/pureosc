@@ -1,5 +1,11 @@
-#for MAIN GIT REPO or ADMIN SERVER INSTANCE
-#images NOT ignored
+#for SHOP SERVER INSTANCE
+#install IGNORED
+install
+
+#admin IGNORED
+admin
+
+#images NOT IGNORED
 !images
 #images/*
 !images/thumbs
