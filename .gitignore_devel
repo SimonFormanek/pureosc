@@ -1,9 +1,8 @@
-#for MAIN GIT REPO or ADMIN SERVER INSTANCE
-#images NOT ignored
+#images
 !images
-#images/*
+images/*
 !images/thumbs
-#images/thumbs/*
+images/thumbs/*
 !images/thumbs/.htaccess
 
 includes/configure.php
