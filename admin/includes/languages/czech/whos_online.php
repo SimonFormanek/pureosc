@@ -23,4 +23,3 @@ define('TABLE_HEADING_ACTION', 'Provést');
 define('TABLE_HEADING_SHOPPING_CART', 'Nákupní košík');
 define('TEXT_SHOPPING_CART_SUBTOTAL', 'Celkem nakoupeno');
 define('TEXT_NUMBER_OF_CUSTOMERS', 'Momentálně je %s on-line zákazníků.');
-?>

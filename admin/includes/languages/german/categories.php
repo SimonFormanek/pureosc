@@ -70,6 +70,8 @@ define('TEXT_SORT_ORDER', 'Sortierreihenfolge:');
 
 define('TEXT_PRODUCTS_STATUS', 'Produktstatus:');
 define('TEXT_PRODUCTS_DATE_AVAILABLE', 'Erscheinungsdatum:');
+define('TEXT_PRODUCTS_CUSTOM_DATE','Custom date:');
+define('TEXT_PRODUCTS_SORT_ORDER','Sort order:');
 define('TEXT_PRODUCT_AVAILABLE', 'auf Lager');
 define('TEXT_PRODUCT_NOT_AVAILABLE', 'nicht vorrätig');
 define('TEXT_PRODUCTS_MANUFACTURER', 'Artikel-Hersteller:');

@@ -118,7 +118,10 @@ if (tep_not_null($category['categories_description'])) {
                          'PRODUCT_LIST_QUANTITY' => PRODUCT_LIST_QUANTITY,
                          'PRODUCT_LIST_WEIGHT' => PRODUCT_LIST_WEIGHT,
                          'PRODUCT_LIST_IMAGE' => PRODUCT_LIST_IMAGE,
-                         'PRODUCT_LIST_BUY_NOW' => PRODUCT_LIST_BUY_NOW);
+                         'PRODUCT_LIST_BUY_NOW' => PRODUCT_LIST_BUY_NOW,
+                         'PRODUCT_LIST_DATE_AVAILABLE' => PRODUCT_LIST_DATE_AVAILABLE,
+                         'PRODUCT_LIST_CUSTOM_DATE' => PRODUCT_LIST_CUSTOM_DATE,
+                         'PRODUCT_LIST_SORT_ORDER' => PRODUCT_LIST_SORT_ORDER);
 
     asort($define_list);
 
@@ -150,6 +153,15 @@ if (tep_not_null($category['categories_description'])) {
         case 'PRODUCT_LIST_WEIGHT':
           $select_column_list .= 'p.products_weight, ';
           break;
+        case 'PRODUCT_LIST_DATE_AVAILABLE':
+          $select_column_list .= 'p.products_date_available, ';
+          break;
+        case 'PRODUCT_LIST_CUSTOM_DATE':
+          $select_column_list .= 'p.products_custom_date, ';
+          break;
+        case 'PRODUCT_LIST_SORT_ORDER':
+          $select_column_list .= 'p.products_sort_order, ';
+          break;
       }
     }
 
@@ -180,12 +192,12 @@ if (tep_not_null($category['categories_description'])) {
           $HTTP_GET_VARS['sort'] = $i+1 . 'a';
           $listing_sql .= " order by pd.products_name";
 */		  
-		if ($column_list[$i] == 'PRODUCT_LIST_NAME') {
-          $HTTP_GET_VARS['sort'] = $i+1 . 'a';
-          $listing_sql .= " order by p.products_model desc";
+//		if ($column_list[$i] == 'PRODUCT_LIST_DATE_AVAILABLE') {
+//          $HTTP_GET_VARS['sort'] = $i+1 . 'a';
+          $listing_sql .= " ORDER BY " . PRODUCT_LIST_DEFAULT_SORT_ORDER;
 /* ** EOF alteration for default sort type and sorting order ** */		  
           break;
-        }
+//        }
       }
     } else {
       $sort_col = substr($HTTP_GET_VARS['sort'], 0 , 1);
@@ -212,6 +224,12 @@ if (tep_not_null($category['categories_description'])) {
           break;
         case 'PRODUCT_LIST_PRICE':
           $listing_sql .= " order by final_price " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
+          break;
+        case 'PRODUCT_LIST_DATE_AVAILABLE':
+          $listing_sql .= " order by p.products_date_available DESC, p.products_date_added DESC, pd.products_name";
+          break;
+        case 'PRODUCT_LIST_DATE_AVAILABLE':
+          $listing_sql .= " order by p.products_date_available DESC, p.products_date_added DESC, pd.products_name";
           break;
       }
     }

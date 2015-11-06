@@ -69,6 +69,8 @@ define('TEXT_SORT_ORDER', 'Orden:');
 
 define('TEXT_PRODUCTS_STATUS', 'Estado de los Productos:');
 define('TEXT_PRODUCTS_DATE_AVAILABLE', 'Fecha Disponibilidad:');
+define('TEXT_PRODUCTS_CUSTOM_DATE','Custom date:');
+define('TEXT_PRODUCTS_SORT_ORDER','Sort order:');
 define('TEXT_PRODUCT_AVAILABLE', 'Disponible');
 define('TEXT_PRODUCT_NOT_AVAILABLE', 'Agotado');
 define('TEXT_PRODUCTS_MANUFACTURER', 'Fabricante del producto:');

@@ -26,4 +26,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Jste si jistí, že chcete vymazat tuto oblast
 define('TEXT_INFO_HEADING_NEW_ZONE', 'Nová oblast');
 define('TEXT_INFO_HEADING_EDIT_ZONE', 'Editujte oblast');
 define('TEXT_INFO_HEADING_DELETE_ZONE', 'Smažte oblast');
-?>

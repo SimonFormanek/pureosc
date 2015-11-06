@@ -278,7 +278,10 @@ define('TABLE_HEADING_QUANTITY', 'Množství');
 define('TABLE_HEADING_PRICE', 'Cena');
 define('TABLE_HEADING_WEIGHT', 'Váha');
 define('TABLE_HEADING_BUY_NOW', 'Koupit');
-define('TABLE_HEADING_LATEST_ADDED', 'Poslední zboží');
+//pure: removed define('TABLE_HEADING_LATEST_ADDED', 'Poslední zboží');
+define('TABLE_HEADING_DATE_AVAILABLE','Nejnovější zboží');
+define('TABLE_HEADING_CUSTOM_DATE','Podle data');
+define('TABLE_HEADING_SORT_ORDER','Pořadí');
 
 // product notifications
 define('PRODUCT_SUBSCRIBED', '%s bylo přidána do vašeho seznamu');

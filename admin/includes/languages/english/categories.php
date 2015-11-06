@@ -77,6 +77,8 @@ define('TEXT_SORT_ORDER', 'Sort Order:');
 
 define('TEXT_PRODUCTS_STATUS', 'Products Status:');
 define('TEXT_PRODUCTS_DATE_AVAILABLE', 'Date Available:');
+define('TEXT_PRODUCTS_CUSTOM_DATE','Custom date:');
+define('TEXT_PRODUCTS_SORT_ORDER','Sort order:');
 define('TEXT_PRODUCT_AVAILABLE', 'In Stock');
 define('TEXT_PRODUCT_NOT_AVAILABLE', 'Out of Stock');
 define('TEXT_PRODUCTS_MANUFACTURER', 'Products Manufacturer:');

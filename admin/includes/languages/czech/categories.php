@@ -77,6 +77,8 @@ define('TEXT_SORT_ORDER', 'Sort Order:');
 
 define('TEXT_PRODUCTS_STATUS', 'Products Status:');
 define('TEXT_PRODUCTS_DATE_AVAILABLE', 'Date Available:');
+define('TEXT_PRODUCTS_CUSTOM_DATE','Datum konání:');
+define('TEXT_PRODUCTS_SORT_ORDER','Pořadí:');
 define('TEXT_PRODUCT_AVAILABLE', 'In Stock');
 define('TEXT_PRODUCT_NOT_AVAILABLE', 'Out of Stock');
 define('TEXT_PRODUCTS_MANUFACTURER', 'Products Manufacturer:');
@@ -126,4 +128,3 @@ define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Error: Category cannot be moved 
   define('TEXT_PRODUCTS_SEO_DESCRIPTION', 'Product Meta Description for SEO:<br><small>Add a &lt;description&gt; Meta Element.</small>');
   define('TEXT_PRODUCTS_SEO_KEYWORDS', 'Product Meta Keywords for SEO:<br><small>Add a &lt;keyword&gt; Meta Element.<br>Must be comma separated.</small>');
   define('TEXT_PRODUCTS_MINI_DESCRIPTION', 'Product Mini Description:<br><small>Used in the "product list" in Category Pages.</small>');
-?>

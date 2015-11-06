@@ -261,3 +261,6 @@ define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . tep_
 //pure:new link to advanced search
   define('IMAGE_BUTTON_ADVANCED_SEARCH_LINK','podrobné');
 
+define('TABLE_HEADING_DATE_AVAILABLE','Latest Products');
+define('TABLE_HEADING_CUSTOM_DATE','Evet\'s Date');
+define('TABLE_HEADING_SORT_ORDER','Sort Order');
