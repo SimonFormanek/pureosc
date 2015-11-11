@@ -128,7 +128,7 @@ define('ENTRY_EMAIL_ADDRESS_TEXT', '*',true);
 define('ENTRY_STREET_ADDRESS', 'Ulice:',true);
 define('ENTRY_STREET_ADDRESS_ERROR', 'Ulice musí mít nejméně ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' znaků.',true);
 define('ENTRY_STREET_ADDRESS_TEXT', '*',true);
-define('ENTRY_SUBURB', 'číslo:',true);
+define('ENTRY_SUBURB', 'Čtvrť:',true);
 define('ENTRY_SUBURB_TEXT', '',true);
 define('ENTRY_POST_CODE', 'PSČ:',true);
 define('ENTRY_POST_CODE_ERROR', 'PSČ musí mít nejméně ' . ENTRY_POSTCODE_MIN_LENGTH . ' znaků.',true);
