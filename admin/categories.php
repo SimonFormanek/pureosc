@@ -405,6 +405,7 @@
   require(DIR_WS_INCLUDES . 'template_top.php');
 
   if ($action == 'new_product') {
+
     $parameters = array('products_name' => '',
                        'products_description' => '',
                        'products_url' => '',
@@ -540,6 +541,7 @@ function updateNet() {
           <tr>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+<?php if (DISPLAY_DATE_AVAILABLE=='true') { ?>
           <tr>
             <td class="main"><?php echo TEXT_PRODUCTS_DATE_AVAILABLE; ?></td>
             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_input_field('products_date_available', $pInfo->products_date_available, 'id="products_date_available"') . ' <small>(YYYY-MM-DD)</small>'; ?></td>
@@ -547,6 +549,8 @@ function updateNet() {
           <tr>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+<?php }
+if (DISPLAY_PRODUCTS_CUSTOM_DATE=='true') { ?>
           <tr>
             <td class="main"><?php echo TEXT_PRODUCTS_CUSTOM_DATE; ?></td>
             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_input_field('products_custom_date', $pInfo->products_custom_date, 'id="products_custom_date"') . ' <small>(YYYY-MM-DD)</small>'; ?></td>
@@ -554,6 +558,8 @@ function updateNet() {
           <tr>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+<?php } 
+if (DISPLAY_PRODUCTS_SORT_ORDER=='true') { ?>
           <tr>
             <td class="main"><?php echo TEXT_PRODUCTS_SORT_ORDER; ?></td>
             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_input_field('products_sort_order', $pInfo->products_sort_order, 'id="products_sort_order"'); ?></td>
@@ -561,6 +567,8 @@ function updateNet() {
           <tr>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+<?php } 
+if (DISPLAY_PRODUCTS_MANUFACTURER=='true') { ?>
           <tr>
             <td class="main"><?php echo TEXT_PRODUCTS_MANUFACTURER; ?></td>
             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_pull_down_menu('manufacturers_id', $manufacturers_array, $pInfo->manufacturers_id); ?></td>
@@ -569,6 +577,7 @@ function updateNet() {
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
 <?php
+}
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 ?>
           <tr>
@@ -582,6 +591,8 @@ function updateNet() {
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
 <?php
+if (DISPLAY_PRODUCTS_SEO_TITLE=='true') {
+
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 ?>
           <tr bgcolor="#eeeeee">
@@ -594,14 +605,18 @@ function updateNet() {
           <tr>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+<?php }
+if (DISPLAY_PRODUCTS_TAX_CLASS=='true') { ?>
           <tr bgcolor="#ebebff">
             <td class="main"><?php echo TEXT_PRODUCTS_TAX_CLASS; ?></td>
             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_pull_down_menu('products_tax_class_id', $tax_class_array, $pInfo->products_tax_class_id, 'onchange="updateGross()"'); ?></td>
           </tr>
+<?php } ?>
           <tr bgcolor="#ebebff">
             <td class="main"><?php echo TEXT_PRODUCTS_PRICE_NET; ?></td>
             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_input_field('products_price', $pInfo->products_price, 'onkeyup="updateGross()"'); ?></td>
           </tr>
+<?php if (DISPLAY_PRODUCTS_TAX_CLASS=='true') { ?>
           <tr bgcolor="#ebebff">
             <td class="main"><?php echo TEXT_PRODUCTS_PRICE_GROSS; ?></td>
             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_input_field('products_price_gross', $pInfo->products_price, 'onkeyup="updateNet()"'); ?></td>
@@ -613,6 +628,7 @@ function updateNet() {
 updateGross();
 //--></script>
 <?php
+}
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 ?>
           <tr>
@@ -631,6 +647,7 @@ updateGross();
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
 <?php
+if (DISPLAY_PRODUCTS_MINI_DESCRIPTION=='true') {
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 ?>
           <tr>
@@ -648,6 +665,8 @@ updateGross();
           <tr>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+<?php } 
+if (DISPLAY_PRODUCTS_QUANTITY=='true') { ?>
           <tr>
             <td class="main"><?php echo TEXT_PRODUCTS_QUANTITY; ?></td>
             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_input_field('products_quantity', $pInfo->products_quantity); ?></td>
@@ -655,6 +674,8 @@ updateGross();
           <tr>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+<?php }
+if (DISPLAY_PRODUCTS_MODEL=='true') { ?>
           <tr>
             <td class="main"><?php echo TEXT_PRODUCTS_MODEL; ?></td>
             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_input_field('products_model', $pInfo->products_model); ?></td>
@@ -662,6 +683,7 @@ updateGross();
           <tr>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+<?php } ?>
           <tr>
             <td class="main" valign="top"><?php echo TEXT_PRODUCTS_IMAGE; ?></td>
             <td class="main" style="padding-left: 30px;">
@@ -734,6 +756,7 @@ function showPiDelConfirm(piId) {
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
 <?php
+if (DISPLAY_PRODUCTS_URL=='true') {
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 ?>
           <tr>
@@ -746,6 +769,8 @@ function showPiDelConfirm(piId) {
           <tr>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+<?php } 
+if (DISPLAY_PRODUCTS_WEIGHT=='true') { ?>
           <tr>
             <td class="main"><?php echo TEXT_PRODUCTS_WEIGHT; ?></td>
             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_input_field('products_weight', $pInfo->products_weight); ?></td>
@@ -754,6 +779,8 @@ function showPiDelConfirm(piId) {
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
           <?php
+}
+if (DISPLAY_PRODUCTS_SEO_DESCRIPTION=='true') { 
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 ?>
           <tr bgcolor="#eeeeee">
@@ -772,6 +799,8 @@ function showPiDelConfirm(piId) {
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
           <?php
+}
+if (DISPLAY_PRODUCTS_SEO_KEYWORDS=='true') { 
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 ?>
           <tr bgcolor="#eeeeee">
@@ -785,6 +814,7 @@ function showPiDelConfirm(piId) {
           </tr>
 <?php
     }
+}
 ?>
         </table></td>
       </tr>
