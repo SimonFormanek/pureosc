@@ -338,17 +338,25 @@
       tep_redirect(tep_href_link(FILENAME_COOKIE_USAGE));
     }
 
-    if (DISPLAY_CART == 'true') {
-      $goto =  FILENAME_SHOPPING_CART;
-      $parameters = array('action', 'cPath', 'products_id', 'pid');
-    } else {
-      $goto = $PHP_SELF;
-      if ($HTTP_GET_VARS['action'] == 'buy_now') {
-        $parameters = array('action', 'pid', 'products_id');
-      } else {
-        $parameters = array('action', 'pid');
-      }
-    }
+if (DISPLAY_CART == 'true') {
+$goto = FILENAME_SHOPPING_CART;
+$parameters = array('action', 'cPath', 'products_id', 'pid');
+} else {
+$goto = $PHP_SELF;
+if ($HTTP_GET_VARS['action'] == 'buy_now') {
+$parameters = array('action', 'pid', 'products_id');
+} else {
+$parameters = array('action', 'pid');
+}
+//SEO Friendly Urls Modification get the right return url when we dont display cart after certain action
+if(isset($seo_friendly_urls) && $seo_friendly_urls->enabled){
+$gt=$seo_friendly_urls->process_goto_link();
+if($gt!='') $goto=$gt;
+}
+}
+//SEO Friendly Urls Modification so to exclude atts GET variable used when user has selected attributes
+$parameters[] = 'atts';
+
     switch ($HTTP_GET_VARS['action']) {
       // customer wants to update the product quantity in their shopping cart
       case 'update_product' : $n=sizeof($HTTP_POST_VARS['products_id']);

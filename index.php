@@ -25,7 +25,7 @@
   $PHP_SELF=$seo_friendly_urls->include_page;
   include $seo_friendly_urls->include_page;
   exit;
-  }
+    }
   }
 // the following cPath references come from application_top.php
   $category_depth = 'top';

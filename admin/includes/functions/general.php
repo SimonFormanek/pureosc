@@ -984,6 +984,13 @@ return tep_draw_password_field('configuration_value', $password);
     if (USE_CACHE == 'true') {
       tep_reset_cache_block('categories');
       tep_reset_cache_block('also_purchased');
+      //reset SEO FRIENDLY URLS cache
+      if(defined('SEO_FRIENDLY_URLS_STATUS') && SEO_FRIENDLY_URLS_STATUS=='True'){
+	tep_db_query("DELETE FROM seo_friendly_urls WHERE seo_friendly_urls_key='cache_aliases' ");
+	if(file_exists(DIR_FS_CACHE.'seo_friendly_urls.cache')) @unlink(DIR_FS_CACHE.'seo_friendly_urls.cache');
+	if(extension_loaded('apc')) apc_delete('seo_friendly_urls_cache_aliases');
+      }
+      //reset SEO FRIENDLY URLS cache
     }
   }
 
@@ -1033,6 +1040,13 @@ return tep_draw_password_field('configuration_value', $password);
     if (USE_CACHE == 'true') {
       tep_reset_cache_block('categories');
       tep_reset_cache_block('also_purchased');
+      //reset SEO FRIENDLY URLS cache
+      if(defined('SEO_FRIENDLY_URLS_STATUS') && SEO_FRIENDLY_URLS_STATUS=='True'){
+	tep_db_query("DELETE FROM seo_friendly_urls WHERE seo_friendly_urls_key='cache_aliases' ");
+	if(file_exists(DIR_FS_CACHE.'seo_friendly_urls.cache')) @unlink(DIR_FS_CACHE.'seo_friendly_urls.cache');
+	if(extension_loaded('apc')) apc_delete('seo_friendly_urls_cache_aliases');
+      }
+      //reset SEO FRIENDLY URLS cache
     }
   }
 

@@ -43,16 +43,16 @@
     //SEO Friendly Urls
     global $seo_friendly_urls;
     if(isset($seo_friendly_urls) && $seo_friendly_urls->enabled){
-    extract($seo_friendly_urls->process_link($page,$parameters));
-    $link .= $seolink;
+      extract($seo_friendly_urls->process_link($page,$parameters));
+      $link .= $seolink;
     }else{
-    if (tep_not_null($parameters)) {
-    $link .= $page . '?' . tep_output_string($parameters);
-    $separator = '&';
+      if (tep_not_null($parameters)) {
+        $link .= $page . '?' . tep_output_string($parameters);
+        $separator = '&';
     }else{
-    $link .= $page;
-    $separator = '?';
-    }
+      $link .= $page;
+      $separator = '?';
+      }
     }
     while ( (substr($link, -1) == '&') || (substr($link, -1) == '?') ) $link = substr($link, 0, -1);
 

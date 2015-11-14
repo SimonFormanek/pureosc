@@ -74,7 +74,7 @@
     }
 ?>
 
-<?php echo tep_draw_form('cart_quantity', tep_href_link(FILENAME_PRODUCT_INFO, tep_get_all_get_params(array('action')). 'action=add_product', 'NONSSL'), 'post', 'class="form-horizontal" role="form"'); ?>
+<?php echo tep_draw_form('cart_quantity', tep_href_link(FILENAME_PRODUCT_INFO, tep_get_all_get_params(array('action','atts')). 'action=add_product', 'NONSSL'), 'post', 'class="form-horizontal" role="form"'); ?>
 
 <div itemscope itemtype="http://schema.org/Product">
 
@@ -190,11 +190,21 @@
           }
         }
 
-        if (is_string($HTTP_GET_VARS['products_id']) && isset($cart->contents[$HTTP_GET_VARS['products_id']]['attributes'][$products_options_name['products_options_id']])) {
-          $selected_attribute = $cart->contents[$HTTP_GET_VARS['products_id']]['attributes'][$products_options_name['products_options_id']];
-        } else {
-          $selected_attribute = false;
-        }
+	//SEO Friendly Urls Modification for displaying the users attributes selections
+	if(isset($seo_friendly_urls) && $seo_friendly_urls->enabled && isset($HTTP_GET_VARS['atts']) ){
+	if (is_string($HTTP_GET_VARS['atts']) && isset($cart->contents[$HTTP_GET_VARS['atts']]['attributes'][$products_options_name['products_options_id']])) {
+	$selected_attribute = $cart->contents[$HTTP_GET_VARS['atts']]['attributes'][$products_options_name['products_options_id']];
+	} else {
+	$selected_attribute = false;
+	}
+	}else{
+	if (is_string($HTTP_GET_VARS['products_id']) && isset($cart->contents[$HTTP_GET_VARS['products_id']]['attributes'][$products_options_name['products_options_id']])) {
+	$selected_attribute = $cart->contents[$HTTP_GET_VARS['products_id']]['attributes'][$products_options_name['products_options_id']];
+	} else {
+	$selected_attribute = false;
+	}
+	}
+	//SEO Friendly Urls Modification for displaying the users attributes selections
 ?>
       <strong><?php echo $products_options_name['products_options_name'] . ':'; ?></strong><br /><?php echo tep_draw_pull_down_menu('id[' . $products_options_name['products_options_id'] . ']', $products_options_array, $selected_attribute, 'style="width: 200px;"'); ?><br />
 <?php
@@ -230,7 +240,7 @@
 ?>
 
   <div class="buttonSet row">
-    <div class="col-xs-6"><?php echo tep_draw_button(IMAGE_BUTTON_REVIEWS . (($reviews['count'] > 0) ? ' (' . $reviews['count'] . ')' : ''), 'fa fa-commenting', tep_href_link(FILENAME_PRODUCT_REVIEWS, tep_get_all_get_params())); ?></div>
+    <div class="col-xs-6"><?php echo tep_draw_button(IMAGE_BUTTON_REVIEWS . (($reviews['count'] > 0) ? ' (' . $reviews['count'] . ')' : ''), 'fa fa-commenting', tep_href_link(FILENAME_PRODUCT_REVIEWS, tep_get_all_get_params(array('atts')))); ?></div>
     <div class="col-xs-6 text-right"><?php echo tep_draw_hidden_field('products_id', $product_info['products_id']) . tep_draw_button(IMAGE_BUTTON_IN_CART, 'fa fa-shopping-cart', null, 'primary', null, 'btn-success'); ?></div>
   </div>
 

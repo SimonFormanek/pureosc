@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  require("includes/application_top.php");
+  require_once('includes/application_top.php');
 
   if ($cart->count_contents() > 0) {
     include(DIR_WS_CLASSES . 'payment.php');
