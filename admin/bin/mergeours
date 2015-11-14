@@ -1,0 +1,26 @@
+#!/bin/bash
+#auto merge master to devel repository keeping local changes 
+#USAGE:
+#	mergeours (in git root) NO auto commit
+# 	mergeours  -a = auto commit 
+#CONFIG:
+#create file .mergeours.conf containing:
+#	SRC=source-branch
+#	DEST=this-project-specific-branch
+#symlink this script to scripts dir under PATH (ie /usr/local/bin) or add admin/bin to PATH
+. .mergeours.conf
+git commit -am "auto commit changes in current branch $DEST"
+git checkout $SRC
+git pull --no-edit
+git checkout $DEST
+
+git merge --no-log --no-ff --no-commit $SRC
+while read file
+do
+    git reset HEAD $file
+    git checkout -- $file
+done <.oursfiles
+F=`cat .oursfiles| sed ':a;N;s/\n/, /;ba'`
+[ "$1" == "-a" ] &&  git commit -am "branch $SRC auto merged to $DEST keept local versions of: $F"
+
+
