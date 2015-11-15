@@ -1,0 +1,4 @@
+#!/bin/bash
+#fix windows newlines
+find . -name '*.php' -exec  sed 's/\x0D$//' -i {} \;
+
