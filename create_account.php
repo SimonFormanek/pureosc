@@ -39,8 +39,8 @@
     if (ACCOUNT_DOB == 'true') $dob = tep_db_prepare_input($HTTP_POST_VARS['dob']);
     $email_address = tep_db_prepare_input($HTTP_POST_VARS['email_address']);
     if (ACCOUNT_COMPANY == 'true') $company = tep_db_prepare_input($HTTP_POST_VARS['company']);
+    if (ACCOUNT_COMPANY == 'true') $vat_number = tep_db_prepare_input($HTTP_POST_VARS['vat_number']);
     $street_address = tep_db_prepare_input($HTTP_POST_VARS['street_address']);
-    $vat_number = tep_db_prepare_input($HTTP_POST_VARS['vat_number']);
     if (ACCOUNT_SUBURB == 'true') $suburb = tep_db_prepare_input($HTTP_POST_VARS['suburb']);
     $postcode = tep_db_prepare_input($HTTP_POST_VARS['postcode']);
     $city = tep_db_prepare_input($HTTP_POST_VARS['city']);
@@ -203,6 +203,7 @@
 
       if (ACCOUNT_GENDER == 'true') $sql_data_array['entry_gender'] = $gender;
       if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_company'] = $company;
+      if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_vat_number'] = $vat_number;
       if (ACCOUNT_SUBURB == 'true') $sql_data_array['entry_suburb'] = $suburb;
       if (ACCOUNT_STATE == 'true') {
         if ($zone_id > 0) {

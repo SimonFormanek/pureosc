@@ -38,6 +38,7 @@
     if (ACCOUNT_DOB == 'true') $dob = tep_db_prepare_input($_POST['dob']);
     $email_address = tep_db_prepare_input($_POST['email_address']);
     if (ACCOUNT_COMPANY == 'true') $company = tep_db_prepare_input($_POST['company']);
+    if (ACCOUNT_COMPANY == 'true') $vat_number = tep_db_prepare_input($HTTP_POST_VARS['vat_number']);
     $street_address = tep_db_prepare_input($_POST['street_address']);
     if (ACCOUNT_SUBURB == 'true') $suburb = tep_db_prepare_input($_POST['suburb']);
     $postcode = tep_db_prepare_input($_POST['postcode']);
@@ -187,6 +188,7 @@
 
       if (ACCOUNT_GENDER == 'true') $sql_data_array['entry_gender'] = $gender;
       if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_company'] = $company;
+      if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_vat_number'] = $vat_number;
       if (ACCOUNT_SUBURB == 'true') $sql_data_array['entry_suburb'] = $suburb;
       if (ACCOUNT_STATE == 'true') {
         if ($zone_id > 0) {
@@ -336,6 +338,16 @@
         if (tep_not_null(ENTRY_COMPANY_TEXT)) echo '<span class="help-block">' . ENTRY_COMPANY_TEXT . '</span>';
         ?>
       </div>
+      
+      <label for="inputVatnumber" class="control-label col-sm-3"><?php echo ENTRY_VAT_NUMBER; ?></label>
+      <div class="col-sm-9">
+        <?php
+        echo tep_draw_input_field('vat_number', NULL, 'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="' . ENTRY_VAT_NUMBER . '"');
+        if (tep_not_null(ENTRY_VAT_NUMBER_TEXT_2)) echo '<span id="atVatnumber" class="help-block">' . ENTRY_VAT_NUMBER_TEXT_2 . '</span>';
+        ?>
+      </div>
+
+      
     </div>
 
 <?php

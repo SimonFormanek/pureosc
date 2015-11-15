@@ -61,6 +61,7 @@
       $this->customer = array('id' => $order['customers_id'],
 	                          'name' => $order['customers_name'],
 							  'company' => $order['customers_company'],
+							  'vat_number' => $order['customers_vat_number'],
                               'street_address' => $order['customers_street_address'],
                               'suburb' => $order['customers_suburb'],
                               'city' => $order['customers_city'],
@@ -75,6 +76,7 @@
 
       $this->delivery = array('name' => $order['delivery_name'],
                               'company' => $order['delivery_company'],
+                              'vat_number' => $order['delivery_vat_number'],
                               'street_address' => $order['delivery_street_address'],
                               'suburb' => $order['delivery_suburb'],
                               'city' => $order['delivery_city'],
@@ -87,6 +89,7 @@
 
       $this->billing = array('name' => $order['billing_name'],
                              'company' => $order['billing_company'],
+                             'vat_number' => $order['billing_vat_number'],
                              'street_address' => $order['billing_street_address'],
                              'suburb' => $order['billing_suburb'],
                              'city' => $order['billing_city'],

@@ -523,7 +523,7 @@ $fmt = $address_format['format'];
 eval("\$address = \"$fmt\";");
 
 if ( (ACCOUNT_COMPANY == 'true') && (tep_not_null($company)) ) {
-$address = $companyvat . $cr . $vat_number . $cr . $address;
+$address = $company . $cr . $vat_number . $cr . $address;
 }
 
 return $address;
