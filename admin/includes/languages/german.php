@@ -304,4 +304,5 @@ define('ERROR_FILE_NOT_SAVED', 'Error: File upload nicht gespeichert.',true);
 define('ERROR_FILETYPE_NOT_ALLOWED', 'Error: File upload typ nicht erlaubt.',true);
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Success: File upload erfolgreich gespeichert.',true);
 define('WARNING_NO_FILE_UPLOADED', 'Warning: kein File uploaded.',true);
-?>
+//VAT number
+define('ENTRY_VAT_NUMBER', 'VAT Number:',true);

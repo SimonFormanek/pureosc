@@ -124,6 +124,7 @@ if (!@$HTTP_POST_VARS['action']) {
   $confirmation = tep_db_prepare_input($HTTP_POST_VARS['confirmation']);
   $street_address = tep_db_prepare_input($HTTP_POST_VARS['street_address']);
   $company = tep_db_prepare_input($HTTP_POST_VARS['company']);
+  $vat_number = tep_db_prepare_input($HTTP_POST_VARS['vat_number']);
   $suburb = tep_db_prepare_input($HTTP_POST_VARS['suburb']);
   $postcode = tep_db_prepare_input($HTTP_POST_VARS['postcode']);
   $city = tep_db_prepare_input($HTTP_POST_VARS['city']);
@@ -349,6 +350,7 @@ $password = $l1.$r1.$l2.$l3.$r2;
 
    if (ACCOUNT_GENDER == 'true') $sql_data_array['entry_gender'] = $gender;
    if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_company'] = $company;
+   if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_vat_number'] = $vat_number;
    if (ACCOUNT_SUBURB == 'true') $sql_data_array['entry_suburb'] = $suburb;
    if (ACCOUNT_STATE == 'true') {
      if ($zone_id > 0) {

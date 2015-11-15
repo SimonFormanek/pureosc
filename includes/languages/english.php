@@ -352,3 +352,6 @@ define('USER_LOCALIZATION', '<abbr title="Selected Language">L:</abbr> %s <abbr 
   define('BOX_MM_RESPONSEMAIL', 'Response Mail',true);
 //pure:new link to advanced search
   define('IMAGE_BUTTON_ADVANCED_SEARCH_LINK','advanced',true);
+//VAT numbber
+define('ENTRY_VAT_NUMBER', 'VAT Number:',true);
+define('ENTRY_VAT_NUMBER_TEXT_2', '',true);

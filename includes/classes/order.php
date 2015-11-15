@@ -39,7 +39,8 @@
 
       $order_id = tep_db_prepare_input($order_id);
 
-      $order_query = tep_db_query("select customers_id, customers_name, customers_company, customers_street_address, customers_suburb, customers_city, customers_postcode, customers_state, customers_country, customers_telephone, customers_email_address, customers_address_format_id, delivery_name, delivery_company, delivery_street_address, delivery_suburb, delivery_city, delivery_postcode, delivery_state, delivery_country, delivery_address_format_id, billing_name, billing_company, billing_street_address, billing_suburb, billing_city, billing_postcode, billing_state, billing_country, billing_address_format_id, payment_method, cc_type, cc_owner, cc_number, cc_expires, currency, currency_value, date_purchased, orders_status, last_modified from " . TABLE_ORDERS . " where orders_id = '" . (int)$order_id . "'");
+      $order_query = tep_db_query("select customers_id, customers_name, customers_company, customers_vat_number, customers_street_address, customers_suburb, customers_city, customers_postcode, customers_state, customers_country, customers_telephone, customers_email_address, customers_address_format_id, delivery_name, delivery_company, delivery_street_address, delivery_vat_number, delivery_suburb, delivery_city, delivery_postcode, delivery_state, delivery_country, delivery_address_format_id, billing_name, billing_company, billing_street_address, billing_vat_number, billing_suburb, billing_city, billing_postcode, billing_state, billing_country, billing_address_format_id, payment_method, cc_type, cc_owner, cc_number, cc_expires, currency, currency_value, date_purchased, orders_status, last_modified from " . TABLE_ORDERS . " where orders_id = '" . (int)$order_id . "'");
+
       $order = tep_db_fetch_array($order_query);
 
       $totals_query = tep_db_query("select title, text from " . TABLE_ORDERS_TOTAL . " where orders_id = '" . (int)$order_id . "' order by sort_order");
@@ -73,6 +74,7 @@
       $this->customer = array('id' => $order['customers_id'],
                               'name' => $order['customers_name'],
                               'company' => $order['customers_company'],
+                              'vat_number' => $order['customers_vat_number'],
                               'street_address' => $order['customers_street_address'],
                               'suburb' => $order['customers_suburb'],
                               'city' => $order['customers_city'],
@@ -85,6 +87,7 @@
 
       $this->delivery = array('name' => trim($order['delivery_name']),
                               'company' => $order['delivery_company'],
+                              'vat_number' => $order['delivery_vat_number'],
                               'street_address' => $order['delivery_street_address'],
                               'suburb' => $order['delivery_suburb'],
                               'city' => $order['delivery_city'],
@@ -99,6 +102,7 @@
 
       $this->billing = array('name' => $order['billing_name'],
                              'company' => $order['billing_company'],
+                             'vat_number' => $order['billing_vat_number'],
                              'street_address' => $order['billing_street_address'],
                              'suburb' => $order['billing_suburb'],
                              'city' => $order['billing_city'],
@@ -146,12 +150,13 @@
         $sendto = $customer_default_address_id;
       }
 */
-      $customer_address_query = tep_db_query("select c.customers_firstname, c.customers_lastname, c.customers_telephone, c.customers_email_address, ab.entry_company, ab.entry_street_address, ab.entry_suburb, ab.entry_postcode, ab.entry_city, ab.entry_zone_id, z.zone_name, co.countries_id, co.countries_name, co.countries_iso_code_2, co.countries_iso_code_3, co.address_format_id, ab.entry_state from " . TABLE_CUSTOMERS . " c, " . TABLE_ADDRESS_BOOK . " ab left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id) left join " . TABLE_COUNTRIES . " co on (ab.entry_country_id = co.countries_id) where c.customers_id = '" . (int)$customer_id . "' and ab.customers_id = '" . (int)$customer_id . "' and c.customers_default_address_id = ab.address_book_id");
+      $customer_address_query = tep_db_query("select c.customers_firstname, c.customers_lastname, c.customers_telephone, c.customers_email_address, ab.entry_company, ab.entry_vat_number, ab.entry_street_address, ab.entry_suburb, ab.entry_postcode, ab.entry_city, ab.entry_zone_id, z.zone_name, co.countries_id, co.countries_name, co.countries_iso_code_2, co.countries_iso_code_3, co.address_format_id, ab.entry_state from " . TABLE_CUSTOMERS . " c, " . TABLE_ADDRESS_BOOK . " ab left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id) left join " . TABLE_COUNTRIES . " co on (ab.entry_country_id = co.countries_id) where c.customers_id = '" . (int)$customer_id . "' and ab.customers_id = '" . (int)$customer_id . "' and c.customers_default_address_id = ab.address_book_id");
       $customer_address = tep_db_fetch_array($customer_address_query);
 
       if (is_array($sendto) && !empty($sendto)) {
         $shipping_address = array('entry_firstname' => $sendto['firstname'],
                                   'entry_lastname' => $sendto['lastname'],
+                                  'entry_vat_number' => $sendto['vat_number'],
                                   'entry_company' => $sendto['company'],
                                   'entry_street_address' => $sendto['street_address'],
                                   'entry_suburb' => $sendto['suburb'],
@@ -167,12 +172,13 @@
                                   'address_format_id' => $sendto['address_format_id'],
                                   'entry_state' => $sendto['zone_name']);
       } elseif (is_numeric($sendto)) {
-        $shipping_address_query = tep_db_query("select ab.entry_firstname, ab.entry_lastname, ab.entry_company, ab.entry_street_address, ab.entry_suburb, ab.entry_postcode, ab.entry_city, ab.entry_zone_id, z.zone_name, ab.entry_country_id, c.countries_id, c.countries_name, c.countries_iso_code_2, c.countries_iso_code_3, c.address_format_id, ab.entry_state from " . TABLE_ADDRESS_BOOK . " ab left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id) left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id) where ab.customers_id = '" . (int)$customer_id . "' and ab.address_book_id = '" . (int)$sendto . "'");
+        $shipping_address_query = tep_db_query("select ab.entry_firstname, ab.entry_lastname, ab.entry_company, ab.entry_vat_number, ab.entry_street_address, ab.entry_suburb, ab.entry_postcode, ab.entry_city, ab.entry_zone_id, z.zone_name, ab.entry_country_id, c.countries_id, c.countries_name, c.countries_iso_code_2, c.countries_iso_code_3, c.address_format_id, ab.entry_state from " . TABLE_ADDRESS_BOOK . " ab left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id) left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id) where ab.customers_id = '" . (int)$customer_id . "' and ab.address_book_id = '" . (int)$sendto . "'");
         $shipping_address = tep_db_fetch_array($shipping_address_query);
       } else {
         $shipping_address = array('entry_firstname' => null,
                                   'entry_lastname' => null,
                                   'entry_company' => null,
+                                  'entry_vat_number' => null,
                                   'entry_street_address' => null,
                                   'entry_suburb' => null,
                                   'entry_postcode' => null,
@@ -192,6 +198,7 @@
         $billing_address = array('entry_firstname' => $billto['firstname'],
                                  'entry_lastname' => $billto['lastname'],
                                  'entry_company' => $billto['company'],
+                                 'entry_vat_number' => $$billto['vat_number'],
                                  'entry_street_address' => $billto['street_address'],
                                  'entry_suburb' => $billto['suburb'],
                                  'entry_postcode' => $billto['postcode'],
@@ -206,7 +213,7 @@
                                  'address_format_id' => $billto['address_format_id'],
                                  'entry_state' => $billto['zone_name']);
       } else {
-        $billing_address_query = tep_db_query("select ab.entry_firstname, ab.entry_lastname, ab.entry_company, ab.entry_street_address, ab.entry_suburb, ab.entry_postcode, ab.entry_city, ab.entry_zone_id, z.zone_name, ab.entry_country_id, c.countries_id, c.countries_name, c.countries_iso_code_2, c.countries_iso_code_3, c.address_format_id, ab.entry_state from " . TABLE_ADDRESS_BOOK . " ab left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id) left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id) where ab.customers_id = '" . (int)$customer_id . "' and ab.address_book_id = '" . (int)$billto . "'");
+        $billing_address_query = tep_db_query("select ab.entry_firstname, ab.entry_lastname, ab.entry_company, ab.entry_vat_number, ab.entry_street_address, ab.entry_suburb, ab.entry_postcode, ab.entry_city, ab.entry_zone_id, z.zone_name, ab.entry_country_id, c.countries_id, c.countries_name, c.countries_iso_code_2, c.countries_iso_code_3, c.address_format_id, ab.entry_state from " . TABLE_ADDRESS_BOOK . " ab left join " . TABLE_ZONES . " z on (ab.entry_zone_id = z.zone_id) left join " . TABLE_COUNTRIES . " c on (ab.entry_country_id = c.countries_id) where ab.customers_id = '" . (int)$customer_id . "' and ab.address_book_id = '" . (int)$billto . "'");
         $billing_address = tep_db_fetch_array($billing_address_query);
       }
 
@@ -248,6 +255,7 @@
       $this->customer = array('firstname' => $customer_address['customers_firstname'],
                               'lastname' => $customer_address['customers_lastname'],
                               'company' => $customer_address['entry_company'],
+                              'vat_number' => $customer_address['entry_vat_number'],
                               'street_address' => $customer_address['entry_street_address'],
                               'suburb' => $customer_address['entry_suburb'],
                               'city' => $customer_address['entry_city'],
@@ -262,6 +270,7 @@
       $this->delivery = array('firstname' => $shipping_address['entry_firstname'],
                               'lastname' => $shipping_address['entry_lastname'],
                               'company' => $shipping_address['entry_company'],
+                              'vat_number' => $shipping_address['entry_vat_number'],
                               'street_address' => $shipping_address['entry_street_address'],
                               'suburb' => $shipping_address['entry_suburb'],
                               'city' => $shipping_address['entry_city'],
@@ -275,6 +284,7 @@
       $this->billing = array('firstname' => $billing_address['entry_firstname'],
                              'lastname' => $billing_address['entry_lastname'],
                              'company' => $billing_address['entry_company'],
+                             'vat_number' => $billing_address['entry_vat_number'],
                              'street_address' => $billing_address['entry_street_address'],
                              'suburb' => $billing_address['entry_suburb'],
                              'city' => $billing_address['entry_city'],

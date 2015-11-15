@@ -371,3 +371,5 @@ define('BOX_CUSTOMERS_CREATE_ORDER', 'Create Order',true);
 define('BOX_CUSTOMERS_CREATE_ACCOUNT', 'Create Customer',true);
 define('IMAGE_CONTINUE', 'Continue',true);
 // EOF Create Account
+//VAT number
+define('ENTRY_VAT_NUMBER', 'VAT Number:',true);

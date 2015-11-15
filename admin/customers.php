@@ -32,6 +32,7 @@
         $customers_dob = tep_db_prepare_input($HTTP_POST_VARS['customers_dob']);
 
         $default_address_id = tep_db_prepare_input($HTTP_POST_VARS['default_address_id']);
+        $entry_vat_number = tep_db_prepare_input($HTTP_POST_VARS['entry_vat_number']);
         $entry_street_address = tep_db_prepare_input($HTTP_POST_VARS['entry_street_address']);
         $entry_suburb = tep_db_prepare_input($HTTP_POST_VARS['entry_suburb']);
         $entry_postcode = tep_db_prepare_input($HTTP_POST_VARS['entry_postcode']);
@@ -39,6 +40,8 @@
         $entry_country_id = tep_db_prepare_input($HTTP_POST_VARS['entry_country_id']);
 
         $entry_company = tep_db_prepare_input($HTTP_POST_VARS['entry_company']);
+	$entry_vat_number = tep_db_prepare_input($HTTP_POST_VARS['entry_vat_number']);
+
         $entry_state = tep_db_prepare_input($HTTP_POST_VARS['entry_state']);
         if (isset($HTTP_POST_VARS['entry_zone_id'])) $entry_zone_id = tep_db_prepare_input($HTTP_POST_VARS['entry_zone_id']);
 
@@ -169,6 +172,7 @@
 
         $sql_data_array = array('entry_firstname' => $customers_firstname,
                                 'entry_lastname' => $customers_lastname,
+                                'entry_vat_number' => $entry_vat_number,
                                 'entry_street_address' => $entry_street_address,
                                 'entry_postcode' => $entry_postcode,
                                 'entry_city' => $entry_city,
@@ -221,7 +225,7 @@
         tep_redirect(tep_href_link(FILENAME_CUSTOMERS, tep_get_all_get_params(array('cID', 'action'))));
         break;
       default:
-        $customers_query = tep_db_query("select c.customers_id, c.customers_gender, c.customers_firstname, c.customers_lastname, c.customers_dob, c.customers_email_address, a.entry_company, a.entry_street_address, a.entry_suburb, a.entry_postcode, a.entry_city, a.entry_state, a.entry_zone_id, a.entry_country_id, c.customers_telephone, c.customers_fax, c.customers_newsletter, c.customers_default_address_id from " . TABLE_CUSTOMERS . " c left join " . TABLE_ADDRESS_BOOK . " a on c.customers_default_address_id = a.address_book_id where a.customers_id = c.customers_id and c.customers_id = '" . (int)$HTTP_GET_VARS['cID'] . "'");
+        $customers_query = tep_db_query("select c.customers_id, c.customers_gender, c.customers_firstname, c.customers_lastname, c.customers_dob, c.customers_email_address, a.entry_company, a.entry_vat_number, a.entry_street_address, a.entry_suburb, a.entry_postcode, a.entry_city, a.entry_state, a.entry_zone_id, a.entry_country_id, c.customers_telephone, c.customers_fax, c.customers_newsletter, c.customers_default_address_id from " . TABLE_CUSTOMERS . " c left join " . TABLE_ADDRESS_BOOK . " a on c.customers_default_address_id = a.address_book_id where a.customers_id = c.customers_id and c.customers_id = '" . (int)$HTTP_GET_VARS['cID'] . "'");
         $customers = tep_db_fetch_array($customers_query);
         $cInfo = new objectInfo($customers);
     }
@@ -469,6 +473,19 @@ function check_form() {
     }
 ?></td>
           </tr>
+
+          <tr>
+            <td class="main"><?php echo ENTRY_VAT_NUMBER; ?></td>
+            <td class="main">
+<?php
+    if ($error == true) {
+      echo $cInfo->entry_vat_number . tep_draw_hidden_field('entry_vat_number');
+    } else {
+      echo tep_draw_input_field('entry_vat_number', $cInfo->entry_vat_number, 'maxlength="32"');
+    }
+?></td>
+          </tr>
+          
         </table></td>
       </tr>
 <?php

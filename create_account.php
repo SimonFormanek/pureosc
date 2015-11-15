@@ -40,6 +40,7 @@
     $email_address = tep_db_prepare_input($HTTP_POST_VARS['email_address']);
     if (ACCOUNT_COMPANY == 'true') $company = tep_db_prepare_input($HTTP_POST_VARS['company']);
     $street_address = tep_db_prepare_input($HTTP_POST_VARS['street_address']);
+    $vat_number = tep_db_prepare_input($HTTP_POST_VARS['vat_number']);
     if (ACCOUNT_SUBURB == 'true') $suburb = tep_db_prepare_input($HTTP_POST_VARS['suburb']);
     $postcode = tep_db_prepare_input($HTTP_POST_VARS['postcode']);
     $city = tep_db_prepare_input($HTTP_POST_VARS['city']);
@@ -194,6 +195,7 @@
       $sql_data_array = array('customers_id' => $customer_id,
                               'entry_firstname' => $firstname,
                               'entry_lastname' => $lastname,
+                              'entry_vat_number' => $vat_number,
                               'entry_street_address' => $street_address,
                               'entry_postcode' => $postcode,
                               'entry_city' => $city,
@@ -401,6 +403,16 @@
         if (tep_not_null(ENTRY_COMPANY_TEXT)) echo '<span id="atCompany" class="help-block">' . ENTRY_COMPANY_TEXT . '</span>';
         ?>
       </div>
+      
+      <label for="inputVatnumber" class="control-label col-sm-3"><?php echo ENTRY_VAT_NUMBER; ?></label>
+      <div class="col-sm-9">
+        <?php
+        echo tep_draw_input_field('vat_number', NULL, 'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="' . ENTRY_VAT_NUMBER . '"');
+        if (tep_not_null(ENTRY_VAT_NUMBER_TEXT_2)) echo '<span id="atVatnumber" class="help-block">' . ENTRY_VAT_NUMBER_TEXT_2 . '</span>';
+        ?>
+      </div>
+
+      
     </div>
   </div>
 

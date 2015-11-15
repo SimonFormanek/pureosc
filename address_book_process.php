@@ -42,6 +42,7 @@
     if (ACCOUNT_COMPANY == 'true') $company = tep_db_prepare_input($HTTP_POST_VARS['company']);
     $firstname = tep_db_prepare_input($HTTP_POST_VARS['firstname']);
     $lastname = tep_db_prepare_input($HTTP_POST_VARS['lastname']);
+    $vat_number = tep_db_prepare_input($HTTP_POST_VARS['vat_number']);
     $street_address = tep_db_prepare_input($HTTP_POST_VARS['street_address']);
     if (ACCOUNT_SUBURB == 'true') $suburb = tep_db_prepare_input($HTTP_POST_VARS['suburb']);
     $postcode = tep_db_prepare_input($HTTP_POST_VARS['postcode']);
@@ -127,6 +128,7 @@
     if ($error == false) {
       $sql_data_array = array('entry_firstname' => $firstname,
                               'entry_lastname' => $lastname,
+			      'entry_vat_number' => $vat_number,
                               'entry_street_address' => $street_address,
                               'entry_postcode' => $postcode,
                               'entry_city' => $city,
@@ -200,8 +202,7 @@
   }
 
   if (isset($HTTP_GET_VARS['edit']) && is_numeric($HTTP_GET_VARS['edit'])) {
-    $entry_query = tep_db_query("select entry_gender, entry_company, entry_firstname, entry_lastname, entry_street_address, entry_suburb, entry_postcode, entry_city, entry_state, entry_zone_id, entry_country_id from " . TABLE_ADDRESS_BOOK . " where customers_id = '" . (int)$customer_id . "' and address_book_id = '" . (int)$HTTP_GET_VARS['edit'] . "'");
-
+      $entry_query = tep_db_query("select entry_gender, entry_company, entry_vat_number, entry_firstname, entry_lastname, entry_street_address, entry_suburb, entry_postcode, entry_city, entry_state, entry_zone_id, entry_country_id from " . TABLE_ADDRESS_BOOK . " where customers_id = '" . (int)$customer_id . "' and address_book_id = '" . (int)$HTTP_GET_VARS['edit'] . "'");
     if (!tep_db_num_rows($entry_query)) {
       $messageStack->add_session('addressbook', ERROR_NONEXISTING_ADDRESS_BOOK_ENTRY);
 

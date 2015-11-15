@@ -298,4 +298,5 @@ define('ERROR_FILE_NOT_SAVED', 'Error: Archivo subido no guardado.',true);
 define('ERROR_FILETYPE_NOT_ALLOWED', 'Error: Tipo de archivo subido no permitido.',true);
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Exito: Archivo subido guardado exitosamente.',true);
 define('WARNING_NO_FILE_UPLOADED', 'Advertencia: Ning&uacute;n archivo subido.',true);
-?>
+//VAT number
+define('ENTRY_VAT_NUMBER', 'VAT Number:',true);

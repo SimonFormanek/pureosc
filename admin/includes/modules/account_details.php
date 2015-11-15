@@ -215,6 +215,26 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
     }
 ?></td>
           </tr>
+
+          <tr>
+            <td class="main">&nbsp;<?php echo ENTRY_VAT_NUMBER; ?></td>
+            <td class="main">&nbsp;
+<?php
+    if ($is_read_only) {
+      echo $account['entry_vat_number'];
+    } elseif ($error) {
+      if ($entry_vat_number_error) {
+        echo tep_draw_input_field('vat_number') . '&nbsp;' . ENTRY_VAT_NUMBER_ERROR;
+      } else {
+        echo $entry_vat_number . tep_draw_hidden_field('vat_number');
+      }
+    } else {
+      echo tep_draw_input_field('vat_number', $account['entry_vat_number']) . '&nbsp;' ;
+    }
+?></td>
+          </tr>
+
+
         </table></td>
       </tr>
     </table></td>

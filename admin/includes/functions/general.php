@@ -391,74 +391,78 @@
     return $geo_zone_name;
   }
 
-  function tep_address_format($address_format_id, $address, $html, $boln, $eoln) {
-    $address_format_query = tep_db_query("select address_format as format from " . TABLE_ADDRESS_FORMAT . " where address_format_id = '" . (int)$address_format_id . "'");
-    $address_format = tep_db_fetch_array($address_format_query);
+//VAT number change
+function tep_address_format($address_format_id, $address, $html, $boln, $eoln) {
+$address_format_query = tep_db_query("select address_format as format from " . TABLE_ADDRESS_FORMAT . " where address_format_id = '" . (int)$address_format_id . "'");
+$address_format = tep_db_fetch_array($address_format_query);
 
-    $company = tep_output_string_protected($address['company']);
-    if (isset($address['firstname']) && tep_not_null($address['firstname'])) {
-      $firstname = tep_output_string_protected($address['firstname']);
-      $lastname = tep_output_string_protected($address['lastname']);
-    } elseif (isset($address['name']) && tep_not_null($address['name'])) {
-      $firstname = tep_output_string_protected($address['name']);
-      $lastname = '';
-    } else {
-      $firstname = '';
-      $lastname = '';
-    }
-    $street = tep_output_string_protected($address['street_address']);
-    $suburb = tep_output_string_protected($address['suburb']);
-    $city = tep_output_string_protected($address['city']);
-    $state = tep_output_string_protected($address['state']);
-    if (isset($address['country_id']) && tep_not_null($address['country_id'])) {
-      $country = tep_get_country_name($address['country_id']);
+$company = tep_output_string_protected($address['company']);
+if (isset($address['firstname']) && tep_not_null($address['firstname'])) {
+$firstname = tep_output_string_protected($address['firstname']);
+$lastname = tep_output_string_protected($address['lastname']);
+} elseif (isset($address['name']) && tep_not_null($address['name'])) {
+$firstname = tep_output_string_protected($address['name']);
+$lastname = '';
+} else {
+$firstname = '';
+$lastname = '';
+}
+// Vat Address Field mod:
+$vat_number = tep_output_string_protected($address['vat_number']);
+// :Vat Address Field mod
+$street = tep_output_string_protected($address['street_address']);
+$suburb = tep_output_string_protected($address['suburb']);
+$city = tep_output_string_protected($address['city']);
+$state = tep_output_string_protected($address['state']);
+if (isset($address['country_id']) && tep_not_null($address['country_id'])) {
+$country = tep_get_country_name($address['country_id']);
 
-      if (isset($address['zone_id']) && tep_not_null($address['zone_id'])) {
-        $state = tep_get_zone_code($address['country_id'], $address['zone_id'], $state);
-      }
-    } elseif (isset($address['country']) && tep_not_null($address['country'])) {
-      $country = tep_output_string_protected($address['country']);
-    } else {
-      $country = '';
-    }
-    $postcode = tep_output_string_protected($address['postcode']);
-    $zip = $postcode;
+if (isset($address['zone_id']) && tep_not_null($address['zone_id'])) {
+$state = tep_get_zone_code($address['country_id'], $address['zone_id'], $state);
+}
+} elseif (isset($address['country']) && tep_not_null($address['country'])) {
+$country = tep_output_string_protected($address['country']);
+} else {
+$country = '';
+}
+$postcode = tep_output_string_protected($address['postcode']);
+$zip = $postcode;
 
-    if ($html) {
+if ($html) {
 // HTML Mode
-      $HR = '<hr />';
-      $hr = '<hr />';
-      if ( ($boln == '') && ($eoln == "\n") ) { // Values not specified, use rational defaults
-        $CR = '<br />';
-        $cr = '<br />';
-        $eoln = $cr;
-      } else { // Use values supplied
-        $CR = $eoln . $boln;
-        $cr = $CR;
-      }
-    } else {
+$HR = '<hr />';
+$hr = '<hr />';
+if ( ($boln == '') && ($eoln == "\n") ) { // Values not specified, use rational defaults
+$CR = '<br />';
+$cr = '<br />';
+$eoln = $cr;
+} else { // Use values supplied
+$CR = $eoln . $boln;
+$cr = $CR;
+}
+} else {
 // Text Mode
-      $CR = $eoln;
-      $cr = $CR;
-      $HR = '----------------------------------------';
-      $hr = '----------------------------------------';
-    }
+$CR = $eoln;
+$cr = $CR;
+$HR = '----------------------------------------';
+$hr = '----------------------------------------';
+}
 
-    $statecomma = '';
-    $streets = $street;
-    if ($suburb != '') $streets = $street . $cr . $suburb;
-    if ($country == '') $country = tep_output_string_protected($address['country']);
-    if ($state != '') $statecomma = $state . ', ';
+$statecomma = '';
+$streets = $street;
+if ($suburb != '') $streets = $street . $cr . $suburb;
+if ($country == '') $country = tep_output_string_protected($address['country']);
+if ($state != '') $statecomma = $state . ', ';
 
-    $fmt = $address_format['format'];
-    eval("\$address = \"$fmt\";");
+$fmt = $address_format['format'];
+eval("\$address = \"$fmt\";");
 
-    if ( (ACCOUNT_COMPANY == 'true') && (tep_not_null($company)) ) {
-      $address = $company . $cr . $address;
-    }
+if ( (ACCOUNT_COMPANY == 'true') && (tep_not_null($company)) ) {
+$address = $company . $cr . $vat_number . $cr . $address;
+}
 
-    return $address;
-  }
+return $address;
+}
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
   //
