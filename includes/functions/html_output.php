@@ -438,6 +438,7 @@
 ////
 // Creates a pull-down list of countries
   function tep_get_country_list($name, $selected = '', $parameters = '') {
+    if ( strlen($selected)==0 ) $selected = STORE_COUNTRY;
     $countries_array = array(array('id' => '', 'text' => PULL_DOWN_DEFAULT));
     $countries = tep_get_countries();
 
