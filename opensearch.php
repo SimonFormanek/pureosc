@@ -12,7 +12,7 @@
 
   header('Content-Type: text/xml');
 
-  require('includes/application_top.php');
+  require_once('includes/application_top.php');
 
   if ( !defined('MODULE_HEADER_TAGS_OPENSEARCH_STATUS') || (MODULE_HEADER_TAGS_OPENSEARCH_STATUS != 'True') ) {
     exit;

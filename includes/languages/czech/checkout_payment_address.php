@@ -13,7 +13,7 @@
 define('NAVBAR_TITLE_1', 'Zaplatit');
 define('NAVBAR_TITLE_2', 'Změna fakturační adresy');
 
-define('HEADING_TITLE', 'Platební informace');
+define('HEADING_TITLE', 'Fakturační adresa');
 
 define('TABLE_HEADING_PAYMENT_ADDRESS', 'Fakturační adresa');
 define('TEXT_SELECTED_PAYMENT_DESTINATION', 'Toto je hlavní vybraná adresa fakturace a dodání.');

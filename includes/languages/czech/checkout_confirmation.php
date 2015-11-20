@@ -13,7 +13,7 @@
 define('NAVBAR_TITLE_1', 'Zaplatit');
 define('NAVBAR_TITLE_2', 'Potvrdit');
 
-define('HEADING_TITLE', 'Informace o nákupu');
+define('HEADING_TITLE', 'Souhrn objednávky');
 
 define('HEADING_SHIPPING_INFORMATION', 'Doprava');
 define('HEADING_DELIVERY_ADDRESS', 'Adresa dodání');

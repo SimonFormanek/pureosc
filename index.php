@@ -19,7 +19,7 @@
 */
 
   //SEO URLs
-  require('includes/application_top.php');
+  require_once('includes/application_top.php');
   if(isset($seo_friendly_urls) && $seo_friendly_urls->enabled && $seo_friendly_urls->page_type!='category'){
   if($seo_friendly_urls->include_page!=''){
   $PHP_SELF=$seo_friendly_urls->include_page;

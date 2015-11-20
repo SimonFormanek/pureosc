@@ -17,7 +17,7 @@
   Released under the GNU General Public License
 */
 
-  require('includes/application_top.php');
+  require_once('includes/application_top.php');
 
   if (!tep_session_is_registered('customer_id') && (ALLOW_GUEST_TO_TELL_A_FRIEND == 'false')) {
     $navigation->set_snapshot();

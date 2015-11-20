@@ -13,9 +13,9 @@
 define('NAVBAR_TITLE_1', 'Zaplatit');
 define('NAVBAR_TITLE_2', 'Změnit dodací adresu');
 
-define('HEADING_TITLE', 'Dodací Informace');
+define('HEADING_TITLE', 'Dodací adresa');
 
-define('TABLE_HEADING_SHIPPING_ADDRESS', 'Dodací adresa');
+define('TABLE_HEADING_SHIPPING_ADDRESS', 'Aktuální dodací adresa');
 define('TEXT_SELECTED_SHIPPING_DESTINATION', 'Toto je hlavní dodací adresa.');
 define('TITLE_SHIPPING_ADDRESS', 'Adresa dodání:');
 

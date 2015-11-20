@@ -14,6 +14,7 @@ class seo_friendly_urls{
 
   public $name='SEO Friendly Urls PRO Edition';
   private $website='http://www.johnbarounis.com/coding/oscommerce/seo-friendly-urls-addon';
+  private $edition='PRO';
   private $version='2.0.0';
   private $advanced_edition_required=false;
 
@@ -38,10 +39,12 @@ class seo_friendly_urls{
   private $lowercase_auto_created_aliases=true;
   private $fix_duplicate_aliases=true;
   private $use_default_language_aliases=false;
+  private $hide_default_page_from_urls=false;
   private $display_language_alias=true;
   private $display_default_language_alias=true;
   private $language_alias='';
   private $redirect_not_found_urls_to='';
+  private $redirect_to_domain=true;
   private $include_not_found_page='';
   private $not_found_url_handling_method='';
   private $urls_extension_products='';
@@ -58,6 +61,7 @@ class seo_friendly_urls{
   private $time=0;
   private $filter_short_words=0;
   private $isManufacturersPage=0;
+  private $current_page_type='categories';
 
   /**
   * SEO Friendly Urls class constructor
@@ -70,7 +74,7 @@ class seo_friendly_urls{
     $this->classname=get_class($this);
     $this->CLASSNAME=strtoupper($this->classname);
 
-    //Remove action called
+    //REMOVE action called
     if(defined($this->CLASSNAME.'_REMOVE') && !$remove){
 
       if(constant($this->CLASSNAME.'_REMOVE')=='Yes') $remove=true;
@@ -97,6 +101,17 @@ class seo_friendly_urls{
 
     }
 
+    //if editions mismatch then remove.
+    if(defined($this->CLASSNAME.'_EDITION')){
+
+      if(constant($this->CLASSNAME.'_EDITION')!=$this->edition) { $this->remove(); return false; }
+
+    }else{
+
+      if(isset($this->edition)) { $this->remove(); return false; }
+
+    }
+
     $this->enabled = $this->_('_STATUS') == 'True';
 
     if(!$this->enabled) return false;
@@ -113,6 +128,7 @@ class seo_friendly_urls{
     $this->full_path_aliases = $this->_('_FULL_PATH_ALIASES') == 'Yes';
     $this->force_redirect_to_new_urls = $this->_('_FORCE_'.$this->CLASSNAME) == 'True';
     $this->permanent_redirect_to_new_urls = $this->_('_PERMANENT_REDIRECT') == 'Yes';
+    $this->redirect_to_domain = $this->_('_REDIRECT_TO_DOMAIN') == 'Yes';
 
     $this->redirect_not_found_urls_to = $this->_('_REDIRECT_NOT_FOUND_URLS_TO');
     $this->include_not_found_page = $this->_('_INCLUDE_NOT_FOUND_PAGE');
@@ -132,6 +148,7 @@ class seo_friendly_urls{
     $this->urls_extension_pages = $this->_('_URLS_EXTENSION_PAGES');
     $this->dont_use_backslash_if_parameters = $this->_('_DONT_USE_BACKSLASH_IF_PARAMETERS') == 'Yes';
     $this->fix_duplicate_aliases = $this->_('_FIX_DUPLICATE_ALIASES') == 'Yes';
+    $this->hide_default_page_from_urls = $this->_('_HIDE_DEFAULT_PAGE_FROM_URLS') == 'Yes';
 
     if($this->urls_extension_products!=''){
 
@@ -468,7 +485,6 @@ class seo_friendly_urls{
     if($this->fix_duplicate_aliases) $this->duplicate_aliases_fix();
 
     //CACHE ALIASES IF ENABLED
-
     if($this->cache_aliases=='mysql'){
 
       $ser=serialize(array('categories'=>$this->categories,'products'=>$this->products));
@@ -506,7 +522,7 @@ class seo_friendly_urls{
 
     $url_extension='';
 
-    if($this->urls_extension_products!='' || $this->urls_extension_categories!='' || $this->urls_extension_manufacturers!='' || $this->urls_extension_pages!='' ){//if we have an extension or the backslash then remove it from $qg
+    //if($this->urls_extension_products!='' || $this->urls_extension_categories!='' || $this->urls_extension_manufacturers!='' || $this->urls_extension_pages!='' ){//if we have an extension or the backslash then remove it from $qg
 
       $path_parts=pathinfo($qg);
 
@@ -528,7 +544,9 @@ class seo_friendly_urls{
 
       if(substr($qg, -1)=='/') $qg = rtrim($qg,'/');
 
-    }
+    //}
+
+    $path_parts=pathinfo($qg);
 
     $lid=$languages_id;
 
@@ -568,8 +586,8 @@ class seo_friendly_urls{
 
         }
 
-        if($this->dont_use_backslash_if_parameters && $mparams!='' && $this->urls_extension_manufacturers=='/') $this->redirect($lang_alias.$this->manufacturers[$lid][(int)$_GET['manufacturers_id']].($mparams!=''?'?'.$mparams:''),301);
-        else $this->redirect($lang_alias.$this->manufacturers[$lid][(int)$_GET['manufacturers_id']].$this->urls_extension_manufacturers.($mparams!=''?'?'.$mparams:''),301);
+        if($this->dont_use_backslash_if_parameters && $mparams!='' && $this->urls_extension_manufacturers=='/') $this->redirect($this->construct_url($lang_alias.$this->manufacturers[$lid][(int)$_GET['manufacturers_id']].($mparams!=''?'?'.$mparams:'')),301);
+        else $this->redirect($this->construct_url($lang_alias.$this->manufacturers[$lid][(int)$_GET['manufacturers_id']].$this->urls_extension_manufacturers.($mparams!=''?'?'.$mparams:'')),301);
 
       }
 
@@ -588,6 +606,7 @@ class seo_friendly_urls{
             $HTTP_GET_VARS['products_id']=$k.'';//needs to be string because of the tep_get_all_get_params
             $this->page_type='product';
             $this->include_page=FILENAME_PRODUCT_INFO;
+            $this->current_page_type='products';
 
             break 2;
 
@@ -609,19 +628,26 @@ class seo_friendly_urls{
 
       $cp='';
       if(isset($this->categories[$lid])){
-      $rev_categories=array_flip($this->categories[$lid]);//flip categories aliases tree so to use isset instead of searching using a loop or in_array
-      if(isset($rev_categories[$qg])) $cp=$rev_categories[$qg];
+        $rev_categories=array_flip($this->categories[$lid]);//flip categories aliases tree so to use isset instead of searching using a loop or in_array
+
+        if(isset($rev_categories[$qg])) $cp=$rev_categories[$qg];
         if(tep_not_null($cp) && $this->enable_aliases['categories']){
 
           $this->extensions_check('categories',$url_extension,$qg,'manufacturers_id');
 
           $this->page_type='category';
+          $this->current_page_type='categories';
           //osCommerce needs those so to identify category page
           $cPath_array=explode('_',$cp);
           $cPath = implode('_', $cPath_array);
           $HTTP_GET_VARS['cPath']=$cPath;
           $current_category_id=(int)end($cPath_array);
           //osCommerce needs those so to identify category page
+
+        }else{//there is a category with emtpy name
+
+          //$this->redirect(tep_href_link($this->redirect_not_found_urls_to),404);
+          //die;
 
         }
       }
@@ -639,6 +665,8 @@ class seo_friendly_urls{
     }
 
     if($this->page_type=='page'){// IF PAGE TYPE == page try to find which page to include
+
+      $this->current_page_type='pages';
 
       //if language then remove alias from $qc
       if($this->display_language_alias || $this->display_default_language_alias){
@@ -661,7 +689,7 @@ class seo_friendly_urls{
 
       if($this->include_page!='' && !$this->enable_aliases['pages']){
 
-        $this->redirect($this->include_page,404);
+        $this->redirect($this->construct_url($this->include_page),404);
 
       }
 
@@ -682,6 +710,7 @@ class seo_friendly_urls{
 
             $isManufacturersPage=true;
             $this->page_type='category';
+            $this->current_page_type='manufacturers';
             $this->isManufacturersPage=$rev_manufacturers[$qg];
             //osCommerce needs those so to identify category page
             $HTTP_GET_VARS['manufacturers_id']=$rev_manufacturers[$qg];
@@ -691,29 +720,33 @@ class seo_friendly_urls{
 
         }else $isManufacturersPage=false;
 
-        if(!$isManufacturersPage){
+          if(!$isManufacturersPage){
 
-          if(!isset($this->pages[$PHP_SELF]) || (isset($this->pages[$PHP_SELF]) && $this->pages[$PHP_SELF]=='') || $PHP_SELF==FILENAME_DEFAULT ){
+            $this->current_page_type='pages';
 
-            if(!$this->enable_aliases['pages']) $this->redirect($this->redirect_not_found_urls_to,404);
+            if(!isset($this->pages[$PHP_SELF]) || (isset($this->pages[$PHP_SELF]) && $this->pages[$PHP_SELF]=='') || $PHP_SELF==FILENAME_DEFAULT ){
 
-            //if(!file_exists(DIR_FS_CATALOG.$PHP_SELF)){// if file exists and not in pages array then it is not indexed by SEO Friendly Urls
+              if(!$this->enable_aliases['pages']) $this->redirect($this->construct_url($this->redirect_not_found_urls_to),404);
 
-            if($PHP_SELF!=FILENAME_DEFAULT && file_exists(DIR_FS_CATALOG.$PHP_SELF)){
+              //if(!file_exists(DIR_FS_CATALOG.$PHP_SELF)){// if file exists and not in pages array then it is not indexed by SEO Friendly Urls
 
-            }else{
+              if($PHP_SELF!=FILENAME_DEFAULT && file_exists(DIR_FS_CATALOG.$PHP_SELF)){
 
-              if($this->pages[FILENAME_DEFAULT]==$this->redirect_not_found_urls_to) $this->redirect(tep_href_link(FILENAME_DEFAULT),404);
-              elseif(isset($this->pages[$this->redirect_not_found_urls_to]) && $qg!=$this->pages[$this->redirect_not_found_urls_to]){
+              }else{
 
-                //check to see if page we are about to redirect has rewrites
-                if($this->pages[$this->redirect_not_found_urls_to]!='') $this->redirect(tep_href_link($this->pages[$this->redirect_not_found_urls_to]),404);
-                else $this->redirect(tep_href_link($this->redirect_not_found_urls_to),404);
+                if($this->pages[FILENAME_DEFAULT]==$this->redirect_not_found_urls_to) $this->redirect(tep_href_link(FILENAME_DEFAULT),404);
+                elseif(isset($this->pages[$this->redirect_not_found_urls_to]) && $qg!=$this->pages[$this->redirect_not_found_urls_to]){
+
+                  //check to see if page we are about to redirect has rewrites
+                  if($this->pages[$this->redirect_not_found_urls_to]!='') $this->redirect(tep_href_link($this->pages[$this->redirect_not_found_urls_to]),404);
+                  else $this->redirect(tep_href_link($this->redirect_not_found_urls_to),404);
+
+                }
 
               }
 
-            }
 
+            }
 
           }
 
@@ -721,11 +754,9 @@ class seo_friendly_urls{
 
       }
 
-    }
-
       foreach($this->pages as $k => $v){
 
-        if($k==$qg && $v!=''){
+        if($v==$qg && $v!=''){
 
           $this->extensions_check('pages',$url_extension,$qg);
 
@@ -737,7 +768,7 @@ class seo_friendly_urls{
 
       if(!$isManufacturersPage && isset($this->pages[$qg]) && $this->pages[$qg]!=''){
 
-          $this->extensions_check('pages',$url_extension,$qg);
+        $this->extensions_check('pages',$url_extension,$qg);
 
       }
 
@@ -758,13 +789,13 @@ class seo_friendly_urls{
 
           $rest_params=tep_get_all_get_params(array('cPath'));
           $goTo=$this->categories[$languages_id][$_GET['cPath']].($rest_params!=''?'?'.$rest_params:'');
-          $this->redirect($goTo,301);
+          $this->redirect($this->construct_url($goTo),301);
 
         }else{
 
           if($this->redirect_not_found_urls_to!=FILENAME_DEFAULT){
 
-            $this->redirect($this->redirect_not_found_urls_to,301);
+            $this->redirect($this->construct_url($this->redirect_not_found_urls_to),301);
 
           }
 
@@ -792,7 +823,20 @@ class seo_friendly_urls{
         $goTo=$this->redirect_not_found_urls_to;
         if($product_alias!='') $goTo=$product_alias.($rest_params!=''?'?'.$rest_params:'');
 
-        $this->redirect($goTo,301);
+        $this->redirect($this->construct_url($goTo),301);
+
+      }
+
+    }
+
+    //redirect index.php to domain
+    if($this->redirect_to_domain && $qg==FILENAME_DEFAULT && $PHP_SELF==FILENAME_DEFAULT){
+
+      $params=tep_get_all_get_params();
+
+      if(!tep_not_null($params)){
+
+        $this->redirect($this->construct_url(),301);
 
       }
 
@@ -815,11 +859,9 @@ class seo_friendly_urls{
 
     if($suext!=''){
 
-      if($this->dont_use_backslash_if_parameters && $suext=='/' && $url_extension=='/'){
-
+      if($this->dont_use_backslash_if_parameters && $suext=='/' && $url_extension=='/'){//CHECKED
         $params = tep_get_all_get_params($parameters);
         if($params!='') $this->redirect(tep_href_link($qg.'?'.$params),301);
-
       }
 
       if($suext!=$url_extension){
@@ -842,6 +884,18 @@ class seo_friendly_urls{
 
       }
 
+    }else{
+
+      if($url_extension!=''){
+
+        //if(!$this->dont_use_backslash_if_parameters){
+
+          $params = tep_get_all_get_params($parameters);
+          $this->redirect(tep_href_link($qg.$suext.($params!=''?'?'.$params:'')),301);
+
+        //}
+
+      }
 
     }
 
@@ -862,7 +916,7 @@ class seo_friendly_urls{
     $dif = array_diff($queryParts, $ws_strs);
     $qg=implode('/',$dif);//so to get only the part of the url that we want
 
-    if($this->urls_extension_products!='' || $this->urls_extension_categories!='' || $this->urls_extension_pages!='' ){//if we have an extension or the backslash then remove it from $qg
+    //if($this->urls_extension_products!='' || $this->urls_extension_categories!='' || $this->urls_extension_pages!='' ){//if we have an extension or the backslash then remove it from $qg
 
       $path_parts=pathinfo($qg);
       if(isset($path_parts['extension']) && $path_parts['extension']!='php'){
@@ -874,7 +928,7 @@ class seo_friendly_urls{
 
       if(substr($qg, -1)=='/') $qg = rtrim($qg,'/');
 
-    }
+    //}
 
     $lid=$languages_id;
 
@@ -912,6 +966,22 @@ class seo_friendly_urls{
       $qwe=explode('/',$qg);
       array_pop($qwe);
       $ccategory=implode('/',$qwe);
+
+    }
+
+    //check to see if we have a manufacturers page
+    if($ccategory==''){
+
+      foreach($this->manufacturers as $k => $v){
+
+        if($v==$qg){
+
+          $ccategory=$qg;
+          break;
+
+        }
+
+      }
 
     }
 
@@ -994,7 +1064,14 @@ class seo_friendly_urls{
 
         if($get_key[0]=='cPath' && isset($get_key[1])) $parameter_cPath=$get_key[1];
         //elseif($get_key[0]=='products_id' && isset($get_key[1]) && $page==FILENAME_PRODUCT_INFO){//make sure it is used only in products page
-        elseif($get_key[0]=='products_id' && isset($get_key[1]) && $page!=FILENAME_SHOPPING_CART){
+        elseif($get_key[0]=='products_id' && isset($get_key[1])
+        && $page!=FILENAME_SHOPPING_CART
+        && $page!=FILENAME_PRODUCT_REVIEWS
+        && $page!=FILENAME_PRODUCT_REVIEWS_WRITE
+        && $page!=FILENAME_PRODUCTS_NEW
+        && $page!=FILENAME_SPECIALS
+        && $page!=FILENAME_ADVANCED_SEARCH_RESULT
+        ){
         //elseif($get_key[0]=='products_id' && isset($get_key[1])){
 
           $parameter_products_id=(int)$get_key[1];
@@ -1004,6 +1081,10 @@ class seo_friendly_urls{
             $parameter_rest[]='atts='.rawurldecode($get_key[1]);
 
           }
+
+          //if($this->current_page_type=='manufacturers'){
+            //$parameter_rest[]='manufacturers_id=1';//.rawurldecode($get_key[1]);
+          //}
 
         }
         //elseif($get_key[0]=='language' && isset($get_key[1])) $parameter_language=$get_key[1];
@@ -1085,12 +1166,19 @@ class seo_friendly_urls{
 
       }
 
+      if($this->hide_default_page_from_urls && $s_link=='' && $page==FILENAME_DEFAULT){
+
+        $page='';
+
+      }
+
       //check to see if we have alias otherwise use osc default urls
       $link .= $s_link!='' ? $s_link : $page. '?' . tep_output_string($parameters);
 
     }else{
 
-      $link .= $this->enable_aliases['pages'] && isset($this->pages[$page]) && $this->pages[$page]!='' ? $lang_alias.$this->pages[$page].$this->urls_extension_pages : $page;
+      $pg = $this->enable_aliases['pages'] && isset($this->pages[$page]) && $this->pages[$page]!='' ? $this->pages[$page].$this->urls_extension_pages : $page;
+      $link .= $this->hide_default_page_from_urls && $pg==FILENAME_DEFAULT ? '' : $pg;
       $separator = '?';
 
     }
@@ -1382,6 +1470,19 @@ class seo_friendly_urls{
 
   }
 
+  private function construct_url($url=''){
+
+    $link='';
+    if (ENABLE_SSL == true) {
+      $link = HTTPS_SERVER . DIR_WS_HTTPS_CATALOG;
+    } else {
+      $link = HTTP_SERVER . DIR_WS_HTTP_CATALOG;
+    }
+
+    return $link.$url;
+
+  }
+
   //CUSTOM REDIRECT FUNCTION SO TO INCLUDE 301 HEADER
   private function redirect($url, $status_code=200){
 
@@ -1561,13 +1662,13 @@ class seo_friendly_urls{
   private function install(){
 
     $presult = tep_db_query("SHOW COLUMNS FROM `".TABLE_PRODUCTS_DESCRIPTION."` LIKE 'products_alias'");
-    if(!tep_db_num_rows($presult)) tep_db_query("ALTER TABLE  `products_description` ADD  `products_alias` VARCHAR( 255 ) NOT NULL AFTER  `products_name` ;");
+    if(!tep_db_num_rows($presult)) tep_db_query("ALTER TABLE  `products_description` ADD  `products_alias` VARCHAR( 255 ) NOT NULL  DEFAULT  '' AFTER  `products_name` ;");
 
     $cresult = tep_db_query("SHOW COLUMNS FROM `".TABLE_CATEGORIES_DESCRIPTION."` LIKE 'categories_alias'");
-    if(!tep_db_num_rows($cresult)) tep_db_query("ALTER TABLE  `categories_description` ADD  `categories_alias` VARCHAR( 255 ) NOT NULL ;");
+    if(!tep_db_num_rows($cresult)) tep_db_query("ALTER TABLE  `categories_description` ADD  `categories_alias` VARCHAR( 255 ) NOT NULL  DEFAULT  '' ;");
 
     $mresult = tep_db_query("SHOW COLUMNS FROM `".TABLE_MANUFACTURERS_INFO."` LIKE 'manufacturers_alias'");
-    if(!tep_db_num_rows($mresult)) tep_db_query("ALTER TABLE `manufacturers_info` ADD  `manufacturers_alias` VARCHAR( 255 ) NOT NULL ;");
+    if(!tep_db_num_rows($mresult)) tep_db_query("ALTER TABLE `manufacturers_info` ADD  `manufacturers_alias` VARCHAR( 255 ) NOT NULL  DEFAULT  '' ;");
 
     tep_db_query("CREATE TABLE IF NOT EXISTS `".$this->classname."` (
       `".$this->classname."_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1598,61 +1699,69 @@ class seo_friendly_urls{
 
     tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display default language slug (Code) in the urls?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_DISPLAY_DEFAULT_LANGUAGE_ALIAS'."' , 'No', 'Do you want to display the default language slug (Code)? Note: this overrides the above option.', '".$group_id."', '7', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Hide ".FILENAME_DEFAULT." from urls?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_HIDE_DEFAULT_PAGE_FROM_URLS'."', 'No', 'While constructing urls, when there is a url that contains ".FILENAME_DEFAULT." it is not added in the url. This is useful when we dont want to display the ugly ".FILENAME_DEFAULT." at all.', '".$group_id."', '8', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+
 //REDIRECTS
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Redirect old url to new alias url?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_FORCE_'.$this->CLASSNAME."', 'True', 'Do you want to force the use of aliases when an old url entered in the address bar?', '".$group_id."', '8', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    $redirectLink = ENABLE_SSL == true ? HTTPS_SERVER . DIR_WS_HTTPS_CATALOG : HTTP_SERVER . DIR_WS_HTTP_CATALOG;
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('301 Permanent Redirect?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_PERMANENT_REDIRECT'."', 'No', 'When redirect old urls to new use 301 permanent direct?', '".$group_id."', '9', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Redirect ".FILENAME_DEFAULT." to ".$redirectLink." ?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_REDIRECT_TO_DOMAIN'."', 'Yes', 'Redirect ".FILENAME_DEFAULT." to ".$redirectLink." when there are no GET parameters?', '".$group_id."', '8', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handle not found urls as simple redirect to? (No 404 status code)".$advanced_edition_required_text."', '".$this->CLASSNAME.'_REDIRECT_NOT_FOUND_URLS_TO'."', 'index.php', 'Input in what page user will be directed when there is a not found url. Do not use alias, only the page file such as index.php. Note: that option does not produce a 404 status code. It is just a redirect.', '".$group_id."', '10', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Redirect old url to new alias url?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_FORCE_'.$this->CLASSNAME."', 'True', 'Do you want to force the use of aliases when an old url entered in the address bar?', '".$group_id."', '9', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handle not found urls as 404 include page? (404 status code)".$advanced_edition_required_text."', '".$this->CLASSNAME.'_INCLUDE_NOT_FOUND_PAGE'."', '', 'Input what page will be included when producing the 404 status code. Note: do not input an oscommerce page. Leave empty so to display the home page.', '".$group_id."', '11', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('301 Permanent Redirect?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_PERMANENT_REDIRECT'."', 'No', 'When redirect old urls to new use 301 permanent direct?', '".$group_id."', '10', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Not found url handling method?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_NOT_FOUND_URL_HANDLING_METHOD'."', '404 include page', 'Select a method for handling the not found pages.', '".$group_id."', '12', 'tep_cfg_select_option(array(\'Simple redirect to\', \'404 include page\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handle not found urls as simple redirect to? (No 404 status code)".$advanced_edition_required_text."', '".$this->CLASSNAME.'_REDIRECT_NOT_FOUND_URLS_TO'."', 'index.php', 'Input in what page user will be directed when there is a not found url. Do not use alias, only the page file such as index.php. Note: that option does not produce a 404 status code. It is just a redirect.', '".$group_id."', '11', now())");
+
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handle not found urls as 404 include page? (404 status code)".$advanced_edition_required_text."', '".$this->CLASSNAME.'_INCLUDE_NOT_FOUND_PAGE'."', '', 'Input what page will be included when producing the 404 status code. Note: do not input an oscommerce page. Leave empty so to display the home page.', '".$group_id."', '12', now())");
+
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Not found url handling method?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_NOT_FOUND_URL_HANDLING_METHOD'."', '404 include page', 'Select a method for handling the not found pages.', '".$group_id."', '13', 'tep_cfg_select_option(array(\'Simple redirect to\', \'404 include page\'), ', now())");
 
 //ALIASES
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Auto create aliases?', '".$this->CLASSNAME.'_AUTO_CREATE_ALIASES'."', 'True', 'Do you want to auto create aliases? (Applies only in categories and products pages)', '".$group_id."', '13', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Auto create aliases?', '".$this->CLASSNAME.'_AUTO_CREATE_ALIASES'."', 'True', 'Do you want to auto create aliases? (Applies only in categories and products pages)', '".$group_id."', '14', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Lower case auto created aliases?', '".$this->CLASSNAME.'_LOWERCASE_AUTO_CREATED_ALIASES'."', 'Yes', 'Do you want to make the auto created aliases to lower case? (This applies only to auto created aliases not the custom ones)', '".$group_id."', '14', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Lower case auto created aliases?', '".$this->CLASSNAME.'_LOWERCASE_AUTO_CREATED_ALIASES'."', 'Yes', 'Do you want to make the auto created aliases to lower case? (This applies only to auto created aliases not the custom ones)', '".$group_id."', '15', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Transliterate characters to ASCII?', '".$this->CLASSNAME.'_TRANSLITERATE_CHARACTERS_TO_ASCII'."', 'True', 'Do you want to transliterate alias characters to ASCII? (Applies only in categories and products pages)', '".$group_id."', '15', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Transliterate characters to ASCII?', '".$this->CLASSNAME.'_TRANSLITERATE_CHARACTERS_TO_ASCII'."', 'True', 'Do you want to transliterate alias characters to ASCII? (Applies only in categories and products pages)', '".$group_id."', '16', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Use aliases from default language?', '".$this->CLASSNAME.'_USE_DEFAULT_LANGUAGE_ALIASES'."', 'Yes', 'Do you want to use the default language aliases? In the greek language when english is default use: gr/monitors instead of gr/othones', '".$group_id."', '16', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Use aliases from default language?', '".$this->CLASSNAME.'_USE_DEFAULT_LANGUAGE_ALIASES'."', 'Yes', 'Do you want to use the default language aliases? In the greek language when english is default use: gr/monitors instead of gr/othones', '".$group_id."', '17', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Use custom aliases?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_USE_CUSTOM_ALIASES'."', 'False', 'Do you want to use custom aliases? Custom aliases use the values from table fields products_alias, categories_alias and manufacturers_alias.".$pro_version_required."', '".$group_id."', '17', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Use custom aliases?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_USE_CUSTOM_ALIASES'."', 'False', 'Do you want to use custom aliases? Custom aliases use the values from table fields products_alias, categories_alias and manufacturers_alias.".$pro_version_required."', '".$group_id."', '18', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Fix duplicate aliases?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_FIX_DUPLICATE_ALIASES'."', 'Yes', 'Do you want to fix duplicate aliases. Note: if duplicate alias found then a number will be appended at the end of the url. Note: duplicate fix is ony between pages, products and cateogries not manufacturers".$pro_version_required."', '".$group_id."', '18', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Fix duplicate aliases?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_FIX_DUPLICATE_ALIASES'."', 'Yes', 'Do you want to fix duplicate aliases. Note: if duplicate alias found then a number will be appended at the end of the url. Note: duplicate fix is ony between pages, products and cateogries not manufacturers".$pro_version_required."', '".$group_id."', '19', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Full path aliases?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_FULL_PATH_ALIASES'."', 'Yes', 'For example: http://mystore.com/dvd-movies/action/speed vs http://mystore.com/speed.', '".$group_id."', '19', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Full path aliases?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_FULL_PATH_ALIASES'."', 'Yes', 'For example: http://mystore.com/dvd-movies/action/speed vs http://mystore.com/speed.', '".$group_id."', '20', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
 //CACHE ALIASES
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Cache aliases?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_CACHE_ALIASES'."', 'No', 'Cache aliases?.', '".$group_id."', '20', 'tep_cfg_select_option(array(\'No\', \'mysql\', \'apc\',\'file\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Cache aliases?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_CACHE_ALIASES'."', 'No', 'Cache aliases?.', '".$group_id."', '21', 'tep_cfg_select_option(array(\'No\', \'mysql\', \'apc\',\'file\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Reset Aliases Cache?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_RESET_ALIASES_CACHE'."', 'No', 'Reset aliases cache? Note: <b>this is a must when you make changes to the aliases structure based on the above options.</b>', '".$group_id."', '21', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Reset Aliases Cache?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_RESET_ALIASES_CACHE'."', 'No', 'Reset aliases cache? Note: <b>this is a must when you make changes to the aliases structure based on the above options.</b>', '".$group_id."', '22', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Days to store Cache?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_CACHE_DAYS'."', '3', 'How many days a cache will be kept before auto deleting itself. Set 0 to not auto delete.', '".$group_id."', '22', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Days to store Cache?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_CACHE_DAYS'."', '3', 'How many days a cache will be kept before auto deleting itself. Set 0 to not auto delete.', '".$group_id."', '23', now())");
 
 //EXTRAS
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Filter Short Words?', '".$this->CLASSNAME.'_FILTER_SHORT_WORDS'."', '1', 'When creating a link from a product name you may want to remove the shorter words like a | or | at | the .. etc. Set 0 for not filtering any short words.', '".$group_id."', '23', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Filter Short Words?', '".$this->CLASSNAME.'_FILTER_SHORT_WORDS'."', '1', 'When creating a link from a product name you may want to remove the shorter words like a | or | at | the .. etc. Set 0 for not filtering any short words.', '".$group_id."', '24', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Products Urls extension?', '".$this->CLASSNAME.'_URLS_EXTENSION_PRODUCTS'."', '', 'Input the extension you desire to be appended at the end of the products urls. For example: html<br>Tip: <b>enter the backslash char / if you want your urls to end with /</b>', '".$group_id."', '24', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Products Urls extension?', '".$this->CLASSNAME.'_URLS_EXTENSION_PRODUCTS'."', '', 'Input the extension you desire to be appended at the end of the products urls. For example: html<br>Tip: <b>enter the backslash char / if you want your urls to end with /</b>', '".$group_id."', '25', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Categories Urls extension?', '".$this->CLASSNAME.'_URLS_EXTENSION_CATEGORIES'."', '', 'Input the extension you desire to be appended at the end of the categories urls. For example: html<br>Tip: <b>enter the backslash char / if you want your urls to end with /</b>', '".$group_id."', '25', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Categories Urls extension?', '".$this->CLASSNAME.'_URLS_EXTENSION_CATEGORIES'."', '', 'Input the extension you desire to be appended at the end of the categories urls. For example: html<br>Tip: <b>enter the backslash char / if you want your urls to end with /</b>', '".$group_id."', '26', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Manufacturers Urls extension?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_URLS_EXTENSION_MANUFACTURERS'."', '', 'Input the extension you desire to be appended at the end of the manufacturers urls. For example: html<br>Tip: <b>enter the backslash char / if you want your urls to end with /</b>', '".$group_id."', '26', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Manufacturers Urls extension?".$advanced_edition_required_text."', '".$this->CLASSNAME.'_URLS_EXTENSION_MANUFACTURERS'."', '', 'Input the extension you desire to be appended at the end of the manufacturers urls. For example: html<br>Tip: <b>enter the backslash char / if you want your urls to end with /</b>', '".$group_id."', '27', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Pages Urls extension?', '".$this->CLASSNAME.'_URLS_EXTENSION_PAGES'."', '', 'Input the extension you desire to be appended at the end of the pages urls. For example: html<br>Tip: <b>enter the backslash char / if you want your urls to end with /</b>', '".$group_id."', '27', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Pages Urls extension?', '".$this->CLASSNAME.'_URLS_EXTENSION_PAGES'."', '', 'Input the extension you desire to be appended at the end of the pages urls. For example: html<br>Tip: <b>enter the backslash char / if you want your urls to end with /</b>', '".$group_id."', '28', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Do not use / if there are parameters in url. Applies only when extension is set to backslash. (Experimental)', '".$this->CLASSNAME.'_DONT_USE_BACKSLASH_IF_PARAMETERS'."', 'No', 'If we have set as an extension a backslash then if the url has parameters then display the / or not. <b>I.e. drama/?filter=2a vs drama?filter=2a</b>', '".$group_id."', '28','tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Do not use / if there are parameters in url. Applies only when extension is set to backslash. (Experimental)', '".$this->CLASSNAME.'_DONT_USE_BACKSLASH_IF_PARAMETERS'."', 'No', 'If we have set as an extension a backslash then if the url has parameters then display the / or not. <b>I.e. drama/?filter=2a vs drama?filter=2a</b>', '".$group_id."', '29','tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Re-index root pages in the root?".$advanced_edition_required_text."', '".$this->CLASSNAME."_DISCOVER_NEW_PAGES', 'No', 'Do you want to discover new pages added in the root so to make it possible to alias them? (This option auto sets to No when finished operation.)', '".$group_id."', '29', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Re-index root pages in the root?".$advanced_edition_required_text."', '".$this->CLASSNAME."_DISCOVER_NEW_PAGES', 'No', 'Do you want to discover new pages added in the root so to make it possible to alias them? (This option auto sets to No when finished operation.)', '".$group_id."', '30', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Remove ".$this->name." ? :-(', '".$this->CLASSNAME."_REMOVE', 'No', 'Do you want to remove ".$this->name."? Note: it does not delete the ".$this->classname.".php class. By setting Yes the ".$this->name." will be auto removed after a visit on any page in your front store.', '".$group_id."', '30', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Remove ".$this->name." ? :-(', '".$this->CLASSNAME."_REMOVE', 'No', 'Do you want to remove ".$this->name."? Note: it does not delete the ".$this->classname.".php class. By setting Yes the ".$this->name." will be auto removed after a visit on any page in your front store.', '".$group_id."', '31', 'tep_cfg_select_option(array(\'Yes\', \'No\'), ', now())");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Version:', '".$this->CLASSNAME."_VERSION', '".$this->version."', 'Current version of ".$this->name." (Do not edit as it is used by the class)', '".$group_id."', '31', 'tep_cfg_select_option(array(\'".$this->version."\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Version:', '".$this->CLASSNAME."_VERSION', '".$this->version."', 'Current version of ".$this->name." (Do not edit as it is used by the class)', '".$group_id."', '32', 'tep_cfg_select_option(array(\'".$this->version."\'), ', now())");
+
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Edition:', '".$this->CLASSNAME."_EDITION', '".$this->edition."', 'Current edition of ".$this->name." (Do not edit as it is used by the class)', '".$group_id."', '33', 'tep_cfg_select_option(array(\'".$this->edition."\'), ', now())");
 
     global $PHP_SELF;
 
@@ -1671,7 +1780,7 @@ class seo_friendly_urls{
     }
     $values=array();
     $keys=array();
-    $cnt=31;
+    $cnt=33;
     foreach($files_array as $fa){
 
       $values[]="('Alias for: <b>".$fa."</b>".$advanced_edition_required_text."', '".$this->CLASSNAME."_ALIAS_FOR_".$fa."', '', 'Input the alias for the ".$fa.". Leave empty for no alias use.<br><br>If not empty: MAKE SURE YOU CHANGE <b>require(\'includes/application_top.php\');</b> TO <b>require_once(\'includes/application_top.php\');</b> on this page.</b>', '".$group_id."', '".(++$cnt)."', now())";
@@ -1690,10 +1799,9 @@ class seo_friendly_urls{
     if(tep_db_num_rows($query)){
 
       $row=tep_db_fetch_array($query);
-      $group_id=$row['configuration_group_id'];
 
-      tep_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_group_id = ".(int)$group_id." ");
-      tep_db_query("delete from " . TABLE_CONFIGURATION_GROUP . " where configuration_group_id = ".(int)$group_id." ");
+      tep_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_group_id = ".(int)$row['configuration_group_id']." ");
+      tep_db_query("delete from " . TABLE_CONFIGURATION_GROUP . " where configuration_group_id = ".(int)$row['configuration_group_id']." ");
 
     }
 
