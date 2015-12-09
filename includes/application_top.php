@@ -290,6 +290,21 @@
     include(DIR_WS_CLASSES . 'language.php');
     $lng = new language();
 
+//pure:modified
+// set the language
+    if (!tep_session_is_registered('language')) {
+      tep_session_register('language');
+      tep_session_register('languages_id');
+    }
+
+    include(DIR_WS_CLASSES . 'language.php');
+    $lng = new language();
+    $lng->set_language(preg_replace('/^(..)\..*/','$1',$_SERVER['HTTP_HOST']));
+    $language = $lng->language['directory'];
+    $languages_id = $lng->language['id'];
+ 
+//original version:
+/*
     if (isset($HTTP_GET_VARS['language']) && tep_not_null($HTTP_GET_VARS['language'])) {
       $lng->set_language($HTTP_GET_VARS['language']);
     } else {
@@ -299,7 +314,7 @@
     $language = $lng->language['directory'];
     $languages_id = $lng->language['id'];
   }
-
+*/
 // include the language translations
   $_system_locale_numeric = setlocale(LC_NUMERIC, 0);
   require(DIR_WS_LANGUAGES . $language . '.php');
