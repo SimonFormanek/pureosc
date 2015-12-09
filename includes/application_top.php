@@ -280,8 +280,8 @@
   require(DIR_WS_CLASSES . 'mime.php');
   require(DIR_WS_CLASSES . 'email.php');
 
+//pure:modified
 // set the language
-  if (!tep_session_is_registered('language') || isset($HTTP_GET_VARS['language'])) {
     if (!tep_session_is_registered('language')) {
       tep_session_register('language');
       tep_session_register('languages_id');
@@ -289,7 +289,17 @@
 
     include(DIR_WS_CLASSES . 'language.php');
     $lng = new language();
-
+    $l = preg_replace('/^(..)\..*/','$1',$_SERVER['HTTP_HOST']);
+    if (tep_not_null($l)) {
+	$lng->set_language($l); 
+    } else {
+	$lng->set_language(DEFAULT_LANGUAGE);
+    }
+    $language = $lng->language['directory'];
+    $languages_id = $lng->language['id'];
+ 
+//original version:
+/*
     if (isset($HTTP_GET_VARS['language']) && tep_not_null($HTTP_GET_VARS['language'])) {
       $lng->set_language($HTTP_GET_VARS['language']);
     } else {
@@ -299,7 +309,7 @@
     $language = $lng->language['directory'];
     $languages_id = $lng->language['id'];
   }
-
+*/
 // include the language translations
   $_system_locale_numeric = setlocale(LC_NUMERIC, 0);
   require(DIR_WS_LANGUAGES . $language . '.php');
