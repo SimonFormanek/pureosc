@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  require('includes/application_top.php');
+  require_once('includes/application_top.php');
 
   switch ($HTTP_GET_VARS['action']) {
     case 'banner':

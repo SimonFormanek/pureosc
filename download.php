@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  include('includes/application_top.php');
+  require_once('includes/application_top.php');
 
   if (!tep_session_is_registered('customer_id')) die;
 

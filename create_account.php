@@ -18,7 +18,7 @@
   Released under the GNU General Public License
 */
 
-  require('includes/application_top.php');
+  require_once('includes/application_top.php');
 
 // needs to be included earlier to set the success message in the messageStack
   require(DIR_WS_LANGUAGES . $language . '/' . FILENAME_CREATE_ACCOUNT);

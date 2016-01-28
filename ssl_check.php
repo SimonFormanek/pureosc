@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  require('includes/application_top.php');
+  require_once('includes/application_top.php');
 
   require(DIR_WS_LANGUAGES . $language . '/' . FILENAME_SSL_CHECK);
 

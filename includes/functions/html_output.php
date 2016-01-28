@@ -40,14 +40,20 @@
       die('</td></tr></table></td></tr></table><br /><br /><font color="#ff0000"><strong>Error!</strong></font><br /><br /><strong>Unable to determine connection method on a link!<br /><br />Known methods: NONSSL SSL</strong><br /><br />');
     }
 
-    if (tep_not_null($parameters)) {
-      $link .= $page . '?' . tep_output_string($parameters);
-      $separator = '&';
-    } else {
+    //SEO Friendly Urls
+    global $seo_friendly_urls;
+    if(isset($seo_friendly_urls) && $seo_friendly_urls->enabled){
+      extract($seo_friendly_urls->process_link($page,$parameters));
+      $link .= $seolink;
+    }else{
+      if (tep_not_null($parameters)) {
+        $link .= $page . '?' . tep_output_string($parameters);
+        $separator = '&';
+    }else{
       $link .= $page;
       $separator = '?';
+      }
     }
-
     while ( (substr($link, -1) == '&') || (substr($link, -1) == '?') ) $link = substr($link, 0, -1);
 
 // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
