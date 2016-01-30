@@ -279,7 +279,6 @@
 // include the mail classes
   require(DIR_WS_CLASSES . 'mime.php');
   require(DIR_WS_CLASSES . 'email.php');
-
 //pure:modified
 // set the language
     if (!tep_session_is_registered('language')) {
@@ -300,6 +299,16 @@
  
 //original version:
 /*
+// set the language
+  if (!tep_session_is_registered('language') || isset($HTTP_GET_VARS['language'])) {
+    if (!tep_session_is_registered('language')) {
+      tep_session_register('language');
+      tep_session_register('languages_id');
+    }
+
+    include(DIR_WS_CLASSES . 'language.php');
+    $lng = new language();
+
     if (isset($HTTP_GET_VARS['language']) && tep_not_null($HTTP_GET_VARS['language'])) {
       $lng->set_language($HTTP_GET_VARS['language']);
     } else {
@@ -339,7 +348,8 @@
   require(DIR_WS_CLASSES . 'alertbox.php');
   require(DIR_WS_CLASSES . 'message_stack.php');
   $messageStack = new messageStack;
-
+  //SEO URLs
+  require(DIR_WS_CLASSES . 'seo_friendly_urls.php');
 // Shopping cart actions
   if (isset($HTTP_GET_VARS['action'])) {
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled
@@ -347,17 +357,25 @@
       tep_redirect(tep_href_link(FILENAME_COOKIE_USAGE));
     }
 
-    if (DISPLAY_CART == 'true') {
-      $goto =  FILENAME_SHOPPING_CART;
-      $parameters = array('action', 'cPath', 'products_id', 'pid');
-    } else {
-      $goto = $PHP_SELF;
-      if ($HTTP_GET_VARS['action'] == 'buy_now') {
-        $parameters = array('action', 'pid', 'products_id');
-      } else {
-        $parameters = array('action', 'pid');
-      }
-    }
+if (DISPLAY_CART == 'true') {
+$goto = FILENAME_SHOPPING_CART;
+$parameters = array('action', 'cPath', 'products_id', 'pid');
+} else {
+$goto = $PHP_SELF;
+if ($HTTP_GET_VARS['action'] == 'buy_now') {
+$parameters = array('action', 'pid', 'products_id');
+} else {
+$parameters = array('action', 'pid');
+}
+//SEO Friendly Urls Modification get the right return url when we dont display cart after certain action
+if(isset($seo_friendly_urls) && $seo_friendly_urls->enabled){
+$gt=$seo_friendly_urls->process_goto_link();
+if($gt!='') $goto=$gt;
+}
+}
+//SEO Friendly Urls Modification so to exclude atts GET variable used when user has selected attributes
+$parameters[] = 'atts';
+
     switch ($HTTP_GET_VARS['action']) {
       // customer wants to update the product quantity in their shopping cart
       case 'update_product' : $n=sizeof($HTTP_POST_VARS['products_id']);
