@@ -242,9 +242,12 @@
           */
           $where_str .= "(";
           if ( (defined('MODULE_HEADER_TAGS_PRODUCT_META_KEYWORDS_STATUS')) && (MODULE_HEADER_TAGS_PRODUCT_META_KEYWORDS_STATUS != 'Meta') ) {
-            $where_str .= "pd.products_seo_keywords LIKE '%" . tep_db_input($keyword) . "%' OR ";
+	    //pure:bugfix missing COLLATE utf8_bin orig: $where_str .= "pd.products_seo_keywords LIKE '%" . tep_db_input($keyword) . "%' OR ";
+            $where_str .= "pd.products_seo_keywords LIKE '%" . tep_db_input($keyword) . "%' COLLATE utf8_bin OR "; 
           }
-          $where_str .= "pd.products_name like '%" . tep_db_input($keyword) . "%' or p.products_model like '%" . tep_db_input($keyword) . "%' or m.manufacturers_name like '%" . tep_db_input($keyword) . "%'";
+	    //pure:bugfix: missing COLLATE utf8_bin /*$where_str .= "pd.products_name like '%" . tep_db_input($keyword) . "%' or p.products_model like '%" . tep_db_input($keyword) . "%' or m.manufacturers_name like '%" . tep_db_input($keyword) . "%'";*/
+	    $where_str .= "pd.products_name like '%" . tep_db_input($keyword) . "%' COLLATE utf8_bin or p.products_model like '%" . tep_db_input($keyword) . "%' COLLATE utf8_bin or m.manufacturers_name like '%" . tep_db_input($keyword) . "%' COLLATE utf8_bin"; 
+
           /* ** EOF alteration for SEO Header Tags RELOADED ** */
           if (isset($HTTP_GET_VARS['search_in_description']) && ($HTTP_GET_VARS['search_in_description'] == '1')) $where_str .= " or pd.products_description like '%" . tep_db_input($keyword) . "%'";
           $where_str .= ')';
@@ -325,7 +328,7 @@
     }
   }
 
-  $listing_sql = $select_str . $from_str . $where_str . $order_str;
+ $listing_sql = $select_str . $from_str . $where_str . $order_str;
 
   require(DIR_WS_MODULES . FILENAME_PRODUCT_LISTING);
 ?>
