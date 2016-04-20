@@ -1,4 +1,7 @@
 <?php
+  define('MYSQL_DEBUG','off'); // on/off = set to 'on' for user rights problems
+
+
   define('CUSTOMERS_KEY_PATH','/home/f/git/pureosc/shop_keys/customers_keys/'); //SECURITY WARNING: need to bee obfuscated 
   define('CUSTOMERS_ADMIN_PUBLIC_KEY_PATH','/home/f/git/pureosc/shop_keys/admin_public_keys/'); //SECURITY WARNING: on production environement save keys on removable media
   define('SERVER_INSTANCE','admin'); // admin or empty for shop

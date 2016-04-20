@@ -36,8 +36,11 @@
     if (defined('STORE_DB_TRANSACTIONS') && (STORE_DB_TRANSACTIONS == 'true')) {
       error_log('ERROR: [' . $errno . '] ' . $error . "\n", 3, STORE_PAGE_PARSE_TIME_LOG);
     }
-
+if (MYSQL_DEBUG == 'on') {
     die('<font color="#000000"><strong>' . $errno . ' - ' . $error . '<br /><br />' . $query . '<br /><br /><small><font color="#ff0000">[TEP STOP]</font></small><br /><br /></strong></font>');
+    } else {
+    die('<font color="#000000"><strong>Mysql Error<br /></strong></font>');
+    }
   }
 
   function tep_db_query($query, $link = 'db_link') {
