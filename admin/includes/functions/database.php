@@ -22,7 +22,7 @@
     if ( !mysqli_connect_errno() ) {
       mysqli_set_charset($$link, 'utf8');
     } 
-
+    unset($username, $password);  //pure:bugfix security - password can be echoed
     return $$link;
   }
 
