@@ -26,14 +26,18 @@
 // on RedHat6.0 I used 'en_US'
 // on FreeBSD 4.0 I use 'en_US.ISO_8859-1'
 // this may not work under win32 environments..
-setlocale(LC_ALL, array('en_US.UTF-8', 'en_US.UTF8', 'enu_usa'));
-define('DATE_FORMAT_SHORT', '%m/%d/%Y',true);  // this is used for strftime()
+//setlocale(LC_ALL, array('en_US.UTF-8', 'en_US.UTF8', 'enu_usa')); //pure:todo LC_ALL error?
+@setlocale(LC_TIME, 'cs_CZ.UTF-8');
+define('DATE_FORMAT_SHORT', '%d.%m.%Y',true);  // this is used for strftime()
 define('DATE_FORMAT_LONG', '%A %d %B, %Y',true); // this is used for strftime()
-define('DATE_FORMAT', 'm/d/Y',true); // this is used for date()
-define('PHP_DATE_TIME_FORMAT', 'm/d/Y H:i:s',true); // this is used for date()
+define('DATE_FORMAT', 'd.m.Y',true); // this is used for date()
+define('PHP_DATE_TIME_FORMAT', 'd.m.Y H:i:s',true); // this is used for date()
 define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S',true);
-define('JQUERY_DATEPICKER_I18N_CODE', '',true); // leave empty for en_US; see http://jqueryui.com/demos/datepicker/#localization
-define('JQUERY_DATEPICKER_FORMAT', 'mm/dd/yy',true); // see http://docs.jquery.com/UI/Datepicker/formatDate
+define('JQUERY_DATEPICKER_I18N_CODE', 'cs',true); // leave empty for en_US; see http://jqueryui.com/demos/datepicker/#localization pure:todo
+define('JQUERY_DATEPICKER_FORMAT', 'mm.dd.yy',true); // see http://docs.jquery.com/UI/Datepicker/formatDate
+
+
+
 
 ////
 // Return date in raw format
@@ -48,7 +52,7 @@ function tep_date_raw($date, $reverse = false) {
 }
 
 // Global entries for the <html> tag
-define('HTML_PARAMS','dir="ltr" lang="en"',true);
+define('HTML_PARAMS','dir="ltr" lang="cs"',true);
 
 // charset for web pages and emails
 define('CHARSET', 'utf-8',true);
