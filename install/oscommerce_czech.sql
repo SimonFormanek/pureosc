@@ -537,6 +537,7 @@ DROP TABLE IF EXISTS products_to_categories;
 CREATE TABLE products_to_categories (
   products_id int NOT NULL,
   categories_id int NOT NULL,
+  canonical int(1),
   PRIMARY KEY (products_id,categories_id)
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
