@@ -127,3 +127,5 @@ define('TEXT_EDIT_CATEGORIES_DESCRIPTION', 'Edit the Category Description:',true
   define('TEXT_PRODUCTS_SEO_DESCRIPTION', 'Product Meta Description for SEO:<br><small>Add a &lt;description&gt; Meta Element.</small>',true);
   define('TEXT_PRODUCTS_SEO_KEYWORDS', 'Product Meta Keywords for SEO:<br><small>Add a &lt;keyword&gt; Meta Element.<br>Must be comma separated.</small>',true);
   define('TEXT_PRODUCTS_MINI_DESCRIPTION', 'Product Mini Description:<br><small>Used in the "product list" in Category Pages.</small>',true);
+  //pure:new products_templates
+  define('TEXT_PRODUCTS_TEMPLATE','Select template (article/product):');

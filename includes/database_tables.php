@@ -45,6 +45,7 @@
   define('TABLE_ORDERS_STATUS', 'orders_status');
   define('TABLE_ORDERS_STATUS_HISTORY', 'orders_status_history');
   define('TABLE_ORDERS_TOTAL', 'orders_total');
+  define('TABLE_PRODUCT_TEMPLATES','product_templates');
   define('TABLE_PRODUCTS', 'products');
   define('TABLE_PRODUCTS_ATTRIBUTES', 'products_attributes');
   define('TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD', 'products_attributes_download');

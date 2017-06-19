@@ -128,3 +128,5 @@ define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Error: Category cannot be moved 
   define('TEXT_PRODUCTS_SEO_DESCRIPTION', 'Popis produktu pro META hlavičku dokumentu (SEO, vyhledávání):',true);
   define('TEXT_PRODUCTS_SEO_KEYWORDS', 'Meta klíčová slova (SEO, vyhledávání):<small><br />Slova oddělujte čárkou.</small>',true);
   define('TEXT_PRODUCTS_MINI_DESCRIPTION', 'Stručný popis produktu:<small>Pro výpis kategorie</small>',true);
+//pure:new products_templates
+  define('TEXT_PRODUCTS_TEMPLATE','Šablona stránky:',true);

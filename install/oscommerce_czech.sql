@@ -443,6 +443,7 @@ CREATE TABLE products (
   products_ordered int NOT NULL default '0',
   products_custom_date datetime,
   products_sort_order int(10) NULL,
+  product_template int(2),
   PRIMARY KEY (products_id),
   KEY idx_products_model (products_model),
   KEY idx_products_date_available (products_date_available),
@@ -696,6 +697,10 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('New products Sort Order', 'NEW_PRODUCTS_SORT_ORDER', 'products_date_available DESC, products_date_added DESC', 'Example settings: \"products_date_available DESC, products_date_added DESC\" OR for Date Products \"products_custom_date\"', '1', '22', now());
 #pure:new wwww.site.com or site.com?
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Default URL with www', 'USE_WWW', 'false', 'Default URL: www.site.com', '1', '23', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
+#pure:new default template select product/article
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Default product template', 'DEFAULT_PRODUCT_TEMPLATE', '1', '1=product, 2=article', '1', '24', now());
+#pure:new Allow reviews?
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Allow reviews', 'ALLOW_REVIEWS', 'false', 'Allow reviews for products?', '1', '25', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('First Name', 'ENTRY_FIRST_NAME_MIN_LENGTH', '2', 'Minimum length of first name', '2', '1', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Last Name', 'ENTRY_LAST_NAME_MIN_LENGTH', '2', 'Minimum length of last name', '2', '2', now());
@@ -840,7 +845,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display The Page Parse Time', 'DISPLAY_PAGE_PARSE_TIME', 'true', 'Display the page parse time (store page parse time must be enabled)', '10', '4', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Store Database Queries', 'STORE_DB_TRANSACTIONS', 'false', 'Store the database queries in the page parse time log', '10', '5', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Use Cache', 'USE_CACHE', 'true', 'Use caching features', '11', '1', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Use Cache', 'USE_CACHE', 'false', 'Use caching features', '11', '1', 'tep_cfg_select_option(array(\'true\', \'false\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Cache Directory', 'DIR_FS_CACHE', '/tmp/', 'The directory where the cached files are saved', '11', '2', now());
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('E-Mail Transport Method', 'EMAIL_TRANSPORT', 'sendmail', 'Defines if this server uses a local connection to sendmail or uses an SMTP connection via TCP/IP. Servers running on Windows and MacOS should change this setting to SMTP.', '12', '1', 'tep_cfg_select_option(array(\'sendmail\', \'smtp\', \'gmail\'),', now());
@@ -1612,7 +1617,7 @@ CREATE TABLE mm_newsletters (
   status int(1) DEFAULT NULL,
   locked int(1) DEFAULT '0',
   PRIMARY KEY (`newsletters_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=INNODB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 DROP TABLE IF EXISTS mm_responsemail;
 CREATE TABLE mm_responsemail (
@@ -1624,7 +1629,7 @@ CREATE TABLE mm_responsemail (
   placeholders text NOT NULL,
   status tinyint(1) NOT NULL,
   PRIMARY KEY (`mail_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS mm_responsemail_backup;
 CREATE TABLE mm_responsemail_backup (
@@ -1636,7 +1641,7 @@ CREATE TABLE mm_responsemail_backup (
   placeholders text NOT NULL,
   status tinyint(1) NOT NULL,
   PRIMARY KEY (`mail_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS mm_responsemail_reset;
 CREATE TABLE mm_responsemail_reset (
@@ -1648,7 +1653,7 @@ CREATE TABLE mm_responsemail_reset (
   placeholders text NOT NULL,
   status tinyint(1) NOT NULL,
   PRIMARY KEY (`mail_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS mm_templates;
 CREATE TABLE mm_templates (
@@ -1659,7 +1664,7 @@ CREATE TABLE mm_templates (
   txtheader text NOT NULL,
   txtfooter text NOT NULL,
   PRIMARY KEY (`template_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=INNODB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 INSERT INTO `mm_newsletters` (`newsletters_id`, `title`, `subject`, `content`, `txtcontent`, `template`, `module`, `mailrate`, `date_added`, `date_sent`, `status`, `locked`) VALUES
 (5, 'Weekly Newsletter', 'Example Email 2', '<table>\r\n  <tr> \r\n     <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; color: #666666; margin:7px 0px;"  align="left" valign="top" width="50%">You can put add text and images to mail manager html emails.<br/><br >As installed,  all mail manager template and email images are hardcoded to the css-oscommerce.com website. <strong>You should go through these emails and hardcoded them to your website, or wherever you choose to upload the images,  by changing  http://www.css-oscommerce.com to http://www.yoursite.com. </strong> They should be hardcoded because the sent email will be looking for the images from a remote site, ie your customers email box. \r\n</td>\r\n     <td width="50%">\r\nThe content on this side does not have any inline text styling and will be rendered according to the settings in the customers email program. \r\n    </td>\r\n  </tr>\r\n</table>', 'You can put add text and images to mail manager html emails.As installed,  \r\nall mail manager template and email images are hardcoded to the \r\ncss-oscommerce.com website. You should go through these emails and \r\nhardcoded them to your website, or wherever you choose to upload the images,  \r\nby changing  http://www.css-oscommerce.com to http://www.yoursite.com.  \r\nThey should be hardcoded because the sent email will be looking for the images \r\nfrom a remote site, ie your customers email box. \r\n\r\nthere is some txt contentthere is some txt contentthere is some txt content\r\nthere is some txt contentthere is some txt contentthere is some txt content\r\nthere is some txt contentthere is some txt contentthere is some txt content\r\nthere is some txt contentthere is some txt contentthere is some txt content', 'Bluebox', 'newsletters', 4, '2010-10-12 16:23:18', '2011-07-15 06:35:25', 1, 1),
@@ -1705,4 +1710,13 @@ CREATE TABLE mm_bulkmail (
   date_added datetime NOT NULL,
   date_sent datetime DEFAULT NULL,
   PRIMARY KEY (`bulkmail_id`) 
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+# pure:new product_templates
+DROP TABLE IF EXISTS product_templates;
+CREATE TABLE product_templates (
+  `product_template_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_template_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`product_template_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `product_templates` VALUES (1,'product'),(2,'article - reviews FALSE'),(3,'article - reviews TRUE');

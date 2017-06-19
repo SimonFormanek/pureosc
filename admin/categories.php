@@ -221,7 +221,8 @@
         $products_date_available = tep_db_prepare_input($HTTP_POST_VARS['products_date_available']);
 
         //pure: make permanent, used for sorting $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
-
+				//pure:new if empty product_template - use default
+				if ($HTTP_POST_VARS['product_template'] =='') $HTTP_POST_VARS['product_template'] = DEFAULT_PRODUCT_TEMPLATE;
         $sql_data_array = array('products_quantity' => (int)tep_db_prepare_input($HTTP_POST_VARS['products_quantity']),
                                 'products_model' => tep_db_prepare_input($HTTP_POST_VARS['products_model']),
                                 'products_price' => tep_db_prepare_input($HTTP_POST_VARS['products_price']),
@@ -230,6 +231,7 @@
                                 'products_status' => tep_db_prepare_input($HTTP_POST_VARS['products_status']),
                                 'products_tax_class_id' => tep_db_prepare_input($HTTP_POST_VARS['products_tax_class_id']),
                                 'manufacturers_id' => (int)tep_db_prepare_input($HTTP_POST_VARS['manufacturers_id']),
+                                'product_template' => (int)tep_db_prepare_input($HTTP_POST_VARS['product_template']),
                                 'products_custom_date' => tep_db_prepare_input($HTTP_POST_VARS['products_custom_date']),
                                 'products_sort_order' => (int)tep_db_prepare_input($HTTP_POST_VARS['products_sort_order'])
 				);
@@ -364,10 +366,10 @@
               $messageStack->add_session(ERROR_CANNOT_LINK_TO_SAME_CATEGORY, 'error');
             }
           } elseif ($HTTP_POST_VARS['copy_as'] == 'duplicate') {
-            $product_query = tep_db_query("select products_quantity, products_model, products_image, products_price, products_date_available, products_weight, products_tax_class_id, manufacturers_id, products_custom_date, products_sort_order from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'");
+            $product_query = tep_db_query("select products_quantity, products_model, products_image, products_price, products_date_available, products_weight, products_tax_class_id, manufacturers_id, product_template, products_custom_date, products_sort_order from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'");
             $product = tep_db_fetch_array($product_query);
 
-            tep_db_query("insert into " . TABLE_PRODUCTS . " (products_quantity, products_model,products_image, products_price, products_date_added, products_date_available, products_weight, products_status, products_tax_class_id, manufacturers_id, products_custom_date, products_sort_order) values ('" . tep_db_input($product['products_quantity']) . "', '" . tep_db_input($product['products_model']) . "', '" . tep_db_input($product['products_image']) . "', '" . tep_db_input($product['products_price']) . "',  now(), " . (empty($product['products_date_available']) ? "null" : "'" . tep_db_input($product['products_date_available']) . "'") . ", '" . tep_db_input($product['products_weight']) . "', '0', '" . (int)$product['products_tax_class_id'] . "', '" . (int)$product['manufacturers_id'] . "', '" . (int)$product['products_custom_date'] . "', '" . (int)$product['products_sort_order'] . "')");
+            tep_db_query("insert into " . TABLE_PRODUCTS . " (products_quantity, products_model,products_image, products_price, products_date_added, products_date_available, products_weight, products_status, products_tax_class_id, manufacturers_id, product_template, product_template, products_custom_date, products_sort_order) values ('" . tep_db_input($product['products_quantity']) . "', '" . tep_db_input($product['products_model']) . "', '" . tep_db_input($product['products_image']) . "', '" . tep_db_input($product['products_price']) . "',  now(), " . (empty($product['products_date_available']) ? "null" : "'" . tep_db_input($product['products_date_available']) . "'") . ", '" . tep_db_input($product['products_weight']) . "', '0', '" . (int)$product['products_tax_class_id'] . "', '" . (int)$product['manufacturers_id'] . "', '" . (int)$product['product_template'] . "', '" . (int)$product['products_custom_date'] . "', '" . (int)$product['products_sort_order'] . "')");
             $dup_products_id = tep_db_insert_id();
 
             $description_query = tep_db_query("select language_id, products_name, products_description, products_url, products_seo_title, products_seo_description, products_seo_keywords, products_mini_description from " . TABLE_PRODUCTS_DESCRIPTION . " where products_id = '" . (int)$products_id . "'");
@@ -422,6 +424,7 @@
                        'products_status' => '',
                        'products_tax_class_id' => '',
                        'manufacturers_id' => '',
+                       'product_template' => '',
                        'products_seo_title' => '',
                        'products_seo_description' => '',
                        'products_seo_keywords' => '',
@@ -433,7 +436,7 @@
     $pInfo = new objectInfo($parameters);
 
     if (isset($HTTP_GET_VARS['pID']) && empty($HTTP_POST_VARS)) {
-      $product_query = tep_db_query("select pd.products_name, pd.products_description, pd.products_url, p.products_id, p.products_quantity, p.products_model, p.products_image, p.products_price, p.products_weight, p.products_date_added, p.products_last_modified, date_format(p.products_date_available, '%Y-%m-%d') as products_date_available, p.products_status, p.products_tax_class_id, p.manufacturers_id, pd.products_mini_description, date_format(p.products_custom_date, '%Y-%m-%d') as products_custom_date, p.products_sort_order from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id = '" . (int)$HTTP_GET_VARS['pID'] . "' and p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "'");
+      $product_query = tep_db_query("select pd.products_name, pd.products_description, pd.products_url, p.products_id, p.products_quantity, p.products_model, p.products_image, p.products_price, p.products_weight, p.products_date_added, p.products_last_modified, date_format(p.products_date_available, '%Y-%m-%d') as products_date_available, p.products_status, p.products_tax_class_id, p.manufacturers_id, p.product_template, pd.products_mini_description, date_format(p.products_custom_date, '%Y-%m-%d') as products_custom_date, p.products_sort_order from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id = '" . (int)$HTTP_GET_VARS['pID'] . "' and p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "'");
       $product = tep_db_fetch_array($product_query);
 
       $pInfo->objectInfo($product);
@@ -453,6 +456,15 @@
       $manufacturers_array[] = array('id' => $manufacturers['manufacturers_id'],
                                      'text' => $manufacturers['manufacturers_name']);
     }
+
+//pure:new product_template
+    $product_templates_array = array(array('id' => '', 'text' => TEXT_NONE));
+    $product_templates_query = tep_db_query("select product_template_id, product_template_name from " . TABLE_PRODUCT_TEMPLATES . " order by product_template_id");
+    while ($ptpl = tep_db_fetch_array($product_templates_query)) {
+      $product_templates_array[] = array('id' => $ptpl['product_template_id'],
+                                     'text' => $ptpl['product_template_name']);
+    }
+//newEND
 
     $tax_class_array = array(array('id' => '0', 'text' => TEXT_NONE));
     $tax_class_query = tep_db_query("select tax_class_id, tax_class_title from " . TABLE_TAX_CLASS . " order by tax_class_title");
@@ -576,6 +588,15 @@ if (DISPLAY_PRODUCTS_MANUFACTURER=='true') { ?>
           <tr>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
+<!-- pure:new template select //-->
+          <tr>
+            <td class="main"><?php echo TEXT_PRODUCTS_TEMPLATE; ?></td>
+            <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' . tep_draw_pull_down_menu('product_template', $product_templates_array, $pInfo->product_template); ?></td>
+          </tr>
+          <tr>
+            <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
+          </tr>
+
 <?php
 }
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
