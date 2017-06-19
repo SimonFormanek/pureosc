@@ -285,7 +285,7 @@ class seo_friendly_urls{
 
     }
 
-    $products_query = tep_db_query("SELECT pd.language_id, p.products_id, pd.products_name, ".$products_query_select." p2c.categories_id  FROM " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c WHERE p.products_status = '1' AND p.products_id = pd.products_id AND p2c.products_id=p.products_id AND p2c.products_id=pd.products_id");
+    $products_query = tep_db_query("SELECT pd.language_id, p.products_id, pd.products_name, ".$products_query_select." p2c.categories_id  FROM " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c WHERE p.products_status = '1' AND p.products_id = pd.products_id AND p2c.products_id=p.products_id AND p2c.products_id=pd.products_id AND p2c.canonical > 0");
 
     $products_alias='';
     while ($products = tep_db_fetch_array($products_query)) {
