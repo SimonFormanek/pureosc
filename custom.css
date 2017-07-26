@@ -456,3 +456,8 @@ p.lead del {
 .form-control-feedback{
 	padding-right:2%;
 }
+/*pure:new:shortcuts*/
+.fl{float:left}
+
+/*pure:new:addons*/
+.navbar_logo{margin-left:10px;max-width:80%}
