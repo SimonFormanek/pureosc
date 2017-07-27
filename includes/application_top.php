@@ -62,6 +62,8 @@
   $security_pro = new Fwr_Media_Security_Pro;
   // If you need to exclude a file from cleansing then you can add it like below
   //$security_pro->addExclusion( 'some_file.php' );
+$security_pro->addExclusion( 'advanced_search_result.php' );
+$security_pro->addExclusion( 'advanced_search.php' );
   $security_pro->cleanse( $PHP_SELF );
 /* ** EOF alteration for Security Pro 11 ** */
   
