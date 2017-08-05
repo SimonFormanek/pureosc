@@ -25,6 +25,8 @@ girafabot
 googlebot
 googlebot-image
 heurekabot-feed
+heurekabot-image
+heurekabot-imagefulltext
 holmes
 ia_archiver
 ichiro
