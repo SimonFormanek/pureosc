@@ -11,8 +11,10 @@ bimbot
 bingbot
 dataparksearch
 dotbot
+duckduckbot
 envolk[its]spider
 exabot
+facebot
 fast enterprise crawler
 fast-webcrawler
 furlbot
@@ -22,6 +24,7 @@ gigabot
 girafabot
 googlebot
 googlebot-image
+heurekabot-feed
 holmes
 ia_archiver
 ichiro
@@ -66,7 +69,7 @@ seznambot
 shim-crawler
 shopwiki
 shoula robot
-silk
+silk/1
 snappy
 sogou spider
 sosospider
