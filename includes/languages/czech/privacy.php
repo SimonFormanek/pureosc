@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Privacy Notice',true);
-define('HEADING_TITLE', 'Privacy Notice',true);
+define('NAVBAR_TITLE', 'Ochrana osobních údajů',true);
+define('HEADING_TITLE', 'Ochrana osobních údajů',true);
 
-define('TEXT_INFORMATION', 'Put here your Privacy Notice information.',true);
+define('TEXT_INFORMATION', 'Vložte text.',true);
 ?>

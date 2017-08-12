@@ -12,42 +12,33 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Gift Voucher FAQ',true);
-define('HEADING_TITLE', 'Gift Voucher FAQ',true);
+define('NAVBAR_TITLE', 'Dárkový poukaz FAQ',true);
+define('HEADING_TITLE', 'Dárkový poukaz FAQ',true);
 
 define('TEXT_INFORMATION', '<a name="Top"></a>
-  <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=1','NONSSL').'">Purchasing Gift Vouchers</a><br>
-  <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=2','NONSSL').'">How to send Gift vouchers</a><br>
-  <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=3','NONSSL').'">Buying with Gift Vouchers</a><br>
-  <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=4','NONSSL').'">Redeeming Gift Vouchers</a><br>
-  <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=5','NONSSL').'">When problems occur</a><br>
+  <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=1','NONSSL').'">Nákup dárkových poukazů</a><br>
+  <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=2','NONSSL').'">Jak zaslat dárkové poukazy</a><br>
+  <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=3','NONSSL').'">Nákup s dárkovým poukazem</a><br>
+  <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=4','NONSSL').'">Uplatnění dárkových poukazů</a><br>
+  <a href="'.tep_href_link(FILENAME_GV_FAQ,'faq_item=5','NONSSL').'">Případné potíže</a><br>
 ');
 switch ($_GET['faq_item']) {
   case '1':
-define('SUB_HEADING_TITLE','Purchasing Gift Vouchers.',true);
-define('SUB_HEADING_TEXT','Gift Vouchers are purchased just like any other item in our store. You can 
-  pay for them using the stores standard payment method(s).
-  Once purchased the value of the Gift Voucher will be added to your own personal 
-  Gift Voucher Account. If you have funds in your Gift Voucher Account, you will 
-  notice that the amount now shows in the Shopping Cart box, and also provides a 
-  link to a page where you can send the Gift Voucher to someone via email.');
+define('SUB_HEADING_TITLE','Nákup dárkových poukazů.',true);
+define('SUB_HEADING_TEXT','Dárkové poukazy se kupují stejně jako jiné položky v našem obchodě. Platíte za ně pomocí standardních platebních metod. Jakmile zakoupíte hodnotu dárkového poukazu, bude přidán do vašeho osobního účtu dárkových poukazů. Máte-li v účtu dárkových poukazů prostředky, částka se zobrazuje v Nákupním košíku a také odkaz na stránku, kterou můžete někomu zaslat e-mailem.');
   break;
   case '2':
-define('SUB_HEADING_TITLE','How to Send Gift Vouchers.',true);
-define('SUB_HEADING_TEXT','To send a Gift Voucher you need to go to our Send Gift Voucher Page. You can 
-  find the link to this page in the Shopping Cart Box in the right hand column of each page.
-  When you send a Gift Voucher, you need to specify the following:
-  The name of the person you are sending the Gift Voucher too.
-  The email address of the person you are sending the Gift Voucher too.
-  The amount you want to send. (Note that you don\'t have to send the full amount that 
-  is in your Gift Voucher Account.)
-  A short message which will apear in the email.
-  Please ensure that you have entered all of the information correctly, although 
-  you will be given the opportunity to change this as much as you want before 
-  the email is actually sent.');  
+define('SUB_HEADING_TITLE','Jak zaslat dárkové poukazy',true);
+define('SUB_HEADING_TEXT','Chcete-li poslat dárkový poukaz, musíte jít na stránku Odeslat dárkový poukaz. Odkaz na tuto stránku naleznete v poli Nákupní košík v pravém sloupci každé stránky.
+Při odeslání dárkového poukazu musíte zadat následující údaje:
+Jméno osoby, na kterou zasíláte dárkový poukaz.
+E-mailovou adresu osoby, jíž doručujete dárkový poukaz.
+Částku, kterou chcete odeslat. (Všimněte si, že nemusíte odesílat celou částku, která je v účtu Vašich dárkových poukazů.)
+Krátká zpráva se objeví v e-mailu.
+Ujistěte se, že jste zadali všechny informace správně, můžete vše změnit, než bude e-mail skutečně odeslán.');  
   break;
   case '3':
-  define('SUB_HEADING_TITLE','Buying with Gift Vouchers.',true);
+  define('SUB_HEADING_TITLE','Nákup s dárkovým poukazem.',true);
   define('SUB_HEADING_TEXT','If you have funds in your Gift Voucher Account, you can use those funds to 
   purchase other items in out store. At the checkout stage, an extra box will 
   appear. Ticking this box will apply those funds in your Gift Voucher Account. 

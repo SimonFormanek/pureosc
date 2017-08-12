@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Testimonials',true);
-define('HEADING_TITLE', 'Customer Testimonials',true);
+define('NAVBAR_TITLE', 'Doporučení',true);
+define('HEADING_TITLE', 'Doporučení zákazníků',true);
 
-define('TEXT_NO_TESTIMONIALS', 'There are no Testimonials to display.',true);
+define('TEXT_NO_TESTIMONIALS', 'Neobsahuje žádná doporučení zákazníků.',true);
 

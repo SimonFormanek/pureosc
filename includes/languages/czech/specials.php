@@ -10,15 +10,15 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Speciální slevy',true);
+define('NAVBAR_TITLE', 'Speciální nabídky',true);
 define('HEADING_TITLE', 'Akční ceny!',true);
 
-define('TEXT_NO_PRODUCTS', 'There are no special offers available.',true);
+define('TEXT_NO_PRODUCTS', 'Nejsou k dispozici žádné speciální nabídky.',true);
 
 // seo
-define('META_SEO_TITLE', 'Special Offers Page',true);
-define('META_SEO_DESCRIPTION', 'Specials Description',true);
+define('META_SEO_TITLE', 'Speciální nabídky',true);
+define('META_SEO_DESCRIPTION', 'Detaily speciální nabídky',true);
 /*
 keywords are USELESS unless you are selling into China and want to be listed in Baidu Search Engine
 */
-define('META_SEO_KEYWORDS', 'special offers, reduced prices',true);
+define('META_SEO_KEYWORDS', 'Speciální nabídky, snížené akční ceny',true);
