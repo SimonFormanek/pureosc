@@ -20,7 +20,7 @@ define('TEXT_NO_HTML', '<small><font color="#ff0000"><strong>NOTE:</strong></fon
 define('TEXT_BAD', '<small><font color="#ff0000"><strong>špatné</strong></font></small>',true);
 define('TEXT_GOOD', '<small><font color="#ff0000"><strong>dobré</strong></font></small>',true);
 
-define('TEXT_REVIEW_RECEIVED', 'Děkujeme za Vaš hodnocení. Bylo zasláno provozovateli obchodu.',true);
+define('TEXT_REVIEW_RECEIVED', 'Děkujeme za Vaše hodnocení. Bylo zasláno provozovateli obchodu.',true);
 
 define('TEXT_CLICK_TO_ENLARGE', 'klikněte pro zvětšení',true);
 ?>

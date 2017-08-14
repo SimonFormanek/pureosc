@@ -26,11 +26,11 @@ define('TEXT_ALL_MANUFACTURERS', 'všichni výrobci',true);
 
 // seo
 if ( ($category_depth == 'top') && (!isset($HTTP_GET_VARS['manufacturers_id'])) ) {
-  define('META_SEO_TITLE', 'Index Page Title',true);
-  define('META_SEO_DESCRIPTION', 'This is the description of your site to be used in the META Description Element',true);
+  define('META_SEO_TITLE', 'Index stránka název',true);
+  define('META_SEO_DESCRIPTION', 'Toto je popis vašeho webu, který se má použít v popisovacím prvku META',true);
   /*
   keywords are USELESS unless you are selling into China and want to be listed in Baidu Search Engine
   */
-  define('META_SEO_KEYWORDS', 'these, are, the, comma, separated, keywords, used in the META keywords Element',true);
+  define('META_SEO_KEYWORDS', 'tato, čárkami, oddělená, klíčová, slova, použitá v META keywords prvku',true);
 }
 

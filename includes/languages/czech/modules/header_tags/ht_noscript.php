@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_NOSCRIPT_TITLE', 'No Script Message',true);
-  define('MODULE_HEADER_TAGS_NOSCRIPT_DESCRIPTION', 'Shows a message to the user if they are browsing with javascript off.',true);
-  define('MODULE_HEADER_TAGS_NOSCRIPT_TEXT', '<p><strong>JavaScript seems to be disabled in your browser.</strong></p><p>You must have JavaScript enabled in your browser to utilize the functionality of this website. <a href="http://www.enable-javascript.com/" target="_blank" rel="nofollow">Click here for instructions on enabling javascript in your browser</a>.',true);
+  define('MODULE_HEADER_TAGS_NOSCRIPT_TITLE', 'Javascript je vypnutý',true);
+  define('MODULE_HEADER_TAGS_NOSCRIPT_DESCRIPTION', 'Zobrazit varování - Javascript vypnutý.',true);
+  define('MODULE_HEADER_TAGS_NOSCRIPT_TEXT', '<p><strong>Javascript je pravděpodobně v prohlížeči vypnutý.</strong></p><p>Pro plnou funkčnost těchto stránek je třeba zapnout podoporu Javascriptu v prohlížeči. <a href="http://www.enable-javascript.com/" target="_blank" rel="nofollow">Klikněte zde pro zporazení instrukcí jak zapnout javascript.</a>.',true);
 ?>

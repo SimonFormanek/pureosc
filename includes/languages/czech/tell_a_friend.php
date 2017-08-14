@@ -41,7 +41,7 @@ define('ERROR_TO_NAME', 'Chyba: jméno Vašeho přítele musí být vyplněno.',
 define('ERROR_TO_ADDRESS', 'Chyba: e-mail vašeho přítele je chybný.',true);
 define('ERROR_FROM_NAME', 'Chyba: Vaše jméno musí být vyplněno.',true);
 define('ERROR_FROM_ADDRESS', 'Chyba: Váš e-mail musí být vyplněn.',true);
-define('ERROR_ACTION_RECORDER', 'Chyba: e-mail připraven k odeslání. Prosím zkuste znovu za %s minut.',true);
+define('ERROR_ACTION_RECORDER', 'Chyba: e-mail je připraven k odeslání. Prosím zkuste znovu za %s minut.',true);
 /*
 ************************************************************************
 ************** Custom Filenames can be defined below here **************
@@ -49,6 +49,6 @@ define('ERROR_ACTION_RECORDER', 'Chyba: e-mail připraven k odeslání. Prosím 
 ************************************************************************
 */
 // Mail Manager
-  define('TEXT_RECOMMEND', 'has recommended',true);
-  define('TEXT_FROM', 'from the',true);
+  define('TEXT_RECOMMEND', 'Doporučil',true);
+  define('TEXT_FROM', 'od',true);
 ?>

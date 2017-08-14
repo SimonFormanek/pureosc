@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_TITLE', 'Modular Navigation Bar');
-  define('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_DESCRIPTION', 'Show the Modular Navigation Bar on your site.');
+  define('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_TITLE', 'Modularní navigační lišta');
+  define('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_DESCRIPTION', 'Zobrazit Modularní navigační lištu.');
   
   define('HEADER_TOGGLE_NAV', 'Toggle Navigation');
   define('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_LOGO_ENABLED', 'Zobrazit logo');
