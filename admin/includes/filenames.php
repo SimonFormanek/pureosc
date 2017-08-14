@@ -102,5 +102,7 @@
   define('FILENAME_CREATE_ACCOUNT_PROCESS', 'create_account_process.php');
   define('FILENAME_CREATE_ACCOUNT_SUCCESS', 'create_account_success.php');
 // EOF Create Account
+//stats sales products monthly
+define('FILENAME_STATS_SALES', 'stats_sales.php');
 
 ?>

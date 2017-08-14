@@ -27,6 +27,11 @@
         'code' => FILENAME_STATS_CUSTOMERS,
         'title' => BOX_REPORTS_ORDERS_TOTAL,
         'link' => tep_href_link(FILENAME_STATS_CUSTOMERS)
+      ),
+      array(
+        'code' => FILENAME_STATS_SALES,
+        'title' => BOX_REPORTS_STATS_SALES,
+        'link' => tep_href_link(FILENAME_STATS_SALES)
       )
     )
   );
