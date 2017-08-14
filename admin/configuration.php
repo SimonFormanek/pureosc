@@ -86,7 +86,13 @@
       echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $configuration['configuration_id']) . '\'">' . "\n";
     }
 ?>
-                <td class="dataTableContent"><?php echo $configuration['configuration_title']; ?></td>
+                <td class="dataTableContent"><?php
+                  if (defined($configuration['configuration_title'])) {
+          				echo constant($configuration['configuration_title']);
+        					} else {
+          				echo $configuration['configuration_title'];
+        					}
+        				?></td>
                 <td class="dataTableContent"><?php echo htmlspecialchars($cfgValue); ?></td>
                 <td class="dataTableContent" align="right"><?php if ( (isset($cInfo) && is_object($cInfo)) && ($configuration['configuration_id'] == $cInfo->configuration_id) ) { echo tep_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $configuration['configuration_id']) . '">' . tep_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
               </tr>
@@ -95,12 +101,24 @@
 ?>
             </table></td>
 <?php
+    if (defined($cInfo->configuration_title)) {
+			$configuration_title =  constant($cInfo->configuration_title);
+				} else {
+			$configuration_title =  $cInfo->configuration_title;
+      }
+    if (defined($cInfo->configuration_description)) {
+			$configuration_description =  constant($cInfo->configuration_description);
+				} else {
+			$configuration_description =  $cInfo->configuration_description;
+      }
+
+
   $heading = array();
   $contents = array();
 
   switch ($action) {
     case 'edit':
-      $heading[] = array('text' => '<strong>' . $cInfo->configuration_title . '</strong>');
+      $heading[] = array('text' => '<strong>' . $configuration_title  . '</strong>');
 
       if ($cInfo->set_function) {
         eval('$value_field = ' . $cInfo->set_function . '"' . htmlspecialchars($cInfo->configuration_value) . '");');
@@ -110,15 +128,15 @@
 
       $contents = array('form' => tep_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $cInfo->configuration_id . '&action=save'));
       $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
-      $contents[] = array('text' => '<br /><strong>' . $cInfo->configuration_title . '</strong><br />' . $cInfo->configuration_description . '<br />' . $value_field);
+      $contents[] = array('text' => '<br /><strong>' . $configuration_title . '</strong><br />' . $configuration_description . '<br />' . $value_field);
       $contents[] = array('align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $cInfo->configuration_id)));
       break;
     default:
       if (isset($cInfo) && is_object($cInfo)) {
-        $heading[] = array('text' => '<strong>' . $cInfo->configuration_title . '</strong>');
+        $heading[] = array('text' => '<strong>' . $configuration_title . '</strong>');
 
         $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT, 'document', tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $cInfo->configuration_id . '&action=edit')));
-        $contents[] = array('text' => '<br />' . $cInfo->configuration_description);
+        $contents[] = array('text' => '<br />' . $configuration_description);
         $contents[] = array('text' => '<br />' . TEXT_INFO_DATE_ADDED . ' ' . tep_date_short($cInfo->date_added));
         if (tep_not_null($cInfo->last_modified)) $contents[] = array('text' => TEXT_INFO_LAST_MODIFIED . ' ' . tep_date_short($cInfo->last_modified));
       }
