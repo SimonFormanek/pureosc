@@ -238,7 +238,18 @@
       $keys = '';
       reset($mInfo->keys);
       while (list($key, $value) = each($mInfo->keys)) {
-        $keys .= '<strong>' . $value['title'] . '</strong><br />' . $value['description'] . '<br />';
+//        $keys .= '<strong>' . $value['title'] . '</strong><br />' . $value['description'] . '<br />';
+    if (defined($value['title'])) {
+      $keys .= '<b>' . constant($value['title']) . '</b><br>';
+    } else {
+      $keys .= '<b>' . $value['title'] . '</b><br>';
+    }
+    if (defined($value['description'])) {
+      $keys .= constant($value['description']) . '<br>';
+    } else {
+      $keys .= $value['description'] . '<br>';
+    }
+
 
         if ($value['set_function']) {
           eval('$keys .= ' . $value['set_function'] . "'" . $value['value'] . "', '" . $key . "');");
@@ -262,7 +273,12 @@
         $keys = '';
         reset($mInfo->keys);
         while (list(, $value) = each($mInfo->keys)) {
-          $keys .= '<strong>' . $value['title'] . '</strong><br />';
+//          $keys .= '<strong>' . $value['title'] . '</strong><br />';
+      if (defined($value['title'])) {
+      $keys .= '<b>' . constant($value['title']) . '</b><br>';
+      } else {
+      $keys .= '<b>' . $value['title'] . '</b><br>';
+      }
           if ($value['use_function']) {
             $use_function = $value['use_function'];
             if (preg_match('/->/', $use_function)) {
