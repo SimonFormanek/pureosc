@@ -14,7 +14,7 @@
 <!-- Start cm_modular_navbar -->
 <nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
   <div class="<?php echo BOOTSTRAP_CONTAINER; ?>">
-    <div class="navbar-header"><?php if (MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_LOGO_ENABLED=='True') echo '<a class="fl href="/"' . '"><img src="' . DIR_WS_IMAGES . STORE_LOGO . '" title="' . STORE_NAME . '"></a>'; ?>
+    <div class="navbar-header"><?php if (MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_LOGO_ENABLED=='True') echo '<a class="fl navbar_logo" href="/"><img src="' . DIR_WS_IMAGES . STORE_LOGO . '" title="' . STORE_NAME . '"></a>'; ?>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-core-nav">
         <span class="sr-only"><?php echo HEADER_TOGGLE_NAV; ?></span>
         <span class="icon-bar"></span>

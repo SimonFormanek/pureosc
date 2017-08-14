@@ -14,3 +14,5 @@
   define('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_DESCRIPTION', 'Show the Modular Navigation Bar on your site.');
   
   define('HEADER_TOGGLE_NAV', 'Toggle Navigation');
+  define('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_LOGO_ENABLED', 'Zobrazit logo');
+  
