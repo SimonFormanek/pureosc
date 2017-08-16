@@ -127,3 +127,15 @@ define('TEXT_EDIT_CATEGORIES_DESCRIPTION', 'Edit the Category Description:',true
   define('TEXT_PRODUCTS_SEO_DESCRIPTION', 'Product Meta Description for SEO:<br><small>Add a &lt;description&gt; Meta Element.</small>',true);
   define('TEXT_PRODUCTS_SEO_KEYWORDS', 'Product Meta Keywords for SEO:<br><small>Add a &lt;keyword&gt; Meta Element.<br>Must be comma separated.</small>',true);
   define('TEXT_PRODUCTS_MINI_DESCRIPTION', 'Product Mini Description:<br><small>Used in the "product list" in Category Pages.</small>',true);
+
+/*** Begin Header Tags SEO ***/
+define('TEXT_PRODUCT_METTA_INFO', 'Header Tags SEO Meta Tag Data'true);
+define('TEXT_PRODUCTS_BREADCRUMB', 'Breadcrumb Text'true);
+define('TEXT_PRODUCTS_PAGE_TITLE', 'Title Tag'true);
+define('TEXT_PRODUCTS_PAGE_TITLE_ALT', 'Title Tag - Alternate'true);
+define('TEXT_PRODUCTS_PAGE_TITLE_URL', 'Title Tag - URL'true);
+define('TEXT_PRODUCTS_HEADER_DESCRIPTION', 'Meta Description'true);
+define('TEXT_PRODUCTS_KEYWORDS', 'Meta Keywords'true);
+define('TEXT_PRODUCTS_LISTING_TEXT', 'Product Listing Text'true);
+define('TEXT_PRODUCTS_SUB_TEXT', 'Product Page Sub Text'true);
+/*** End Header Tags SEO ***/

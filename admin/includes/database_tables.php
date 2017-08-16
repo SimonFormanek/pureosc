@@ -46,6 +46,7 @@
   define('TABLE_ORDERS_STATUS', 'orders_status');
   define('TABLE_ORDERS_STATUS_HISTORY', 'orders_status_history');
   define('TABLE_ORDERS_TOTAL', 'orders_total');
+  define('TABLE_PRODUCT_TEMPLATES','product_templates');
   define('TABLE_PRODUCTS', 'products');
   define('TABLE_PRODUCTS_ATTRIBUTES', 'products_attributes');
   define('TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD', 'products_attributes_download');
@@ -86,4 +87,28 @@
   define('TABLE_MM_RESPONSEMAIL_RESET', 'mm_responsemail_reset');
   define('TABLE_MM_TEMPLATES', 'mm_templates');
   define('TABLE_MM_NEWSLETTERS', 'mm_newsletters');
+
+/**** BEGIN ARTICLE MANAGER ****/
+  define('TABLE_ARTICLE_REVIEWS', 'article_reviews');
+  define('TABLE_ARTICLE_REVIEWS_DESCRIPTION', 'article_reviews_description');
+  define('TABLE_ARTICLES', 'articles');
+  define('TABLE_ARTICLES_DESCRIPTION', 'articles_description');
+  define('TABLE_ARTICLES_TO_TOPICS', 'articles_to_topics');
+  define('TABLE_ARTICLES_XSELL', 'articles_xsell');
+  define('TABLE_AUTHORS', 'authors');
+  define('TABLE_ARTICLES_BLOG', 'articles_blog');
+  define('TABLE_AUTHORS_INFO', 'authors_info');
+  define('TABLE_TOPICS', 'topics');
+  define('TABLE_TOPICS_DESCRIPTION', 'topics_description');
+  /**** END ARTICLE MANAGER ****/ 
+  
+  /*** Begin Header Tags SEO ***/
+  define('TABLE_HEADERTAGS', 'headertags');
+  define('TABLE_HEADERTAGS_CACHE', 'headertags_cache');
+  define('TABLE_HEADERTAGS_DEFAULT', 'headertags_default');
+  define('TABLE_HEADERTAGS_KEYWORDS', 'headertags_keywords');
+  define('TABLE_HEADERTAGS_SEARCH', 'headertags_search');
+  define('TABLE_HEADERTAGS_SILO', 'headertags_silo');
+  define('TABLE_HEADERTAGS_SOCIAL', 'headertags_social');
+  /*** End Header Tags SEO ***/
 ?>

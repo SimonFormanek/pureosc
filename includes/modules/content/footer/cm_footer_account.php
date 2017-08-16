@@ -35,18 +35,25 @@
     function execute() {
       global $oscTemplate, $customer_id;
       
+      /*** Begin Article Manager ****/
+      $aLinks = GetArticleLinsByTopic('Customer Service');
+ 
       $content_width = (int)MODULE_CONTENT_FOOTER_ACCOUNT_CONTENT_WIDTH;
       
       if ( tep_session_is_registered('customer_id') ) {
         $account_content = '<li><a href="' . tep_href_link('account.php', '', 'SSL') . '">' . MODULE_CONTENT_FOOTER_ACCOUNT_BOX_ACCOUNT . '</a></li>' .
                            '<li><a href="' . tep_href_link('address_book.php', '', 'SSL') . '">' . MODULE_CONTENT_FOOTER_ACCOUNT_BOX_ADDRESS_BOOK . '</a></li>' .
                            '<li><a href="' . tep_href_link('account_history.php', '', 'SSL') . '">' . MODULE_CONTENT_FOOTER_ACCOUNT_BOX_ORDER_HISTORY . '</a></li>' .
+                           $aLinks .
                            '<li><br><a class="btn btn-danger btn-sm btn-block" role="button" href="' . tep_href_link('logoff.php', '', 'SSL') . '"><i class="fa fa-sign-out"></i> ' . MODULE_CONTENT_FOOTER_ACCOUNT_BOX_LOGOFF . '</a></li>';
       }
       else {
         $account_content = '<li><a href="' . tep_href_link('create_account.php', '', 'SSL') . '">' . MODULE_CONTENT_FOOTER_ACCOUNT_BOX_CREATE_ACCOUNT . '</a></li>' .
+                           $aLinks . 
                            '<li><br><a class="btn btn-success btn-sm btn-block" role="button" href="' . tep_href_link('login.php', '', 'SSL') . '"><i class="fa fa-sign-in"></i> ' . MODULE_CONTENT_FOOTER_ACCOUNT_BOX_LOGIN . '</a></li>';
       }
+      
+      /*** End Article Manager ****/
       
       ob_start();
       include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/account.php');

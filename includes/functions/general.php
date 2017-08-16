@@ -1484,3 +1484,19 @@ return $address;
 	$mimemessage->send($mail, $email_address, $sender_name, $sender, $output_subject, '');
   }
 /* ** EOF alterations for Mail Manager ** */
+
+//pure:todo pridano navic
+function clean_html_comments($clean_html) {
+global $its_cleaned;
+
+if ( strpos($clean_html,'<!--//*')>1 ) {
+  $the_end1= strpos($clean_html,'<!--//*')-1;
+  $the_start2= strpos($clean_html,'*//-->')+7;
+
+  $its_cleaned= substr($clean_html,0,$the_end1);
+  $its_cleaned.= substr($clean_html,$the_start2);
+} else {
+  $its_cleaned= $clean_html;
+}
+  return $its_cleaned;
+}

@@ -544,5 +544,3 @@
 
 	  return $search_link;
   }
-  
-  

@@ -2,5 +2,10 @@
   <div class="footerbox generic-text">
     <h2><?php echo MODULE_CONTENT_FOOTER_TEXT_HEADING_TITLE; ?></h2>
     <?php echo MODULE_CONTENT_FOOTER_TEXT_TEXT; ?>
+    <?php
+    /**** Begin Article Manager ****/
+     echo $aLinks; 
+    /**** End Article Manager ****/
+     ?>
   </div>
 </div>

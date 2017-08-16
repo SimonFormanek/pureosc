@@ -32,6 +32,14 @@
       }
       break;
 
+    case 'arturl':
+      if (isset($HTTP_GET_VARS['goto']) && tep_not_null($HTTP_GET_VARS['goto'])) {
+        $check_query = tep_db_query("select articles_url from " . TABLE_ARTICLES_DESCRIPTION . " where articles_url = '" . tep_db_input($HTTP_GET_VARS['goto']) . "' limit 1");
+        if (tep_db_num_rows($check_query)) {
+          tep_redirect('http://' . $HTTP_GET_VARS['goto']);
+        }
+      }
+      break;
     case 'manufacturer':
       if (isset($HTTP_GET_VARS['manufacturers_id']) && tep_not_null($HTTP_GET_VARS['manufacturers_id'])) {
         $manufacturer_query = tep_db_query("select manufacturers_url from " . TABLE_MANUFACTURERS_INFO . " where manufacturers_id = '" . (int)$HTTP_GET_VARS['manufacturers_id'] . "' and languages_id = '" . (int)$languages_id . "'");

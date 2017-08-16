@@ -1,1 +1,28 @@
 /* user.css ----------------------------------------------------------------- */
+@import url("headertags_seo_styles.css");
+
+/**** BEGIN ARTICLE MANAGER ****/
+.separatorArticle {
+height: 1px;
+color: #FF0000;
+}
+.separatorBlogArticle {
+height: 1px;
+color: #FF0000;
+}
+.separatorNewArticle {
+height: 1px;
+color: #FF0000;
+}
+.separatorTopic {
+height: 1px;
+color: #FF0000;
+}
+.articleLinkHdr {font-size:12px; font-weight:600}
+.articleLinkMarker {font-size:10px; padding-left:2px}
+.articleBlogEntry {padding-left:4px; background-color:lightyellow}
+.articleSearch {font-size:12px; font-weight:600; padding-top:6px; color:red}
+.articleBox {border:2px inset #ccc}
+.articlePadding {padding:10px 0}
+.articlePaddingSubmit {padding-bottom:10px}
+/**** END ARTICLE MANAGER ****/

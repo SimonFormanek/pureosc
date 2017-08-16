@@ -1829,3 +1829,8 @@ return $output;
     }
   }
 /* ** EOF alterations for KISS IT ** */
+
+ /*** Begin Header Tags SEO ***/
+  require('includes/functions/header_tags_general.php');
+  /*** End Header Tags SEO ***/
+  

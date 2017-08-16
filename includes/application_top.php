@@ -576,3 +576,38 @@ $parameters[] = 'atts';
       $breadcrumb->add($model['products_model'], tep_href_link(FILENAME_PRODUCT_INFO, 'cPath=' . $cPath . '&products_id=' . $HTTP_GET_VARS['products_id']));
     }
   }
+
+
+
+
+/**** BEGIN ARTICLE MANAGER ****/
+// include the articles functions
+  require(DIR_WS_FUNCTIONS . 'articles.php');
+
+// calculate topic path
+  if (isset($_GET['tPath'])) {
+    $tPath = $_GET['tPath'];
+  } elseif (isset($_GET['articles_id']) && !isset($_GET['authors_id'])) {
+    $tPath = tep_get_article_path($_GET['articles_id']);
+  } else {
+    $tPath = '';
+  }
+
+  if (tep_not_null($tPath)) {
+    $tPath_array = tep_parse_topic_path($tPath);
+    $tPath = implode('_', $tPath_array);
+    $current_topic_id = $tPath_array[(sizeof($tPath_array)-1)];
+  } else {
+    $current_topic_id = 0;
+  }
+
+  if (isset($_GET['articles_id'])) {
+    $articlesPage = FILENAME_ARTICLE_INFO . "?articles_id=" . $_GET['articles_id'];
+    $pageTags_query = tep_db_query("select page_name, page_title from " . TABLE_HEADERTAGS . " where page_name like '" . $articlesPage . "' and language_id = '" . (int)$languages_id . "' LIMIT 1");
+    if (tep_db_num_rows($pageTags_query) == 1) {
+      $pageTags = tep_db_fetch_array($pageTags_query);
+      $breadcrumb->add('Articles', tep_href_link(FILENAME_ARTICLES));
+      $breadcrumb->add($pageTags['page_title'], tep_href_link($articlesPage));
+    }
+  }
+ /**** END ARTICLE MANAGER ****/
