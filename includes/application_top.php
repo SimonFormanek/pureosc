@@ -323,7 +323,14 @@
   $_system_locale_numeric = setlocale(LC_NUMERIC, 0);
   require(DIR_WS_LANGUAGES . $language . '.php');
   setlocale(LC_NUMERIC, $_system_locale_numeric); // Prevent LC_ALL from setting LC_NUMERIC to a locale with 1,0 float/decimal values instead of 1.0 (see bug #634)
-
+// Ultimate SEO URLs v2.2d
+ if ((!defined(SEO_ENABLED)) || (SEO_ENABLED == 'true')) {
+   include_once('includes/classes/seo.class.php');
+   if ( !is_object($seo_urls) ){
+     $seo_urls = new SEO_URL($languages_id);
+   }
+ }
+ 
 // currency
   if (!tep_session_is_registered('currency') || isset($HTTP_GET_VARS['currency']) || ( (USE_DEFAULT_LANGUAGE_CURRENCY == 'true') && (LANGUAGE_CURRENCY != $currency) ) ) {
     if (!tep_session_is_registered('currency')) tep_session_register('currency');
@@ -348,8 +355,6 @@
   require(DIR_WS_CLASSES . 'alertbox.php');
   require(DIR_WS_CLASSES . 'message_stack.php');
   $messageStack = new messageStack;
-  //SEO URLs
-  require(DIR_WS_CLASSES . 'seo_friendly_urls.php');
 // Shopping cart actions
   if (isset($HTTP_GET_VARS['action'])) {
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled
