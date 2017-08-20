@@ -1149,7 +1149,7 @@ class SEO_URL{
            $sql = "SELECT LOWER(" . $sqlCmd . ", cd.categories_id 
                      FROM `categories_description` cd LEFT JOIN 
                           `products_to_categories` p2c on cd.categories_id = p2c.categories_id 
-                     WHERE p2c.products_id = '".(int)$pID."' AND cd.language_id = '".(int)$this->languages_id."'
+                     WHERE p2c.products_id = '".(int)$pID."' AND cd.language_id = '".(int)$this->languages_id."' AND p2c.canonical=1
                      LIMIT 1";
            $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
            $cName =  $result['cName'];   
