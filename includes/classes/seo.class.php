@@ -1110,7 +1110,7 @@ class SEO_URL{
                 switch(true){
                         case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('PRODUCT_NAME_' . $pID)):
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['CACHE_QUERY_SAVINGS']++;
-                                $return = (tep_not_null($cName) ? $cName . '-'. constant('PRODUCT_NAME_' . $pID) : constant('PRODUCT_NAME_' . $pID));
+                                $return = (tep_not_null($cName) ? $cName . 'xslashx'. constant('PRODUCT_NAME_' . $pID) : constant('PRODUCT_NAME_' . $pID));
                                 $this->cache['PRODUCTS'][$pID] = $return;
                                 break;
                         case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['PRODUCTS'][$pID])):
@@ -1174,7 +1174,7 @@ class SEO_URL{
                 WHERE categories_id = '".(int)$parentID."' AND cd.language_id = '".(int)$this->languages_id."'
                 LIMIT 1";
               $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
-              $cName = $result['parentName'] . '-' . $cName; //build the new string
+              $cName = $result['parentName'] . 'xslashx' . $cName; //build the new string
            }        
            return $this->strip(str_replace(" ", "-", $cName));
         }            
