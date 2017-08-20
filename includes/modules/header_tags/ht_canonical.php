@@ -32,7 +32,10 @@
       global $PHP_SELF, $HTTP_GET_VARS, $cPath, $oscTemplate;
 
       if (basename($PHP_SELF) == FILENAME_PRODUCT_INFO) {
-        $oscTemplate->addBlock('<link rel="canonical" href="' . tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . (int)$HTTP_GET_VARS['products_id'], 'NONSSL', false) . '" />' . "\n", $this->group);
+      	$canonical_category_query = tep_db_query("SELECT categories_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE products_id = " . (int)$HTTP_GET_VARS['products_id'] . " AND canonical=1");
+      	$canonical_category = tep_db_fetch_array($canonical_category_query);
+      	$cPath = tep_get_path($canonical_category['categories_id']);
+        $oscTemplate->addBlock('canon:'.$canonical_category['categories_id'].'cPath:'.$cPath.'<link rel="canonical" href="' . tep_href_link(FILENAME_PRODUCT_INFO, 'cPath=' . $cPath . '&products_id=' . (int)$HTTP_GET_VARS['products_id'], 'NONSSL', false) . '" />' . "\n", $this->group);
       } elseif (basename($PHP_SELF) == FILENAME_DEFAULT) {
         if (isset($cPath) && tep_not_null($cPath)) {
           $oscTemplate->addBlock('<link rel="canonical" href="' . tep_href_link(FILENAME_DEFAULT, 'cPath=' . $cPath, 'NONSSL', false) . '" />' . "\n", $this->group);
