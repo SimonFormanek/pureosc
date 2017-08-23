@@ -18,15 +18,12 @@
   Released under the GNU General Public License
 */
 
-  //SEO URLs
   require_once('includes/application_top.php');
-  if(isset($seo_friendly_urls) && $seo_friendly_urls->enabled && $seo_friendly_urls->page_type!='category'){
-  if($seo_friendly_urls->include_page!=''){
-  $PHP_SELF=$seo_friendly_urls->include_page;
-  include $seo_friendly_urls->include_page;
-  exit;
-    }
-  }
+// BOF: Information Pages Unlimited
+  require_once(DIR_WS_FUNCTIONS . 'information.php');
+  tep_information_customer_greeting_define();
+// EOF: Information Pages Unlimited
+
 // the following cPath references come from application_top.php
   $category_depth = 'top';
   if (isset($cPath) && tep_not_null($cPath)) {
@@ -333,7 +330,10 @@ if (tep_not_null($image['catdesc'])) {
 ?>
 
   <div class="contentText">
-    <?php echo tep_customer_greeting(); ?>
+    <!-- // BOF: Information Pages Unlimited -->
+    <?php echo tep_information_customer_greeting(); ?>
+    <?php //echo tep_customer_greeting(); ?>
+    <!-- // EOF: Information Pages Unlimited -->
   </div>
 
 <?php

@@ -80,4 +80,28 @@
   define('FILENAME_GV_FAQ', 'gv_faq.php');
   define('FILENAME_GV_REDEEM', 'gv_redeem.php');
   define('FILENAME_GV_SEND', 'gv_send.php');
+
+ /**** BEGIN ARTICLE MANAGER ****/
+  define('FILENAME_ARTICLE_BLOG', 'article_blog.php');
+  define('FILENAME_ARTICLES_BLOG_COMMENTS', 'article_manager_blog_comments.php');
+  define('FILENAME_ARTICLE_INFO', 'article_info.php');
+  define('FILENAME_ARTICLE_LISTING', 'article_listing.php');
+  define('FILENAME_ARTICLE_MANAGER_SEARCH_RESULT', 'article_manager_search_result.php');
+  define('FILENAME_ARTICLE_REVIEWS', 'article_reviews.php');
+  define('FILENAME_ARTICLE_REVIEWS_INFO', 'article_reviews_info.php');
+  define('FILENAME_ARTICLE_REVIEWS_WRITE', 'article_reviews_write.php');
+  define('FILENAME_ARTICLE_SUBMIT', 'article-submit.php');
+  define('FILENAME_ARTICLE_TOPICS', 'article-topics.php');
+  define('FILENAME_ARTICLES', 'articles.php');
+  define('FILENAME_ARTICLES_NEW', 'articles_new.php');
+  define('FILENAME_ARTICLES_RSS', 'article_rss.php');
+  define('FILENAME_ARTICLES_UPCOMING', 'articles_upcoming.php'); 
+  define('FILENAME_ARTICLES_XSELL', 'articles_xsell.php');
+  define('FILENAME_ARTICLES_PXSELL', 'articles_pxsell.php');
+  define('FILENAME_NEW_ARTICLES', 'new_articles.php');
+  /**** END ARTICLE MANAGER ****/  
+
+// BOF: Information Pages Unlimited
+  define('FILENAME_INFORMATION', 'information.php');
+// EOF: Information Pages Unlimited
 ?>

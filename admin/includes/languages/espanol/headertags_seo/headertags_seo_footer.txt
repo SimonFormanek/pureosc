@@ -1,0 +1,9 @@
+<div class="heading" style="margin-top:10px; border-top:1px solid #000;">NEED SOME HELP? </div>
+<div class="section"><span class="subHeading">Contact Me</span> - If you need help installing any addon or maintaining your
+site, <a href="mailto:support@oscommerce-solution.com"><span style="color:#0000ff; font-weight:bold;">please contact me</span></a>. I offer reasonable rates and quick turnaround times.</div>
+
+<div class="section" style="padding-bottom:10px;"><span class="subHeading">Hosting</span> - If you are in need of a host that actually knows the package and is easy 
+to work with, then please consider us. Unlike many hosts nowadays, we handle transferring the site for free. 
+Plus we set it up and verify the settings are correct before turning it over. You can see our basic hosting plans 
+<a class="section_email_blue" href="http://www.oscommerce-solution.com/hosting-plans.php">here</a> though we offer many more hosting options. We have been in business since 2003 so you can rely on us to be here 
+when you need us.</div>

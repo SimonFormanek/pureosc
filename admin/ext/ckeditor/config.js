@@ -47,5 +47,6 @@ CKEDITOR.editorConfig = function(config) {
     config.filebrowserImageUploadUrl = './ext/kcfinder/upload.php?opener=ckeditor&type=images';
     config.filebrowserFlashUploadUrl = './ext/kcfinder/upload.php?opener=ckeditor&type=flash';
     //allow custom css
-    config.allowedContent = true;
+//    config.allowedContent = true;
+config.format_tags = 'p;h1;h2;pre;div';
 };

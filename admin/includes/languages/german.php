@@ -306,3 +306,29 @@ define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Success: File upload erfolgreich gesp
 define('WARNING_NO_FILE_UPLOADED', 'Warning: kein File uploaded.',true);
 //VAT number
 define('ENTRY_VAT_NUMBER', 'VAT Number:',true);
+
+/**** BEGIN ARTICLE MANAGER ****/
+define('BOX_HEADING_ARTICLES', 'Article Manager');
+define('BOX_TOPICS_ARTICLES', 'Topics/Articles');
+define('BOX_ARTICLES_CONFIG', 'Configuration');
+define('BOX_ARTICLES_AUTHORS', 'Authors');
+define('BOX_ARTICLES_BLOG_COMMENTS', 'Blog Comments');
+define('BOX_ARTICLES_REVIEWS', 'Reviews');
+define('BOX_ARTICLES_XSELL', 'Cross-Sell Articles');
+define('IMAGE_NEW_TOPIC', 'New Topic');
+define('IMAGE_NEW_ARTICLE', 'New Article');
+define('TEXT_DISPLAY_NUMBER_OF_AUTHORS', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> authors)');
+/**** END ARTICLE MANAGER ****/
+
+/*** Begin Header Tags SEO ***/
+// header_tags_seo text in includes/boxes/header_tags_seo.php
+define('BOX_HEADING_HEADER_TAGS_SEO', 'Header Tags SEO');
+define('BOX_HEADER_TAGS_ADD_A_PAGE', 'Page Control');
+define('BOX_HEADER_TAGS_FILL_TAGS', 'Fill Tags');
+define('BOX_HEADER_TAGS_KEYWORDS', 'Keywords');
+define('BOX_HEADER_TAGS_SILO', 'Silo Control');
+define('BOX_HEADER_TAGS_SOCIAL', 'Social');
+define('BOX_HEADER_TAGS_TEST', 'Test');
+/*** End Header Tags SEO ***/
+
+

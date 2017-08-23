@@ -35,6 +35,9 @@
     function execute() {
       global $oscTemplate;
       
+      /*** Begin Article Manager ****/
+      $aLinks = GetArticleLinsByTopic('Text');
+      /*** End Article Manager ****/      
       $content_width = (int)MODULE_CONTENT_FOOTER_TEXT_CONTENT_WIDTH;
       
       ob_start();

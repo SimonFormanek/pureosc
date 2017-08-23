@@ -225,7 +225,7 @@ define('ICON_WARNING', 'Pozor',true);
 
 define('TEXT_GREETING_PERSONAL', 'Vítejte zpět <span class="greetUser">%s!</span> Chcete se podívat jaké máme <a href="%s"><u>novinky</u></a> od Vašeho posledního nákupu?',true);
 define('TEXT_GREETING_PERSONAL_RELOGON', '<small>Pokud ne, %s, prosíme <a href="%s"><u>přihlaste se</u></a> na váš účet.</small>',true);
-define('TEXT_GREETING_GUEST', '',true); //Vítejte <span class="greetUser">Neznámý!</span> Chcete se  <a href="%s"><u>přihlásit</u></a>? nebo teprve <a href="%s"><u>zaregistrovat</u></a>?'
+define('TEXT_GREETING_GUEST', 'hahah',true); //Vítejte <span class="greetUser">Neznámý!</span> Chcete se  <a href="%s"><u>přihlásit</u></a>? nebo teprve <a href="%s"><u>zaregistrovat</u></a>?'
 
 define('TEXT_SORT_PRODUCTS', 'seřadit',true);
 define('TEXT_DESCENDINGLY', 'sestupně',true);
@@ -354,3 +354,35 @@ define('USER_LOCALIZATION', '<abbr title="Vybraný jazyk">L:</abbr> %s <abbr tit
 //VAT numbber
 define('ENTRY_VAT_NUMBER', 'DIČ:',true);
 define('ENTRY_VAT_NUMBER_TEXT_2', '',true);
+
+/**** BEGIN ARTICLE MANAGER ****/
+define('BOX_HEADING_ARTICLES', 'Articles');
+define('BOX_ALL_ARTICLES', 'All Articles');
+define('BOX_ALL_BLOG_ARTICLES', 'All Blog Articles');
+define('BOX_ARTICLE_SUBMIT', 'Submit An Article');
+define('BOX_ARTICLE_TOPICS', 'All Topics');
+define('BOX_NEW_ARTICLES', 'New Articles');
+define('TEXT_ARTICLE_SEARCH', 'Search Our Articles');
+define('TEXT_ARTICLE_SEARCH_STRING', 'Enter Keywords Here');
+define('TEXT_DISPLAY_NUMBER_OF_ARTICLES', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> articles)');
+define('TEXT_DISPLAY_NUMBER_OF_ARTICLES_NEW', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> new articles)');
+define('TEXT_ARTICLES', 'Below is a list of articles with the most recent ones listed first.');
+define('TABLE_HEADING_AUTHOR', 'Author');
+define('TABLE_HEADING_ABSTRACT', 'Abstract');
+define('TEXT_PXSELL_ARTICLES', 'Related Articles');
+define('BOX_HEADING_AUTHORS', 'Articles by Author');
+define('BOX_ARTICLES_BLOG_COMMENTS', 'Blog Comments');
+define('NAVBAR_TITLE_DEFAULT', 'Articles');
+define('BOX_RSS_ARTICLES', 'Articles RSS Feed');
+define('BOX_UPCOMING_ARTICLES', 'Upcoming Articles');
+define('BOX_HEADING_TELL_A_FRIEND', 'Email Friend');
+/**** END ARTICLE MANAGER ****/
+
+/*** Begin Header Tags SEO ***/
+define('BOX_HEADING_HEADERTAGS_TAGCLOUD', 'Popular Searches');
+define('TEXT_SEE_MORE', 'see more');
+define('TEXT_SEE_MORE_FULL', 'see more about %s');
+define('HTS_OG_AVAILABLE_STOCK', 'Available Stock');
+define('HTS_OG_PRICE', 'Price');
+/*** End Header Tags SEO ***/
+

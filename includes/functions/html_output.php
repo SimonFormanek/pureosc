@@ -18,8 +18,8 @@
 */
 
 ////
-// The HTML href link wrapper function
-  function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL', $add_session_id = true, $search_engine_safe = true) {
+// The HTML href link wrapper function ORIGINAL (unmodified)
+  function tep_href_link_original($page = '', $parameters = '', $connection = 'NONSSL', $add_session_id = true, $search_engine_safe = true) {
     global $request_type, $session_started, $SID;
 
     $page = tep_output_string($page);
@@ -40,20 +40,14 @@
       die('</td></tr></table></td></tr></table><br /><br /><font color="#ff0000"><strong>Error!</strong></font><br /><br /><strong>Unable to determine connection method on a link!<br /><br />Known methods: NONSSL SSL</strong><br /><br />');
     }
 
-    //SEO Friendly Urls
-    global $seo_friendly_urls;
-    if(isset($seo_friendly_urls) && $seo_friendly_urls->enabled){
-      extract($seo_friendly_urls->process_link($page,$parameters));
-      $link .= $seolink;
-    }else{
-      if (tep_not_null($parameters)) {
-        $link .= $page . '?' . tep_output_string($parameters);
-        $separator = '&';
-    }else{
+    if (tep_not_null($parameters)) {
+      $link .= $page . '?' . tep_output_string($parameters);
+      $separator = '&';
+    } else {
       $link .= $page;
       $separator = '?';
-      }
     }
+
     while ( (substr($link, -1) == '&') || (substr($link, -1) == '?') ) $link = substr($link, 0, -1);
 
 // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
@@ -83,6 +77,25 @@
 
     return $link;
   }
+
+//new seo_urls unmodified
+// The HTML href link wrapper function
+ function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL', $add_session_id = true, $search_engine_safe = true) {
+   global $seo_urls;                
+   if ( !is_object($seo_urls) ){
+    if ( !class_exists('SEO_URL') ){
+     include_once('includes/classes/seo.class.php');
+    }
+    global $languages_id;
+    $seo_urls = new SEO_URL($languages_id);
+   }
+//   return $seo_urls->href_link($page, $parameters, $connection, $add_session_id);
+//   return preg_replace('/-[c|p|t|a|au]-[0-9]*\.html/','', $seo_urls->href_link($page, $parameters, $connection, $add_session_id));
+//   return str_replace('xslashx','/',preg_replace('/-[c|p|t|a|au]-[0-9]*.html/','', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
+   return str_replace('xslashx','/',preg_replace('/-[p|c|m|pi|a|au|by|f|fc|fri|fra|i|links|n|nc|nri|nra|pm|po|pr|pri|t]-[0-9|_]*\.html/','', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
+ }
+
+
 
 ////
 // The HTML image wrapper function
@@ -544,5 +557,3 @@
 
 	  return $search_link;
   }
-  
-  

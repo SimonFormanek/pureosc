@@ -105,4 +105,28 @@
 //stats sales products monthly
 define('FILENAME_STATS_SALES', 'stats_sales.php');
 
+
+/**** BEGIN ARTICLE MANAGER ****/
+  define('FILENAME_ARTICLE_INFO', 'article_info.php');
+  define('FILENAME_ARTICLE_REVIEWS', 'article_reviews.php');
+  define('FILENAME_ARTICLES', 'articles.php');
+  define('FILENAME_ARTICLES_BLOG_COMMENTS', 'article_manager_blog_comments.php');
+  define('FILENAME_ARTICLES_CONFIG', 'articles_config.php');
+  define('FILENAME_ARTICLES_XSELL', 'articles_xsell.php');
+  define('FILENAME_AUTHORS', 'authors.php');
+  /**** END ARTICLE MANAGER ****/
+      
+    
+  /*** Begin Header Tags SEO ***/
+  define('FILENAME_HEADER_TAGS_SEO', 'header_tags_seo.php');
+  define('FILENAME_HEADER_TAGS_FILL_TAGS', 'header_tags_fill_tags.php');
+  define('FILENAME_HEADER_TAGS_KEYWORDS', 'header_tags_seo_keywords.php');
+  define('FILENAME_HEADER_TAGS_SILO', 'header_tags_seo_silo.php');
+  define('FILENAME_HEADER_TAGS_SOCIAL', 'header_tags_seo_social.php');  
+  define('FILENAME_HEADER_TAGS_TEST', 'header_tags_test.php');  
+  /*** End Header Tags SEO ***/
+
+// BOF: Information Pages Unlimited
+  define('FILENAME_INFORMATION_MANAGER', 'information_manager.php');
+// EOF: Information Pages Unlimited
 ?>
