@@ -118,6 +118,11 @@ define('BOX_LOCALIZATION_CURRENCIES', 'Monedas',true);
 define('BOX_LOCALIZATION_LANGUAGES', 'Idiomas',true);
 define('BOX_LOCALIZATION_ORDERS_STATUS', 'Estado Pedidos',true);
 
+// BOF: Information Pages Unlimited
+// localizaion box text in includes/boxes/information.php
+define('BOX_HEADING_INFORMATION', 'Gesti&oacute;n Informaci&oacute;n');
+// EOF: Information Pages Unlimited
+
 // javascript messages
 define('JS_ERROR', '¡Ha habido errores procesando su formulario!\nPor favor, haga las siguiente modificaciones:\n\n',true);
 

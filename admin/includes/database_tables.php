@@ -111,4 +111,9 @@
   define('TABLE_HEADERTAGS_SILO', 'headertags_silo');
   define('TABLE_HEADERTAGS_SOCIAL', 'headertags_social');
   /*** End Header Tags SEO ***/
+
+// BOF: Information Pages Unlimited
+  define('TABLE_INFORMATION', 'information');
+  define('TABLE_INFORMATION_GROUP', 'information_group');
+// EOF: Information Pages Unlimited
 ?>

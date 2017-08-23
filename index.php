@@ -19,6 +19,10 @@
 */
 
   require_once('includes/application_top.php');
+// BOF: Information Pages Unlimited
+  require_once(DIR_WS_FUNCTIONS . 'information.php');
+  tep_information_customer_greeting_define();
+// EOF: Information Pages Unlimited
 
 // the following cPath references come from application_top.php
   $category_depth = 'top';
@@ -326,7 +330,10 @@ if (tep_not_null($image['catdesc'])) {
 ?>
 
   <div class="contentText">
-    <?php echo tep_customer_greeting(); ?>
+    <!-- // BOF: Information Pages Unlimited -->
+    <?php echo tep_information_customer_greeting(); ?>
+    <?php //echo tep_customer_greeting(); ?>
+    <!-- // EOF: Information Pages Unlimited -->
   </div>
 
 <?php

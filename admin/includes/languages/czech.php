@@ -135,6 +135,11 @@ define('BOX_LOCALIZATION_CURRENCIES', 'Měny',true);
 define('BOX_LOCALIZATION_LANGUAGES', 'Jazyky',true);
 define('BOX_LOCALIZATION_ORDERS_STATUS', 'Objednávky - status',true);
 
+// BOF: Information Pages Unlimited
+// localizaion box text in includes/boxes/information.php
+define('BOX_HEADING_INFORMATION', 'Info manager');
+// EOF: Information Pages Unlimited
+
 // javascript messages
 define('JS_ERROR', 'Formulář obsahuje chyby!\nProsíme opravte:\n\n',true);
 

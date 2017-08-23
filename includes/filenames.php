@@ -100,4 +100,8 @@
   define('FILENAME_ARTICLES_PXSELL', 'articles_pxsell.php');
   define('FILENAME_NEW_ARTICLES', 'new_articles.php');
   /**** END ARTICLE MANAGER ****/  
+
+// BOF: Information Pages Unlimited
+  define('FILENAME_INFORMATION', 'information.php');
+// EOF: Information Pages Unlimited
 ?>

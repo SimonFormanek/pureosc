@@ -124,4 +124,7 @@
   define('FILENAME_HEADER_TAGS_TEST', 'header_tags_test.php');  
   /*** End Header Tags SEO ***/
 
+// BOF: Information Pages Unlimited
+  define('FILENAME_INFORMATION_MANAGER', 'information_manager.php');
+// EOF: Information Pages Unlimited
 ?>

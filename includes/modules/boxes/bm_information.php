@@ -1,6 +1,7 @@
 <?php
 /*
   $Id$
+  adapted for Information Pages Unlimited v2.05
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -33,9 +34,20 @@
     function execute() {
       global $oscTemplate;
 
-      ob_start();
-      include(DIR_WS_MODULES . 'boxes/templates/information.php');
-      $data = ob_get_clean();
+// BOF: Information Pages Unlimited
+      require_once(DIR_WS_FUNCTIONS . 'information.php');
+// EOF: Information Pages Unlimited
+
+      $data = '<div class="ui-widget infoBoxContainer">' .
+              '  <div class="ui-widget-header infoBoxHeading">' . MODULE_BOXES_INFORMATION_BOX_TITLE . '</div>' .
+              '  <div class="ui-widget-content infoBoxContents">' .
+                   tep_information_show_category(1) .
+//              '    <a href="' . tep_href_link(FILENAME_SHIPPING) . '">' . MODULE_BOXES_INFORMATION_BOX_SHIPPING . '</a><br />' .
+//              '    <a href="' . tep_href_link(FILENAME_PRIVACY) . '">' . MODULE_BOXES_INFORMATION_BOX_PRIVACY . '</a><br />' .
+//              '    <a href="' . tep_href_link(FILENAME_CONDITIONS) . '">' . MODULE_BOXES_INFORMATION_BOX_CONDITIONS . '</a><br />' .
+              '    <a href="' . tep_href_link(FILENAME_CONTACT_US) . '">' . MODULE_BOXES_INFORMATION_BOX_CONTACT . '</a>' .
+              '  </div>' .
+              '</div>';
 
       $oscTemplate->addBlock($data, $this->group);
     }
@@ -62,3 +74,4 @@
       return array('MODULE_BOXES_INFORMATION_STATUS', 'MODULE_BOXES_INFORMATION_CONTENT_PLACEMENT', 'MODULE_BOXES_INFORMATION_SORT_ORDER');
     }
   }
+?>

@@ -225,7 +225,7 @@ define('ICON_WARNING', 'Pozor',true);
 
 define('TEXT_GREETING_PERSONAL', 'Vítejte zpět <span class="greetUser">%s!</span> Chcete se podívat jaké máme <a href="%s"><u>novinky</u></a> od Vašeho posledního nákupu?',true);
 define('TEXT_GREETING_PERSONAL_RELOGON', '<small>Pokud ne, %s, prosíme <a href="%s"><u>přihlaste se</u></a> na váš účet.</small>',true);
-define('TEXT_GREETING_GUEST', '',true); //Vítejte <span class="greetUser">Neznámý!</span> Chcete se  <a href="%s"><u>přihlásit</u></a>? nebo teprve <a href="%s"><u>zaregistrovat</u></a>?'
+define('TEXT_GREETING_GUEST', 'hahah',true); //Vítejte <span class="greetUser">Neznámý!</span> Chcete se  <a href="%s"><u>přihlásit</u></a>? nebo teprve <a href="%s"><u>zaregistrovat</u></a>?'
 
 define('TEXT_SORT_PRODUCTS', 'seřadit',true);
 define('TEXT_DESCENDINGLY', 'sestupně',true);
