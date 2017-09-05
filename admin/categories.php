@@ -99,10 +99,12 @@
           tep_reset_cache_block('categories');
           tep_reset_cache_block('also_purchased');
         }
-	//pure:new create thumbnails
-	exec('curl ' . HTTP_CATALOG_SERVER . '/index.php?cPath=' . $cPath . ' > /dev/null 2>&1');
-
+	//pure:new redirect back to edit
+if (tep_not_null(tep_db_insert_id())) {
+        tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $categories_id . '&action=edit_category'));
+        } else {
         tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $categories_id));
+        }
         break;
       case 'delete_category_confirm':
         if (isset($HTTP_POST_VARS['categories_id'])) {
@@ -355,12 +357,12 @@
           tep_reset_cache_block('categories');
           tep_reset_cache_block('also_purchased');
         }
-	//pure:new create thumbnails
-	exec('curl ' . HTTP_CATALOG_SERVER . '/index.php?cPath=' . $cPath . ' > /dev/null 2>&1');
-	$urlproduct = HTTP_CATALOG_SERVER . '/product_info.php?cPath=' . $cPath . '&products_id=' . $products_id;
-	tep_redirect($urlproduct);
-	
-        //back: FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id;
+	//pure:new reload page
+if (tep_not_null(tep_db_insert_id())) {
+	tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id . '&action=new_product&#meta-edit'));
+	} else {
+	tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id));
+}
         break;
       case 'copy_to_confirm':
         if (isset($HTTP_POST_VARS['products_id']) && isset($HTTP_POST_VARS['categories_id'])) {
@@ -546,6 +548,12 @@ function updateNet() {
     <?php echo tep_draw_form('new_product', FILENAME_CATEGORIES, 'cPath=' . $cPath . (isset($HTTP_GET_VARS['pID']) ? '&pID=' . $HTTP_GET_VARS['pID'] : '') . '&action=' . $form_action, 'post', 'enctype="multipart/form-data"'); ?>
     <table border="0" width="100%" cellspacing="0" cellpadding="2">
       <tr>
+        <td class="smallText" align="right">
+        <?php echo '<a href="' . tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . (isset($HTTP_GET_VARS['pID']) ? '&pID=' . $HTTP_GET_VARS['pID'] : '') . '&action=new_product&#meta-edit') . '">' . GOTO_META_ANCHOR . '</a>&nbsp;';
+        echo tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : ''))) . '&nbsp;';
+        ?></td>
+      </tr>
+      <tr>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
             <td class="pageHeading"><?php echo sprintf(TEXT_NEW_PRODUCT, tep_output_generated_category_path($current_category_id)); ?></td>
@@ -648,21 +656,6 @@ if (DISPLAY_PRODUCTS_MANUFACTURER=='true') { ?>
             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
 <?php
-if (DISPLAY_PRODUCTS_SEO_TITLE=='true') {
-
-    for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
-?>
-          <tr bgcolor="#eeeeee">
-            <td class="main"><?php if ($i == 0) echo TEXT_PRODUCTS_SEO_TITLE; ?></td>
-            <td class="main"><?php echo tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']) . '&nbsp;' . tep_draw_input_field('products_seo_title[' . $languages[$i]['id'] . ']', (empty($pInfo->products_id) ? '' : tep_get_products_seo_title($pInfo->products_id, $languages[$i]['id'])), 'style="width: 300px;"'); ?></td>
-          </tr>
-<?php
-    }
-?>
-          <tr>
-            <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
-          </tr>
-<?php }
 if (DISPLAY_PRODUCTS_TAX_CLASS=='true') { ?>
           <tr bgcolor="#ebebff">
             <td class="main"><?php echo TEXT_PRODUCTS_TAX_CLASS; ?></td>
@@ -837,6 +830,58 @@ if (DISPLAY_PRODUCTS_WEIGHT=='true') { ?>
           </tr>
           <?php
 }
+if (!isset($HTTP_GET_VARS['pID'])) {
+?>
+      <tr>
+        <td><?php echo NEW_PRODUCT_INSERTING; ?></td><td class="smallText" align="right"><?php echo TEXT_SAVE_NOW. '&nbsp;'. tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : ''))) . '&nbsp;';?></td>
+      </tr>
+<?php
+} else {
+echo '<tr><td id="meta-edit">&nbsp;</td></tr>';
+}
+if (DISPLAY_PRODUCTS_SEO_TITLE=='true') {
+
+    for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+?>
+          <tr bgcolor="#eeeeee">
+            <td class="main"><?php if ($i == 0) echo TEXT_PRODUCTS_SEO_TITLE; ?></td>
+            <td class="main">
+            	<table>
+            		<tr>
+            			<td><?php echo tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']) . '&nbsp;'; ?></td>
+            			<td><?php
+            				if (tep_not_null(tep_get_products_name($pInfo->products_id, $languages[$i]['id']))) {
+            					if (ADD_MANUFACTURER_SEO_TITLE == 'true' && (tep_not_null($pInfo->manufacturers_id)) && (tep_not_null(tep_get_products_name($pInfo->products_id, $languages[$i]['id'])))) {
+            					$manufacturers_name_query = tep_db_query("select manufacturers_name from " . TABLE_MANUFACTURERS . " WHERE manufacturers_id=" . $pInfo->manufacturers_id);
+												$manufacturers_name = tep_db_fetch_array($manufacturers_name_query);
+												$emptytitle = $manufacturers_name['manufacturers_name'] . ' ' . tep_get_products_name($pInfo->products_id, $languages[$i]['id']);
+												} else {
+												$emptytitle = tep_get_products_name($pInfo->products_id, $languages[$i]['id']);
+												} 
+										} else {
+											$emptytitle = '';
+										}
+										echo '<input onKeyUp="count_title_' . $languages[$i]['id'] .'()" name="products_seo_title[' . $languages[$i]['id'] . ']" id="seotitle_' . $languages[$i]['id'] .'" size="80" value="' . (empty(tep_get_products_seo_title($pInfo->products_id, $languages[$i]['id'])) ? $emptytitle : tep_get_products_seo_title($pInfo->products_id, $languages[$i]['id'])) . '">';
+										echo '<br />' . TEXT_META_TITLE_LENGHT_REMAINING_CHARACTERS . ': <span id="counter_title_' . $languages[$i]['id'] .'"></span> (max: ' . META_TITLE_LENGHT . ')';?>
+										<script>
+										function count_title_<?php echo $languages[$i]['id'];?>() {
+										document.getElementById('counter_title_<?php echo $languages[$i]['id'];?>').innerHTML = (<?php echo META_TITLE_LENGHT-mb_strlen(STORE_NAME);?>)-document.getElementById('seotitle_<?php echo $languages[$i]['id'];?>').value.length;
+										}
+										count_title_<?php echo $languages[$i]['id'];?>();
+										</script>
+									</td>
+								</tr>
+							</table>
+            </td>
+          </tr>
+<?php
+    }
+?>
+          <tr>
+            <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
+          </tr>
+<?php }
+
 if (DISPLAY_PRODUCTS_SEO_DESCRIPTION=='true') { 
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 ?>
@@ -845,7 +890,17 @@ if (DISPLAY_PRODUCTS_SEO_DESCRIPTION=='true') {
             <td><table border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="main" valign="top"><?php echo tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']); ?>&nbsp;</td>
-                <td class="main"><?php echo tep_draw_textarea_field('products_seo_description[' . $languages[$i]['id'] . ']', 'soft', '70', '3', (empty($pInfo->products_id) ? '' : tep_get_products_seo_description($pInfo->products_id, $languages[$i]['id']))); ?></td>
+                <td class="main"><?php 
+                echo '<textarea onKeyUp="count_description_' . $languages[$i]['id'] . '()" name="products_seo_description[' . $languages[$i]['id'] . ']" id="seodescription_' . $languages[$i]['id'] .'" cols="80" rows="6">' . (empty(tep_get_products_seo_description($pInfo->products_id, $languages[$i]['id'])) ? str_replace(array("\r", "\n"), '', strip_tags(tep_get_products_description($pInfo->products_id, $languages[$i]['id']))) : tep_get_products_seo_description($pInfo->products_id, $languages[$i]['id'])) . '</textarea>';
+										echo '<br />' . TEXT_META_DESCRIPTION_LENGHT_REMAINING_CHARACTERS . ': <strong><span id="counter_description_' . $languages[$i]['id'] .'"></span></strong> (max: ' . META_DESCRIPTION_LENGHT . ')';?>
+
+		<script>
+		function count_description_<?php echo $languages[$i]['id'];?>() {
+		document.getElementById('counter_description_<?php echo $languages[$i]['id'];?>').innerHTML = <?php echo META_DESCRIPTION_LENGHT;?>-document.getElementById('seodescription_<?php echo $languages[$i]['id'];?>').value.length;
+		}
+		count_description_<?php echo $languages[$i]['id'];?>();
+		</script>
+                </td>
               </tr>
             </table></td>
           </tr>
@@ -1161,12 +1216,12 @@ $('#products_custom_date').datepicker({
 
         
 		$contents[] = array('text' => '<br />' . TEXT_CATEGORIES_NAME . $category_inputs_string);
+        $contents[] = array('text' => '<br />' . TEXT_CATEGORIES_DESCRIPTION . $category_description_string);
+        $contents[] = array('text' => '<br />' . TEXT_SORT_ORDER . '<br />' . tep_draw_input_field('sort_order', '', 'size="2"'));
         $contents[] = array('text' => '<br />' . TEXT_CATEGORIES_SEO_TITLE . $category_seo_title_string);
         $contents[] = array('text' => '<br />' . TEXT_CATEGORIES_SEO_DESCRIPTION . $category_seo_description_string);
         $contents[] = array('text' => '<br />' . TEXT_CATEGORIES_SEO_KEYWORDS . $category_seo_keywords_string);
         $contents[] = array('text' => '<br />' . TEXT_CATEGORIES_IMAGE . '<br />' . tep_draw_file_field('categories_image'));
-        $contents[] = array('text' => '<br />' . TEXT_CATEGORIES_DESCRIPTION . $category_description_string);
-        $contents[] = array('text' => '<br />' . TEXT_SORT_ORDER . '<br />' . tep_draw_input_field('sort_order', '', 'size="2"'));
         $contents[] = array('align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath)));
         break;
       case 'edit_category':
@@ -1185,11 +1240,34 @@ $('#products_custom_date').datepicker({
           $category_inputs_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']) . '&nbsp;' . tep_draw_input_field('categories_name[' . $languages[$i]['id'] . ']', tep_get_category_name($cInfo->categories_id, $languages[$i]['id']), 'style="width: 300px;"');
         }
         for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-          $category_seo_title_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']) . '&nbsp;' . tep_draw_input_field('categories_seo_title[' . $languages[$i]['id'] . ']', tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id']), 'style="width: 300px;"');
-        }
+          $category_seo_title_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']) . '&nbsp;'; 
+
+					$emptytitle = tep_get_category_name($cInfo->categories_id, $languages[$i]['id']);
+//		$category_seo_title_string .= '<input onKeyUp="count_title()" name="categories_seo_title[' . $languages[$i]['id'] . ']" id="seotitle" size="80" value="' . (empty(tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id'])) ? $emptytitle : tep_get_category_seo_title($cInfo->categories_id)) . '">';
+//		$category_seo_title_string .= '<br />Počet znaků limit max: 70 aktuálně ULOŽENO: <strong>' . (empty(tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id'])) ? mb_strlen($emptytitle) : mb_strlen(tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id']))) . '</strong>  Editace aktuálně zbývá: <span id="counter_title"></span>';
+$category_seo_title_string .= '<input onKeyUp="count_title_' . $languages[$i]['id'] .'()" name="categories_seo_title[' . $languages[$i]['id'] . ']" id="seotitle_' . $languages[$i]['id'] .'" size="80" value="' . (empty(tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id'])) ? $emptytitle : tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id'])) . '">';
+$category_seo_title_string .= '<br />' . TEXT_META_TITLE_LENGHT_REMAINING_CHARACTERS . ': <span id="counter_title_' . $languages[$i]['id'] .'"></span> (max: ' . META_TITLE_LENGHT . ')';?>
+				<script>
+				function count_title_<?php echo $languages[$i]['id'];?>() {
+				document.getElementById('counter_title_<?php echo $languages[$i]['id'];?>').innerHTML = (<?php echo META_TITLE_LENGHT-mb_strlen(STORE_NAME);?>)-document.getElementById('seotitle_<?php echo $languages[$i]['id'];?>').value.length;
+				}
+				count_title_<?php echo $languages[$i]['id'];?>();
+				</script>
+        <?php }
         for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-          $category_seo_description_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name'], '', '', 'style="vertical-align: top;"') . '&nbsp;' . tep_draw_textarea_field('categories_seo_description[' . $languages[$i]['id'] . ']', 'soft', '60', '3', tep_get_category_seo_description($cInfo->categories_id, $languages[$i]['id']));
-        }
+  //        $category_seo_description_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name'], '', '', 'style="vertical-align: top;"') . '&nbsp;' . tep_draw_textarea_field('categories_seo_description[' . $languages[$i]['id'] . ']', 'soft', '60', '3', tep_get_category_seo_description($cInfo->categories_id, $languages[$i]['id']));
+				$category_seo_description_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name'], '', '', 'style="vertical-align: top;"') . '&nbsp;';
+        $category_seo_description_string .= '<textarea onKeyUp="count_description_' . $languages[$i]['id'] . '()" name="categories_seo_description[' . $languages[$i]['id'] . ']" id="seodescription_' . $languages[$i]['id'] .'" cols="80" rows="6">' . (empty(tep_get_category_seo_description($cInfo->categories_id, $languages[$i]['id'])) ? str_replace(array("\r", "\n"), '', strip_tags(tep_get_category_description($cInfo->categories_id, $languages[$i]['id']))) : tep_get_category_seo_description($cInfo->categories_id, $languages[$i]['id'])) . '</textarea>';
+        $category_seo_description_string .= '<br />' . TEXT_META_DESCRIPTION_LENGHT_REMAINING_CHARACTERS . ': <strong><span id="counter_description_' . $languages[$i]['id'] .'"></span></strong> (max: ' . META_DESCRIPTION_LENGHT . ')';
+        ?>
+		<script>
+		function count_description_<?php echo $languages[$i]['id'];?>() {
+		document.getElementById('counter_description_<?php echo $languages[$i]['id'];?>').innerHTML = <?php echo META_DESCRIPTION_LENGHT;?>-document.getElementById('seodescription_<?php echo $languages[$i]['id'];?>').value.length;
+		}
+		count_description_<?php echo $languages[$i]['id'];?>();
+		</script>
+        
+        <?php }
         for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
           $category_seo_keywords_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], '', 'SSL'), $languages[$i]['name']) . '&nbsp;' . tep_draw_input_field('categories_seo_keywords[' . $languages[$i]['id'] . ']', tep_get_category_seo_keywords($cInfo->categories_id, $languages[$i]['id']), 'style="width: 300px;" placeholder="' . PLACEHOLDER_COMMA_SEPARATION . '"');
         }

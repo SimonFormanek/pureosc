@@ -127,8 +127,6 @@ define('TEXT_EDIT_CATEGORIES_DESCRIPTION', 'Edit the Category Description:',true
   define('TEXT_PRODUCTS_SEO_DESCRIPTION', 'Product Meta Description for SEO:<br><small>Add a &lt;description&gt; Meta Element.</small>',true);
   define('TEXT_PRODUCTS_SEO_KEYWORDS', 'Product Meta Keywords for SEO:<br><small>Add a &lt;keyword&gt; Meta Element.<br>Must be comma separated.</small>',true);
   define('TEXT_PRODUCTS_MINI_DESCRIPTION', 'Product Mini Description:<br><small>Used in the "product list" in Category Pages.</small>',true);
-  //pure:new products_templates
-  define('TEXT_PRODUCTS_TEMPLATE','Select template (article/product):');
 
 
 /*** Begin Header Tags SEO ***/
@@ -142,3 +140,15 @@ define('TEXT_PRODUCTS_KEYWORDS', 'Meta Keywords',true);
 define('TEXT_PRODUCTS_LISTING_TEXT', 'Product Listing Text',true);
 define('TEXT_PRODUCTS_SUB_TEXT', 'Product Page Sub Text',true);
 /*** End Header Tags SEO ***/
+//pure:new products_templates
+  define('TEXT_PRODUCTS_TEMPLATE','Select template (article/product):');
+//pure:new canonical
+  define('TEXT_PRODUCTS_CANONICAL','Canonical category? (YES = check)',true);
+//pure:new SEO title/description
+  define('TEXT_META_TITLE_LENGHT_REMAINING_CHARACTERS','Remaining chars to limit',true);
+ //pure:new SEO title/description
+  define('TEXT_META_DESCRIPTION_LENGHT_REMAINING_CHARACTERS','Remaining chars to limit',true);
+ //pure:new save values for SEO title/descr
+ define('NEW_PRODUCT_INSERTING','NEW PRODUCT:',true);
+  define('TEXT_SAVE_NOW','For automatic META generation save now',true);
+  define('GOTO_META_ANCHOR','Jump to META title/description edit',true);

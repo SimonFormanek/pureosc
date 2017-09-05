@@ -103,4 +103,46 @@ define('ERROR_CANNOT_LINK_TO_SAME_CATEGORY', 'Fehler: Produkte können nicht in 
 define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Fehler: Das Verzeichnis \'images\' im Katalogverzeichnis ist schreibgeschützt: ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CATALOG_IMAGE_DIRECTORY_DOES_NOT_EXIST', 'Fehler: Das Verzeichnis \'images\' im Katalogverzeichnis ist nicht vorhanden: ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Error: Kategorie kann nicht in Unterkategorie verschoben werden.',true);
-?>
+
+define('TEXT_CATEGORIES_DESCRIPTION', 'Category Description:<br><small>shows in category page</small>',true);
+define('TEXT_EDIT_CATEGORIES_DESCRIPTION', 'Edit the Category Description:',true);
+/* ************************************************************************
+************** Custom Filenames can be defined below here **************
+**************               Raymond Burns                **************
+************************************************************************ */
+// Definition for SEO Header Tags Reloaded
+  define('TEXT_PRODUCTS_SEO_TITLE', 'Products Title for SEO:<br><small>Replaces the product name in the &lt;title&gt; Meta Element.<br>Leave blank to default to product name.</small>',true);
+  define('TEXT_CATEGORIES_SEO_TITLE', 'Category Title for SEO:<br><small>Replaces the category name in the &lt;title&gt; Meta Element.<br>Leave blank to default to category name.</small>',true);
+  define('TEXT_EDIT_CATEGORIES_SEO_TITLE', 'Edit the Category Title for SEO:',true);
+  define('TEXT_CATEGORIES_SEO_DESCRIPTION', 'Category Meta Description for SEO:<br><small>Add a &lt;description&gt; Meta Element.</small>',true);
+  define('TEXT_EDIT_CATEGORIES_SEO_DESCRIPTION', 'Edit the Category Meta Description for SEO:<br><small>Changes the &lt;description&gt; Meta Element.</small>',true);
+  define('TEXT_CATEGORIES_SEO_KEYWORDS', 'Category Meta Keywords for SEO:<br><small>Add a &lt;keyword&gt; Meta Element.<br>Must be comma separated.</small>',true);
+  define('TEXT_EDIT_CATEGORIES_SEO_KEYWORDS', 'Edit the Category Meta Keywords for SEO:<br><small>Changes the &lt;keyword&gt; Meta Element.<br>Must be comma separated.</small>',true);
+  define('TEXT_PRODUCTS_SEO_DESCRIPTION', 'Product Meta Description for SEO:<br><small>Add a &lt;description&gt; Meta Element.</small>',true);
+  define('TEXT_PRODUCTS_SEO_KEYWORDS', 'Product Meta Keywords for SEO:<br><small>Add a &lt;keyword&gt; Meta Element.<br>Must be comma separated.</small>',true);
+  define('TEXT_PRODUCTS_MINI_DESCRIPTION', 'Product Mini Description:<br><small>Used in the "product list" in Category Pages.</small>',true);
+
+
+/*** Begin Header Tags SEO ***/
+define('TEXT_PRODUCT_METTA_INFO', 'Header Tags SEO Meta Tag Data',true);
+define('TEXT_PRODUCTS_BREADCRUMB', 'Breadcrumb Text',true);
+define('TEXT_PRODUCTS_PAGE_TITLE', 'Title Tag',true);
+define('TEXT_PRODUCTS_PAGE_TITLE_ALT', 'Title Tag - Alternate',true);
+define('TEXT_PRODUCTS_PAGE_TITLE_URL', 'Title Tag - URL',true);
+define('TEXT_PRODUCTS_HEADER_DESCRIPTION', 'Meta Description',true);
+define('TEXT_PRODUCTS_KEYWORDS', 'Meta Keywords',true);
+define('TEXT_PRODUCTS_LISTING_TEXT', 'Product Listing Text',true);
+define('TEXT_PRODUCTS_SUB_TEXT', 'Product Page Sub Text',true);
+/*** End Header Tags SEO ***/
+//pure:new products_templates
+  define('TEXT_PRODUCTS_TEMPLATE','Select template (article/product):');
+//pure:new canonical
+  define('TEXT_PRODUCTS_CANONICAL','Canonical category? (YES = check)',true);
+//pure:new SEO title/description
+  define('TEXT_META_TITLE_LENGHT_REMAINING_CHARACTERS','Remaining chars to limit',true);
+ //pure:new SEO title/description
+  define('TEXT_META_DESCRIPTION_LENGHT_REMAINING_CHARACTERS','Remaining chars to limit',true);
+ //pure:new save values for SEO title/descr
+ define('NEW_PRODUCT_INSERTING','NEW PRODUCT:',true);
+  define('TEXT_SAVE_NOW','For automatic META generation save now',true);
+  define('GOTO_META_ANCHOR','Jump to META title/description edit',true);

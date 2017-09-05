@@ -132,3 +132,12 @@ define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Error: Category cannot be moved 
   define('TEXT_PRODUCTS_TEMPLATE','Šablona stránky:',true);
 //pure:new canonical
   define('TEXT_PRODUCTS_CANONICAL','Kanonická kategorie? (ANO = zaškrtnout)',true);
+//pure:new SEO title/description
+  define('TEXT_META_TITLE_LENGHT_REMAINING_CHARACTERS','Zbývající znaky do limitu',true);
+ //pure:new SEO title/description
+  define('TEXT_META_DESCRIPTION_LENGHT_REMAINING_CHARACTERS','Zbývající znaky do limitu',true);
+ //pure:new save values for SEO title/descr
+ define('NEW_PRODUCT_INSERTING','NOVÝ PRODUKT:',true);
+  define('TEXT_SAVE_NOW','Pro automatické generování META uložte název a popis (jinak je nutné ručně vyplnit následující META title/description)',true);
+  define('GOTO_META_ANCHOR','Skok na editaci META title/description',true);
+  
