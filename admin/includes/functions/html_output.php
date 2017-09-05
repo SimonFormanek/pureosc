@@ -423,7 +423,7 @@
         $button .= ' target="_blank"';
       }
     } else {
-      $button .= '<button id="tdb' . $button_counter . '" type="' . tep_output_string($params['type']) . '"';
+      $button .= '<button accesskey="s" id="tdb' . $button_counter . '" type="' . tep_output_string($params['type']) . '"';
     }
 
     if ( isset($params['params']) ) {
