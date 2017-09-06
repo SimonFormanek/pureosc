@@ -28,6 +28,10 @@ define('CONFIG_DESCRIPTION_META_DESCRIPTION_LENGHT','Nastavte max. počet znaků
 define('CONFIG_TITLE_ADD_MANUFACTURER_META_TITLE','Přidat jméno výrobce do Meta Title');
 define('CONFIG_DESCRIPTION_ADD_MANUFACTURER_META_TITLE','Přidat jméno výrobce do META TITLE při automatickém generování?');
 
+//products listing GROUP 8
+define('CONFIG_TITLE_PRODUCT_LIST_DISPLAY_SORTBY','Filtr Třídit podle');
+define('CONFIG_DESCRIPTION_PRODUCT_LIST_DISPLAY_SORTBY','Zobrazit filtr Třídit podle (datum, cena, určené pořadí) atd.');
+
 //Monthly Products Sales Report 
 define('CONFIG_TITLE_COMISSION_PERCENTAGE','Rabat');
 define('CONFIG_DESCRIPTION_COMISSION_PERCENTAGE','Nastavit percentuální výši rabatu pro modul výkazy/Měsíční přehled prodeje produktů. 0 = nezobrazovat rabat');

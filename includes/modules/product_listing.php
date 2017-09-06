@@ -36,8 +36,10 @@
 <?php
   }
 
-  if ($listing_split->number_of_rows > 0) { ?>
+  if ($listing_split->number_of_rows > 0) { 
+   if (PRODUCT_LIST_DISPLAY_SORTBY == 'true' || MODULE_HEADER_TAGS_GRID_LIST_VIEW_STATUS == 'True') { ?>
     <div class="well well-sm">
+   	<?php if (PRODUCT_LIST_DISPLAY_SORTBY == 'true') { ?>
       <div class="btn-group btn-group-sm pull-right">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
           <?php echo TEXT_SORT_BY; ?><span class="caret"></span>
@@ -98,8 +100,8 @@
 		      ?>
         </ul>
       </div>
-
     <?php
+    }
     if (MODULE_HEADER_TAGS_GRID_LIST_VIEW_STATUS == 'True') {
       ?>
       <strong><?php echo TEXT_VIEW; ?></strong>
@@ -112,8 +114,8 @@
     ?>
     <div class="clearfix"></div>
   </div>
-
   <?php
+  }
   $listing_query = tep_db_query($listing_split->sql_query);
 
   $prod_list_contents = NULL;
@@ -153,7 +155,7 @@
        $prod_list_contents .=  $extra_list_contents;
        $prod_list_contents .= '    </dl>';
     }
-
+if ($listing['products_price'] > 0) {
 	  $prod_list_contents .= '      <div class="row">';
     if (tep_not_null($listing['specials_new_products_price'])) {
       $prod_list_contents .= '      <div class="col-xs-6"><div class="btn-group" role="group"><button type="button" class="btn btn-default"><del>' .  $currencies->display_price($listing['products_price'], tep_get_tax_rate($listing['products_tax_class_id'])) . '</del></span>&nbsp;&nbsp;<span class="productSpecialPrice">' . $currencies->display_price($listing['specials_new_products_price'], tep_get_tax_rate($listing['products_tax_class_id'])) . '</button></div></div>';
@@ -162,7 +164,7 @@
     }
     $prod_list_contents .= '       <div class="col-xs-6 text-right">' . tep_draw_button(IMAGE_BUTTON_BUY_NOW, 'fa fa-shopping-cart', tep_href_link(basename($PHP_SELF), tep_get_all_get_params(array('action', 'sort', 'cPath')) . 'action=buy_now&products_id=' . $listing['products_id']), NULL, NULL, 'btn-success btn-sm') . '</div>';
     $prod_list_contents .= '      </div>';
-
+		}
     $prod_list_contents .= '    </div>';
     $prod_list_contents .= '  </div>';
     $prod_list_contents .= '</div>';

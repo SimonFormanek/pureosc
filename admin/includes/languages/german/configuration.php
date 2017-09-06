@@ -28,6 +28,10 @@ define('CONFIG_DESCRIPTION_SEO_DESCRIPTION_LENGHT','Set max chars count for META
 define('CONFIG_TITLE_ADD_MANUFACTURER_SEO_TITLE','Add manufacturers name to META TITLE');
 define('CONFIG_DESCRIPTION_ADD_MANUFACTURER_SEO_TITLE','Add manufacturers name to META TITLE on auto generating title?');
 
+//products listing GROUP 8
+define('CONFIG_TITLE_PRODUCT_LIST_DISPLAY_SORTBY','Filter Sort by');
+define('CONFIG_DESCRIPTION_PRODUCT_LIST_DISPLAY_SORTBY','Display Sort by filter');
+
 //Monthly Products Sales Report 
 define('CONFIG_TITLE_COMISSION_PERCENTAGE','Comision');
 define('CONFIG_DESCRIPTION_COMISSION_PERCENTAGE','Set comision percentage for Monthly Sales Products Report  0 = do not display');
