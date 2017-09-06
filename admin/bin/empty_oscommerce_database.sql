@@ -5,7 +5,7 @@ truncate action_recorder;
 #truncate products & category tables:
 truncate products;
 truncate products_description;
-truncate products_description_versions;
+#truncate products_description_versions;
 truncate categories_description;
 truncate categories;
 truncate products_to_categories;
@@ -32,17 +32,17 @@ truncate  manufacturers_info;
 
 #truncate customers
 truncate customers;
-truncate customers_real;
+#truncate customers_real;
 truncate customers_info;
 truncate address_book;
-truncate address_book_real;
+#truncate address_book_real;
 truncate products_notifications;
 
 
 
 # orders
 truncate orders;
-truncate orders_real;
+#truncate orders_real;
 truncate orders_products;
 truncate orders_products_attributes;
 truncate orders_products_download;
@@ -59,8 +59,8 @@ truncate banners;
 truncate banners_history;
 
 
-truncate banned_ip;
-truncate phpids_intrusions;
+#truncate banned_ip;
+#truncate phpids_intrusions;
 
 truncate administrators;
 truncate action_recorder;
