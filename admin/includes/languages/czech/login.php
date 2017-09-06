@@ -12,15 +12,15 @@
 
 define('HEADING_TITLE', 'Administrator Login',true);
 
-define('TEXT_USERNAME', 'Username:',true);
-define('TEXT_PASSWORD', 'Password:',true);
+define('TEXT_USERNAME', 'Uživatelské jméno:',true);
+define('TEXT_PASSWORD', 'Heslo:',true);
 
-define('TEXT_CREATE_FIRST_ADMINISTRATOR', 'No administrators exist in the database table. Please fill in the following information to create the first administrator. (A manual login is still required after this step)',true);
+define('TEXT_CREATE_FIRST_ADMINISTRATOR', 'V databázi neexistují administrátoři. Zadejte uživatelské jméno a heslo pro administrátora. V následujícím kroku se přihlášte se zadanými údaji.',true);
 
-define('ERROR_INVALID_ADMINISTRATOR', 'Error: Invalid administrator login attempt.',true);
+define('ERROR_INVALID_ADMINISTRATOR', 'Chyba: Neplatné přihlašovací údaje administrátora.',true);
 
 define('BUTTON_LOGIN', 'Login',true);
-define('BUTTON_CREATE_ADMINISTRATOR', 'Create Administrator',true);
+define('BUTTON_CREATE_ADMINISTRATOR', 'Vytvořit administratora',true);
 
-define('ERROR_ACTION_RECORDER', 'Error: The maximum number of login attempts has been reached. Please try again in %s minutes.',true);
+define('ERROR_ACTION_RECORDER', 'Chyba: Dosažen maximální počet pokusů o přihlášení. Opakujte přihlášení po uplunutí %s minut.',true);
 ?>
