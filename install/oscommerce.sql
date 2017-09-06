@@ -1,1 +1,1 @@
-oscommerce_czech.sql
+empty_osc_articles-1709-06-03.sql
