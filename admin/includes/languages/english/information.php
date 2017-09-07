@@ -50,4 +50,5 @@
   define('WARNING_INFORMATION', 'Warning');
   define('WARNING_PARENT_PAGE', 'If a Parent page is required you will need to add one after creating this entry');
   define('ERROR_ADDING', 'Failed to add information to database.');
-?>
+	define('IMAGE_NEW_PAGE','New Information Page');
+

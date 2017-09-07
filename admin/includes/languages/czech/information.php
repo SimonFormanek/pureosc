@@ -1,9 +1,10 @@
 <?php
 /*
   Module: Information Pages Unlimited
-          File date: 2007/02/17
+          File date: 2017/09/09
           Based on the FAQ script of adgrafics
           Adjusted by Joeri Stegeman (joeri210 at yahoo.com), The Netherlands
+          Added META title, description, keywords by Simon Formanek mail at simonformanek.cz
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -50,4 +51,4 @@
   define('WARNING_INFORMATION', 'Warning');
   define('WARNING_PARENT_PAGE', 'If a Parent page is required you will need to add one after creating this entry');
   define('ERROR_ADDING', 'Failed to add information to database.');
-?>
+	define('IMAGE_NEW_PAGE','Nová stránka');

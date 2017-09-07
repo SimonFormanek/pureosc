@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('TEXT_MAIN', '',true);
+//define('TEXT_MAIN', 'xxx',true);
 define('TABLE_HEADING_NEW_PRODUCTS', 'Novinky %s',true);
 define('TABLE_HEADING_UPCOMING_PRODUCTS', 'Připravujeme',true);
 define('TABLE_HEADING_DATE_EXPECTED', 'Bude k dispozici',true);

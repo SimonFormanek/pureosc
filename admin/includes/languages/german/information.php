@@ -50,4 +50,5 @@
   define('WARNING_INFORMATION', 'Warnung');
   define('WARNING_PARENT_PAGE', 'Wenn eine Elternteilseite angefordert wird, mssen Sie ein hinzufgen, nachdem Sie diese Eintragung verursacht haben.');
   define('ERROR_ADDING', 'Failed to add information to database.');
-?>
+	define('IMAGE_NEW_PAGE','Nová stránka');
+

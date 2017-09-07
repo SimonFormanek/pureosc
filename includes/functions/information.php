@@ -103,16 +103,20 @@ in the same manner as osCommerce
 
 ////
 // Define customer greetings
-  function tep_information_customer_greeting_define() {
+  function tep_information_default_page_define() {
     global $customer_id, $customer_first_name, $languages_id, $category_depth;
 
     if ($category_depth == 'top') {
       // Retrieve information from db
       $information_group_id = 2; // ID set by module for Entrance messages
-      $information_query = tep_db_query("select information_title, information_description from " . TABLE_INFORMATION . " where language_id = '" . (int)$languages_id . "' and information_group_id = '" . (int)$information_group_id . "'");
+      $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int)$languages_id . "' AND information_group_id = '" . (int)$information_group_id . "'");
       while ($information = tep_db_fetch_array($information_query)) {
         // if($information['information_title'] == 'HEADING_TITLE')
-        define($information['information_title'], $information['information_description']);
+        if ($information['information_id'] > 5) {
+        	define($information['information_title'], strip_tags($information['information_description']));
+        } else {
+        	define($information['information_title'], $information['information_description']);
+        }
       }
     }
   }
@@ -127,8 +131,6 @@ in the same manner as osCommerce
     } else {
       $greeting_string = sprintf(TEXT_GREETING_GUEST, tep_href_link(FILENAME_LOGIN, '', 'SSL'), tep_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL'));
     }
-
     return $greeting_string;
   }
-
 ?>

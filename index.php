@@ -19,13 +19,14 @@
 */
 
   require_once('includes/application_top.php');
-// BOF: Information Pages Unlimited
-  require_once(DIR_WS_FUNCTIONS . 'information.php');
-  tep_information_customer_greeting_define();
-// EOF: Information Pages Unlimited
 
 // the following cPath references come from application_top.php
   $category_depth = 'top';
+// BOF: Information Pages Unlimited PURE:NEW: added DefaultPage TITLE, DESCRIPTION, KEYWORDS
+  require_once(DIR_WS_FUNCTIONS . 'information.php');
+  tep_information_default_page_define();
+// EOF: Information Pages Unlimited
+
   if (isset($cPath) && tep_not_null($cPath)) {
     $categories_products_query = tep_db_query("select count(*) as total from " . TABLE_PRODUCTS_TO_CATEGORIES . " where categories_id = '" . (int)$current_category_id . "'");
     $categories_products = tep_db_fetch_array($categories_products_query);
@@ -330,10 +331,8 @@ if (tep_not_null($image['catdesc'])) {
 ?>
 
   <div class="contentText">
-    <!-- // BOF: Information Pages Unlimited -->
-    <?php echo tep_information_customer_greeting(); ?>
-    <?php //echo tep_customer_greeting(); ?>
-    <!-- // EOF: Information Pages Unlimited -->
+    <?php
+    echo tep_customer_greeting(); ?>
   </div>
 
 <?php
