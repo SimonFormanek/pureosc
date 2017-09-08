@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_TITLE', 'Navbar Full Categories Menu');
-  define('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_DESCRIPTION', 'Show the full categories menu in the navbar.');
+  define('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_TITLE', 'Navbar Full Categories Menu', true);
+  define('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_DESCRIPTION', 'Show the full categories menu in the navbar.', true);
 
-  define('HEADER_SITE_CATEGORIES', '<i class="fa fa-navicon"></i><span class="hidden-sm"> Produkty</span>');
+  define('HEADER_SITE_CATEGORIES', '<i class="fa fa-navicon"></i><span class="hidden-sm"> Produkty</span>', true);
