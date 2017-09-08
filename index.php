@@ -23,7 +23,6 @@
 // the following cPath references come from application_top.php
   $category_depth = 'top';
 // BOF: Information Pages Unlimited PURE:NEW: added DefaultPage TITLE, DESCRIPTION, KEYWORDS
-  require_once(DIR_WS_FUNCTIONS . 'information.php');
   tep_information_default_page_define();
 // EOF: Information Pages Unlimited
 

@@ -618,3 +618,4 @@ $parameters[] = 'atts';
     }
   }
  /**** END ARTICLE MANAGER ****/
+  require_once(DIR_WS_FUNCTIONS . 'information.php');
