@@ -1,1 +1,1 @@
-empty_osc_articles-1709-06-03.sql
+oscempty_completeDB_modular-navbar_full-information.sql
