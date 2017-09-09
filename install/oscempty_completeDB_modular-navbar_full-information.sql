@@ -95,15 +95,6 @@ CREATE TABLE `action_recorder` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `action_recorder`
---
-
-LOCK TABLES `action_recorder` WRITE;
-/*!40000 ALTER TABLE `action_recorder` DISABLE KEYS */;
-INSERT INTO `action_recorder` VALUES (1,'ar_admin_login',1,'admin','127.0.0.1','1','2017-09-07 22:16:35');
-/*!40000 ALTER TABLE `action_recorder` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `address_book`
@@ -245,7 +236,7 @@ CREATE TABLE `article_reviews` (
   `reviews_read` int(5) NOT NULL DEFAULT '0',
   `approved` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`reviews_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,7 +260,7 @@ CREATE TABLE `article_reviews_description` (
   `languages_id` int(11) NOT NULL DEFAULT '0',
   `reviews_text` text NOT NULL,
   PRIMARY KEY (`reviews_id`,`languages_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -299,18 +290,9 @@ CREATE TABLE `articles` (
   `authors_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`articles_id`),
   KEY `idx_articles_date_added` (`articles_date_added`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `articles`
---
-
-LOCK TABLES `articles` WRITE;
-/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
-INSERT INTO `articles` VALUES (1,'2017-05-14 01:38:25',NULL,NULL,1,1,0,0),(2,'2017-05-14 01:43:12',NULL,NULL,1,1,0,0),(3,'2017-05-14 02:08:52',NULL,NULL,1,1,0,0),(4,'2017-05-14 02:10:46','2017-07-08 23:58:20',NULL,1,1,0,1),(5,'2017-07-23 20:22:17','2017-07-23 21:24:41',NULL,1,1,0,0),(6,'2017-08-19 14:31:39',NULL,NULL,1,1,0,0);
-/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `articles_blog`
@@ -330,7 +312,7 @@ CREATE TABLE `articles_blog` (
   `language_id` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`unique_id`),
   KEY `idx_articles_id` (`articles_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -360,22 +342,8 @@ CREATE TABLE `articles_description` (
   `articles_viewed` int(5) DEFAULT '0',
   PRIMARY KEY (`articles_id`,`language_id`),
   KEY `articles_name` (`articles_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `articles_description`
---
-
-LOCK TABLES `articles_description` WRITE;
-/*!40000 ALTER TABLE `articles_description` DISABLE KEYS */;
-INSERT INTO `articles_description` VALUES (1,4,'blabol cs','<p>text tady cs</p>','','','',0),(2,4,'aaaa','','','','',0),(3,4,'cscs','','','','',0),(4,1,'en1x','<p>en2</p>','','<p>english text.....2</p>','',0),(4,2,'','','','<p>ddddeee</p>','',0),(4,3,'','','','<p>spspsp</p>','',0),(4,4,'cs1x','<p>aha to jecesky2</p>','','<p>meta descrition xxxxxxxx2</p>','',43),(5,1,'','','','','',0),(5,2,'','','','','',0),(5,3,'','','','','',0),(5,4,'pokus1_art1','','','<p>Toto je article pokus1_art1.</p>','',9),(6,1,'','','','','',0),(6,2,'','','','','',0),(6,3,'','','','','',0),(6,4,'vnorenej clanek','','','','',0);
-/*!40000 ALTER TABLE `articles_description` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `articles_to_topics`
---
 
 DROP TABLE IF EXISTS `articles_to_topics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -386,18 +354,10 @@ CREATE TABLE `articles_to_topics` (
   `canonical` int(1) DEFAULT NULL,
   KEY `idx_a2t_articles_id` (`articles_id`),
   KEY `idx_a2t_topics_id` (`topics_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `articles_to_topics`
---
-
-LOCK TABLES `articles_to_topics` WRITE;
-/*!40000 ALTER TABLE `articles_to_topics` DISABLE KEYS */;
-INSERT INTO `articles_to_topics` VALUES (1,0,NULL),(2,0,NULL),(3,0,NULL),(4,3,NULL),(5,4,1),(5,5,NULL),(6,6,NULL);
-/*!40000 ALTER TABLE `articles_to_topics` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `articles_xsell`
@@ -412,17 +372,8 @@ CREATE TABLE `articles_xsell` (
   `xsell_id` int(10) unsigned NOT NULL DEFAULT '1',
   `sort_order` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `articles_xsell`
---
-
-LOCK TABLES `articles_xsell` WRITE;
-/*!40000 ALTER TABLE `articles_xsell` DISABLE KEYS */;
-/*!40000 ALTER TABLE `articles_xsell` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `authors`
@@ -440,7 +391,7 @@ CREATE TABLE `authors` (
   `last_modified` datetime DEFAULT NULL,
   PRIMARY KEY (`authors_id`),
   KEY `IDX_AUTHORS_NAME` (`authors_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -449,7 +400,7 @@ CREATE TABLE `authors` (
 
 LOCK TABLES `authors` WRITE;
 /*!40000 ALTER TABLE `authors` DISABLE KEYS */;
-INSERT INTO `authors` VALUES (1,0,'Jmeno prijmeni','','2017-05-14 01:32:03',NULL);
+INSERT INTO `authors` VALUES (1,0,'Jméno Příjmení','','2017-05-14 01:32:03',NULL);
 /*!40000 ALTER TABLE `authors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -468,7 +419,7 @@ CREATE TABLE `authors_info` (
   `url_clicked` int(5) NOT NULL DEFAULT '0',
   `date_last_click` datetime DEFAULT NULL,
   PRIMARY KEY (`authors_id`,`languages_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1125,7 +1076,7 @@ CREATE TABLE `headertags` (
   KEY `idx_page_name` (`page_name`),
   KEY `idx_page_description` (`page_description`),
   KEY `idx_page_keywords` (`page_keywords`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1148,7 +1099,7 @@ DROP TABLE IF EXISTS `headertags_cache`;
 CREATE TABLE `headertags_cache` (
   `title` text,
   `data` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1189,7 +1140,7 @@ CREATE TABLE `headertags_default` (
   `meta_og` tinyint(1) NOT NULL DEFAULT '1',
   `language_id` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`default_title`,`language_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1221,7 +1172,7 @@ CREATE TABLE `headertags_keywords` (
   PRIMARY KEY (`id`),
   KEY `keyword` (`keyword`),
   KEY `found` (`found`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1245,7 +1196,7 @@ CREATE TABLE `headertags_search` (
   `keyword` varchar(64) NOT NULL,
   `language_id` int(11) NOT NULL,
   KEY `keyword` (`keyword`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1272,7 +1223,7 @@ CREATE TABLE `headertags_silo` (
   `sorton` tinyint(2) NOT NULL DEFAULT '0',
   `language_id` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`category_id`,`language_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1299,7 +1250,7 @@ CREATE TABLE `headertags_social` (
   `data` text NOT NULL,
   PRIMARY KEY (`unique_id`),
   KEY `idx_section` (`section`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2526,7 +2477,7 @@ CREATE TABLE `topics` (
   `last_modified` datetime DEFAULT NULL,
   PRIMARY KEY (`topics_id`),
   KEY `idx_topics_parent_id` (`parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2554,18 +2505,9 @@ CREATE TABLE `topics_description` (
   `topics_description` text,
   PRIMARY KEY (`topics_id`,`language_id`),
   KEY `idx_topics_name` (`topics_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `topics_description`
---
-
-LOCK TABLES `topics_description` WRITE;
-/*!40000 ALTER TABLE `topics_description` DISABLE KEYS */;
-INSERT INTO `topics_description` VALUES (0,1,'Miscellaneous Articles','Miscellaneous','Articles that do not fall into a specific category.'),(2,4,'aaa','',''),(3,1,'kat1','Miscellaneous','<p>Articles that do not fall into a specific category.</p>'),(3,2,'','',''),(3,3,'','',''),(3,4,'kat1','',''),(4,1,'pokus1_en','POKUS 1 EN','<p>Proste pokus en.</p>'),(4,2,'','',''),(4,3,'','',''),(4,4,'pokus1','POKUS 1','<p>Proste pokus.</p>'),(5,1,'pokus2_en','POKUS 2 EN','<p>Topic POKUS 2 EN</p>'),(5,2,'','',''),(5,3,'','',''),(5,4,'pokus2','POKUS 2','<p>Topic POKUS 2</p>'),(6,1,'','Miscellaneous','<p>Articles that do not fall into a specific category.</p>'),(6,2,'','',''),(6,3,'','',''),(6,4,'bbb','','');
-/*!40000 ALTER TABLE `topics_description` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `whos_online`
@@ -2585,16 +2527,6 @@ CREATE TABLE `whos_online` (
   KEY `idx_whos_online_session_id` (`session_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `whos_online`
---
-
-LOCK TABLES `whos_online` WRITE;
-/*!40000 ALTER TABLE `whos_online` DISABLE KEYS */;
-INSERT INTO `whos_online` VALUES (0,'Guest','acpmlje9bk0dhiugk4qpauiq35','127.0.0.1','1504821623','1504826309','/ochrana-soukrom');
-/*!40000 ALTER TABLE `whos_online` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `zones`
