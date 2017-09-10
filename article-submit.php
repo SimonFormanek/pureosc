@@ -27,7 +27,8 @@
 
       $article['name'] = tep_db_prepare_input($_POST['article_name']);
       $article['meta_desc'] = tep_db_prepare_input($_POST['article_short_desc']);
-      $article['text'] = tep_db_prepare_input($_POST['article_long_desc']);
+      $article['text'] = preg_replace('/$/', '</p>', preg_replace('/^/', '<p>', str_replace('NEWLINE', '</p><p>', tep_db_prepare_input(str_replace("\n","NEWLINE", $_POST['article_long_desc'])))));
+//orig:      $article['text'] = tep_db_prepare_input($_POST['article_long_desc']);
       $authors_name = tep_db_prepare_input($_POST['authors_name']);
       $authors_description = tep_db_prepare_input($_POST['authors_description']);
       $topic = $_POST['topics_list'];
@@ -45,7 +46,7 @@
           $imgName = str_replace($remove_these,'',$_FILES['uploadedfile']['name']);
           $imgName = time().'-'.$imgName;       //Make the filename unique
           $imageDir = DIR_WS_IMAGES . 'article_manager_uploads/' . $imgName;     //Save the uploaded the file to another location
-          $imgTmpName = str_replace("'", '', $_FILES['uploadedfile']['tmp_name']);
+          $imgTmpName = str_replace("'", '', $_FILES['uploadedfile']['tmp_name']);//"
 
           if (! IsValidImageFile($imgName)) {
               $error = true;
@@ -66,7 +67,7 @@
           $imgAuthor = str_replace($remove_these,'',$_FILES['authors_image']['name']);
           $imgAuthor = time().'-'.$imgAuthor;       //Make the filename unique
           $imageDir = DIR_WS_IMAGES . 'article_manager_uploads/' . $imgAuthor;     //Save the uploaded the file to another location
-          $imgTmpName = str_replace("'", '', $_FILES['authors_image']['tmp_name']);
+          $imgTmpName = str_replace("'", '', $_FILES['authors_image']['tmp_name']); //"
 
           if (! IsValidImageFile($imgName)) {
               $error = true;
@@ -102,7 +103,11 @@
           /************************* UPDATE THE AUTHOR *************************/
           $authorInfo_query = tep_db_query("select authors_id from " . TABLE_AUTHORS . " where customers_id = '" . (int)$customer_id . "' limit 1");
           if (tep_db_num_rows($authorInfo_query)) {
+						if (tep_db_input($imgAuthor)) {
                tep_db_query("update " . TABLE_AUTHORS . " set authors_name = '" . tep_db_input($authors_name) . "', authors_image = '" . tep_db_input($imgAuthor) . "' where customers_id = " . (int)$customer_id );
+               } else {
+                  tep_db_query("update " . TABLE_AUTHORS . " set authors_name = '" . tep_db_input($authors_name) . "' where customers_id = " . (int)$customer_id );
+               }
                $authors = tep_db_fetch_array($authorInfo_query);
                $authors_id = $authors['authors_id'];
                tep_db_query("update " . TABLE_AUTHORS_INFO . " set authors_description = '" . tep_db_input($authors_description) . "' where authors_id = " . (int)$authors['authors_id'] );
@@ -137,7 +142,7 @@
           tep_db_query("insert into " . TABLE_ARTICLES_TO_TOPICS . " (articles_id, topics_id) values ('" . (int)$articles_id . "', '" . (int)$topic . "')");
 
           $sql_data_array = array('articles_name' => tep_db_prepare_input($article['name']),
-                                  'articles_description' => tep_db_prepare_input($article['text']),
+                                  'articles_description' => $article['text'],
                                   'articles_url' => '',
                                   'articles_image' => $imgName,
                                   'articles_head_desc_tag' => tep_db_prepare_input($article['meta_desc']));
@@ -231,7 +236,7 @@
      <div class="textSmall"><?php echo tep_draw_textarea_field('article_long_desc', 'soft', '40', '15', $article['text'], '', false); ?></div>
      
      <div class="buttonSet">
-        <div align="right"><?php echo tep_draw_button(IMAGE_BUTTON_SUBMIT, 'glyphicon glyphicon-chevron-right', '', '','submit'); ?></div>
+        <div align="right"><?php echo tep_draw_button(IMAGE_BUTTON_SUBMIT, 'glyphicon glyphicon-chevron-right', null, 'primary', null, 'btn-success'); ?></div>
      </div>
      </form>
      <?php } //end of wasSubmitted ?>

@@ -79,9 +79,9 @@
          if (tep_not_null($articles_author) && DISPLAY_AUTHOR_ARTICLE_LISTING == 'true') {
             $authorsImage = DIR_WS_IMAGES . 'article_manager_uploads/' . $article_info['authors_image'];
             if (file_exists($authorsImage) && is_file($authorsImage)) {
-                echo '<a>' . tep_image($authorsImage, HEADING_TITLE, HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT) . '</a>';
+                echo '<div style="width:100px"><a href="' . tep_href_link(FILENAME_ARTICLES, 'authors_id=' . $article_info['authors_id']) . '">' . tep_image($authorsImage, $article_info['authors_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a></div>';
             } else {
-                echo TEXT_BY . '<a>' . $articles_author . '</a>';
+                echo TEXT_BY . '<a href="' . tep_href_link(FILENAME_ARTICLES, 'authors_id=' . $article_info['authors_id']) . '">' . $article_info['authors_name'] . '</a>';
             }
          }
          ?>   
