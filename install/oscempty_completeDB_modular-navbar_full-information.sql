@@ -891,7 +891,7 @@ DROP TABLE IF EXISTS `customers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customers` (
-  `customers_id` int(11) NOT NULL,
+  `customers_id` int(11) NOT NULL auto_increment,
   `customers_gender` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
   `customers_firstname` text COLLATE utf8_unicode_ci,
   `customers_lastname` text COLLATE utf8_unicode_ci,
