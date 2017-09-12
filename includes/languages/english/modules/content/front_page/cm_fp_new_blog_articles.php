@@ -15,3 +15,4 @@
   define('TEXT_TOPIC','Topic', true);
   define('TEXT_DATE_ADDED','Published:', true);
   define('MAIN_PAGE_BLOG_ARTICLES','Blog', true);
+  define('TEXT_DISPLAY_ALL_BLOG_ARTICLES','Display All articles');

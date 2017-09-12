@@ -15,3 +15,5 @@
   define('TEXT_TOPIC','Kategorie', true);
   define('TEXT_DATE_ADDED','Publikováno:', true);
   define('MAIN_PAGE_BLOG_ARTICLES','Blog', true);
+  define('TEXT_DISPLAY_ALL_BLOG_ARTICLES','Zobrazit všechny články');
+  

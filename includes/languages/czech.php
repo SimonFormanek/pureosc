@@ -366,7 +366,7 @@ define('TEXT_ARTICLE_SEARCH', 'Search Our Articles');
 define('TEXT_ARTICLE_SEARCH_STRING', 'Enter Keywords Here');
 define('TEXT_DISPLAY_NUMBER_OF_ARTICLES', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> articles)');
 define('TEXT_DISPLAY_NUMBER_OF_ARTICLES_NEW', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> new articles)');
-define('TEXT_ARTICLES', 'Below is a list of articles with the most recent ones listed first.');
+define('TEXT_ARTICLES', 'Níže je seznam všech článků od nejnovějších k nejstarším.');
 define('TABLE_HEADING_AUTHOR', 'Author');
 define('TABLE_HEADING_ABSTRACT', 'Abstract');
 define('TEXT_PXSELL_ARTICLES', 'Related Articles');
