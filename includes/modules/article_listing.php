@@ -10,26 +10,34 @@
   Released under the GNU General Public License
 */
 
-$listing_split = new splitPageResults($listing_sql, MAX_ARTICLES_PER_PAGE);
+if (MAIN_PAGE_BLOG =='true') {
+$max_articles_per_page = MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_MAX_DISPLAY_NEW_ARTICLES;
+} else {
+$max_articles_per_page = MAX_ARTICLES_PER_PAGE;
+}
+
+$listing_split = new splitPageResults($listing_sql, $max_articles_per_page);
   if ($listing_split->number_of_rows > 0) {
     $articles_listing_query = tep_db_query($listing_split->sql_query);
+if (MAIN_PAGE_BLOG !='true') {
 ?>
         <div class="main"><?php echo TEXT_ARTICLES; ?></div>
 <?php
+}
     while ($articles_listing = tep_db_fetch_array($articles_listing_query)) {
 ?>
-            <div valign="top" class="main" width="75%" style="padding-bottom:10px">
+            <div>
 <?php  // osc-help.net: added class=main to the link.
-  echo '<a class="main" href="' . tep_href_link(FILENAME_ARTICLE_INFO, 'articles_id=' . $articles_listing['articles_id']) . '"><b>' . $articles_listing['articles_name'] . '</b></a> ';
+  echo '<a class="main" href="' . tep_href_link(FILENAME_ARTICLE_INFO, 'articles_id=' . $articles_listing['articles_id']) . '"><h3>' . $articles_listing['articles_name'] . '</h3></a> ';
   if (DISPLAY_AUTHOR_ARTICLE_LISTING == 'true' && tep_not_null($articles_listing['authors_name'])) {
    echo TEXT_BY . ' ' . '<a href="' . tep_href_link(FILENAME_ARTICLES, 'authors_id=' . $articles_listing['authors_id']) . '"> ' . $articles_listing['authors_name'] . '</a>';
   }
 ?>
             </div>
 <?php
-      if (DISPLAY_TOPIC_ARTICLE_LISTING == 'true' && tep_not_null($articles_listing['topics_name'])) {
+      if (DISPLAY_TOPIC_ARTICLE_LISTING == 'true' && tep_not_null($articles_listing['topics_name']) && (MAIN_PAGE_BLOG !='true')) {
 ?>
-            <div valign="top" class="main" width="25%" nowrap><?php echo TEXT_TOPIC . '&nbsp;<a href="' . tep_href_link(FILENAME_ARTICLES, 'tPath=' . $articles_listing['topics_id']) . '">' . $articles_listing['topics_name'] . '</a>'; ?></div>
+            <div><?php echo TEXT_TOPIC . '&nbsp;<a href="' . tep_href_link(FILENAME_ARTICLES, 'tPath=' . $articles_listing['topics_id']) . '">' . $articles_listing['topics_name'] . '</a>'; ?></div>
 <?php
       }
 ?>
@@ -37,12 +45,12 @@ $listing_split = new splitPageResults($listing_sql, MAX_ARTICLES_PER_PAGE);
 <?php
       if (DISPLAY_ABSTRACT_ARTICLE_LISTING == 'true') {
 ?>
-            <div class="main" style="padding-left:15px"><?php echo clean_html_comments(substr($articles_listing['articles_head_desc_tag'],0, MAX_ARTICLE_ABSTRACT_LENGTH)) . ((strlen($articles_listing['articles_head_desc_tag']) >= MAX_ARTICLE_ABSTRACT_LENGTH) ? '...' : ''); ?></div>
+            <div><?php echo clean_html_comments(substr($articles_listing['articles_head_desc_tag'],0, MAX_ARTICLE_ABSTRACT_LENGTH)) . ((strlen($articles_listing['articles_head_desc_tag']) >= MAX_ARTICLE_ABSTRACT_LENGTH) ? '...' : ''); ?></div>
 <?php
       }
       if (DISPLAY_DATE_ADDED_ARTICLE_LISTING == 'true') {
 ?>
-            <div class="smallText" style="padding-left:15px"><?php echo TEXT_DATE_ADDED . ' ' . tep_date_long($articles_listing['articles_date_added']); ?></div>
+            <div><?php echo TEXT_DATE_ADDED . ' ' . tep_date_long($articles_listing['articles_date_added']); ?></div>
 <?php
       }
     } // End of listing loop
@@ -65,7 +73,7 @@ $listing_split = new splitPageResults($listing_sql, MAX_ARTICLES_PER_PAGE);
   }
 ?>
 <?php
-  if (($listing_split->number_of_rows > 0) && ((ARTICLE_PREV_NEXT_BAR_LOCATION == 'bottom') || (ARTICLE_PREV_NEXT_BAR_LOCATION == 'both'))) {
+  if ( (MAIN_PAGE_BLOG !='true') && (($listing_split->number_of_rows > 0) && ((ARTICLE_PREV_NEXT_BAR_LOCATION == 'bottom') || (ARTICLE_PREV_NEXT_BAR_LOCATION == 'both'))) ) {
 ?>
    <div class="row">
      <div class="col-sm-6 pagenumber hidden-xs">
