@@ -74,21 +74,6 @@
       $keys[] = 'MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_MAX_DISPLAY_NEW_ARTICLES';
       return $keys;
     }
-    
-    private function get_data() {
-      global $languages_id;
-     $articles_all_array = array();
-     $articles_all_query_raw = "select a.articles_id, a.articles_date_added, ad.articles_name, ad.articles_head_desc_tag, au.authors_id, au.authors_name, td.topics_id, td.topics_name from " . TABLE_ARTICLES . " a left join " . TABLE_ARTICLES_TO_TOPICS . " a2t on a.articles_id = a2t.articles_id left join " . TABLE_TOPICS_DESCRIPTION . " td on a2t.topics_id = td.topics_id left join " . TABLE_AUTHORS . " au on a.authors_id = au.authors_id left join " . TABLE_ARTICLES_DESCRIPTION . " ad on a.articles_id = ad.articles_id  
-     where (a.articles_date_available IS NULL or to_days(a.articles_date_available) <= to_days(now()))  and a.articles_status = '1' and a.articles_is_blog = 1 and ad.language_id = '" . (int)$languages_id . "' and td.language_id = '" . (int)$languages_id . "' order by a.articles_date_added desc, ad.articles_name";
-     $listing_sql = $articles_all_query_raw;
-		if (tep_db_num_rows($listing_sql)){
-        return $new_articles_blog_content;
-		} else {
-      return false;
-    }
-    
-}
-
   } // End class
 
 
