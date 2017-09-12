@@ -111,12 +111,8 @@ in the same manner as osCommerce
       $information_group_id = 2; // ID set by module for Entrance messages
       $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int)$languages_id . "' AND information_group_id = '" . (int)$information_group_id . "'");
       while ($information = tep_db_fetch_array($information_query)) {
-        // if($information['information_title'] == 'HEADING_TITLE')
-        if ($information['information_id'] > 5) {
-        	define($information['information_title'], strip_tags($information['information_description']));
-        } else {
-        	define($information['information_title'], $information['information_description']);
-        }
+        define($information['information_title'], $information['information_description']);
+        
       }
     }
   }

@@ -312,47 +312,21 @@ if (tep_not_null($image['catdesc'])) {
 
 <?php
   } else { // default page
+
+// Start Modular Front Page
 ?>
 
-<div class="page-header">
-  <h1><?php echo HEADING_TITLE; ?></h1>
-</div>
+<div class="contentText">
 
 <?php
-  if ($messageStack->size('product_action') > 0) {
-    echo $messageStack->output('product_action');
-  }
-?>
-
-<div class="contentContainer">
-<?php
-    if (tep_not_null(TEXT_GREETING_GUEST)) {
-?>
-
-  <div class="contentText">
-    <?php
-    echo tep_customer_greeting(); ?>
-  </div>
-
-<?php
-    }
-    if (tep_not_null(TEXT_MAIN)) {
-?>
-
-  <div class="contentText">
-    <?php echo TEXT_MAIN; ?>
-  </div>
-
-<?php
-    }
-
-    include(DIR_WS_MODULES . FILENAME_NEW_PRODUCTS);
-    include(DIR_WS_MODULES . FILENAME_UPCOMING_PRODUCTS);
+    echo $oscTemplate->getContent('front_page');
 ?>
 
 </div>
 
 <?php
+// End Modular Front Page
+
   }
 
   require(DIR_WS_INCLUDES . 'template_bottom.php');

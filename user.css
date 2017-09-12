@@ -26,3 +26,15 @@ color: #FF0000;
 .articlePadding {padding:10px 0}
 .articlePaddingSubmit {padding-bottom:10px}
 /**** END ARTICLE MANAGER ****/
+
+/* Banner rotator contnent module */
+#rotator {
+    visibility: hidden;
+}
+
+.visible { 
+    visibility: visible !important; 
+}
+
+/*MainPage Articles*/
+.mainpage-blog{font-weight:bold;font-size:130%}
