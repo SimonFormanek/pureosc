@@ -12,5 +12,5 @@
 ?>
 
 <!-- Start cm_nb_generic -->
-<li><a href="<?php echo $generic_link; ?>"><?php echo HEADER_GENERIC; ?></a></li>
+<li><a href="<?php echo $generic4_link; ?>"><?php echo HEADER_GENERIC4; ?></a></li>
 <!-- End cm_nb_generic -->
