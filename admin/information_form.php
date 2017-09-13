@@ -96,7 +96,7 @@
                 <td class="main" valign="top"><?php echo tep_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>&nbsp;</td>
                 <td class="main" width="100%"><?php 
                 //PURE:new use ckeditor only for id < 10
-                if ($_GET['gID'] == 2 && $_GET['information_id'] < 9) {
+                if (($_GET['gID'] == 2 && $_GET['information_id'] < 9) || ($_GET['gID'] == 1)) {
                 		echo tep_draw_textarea_field_ckeditor('information_description[' . $languages[$i]['id'] . ']', '', '100', '20', (($languages[$i]['id'] == $languages_id) ? stripslashes($edit[information_description]) : tep_get_information_entry($information_id, $languages[$i]['id'], 'information_description'))); 
                 	} else {
                 		echo tep_draw_textarea_field('information_description[' . $languages[$i]['id'] . ']', '', '100', '20', (($languages[$i]['id'] == $languages_id) ? stripslashes($edit[information_description]) : tep_get_information_entry($information_id, $languages[$i]['id'], 'information_description'))); 
