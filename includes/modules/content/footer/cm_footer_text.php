@@ -39,9 +39,9 @@
       $aLinks = GetArticleLinsByTopic('Text');
       /*** End Article Manager ****/      
       $content_width = (int)MODULE_CONTENT_FOOTER_TEXT_CONTENT_WIDTH;
-      
+      tep_information_text_define('MODULE_CONTENT_FOOTER_TEXT_TEXT');
       ob_start();
-      include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/text.php');
+			include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/' . basename(__FILE__));
       $template = ob_get_clean();
 
       $oscTemplate->addContent($template, $this->group);

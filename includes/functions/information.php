@@ -129,4 +129,13 @@ in the same manner as osCommerce
     }
     return $greeting_string;
   }
-?>
+
+
+// get single information text from group2
+  function tep_information_text_define($constant) {
+    global $languages_id;
+      $information_group_id = 2; // ID set by module for Entrance messages
+      $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int)$languages_id . "' AND information_group_id = '" . (int)$information_group_id . "' AND information_title = '" .$constant . "'");
+      $information = tep_db_fetch_array($information_query);
+        define($information['information_title'], $information['information_description']);
+  }

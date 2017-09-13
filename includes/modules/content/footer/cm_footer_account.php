@@ -56,7 +56,7 @@
       /*** End Article Manager ****/
       
       ob_start();
-      include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/account.php');
+			include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/' . basename(__FILE__));
       $template = ob_get_clean();
 
       $oscTemplate->addContent($template, $this->group);

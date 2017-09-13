@@ -42,7 +42,7 @@
       $content_width = (int)MODULE_CONTENT_FOOTER_CONTACT_US_CONTENT_WIDTH;
 
       ob_start();
-      include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/contact_us.php');
+			include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/' . basename(__FILE__));
       $template = ob_get_clean();
 
       $oscTemplate->addContent($template, $this->group);
