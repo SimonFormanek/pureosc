@@ -10,10 +10,10 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Article Manager Search Result');
-define('HEADING_TITLE', 'Article Manager Search Result');
+define('NAVBAR_TITLE', 'Výsledek hledání - Správce článků');
+define('HEADING_TITLE', 'Výsledek hledání - Správce článků');
 
-define('TEXT_INFORMATION', 'Articles Search results');
-define('TEXT_NO_ARTICLES_FOUND', 'No articles were found that matched the search criteria.');
-define('TEXT_SEARCH_SEE_MORE', '<span style="color:red">...more</span>');
+define('TEXT_INFORMATION', 'Výsledek hledání - Správce článků');
+define('TEXT_NO_ARTICLES_FOUND', 'Nebyly nalezeny žádné články, které by odpovídaly kritériím vyhledávání.');
+define('TEXT_SEARCH_SEE_MORE', '<span style="color:red">...další</span>');
 ?>

@@ -9,18 +9,18 @@
 
   Released under the GNU General Public License
 */
-define('NAVBAR_TITLE', 'Article Details');
-define('HEADING_ARTICLE_NOT_FOUND', 'Article Not Found');
-define('TEXT_ARTICLE_NOT_FOUND', 'Sorry, but the article you requested is not available in this site.');
-define('TEXT_MORE_INFORMATION', 'For more information, please visit this articles <a href="%s" target="_blank"><u>web page</u></a>.');
+define('NAVBAR_TITLE', 'Podrobnosti článku');
+define('HEADING_ARTICLE_NOT_FOUND', 'Článek nebyl nalezen');
+define('TEXT_ARTICLE_NOT_FOUND', 'Je nám líto, ale požadovaný článek není k dispozici.');
+define('TEXT_MORE_INFORMATION', 'Další informace naleznete v těchto článcích <a href="%s" target="_blank"><u>webová stránka</u></a>.');
 define('TEXT_DATE_ADDED', 'Datum uveřejnění článku: %s.');
-define('TEXT_DATE_AVAILABLE', '<font color="#FF0000">This article will be published on %s.</font>');
-define('TEXT_BY', 'by ');
-define('TEXT_CLOSE_POPUP', 'Close Window');
-define('TEXT_COURTESY_OF', 'Printed with permission from ' . STORE_NAME);
-define('TEXT_CURRENT_REVIEWS', 'Current Reviews:');
-define('BOX_TEXT_TELL_A_FRIEND', 'Tell a friend');
-define('TEXT_TELL_A_FRIEND', 'Tell a friend about this article:');
-define('TEXT_XSELL_ARTICLES', 'Products related to this article:');
-define('IMAGE_PRINT_ARTICLE', 'Print This Article');
+define('TEXT_DATE_AVAILABLE', '<font color="#FF0000">Tento článek bude zveřejněn dne %s.</font>');
+define('TEXT_BY', 'podle ');
+define('TEXT_CLOSE_POPUP', 'Zavřít okno');
+define('TEXT_COURTESY_OF', 'Vytištěno se svolením od ' . STORE_NAME);
+define('TEXT_CURRENT_REVIEWS', 'Aktuální recenze:');
+define('BOX_TEXT_TELL_A_FRIEND', 'Upozorněte přítele');
+define('TEXT_TELL_A_FRIEND', 'Řekněte příteli o tomto článku:');
+define('TEXT_XSELL_ARTICLES', 'Produkty související s tímto článkem:');
+define('IMAGE_PRINT_ARTICLE', 'Vytisknout tento článek');
 ?>
