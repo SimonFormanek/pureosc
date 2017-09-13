@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_NAVBAR_GENERIC5_TITLE', 'Navbar Generic', true);
+  define('MODULE_CONTENT_NAVBAR_GENERIC5_TITLE', 'Navbar Generic5', true);
   define('MODULE_CONTENT_NAVBAR_GENERIC5_DESCRIPTION', 'Show the Navbar generic5 icon on your site.', true);
 
   define('MODULE_CONTENT_NAVBAR_GENERIC5_ERROR_MAIN_MODULE', 'External links in osCommerce are extremely dangerous. Read the warnings in the User\'s Manual concerning external links before adding an external link to this module.', true);
