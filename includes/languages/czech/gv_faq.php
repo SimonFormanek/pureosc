@@ -39,37 +39,23 @@ Ujistěte se, že jste zadali všechny informace správně, můžete vše změni
   break;
   case '3':
   define('SUB_HEADING_TITLE','Nákup s dárkovým poukazem.',true);
-  define('SUB_HEADING_TEXT','If you have funds in your Gift Voucher Account, you can use those funds to 
-  purchase other items in out store. At the checkout stage, an extra box will 
-  appear. Ticking this box will apply those funds in your Gift Voucher Account. 
-  Please note, you will still have to select another payment method if there 
-  is not enough in your Gift Voucher Account to cover the cost of your purchase. 
-  If you have more funds in your Gift Voucher Account than the total cost of 
-  your purchase the balance will bel left in you Gift Voucher Account for the 
-  future.');
+  define('SUB_HEADING_TEXT','Máte-li peníze na účtu dárkových poukazů, můžete je použít k zakoupení dalšího zboží. Ve fázi placení se vám ukáže další schránka. Zaškrtnutím tohoto políčka použijete tyto prostředky z účtu dárkového poukazu. Vezměte prosím na vědomí, že budete muset vybrat jinou platební metodu, pokud účet dárkového poukazu nebude stačit k zaplacení nákupu. Pokud máte na účtě dárkových poukazů více peněz než celkovou cenu nákupu, můžete je použít při příštím nákupu.');
   break;
   case '4':
-  define('SUB_HEADING_TITLE','Redeeming Gift Vouchers.',true);
-  define('SUB_HEADING_TEXT','If you receive a Gift Voucher by email it will contain details of who sent 
-  you the Gift Voucher, along with possibly a short message from them. The Email 
-  will also contain a link to redeem the voucher. You will need to Login or Create an Account before
-  you can redeem the Gift Voucher.  There are various ways you can redeem the voucher:<br>
-  1. By clicking on the link contained within the email for this express purpose. 
-  This will take you to the store\'s Redeem Voucher page. You will the be requested 
-  to create an account or Login, before the Gift Voucher is validated and placed in your 
-  Gift Voucher Account ready for you to spend it on whatever you want.<br>
-  2. During the checkout procces, on the same page that you select a payment method 
-there will be a tick box and button to redeem your Gift Voucher balance against that purchase.');
+  define('SUB_HEADING_TITLE','Uplatnění dárkových poukazů.',true);
+  define('SUB_HEADING_TEXT','Pokud obdržíte dárkový poukaz e-mailem, bude obsahovat podrobnosti o tom, kdo ho odeslal
+a případně krátkou zprávou od něj. E-mail bude obsahovat i odkaz na uplatnění poukazu. Dárkový poukaz můžete uplatnit jste-li přihlášeni nebo jste si vytvořili účet. Dva způsoby, jak můžete kupón uplatnit: <br>
+   1. Kliknutím na odkaz obsažený v e-mailu pro tento výslovný účel se
+dostanete na stránku Uplatnění dárkového poukazu. Budete požádáni o vytvoření účte nebo přihlášení, než bude dárkový poukaz ověřen a vložen do vašeho účtu dárkových poukazů, který je připraven k vašemu nákupu jakéholi zboží.
+   2. Během placení v pokladně ve volbě způsob placení bude zaškrtávací políčko a tlačítko pro uplatnění zůstatku dárkových poukazů pro váš nákup.');
   break;
   case '5':
-  define('SUB_HEADING_TITLE','When problems occur.',true);
-  define('SUB_HEADING_TEXT','For any queries regarding the Gift Voucher System, please contact the store 
-  by email at '. STORE_OWNER_EMAIL_ADDRESS . '. Please make sure you give 
-  as much information as possible in the email. ');
+  define('SUB_HEADING_TITLE','Pokud dojde k potížím.',true);
+  define('SUB_HEADING_TEXT','V případě jakýchkoli dotazů ohledně systému dárkových poukazů kontaktujte prosím obchod e-mailem na adrese '. STORE_OWNER_EMAIL_ADDRESS . '. Ujistěte se, že posíláte e-mailem co nejvíce informací. ');
   break;
   default:
   define('SUB_HEADING_TITLE','',true);
-  define('SUB_HEADING_TEXT','Please choose from one of the questions above.',true);
+  define('SUB_HEADING_TEXT','Vyberte jednu z výše uvedených otázek.',true);
 
   }
 ?>

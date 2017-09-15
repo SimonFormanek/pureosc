@@ -10,15 +10,15 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Reviews');
-define('HEADING_TITLE', 'Write Review of \'');
+define('NAVBAR_TITLE', 'Recenze');
+define('HEADING_TITLE', 'Napište recenzi \'');
 
-define('SUB_TITLE_FROM', 'From:');
-define('SUB_TITLE_REVIEW', 'Your Review:');
-define('SUB_TITLE_RATING', 'Rating:');
+define('SUB_TITLE_FROM', 'Od:');
+define('SUB_TITLE_REVIEW', 'Vaše recenze:');
+define('SUB_TITLE_RATING', 'Hodnocení:');
 
-define('TEXT_APPROVAL_WARNING', 'Note: Your review will not appear until it has been approved.');
-define('TEXT_BAD', '<small><font color="#ff0000"><b>Poor</b></font></small>');
-define('TEXT_GOOD', '<small><font color="#ff0000"><b>Excellent</b></font></small>');
+define('TEXT_APPROVAL_WARNING', 'Poznámka: Vaše recenze se nezobrazí, dokud nebude schválena.');
+define('TEXT_BAD', '<small><font color="#ff0000"><b>Špatný</b></font></small>');
+define('TEXT_GOOD', '<small><font color="#ff0000"><b>Výborný</b></font></small>');
 
 ?>
