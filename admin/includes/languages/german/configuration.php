@@ -31,6 +31,8 @@ define('CONFIG_DESCRIPTION_ADD_MANUFACTURER_SEO_TITLE','Add manufacturers name t
 //products listing GROUP 8
 define('CONFIG_TITLE_PRODUCT_LIST_DISPLAY_SORTBY','Filter Sort by');
 define('CONFIG_DESCRIPTION_PRODUCT_LIST_DISPLAY_SORTBY','Display Sort by filter');
+define('CONFIG_TITLE_LISTING_SNIPPET_LENGHT','Snippet description lenght', true);
+define('CONFIG_DESCRIPTION_LISTING_SNIPPET_LENGHT','Truncate listing description snippet lenght to a defined number of words.', true);
 
 //Monthly Products Sales Report 
 define('CONFIG_TITLE_COMISSION_PERCENTAGE','Comision');
