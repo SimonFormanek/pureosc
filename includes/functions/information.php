@@ -106,15 +106,14 @@ in the same manner as osCommerce
   function tep_information_default_page_define() {
     global $customer_id, $customer_first_name, $languages_id, $category_depth;
 
-    if ($category_depth == 'top') {
       // Retrieve information from db
-      $information_group_id = 2; // ID set by module for Entrance messages
-      $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int)$languages_id . "' AND information_group_id = '" . (int)$information_group_id . "'");
+//      $information_group_id = 2; // ID set by module for Entrance messages
+      $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int)$languages_id . "' AND (information_group_id = 2 OR information_group_id = 3)");
+//      $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int)$languages_id . "' AND information_group_id = '" . (int)$information_group_id . "'");
       while ($information = tep_db_fetch_array($information_query)) {
         define($information['information_title'], $information['information_description']);
         
       }
-    }
   }
 
 ////
@@ -138,4 +137,17 @@ in the same manner as osCommerce
       $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int)$languages_id . "' AND information_group_id = '" . (int)$information_group_id . "' AND information_title = '" .$constant . "'");
       $information = tep_db_fetch_array($information_query);
         define($information['information_title'], $information['information_description']);
+  }
+
+// Define constants
+  function tep_information_define_constants() {
+    global $languages_id;
+
+      // Retrieve information from db
+//      $information_group_id = 2; // ID set by module for Entrance messages
+      $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int)$languages_id . "' AND information_group_id > 3");
+//      $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int)$languages_id . "' AND information_group_id = '" . (int)$information_group_id . "'");
+      while ($information = tep_db_fetch_array($information_query)) {
+        define($information['information_title'], $information['information_description']);
+      }
   }

@@ -618,4 +618,6 @@ $parameters[] = 'atts';
     }
   }
  /**** END ARTICLE MANAGER ****/
+//information
   require_once(DIR_WS_FUNCTIONS . 'information.php');
+  tep_information_define_constants();

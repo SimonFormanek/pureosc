@@ -175,7 +175,7 @@
           }
         }
       }
-      tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER));
+      tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER, 'gID=' . $_POST['gID']));
       break;
 
     case "Update":
@@ -201,7 +201,7 @@
             }
           }
         }
-        tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER));
+        tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER, 'gID=' . $_POST['gID']));
       } else {
         $error = "80";
       }

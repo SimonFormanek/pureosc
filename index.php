@@ -22,9 +22,8 @@
 
 // the following cPath references come from application_top.php
   $category_depth = 'top';
-// BOF: Information Pages Unlimited PURE:NEW: added DefaultPage TITLE, DESCRIPTION, KEYWORDS
+//Information Pages Unlimited PURE:NEW: added DefaultPage TITLE, DESCRIPTION, KEYWORDS
   tep_information_default_page_define();
-// EOF: Information Pages Unlimited
 
   if (isset($cPath) && tep_not_null($cPath)) {
     $categories_products_query = tep_db_query("select count(*) as total from " . TABLE_PRODUCTS_TO_CATEGORIES . " where categories_id = '" . (int)$current_category_id . "'");
