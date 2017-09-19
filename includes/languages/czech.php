@@ -25,7 +25,7 @@
 // on RedHat try 'en_US'
 // on FreeBSD try 'en_US.ISO_8859-1'
 // on Windows try 'en', or 'English'
-@setlocale(LC_TIME, 'cs_CZ.UTF-8');
+@setlocale(LC_ALL, 'cs_CZ.UTF-8');
 
 define('DATE_FORMAT_SHORT', '%d.%m.%Y',true);  // this is used for strftime()
 define('DATE_FORMAT_LONG', '%A %d %B, %Y',true); // this is used for strftime()
