@@ -17,34 +17,34 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Categories / Products',true);
-define('HEADING_TITLE_SEARCH', 'Search:',true);
-define('HEADING_TITLE_GOTO', 'Go To:',true);
+define('HEADING_TITLE', 'Kategorie / Produkty',true);
+define('HEADING_TITLE_SEARCH', 'Vyhledávání:',true);
+define('HEADING_TITLE_GOTO', 'Jít na:',true);
 
 define('TABLE_HEADING_ID', 'ID',true);
-define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Categories / Products',true);
-define('TABLE_HEADING_ACTION', 'Action',true);
+define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorie / Produkty',true);
+define('TABLE_HEADING_ACTION', 'Akce',true);
 define('TABLE_HEADING_STATUS', 'Status',true);
 
-define('TEXT_NEW_PRODUCT', 'New Product in &quot;%s&quot;',true);
-define('TEXT_CATEGORIES', 'Categories:',true);
-define('TEXT_SUBCATEGORIES', 'Subcategories:',true);
-define('TEXT_PRODUCTS', 'Products:',true);
-define('TEXT_PRODUCTS_PRICE_INFO', 'Price:',true);
+define('TEXT_NEW_PRODUCT', 'Nový produkt v &quot;%s&quot;',true);
+define('TEXT_CATEGORIES', 'Kategorie:',true);
+define('TEXT_SUBCATEGORIES', 'Podkategorie:',true);
+define('TEXT_PRODUCTS', 'Produkty:',true);
+define('TEXT_PRODUCTS_PRICE_INFO', 'Cena:',true);
 define('TEXT_PRODUCTS_TAX_CLASS', 'Sazba DPH:',true);
-define('TEXT_PRODUCTS_AVERAGE_RATING', 'Average Rating:',true);
-define('TEXT_PRODUCTS_QUANTITY_INFO', 'Quantity:',true);
+define('TEXT_PRODUCTS_AVERAGE_RATING', 'Průměrné hodnocení:',true);
+define('TEXT_PRODUCTS_QUANTITY_INFO', 'Množství:',true);
 define('TEXT_DATE_ADDED', 'Datum přidání do katalogu:',true);
 define('TEXT_DATE_AVAILABLE', 'Datum uvedení do prodeje:',true);
-define('TEXT_LAST_MODIFIED', 'Last Modified:',true);
+define('TEXT_LAST_MODIFIED', 'Naposledy změněno:',true);
 define('TEXT_IMAGE_NONEXISTENT', 'IMAGE DOES NOT EXIST',true);
-define('TEXT_NO_CHILD_CATEGORIES_OR_PRODUCTS', 'Please insert a new category or product in this level.',true);
-define('TEXT_PRODUCT_MORE_INFORMATION', 'For more information, please visit this products <a href="http://%s" target="blank"><u>webpage</u></a>.',true);
-define('TEXT_PRODUCT_DATE_ADDED', 'This product was added to our catalog on %s.',true);
-define('TEXT_PRODUCT_DATE_AVAILABLE', 'This product will be in stock on %s.',true);
+define('TEXT_NO_CHILD_CATEGORIES_OR_PRODUCTS', 'Vložte do této kategorie novou kategorii nebo produkt.',true);
+define('TEXT_PRODUCT_MORE_INFORMATION', 'Další informace naleznete na těchto stránkách <a href="http://%s" target="blank"><u>webpage</u></a>.',true);
+define('TEXT_PRODUCT_DATE_ADDED', 'Tento produkt byl přidán do našeho katalogu %s.',true);
+define('TEXT_PRODUCT_DATE_AVAILABLE', 'Tento produkt bude skladem %s.',true);
 
-define('TEXT_EDIT_INTRO', 'Please make any necessary changes',true);
-define('TEXT_EDIT_CATEGORIES_ID', 'Category ID:',true);
+define('TEXT_EDIT_INTRO', 'Proveďte prosím všechny nezbytné změny',true);
+define('TEXT_EDIT_CATEGORIES_ID', 'Kategorie ID:',true);
 define('TEXT_EDIT_CATEGORIES_NAME', 'Jméno kategorie/článku:',true);
 define('TEXT_EDIT_CATEGORIES_IMAGE', 'Obrázek:',true);
 define('TEXT_EDIT_SORT_ORDER', 'Pořadí:',true);

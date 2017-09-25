@@ -10,37 +10,37 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Authors');
+define('HEADING_TITLE', 'Autoři');
 
-define('TABLE_HEADING_AUTHORS', 'Authors');
-define('TABLE_HEADING_ACTION', 'Action');
+define('TABLE_HEADING_AUTHORS', 'Autoři');
+define('TABLE_HEADING_ACTION', 'Akce');
 
-define('TEXT_HEADING_NEW_AUTHOR', 'New Author');
-define('TEXT_HEADING_EDIT_AUTHOR', 'Edit Author');
-define('TEXT_HEADING_DELETE_AUTHOR', 'Delete Author');
+define('TEXT_HEADING_NEW_AUTHOR', 'Nový autor');
+define('TEXT_HEADING_EDIT_AUTHOR', 'Editovat autora');
+define('TEXT_HEADING_DELETE_AUTHOR', 'Smazat autora');
 
-define('TEXT_ARTICLE_BY', 'Articles by ');
-define('TEXT_MORE_INFORMATION', 'For more information, please visit this authors <a href="http://%s" target="_blank">web page</a>.');
+define('TEXT_ARTICLE_BY', 'Články podle ');
+define('TEXT_MORE_INFORMATION', 'Pro další informace navštivte tyto autory <a href="http://%s" target="_blank">web page</a>.');
 
-define('TEXT_AUTHORS', 'Authors:');
-define('TEXT_DATE_ADDED', 'Date Added:');
-define('TEXT_LAST_MODIFIED', 'Last Modified:');
-define('TEXT_ARTICLES', 'Articles:');
+define('TEXT_AUTHORS', 'Autoři:');
+define('TEXT_DATE_ADDED', 'Datum přidání:');
+define('TEXT_LAST_MODIFIED', 'Poslední změna:');
+define('TEXT_ARTICLES', 'Články:');
 
-define('TEXT_NEW_INTRO', 'Please fill out the following information for the new author');
-define('TEXT_EDIT_INTRO', 'Please make any necessary changes.');
+define('TEXT_NEW_INTRO', 'Pro nového autora vyplňte prosím následující informace');
+define('TEXT_EDIT_INTRO', 'Proveďte prosím všechny nezbytné změny.');
 
-define('TEXT_AUTHORS_NAME', 'Authors Name:');
-define('TEXT_AUTHORS_DESCRIPTION', 'Authors Description:');
-define('TEXT_AUTHORS_IMAGE', 'Authors Image:');
-define('TEXT_AUTHORS_URL', 'Authors URL:');
+define('TEXT_AUTHORS_NAME', 'Jméno autora:');
+define('TEXT_AUTHORS_DESCRIPTION', 'Autor - popis:');
+define('TEXT_AUTHORS_IMAGE', 'Obrázek autora:');
+define('TEXT_AUTHORS_URL', 'URL autora:');
 
-define('TEXT_DELETE_INTRO', 'Are you sure you want to delete this author?');
-define('TEXT_DELETE_ARTICLES', 'Delete articles from this author? (including article reviews and upcoming articles)');
-define('TEXT_DELETE_WARNING_ARTICLES', '<b>WARNING:</b> There are %s articles still linked to this author!');
+define('TEXT_DELETE_INTRO', 'Opravdu chcete smazat tohoto autora?');
+define('TEXT_DELETE_ARTICLES', 'Smazat články od tohoto autora? (včetně recenzí a neschválených nebo čekajících článků)');
+define('TEXT_DELETE_WARNING_ARTICLES', '<b>WARNING:</b> Odkazy %s ke článkům tohoto autora!');
 
-define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Error: I can not write to this directory. Please set the right user permissions on: %s');
-define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Error: Directory does not exist: %s');
-define('ERROR_NO_AUTHORS_FOUND', 'At least one author must exist.');
-define('ERROR_FAILED_IMAGE_UPLOAD', 'Image failed to upload.');
+define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Chyba: do tohoto adresáře se nedá zapisovat. Nastavte správně práva pro: %s');
+define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Chyba: Adresář neexistuje: %s');
+define('ERROR_NO_AUTHORS_FOUND', 'Musí existovat alespoň jeden autor.');
+define('ERROR_FAILED_IMAGE_UPLOAD', 'Obrázek se nenahrál.');
 ?>
