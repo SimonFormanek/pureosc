@@ -114,4 +114,6 @@
 // BOF: Information Pages Unlimited
   define('TABLE_INFORMATION', 'information');
 // EOF: Information Pages Unlimited
-?>
+
+//PURE:NEW robot
+  define('TABLE_ROBOT','robot');

@@ -55,7 +55,8 @@
 
 // set php_self in the local scope
   $req = parse_url($HTTP_SERVER_VARS['SCRIPT_NAME']);
-  $PHP_SELF = substr($req['path'], ($request_type == 'NONSSL') ? strlen(DIR_WS_HTTP_CATALOG) : strlen(DIR_WS_HTTPS_CATALOG));
+  //PURE:NEW:PURE_SEO_URLS only if $PHP_SELF is empty...
+  if (!($PHP_SELF)) $PHP_SELF = substr($req['path'], ($request_type == 'NONSSL') ? strlen(DIR_WS_HTTP_CATALOG) : strlen(DIR_WS_HTTPS_CATALOG));
 
 /* ** Altered for Security Pro r11 ** */
   include_once DIR_WS_MODULES . 'fwr_media_security_pro.php';
@@ -66,7 +67,7 @@ $security_pro->addExclusion( 'advanced_search_result.php' );
 $security_pro->addExclusion( 'advanced_search.php' );
   $security_pro->cleanse( $PHP_SELF );
 /* ** EOF alteration for Security Pro 11 ** */
-  
+
   if ($request_type == 'NONSSL') {
     define('DIR_WS_CATALOG', DIR_WS_HTTP_CATALOG);
   } else {

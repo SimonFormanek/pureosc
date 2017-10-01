@@ -15,6 +15,8 @@
 */
 // WTL - this goes in admin
   require('includes/application_top.php');
+// Ultimate SEO URLs v2.2d, PURE:VER:1
+   include_once('includes/reset_seo_cache.php');
 
 // Include current language file, if not exists, fall use English (Why is this not a standard procedure in OsCommerce?)
   if (file_exists(DIR_WS_LANGUAGES . $language . '/information.php')) {

@@ -720,10 +720,7 @@ class SEO_URL{
                   $this->stop($this->timestamp, $time);
                   $this->performance['TOTAL_TIME'] += $time;
                 }
-                
-                
-                //$link .= (' | ' . $page . '?' . $parameters);
-                
+                  
                 switch($this->attributes['SEO_URLS_USE_W3C_VALID']){
                         case ('true'):
                                 if (!isset($_SESSION['customer_id']) && defined('ENABLE_PAGE_CACHE') && ENABLE_PAGE_CACHE == 'true' && class_exists('page_cache')){
@@ -804,8 +801,6 @@ class SEO_URL{
           $this->stop($this->timestamp, $time);
           $this->performance['TOTAL_TIME'] += $time;
         }
-        
-        //$return .= "FUJ!";
         switch(true){
                 case ($this->attributes['SEO_URLS_USE_W3C_VALID'] == 'true' && !$page_cache):
                         return htmlspecialchars(utf8_encode($return));
@@ -1132,7 +1127,10 @@ class SEO_URL{
                                           LIMIT 1";
                                 $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
                                 
-                                $pName = $this->strip( $result['pName'] );
+//orig:                                $pName = $this->strip( $result['pName'] ) );
+//devel 1:                                $pName = iconv('UTF-8', 'ASCII//TRANSLIT', $this->strip( $result['pName'] ));
+                                $pName = str_replace('spravne', 'lepe', $this->strip( $result['pName'] ));
+
                                 $this->cache['PRODUCTS'][$pID] = $pName;
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['QUERIES']['PRODUCTS'][] = $sql;
                                 $return = (tep_not_null($cName) ? $cName . '-'.  $pName : $pName);
@@ -1283,59 +1281,6 @@ class SEO_URL{
  * @param integer $aID
  * @return string
  */        
- 
-
-//-------------------------------------------------------------------------------
-
-/**
- * Function to get all parent categories
- * @author Jack_mcs
- * @version 1.0
- * @param string $name
- * @param string $method
- * @return string
- */        
-        function get_all_topics_parents($aID, $tName){
-           $sqlCmd = 'td.topics_name as tName )';
-           $sql = "SELECT LOWER(" . $sqlCmd . ", td.topics_id 
-                     FROM `topics_description` td LEFT JOIN 
-                          `articles_to_topics` a2t on td.topics_id = a2t.topics_id 
-                     WHERE a2t.articles_id = '".(int)$aID."' AND td.language_id = '".(int)$this->languages_id."' AND a2t.canonical>0 
-                     LIMIT 1";
-           $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
-           $tName =  $result['tName'];   
-           return $this->get_all_topics_names($result['topics_id'], $tName);
-        }       
-        
-/**
- * Function to get names of all parent categories
- * @author Jack_mcs
- * @version 1.0
- * @param string $name
- * @param string $method
- * @return string
- */        
-        function get_all_topics_names($tID, $tName){
-           $parArray = array(); //get all of the parrents
-           $this->GetParentTopics($parArray, $tID);        
-
-           foreach ($parArray as $parentID) {
-              $sql = "SELECT LOWER(topics_name) as parentName  
-                FROM `topics_description` td  
-                WHERE topics_id = '".(int)$parentID."' AND td.language_id = '".(int)$this->languages_id."'
-                LIMIT 1";
-              $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
-              $tName = $result['parentName'] . 'xslashx' . $tName; //build the new string
-           }        
-           return $this->strip(str_replace(" ", "-", $tName));
-        }            
-
-
-
-
-//-------------------------------------------------------------------------------
- 
- 
         function get_article_name($aID){
                 switch(true){
                         case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('ARTICLE_NAME_' . $aID)):
@@ -1364,21 +1309,8 @@ class SEO_URL{
                                                 LIMIT 1";
                                 }
 
-                                $result = $this->DB->FetchArray( $this->DB->Query( $sql ) ); 
-                                
-                                //$tName = '';
-                                //$tName = $this->get_all_topics_parents($aID, $tName);
-                                
-                                //$aName = $this->strip( $tName . '/' . $result['aName'] ); 
-                                
-                                
-                                
-                                $tID = $this->DB->FetchArray( $this->DB->Query( "SELECT topics_id FROM articles_to_topics WHERE articles_id=".$aID." AND canonical=1 LIMIT 1" ) );
-                                
-                                $tID = $tID[0];
-                                
-                                $aName = $this->strip( $this->get_topic_name($tID) ) . '/' . $this->strip( $result['aName'] ); 
-                                
+                                $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
+                                $aName = $this->strip( $result['aName'] );
                                 $this->cache['ARTICLES'][$aID] = $aName;
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['QUERIES']['ARTICLES'][] = $sql;
                                 $return = $aName;
@@ -1447,16 +1379,7 @@ class SEO_URL{
                                                 AND language_id='".(int)$this->languages_id."' 
                                                 LIMIT 1";
                                 $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
-                                
-                                
- 
-                                $tName = (str_replace(" ", "-", $result['tName']));
-                                       
-                                $tName = $this->get_all_topics_names($tID, $tName);
-
-                                
-                                
-                                $tName = $this->strip( /*$result['tName']*/ $tName );
+                                $tName = $this->strip( $result['tName'] );
                                 $this->cache['TOPICS'][$tID] = $tName;
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['QUERIES']['TOPICS'][] = $sql;
                                 $return = $tName;
@@ -1802,33 +1725,6 @@ class SEO_URL{
                 }
         } # end function
 
-
-//-----------------------------------------------------------------------------------------
-
-
-        function GetParentTopics(&$topics, $topics_id) {
-                $sql = "SELECT parent_id 
-                        FROM `topics` 
-                                WHERE topics_id='" . (int)$topics_id . "' limit 1";
-                $parent_topics_query = $this->DB->Query($sql);
-                while ($parent_topics = $this->DB->FetchArray($parent_topics_query)) {
-                        if ($parent_topics['parent_id'] == 0) return true;
-                        $topics[sizeof($topics)] = $parent_topics['parent_id'];
-                        if ($parent_topics['parent_id'] != $topics_id) {
-                                $this->GetParentTopics($topics, $parent_topics['parent_id']);
-                        }
-                }
-        } # end function
-
-
-
-
-//-----------------------------------------------------------------------------------------
-        
-        
-        
-
-
 /**
  * Function to check if a value is NULL 
  * @author Bobby Easland as abstracted from osCommerce-MS2.2 
@@ -1931,12 +1827,9 @@ class SEO_URL{
  */    
 
         function strip($string){
-                if ( /*CHARSET == 'utf-8'*/ true ) {
-                   //$string =  iconv("ISO-8859-1", "UTF-8//TRANSLIT", $string);
-                   $string = remove_accents($string); 
-                   //setlocale(LC_ALL, 'cs_CZ');
-                   //$string = iconv("UTF-8", "ASCII//TRANSLIT", $string);
-  return $string;
+                if (CHARSET == 'utf-8') {
+                   $string =  iconv("ISO-8859-1", "UTF-8//TRANSLIT", $string);
+//                   $string = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
                 }
                 if ( is_array($this->attributes['SEO_CHAR_CONVERT_SET']) ) $string = strtr($string, $this->attributes['SEO_CHAR_CONVERT_SET']);
 
@@ -2834,7 +2727,10 @@ class SEO_URL{
                                           $cName = str_replace(" ", "-", $cName) . '-';
                                        }
 
-                                       $pName = $cName . $this->strip( $result['pName'] );
+//                                       $pName = $cName . $this->strip( $result['pName'] );
+//devel 1:                                $pName = iconv('UTF-8', 'ASCII//TRANSLIT', $this->strip( $result['pName'] ));
+                                $pName = str_replace('spravne', 'lepe', $cName . $this->strip( $result['pName'] ));
+
                                        if ($forceRedirect || ($pName !== substr($this->uri_parsed['path'], 0, $pStart))) {
                                          $this->uri_parsed['path'] = $pName . "-p-" . $pID . ".html";
                                          $this->need_redirect = true;
@@ -3012,89 +2908,5 @@ class SEO_URL{
                                 break;
                 } # end switch
         } # end function do_redirect        
-        
-        
-        
-  function remove_accents($url) {
-
-  
-$url = str_replace(' / ','-',$url);
-$url = str_replace(' ','-',$url);
-
-    $url = strtr($url, array(
-        'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'jo', 'ж' => 'zh', 'з' => 'z', 'и' => 'i', 'й' => 'jj', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'kh', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shh', 'ъ' => '', 'ы' => 'y', 'ь' => '', 'э' => 'eh', 'ю' => 'ju', 'я' => 'ja',
-        'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D', 'Е' => 'E', 'Ё' => 'JO', 'Ж' => 'ZH', 'З' => 'Z', 'И' => 'I', 'Й' => 'JJ', 'К' => 'K', 'Л' => 'L', 'М' => 'M', 'Н' => 'N', 'О' => 'O', 'П' => 'P', 'Р' => 'R', 'С' => 'S', 'Т' => 'T', 'У' => 'U', 'Ф' => 'F', 'Х' => 'KH', 'Ц' => 'C', 'Ч' => 'CH', 'Ш' => 'SH', 'Щ' => 'SHH', 'Ъ' => '', 'Ы' => 'Y', 'Ь' => '', 'Э' => 'EH', 'Ю' => 'JU', 'Я' => 'JA',
-    ));
-
-
-$url = mb_strtolower($url,'UTF-8');
-$url = str_replace('á','a',$url);
-$url = str_replace('à','a',$url);
-$url = str_replace('â','a',$url);
-$url = str_replace('ã','a',$url);
-$url = str_replace('ä','a',$url);
-$url = str_replace('å','a',$url);
-$url = str_replace('æ','ae',$url);
-$url = str_replace('č','c',$url);
-$url = str_replace('ç','c',$url);
-$url = str_replace('ď','d',$url);
-$url = str_replace('é','e',$url);
-$url = str_replace('è','e',$url);
-$url = str_replace('ê','e',$url);
-$url = str_replace('ě','e',$url);
-$url = str_replace('ë','e',$url);
-$url = str_replace('í','i',$url);
-$url = str_replace('ì','i',$url);
-$url = str_replace('ľ','l',$url);
-$url = str_replace('î','i',$url);
-$url = str_replace('ï','i',$url);
-$url = str_replace('ň','n',$url);
-$url = str_replace('ñ','n',$url);
-$url = str_replace('ò','o',$url);
-$url = str_replace('ó','o',$url);
-$url = str_replace('ô','o',$url);
-$url = str_replace('õ','o',$url);
-$url = str_replace('ö','o',$url);
-$url = str_replace('ø','o',$url);
-//$url = str_replace('Ř','r',$url);
-$url = str_replace('ř','r',$url);
-$url = str_replace('š','s',$url);
-$url = str_replace('ť','t',$url);
-$url = str_replace('ú','u',$url);
-$url = str_replace('ù','u',$url);
-$url = str_replace('ù','u',$url);
-$url = str_replace('ü','u',$url);
-$url = str_replace('ú','u',$url);
-$url = str_replace('ú','u',$url);
-$url = str_replace('ů','u',$url);
-$url = str_replace('ý','y',$url);
-$url = str_replace('ž','z',$url);
-$url = str_replace('`','-',$url);
-$url = str_replace('´','-',$url);
-$url = str_replace('\'','-',$url);
-$url = str_replace('!','-',$url);
-$url = str_replace('\.','',$url);//UPD!!
-$url = str_replace('?','',$url);
-$url = str_replace('(','-',$url);
-$url = str_replace(')','-',$url);
-$url = str_replace('"','',$url);
-//$url = htmlentities($url); //convert all special chars to entities
-$url = preg_replace("/&?[a-z0-9]+;/i","NIC",$url); //remove all entities
-$url = preg_replace('/-\\/-/','-',$url); //UPD!
-$url = preg_replace('/-\\//','-',$url); //UPD!
-$url = str_replace('---','-',$url);
-$url = str_replace('--','-',$url);
-$url = str_replace('--','-',$url);
-$url = str_replace(',','',$url);
-$url = preg_replace('/\\/\\//','/',$url); //UPD!
-$url = preg_replace('/-$/','',$url); //UPD!
-$url = preg_replace('/![a-z|0-9]/','',$url); 
-return $url;  
-  
-}
-
-        
-        
-        
 } # end class
 ?>

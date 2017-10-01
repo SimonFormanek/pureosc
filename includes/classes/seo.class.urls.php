@@ -720,10 +720,7 @@ class SEO_URL{
                   $this->stop($this->timestamp, $time);
                   $this->performance['TOTAL_TIME'] += $time;
                 }
-                
-                
-                //$link .= (' | ' . $page . '?' . $parameters);
-                
+                  
                 switch($this->attributes['SEO_URLS_USE_W3C_VALID']){
                         case ('true'):
                                 if (!isset($_SESSION['customer_id']) && defined('ENABLE_PAGE_CACHE') && ENABLE_PAGE_CACHE == 'true' && class_exists('page_cache')){
@@ -804,8 +801,6 @@ class SEO_URL{
           $this->stop($this->timestamp, $time);
           $this->performance['TOTAL_TIME'] += $time;
         }
-        
-        //$return .= "FUJ!";
         switch(true){
                 case ($this->attributes['SEO_URLS_USE_W3C_VALID'] == 'true' && !$page_cache):
                         return htmlspecialchars(utf8_encode($return));
@@ -1124,7 +1119,7 @@ class SEO_URL{
                                 break;
                         default:
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['NUMBER_QUERIES']++;
-                                $sqlCmd = $this->attributes['USE_SEO_HEADER_TAGS'] == 'true' ? 'IF(products_head_title_tag_url !="",products_head_title_tag_url, products_head_title_tag) as pName' : 'products_name as pName';
+                                $sqlCmd = $this->attributes['USE_SEO_HEADER_TAGS'] == 'true' ? 'IF(products_head_title_tag_url !="",products_head_title_tag_url, products_head_title_tag) as pName' : 'products_url as pName';
                                 $sql = "SELECT " . $sqlCmd . "
                                           FROM `peoducts_description` 
                                           WHERE products_id='".(int)$pID."' 
@@ -1150,7 +1145,7 @@ class SEO_URL{
  * @return string
  */        
         function get_all_category_parents($pID, $cName){
-           $sqlCmd = $this->attributes['USE_SEO_HEADER_TAGS'] == 'true' ? 'IF(cd.categories_htc_title_tag_url !="",cd.categories_htc_title_tag_url,cd.categories_htc_title_tag) ) as cName' : 'cd.categories_name ) as cName';
+           $sqlCmd = $this->attributes['USE_SEO_HEADER_TAGS'] == 'true' ? 'IF(cd.categories_htc_title_tag_url !="",cd.categories_htc_title_tag_url,cd.categories_htc_title_tag) ) as cName' : 'cd.categories_url ) as cName';
            $sql = "SELECT LOWER(" . $sqlCmd . ", cd.categories_id 
                      FROM `categories_description` cd LEFT JOIN 
                           `products_to_categories` p2c on cd.categories_id = p2c.categories_id 
@@ -1174,7 +1169,7 @@ class SEO_URL{
            $this->GetParentCategories($parArray, $cID);        
 
            foreach ($parArray as $parentID) {
-              $sql = "SELECT LOWER(categories_name) as parentName  
+              $sql = "SELECT LOWER(categories_url) as parentName  
                 FROM `categories_description` cd  
                 WHERE categories_id = '".(int)$parentID."' AND cd.language_id = '".(int)$this->languages_id."'
                 LIMIT 1";
@@ -1283,59 +1278,6 @@ class SEO_URL{
  * @param integer $aID
  * @return string
  */        
- 
-
-//-------------------------------------------------------------------------------
-
-/**
- * Function to get all parent categories
- * @author Jack_mcs
- * @version 1.0
- * @param string $name
- * @param string $method
- * @return string
- */        
-        function get_all_topics_parents($aID, $tName){
-           $sqlCmd = 'td.topics_name as tName )';
-           $sql = "SELECT LOWER(" . $sqlCmd . ", td.topics_id 
-                     FROM `topics_description` td LEFT JOIN 
-                          `articles_to_topics` a2t on td.topics_id = a2t.topics_id 
-                     WHERE a2t.articles_id = '".(int)$aID."' AND td.language_id = '".(int)$this->languages_id."' AND a2t.canonical>0 
-                     LIMIT 1";
-           $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
-           $tName =  $result['tName'];   
-           return $this->get_all_topics_names($result['topics_id'], $tName);
-        }       
-        
-/**
- * Function to get names of all parent categories
- * @author Jack_mcs
- * @version 1.0
- * @param string $name
- * @param string $method
- * @return string
- */        
-        function get_all_topics_names($tID, $tName){
-           $parArray = array(); //get all of the parrents
-           $this->GetParentTopics($parArray, $tID);        
-
-           foreach ($parArray as $parentID) {
-              $sql = "SELECT LOWER(topics_name) as parentName  
-                FROM `topics_description` td  
-                WHERE topics_id = '".(int)$parentID."' AND td.language_id = '".(int)$this->languages_id."'
-                LIMIT 1";
-              $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
-              $tName = $result['parentName'] . 'xslashx' . $tName; //build the new string
-           }        
-           return $this->strip(str_replace(" ", "-", $tName));
-        }            
-
-
-
-
-//-------------------------------------------------------------------------------
- 
- 
         function get_article_name($aID){
                 switch(true){
                         case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('ARTICLE_NAME_' . $aID)):
@@ -1357,28 +1299,15 @@ class SEO_URL{
                                                   AND language_id='".(int)$this->languages_id."' 
                                                   LIMIT 1";                                
                                 } else {
-                                  $sql = "SELECT articles_name as aName  
+                                  $sql = "SELECT articles_url as aName  
                                                 FROM ".TABLE_ARTICLES_DESCRIPTION." 
                                                 WHERE articles_id='".(int)$aID."' 
                                                 AND language_id='".(int)$this->languages_id."' 
                                                 LIMIT 1";
                                 }
 
-                                $result = $this->DB->FetchArray( $this->DB->Query( $sql ) ); 
-                                
-                                //$tName = '';
-                                //$tName = $this->get_all_topics_parents($aID, $tName);
-                                
-                                //$aName = $this->strip( $tName . '/' . $result['aName'] ); 
-                                
-                                
-                                
-                                $tID = $this->DB->FetchArray( $this->DB->Query( "SELECT topics_id FROM articles_to_topics WHERE articles_id=".$aID." AND canonical=1 LIMIT 1" ) );
-                                
-                                $tID = $tID[0];
-                                
-                                $aName = $this->strip( $this->get_topic_name($tID) ) . '/' . $this->strip( $result['aName'] ); 
-                                
+                                $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
+                                $aName = $this->strip( $result['aName'] );
                                 $this->cache['ARTICLES'][$aID] = $aName;
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['QUERIES']['ARTICLES'][] = $sql;
                                 $return = $aName;
@@ -1441,22 +1370,13 @@ class SEO_URL{
                                 break;
                         default:
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['NUMBER_QUERIES']++;
-                                $sql = "SELECT topics_name as tName 
+                                $sql = "SELECT topics_url as tName 
                                                 FROM ".TABLE_TOPICS_DESCRIPTION." 
                                                 WHERE topics_id='".(int)$tID."' 
                                                 AND language_id='".(int)$this->languages_id."' 
                                                 LIMIT 1";
                                 $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
-                                
-                                
- 
-                                $tName = (str_replace(" ", "-", $result['tName']));
-                                       
-                                $tName = $this->get_all_topics_names($tID, $tName);
-
-                                
-                                
-                                $tName = $this->strip( /*$result['tName']*/ $tName );
+                                $tName = $this->strip( $result['tName'] );
                                 $this->cache['TOPICS'][$tID] = $tName;
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['QUERIES']['TOPICS'][] = $sql;
                                 $return = $tName;
@@ -1600,7 +1520,7 @@ class SEO_URL{
                                 break;
                         default:
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['NUMBER_QUERIES']++;
-                                $sql = "SELECT information_title as iName 
+                                $sql = "SELECT information_url as iName 
                                                FROM ".TABLE_INFORMATION." 
                                                WHERE information_id='".(int)$iID."' 
                                                AND language_id='".(int)$this->languages_id."' 
@@ -1802,33 +1722,6 @@ class SEO_URL{
                 }
         } # end function
 
-
-//-----------------------------------------------------------------------------------------
-
-
-        function GetParentTopics(&$topics, $topics_id) {
-                $sql = "SELECT parent_id 
-                        FROM `topics` 
-                                WHERE topics_id='" . (int)$topics_id . "' limit 1";
-                $parent_topics_query = $this->DB->Query($sql);
-                while ($parent_topics = $this->DB->FetchArray($parent_topics_query)) {
-                        if ($parent_topics['parent_id'] == 0) return true;
-                        $topics[sizeof($topics)] = $parent_topics['parent_id'];
-                        if ($parent_topics['parent_id'] != $topics_id) {
-                                $this->GetParentTopics($topics, $parent_topics['parent_id']);
-                        }
-                }
-        } # end function
-
-
-
-
-//-----------------------------------------------------------------------------------------
-        
-        
-        
-
-
 /**
  * Function to check if a value is NULL 
  * @author Bobby Easland as abstracted from osCommerce-MS2.2 
@@ -1931,12 +1824,9 @@ class SEO_URL{
  */    
 
         function strip($string){
-                if ( /*CHARSET == 'utf-8'*/ true ) {
-                   //$string =  iconv("ISO-8859-1", "UTF-8//TRANSLIT", $string);
-                   $string = remove_accents($string); 
-                   //setlocale(LC_ALL, 'cs_CZ');
-                   //$string = iconv("UTF-8", "ASCII//TRANSLIT", $string);
-  return $string;
+                if (CHARSET == 'utf-8') {
+                   $string =  iconv("ISO-8859-1", "UTF-8//TRANSLIT", $string);
+
                 }
                 if ( is_array($this->attributes['SEO_CHAR_CONVERT_SET']) ) $string = strtr($string, $this->attributes['SEO_CHAR_CONVERT_SET']);
 
@@ -2126,7 +2016,7 @@ class SEO_URL{
         function generate_products_cache(){
                 $this->is_cached($this->cache_file . 'PRODUCTS', $is_cached, $is_expired);          
                 if ( !$is_cached || $is_expired ) {
-                $sqlCmd = $this->attributes['USE_SEO_HEADER_TAGS'] == 'true' ? 'IF(pd.products_head_title_tag_url !="",pd.products_head_title_tag_url,pd.products_name) as name' : 'pd.products_name as name';
+                $sqlCmd = $this->attributes['USE_SEO_HEADER_TAGS'] == 'true' ? 'IF(pd.products_head_title_tag_url !="",pd.products_head_title_tag_url,pd.products_name) as name' : 'pd.products_url as name';
                 $sql = "SELECT p.products_id as id, " . $sqlCmd . " 
                         FROM `products` p 
                                 LEFT JOIN `products_description` pd 
@@ -2138,6 +2028,7 @@ class SEO_URL{
                 while ($product = $this->DB->FetchArray($product_query)) {
                 
                         $define = 'define(\'PRODUCT_NAME_' . $product['id'] . '\', \'' . $this->strip($product['name']) . '\');';
+//pure:orig                        $define = 'define(\'PRODUCT_NAME_' . $product['id'] . '\', \'' . $this->strip($product['name']) . '\');';
                         $prod_cache .= $define . "\n";
                         eval("$define");
                 }
@@ -2229,7 +2120,7 @@ class SEO_URL{
         function generate_articles_cache(){
                 $this->is_cached($this->cache_file . 'ARTICLES', $is_cached, $is_expired);          
                 if ( !$is_cached || $is_expired ) { // it's not cached so create it
-                        $sqlCmd = $this->attributes['USE_SEO_HEADER_TAGS'] == 'true' ? 'articles_head_title_tag as name' : 'articles_name as name';
+                        $sqlCmd = $this->attributes['USE_SEO_HEADER_TAGS'] == 'true' ? 'articles_head_title_tag as name' : 'articles_url as name';
                         $sql = "SELECT articles_id as id, " . $sqlCmd . " 
                                         FROM ".TABLE_ARTICLES_DESCRIPTION." 
                                         WHERE language_id = '".(int)$this->languages_id."'";
@@ -2283,7 +2174,7 @@ class SEO_URL{
         function generate_topics_cache(){
                 $this->is_cached($this->cache_file . 'TOPICS', $is_cached, $is_expired);          
                 if ( !$is_cached || $is_expired ) { // it's not cached so create it
-                        $sql = "SELECT topics_id as id, topics_name as name 
+                        $sql = "SELECT topics_id as id, topics_url as name 
                                         FROM ".TABLE_TOPICS_DESCRIPTION." 
                                         WHERE language_id='".(int)$this->languages_id."'";
                         $topic_query = $this->DB->Query( $sql );
@@ -2820,7 +2711,7 @@ class SEO_URL{
                                                                         
                                        if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['NUMBER_QUERIES']++;
                                        $pID = substr($this->uri_parsed['path'], $pStart + 3, -(strlen($this->uri_parsed['path']) - $pStop));
-                                       $sqlCmd = $this->attributes['USE_SEO_HEADER_TAGS'] == 'true' ? 'IF(products_head_title_tag_url !="",products_head_title_tag_url,products_name) as pName' : 'products_name as pName';
+                                       $sqlCmd = $this->attributes['USE_SEO_HEADER_TAGS'] == 'true' ? 'IF(products_head_title_tag_url !="",products_head_title_tag_url,products_name) as pName' : 'products_url as pName';
                                        $sql = "SELECT " . $sqlCmd . "
                                              FROM `products_description`
                                              WHERE products_id='".(int)$pID."'
@@ -3012,89 +2903,5 @@ class SEO_URL{
                                 break;
                 } # end switch
         } # end function do_redirect        
-        
-        
-        
-  function remove_accents($url) {
-
-  
-$url = str_replace(' / ','-',$url);
-$url = str_replace(' ','-',$url);
-
-    $url = strtr($url, array(
-        'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'jo', 'ж' => 'zh', 'з' => 'z', 'и' => 'i', 'й' => 'jj', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'kh', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shh', 'ъ' => '', 'ы' => 'y', 'ь' => '', 'э' => 'eh', 'ю' => 'ju', 'я' => 'ja',
-        'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D', 'Е' => 'E', 'Ё' => 'JO', 'Ж' => 'ZH', 'З' => 'Z', 'И' => 'I', 'Й' => 'JJ', 'К' => 'K', 'Л' => 'L', 'М' => 'M', 'Н' => 'N', 'О' => 'O', 'П' => 'P', 'Р' => 'R', 'С' => 'S', 'Т' => 'T', 'У' => 'U', 'Ф' => 'F', 'Х' => 'KH', 'Ц' => 'C', 'Ч' => 'CH', 'Ш' => 'SH', 'Щ' => 'SHH', 'Ъ' => '', 'Ы' => 'Y', 'Ь' => '', 'Э' => 'EH', 'Ю' => 'JU', 'Я' => 'JA',
-    ));
-
-
-$url = mb_strtolower($url,'UTF-8');
-$url = str_replace('á','a',$url);
-$url = str_replace('à','a',$url);
-$url = str_replace('â','a',$url);
-$url = str_replace('ã','a',$url);
-$url = str_replace('ä','a',$url);
-$url = str_replace('å','a',$url);
-$url = str_replace('æ','ae',$url);
-$url = str_replace('č','c',$url);
-$url = str_replace('ç','c',$url);
-$url = str_replace('ď','d',$url);
-$url = str_replace('é','e',$url);
-$url = str_replace('è','e',$url);
-$url = str_replace('ê','e',$url);
-$url = str_replace('ě','e',$url);
-$url = str_replace('ë','e',$url);
-$url = str_replace('í','i',$url);
-$url = str_replace('ì','i',$url);
-$url = str_replace('ľ','l',$url);
-$url = str_replace('î','i',$url);
-$url = str_replace('ï','i',$url);
-$url = str_replace('ň','n',$url);
-$url = str_replace('ñ','n',$url);
-$url = str_replace('ò','o',$url);
-$url = str_replace('ó','o',$url);
-$url = str_replace('ô','o',$url);
-$url = str_replace('õ','o',$url);
-$url = str_replace('ö','o',$url);
-$url = str_replace('ø','o',$url);
-//$url = str_replace('Ř','r',$url);
-$url = str_replace('ř','r',$url);
-$url = str_replace('š','s',$url);
-$url = str_replace('ť','t',$url);
-$url = str_replace('ú','u',$url);
-$url = str_replace('ù','u',$url);
-$url = str_replace('ù','u',$url);
-$url = str_replace('ü','u',$url);
-$url = str_replace('ú','u',$url);
-$url = str_replace('ú','u',$url);
-$url = str_replace('ů','u',$url);
-$url = str_replace('ý','y',$url);
-$url = str_replace('ž','z',$url);
-$url = str_replace('`','-',$url);
-$url = str_replace('´','-',$url);
-$url = str_replace('\'','-',$url);
-$url = str_replace('!','-',$url);
-$url = str_replace('\.','',$url);//UPD!!
-$url = str_replace('?','',$url);
-$url = str_replace('(','-',$url);
-$url = str_replace(')','-',$url);
-$url = str_replace('"','',$url);
-//$url = htmlentities($url); //convert all special chars to entities
-$url = preg_replace("/&?[a-z0-9]+;/i","NIC",$url); //remove all entities
-$url = preg_replace('/-\\/-/','-',$url); //UPD!
-$url = preg_replace('/-\\//','-',$url); //UPD!
-$url = str_replace('---','-',$url);
-$url = str_replace('--','-',$url);
-$url = str_replace('--','-',$url);
-$url = str_replace(',','',$url);
-$url = preg_replace('/\\/\\//','/',$url); //UPD!
-$url = preg_replace('/-$/','',$url); //UPD!
-$url = preg_replace('/![a-z|0-9]/','',$url); 
-return $url;  
-  
-}
-
-        
-        
-        
 } # end class
 ?>

@@ -720,10 +720,7 @@ class SEO_URL{
                   $this->stop($this->timestamp, $time);
                   $this->performance['TOTAL_TIME'] += $time;
                 }
-                
-                
-                //$link .= (' | ' . $page . '?' . $parameters);
-                
+                  
                 switch($this->attributes['SEO_URLS_USE_W3C_VALID']){
                         case ('true'):
                                 if (!isset($_SESSION['customer_id']) && defined('ENABLE_PAGE_CACHE') && ENABLE_PAGE_CACHE == 'true' && class_exists('page_cache')){
@@ -1283,59 +1280,6 @@ class SEO_URL{
  * @param integer $aID
  * @return string
  */        
- 
-
-//-------------------------------------------------------------------------------
-
-/**
- * Function to get all parent categories
- * @author Jack_mcs
- * @version 1.0
- * @param string $name
- * @param string $method
- * @return string
- */        
-        function get_all_topics_parents($aID, $tName){
-           $sqlCmd = 'td.topics_name as tName )';
-           $sql = "SELECT LOWER(" . $sqlCmd . ", td.topics_id 
-                     FROM `topics_description` td LEFT JOIN 
-                          `articles_to_topics` a2t on td.topics_id = a2t.topics_id 
-                     WHERE a2t.articles_id = '".(int)$aID."' AND td.language_id = '".(int)$this->languages_id."' AND a2t.canonical>0 
-                     LIMIT 1";
-           $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
-           $tName =  $result['tName'];   
-           return $this->get_all_topics_names($result['topics_id'], $tName);
-        }       
-        
-/**
- * Function to get names of all parent categories
- * @author Jack_mcs
- * @version 1.0
- * @param string $name
- * @param string $method
- * @return string
- */        
-        function get_all_topics_names($tID, $tName){
-           $parArray = array(); //get all of the parrents
-           $this->GetParentTopics($parArray, $tID);        
-
-           foreach ($parArray as $parentID) {
-              $sql = "SELECT LOWER(topics_name) as parentName  
-                FROM `topics_description` td  
-                WHERE topics_id = '".(int)$parentID."' AND td.language_id = '".(int)$this->languages_id."'
-                LIMIT 1";
-              $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
-              $tName = $result['parentName'] . 'xslashx' . $tName; //build the new string
-           }        
-           return $this->strip(str_replace(" ", "-", $tName));
-        }            
-
-
-
-
-//-------------------------------------------------------------------------------
- 
- 
         function get_article_name($aID){
                 switch(true){
                         case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('ARTICLE_NAME_' . $aID)):
@@ -1364,21 +1308,8 @@ class SEO_URL{
                                                 LIMIT 1";
                                 }
 
-                                $result = $this->DB->FetchArray( $this->DB->Query( $sql ) ); 
-                                
-                                //$tName = '';
-                                //$tName = $this->get_all_topics_parents($aID, $tName);
-                                
-                                //$aName = $this->strip( $tName . '/' . $result['aName'] ); 
-                                
-                                
-                                
-                                $tID = $this->DB->FetchArray( $this->DB->Query( "SELECT topics_id FROM articles_to_topics WHERE articles_id=".$aID." AND canonical=1 LIMIT 1" ) );
-                                
-                                $tID = $tID[0];
-                                
-                                $aName = $this->strip( $this->get_topic_name($tID) ) . '/' . $this->strip( $result['aName'] ); 
-                                
+                                $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
+                                $aName = $this->strip( $result['aName'] );
                                 $this->cache['ARTICLES'][$aID] = $aName;
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['QUERIES']['ARTICLES'][] = $sql;
                                 $return = $aName;
@@ -1447,16 +1378,7 @@ class SEO_URL{
                                                 AND language_id='".(int)$this->languages_id."' 
                                                 LIMIT 1";
                                 $result = $this->DB->FetchArray( $this->DB->Query( $sql ) );
-                                
-                                
- 
-                                $tName = (str_replace(" ", "-", $result['tName']));
-                                       
-                                $tName = $this->get_all_topics_names($tID, $tName);
-
-                                
-                                
-                                $tName = $this->strip( /*$result['tName']*/ $tName );
+                                $tName = $this->strip( $result['tName'] );
                                 $this->cache['TOPICS'][$tID] = $tName;
                                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true') $this->performance['QUERIES']['TOPICS'][] = $sql;
                                 $return = $tName;
@@ -1802,33 +1724,6 @@ class SEO_URL{
                 }
         } # end function
 
-
-//-----------------------------------------------------------------------------------------
-
-
-        function GetParentTopics(&$topics, $topics_id) {
-                $sql = "SELECT parent_id 
-                        FROM `topics` 
-                                WHERE topics_id='" . (int)$topics_id . "' limit 1";
-                $parent_topics_query = $this->DB->Query($sql);
-                while ($parent_topics = $this->DB->FetchArray($parent_topics_query)) {
-                        if ($parent_topics['parent_id'] == 0) return true;
-                        $topics[sizeof($topics)] = $parent_topics['parent_id'];
-                        if ($parent_topics['parent_id'] != $topics_id) {
-                                $this->GetParentTopics($topics, $parent_topics['parent_id']);
-                        }
-                }
-        } # end function
-
-
-
-
-//-----------------------------------------------------------------------------------------
-        
-        
-        
-
-
 /**
  * Function to check if a value is NULL 
  * @author Bobby Easland as abstracted from osCommerce-MS2.2 
@@ -1934,9 +1829,8 @@ class SEO_URL{
                 if ( /*CHARSET == 'utf-8'*/ true ) {
                    //$string =  iconv("ISO-8859-1", "UTF-8//TRANSLIT", $string);
                    $string = remove_accents($string); 
-                   //setlocale(LC_ALL, 'cs_CZ');
+                   //setlocale(LC_CTYPE, 'cs_CZ');
                    //$string = iconv("UTF-8", "ASCII//TRANSLIT", $string);
-  return $string;
                 }
                 if ( is_array($this->attributes['SEO_CHAR_CONVERT_SET']) ) $string = strtr($string, $this->attributes['SEO_CHAR_CONVERT_SET']);
 

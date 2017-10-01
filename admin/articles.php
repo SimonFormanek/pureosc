@@ -42,6 +42,11 @@
   }
 
   else if (tep_not_null($action)) {
+  // Ultimate SEO URLs v2.2d
+// If the action will affect the cache entries
+   if ( preg_match("/(insert|update|setflag)/i", $action) ) include_once('includes/reset_seo_cache.php');
+
+
     switch ($action) {
       case 'setflag':
         if ( ($_GET['flag'] == '0') || ($_GET['flag'] == '1') ) {
@@ -275,8 +280,9 @@
             tep_db_perform(TABLE_ARTICLES, $sql_data_array);
             $articles_id = tep_db_insert_id();
 
-            tep_db_query("insert into " . TABLE_ARTICLES_TO_TOPICS . " (articles_id, topics_id) values ('" . (int)$articles_id . "', '" . (int)$current_topic_id . "')");
+            tep_db_query("insert into " . TABLE_ARTICLES_TO_TOPICS . " (articles_id, topics_id, canonical) values ('" . (int)$articles_id . "', '" . (int)$current_topic_id . "', '1')");
           } elseif ($action == 'update_article') {
+            $update_sql_data = array('articles_last_modified' => 'now()');
             $update_sql_data = array('articles_last_modified' => 'now()');
             // If expected article then articles_date _added becomes articles_date_available
             if (isset($_POST['articles_date_available']) && tep_not_null($_POST['articles_date_available'])) {
@@ -286,6 +292,16 @@
             $sql_data_array = array_merge($sql_data_array, $update_sql_data);
 
             tep_db_perform(TABLE_ARTICLES, $sql_data_array, 'update', "articles_id = '" . (int)$articles_id . "'");
+						//update canonical
+          if(isset($_POST['canonical'])) { //je zaskrt.
+
+  				$wQ = tep_db_query("SELECT topics_id FROM ".TABLE_ARTICLES_TO_TOPICS." WHERE articles_id = ".(int)$articles_id);
+  				while($w = tep_db_fetch_array($wQ)) 
+  				tep_db_query("UPDATE ".TABLE_ARTICLES_TO_TOPICS." SET canonical = null WHERE articles_id = ".(int)$articles_id." AND topics_id = ".$w['topics_id']);
+
+  				$uQ = tep_db_query("UPDATE ".TABLE_ARTICLES_TO_TOPICS." SET canonical = 1 WHERE articles_id = ".(int)$articles_id." AND topics_id = ".$current_topic_id);
+					}
+          
           }
 
           $languages = tep_get_languages();
@@ -714,6 +730,30 @@ td.HTC_Head {font-family: Verdana, Arial, sans-serif; color:#333; font-size: 18p
       </tr>
       <tr>
         <td><table border="0" cellspacing="0" cellpadding="2">
+
+
+          <tr>
+            <td class="main"><?php echo TEXT_ARTICLES_CANONICAL; ?></td>
+            <td class="main"><?php 
+
+$isChk = $pInfo->canonical > 0 ? true : false;
+$ro = false; $wrn = false;
+if(! $isChk) { //navrh samoopravy chybejicich
+  $canQ = tep_db_query($qs="SELECT * FROM ".TABLE_ARTICLES_TO_TOPICS." WHERE canonical > 0 AND articles_id = ".(int)$aInfo->articles_id); 
+  if(tep_db_num_rows($canQ) < 1) { $isChk = true; $wrn = true; } 
+
+} else $ro = true;
+
+echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' 
+. '<INPUT type="CHECKBOX" name="canonical" value="on"'.($isChk?(' CHECKED'.($ro?' READONLY':'')):'').'>'
+.($wrn?(' POZOR - produkt dosud nemá kanonické označení - odznačte, nemá-li být zde. '):''); //.$qs
+ //. tep_draw_checkbox_field('canonical', 'on', ($pInfo->canonical > 0 ? true : false)); 
+
+?></td>
+          </tr>
+
+
+
           <tr>
             <td class="smallText"><?php echo TEXT_ARTICLES_STATUS; ?></td>
             <td class="smallText"><?php echo tep_draw_radio_field('articles_status', '0', $out_status) . '&nbsp;' . TEXT_ARTICLE_NOT_AVAILABLE . '&nbsp;' . tep_draw_radio_field('articles_status', '1', $in_status) . '&nbsp;' . TEXT_ARTICLE_AVAILABLE; ?></td>

@@ -1,4 +1,10 @@
 <?php
+if (!isset($_COOKIE['osCsid']) && file_exists('index.html') && empty($_GET)){
+//TODO!!! if((int)ERROR_DB_CONNECT > 0) include 'error_header.html';
+include('index.html');
+exit;
+}
+
 /*
   $Id$
 
@@ -79,12 +85,12 @@ if (tep_not_null($category['categories_description'])) {
         if ($categories['total'] < 1) {
           // do nothing, go through the loop
         } else {
-          $categories_query = tep_db_query("select c.categories_id, cd.categories_name, c.categories_image, c.parent_id from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd where c.parent_id = '" . (int)$category_links[$i] . "' and c.categories_id = cd.categories_id and cd.language_id = '" . (int)$languages_id . "' order by sort_order, cd.categories_name");
+          $categories_query = tep_db_query("select c.categories_id, cd.categories_name, c.categories_image, c.parent_id from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd where c.parent_id = '" . (int)$category_links[$i] . "' and c.categories_id = cd.categories_id and cd.language_id = '" . (int)$languages_id . "' AND sort_order > 0 order by sort_order, cd.categories_name");
           break; // we've found the deepest category the customer is in
         }
       }
     } else {
-      $categories_query = tep_db_query("select c.categories_id, cd.categories_name, c.categories_image, c.parent_id from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd where c.parent_id = '" . (int)$current_category_id . "' and c.categories_id = cd.categories_id and cd.language_id = '" . (int)$languages_id . "' order by sort_order, cd.categories_name");
+      $categories_query = tep_db_query("select c.categories_id, cd.categories_name, c.categories_image, c.parent_id from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd where c.parent_id = '" . (int)$current_category_id . "' and c.categories_id = cd.categories_id and cd.language_id = '" . (int)$languages_id . "' AND sort_order > 0 order by sort_order, cd.categories_name");
     }
 
     while ($categories = tep_db_fetch_array($categories_query)) {
@@ -113,6 +119,19 @@ if (tep_not_null($category['categories_description'])) {
 
 <?php
   } elseif ($category_depth == 'products' || (isset($HTTP_GET_VARS['manufacturers_id']) && !empty($HTTP_GET_VARS['manufacturers_id']))) {
+
+	//PURE:NEW:inactive_category: if sort_order < 1 -> redirect to Index
+	//TODO: MORE AI PLEASE .... starting realistic with: go to parent category
+	if (SERVER_INSTANCE !='admin') {
+  	$inactive_query = tep_db_query("SELECT sort_order FROM " . TABLE_CATEGORIES . " WHERE categories_id = " . (int)$current_category_id);
+  	$inactive = tep_db_fetch_array($inactive_query);
+//  	echo "sort_order: " . $inactive['sort_order'] . "\n";
+  	if ($inactive['sort_order'] == 0) {
+	 		tep_redirect(tep_href_link(FILENAME_DEFAULT, '', 'NONSSL'));
+  	exit;
+  	}
+	}
+
 // create column list
     $define_list = array('PRODUCT_LIST_MODEL' => PRODUCT_LIST_MODEL,
                          'PRODUCT_LIST_NAME' => PRODUCT_LIST_NAME,
