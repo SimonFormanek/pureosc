@@ -2,7 +2,7 @@
 <?php
 $debug_level=3; //0 = nothing; 1 = essential 2 = partial 3 = all
 chdir('../');
-define('GENERATOR_FORCE_UPDATE_ALL', '1'); //0 = production, 1 = komplenti vynuceny
+define('GENERATOR_FORCE_UPDATE_ALL', '0'); //0 = production, 1 = komplenti vynuceny
 define('RSYNC_TO_REMOTE','0'); //1 = enable rsync to remote server
 /*
 CONFIG TODO: 
@@ -185,6 +185,7 @@ exit;
 			//create static
 			$curl_handle=curl_init();
 			curl_setopt($curl_handle, CURLOPT_URL,HTTP_SERVER . '/product_info.php?products_id=' . $products['products_id']);
+			curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER . ":" . WGET_PASSWORD);
 			curl_setopt($curl_handle,CURLOPT_USERAGENT,'wget');
 			curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
 			curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
@@ -281,6 +282,7 @@ exit;
 //		curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/product_info.php?products_id=' . $products['products_id']);
 //			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/index.php?cPath=1');
 			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/index.php?cPath=' . $categories['categories_id']);
+			curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER . ":" . WGET_PASSWORD);
 			curl_setopt($curl_handle,CURLOPT_USERAGENT,'wget');
 			curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
 			curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
@@ -362,6 +364,7 @@ exit;
 			//create static
 			$curl_handle=curl_init();
 			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_ARTICLES . '?tPath=' . $topics['topics_id']);
+			curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER . ":" . WGET_PASSWORD);
 			curl_setopt($curl_handle,CURLOPT_USERAGENT,'wget');
 			curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
 			curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
@@ -402,6 +405,7 @@ exit;
 			//create static
 			$curl_handle=curl_init();
 			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_ARTICLE_INFO . '/?articles_id=' . $articles['articles_id']);
+			curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER . ":" . WGET_PASSWORD);
 			curl_setopt($curl_handle,CURLOPT_USERAGENT,'wget');
 			curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
 			curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
@@ -445,6 +449,7 @@ exit;
 			//create static
 			$curl_handle=curl_init();
 			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_INFORMATION . '?info_id=' . $information['information_id']);
+			curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER . ":" . WGET_PASSWORD);
 			curl_setopt($curl_handle,CURLOPT_USERAGENT,'wget');
 			curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
 			curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
@@ -571,6 +576,7 @@ exit;
 			//create static
 			$curl_handle=curl_init();
 			curl_setopt($curl_handle, CURLOPT_URL,HTTP_SERVER . '/index.php');
+			curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER . ":" . WGET_PASSWORD);
 			curl_setopt($curl_handle,CURLOPT_USERAGENT,'wget');
 			curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
 			curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);

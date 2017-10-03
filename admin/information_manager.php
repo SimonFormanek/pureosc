@@ -177,6 +177,7 @@
           }
         }
       }
+
       tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER, 'gID=' . $_POST['gID']));
       break;
 
@@ -203,6 +204,9 @@
             }
           }
         }
+	//pure: reset static cache
+	tep_db_query("UPDATE " . TABLE_INFORMATION . " SET cached = 0 WHERE information_id = '" . (int) $_POST['information_id'] . "'");
+
         tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER, 'gID=' . $_POST['gID']));
       } else {
         $error = "80";

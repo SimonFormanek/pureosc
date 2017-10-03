@@ -99,6 +99,11 @@
           tep_reset_cache_block('categories');
           tep_reset_cache_block('also_purchased');
         }
+		//static cache reset
+        for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+		tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached = 0 WHERE categories_id = " . (int)$categories_id . " AND language_id = " . (int)$languages[$i]['id']);
+		tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached_admin = 0 WHERE categories_id = " . (int)$categories_id . " AND language_id = " . (int)$languages[$i]['id']);
+}
 	//pure:new redirect back to edit
 if (tep_not_null(tep_db_insert_id())) {
         tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $categories_id . '&action=edit_category'));
@@ -357,6 +362,11 @@ if (tep_not_null(tep_db_insert_id())) {
           tep_reset_cache_block('categories');
           tep_reset_cache_block('also_purchased');
         }
+         for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+		tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached = 0 WHERE products_id = " . (int)$products_id . " AND language_id = " . (int)$languages[$i]['id']);
+		tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached_admin = 0 WHERE products_id = " . (int)$products_id . " AND language_id = " . (int)$languages[$i]['id']);
+}
+
 	//pure:new reload page
 if (tep_not_null(tep_db_insert_id())) {
 	tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id . '&action=new_product&#meta-edit'));

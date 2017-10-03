@@ -137,6 +137,11 @@
         if (USE_CACHE == 'true') {
           tep_reset_cache_block('topics');
         }
+        for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+		//pure static cache reset
+		tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . (int)$topics_id . " AND language_id = " . (int)$languages[$i]['id']);
+		tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . (int)$topics_id . " AND language_id = " . (int)$languages[$i]['id']);
+}
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $tPath . '&tID=' . $topics_id));
         break;
@@ -346,6 +351,10 @@
           if (USE_CACHE == 'true') {
             tep_reset_cache_block('topics');
           }
+				//pure: static cache reset
+        for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+		tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . (int)$articles_id . " AND language_id = " . (int)$languages[$i]['id']);
+}
 
           tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $tPath . '&aID=' . $articles_id));
         }
