@@ -14,18 +14,11 @@
 //master server
 //  define('MULTI_DATABASE','false'); //true if defined multiple databases
   define('DB_SERVER', 'localhost'); //localhost <------ need to bee configured
-//  define('DB_SERVER', '88.208.121.116'); //localhost <------ need to bee configured
-//    define('DB_DATABASE', 'oscremotetest'); // knizninovinky pureoscssl <------ need to bee configured
-  define('DB_DATABASE', 'osc1'); // knizninovinky pureoscssl <------ need to bee configured
-//  define('DB_DATABASE', 'oscempty'); // knizninovinky pureoscssl <------ need to bee configured
-//  define('DB_DATABASE', 'QSshop'); // knizninovinky pureoscssl <------ need to bee configured
+  define('DB_DATABASE', 'pureoscssl'); //pureoscssl <------ need to bee configured
 //  define('DB_PORT','3307');
-  define('DB_SERVER_USERNAME', 'root');
-  define('DB_SERVER_PASSWORD', '');
-//  define('DB_SERVER_USERNAME', 'osc');
-//  define('DB_SERVER_PASSWORD', 'jinablbatmavaleva');
+  define('DB_SERVER_USERNAME', 'pomad');
+  define('DB_SERVER_PASSWORD', 'password');
 //root cron user
-//  define('DB_SERVER_USERNAME_ROOT', 'root');
-//  define('DB_SERVER_PASSWORD_ROOT', '');
+  define('DB_SERVER_USERNAME_ROOT', 'root');
+  define('DB_SERVER_PASSWORD_ROOT', '');
 
-//admin: f / fZ2p2OPBIQcXY21l3GW4

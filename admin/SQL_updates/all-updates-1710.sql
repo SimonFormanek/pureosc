@@ -1,3 +1,8 @@
+#cumulative db updates for 
+alter table categories modify sort_order int(12) default 1;
+alter table topics modify sort_order int(12) default 1;
+
+delete from configuration where configuration_key='USE_SEO_REDIRECT';
 alter table products_description add cached int(1) default '0' after products_id;
 alter table products_description add cached_admin int(1) default '0' after cached;
 

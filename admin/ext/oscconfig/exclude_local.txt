@@ -1,0 +1,6 @@
+install
+.git
+.gitignore_shop
+.gitignore_devel
+.gitignore_admin
+.gitignore
