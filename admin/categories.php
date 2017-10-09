@@ -101,8 +101,13 @@
         }
 		//static cache reset
         for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+        $language_id = $languages[$i]['id'];
 		tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached = 0 WHERE categories_id = " . (int)$categories_id . " AND language_id = " . (int)$languages[$i]['id']);
 		tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached_admin = 0 WHERE categories_id = " . (int)$categories_id . " AND language_id = " . (int)$languages[$i]['id']);
+    $lng_code_query = tep_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id ='" . $language_id . "'");
+    $lng_code = tep_db_fetch_array($lng_code_query);
+		shell_exec('./writecache.php ' . $lng_code['code'] . ' shop');
+		shell_exec('./writecache.php ' . $lng_code['code'] . ' admin');
 }
 	//pure:new redirect back to edit
 if (tep_not_null(tep_db_insert_id())) {
@@ -363,8 +368,13 @@ if (tep_not_null(tep_db_insert_id())) {
           tep_reset_cache_block('also_purchased');
         }
          for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+        $language_id = $languages[$i]['id'];
 		tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached = 0 WHERE products_id = " . (int)$products_id . " AND language_id = " . (int)$languages[$i]['id']);
 		tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached_admin = 0 WHERE products_id = " . (int)$products_id . " AND language_id = " . (int)$languages[$i]['id']);
+    $lng_code_query = tep_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id ='" . $language_id . "'");
+    $lng_code = tep_db_fetch_array($lng_code_query);
+		shell_exec('./writecache.php ' . $lng_code['code'] . ' shop');
+		shell_exec('./writecache.php ' . $lng_code['code'] . ' admin');
 }
 
 	//pure:new reload page

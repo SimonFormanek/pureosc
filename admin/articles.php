@@ -139,9 +139,19 @@
         }
         for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 		//pure static cache reset
+}
+
+        for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+        $language_id = $languages[$i]['id'];
 		tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . (int)$topics_id . " AND language_id = " . (int)$languages[$i]['id']);
 		tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . (int)$topics_id . " AND language_id = " . (int)$languages[$i]['id']);
+    $lng_code_query = tep_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id ='" . $language_id . "'");
+    $lng_code = tep_db_fetch_array($lng_code_query);
+		shell_exec('./writecache.php ' . $lng_code['code'] . ' shop');
+		shell_exec('./writecache.php ' . $lng_code['code'] . ' admin');
 }
+
+
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $tPath . '&tID=' . $topics_id));
         break;
@@ -353,7 +363,13 @@
           }
 				//pure: static cache reset
         for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+        $language_id = $languages[$i]['id'];
 		tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . (int)$articles_id . " AND language_id = " . (int)$languages[$i]['id']);
+		tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . (int)$articles_id . " AND language_id = " . (int)$languages[$i]['id']);
+    $lng_code_query = tep_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id ='" . $language_id . "'");
+    $lng_code = tep_db_fetch_array($lng_code_query);
+		shell_exec('./writecache.php ' . $lng_code['code'] . ' shop');
+		shell_exec('./writecache.php ' . $lng_code['code'] . ' admin');
 }
 
           tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $tPath . '&aID=' . $articles_id));

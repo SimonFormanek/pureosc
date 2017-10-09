@@ -56,7 +56,6 @@ require('includes/application_top.php');
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 ini_set('display_errors', '1');
 //////////////CONF START <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-$htaccess='';
 $time1 = microtime(true);
 date_default_timezone_set("Europe/Prague");
 $information_group_id=1;
@@ -104,13 +103,21 @@ echo 'Conf. loaded OK' ."\n";
 */
 //CACHE RESET <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+//check for reset needed:
+$update_all='false';
+// 1. information - one change require reset
+$inormation_reset_query = tep_db_query("select COUNT(cached) as counter from information where cached=0 AND language_id=" . $lng['languages_id']);
+$inormation_reset = tep_db_fetch_array($inormation_reset_query);
+echo '.$inormation_reset:::'.$inormation_reset['counter'];
+if ($inormation_reset['counter'] > 0) $update_all='true';
 //nowtime: special full update NOW
 $cron_query = tep_db_query("SELECT * FROM " . TABLE_ROBOT . " WHERE lang = '" . $argv['1'] . "' AND admin = '" . $argv['2'] . "'");
 if (tep_db_num_rows($cron_query)){
 	$cron = tep_db_fetch_array($cron_query);
 	if ( ($minute == $cron['nowtime'])  && ($cron['admin'] ==  $argv['2']) ) tep_db_query("DELETE FROM " . TABLE_ROBOT . " WHERE '" . $cron['nowtime'] . "' = '" . $minute . "' AND admin = '" . $argv['2'] . "'");
 }
-if ($minute == $crontime || GENERATOR_FORCE_UPDATE_ALL == '1' || $minute == $cron['nowtime']) {
+if ($minute == $crontime || GENERATOR_FORCE_UPDATE_ALL == '1' || $minute == $cron['nowtime'])  $update_all='true';
+if ($update_all=='true') {
 //creating lockfile
 echo "big upd. START\n";
 echo "cas: " . date("H:i:s") . "\n";
@@ -458,14 +465,10 @@ exit;
 			$output = str_replace(HTTP_SERVER, '', $output);
 			file_put_contents($newpath . 'index.php', stripslashes($output), 644);
 
-
-
     tep_db_query("UPDATE " . TABLE_INFORMATION . " SET " . $cached_flag . " = 1 WHERE information_id = " . $information['information_id'] . " AND language_id = " . $lng['languages_id']);
     $updated = 1;
 }}
-
-
-
+		if ($update_all == 'true') tep_db_query("UPDATE " . TABLE_INFORMATION . " SET " . $cached_flag . " = 1 WHERE language_id = " . $lng['languages_id']);
 
 //GENERATING_ALL_ALL if UPDATE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 echo 'updated je:' . $updated . "\n";

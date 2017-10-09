@@ -148,11 +148,11 @@
 
   function tep_db_prepare_input($string) {
     if (is_string($string)) {
-      return trim(stripslashes($string));
+      return preg_replace('~\r\n?~', "\n", trim(stripslashes($string)));
     } elseif (is_array($string)) {
       reset($string);
       while (list($key, $value) = each($string)) {
-        $string[$key] = tep_db_prepare_input($value);
+        $string[$key] = preg_replace('~\r\n?~', "\n",tep_db_prepare_input($value));
       }
       return $string;
     } else {
