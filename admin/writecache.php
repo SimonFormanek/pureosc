@@ -180,7 +180,7 @@ $products_query = tep_db_query("SELECT p.products_id
 				shell_exec('mkdir -p ' . $newpath);
 				}
 			$output = "<\?php
-if (isset(\$_COOKIE['osCsid'])){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('" . $chdir_dest_dir . "');
 \$_GET['products_id']=" . $products['products_id'] . ";
 \$PHP_SELF = '" . FILENAME_PRODUCT_INFO . "';
@@ -274,7 +274,7 @@ echo GENERATING_CATEGORIES ."\n";
 				shell_exec('mkdir -p ' . $newpath);
 				}
 			$output = "<\?php
-if (isset(\$_COOKIE['osCsid'])){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('" . $chdir_dest_dir . "');
 \$_GET['cPath']=" . $categories['categories_id'] . ";
 \$PHP_SELF = '" . FILENAME_DEFAULT . "';
@@ -359,7 +359,7 @@ exit;
 				shell_exec('mkdir -p ' . $newpath);
 				}
 			$output = "<\?php
-if (isset(\$_COOKIE['osCsid'])){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('" . $chdir_dest_dir . "');
 \$_GET['tPath']=" . $topics['topics_id'] . ";
 \$PHP_SELF = '" . FILENAME_ARTICLES . "';
@@ -400,7 +400,7 @@ exit;
 				shell_exec('mkdir -p ' . $newpath);
 				}
 			$output = "<\?php
-if (isset(\$_COOKIE['osCsid'])){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('" . $chdir_dest_dir . "');
 \$_GET['articles_id']=" . $articles['articles_id'] . ";
 \$PHP_SELF = '" . FILENAME_ARTICLE_INFO . "';
@@ -444,7 +444,7 @@ exit;
 				shell_exec('mkdir -p ' . $newpath);
 				}
 			$output = "<\?php
-if (isset(\$_COOKIE['osCsid'])){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('" . $chdir_dest_dir . "');
 \$_GET['information_id']=" . $information['information_id'] . ";
 \$PHP_SELF = '" . FILENAME_INFORMATION . "';
@@ -567,7 +567,7 @@ echo GENERATING_HOMEPAGE . "\n"; //<<<<<<<<<<<<<<<<<<<<
 $output = '';
 /*
 			$output = "<\?php
-if (isset(\$_COOKIE['osCsid'])){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('" . $chdir_dest_dir . "');
 \$_GET['products_id']=" . $products['products_id'] . ";
 include('product_info.php');
