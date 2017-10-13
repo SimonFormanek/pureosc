@@ -203,13 +203,9 @@
               $messageStack->add_session('Updated Successfully', 'success');
             }
           }
-	//pure: reset static cache
-	tep_db_query("UPDATE " . TABLE_INFORMATION . " SET cached = 0 WHERE information_id = '" . (int) $_POST['information_id'] . "' AND language_id=" . (int)$language_id);
-	tep_db_query("UPDATE " . TABLE_INFORMATION . " SET cached_admin = 0 WHERE information_id = '" . (int) $_POST['information_id'] . "' AND language_id=" . (int)$language_id);
-    $lng_code_query = tep_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id ='" . $language_id . "'");
-    $lng_code = tep_db_fetch_array($lng_code_query);
-		shell_exec('./writecache.php ' . $lng_code['code'] . ' shop');
-		shell_exec('./writecache.php ' . $lng_code['code'] . ' admin');
+					//pure: reset static cache
+					tep_db_query("UPDATE " . TABLE_INFORMATION . " SET cached = 0 WHERE information_id = '" . (int) $_POST['information_id'] . "' AND language_id=" . (int)$language_id);
+					tep_db_query("UPDATE " . TABLE_INFORMATION . " SET cached_admin = 0 WHERE information_id = '" . (int) $_POST['information_id'] . "' AND language_id=" . (int)$language_id);
         }
 
         tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER, 'gID=' . $_POST['gID']));
