@@ -36,6 +36,13 @@ TODO: cache refresh/triggers
             tep_reset_cache_block('also_purchased');
           }
         }
+		tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached = 0 WHERE products_id = " . $HTTP_GET_VARS['pID']);
+		tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached_admin = 0 WHERE products_id = " . $HTTP_GET_VARS['pID']);
+		$cached_categories_query = tep_db_query("SELECT categories_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE products_id=" . $HTTP_GET_VARS['pID']);
+		while ($cached_categories = tep_db_fetch_array($cached_categories_query)){
+			tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached = 0 WHERE categories_id = " . $cached_categories['categories_id']);
+			tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached_admin = 0 WHERE categories_id = " . $cached_categories['categories_id']);
+		}
 
         tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $HTTP_GET_VARS['cPath'] . '&pID=' . $HTTP_GET_VARS['pID']));
         break;

@@ -58,6 +58,13 @@
             tep_reset_cache_block('topics');
           }
         }
+		tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . $_GET['aID']);
+		tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . $_GET['aID']);
+		$cached_topics_query = tep_db_query("SELECT topics_id FROM " . TABLE_ARTICLES_TO_TOPICS . " WHERE articles_id=" . $_GET['aID']);
+		while ($cached_topics = tep_db_fetch_array($cached_topics_query)){
+			tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+			tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+		}
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $_GET['tPath'] . '&aID=' . $_GET['aID']));
         break;
