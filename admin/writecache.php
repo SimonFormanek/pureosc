@@ -1,9 +1,6 @@
 #!/usr/bin/php -q
 <?php
-$debug_level=3; //0 = nothing; 1 = essential 2 = partial 3 = all
 chdir('../');
-define('GENERATOR_FORCE_UPDATE_ALL', '0'); //0 = production, 1 = komplenti vynuceny
-define('RSYNC_TO_REMOTE','0'); //1 = enable rsync to remote server
 /*
 CONFIG TODO: 
 SESSION_FORCE_COOKIE_USE -> False, projit vsechny moznosti, jestli to nekde nevadi
@@ -106,7 +103,7 @@ echo 'Conf. loaded OK' ."\n";
 //check for reset needed:
 $update_all='false';
 // 1. information - one change require reset
-$inormation_reset_query = tep_db_query("select COUNT(cached) as counter from information where cached=0 AND language_id=" . $lng['languages_id']);
+$inormation_reset_query = tep_db_query("select COUNT(cached) as counter from information where " . $cached_flag . "=0 AND language_id=" . $lng['languages_id']);
 $inormation_reset = tep_db_fetch_array($inormation_reset_query);
 echo '.$inormation_reset:::'.$inormation_reset['counter'];
 if ($inormation_reset['counter'] > 0) $update_all='true';
@@ -202,6 +199,7 @@ exit;
 			file_put_contents($newpath . 'index.php', stripslashes($output), 644);
 			tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET " . $cached_flag . " = 1 WHERE products_id = " . $products['products_id'] . " AND language_id = " . $lng['languages_id']);
 			$updated = 1;
+    echo 'NECO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!JINAKKKKKKKKKKKKKKKKKKKK';
 		}
 	}
 } else {
@@ -615,9 +613,10 @@ echo 'No errors found Rsync start ...' ."\n";
     }
 
 
-if (RSYNC_TO_REMOTE == 1) {
-$remoteserver = 'osc@192.168.8.57';
+if (RSYNC_TO_REMOTE == 1 && $argv[2] == 'shop') {
+foreach ($remoteservers_arr as &$remoteserver) {
 shell_exec('rsync --chmod=D755,F644 -ave   ssh --protocol=29  --exclude admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' .  RSYNC_REMOTE_DEST_DIR . ' --delete');
+}
 //orig    shell_exec('~/rsync_eshop.sh >> ' . REPLICATION_LOG_DIR . HTTPS_COOKIE_DOMAIN . '_rsync_export.osclog  2>&1');
 }
 } else {
