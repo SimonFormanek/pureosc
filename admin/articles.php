@@ -57,15 +57,15 @@
           if (USE_CACHE == 'true') {
             tep_reset_cache_block('topics');
           }
-        }
-		tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . $_GET['aID']);
-		tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . $_GET['aID']);
-		$cached_topics_query = tep_db_query("SELECT topics_id FROM " . TABLE_ARTICLES_TO_TOPICS . " WHERE articles_id=" . $_GET['aID']);
-		while ($cached_topics = tep_db_fetch_array($cached_topics_query)){
-			tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . $cached_topics['topics_id']);
-			tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . $cached_topics['topics_id']);
-		}
-
+        //pure new: cache reset
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . $_GET['aID']);
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . $_GET['aID']);
+				$cached_topics_query = tep_db_query("SELECT topics_id FROM " . TABLE_ARTICLES_TO_TOPICS . " WHERE articles_id=" . $_GET['aID']);
+				while ($cached_topics = tep_db_fetch_array($cached_topics_query)){
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					}
+				}
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $_GET['tPath'] . '&aID=' . $_GET['aID']));
         break;
       case 'setflagblog':
@@ -77,6 +77,14 @@
           if (USE_CACHE == 'true') {
             tep_reset_cache_block('topics');
           }
+        //pure new: cache reset
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . $_GET['aID']);
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . $_GET['aID']);
+				$cached_topics_query = tep_db_query("SELECT topics_id FROM " . TABLE_ARTICLES_TO_TOPICS . " WHERE articles_id=" . $_GET['aID']);
+				while ($cached_topics = tep_db_fetch_array($cached_topics_query)){
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					}
         }
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $_GET['tPath'] . '&aID=' . $_GET['aID']));
@@ -144,17 +152,9 @@
         if (USE_CACHE == 'true') {
           tep_reset_cache_block('topics');
         }
-        for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
-		//pure static cache reset
-}
-
-        for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
-        $language_id = $languages[$i]['id'];
-		tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . (int)$topics_id . " AND language_id = " . (int)$languages[$i]['id']);
-		tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . (int)$topics_id . " AND language_id = " . (int)$languages[$i]['id']);
-}
-
-
+				//pure new: cache reset (case 'update_topic' OR case 'insert_topic')
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $tPath . '&tID=' . $topics_id));
         break;
@@ -206,6 +206,9 @@
         if (USE_CACHE == 'true') {
           tep_reset_cache_block('topics');
         }
+				//pure new: cache reset (case 'delete_topic_confirm')
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $tPath));
         break;
@@ -216,6 +219,9 @@
 
           for ($i=0, $n=sizeof($article_topics); $i<$n; $i++) {
             tep_db_query("delete from " . TABLE_ARTICLES_TO_TOPICS . " where articles_id = '" . (int)$article_id . "' and topics_id = '" . (int)$article_topics[$i] . "'");
+						//pure new: cache reset
+          	tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = '" . (int)$article_topics[$i] . "'");
+          	tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = '" . (int)$article_topics[$i] . "'");
           }
 
           $article_topics_query = tep_db_query("select count(*) as total from " . TABLE_ARTICLES_TO_TOPICS . " where articles_id = '" . (int)$article_id . "'");
@@ -249,6 +255,9 @@
             if (USE_CACHE == 'true') {
               tep_reset_cache_block('topics');
             }
+				//pure new: cache reset (case 'update_topic' OR case 'insert_topic')
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
 
             tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $new_parent_id . '&tID=' . $topics_id));
           }
@@ -261,8 +270,12 @@
 
         $duplicate_check_query = tep_db_query("select count(*) as total from " . TABLE_ARTICLES_TO_TOPICS . " where articles_id = '" . (int)$articles_id . "' and topics_id = '" . (int)$new_parent_id . "'");
         $duplicate_check = tep_db_fetch_array($duplicate_check_query);
-        if ($duplicate_check['total'] < 1) tep_db_query("update " . TABLE_ARTICLES_TO_TOPICS . " set topics_id = '" . (int)$new_parent_id . "' where articles_id = '" . (int)$articles_id . "' and topics_id = '" . (int)$current_topic_id . "'");
-
+        if ($duplicate_check['total'] < 1) {
+        tep_db_query("update " . TABLE_ARTICLES_TO_TOPICS . " set topics_id = '" . (int)$new_parent_id . "' where articles_id = '" . (int)$articles_id . "' and topics_id = '" . (int)$current_topic_id . "'");
+				//pure:new cache reset full!
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+				}
         if (USE_CACHE == 'true') {
           tep_reset_cache_block('topics');
         }
@@ -365,11 +378,14 @@
             tep_reset_cache_block('topics');
           }
 				//pure: static cache reset
-        for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
-        $language_id = $languages[$i]['id'];
-		tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . (int)$articles_id . " AND language_id = " . (int)$languages[$i]['id']);
-		tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . (int)$articles_id . " AND language_id = " . (int)$languages[$i]['id']);
-}
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . (int)$articles_id);
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . (int)$articles_id);
+
+				$cached_topics_query = tep_db_query("SELECT topics_id FROM " . TABLE_ARTICLES_TO_TOPICS . " WHERE articles_id=" . (int)$articles_id);
+				while ($cached_topics = tep_db_fetch_array($cached_topics_query)){
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					}
 
           tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $tPath . '&aID=' . $articles_id));
         }
@@ -409,6 +425,9 @@
           if (USE_CACHE == 'true') {
             tep_reset_cache_block('topics');
           }
+        //pure:new cache reset
+        tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . $topics_id);
+        tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . $topics_id);
         }
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $topics_id . '&aID=' . $articles_id));

@@ -28,6 +28,11 @@
 
   $action = (isset($_REQUEST['information_action']) ? $_REQUEST['information_action'] : '');
 
+//pure new: cache reset
+ if (tep_not_null($action)) {
+tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+}
 // Group information
   $gID = (isset($_GET['gID'])) ? $_GET['gID'] : ((isset($_POST['gID'])) ? $_POST['gID'] : 1);
   $info_group_query = tep_db_query("select information_group_title, locked from " . TABLE_INFORMATION_GROUP . " where information_group_id = '" . (int)$gID . "'");
@@ -203,9 +208,11 @@
               $messageStack->add_session('Updated Successfully', 'success');
             }
           }
+/*SMAZAT
 					//pure: reset static cache
 					tep_db_query("UPDATE " . TABLE_INFORMATION . " SET cached = 0 WHERE information_id = '" . (int) $_POST['information_id'] . "' AND language_id=" . (int)$language_id);
 					tep_db_query("UPDATE " . TABLE_INFORMATION . " SET cached_admin = 0 WHERE information_id = '" . (int) $_POST['information_id'] . "' AND language_id=" . (int)$language_id);
+*/
         }
 
         tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER, 'gID=' . $_POST['gID']));

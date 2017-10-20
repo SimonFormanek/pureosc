@@ -61,8 +61,6 @@ $updated = 0;
 //language_id
     $lng_querey = tep_db_query("SELECT languages_id FROM " . TABLE_LANGUAGES . " WHERE code ='" . $argv[1] . "'");
     $lng = tep_db_fetch_array($lng_querey);
-//    $lc = $lngcode['languages_id'];
-//PURE:smazat    require(DIR_FS_ADMIN . DIR_WS_LANGUAGES . $lngcode['directory'] . '.php');
 $context = stream_context_create(array(
     'http' => array(
         'header'  => "Authorization: Basic " . base64_encode(WGET_USER . ':' . WGET_PASSWORD)
@@ -80,7 +78,8 @@ if (file_exists('../cronlock/' . $argv['1'] . '.' . $argv['2'])){
 } else {
 	file_put_contents('../cronlock/' . $argv['1'] . '.' . $argv['2'],$minute);
 }
- if (!file_exists('../crontime/' . $argv['1'] . '.' . $argv['2']))  file_put_contents('../crontime/' . $argv['1'] . '.' . $argv['2'], '0301');
+//TODO:move to configure.php
+if (!file_exists('../crontime/' . $argv['1'] . '.' . $argv['2']))  file_put_contents('../crontime/' . $argv['1'] . '.' . $argv['2'], '0301');
 $crontime = (int)file_get_contents('../crontime/' . $argv['1'] . '.' . $argv['2']);
 echo 'Conf. loaded OK' ."\n";
 
@@ -105,16 +104,18 @@ $update_all='false';
 // 1. information - one change require reset
 $inormation_reset_query = tep_db_query("select COUNT(cached) as counter from information where " . $cached_flag . "=0 AND language_id=" . $lng['languages_id']);
 $inormation_reset = tep_db_fetch_array($inormation_reset_query);
-echo '.$inormation_reset:::'.$inormation_reset['counter'];
 if ($inormation_reset['counter'] > 0) $update_all='true';
+
 //nowtime: special full update NOW
-$cron_query = tep_db_query("SELECT * FROM " . TABLE_ROBOT . " WHERE lang = '" . $argv['1'] . "' AND admin = '" . $argv['2'] . "'");
-if (tep_db_num_rows($cron_query)){
-	$cron = tep_db_fetch_array($cron_query);
-	if ( ($minute == $cron['nowtime'])  && ($cron['admin'] ==  $argv['2']) ) tep_db_query("DELETE FROM " . TABLE_ROBOT . " WHERE '" . $cron['nowtime'] . "' = '" . $minute . "' AND admin = '" . $argv['2'] . "'");
+//$cron_query = tep_db_query("SELECT * FROM " . TABLE_ROBOT . " WHERE lang = '" . $argv['1'] . "' AND admin = '" . $argv['2'] . "'");
+$reset_query = tep_db_query("SELECT reset FROM " . TABLE_RESET . " WHERE lang = '" . $argv['1'] . "' AND admin = '" . $argv['2'] . "' AND section='all'");
+$reset = tep_db_fetch_array($reset_query);
+if ($reset['reset'] == 1){
+echo 'updattujeme' ."\n";
+$update_all = 'true';
+tep_db_query("UPDATE " . TABLE_RESET . " SET reset='0' WHERE lang = '" . $argv['1'] . "' AND admin = '" . $argv['2'] . "' AND section='all'");
 }
-if ($minute == $crontime || GENERATOR_FORCE_UPDATE_ALL == '1' || $minute == $cron['nowtime'])  $update_all='true';
-if ($update_all=='true') {
+if ($update_all=='true' || GENERATOR_FORCE_UPDATE_ALL == '1') {
 //creating lockfile
 echo "big upd. START\n";
 echo "cas: " . date("H:i:s") . "\n";
@@ -139,7 +140,8 @@ if (SERVER_INSTANCE =='admin') {
 
 echo 'TED MAZU...';
 
-shell_exec('rm -rf ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR);
+	shell_exec('rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . ' --delete');
+
 //shell_exec('mkdir ' . HTML_CACHE_DIR);
 
 } else {
@@ -147,7 +149,7 @@ echo 'updating...' . "\n";
 }
 
 
-if ($debug_level>2) echo "GENERATING_PRODUCTS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
+if ($debug_level>2) echo "GENERATING_PRODUCTS\n";
 
 if (PRODUCTS_CANONICAL_TYPE == 'path') {
 if ($debug_level>2) echo "Debug: PRODUCTS_CANONICAL_TYPE = 'path'\n";
@@ -199,7 +201,6 @@ exit;
 			file_put_contents($newpath . 'index.php', stripslashes($output), 644);
 			tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET " . $cached_flag . " = 1 WHERE products_id = " . $products['products_id'] . " AND language_id = " . $lng['languages_id']);
 			$updated = 1;
-    echo 'NECO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!JINAKKKKKKKKKKKKKKKKKKKK';
 		}
 	}
 } else {
@@ -257,8 +258,7 @@ $updated = 1;
 */
 }
 
-echo GENERATING_CATEGORIES ."\n";
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;
+if ($debug_level>2) echo GENERATING_CATEGORIES ."\n";
     $categories_query = tep_db_query("SELECT c.categories_id, cd.categories_name FROM " . TABLE_CATEGORIES . " c,  " . TABLE_CATEGORIES_DESCRIPTION . " cd 
     WHERE cd.categories_id = c.categories_id 
     AND " . $cached_flag . " = 0 
@@ -266,7 +266,6 @@ echo GENERATING_CATEGORIES ."\n";
     AND sort_order > 0");
     while ($categories = tep_db_fetch_array($categories_query)) {
     if (tep_db_num_rows($categories_query)) {
-    echo 'neco je..' .$categories['categories_id'] . "\n";
 			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_DEFAULT, 'cPath=' . $categories['categories_id'])) . "/";
 				if (!is_dir($newpath)){
 				shell_exec('mkdir -p ' . $newpath);
@@ -304,7 +303,7 @@ exit;
 
 /*
 
-//GENERATING_MANUFACTURERS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+if ($debug_level>2) "GENERATING_MANUFACTURERS\n";
 
     $manufacturers_query = tep_db_query("SELECT m.manufacturers_id, manufacturers_name  FROM " . TABLE_MANUFACTURERS . " m, " . TABLE_MANUFACTURERS_INFO . " mi
     WHERE
@@ -313,7 +312,6 @@ exit;
 	AND languages_id = '" . $lng['languages_id']. "'");
     while ($manufacturers = tep_db_fetch_array($manufacturers_query)) {
     if (tep_db_num_rows($manufacturers_query)) {
-    echo GENERATING_MANUFACTURERS . "\n";
      $newpath = preg_replace('/(-[a-z])*$/','',remove_accents($manufacturers['manufacturers_name']));
     $context = stream_context_create(array('http' => array('header'  => "Authorization: Basic " . base64_encode(WGET_USER . ':' . WGET_PASSWORD))));
     $output = file_get_contents(HTTP_SERVER . '/index.php?manufacturers_id=' . $manufacturers['manufacturers_id'] . '&language='. $lc, false, $context);
@@ -344,14 +342,13 @@ exit;
 */
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//echo GENERATING_TOPICS
+if ($debug_level>2) echo "GENERATING_TOPICS\n";
     $topics_query = tep_db_query("SELECT topics_id, topics_name FROM " . TABLE_TOPICS_DESCRIPTION . " td
     WHERE 
     " . $cached_flag . " = 0 
     AND language_id = '" . $lng['languages_id'] .  "'");
     while ($topics = tep_db_fetch_array($topics_query)) {
     if (tep_db_num_rows($topics_query)) {
-    echo 'topics_name::::' . $topics['topics_name'] . "\n";
 			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_ARTICLES, 'tPath=' . $topics['topics_id'])) . "/";
 				if (!is_dir($newpath)){
 				shell_exec('mkdir -p ' . $newpath);
@@ -382,7 +379,8 @@ exit;
 
 }}
 
-//GENERATING_ARTICLES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+echo "GENERATING ARTICLES\n";
+
 //TODO removed condition   articles_status=1 - mazani clanku jen naoko zustanou tam, ale zmizej z HP
     $articles_query = tep_db_query("SELECT a.articles_id, articles_name FROM " . TABLE_ARTICLES . " a, " . TABLE_ARTICLES_DESCRIPTION . " ad 
     WHERE 
@@ -391,7 +389,6 @@ exit;
     AND language_id = '" . $lng['languages_id']. "'");
     while ($articles = tep_db_fetch_array($articles_query)) {
     if (tep_db_num_rows($articles_query)) {
-    echo GENERATING_ARTICLES . "\n";
 
 			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_ARTICLE_INFO, 'articles_id=' . $articles['articles_id'])) . "/";
 				if (!is_dir($newpath)){
@@ -425,18 +422,11 @@ exit;
 }}
 
 
-//TODO: ve stare verzi existuje zakometovana druha verze: GENERATING_ARTICLES
-
-
-
-//GENERATING_INFORMATION_PAGES>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.
+if ($debug_level>2) echo "GENERATING_INFORMATION_PAGES\n";
 
     $information_query = tep_db_query("SELECT information_id, information_title FROM " . TABLE_INFORMATION . " WHERE visible='1' AND information_group_id = '" . (int) $information_group_id . "' AND language_id = '" . $lng['languages_id']. "' AND " . $cached_flag . " = 0");
     while ($information = tep_db_fetch_array($information_query)) {
     if (tep_db_num_rows($information_query)) {
-    echo GENERATING_INFORMATION_PAGES . "\n";
-
-
 			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_INFORMATION, 'info_id=' . $information['information_id'])) . "/";
 				if (!is_dir($newpath)){
 				shell_exec('mkdir -p ' . $newpath);

@@ -116,4 +116,4 @@
 // EOF: Information Pages Unlimited
 
 //PURE:NEW robot
-  define('TABLE_ROBOT','robot');
+  define('TABLE_RESET','reset');
