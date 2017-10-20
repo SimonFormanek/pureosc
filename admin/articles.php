@@ -58,6 +58,12 @@
             tep_reset_cache_block('topics');
           }
         //pure new: cache reset
+        if ($HTTP_GET_VARS['flag'] == '0'){
+        //deleting product need full reset
+        tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+				} else {
+
 				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . $_GET['aID']);
 				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . $_GET['aID']);
 				$cached_topics_query = tep_db_query("SELECT topics_id FROM " . TABLE_ARTICLES_TO_TOPICS . " WHERE articles_id=" . $_GET['aID']);
