@@ -381,10 +381,11 @@ exit;
 
 echo "GENERATING ARTICLES\n";
 
-//TODO removed condition   articles_status=1 - mazani clanku jen naoko zustanou tam, ale zmizej z HP
+//TODO: generate admin version articles_status=0
     $articles_query = tep_db_query("SELECT a.articles_id, articles_name FROM " . TABLE_ARTICLES . " a, " . TABLE_ARTICLES_DESCRIPTION . " ad 
     WHERE 
-    a.articles_id= ad.articles_id 
+    articles_status=1
+    AND a.articles_id= ad.articles_id 
     AND " . $cached_flag . " = 0
     AND language_id = '" . $lng['languages_id']. "'");
     while ($articles = tep_db_fetch_array($articles_query)) {
