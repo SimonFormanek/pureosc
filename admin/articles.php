@@ -226,10 +226,10 @@
 
           for ($i=0, $n=sizeof($article_topics); $i<$n; $i++) {
             tep_db_query("delete from " . TABLE_ARTICLES_TO_TOPICS . " where articles_id = '" . (int)$article_id . "' and topics_id = '" . (int)$article_topics[$i] . "'");
-						//pure new: cache reset
-          	tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = '" . (int)$article_topics[$i] . "'");
-          	tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = '" . (int)$article_topics[$i] . "'");
           }
+						//pure new: cache reset (case 'delete_article_confirm') ALL - need delete article contents
+        		tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+						tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
 
           $article_topics_query = tep_db_query("select count(*) as total from " . TABLE_ARTICLES_TO_TOPICS . " where articles_id = '" . (int)$article_id . "'");
           $article_topics = tep_db_fetch_array($article_topics_query);
