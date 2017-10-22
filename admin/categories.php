@@ -198,9 +198,6 @@ if (tep_not_null(tep_db_insert_id())) {
 
           for ($i=0, $n=sizeof($product_categories); $i<$n; $i++) {
             tep_db_query("delete from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id = '" . (int)$product_id . "' and categories_id = '" . (int)$product_categories[$i] . "'");
-						//pure new: cache reset
-          	tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached = 0 WHERE categories_id = '" . (int)$product_categories[$i] . "'");
-          	tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached_admin = 0 WHERE categories_id = '" . (int)$product_categories[$i] . "'");
           }
 
           $product_categories_query = tep_db_query("select count(*) as total from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id = '" . (int)$product_id . "'");
@@ -215,7 +212,12 @@ if (tep_not_null(tep_db_insert_id())) {
           tep_reset_cache_block('categories');
           tep_reset_cache_block('also_purchased');
         }
-				//pure new:cache reset
+
+        //pure new:cache reset (case 'delete_product_confirm') ALL deleting product content
+        tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+
+				//pure new:canonical set if deleted
 				$still_exists_canonical_query = tep_db_query("SELECT canonical FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE products_id= " . (int)$product_id . " and canonical=1");
 				if (!tep_db_num_rows($still_exists_canonical_query)){
 				$still_exists_query = tep_db_query("SELECT * FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE products_id= " . (int)$product_id . " order by categories_id");
