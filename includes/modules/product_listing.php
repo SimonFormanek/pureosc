@@ -172,14 +172,7 @@ if ($listing['products_price'] > 0) {
   }
 
   echo '<div id="products" class="row list-group">' . $prod_list_contents . '</div>';
-} else {
-?>
-
-  <div class="alert alert-info"><?php echo TEXT_NO_PRODUCTS; ?></div>
-
-<?php
-}
-
+} //else dont show nothing (pure)
 if ( ($listing_split->number_of_rows > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3')) ) {
   ?>
 <div class="row">
