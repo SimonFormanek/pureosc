@@ -42,7 +42,7 @@ $lng_code_query = tep_db_query("SELECT code FROM " . TABLE_LANGUAGES);
 while ($lng_code = tep_db_fetch_array($lng_code_query)){
 //echo 'code:'. $lng_code['code'] . "\n";
    	exec("./writecache.php " . $lng_code['code'] . ' shop');
-   	exec("./writecache.php " . $lng_code['code'] . ' admin');
+//   	exec("./writecache.php " . $lng_code['code'] . ' admin');
    }
 	}
   sleep(1);

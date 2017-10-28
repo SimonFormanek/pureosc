@@ -73,10 +73,20 @@ $minute = date("Hi");
 //if (SERVER_INSTANCE =='shop') {
 if (file_exists('../cronlock/' . $argv['1'] . '.' . $argv['2'])){
 //TODO: if lock wait too long send error message and restart
-	echo 'EXITING: lockfile EXISTS!' . "\n";
-	exit;
+	$oldlock = file_get_contents('../cronlock/' . $argv['1'] . '.' . $argv['2']);
+	$oldlock = $oldlock+MAX_LOCK_TIME;
+	echo '$oldlock:'.$oldlock . "\n";
+	echo '$_SERVER[\'REQUEST_TIME\']:' . $_SERVER['REQUEST_TIME'] . "\n";
+	if ($oldlock > $_SERVER['REQUEST_TIME']) {
+		echo 'EXITING: lockfile EXISTS!' . "\n";
+		exit;
+		} else {
+			unlink('../cronlock/' . $argv['1'] . '.' . $argv['2']);
+			$error = 2;
+			echo "ALERT:lock removed\n";
+		}
 } else {
-	file_put_contents('../cronlock/' . $argv['1'] . '.' . $argv['2'],$minute);
+	file_put_contents('../cronlock/' . $argv['1'] . '.' . $argv['2'],$_SERVER['REQUEST_TIME']);
 }
 //TODO:move to configure.php
 if (!file_exists('../crontime/' . $argv['1'] . '.' . $argv['2']))  file_put_contents('../crontime/' . $argv['1'] . '.' . $argv['2'], '0301');
@@ -119,35 +129,17 @@ if ($update_all=='true' || GENERATOR_FORCE_UPDATE_ALL == '1') {
 //creating lockfile
 echo "big upd. START\n";
 echo "cas: " . date("H:i:s") . "\n";
-/*
-SMAZAT?<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<SMAZAT
-if (SERVER_INSTANCE =='admin') {
-    tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached_admin = 0 WHERE language_id =" . $lng['languages_id']);
-    tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached_admin = 0 WHERE language_id =" . $lng['languages_id']);
-    tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE language_id =" . $lng['languages_id']);
-    tep_db_query("UPDATE " . TABLE_INFORMATION . " SET cached_admin = 0 WHERE language_id =" . $lng['languages_id']);
-    tep_db_query("UPDATE " . TABLE_MANUFACTURERS_INFO . " SET cached_admin = 0 WHERE languages_id =" . $lng['languages_id']);
-    tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE language_id =" . $lng['languages_id']);
-} else {
-*/
     tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET " . $cached_flag . " = 0 WHERE language_id =" . $lng['languages_id']);
     tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET " . $cached_flag . " = 0 WHERE language_id =" . $lng['languages_id']);
     tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET " . $cached_flag . " = 0 WHERE language_id =" . $lng['languages_id']);
     tep_db_query("UPDATE " . TABLE_INFORMATION . " SET " . $cached_flag . " = 0 WHERE language_id =" . $lng['languages_id']);
     tep_db_query("UPDATE " . TABLE_MANUFACTURERS_INFO . " SET " . $cached_flag . " = 0 WHERE languages_id =" . $lng['languages_id']);
     tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET " . $cached_flag . " = 0 WHERE language_id =" . $lng['languages_id']);
-//}
-
-echo 'TED MAZU...';
-
+echo "Action: Cleaning destination\n";
 	shell_exec('rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . ' --delete');
-
-//shell_exec('mkdir ' . HTML_CACHE_DIR);
-
 } else {
-echo 'updating...' . "\n";
+echo "Action: updating...\n";
 }
-
 
 if ($debug_level>2) echo "GENERATING_PRODUCTS\n";
 
@@ -170,7 +162,7 @@ $products_query = tep_db_query("SELECT p.products_id
   	c.categories_id = p2c.categories_id AND canonical = '1' AND p2c.products_id = " . $products['products_id']);
   	$inactive = tep_db_fetch_array($inactive_query);
   	if ($inactive['sort_order'] == 0) {
-  	echo "id NEAKT:" . $products['products_id'];
+  	if ($debug_level>2) echo "id NEAKT:" . $products['products_id'];
 		continue;
   	}
 	}
@@ -611,14 +603,14 @@ shell_exec('rsync --chmod=D755,F644 -ave   ssh --protocol=29  --exclude admin ' 
 //orig    shell_exec('~/rsync_eshop.sh >> ' . REPLICATION_LOG_DIR . HTTPS_COOKIE_DOMAIN . '_rsync_export.osclog  2>&1');
 }
 } else {
-echo 'Rsync to Eshop ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!' ."\n";
-    mail(WEBMASTER_EMAIL, 'rsync ERROR! Static Export CANCELLED: ' . HTTPS_COOKIE_DOMAIN, 'Error creating document, see log, Static Export CANCELLED!!!');
+echo 'Rsync to Eshop ERROR:' . $error ."\n";
+    mail(WEBMASTER_EMAIL, 'rsync ERROR! Static Export CANCELLED: ' . HTTPS_COOKIE_DOMAIN, 'ERROR code: ' . $error . '1 = Error creating document = Static Export CANCELLED!!!; Error 2 too long generating, removed lock forced');
 
 }
 
 } //end $updated == 1
 
-unlink('../cronlock/' . $argv['1'] . '.' . $argv['2']);
+//unlink('../cronlock/' . $argv['1'] . '.' . $argv['2']);
 echo "DONE: " . date("Y/m/d H:i") ,  "\n"; 
 
 
