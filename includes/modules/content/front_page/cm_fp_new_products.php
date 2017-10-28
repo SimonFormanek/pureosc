@@ -121,7 +121,7 @@
         where 
           p.products_status = '1' 
           and pd.language_id = '" . (int)$languages_id . "'
-           AND (p.products_date_available is NULL OR p.products_date_available ='0000-00-00' OR to_days(p.products_date_available) < to_days(now()))
+           AND (p.products_date_available is NULL OR p.products_date_available ='0000-00-00' OR to_days(p.products_date_available) <= to_days(now()))
         ORDER BY " . NEW_PRODUCTS_SORT_ORDER . "
         limit " . MODULE_CONTENT_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY_NEW_PRODUCTS ;
       return $new_products_query_raw;
