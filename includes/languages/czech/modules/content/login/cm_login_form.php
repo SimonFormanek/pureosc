@@ -10,12 +10,12 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_LOGIN_FORM_TITLE', 'Login Form',true);
-  define('MODULE_CONTENT_LOGIN_FORM_DESCRIPTION', 'Show a login form on the login page',true);
+  define('MODULE_CONTENT_LOGIN_FORM_TITLE', 'Přihlášení',true);
+  define('MODULE_CONTENT_LOGIN_FORM_DESCRIPTION', 'Zobrazit přihlašovací formulář na stránce Přihlášení',true);
 
-  define('MODULE_CONTENT_LOGIN_HEADING_RETURNING_CUSTOMER', 'Returning Customer',true);
-  define('MODULE_CONTENT_LOGIN_TEXT_RETURNING_CUSTOMER', 'I am a returning customer.',true);
-  define('MODULE_CONTENT_LOGIN_TEXT_PASSWORD_FORGOTTEN', 'Password forgotten? Click here.',true);
+  define('MODULE_CONTENT_LOGIN_HEADING_RETURNING_CUSTOMER', 'Již mám účet',true);
+  define('MODULE_CONTENT_LOGIN_TEXT_RETURNING_CUSTOMER', 'Již mám účet.',true);
+  define('MODULE_CONTENT_LOGIN_TEXT_PASSWORD_FORGOTTEN', 'Zapomenuté heslo? Klikněte zde.',true);
 
-  define('MODULE_CONTENT_LOGIN_TEXT_LOGIN_ERROR', 'Error: No match for E-Mail Address and/or Password.',true);
+  define('MODULE_CONTENT_LOGIN_TEXT_LOGIN_ERROR', 'CHYBA: jméno/heslo nenalezeno.',true);
 ?>

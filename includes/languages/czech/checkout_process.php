@@ -44,5 +44,5 @@ define('TEXT_EMAIL_VIA', 'via',true);
   define('EMAIL_TEXT_CONFIRM', 'Nová objednávka z ',true);
   
 // Purchase Without Account
-  define('EMAIL_WARNING', 'NOTE: Emailová adresa byla potvrzena návštěvníkem našeho online-obchodu. Pokud nesjte návštěvník, prosíme zašlete zprávu:  ' . STORE_OWNER_EMAIL_ADDRESS . 'Děkujeme za vaši objednávku. Přejeme vám pěkný den.',true);  
+  define('EMAIL_WARNING', 'POZNÁMKA: Emailová adresa byla potvrzena návštěvníkem našeho online-obchodu. Pokud nesjte návštěvník, prosíme zašlete zprávu:  ' . STORE_OWNER_EMAIL_ADDRESS . 'Děkujeme za vaši objednávku. Přejeme vám pěkný den.',true);  
 ?>
