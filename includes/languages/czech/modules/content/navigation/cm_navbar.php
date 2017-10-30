@@ -10,16 +10,16 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_NAVBAR_TITLE', 'Navigation Bar',true);
-  define('MODULE_CONTENT_NAVBAR_DESCRIPTION', 'Show the Navigation Bar on your site.',true);
+  define('MODULE_CONTENT_NAVBAR_TITLE', 'Navigační lišta',true);
+  define('MODULE_CONTENT_NAVBAR_DESCRIPTION', 'Zobrazit navigační lištu na webu.',true);
   
   //header titles
-  define('HEADER_CART_CONTENTS', '<i class="glyphicon glyphicon-shopping-cart"></i> %s item(s) <span class="caret"></span>',true);
+  define('HEADER_CART_CONTENTS', '<i class="glyphicon glyphicon-shopping-cart"></i> %s kusů <span class="caret"></span>',true);
   define('HEADER_CART_NO_CONTENTS', '<i class="glyphicon glyphicon-shopping-cart"></i> 0 kusů',true);
   define('HEADER_ACCOUNT_LOGGED_OUT', '<i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> Můj účet</span> <span class="caret"></span>',true);
   define('HEADER_ACCOUNT_LOGGED_IN', '<i class="glyphicon glyphicon-user"></i> %s <span class="caret"></span>',true);
   define('HEADER_SITE_SETTINGS', '<i class="glyphicon glyphicon-cog"></i><span class="hidden-sm"> Nastavení</span> <span class="caret"></span>',true);
-  define('HEADER_TOGGLE_NAV', 'Toggle Navigation',true);
+  define('HEADER_TOGGLE_NAV', 'Přepnout',true);
   define('HEADER_HOME', '<i class="glyphicon glyphicon-home"></i><span class="hidden-sm"> Home</span>',true);
   define('HEADER_WHATS_NEW', '<i class="glyphicon glyphicon-certificate"></i><span class="hidden-sm">  Novinky</span>',true);
   define('HEADER_SPECIALS', '<i class="glyphicon glyphicon-fire"></i><span class="hidden-sm"> Slevy</span>',true);
@@ -33,8 +33,8 @@
   define('HEADER_ACCOUNT_ADDRESS_BOOK', 'Moje adresy',true);
   define('HEADER_ACCOUNT_PASSWORD', 'Moje heslo',true);
   define('HEADER_ACCOUNT_REGISTER', '<i class="glyphicon glyphicon-pencil"></i> Registrace',true);
-  define('HEADER_CART_HAS_CONTENTS', '%s item(s), %s',true);
+  define('HEADER_CART_HAS_CONTENTS', '%s kusů, %s',true);
   define('HEADER_CART_VIEW_CART', 'Zobrazit košík',true);
   define('HEADER_CART_CHECKOUT', '<i class="glyphicon glyphicon-chevron-right"></i> Pokladna',true);
-  define('USER_LOCALIZATION', '<abbr title="Selected Language">L:</abbr> %s <abbr title="Selected Currency">C:</abbr> %s',true);
+  define('USER_LOCALIZATION', '<abbr title="Vybraný jazyk">L:</abbr> %s <abbr title="Vybraná měna">C:</abbr> %s',true);
 
