@@ -13,16 +13,16 @@
 define('NAVBAR_TITLE_1', 'Zaplatit',true);
 define('NAVBAR_TITLE_2', 'Způsob platby',true);
 
-define('HEADING_TITLE', 'Fakturační adresa',true);
+define('HEADING_TITLE', 'Způsob platby',true);
 
 define('TABLE_HEADING_BILLING_ADDRESS', 'Fakturační adresa',true);
-define('TEXT_SELECTED_BILLING_DESTINATION', 'Vyberte adresu pro zasílání faktur, je-li odlišná od dodací adresy.',true);
+define('TEXT_SELECTED_BILLING_DESTINATION', 'Vyberte nebo vytvořte fakturační adresu, je-li odlišná od adresy dodání.',true);
 define('TITLE_BILLING_ADDRESS', 'Fakturační adresa:',true);
 
-define('TABLE_HEADING_PAYMENT_METHOD', 'Typ platby',true);
-define('TEXT_SELECT_PAYMENT_METHOD', 'Zvolte způsob platby.',true);
+define('TABLE_HEADING_PAYMENT_METHOD', 'Způsob platby',true);
+define('TEXT_SELECT_PAYMENT_METHOD', 'Vyberte způsob platby.',true);
 define('TITLE_PLEASE_SELECT', 'Prosím vyberte',true);
-define('TEXT_ENTER_PAYMENT_INFORMATION', 'Převodem nebo v hotovosti.',true);
+define('TEXT_ENTER_PAYMENT_INFORMATION', 'Způsob platby.',true);
 
 define('TABLE_HEADING_COMMENTS', 'Pošlete nám vzkaz',true);
 

@@ -78,8 +78,8 @@ define('FEMALE_ADDRESS', 'Paní',true);
 define('DOB_FORMAT_STRING', 'mm/dd/yyyy',true);
 
 // checkout procedure text
-define('CHECKOUT_BAR_DELIVERY', 'Dodací podmínky',true);
-define('CHECKOUT_BAR_PAYMENT', 'Fakturační adresa',true);
+define('CHECKOUT_BAR_DELIVERY', 'Dodání',true);
+define('CHECKOUT_BAR_PAYMENT', 'Platba',true);
 define('CHECKOUT_BAR_CONFIRMATION', 'Potvrdit',true);
 define('CHECKOUT_BAR_FINISHED', 'Dokončeno!',true);
 

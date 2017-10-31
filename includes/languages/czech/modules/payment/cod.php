@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_PAYMENT_COD_TEXT_TITLE', 'Platba při převzetí',true);
-  define('MODULE_PAYMENT_COD_TEXT_DESCRIPTION', 'Cash on Delivery',true);
+  define('MODULE_PAYMENT_COD_TEXT_TITLE', 'Platba na dobírku',true);
+  define('MODULE_PAYMENT_COD_TEXT_DESCRIPTION', 'Platba na dobírku',true);
 
-  define('MODULE_PAYMENT_COD_STATUS_TITLE','Aktivovat platbu při převzetí');
-  define('MODULE_PAYMENT_COD_STATUS_DESCRIPTION','Chcete akceptovat Platbu při převzetí?');
+  define('MODULE_PAYMENT_COD_STATUS_TITLE','Aktivovat Platba na dobírku');
+  define('MODULE_PAYMENT_COD_STATUS_DESCRIPTION','Chcete akceptovat platby dobírkou?');
 ?>
