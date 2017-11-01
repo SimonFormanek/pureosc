@@ -128,7 +128,7 @@ $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_LG';
   function tep_navbar_store_search($btnclass ='btn-default', $description = true) {
     global $request_type;
 
-    $search_link = '<div class="searchbox-margin">';
+    $search_link = '<div class="searchbox-margin col-sm-12 col-md-6">';
     $search_link .= tep_draw_form('quick_find', tep_href_link(FILENAME_ADVANCED_SEARCH_RESULT, '', $request_type, false), 'get', 'class="form-horizontal"');
     $search_link .= '   <div class="input-group">' .
                             tep_draw_input_field('keywords', '', 'required placeholder="' . MODULE_NAVIGATION_BAR_STORE_SEARCH_PLACEHOLDER . '" id="quick_search" data-provide="typeahead" autocomplete="off" style="margin-right:-2px;"', 'search') .
