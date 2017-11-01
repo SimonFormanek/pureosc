@@ -38,3 +38,6 @@ color: #FF0000;
 
 /*MainPage Articles*/
 .mainpage-blog{font-weight:bold;font-size:130%}
+@media only screen and (max-width:569px){
+img{max-width:100%}
+}
