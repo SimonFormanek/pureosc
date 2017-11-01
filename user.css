@@ -41,12 +41,12 @@ color: #FF0000;
 
 
 /* @media Default values */
-#piGal{float:right; margin-left:15px}
+.piGalDiv{float:right; width:45%;margin-left:15px}
 
 @media only screen and (max-width:639px){
-	#piGal{float:none; margin:auto;clear:left}
+	.piGalDiv{float:none; margin:auto;clear:left;width:90%;margin-bottom:20px}
 }
 
 @media only screen and (max-width:569px){
-img{max-width:100%}
+/*img{max-width:100% !important}*/
 }

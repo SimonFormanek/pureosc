@@ -116,7 +116,7 @@
           $photoset_layout .= ($pi_total > 5) ? 5 : $pi_sub;
         }
 ?>
-
+<div class="piGalDiv">
     <div id="piGal" data-imgcount="<?php echo $photoset_layout; ?>">
 
 <?php
@@ -160,7 +160,11 @@
 <?php /* ** EOF alterations for KISS IT ** */ ?>
 <?php
       }
+      echo '</div>';
     }
+/*TODO:JS
+orig: width: '250px' replaced by: width: '45%' mobile small
+*/
 ?>
 <script type="text/javascript">
 $(function() {
@@ -170,7 +174,7 @@ $(function() {
 
   $('#piGal').photosetGrid({
     layout: '<?php echo $photoset_layout; ?>',
-    width: '250px',
+    width: '100%',
     highresLinks: true,
     rel: 'pigallery',
     onComplete: function() {
