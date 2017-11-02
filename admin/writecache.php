@@ -1,6 +1,7 @@
 #!/usr/bin/php -q
 <?php
 chdir('../');
+$error = 0;
 /*
 CONFIG TODO: 
 SESSION_FORCE_COOKIE_USE -> False, projit vsechny moznosti, jestli to nekde nevadi
@@ -82,7 +83,7 @@ if (file_exists('../cronlock/' . $argv['1'] . '.' . $argv['2'])){
 		exit;
 		} else {
 			unlink('../cronlock/' . $argv['1'] . '.' . $argv['2']);
-			$error = 2;
+			$error = 1;
 			echo "ALERT:lock removed\n";
 		}
 } else {
@@ -258,14 +259,18 @@ if ($debug_level>2) echo GENERATING_CATEGORIES ."\n";
     AND sort_order > 0");
     while ($categories = tep_db_fetch_array($categories_query)) {
     if (tep_db_num_rows($categories_query)) {
+    echo 'path:' .  tep_get_category_path($categories['categories_id']) . "\n";
+//			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_DEFAULT, 'cPath=3_4_5')) . "/";
+//			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_DEFAULT, 'cPath=' . tep_get_category_path($categories['categories_id']))) . "/";
 			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_DEFAULT, 'cPath=' . $categories['categories_id'])) . "/";
+
 				if (!is_dir($newpath)){
 				shell_exec('mkdir -p ' . $newpath);
 				}
 			$output = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('" . $chdir_dest_dir . "');
-\$_GET['cPath']=" . $categories['categories_id'] . ";
+\$_GET['cPath']='" . tep_get_category_path($categories['categories_id']) . "';
 \$PHP_SELF = '" . FILENAME_DEFAULT . "';
 include('" . FILENAME_DEFAULT . "');
 exit;
@@ -277,7 +282,8 @@ exit;
 			$curl_handle=curl_init();
 //		curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/product_info.php?products_id=' . $products['products_id']);
 //			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/index.php?cPath=1');
-			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/index.php?cPath=' . $categories['categories_id']);
+//orig			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/index.php?cPath=' . $categories['categories_id']);
+			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/index.php?cPath=' . tep_get_category_path($categories['categories_id']));
 			curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER . ":" . WGET_PASSWORD);
 			curl_setopt($curl_handle,CURLOPT_USERAGENT,'wget');
 			curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
@@ -586,8 +592,8 @@ exit;
 $error = file_get_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error');
 echo 'error je: ' . $error ."\n"; 
 */
-if ($error == 0) {
-echo 'No errors found Rsync start ...' ."\n";
+if ($error < 2) {
+echo 'Rsync start ...' ."\n";
 //local rsync
     if (RSYNCLOGGING=='true'){
 	shell_exec('rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . ' >> ' . REPLICATION_LOG_DIR . HTTPS_COOKIE_DOMAIN . '_rsync_import_ALL.osclog  2>&1');
@@ -603,14 +609,16 @@ shell_exec('rsync --chmod=D755,F644 -ave   ssh --protocol=29  --exclude admin ' 
 //orig    shell_exec('~/rsync_eshop.sh >> ' . REPLICATION_LOG_DIR . HTTPS_COOKIE_DOMAIN . '_rsync_export.osclog  2>&1');
 }
 } else {
-echo 'Rsync to Eshop ERROR:' . $error ."\n";
-    mail(WEBMASTER_EMAIL, 'rsync ERROR! Static Export CANCELLED: ' . HTTPS_COOKIE_DOMAIN, 'ERROR code: ' . $error . '1 = Error creating document = Static Export CANCELLED!!!; Error 2 too long generating, removed lock forced');
+echo 'Rsync to Eshop ERROR code:' . $error ."\n";
+    mail(WEBMASTER_EMAIL, 'rsync ERROR! Static Export CANCELLED: ' . HTTPS_COOKIE_DOMAIN, 'Static Export CANCELLED!');
 
 }
 
 } //end $updated == 1
 
-//unlink('../cronlock/' . $argv['1'] . '.' . $argv['2']);
+unlink('../cronlock/' . $argv['1'] . '.' . $argv['2']);
+if ($error == 1) mail(WEBMASTER_EMAIL, 'Rsync eshop ERROR  ' . HTTPS_COOKIE_DOMAIN, 'Hard reset lock timeout');
+
 echo "DONE: " . date("Y/m/d H:i") ,  "\n"; 
 
 

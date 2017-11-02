@@ -1605,3 +1605,18 @@ function cleaner_url($url){
 $url = strip_accented($url);
 $url = str_replace(' ', '-', $url);
 }
+
+////
+// return full category cPath (used for cache creation) pure:NEW
+function tep_get_category_path($category_id) {
+    $cPath = '';
+        $categories = array();
+	$categories[] = $category_id;
+        tep_get_parent_categories($categories, $category_id);
+
+        $categories = array_reverse($categories);
+
+        $cPath = implode('_', $categories);
+
+    return $cPath;
+}
