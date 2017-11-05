@@ -48,7 +48,7 @@
 /* ** Altered for Mail Manager **
         tep_mail($check_customer['customers_firstname'] . ' ' . $check_customer['customers_lastname'], $email_address, EMAIL_PASSWORD_RESET_SUBJECT, sprintf(EMAIL_PASSWORD_RESET_BODY, $reset_key_url), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
 */		
-		if (file_exists(DIR_WS_MODULES.'mail_manager/password_forgotten.php')){
+		if (file_exists(DIR_WS_MODULES.'mail_manager/password_forgotten.php') && EMAIL_USE_HTML == 'true'){
 		  include(DIR_WS_MODULES.'mail_manager/password_forgotten.php'); 
 		  }else{
 		  tep_mail($check_customer['customers_firstname'] . ' ' . $check_customer['customers_lastname'], $email_address, EMAIL_PASSWORD_RESET_SUBJECT, sprintf(EMAIL_PASSWORD_RESET_BODY, $reset_key_url), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);

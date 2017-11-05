@@ -11,6 +11,6 @@
 */
 
   define('MODULE_PAYMENT_MONEYORDER_TEXT_TITLE', 'Platba předem na účet',true);
-  define('MODULE_PAYMENT_MONEYORDER_TEXT_DESCRIPTION', 'Make Payable To:&nbsp;' . MODULE_PAYMENT_MONEYORDER_PAYTO . '<br /><br />Send To:<br />' . STORE_NAME . '<br />' . nl2br(STORE_ADDRESS) . '<br /><br />' . 'Your order will not ship until we receive payment.',true);
-  define('MODULE_PAYMENT_MONEYORDER_TEXT_EMAIL_FOOTER', "Make Payable To: ". MODULE_PAYMENT_MONEYORDER_PAYTO . "\n\nSend To:\n" . STORE_NAME . "\n" . STORE_ADDRESS . "\n\n" . 'Your order will not ship until we receive payment.',true);
+  define('MODULE_PAYMENT_MONEYORDER_TEXT_DESCRIPTION', 'Číslo účtu:&nbsp;' . MODULE_PAYMENT_MONEYORDER_PAYTO . '<br /><br />Ve prospěch:<br />' . STORE_NAME . '<br />' . nl2br(STORE_ADDRESS) . '<br /><br />' . 'Vaše objednávka bude expedována po připsání platby na náš účet.',true);
+  define('MODULE_PAYMENT_MONEYORDER_TEXT_EMAIL_FOOTER', "Číslo účtu: ". MODULE_PAYMENT_MONEYORDER_PAYTO . "\n\nVe prospěch:\n" . STORE_NAME . "\n" . STORE_ADDRESS . "\n\n" . 'Vaše objednávka bude expedována po připsání platby na náš účet.',true);
 ?>

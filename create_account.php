@@ -286,7 +286,7 @@
 /* ** Altered for Mail Manager **
       tep_mail($name, $email_address, EMAIL_SUBJECT, $email_text, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
 */
-	  if (file_exists(DIR_WS_MODULES.'mail_manager/create_account.php')){
+	  if (file_exists(DIR_WS_MODULES.'mail_manager/create_account.php') && EMAIL_USE_HTML == 'true'){
 		include(DIR_WS_MODULES.'mail_manager/create_account.php'); 
 		}else{ 
 		tep_mail($name, $email_address, EMAIL_SUBJECT, $email_text, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS); 
