@@ -12,7 +12,7 @@
 
   require('includes/application_top.php');
 
-  tep_db_query("update " . TABLE_PRODUCTS . " set products_date_available = '' where to_days(now()) > to_days(products_date_available)");
+//PURE:removed  tep_db_query("update " . TABLE_PRODUCTS . " set products_date_available = '' where to_days(now()) > to_days(products_date_available)");
 
   require(DIR_WS_INCLUDES . 'template_top.php');
 ?>
