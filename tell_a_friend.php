@@ -100,7 +100,7 @@
 /* ** Altered for Mail Manager **
       tep_mail($to_name, $to_email_address, $email_subject, $email_body, $from_name, $from_email_address);
 */
-	  if (file_exists(DIR_WS_MODULES.'mail_manager/tell_a_friend.php')){
+	  if (file_exists(DIR_WS_MODULES.'mail_manager/tell_a_friend.php') && EMAIL_USE_HTML == 'true'){
 		include(DIR_WS_MODULES.'mail_manager/tell_a_friend.php'); 
 		}else{ 
 	  tep_mail($to_name, $to_email_address, $email_subject, $email_body, $from_name, $from_email_address);

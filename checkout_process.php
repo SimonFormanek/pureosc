@@ -330,10 +330,11 @@ $order_total_modules->apply_credit(); // CCGV
       $email_order .= $payment_class->email_footer . "\n\n";
     }
   }
-/* ** Altered for Mail Manager **
+/* ** Altered for Mail Manager ** ORIG:*/
   tep_mail($order->customer['firstname'] . ' ' . $order->customer['lastname'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
-*/
-//get status of mail manager create account  email
+
+/*MAIL MANAGER disabled!
+	//get status of mail manager create account  email
   $mail_manager_status_query = tep_db_query("select status, template, htmlcontent, txtcontent from  " . TABLE_MM_RESPONSEMAIL . "  where mail_id = '1'");
   $mail_manager_status = tep_db_fetch_array($mail_manager_status_query);
 
@@ -341,7 +342,7 @@ $order_total_modules->apply_credit(); // CCGV
 	include(DIR_WS_MODULES.'mail_manager/order_confirm.php');
 	}else{
 	tep_mail($order->customer['firstname'] . ' ' . $order->customer['lastname'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
-  }
+  }*/
 /* ** EOf alterations for Mail Manager ** */
 
 // send emails to other people

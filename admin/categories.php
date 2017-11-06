@@ -1,5 +1,8 @@
 <?php
 /*
+TODO: cache refresh/triggers
+* musi se updatovat vsechny kategorie, nejen materska
+
   $Id$
 
   osCommerce, Open Source E-Commerce Solutions
@@ -32,8 +35,22 @@
             tep_reset_cache_block('categories');
             tep_reset_cache_block('also_purchased');
           }
-        }
-
+        
+        //pure:new cache reset
+        if ($HTTP_GET_VARS['flag'] == '0'){
+        //deleting product need full reset
+        tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+				} else {
+						tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached = 0 WHERE products_id = " . $HTTP_GET_VARS['pID']);
+						tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached_admin = 0 WHERE products_id = " . $HTTP_GET_VARS['pID']);
+						$cached_categories_query = tep_db_query("SELECT categories_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE products_id=" . $HTTP_GET_VARS['pID']);
+						while ($cached_categories = tep_db_fetch_array($cached_categories_query)){
+							tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached = 0 WHERE categories_id = " . $cached_categories['categories_id']);
+							tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached_admin = 0 WHERE categories_id = " . $cached_categories['categories_id']);
+							}
+						}
+				}
         tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $HTTP_GET_VARS['cPath'] . '&pID=' . $HTTP_GET_VARS['pID']));
         break;
       case 'insert_category':
@@ -99,6 +116,10 @@
           tep_reset_cache_block('categories');
           tep_reset_cache_block('also_purchased');
         }
+				//pure new: cache reset (all, because change categories_top_menu)
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+
 	//pure:new redirect back to edit
 if (tep_not_null(tep_db_insert_id())) {
         tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&cID=' . $categories_id . '&action=edit_category'));
@@ -109,6 +130,19 @@ if (tep_not_null(tep_db_insert_id())) {
       case 'delete_category_confirm':
         if (isset($HTTP_POST_VARS['categories_id'])) {
           $categories_id = tep_db_prepare_input($HTTP_POST_VARS['categories_id']);
+
+				//pure:new cache reset
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+/*
+				$parent_query = tep_db_query("SELECT parent_id FROM " . TABLE_CATEGORIES . " WHERE categories_id=" . (int)$categories_id);
+		$parent = tep_db_fetch_array($parent_query);
+		if ($parent['parent_id'] > 0)	{
+			tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached = 0 WHERE categories_id = " . $parent['parent_id']);
+			tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached_admin = 0 WHERE categories_id = " . $parent['parent_id']);
+
+}
+*/
 
           $categories = tep_get_category_tree($categories_id, '', '0', '', true);
           $products = array();
@@ -179,8 +213,32 @@ if (tep_not_null(tep_db_insert_id())) {
           tep_reset_cache_block('also_purchased');
         }
 
-        tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath));
+        //pure new:cache reset (case 'delete_product_confirm') ALL deleting product content
+        tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+
+				//pure new:canonical set if deleted
+				$still_exists_canonical_query = tep_db_query("SELECT canonical FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE products_id= " . (int)$product_id . " and canonical=1");
+				if (!tep_db_num_rows($still_exists_canonical_query)){
+				$still_exists_query = tep_db_query("SELECT * FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE products_id= " . (int)$product_id . " order by categories_id");
+				if (tep_db_num_rows($still_exists_query)){
+					$still_exists = tep_db_fetch_array($still_exists_query);
+					if (tep_db_num_rows($still_exists_query) >1) {
+						$messageStack->add_session(ERROR_CANONICAL_DELETED, 'error');
+						tep_redirect(tep_href_link(FILENAME_CATEGORIES, tep_get_path($still_exists['categories_id']) . '&pID=' . (int)$product_id . '&action=set_canonical'));
+						} 
+					}
+					}
+					tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath));
         break;
+      case 'set_canonical_confirm':
+      if (isset($HTTP_POST_VARS['set_canonical']) && (isset($HTTP_POST_VARS['products_id']))){
+//      echo 'ano neco delam';
+      tep_db_query("UPDATE " . TABLE_PRODUCTS_TO_CATEGORIES ." SET canonical = 1 WHERE products_id = " . $_POST['products_id'] . " AND categories_id=" . $_POST['set_canonical']);
+      }
+//exit;
+					tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath));
+      break;
       case 'move_category_confirm':
         if (isset($HTTP_POST_VARS['categories_id']) && ($HTTP_POST_VARS['categories_id'] != $HTTP_POST_VARS['move_to_category_id'])) {
           $categories_id = tep_db_prepare_input($HTTP_POST_VARS['categories_id']);
@@ -211,7 +269,12 @@ if (tep_not_null(tep_db_insert_id())) {
 
         $duplicate_check_query = tep_db_query("select count(*) as total from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id = '" . (int)$products_id . "' and categories_id = '" . (int)$new_parent_id . "'");
         $duplicate_check = tep_db_fetch_array($duplicate_check_query);
-        if ($duplicate_check['total'] < 1) tep_db_query("update " . TABLE_PRODUCTS_TO_CATEGORIES . " set categories_id = '" . (int)$new_parent_id . "' where products_id = '" . (int)$products_id . "' and categories_id = '" . (int)$current_category_id . "'");
+        if ($duplicate_check['total'] < 1) {
+        	tep_db_query("update " . TABLE_PRODUCTS_TO_CATEGORIES . " set categories_id = '" . (int)$new_parent_id . "' where products_id = '" . (int)$products_id . "' and categories_id = '" . (int)$current_category_id . "'");
+					//pure:new cache reset full!
+	        tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+					tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+        }
 
         if (USE_CACHE == 'true') {
           tep_reset_cache_block('categories');
@@ -357,6 +420,16 @@ if (tep_not_null(tep_db_insert_id())) {
           tep_reset_cache_block('categories');
           tep_reset_cache_block('also_purchased');
         }
+        //pure new: cache reset
+				tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached = 0 WHERE products_id = " . (int)$products_id);
+				tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached_admin = 0 WHERE products_id = " . (int)$products_id);
+				$cached_categories_query = tep_db_query("SELECT categories_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE products_id=" . (int)$products_id);
+				while ($cached_categories = tep_db_fetch_array($cached_categories_query)){
+					tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached = 0 WHERE categories_id = " . $cached_categories['categories_id']);
+					tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached_admin = 0 WHERE categories_id = " . $cached_categories['categories_id']);
+				}
+
+
 	//pure:new reload page
 if (tep_not_null(tep_db_insert_id())) {
 	tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id . '&action=new_product&#meta-edit'));
@@ -404,6 +477,9 @@ if (tep_not_null(tep_db_insert_id())) {
             tep_reset_cache_block('categories');
             tep_reset_cache_block('also_purchased');
           }
+					//pure:new: cache reset
+					tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached = 0 WHERE categories_id = " . $categories_id);
+					tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached_admin = 0 WHERE categories_id = " . $categories_id);
         }
 
         tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $categories_id . '&pID=' . $products_id));
@@ -1344,6 +1420,36 @@ $category_seo_title_string .= '<br />' . TEXT_META_TITLE_LENGHT_REMAINING_CHARAC
         $contents[] = array('text' => '<br />' . TEXT_HOW_TO_COPY . '<br />' . tep_draw_radio_field('copy_as', 'link', true) . ' ' . TEXT_COPY_AS_LINK . '<br />' . tep_draw_radio_field('copy_as', 'duplicate') . ' ' . TEXT_COPY_AS_DUPLICATE);
         $contents[] = array('align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_COPY, 'copy', null, 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id)));
         break;
+
+
+      case 'set_canonical':
+        $heading[] = array('text' => '<strong>' . TEXT_INFO_HEADING_SET_CANONICAL_CATEGORY . '</strong>');
+
+        $contents = array('form' => tep_draw_form('products', FILENAME_CATEGORIES, 'action=set_canonical_confirm&cPath=' . $cPath) . tep_draw_hidden_field('products_id', $pInfo->products_id));
+        $contents[] = array('text' => TEXT_SET_CANONICAL_CATEGORY_INTRO);
+        $contents[] = array('text' => '<br /><strong>' . $pInfo->products_name . '</strong>');
+
+        $product_categories_string = '';
+        $product_categories = tep_generate_category_path($pInfo->products_id, 'product');
+        for ($i = 0, $n = sizeof($product_categories); $i < $n; $i++) {
+          $category_path = '';
+          for ($j = 0, $k = sizeof($product_categories[$i]); $j < $k; $j++) {
+            $category_path .= $product_categories[$i][$j]['text'] . '&nbsp;&gt;&nbsp;';
+          }
+          $category_path = substr($category_path, 0, -16);
+//          $product_categories_string .= tep_draw_checkbox_field('product_categories[]', $product_categories[$i][sizeof($product_categories[$i])-1]['id'], true) . '&nbsp;' . $category_path . '<br />';
+          $product_categories_string .= tep_draw_radio_field('set_canonical', $product_categories[$i][sizeof($product_categories[$i])-1]['id'], '') . '&nbsp;' . $category_path . '<br />';
+        }
+        $product_categories_string = substr($product_categories_string, 0, -4);
+
+        $contents[] = array('text' => '<br />' . $product_categories_string);
+        $contents[] = array('align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id)));
+        break;
+
+
+
+
+
       default:
         if ($rows > 0) {
           if (isset($cInfo) && is_object($cInfo)) { // category info box contents

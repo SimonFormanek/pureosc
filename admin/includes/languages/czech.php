@@ -27,7 +27,7 @@
 // on FreeBSD 4.0 I use 'en_US.ISO_8859-1'
 // this may not work under win32 environments..
 //setlocale(LC_ALL, array('en_US.UTF-8', 'en_US.UTF8', 'enu_usa')); //pure:todo LC_ALL error?
-@setlocale(LC_TIME, 'cs_CZ.UTF-8');
+@setlocale(LC_ALL, 'cs_CZ.UTF-8');
 define('DATE_FORMAT_SHORT', '%d.%m.%Y',true);  // this is used for strftime()
 define('DATE_FORMAT_LONG', '%A %d %B, %Y',true); // this is used for strftime()
 define('DATE_FORMAT', 'd.m.Y',true); // this is used for date()
@@ -405,5 +405,3 @@ define('BOX_HEADER_TAGS_SILO', 'Silo Control');
 define('BOX_HEADER_TAGS_SOCIAL', 'Social');
 define('BOX_HEADER_TAGS_TEST', 'Test');
 /*** End Header Tags SEO ***/
-
-

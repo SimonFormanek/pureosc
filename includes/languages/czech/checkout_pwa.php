@@ -15,7 +15,7 @@ define('NAVBAR_TITLE_3', 'Vaše údaje',true);
 define('HEADING_TITLE', 'Vaše osobní údaje',true);
 define('HEADING_TITLE_SUCCESS', 'Vaše objednávka byla odeslána!',true);
 define('TITLE_PLEASE_SELECT', 'Prosím vyberte: ',true);
-define('TEXT_ORIGIN_LOGIN', 'Note: Pokud v našem obchodě máte účet přihlaste se <a href="%s"><u>přihlášení</u></a>.',true);
+define('TEXT_ORIGIN_LOGIN', 'POZNÁMKA: Pokud v našem obchodě máte účet přihlaste se <a href="%s"><u>přihlášení</u></a>.',true);
 define('TEXT_SUCCESS', 'Vaše objednávka byla odeslána! Váš nákup bude doručen během 2-5 pracovních dní.',true);
 define('ITEMS', '<strong>Zakoupené položky</strong>',true);
 define('TEXT_THANKS_FOR_SHOPPING', '<strong>Děkujeme za váš nákup</strong>',true);

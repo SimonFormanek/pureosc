@@ -2416,7 +2416,6 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('acpmlje9bk0dhiugk4qpauiq35',1504826309,'sessiontoken|s:32:\"81141f36abbf1abbcc7b68b0fdb79a7d\";cart|O:12:\"shoppingCart\":5:{s:8:\"contents\";a:0:{}s:5:\"total\";i:0;s:6:\"weight\";i:0;s:6:\"cartID\";N;s:12:\"content_type\";b:0;}language|s:5:\"czech\";languages_id|s:1:\"4\";currency|s:3:\"CZK\";navigation|O:17:\"navigationHistory\":2:{s:4:\"path\";a:1:{i:0;a:4:{s:4:\"page\";s:9:\"index.php\";s:4:\"mode\";s:6:\"NONSSL\";s:3:\"get\";a:0:{}s:4:\"post\";a:0:{}}}s:8:\"snapshot\";a:0:{}}'),('l56stp421r95mn7lct0ktnkri7',1505262445,'language|s:7:\"english\";languages_id|s:1:\"1\";KCFINDER|a:1:{s:8:\"disabled\";b:0;}admin|a:2:{s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";}'),('pkc7p2a9qogdmfsacgjejhtp73',1504827061,'language|s:5:\"czech\";languages_id|s:1:\"4\";KCFINDER|a:1:{s:8:\"disabled\";b:0;}admin|a:2:{s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";}');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -19,10 +19,10 @@ define('TABLE_HEADING_SHIPPING_ADDRESS', 'Adresa dodání',true);
 define('TEXT_CHOOSE_SHIPPING_DESTINATION', 'Vyberte adresu, na kterou chcete zboží zaslat.',true);
 define('TITLE_SHIPPING_ADDRESS', 'Dodací adresa:',true);
 
-define('TABLE_HEADING_SHIPPING_METHOD', 'Dodací adresa',true);
-define('TEXT_CHOOSE_SHIPPING_METHOD', 'Vyberte způsob dodání Vašeho zboží.',true);
+define('TABLE_HEADING_SHIPPING_METHOD', 'Doručení',true);
+define('TEXT_CHOOSE_SHIPPING_METHOD', 'Vyberte způsob doručení zboží.',true);
 define('TITLE_PLEASE_SELECT', 'vyberte',true);
-define('TEXT_ENTER_SHIPPING_INFORMATION', 'Toto je hlavní způsob dodání této objednávky.',true);
+define('TEXT_ENTER_SHIPPING_INFORMATION', 'Způsob doručení zboží:',true);
 
 define('TABLE_HEADING_COMMENTS', 'Pošlete nám vzkaz',true);
 

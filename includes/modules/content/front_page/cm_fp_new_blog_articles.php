@@ -37,9 +37,13 @@
      if ($listing_split->number_of_rows > 0) {
         ob_start();
         define('MAIN_PAGE_BLOG','true');
+        echo '<div class="col-sm-' . (int) MODULE_CONTENT_FRONT_PAGE_MESSAGE_CONTENT_WIDTH . '">
+        	<div class="contentText">';
+
         echo '<h2 class="mainpage-blog">' . MAIN_PAGE_BLOG_ARTICLES . '</h2>';
         include(DIR_WS_MODULES . FILENAME_ARTICLE_LISTING);
 				echo '<div align="right"><a class="btn btn-default" href="' . tep_href_link(FILENAME_ARTICLES, 'showblogarticles=true') . '"><span class="glyphicon glyphicon-chevron-right"></span> ' . TEXT_DISPLAY_ALL_BLOG_ARTICLES . '</a><br />&nbsp;</div>';
+				echo '</div></div>';
         $template = ob_get_clean();
         $oscTemplate->addContent($template, $this->group);
       }

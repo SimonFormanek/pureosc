@@ -16,7 +16,7 @@ define('SUB_TITLE_FROM', 'Od:',true);
 define('SUB_TITLE_REVIEW', 'Hodnocení:',true);
 define('SUB_TITLE_RATING', 'Hodnota:',true);
 
-define('TEXT_NO_HTML', '<small><font color="#ff0000"><strong>NOTE:</strong></font></small>&nbsp;HTML není interpretováno!',true);
+define('TEXT_NO_HTML', '<small><font color="#ff0000"><strong>POZNÁMKA:</strong></font></small>&nbsp;HTML není interpretováno!',true);
 define('TEXT_BAD', '<small><font color="#ff0000"><strong>špatné</strong></font></small>',true);
 define('TEXT_GOOD', '<small><font color="#ff0000"><strong>dobré</strong></font></small>',true);
 

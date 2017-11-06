@@ -116,4 +116,7 @@
   define('TABLE_INFORMATION', 'information');
   define('TABLE_INFORMATION_GROUP', 'information_group');
 // EOF: Information Pages Unlimited
-?>
+
+//PURE:NEW static generator reset
+  define('TABLE_RESET','reset');
+

@@ -15,6 +15,8 @@
 */
 // WTL - this goes in admin
   require('includes/application_top.php');
+// Ultimate SEO URLs v2.2d, PURE:VER:1
+   include_once('includes/reset_seo_cache.php');
 
 // Include current language file, if not exists, fall use English (Why is this not a standard procedure in OsCommerce?)
   if (file_exists(DIR_WS_LANGUAGES . $language . '/information.php')) {
@@ -26,6 +28,11 @@
 
   $action = (isset($_REQUEST['information_action']) ? $_REQUEST['information_action'] : '');
 
+//pure new: cache reset
+ if (tep_not_null($action)) {
+tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+}
 // Group information
   $gID = (isset($_GET['gID'])) ? $_GET['gID'] : ((isset($_POST['gID'])) ? $_POST['gID'] : 1);
   $info_group_query = tep_db_query("select information_group_title, locked from " . TABLE_INFORMATION_GROUP . " where information_group_id = '" . (int)$gID . "'");
@@ -175,7 +182,8 @@
           }
         }
       }
-      tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER));
+
+      tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER, 'gID=' . $_POST['gID']));
       break;
 
     case "Update":
@@ -200,8 +208,14 @@
               $messageStack->add_session('Updated Successfully', 'success');
             }
           }
+/*SMAZAT
+					//pure: reset static cache
+					tep_db_query("UPDATE " . TABLE_INFORMATION . " SET cached = 0 WHERE information_id = '" . (int) $_POST['information_id'] . "' AND language_id=" . (int)$language_id);
+					tep_db_query("UPDATE " . TABLE_INFORMATION . " SET cached_admin = 0 WHERE information_id = '" . (int) $_POST['information_id'] . "' AND language_id=" . (int)$language_id);
+*/
         }
-        tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER));
+
+        tep_redirect(tep_href_link(FILENAME_INFORMATION_MANAGER, 'gID=' . $_POST['gID']));
       } else {
         $error = "80";
       }

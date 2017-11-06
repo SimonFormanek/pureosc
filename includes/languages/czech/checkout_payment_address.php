@@ -20,11 +20,11 @@ define('TEXT_SELECTED_PAYMENT_DESTINATION', 'Toto je hlavní vybraná adresa fak
 define('TITLE_PAYMENT_ADDRESS', 'Fakturační adresa:',true);
 
 define('TABLE_HEADING_ADDRESS_BOOK_ENTRIES', 'Adresář',true);
-define('TEXT_SELECT_OTHER_PAYMENT_DESTINATION', 'Vyberte preferovanou fakturační adresu pro tuto objednávku bude-li jiná než dodací adresa.',true);
+define('TEXT_SELECT_OTHER_PAYMENT_DESTINATION', 'Vyberte fakturační adresu pro tuto objednávku bude-li odlišná od adresy dodání.',true);
 define('TITLE_PLEASE_SELECT', 'Please Select',true);
 
 define('TABLE_HEADING_NEW_PAYMENT_ADDRESS', 'Nová fakturační adresa',true);
-define('TEXT_CREATE_NEW_PAYMENT_ADDRESS', 'Použijte formulář k vytvoření nové fakturační adresy v této objednávce.',true);
+define('TEXT_CREATE_NEW_PAYMENT_ADDRESS', 'Vytvořte novou fakturační adresu.',true);
 
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'pokračujte v placení',true);
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', 'vybrat způsob platby.',true);

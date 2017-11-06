@@ -42,6 +42,11 @@
   }
 
   else if (tep_not_null($action)) {
+  // Ultimate SEO URLs v2.2d
+// If the action will affect the cache entries
+   if ( preg_match("/(insert|update|setflag)/i", $action) ) include_once('includes/reset_seo_cache.php');
+
+
     switch ($action) {
       case 'setflag':
         if ( ($_GET['flag'] == '0') || ($_GET['flag'] == '1') ) {
@@ -52,8 +57,22 @@
           if (USE_CACHE == 'true') {
             tep_reset_cache_block('topics');
           }
-        }
+        //pure new: cache reset
+        if ($HTTP_GET_VARS['flag'] == '0'){
+        //deleting product need full reset
+        tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+				} else {
 
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . $_GET['aID']);
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . $_GET['aID']);
+				$cached_topics_query = tep_db_query("SELECT topics_id FROM " . TABLE_ARTICLES_TO_TOPICS . " WHERE articles_id=" . $_GET['aID']);
+				while ($cached_topics = tep_db_fetch_array($cached_topics_query)){
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					}
+				}
+				}
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $_GET['tPath'] . '&aID=' . $_GET['aID']));
         break;
       case 'setflagblog':
@@ -65,6 +84,14 @@
           if (USE_CACHE == 'true') {
             tep_reset_cache_block('topics');
           }
+        //pure new: cache reset
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . $_GET['aID']);
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . $_GET['aID']);
+				$cached_topics_query = tep_db_query("SELECT topics_id FROM " . TABLE_ARTICLES_TO_TOPICS . " WHERE articles_id=" . $_GET['aID']);
+				while ($cached_topics = tep_db_fetch_array($cached_topics_query)){
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					}
         }
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $_GET['tPath'] . '&aID=' . $_GET['aID']));
@@ -132,6 +159,9 @@
         if (USE_CACHE == 'true') {
           tep_reset_cache_block('topics');
         }
+				//pure new: cache reset (case 'update_topic' OR case 'insert_topic')
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $tPath . '&tID=' . $topics_id));
         break;
@@ -183,6 +213,9 @@
         if (USE_CACHE == 'true') {
           tep_reset_cache_block('topics');
         }
+				//pure new: cache reset (case 'delete_topic_confirm')
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $tPath));
         break;
@@ -194,6 +227,9 @@
           for ($i=0, $n=sizeof($article_topics); $i<$n; $i++) {
             tep_db_query("delete from " . TABLE_ARTICLES_TO_TOPICS . " where articles_id = '" . (int)$article_id . "' and topics_id = '" . (int)$article_topics[$i] . "'");
           }
+						//pure new: cache reset (case 'delete_article_confirm') ALL - need delete article contents
+        		tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+						tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
 
           $article_topics_query = tep_db_query("select count(*) as total from " . TABLE_ARTICLES_TO_TOPICS . " where articles_id = '" . (int)$article_id . "'");
           $article_topics = tep_db_fetch_array($article_topics_query);
@@ -226,6 +262,9 @@
             if (USE_CACHE == 'true') {
               tep_reset_cache_block('topics');
             }
+				//pure new: cache reset (case 'update_topic' OR case 'insert_topic')
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
 
             tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $new_parent_id . '&tID=' . $topics_id));
           }
@@ -238,8 +277,12 @@
 
         $duplicate_check_query = tep_db_query("select count(*) as total from " . TABLE_ARTICLES_TO_TOPICS . " where articles_id = '" . (int)$articles_id . "' and topics_id = '" . (int)$new_parent_id . "'");
         $duplicate_check = tep_db_fetch_array($duplicate_check_query);
-        if ($duplicate_check['total'] < 1) tep_db_query("update " . TABLE_ARTICLES_TO_TOPICS . " set topics_id = '" . (int)$new_parent_id . "' where articles_id = '" . (int)$articles_id . "' and topics_id = '" . (int)$current_topic_id . "'");
-
+        if ($duplicate_check['total'] < 1) {
+        tep_db_query("update " . TABLE_ARTICLES_TO_TOPICS . " set topics_id = '" . (int)$new_parent_id . "' where articles_id = '" . (int)$articles_id . "' and topics_id = '" . (int)$current_topic_id . "'");
+				//pure:new cache reset full!
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+				tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+				}
         if (USE_CACHE == 'true') {
           tep_reset_cache_block('topics');
         }
@@ -275,8 +318,9 @@
             tep_db_perform(TABLE_ARTICLES, $sql_data_array);
             $articles_id = tep_db_insert_id();
 
-            tep_db_query("insert into " . TABLE_ARTICLES_TO_TOPICS . " (articles_id, topics_id) values ('" . (int)$articles_id . "', '" . (int)$current_topic_id . "')");
+            tep_db_query("insert into " . TABLE_ARTICLES_TO_TOPICS . " (articles_id, topics_id, canonical) values ('" . (int)$articles_id . "', '" . (int)$current_topic_id . "', '1')");
           } elseif ($action == 'update_article') {
+            $update_sql_data = array('articles_last_modified' => 'now()');
             $update_sql_data = array('articles_last_modified' => 'now()');
             // If expected article then articles_date _added becomes articles_date_available
             if (isset($_POST['articles_date_available']) && tep_not_null($_POST['articles_date_available'])) {
@@ -286,6 +330,16 @@
             $sql_data_array = array_merge($sql_data_array, $update_sql_data);
 
             tep_db_perform(TABLE_ARTICLES, $sql_data_array, 'update', "articles_id = '" . (int)$articles_id . "'");
+						//update canonical
+          if(isset($_POST['canonical'])) { //je zaskrt.
+
+  				$wQ = tep_db_query("SELECT topics_id FROM ".TABLE_ARTICLES_TO_TOPICS." WHERE articles_id = ".(int)$articles_id);
+  				while($w = tep_db_fetch_array($wQ)) 
+  				tep_db_query("UPDATE ".TABLE_ARTICLES_TO_TOPICS." SET canonical = null WHERE articles_id = ".(int)$articles_id." AND topics_id = ".$w['topics_id']);
+
+  				$uQ = tep_db_query("UPDATE ".TABLE_ARTICLES_TO_TOPICS." SET canonical = 1 WHERE articles_id = ".(int)$articles_id." AND topics_id = ".$current_topic_id);
+					}
+          
           }
 
           $languages = tep_get_languages();
@@ -330,6 +384,15 @@
           if (USE_CACHE == 'true') {
             tep_reset_cache_block('topics');
           }
+				//pure: static cache reset
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached = 0 WHERE articles_id = " . (int)$articles_id);
+				tep_db_query("UPDATE " . TABLE_ARTICLES_DESCRIPTION . " SET cached_admin = 0 WHERE articles_id = " . (int)$articles_id);
+
+				$cached_topics_query = tep_db_query("SELECT topics_id FROM " . TABLE_ARTICLES_TO_TOPICS . " WHERE articles_id=" . (int)$articles_id);
+				while ($cached_topics = tep_db_fetch_array($cached_topics_query)){
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . $cached_topics['topics_id']);
+					}
 
           tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $tPath . '&aID=' . $articles_id));
         }
@@ -369,6 +432,9 @@
           if (USE_CACHE == 'true') {
             tep_reset_cache_block('topics');
           }
+        //pure:new cache reset
+        tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached = 0 WHERE topics_id = " . $topics_id);
+        tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET cached_admin = 0 WHERE topics_id = " . $topics_id);
         }
 
         tep_redirect(tep_href_link(FILENAME_ARTICLES, 'tPath=' . $topics_id . '&aID=' . $articles_id));
@@ -714,6 +780,30 @@ td.HTC_Head {font-family: Verdana, Arial, sans-serif; color:#333; font-size: 18p
       </tr>
       <tr>
         <td><table border="0" cellspacing="0" cellpadding="2">
+
+
+          <tr>
+            <td class="main"><?php echo TEXT_ARTICLES_CANONICAL; ?></td>
+            <td class="main"><?php 
+
+$isChk = $pInfo->canonical > 0 ? true : false;
+$ro = false; $wrn = false;
+if(! $isChk) { //navrh samoopravy chybejicich
+  $canQ = tep_db_query($qs="SELECT * FROM ".TABLE_ARTICLES_TO_TOPICS." WHERE canonical > 0 AND articles_id = ".(int)$aInfo->articles_id); 
+  if(tep_db_num_rows($canQ) < 1) { $isChk = true; $wrn = true; } 
+
+} else $ro = true;
+
+echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;' 
+. '<INPUT type="CHECKBOX" name="canonical" value="on"'.($isChk?(' CHECKED'.($ro?' READONLY':'')):'').'>'
+.($wrn?(' POZOR - produkt dosud nemá kanonické označení - odznačte, nemá-li být zde. '):''); //.$qs
+ //. tep_draw_checkbox_field('canonical', 'on', ($pInfo->canonical > 0 ? true : false)); 
+
+?></td>
+          </tr>
+
+
+
           <tr>
             <td class="smallText"><?php echo TEXT_ARTICLES_STATUS; ?></td>
             <td class="smallText"><?php echo tep_draw_radio_field('articles_status', '0', $out_status) . '&nbsp;' . TEXT_ARTICLE_NOT_AVAILABLE . '&nbsp;' . tep_draw_radio_field('articles_status', '1', $in_status) . '&nbsp;' . TEXT_ARTICLE_AVAILABLE; ?></td>

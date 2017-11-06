@@ -156,7 +156,7 @@
 							/* ** Altered for Mail Manager ** Order Editor will send updates via Mail Manager Templates using this new line
 							tep_mail($check_status['customers_name'], $check_status['customers_email_address'], EMAIL_TEXT_SUBJECT, $email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
 							*/
-							if (file_exists(DIR_FS_CATALOG_MODULES.'mail_manager/status_update.php')){
+							if (file_exists(DIR_FS_CATALOG_MODULES.'mail_manager/status_update.php') && EMAIL_USE_HTML == 'true'){
 								include(DIR_FS_CATALOG_MODULES.'mail_manager/status_update.php'); 
 							} else {
 								tep_mail($check_status['customers_name'], $check_status['customers_email_address'], EMAIL_TEXT_SUBJECT, $email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS); 
@@ -683,7 +683,7 @@
 						$email_order = tep_add_base_ref($email_order);
 
 						//send the email to the customer
-						if (file_exists(DIR_FS_CATALOG_MODULES.'mail_manager/order_confirm.php')){
+						if (file_exists(DIR_FS_CATALOG_MODULES.'mail_manager/order_confirm.php') && EMAIL_USE_HTML == 'true'){
 							include(DIR_FS_CATALOG_MODULES.'mail_manager/order_confirm.php'); 
 						} else {
 							tep_mail($order->customer['name'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);

@@ -22,5 +22,5 @@ define('ADDRESS_BOOK_TITLE', 'Vložené adresy',true);
 
 define('PRIMARY_ADDRESS', '(Hlavní adresa)',true);
 
-define('TEXT_MAXIMUM_ENTRIES', '<span class="inputRequirement">NOTE:</span> Maximálně zde můžete mít uloženo %s addres.',true);
+define('TEXT_MAXIMUM_ENTRIES', '<span class="inputRequirement">POZNÁMKA:</span> Maximálně zde můžete mít uloženo %s addres.',true);
 ?>

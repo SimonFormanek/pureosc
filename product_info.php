@@ -116,7 +116,7 @@
           $photoset_layout .= ($pi_total > 5) ? 5 : $pi_sub;
         }
 ?>
-
+<div class="piGalDiv">
     <div id="piGal" data-imgcount="<?php echo $photoset_layout; ?>">
 
 <?php
@@ -160,8 +160,43 @@
 <?php /* ** EOF alterations for KISS IT ** */ ?>
 <?php
       }
+      echo '</div>';
     }
+/*TODO:JS
+orig: width: '250px' replaced by: width: '45%' mobile small
+*/
 ?>
+<script type="text/javascript">
+$(function() {
+  $('#piGal').css({
+    'visibility': 'hidden'
+  });
+
+  $('#piGal').photosetGrid({
+    layout: '<?php echo $photoset_layout; ?>',
+    width: '100%',
+    highresLinks: true,
+    rel: 'pigallery',
+    onComplete: function() {
+      $('#piGal').css({ 'visibility': 'visible'});
+
+      $('#piGal a').colorbox({
+        maxHeight: '90%',
+        maxWidth: '90%',
+        rel: 'pigallery'
+      });
+
+      $('#piGal img').each(function() {
+        var imgid = $(this).attr('id').substring(9);
+
+        if ( $('#piGalDiv_' + imgid).length ) {
+          $(this).parent().colorbox({ inline: true, href: "#piGalDiv_" + imgid });
+        }
+      });
+    }
+  });
+});
+</script>
 
 <div itemprop="description">
   <?php echo stripslashes($product_info['products_description']); ?>
