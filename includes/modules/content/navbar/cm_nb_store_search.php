@@ -43,7 +43,7 @@ function __construct() {
 
       // define typeahead scripts
       $script = '<script src="' . tep_href_link('ext/bootstrap-plugins/typeahead/bootstrap3-typeahead.min.js', null, $request_type) . '"></script>';
-      $script .= '<script src="' . tep_href_link('ext/modules/content/header/store_search/content_searches.min.js', null, $request_type) . '"></script>';
+      $script .= '<script src="' . tep_href_link('ext/modules/content/navbar/store_search/content_searches.min.js', null, $request_type) . '"></script>';
 
       $oscTemplate->addBlock($script, 'footer_scripts');
 
