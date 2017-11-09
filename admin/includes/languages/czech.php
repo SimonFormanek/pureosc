@@ -376,23 +376,23 @@ define('IMAGE_CREATE_ORDER', 'Create New Order',true);
 define('BOX_CUSTOMERS_CREATE_ORDER', 'Create Order',true);
 // EOF Order Maker
 // BOF Create Account 
-define('BOX_CUSTOMERS_CREATE_ACCOUNT', 'Create Customer',true);
+define('BOX_CUSTOMERS_CREATE_ACCOUNT', 'Vytvořit zákazníka',true);
 define('IMAGE_CONTINUE', 'Continue',true);
 // EOF Create Account
 //VAT number
 define('ENTRY_VAT_NUMBER', 'DIČ:',true);
 
 /**** BEGIN ARTICLE MANAGER ****/
-define('BOX_HEADING_ARTICLES', 'Article Manager');
-define('BOX_TOPICS_ARTICLES', 'Topics/Articles');
-define('BOX_ARTICLES_CONFIG', 'Configuration');
-define('BOX_ARTICLES_AUTHORS', 'Authors');
-define('BOX_ARTICLES_BLOG_COMMENTS', 'Blog Comments');
-define('BOX_ARTICLES_REVIEWS', 'Reviews');
-define('BOX_ARTICLES_XSELL', 'Cross-Sell Articles');
-define('IMAGE_NEW_TOPIC', 'New Topic');
-define('IMAGE_NEW_ARTICLE', 'New Article');
-define('TEXT_DISPLAY_NUMBER_OF_AUTHORS', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> authors)');
+define('BOX_HEADING_ARTICLES', 'Manager Článků');
+define('BOX_TOPICS_ARTICLES', 'Kategorie/Články');
+define('BOX_ARTICLES_CONFIG', 'Konfigurace');
+define('BOX_ARTICLES_AUTHORS', 'Autoři');
+define('BOX_ARTICLES_BLOG_COMMENTS', 'Blogovací komentáře');
+define('BOX_ARTICLES_REVIEWS', 'Hodnocení článků - Reviews');
+define('BOX_ARTICLES_XSELL', 'Přiřazení produktů k článkům');
+define('IMAGE_NEW_TOPIC', 'Nová kategorie');
+define('IMAGE_NEW_ARTICLE', 'Nový článek');
+define('TEXT_DISPLAY_NUMBER_OF_AUTHORS', 'Zobrazení <b>%d</b> do <b>%d</b> (z <b>%d</b> autorů)');
 /**** END ARTICLE MANAGER ****/
 
 /*** Begin Header Tags SEO ***/
