@@ -10,42 +10,42 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Article Reviews');
+define('HEADING_TITLE', 'Články recenze');
 
-define('TABLE_HEADING_ARTICLES', 'Articles');
-define('TABLE_HEADING_RATING', 'Rating');
-define('TABLE_HEADING_DATE_ADDED', 'Date Added');
-define('TABLE_HEADING_ACTION', 'Action');
+define('TABLE_HEADING_ARTICLES', 'Články');
+define('TABLE_HEADING_RATING', 'Hodnocení');
+define('TABLE_HEADING_DATE_ADDED', 'Datum přidání');
+define('TABLE_HEADING_ACTION', 'Akce');
 
-define('ENTRY_ARTICLE', 'Article:');
-define('ENTRY_FROM', 'From:');
-define('ENTRY_DATE', 'Date:');
-define('ENTRY_REVIEW', 'Review:');
-define('ENTRY_REVIEW_TEXT', '<small><font color="#ff0000"><b>NOTE:</b></font></small>&nbsp;HTML is not translated!&nbsp;');
-define('ENTRY_RATING', 'Rating:');
+define('ENTRY_ARTICLE', 'Článek:');
+define('ENTRY_FROM', 'Od:');
+define('ENTRY_DATE', 'Datum:');
+define('ENTRY_REVIEW', 'Recenze:');
+define('ENTRY_REVIEW_TEXT', '<small><font color="#ff0000"><b>NOTE:</b></font></small>&nbsp;HTML není přeloženo!&nbsp;');
+define('ENTRY_RATING', 'Hodnocení:');
 
-define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Are you sure you want to delete this review?');
+define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Jste připraveni smazat tuto recenzi?');
 
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
-define('TEXT_INFO_REVIEW_AUTHOR', 'Reviewer:');
-define('TEXT_INFO_REVIEW_RATING', 'Rating:');
-define('TEXT_INFO_REVIEW_READ', 'Read:');
-define('TEXT_INFO_REVIEW_SIZE', 'Size:');
-define('TEXT_INFO_ARTICLES_AVERAGE_RATING', 'Average Rating:');
+define('TEXT_INFO_DATE_ADDED', 'Datum přidání:');
+define('TEXT_INFO_LAST_MODIFIED', 'Poslední změna:');
+define('TEXT_INFO_REVIEW_AUTHOR', 'Recenzent:');
+define('TEXT_INFO_REVIEW_RATING', 'Hodnocení:');
+define('TEXT_INFO_REVIEW_READ', 'Přečteno:');
+define('TEXT_INFO_REVIEW_SIZE', 'Velikost:');
+define('TEXT_INFO_ARTICLES_AVERAGE_RATING', 'Průměrné hodnocení:');
 
-define('TEXT_IMAGE_NONEXISTENT', 'IMAGE DOES NOT EXIST');
+define('TEXT_IMAGE_NONEXISTENT', 'OBRÁZEK NEEXISTUJE');
 
 define('TEXT_OF_5_STARS', '%s of 5 Stars!');
-define('TEXT_GOOD', '<small><font color="#ff0000"><b>Excellent</b></font></small>');
-define('TEXT_BAD', '<small><font color="#ff0000"><b>Poor</b></font></small>');
-define('TEXT_INFO_HEADING_DELETE_REVIEW', 'Delete Review');
+define('TEXT_GOOD', '<small><font color="#ff0000"><b>Výborný</b></font></small>');
+define('TEXT_BAD', '<small><font color="#ff0000"><b>Špatný</b></font></small>');
+define('TEXT_INFO_HEADING_DELETE_REVIEW', 'Smazat recenzi');
 /* <Mav was here!> */
-define('TEXT_APPROVED', 'Approved') ;
-define('TEXT_APPROVE', 'Approve') ;
-define('TEXT_DISAPPROVE', 'Disapprove') ;
-define('TEXT_YES', 'Yes') ;
-define('TEXT_NO', 'No') ;
+define('TEXT_APPROVED', 'Schválený') ;
+define('TEXT_APPROVE', 'Schválit') ;
+define('TEXT_DISAPPROVE', 'Neschválený') ;
+define('TEXT_YES', 'Ano') ;
+define('TEXT_NO', 'Ne') ;
 /* </Mav was here!> */
 
 ?>

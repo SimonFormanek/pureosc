@@ -10,14 +10,14 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Articles Configuration');
+define('HEADING_TITLE', 'Články konfigurace');
 
-define('TABLE_HEADING_CONFIGURATION_TITLE', 'Title');
-define('TABLE_HEADING_CONFIGURATION_VALUE', 'Value');
-define('TABLE_HEADING_ACTION', 'Action');
+define('TABLE_HEADING_CONFIGURATION_TITLE', 'Název');
+define('TABLE_HEADING_CONFIGURATION_VALUE', 'Hodnota');
+define('TABLE_HEADING_ACTION', 'Akce');
 
-define('TEXT_INFO_EDIT_INTRO', 'Please make any necessary changes');
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
+define('TEXT_INFO_EDIT_INTRO', 'Proveďte potřebné změny');
+define('TEXT_INFO_DATE_ADDED', 'Datum přidání:');
+define('TEXT_INFO_LAST_MODIFIED', 'Poslední změna:');
 
 ?>

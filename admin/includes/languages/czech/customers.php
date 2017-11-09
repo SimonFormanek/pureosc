@@ -10,23 +10,23 @@
   Released under the GNU General Public License
 */
 
-define('HEADING_TITLE', 'Customers',true);
-define('HEADING_TITLE_SEARCH', 'Search:',true);
+define('HEADING_TITLE', 'Zákazníci',true);
+define('HEADING_TITLE_SEARCH', 'Hledání - Search:',true);
 
-define('TABLE_HEADING_FIRSTNAME', 'First Name',true);
-define('TABLE_HEADING_LASTNAME', 'Last Name',true);
-define('TABLE_HEADING_ACCOUNT_CREATED', 'Account Created',true);
-define('TABLE_HEADING_ACTION', 'Action',true);
+define('TABLE_HEADING_FIRSTNAME', 'Jméno',true);
+define('TABLE_HEADING_LASTNAME', 'Příjmení',true);
+define('TABLE_HEADING_ACCOUNT_CREATED', 'Datum vytvoření účtu',true);
+define('TABLE_HEADING_ACTION', 'Akce',true);
 
-define('TEXT_DATE_ACCOUNT_CREATED', 'Account Created:',true);
-define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Last Modified:',true);
-define('TEXT_INFO_DATE_LAST_LOGON', 'Last Logon:',true);
-define('TEXT_INFO_NUMBER_OF_LOGONS', 'Number of Logons:',true);
-define('TEXT_INFO_COUNTRY', 'Country:',true);
-define('TEXT_INFO_NUMBER_OF_REVIEWS', 'Number of Reviews:',true);
-define('TEXT_DELETE_INTRO', 'Are you sure you want to delete this customer?',true);
-define('TEXT_DELETE_REVIEWS', 'Delete %s review(s)',true);
-define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Delete Customer',true);
-define('TYPE_BELOW', 'Type below',true);
-define('PLEASE_SELECT', 'Select One',true);
+define('TEXT_DATE_ACCOUNT_CREATED', 'Účet byl vytvořen:',true);
+define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Poslední změna:',true);
+define('TEXT_INFO_DATE_LAST_LOGON', 'Poslední přihlášení:',true);
+define('TEXT_INFO_NUMBER_OF_LOGONS', 'Počet přihlášení:',true);
+define('TEXT_INFO_COUNTRY', 'Země:',true);
+define('TEXT_INFO_NUMBER_OF_REVIEWS', 'Počet Hodnocení:',true);
+define('TEXT_DELETE_INTRO', 'Opravdu chcete smazat tohoto zákazníka?',true);
+define('TEXT_DELETE_REVIEWS', 'Smazat %s Hodnocení',true);
+define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Smazat zákazníka',true);
+define('TYPE_BELOW', 'Vyplňte',true);
+define('PLEASE_SELECT', 'Vyberte',true);
 ?>
