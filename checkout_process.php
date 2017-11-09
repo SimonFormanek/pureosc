@@ -330,10 +330,15 @@ $order_total_modules->apply_credit(); // CCGV
       $email_order .= $payment_class->email_footer . "\n\n";
     }
   }
-/* ** Altered for Mail Manager ** ORIG:*/
+		//pure:new customers mail and phone:
+	if (ORDER_SEND_CUSTOMERS_EMAIL_PHONE == 'true') {
+    $email_order .= "\n";
+    $email_order .= CUSTOMERS_E_MAIL . $order->customer['email_address'] . "\n";
+    $email_order .=  CUSTOMERS_PHONE . $order->customer['telephone'] . "\n\n";
+	}
+/* ** Altered for Mail Manager **
   tep_mail($order->customer['firstname'] . ' ' . $order->customer['lastname'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
-
-/*MAIL MANAGER disabled!
+*/
 	//get status of mail manager create account  email
   $mail_manager_status_query = tep_db_query("select status, template, htmlcontent, txtcontent from  " . TABLE_MM_RESPONSEMAIL . "  where mail_id = '1'");
   $mail_manager_status = tep_db_fetch_array($mail_manager_status_query);
@@ -341,9 +346,13 @@ $order_total_modules->apply_credit(); // CCGV
   if (isset($mail_manager_status['status']) && ($mail_manager_status['status'] == '1')) {
 	include(DIR_WS_MODULES.'mail_manager/order_confirm.php');
 	}else{
+  //URE:NEW send attachement
+  $attachArr = array('obchodni-podminky.pdf'=>'pub/obchodni-podminky.pdf', 'navratovy-reklamacni-list.pdf'=>'pub/navratovy-reklamacni-list.pdf', 'navratovy-reklamacni-list.doc'=>'pub/navratovy-reklamacni-list.doc');
 	tep_mail($order->customer['firstname'] . ' ' . $order->customer['lastname'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
-  }*/
+  }
 /* ** EOf alterations for Mail Manager ** */
+  
+  tep_mail($custFirstName . ' ' . $custLastName, $custEmail, EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $attachArr);
 
 // send emails to other people
   if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
