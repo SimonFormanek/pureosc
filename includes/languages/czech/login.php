@@ -10,5 +10,5 @@
   Released under the GNU General Public License
 */
 
-define('NAVBAR_TITLE', 'Přihlášení',true);
-define('HEADING_TITLE', 'Prosím vstupte.',true);
+define('NAVBAR_TITLE', 'Přihlášení/registrace',true);
+define('HEADING_TITLE', 'Přihlášení/registrace',true);

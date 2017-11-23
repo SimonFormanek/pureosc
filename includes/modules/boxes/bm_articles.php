@@ -68,7 +68,7 @@
             $topics_string .= "&nbsp;&nbsp;";
           }
 
-          $topics_string .= '<span class="articleLinkMarker">-&nbsp;<a href="';
+          $topics_string .= '<span class="articleLinkMarker">&nbsp;&nbsp;<a href="';
 
           if ($tree[$counter]['parent'] == 0) {
             $tPath_new = 'tPath=' . $counter;
@@ -295,10 +295,10 @@
         /********************* ADD A SEARCH FUNCTION ********************/
         if (ARTICLE_BOX_DISPLAY_SEARCH_ARTICLES_SECTION == 'true') {
             $articlesArray['search']['sort_order'] = ARTICLE_BOX_DISPLAY_SEARCH_ARTICLES_SECTION_SORT_ORDER;
-             $articlesArray['search']['string'] = '<div class="articleSearch">' . TEXT_ARTICLE_SEARCH  .
+             $articlesArray['search']['string'] = '<div class="articleSearch">' /*. TEXT_ARTICLE_SEARCH */ .
                                                   tep_draw_form('article_search', tep_href_link('article_manager_search_result.php', '', 'NONSSL', false), 'get') .
-                                                  '<input type="text" name="article_keywords" value="' . TEXT_ARTICLE_SEARCH_STRING . '" onFocus="form.article_keywords.value=\'\';" style="width: 90%" maxlength="35" ><br />'.
-                                                  tep_hide_session_id() . tep_draw_button(IMAGE_BUTTON_SEARCH, 'fa fa-search', null, 'primary', null, 'btn-success') .
+                                                  '<input class="form-control" type="text" name="article_keywords" value="' . TEXT_ARTICLE_SEARCH_STRING . '" onFocus="form.article_keywords.value=\'\';" style="width: 99%" maxlength="35" >'.
+                                                  tep_hide_session_id() . /*tep_draw_button(IMAGE_BUTTON_SEARCH, 'fa fa-search', null, 'primary', null, 'btn-success')*/ 
                                                   '</form></div>'; //pure:bugfix:articles tep_draw_button (line above)
         }
 

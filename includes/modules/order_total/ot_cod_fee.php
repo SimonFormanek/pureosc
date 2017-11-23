@@ -50,7 +50,9 @@
     function process() {
       global $order, $currencies, $cod_cost, $cod_country, $shipping;
 
-      if (MODULE_ORDER_TOTAL_COD_STATUS == 'true') {
+     
+     if (MODULE_ORDER_TOTAL_COD_STATUS == 'true') {
+
         $tax = tep_get_tax_rate(MODULE_ORDER_TOTAL_COD_TAX_CLASS);
 
         //Will become true, if cod can be processed.
@@ -91,6 +93,8 @@
           } else {
             //COD selected, but no shipping module which offers COD
           }
+          //PURE:NEW if NO shipping_cost DISABLED
+					if ($order->info['shipping_cost'] < 0.1) $cod_cost = 0.00;
 
         if ($cod_country) {
             $order->info['tax'] += tep_calculate_tax($cod_cost, $tax);

@@ -205,7 +205,7 @@ define('IMAGE_BUTTON_NOTIFICATIONS', 'Zpráva',true);
 define('IMAGE_BUTTON_QUICK_FIND', 'Rychlé hledání',true);
 define('IMAGE_BUTTON_REMOVE_NOTIFICATIONS', 'Smazat zprávu',true);
 define('IMAGE_BUTTON_REVIEWS', 'Hodnocení',true);
-define('IMAGE_BUTTON_SEARCH', 'Hledat',true);
+define('IMAGE_BUTTON_SEARCH', 'Vyhledat',true);
 define('IMAGE_BUTTON_SHIPPING_OPTIONS', 'Doprava',true);
 define('IMAGE_BUTTON_TELL_A_FRIEND', 'Dejte vědět příteli',true);
 define('IMAGE_BUTTON_UPDATE', 'obnovit',true);
@@ -356,33 +356,33 @@ define('ENTRY_VAT_NUMBER', 'DIČ:',true);
 define('ENTRY_VAT_NUMBER_TEXT_2', '',true);
 
 /**** BEGIN ARTICLE MANAGER ****/
-define('BOX_HEADING_ARTICLES', 'Articles');
-define('BOX_ALL_ARTICLES', 'All Articles');
-define('BOX_ALL_BLOG_ARTICLES', 'All Blog Articles');
-define('BOX_ARTICLE_SUBMIT', 'Submit An Article');
-define('BOX_ARTICLE_TOPICS', 'All Topics');
-define('BOX_NEW_ARTICLES', 'New Articles');
-define('TEXT_ARTICLE_SEARCH', 'Search Our Articles');
-define('TEXT_ARTICLE_SEARCH_STRING', 'Enter Keywords Here');
-define('TEXT_DISPLAY_NUMBER_OF_ARTICLES', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> articles)');
-define('TEXT_DISPLAY_NUMBER_OF_ARTICLES_NEW', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> new articles)');
+define('BOX_HEADING_ARTICLES', 'Články');
+define('BOX_ALL_ARTICLES', 'Všechny články');
+define('BOX_ALL_BLOG_ARTICLES', 'Všechny blogy');
+define('BOX_ARTICLE_SUBMIT', 'Odeslat článek');
+define('BOX_ARTICLE_TOPICS', 'Všechny kategorie');
+define('BOX_NEW_ARTICLES', 'Nový článek');
+define('TEXT_ARTICLE_SEARCH', 'Vyhledávání v článcích');
+define('TEXT_ARTICLE_SEARCH_STRING', 'hledat článek');
+define('TEXT_DISPLAY_NUMBER_OF_ARTICLES', 'Zobrazuji <b>%d</b> až <b>%d</b> (z <b>%d</b> článků)');
+define('TEXT_DISPLAY_NUMBER_OF_ARTICLES_NEW', 'Zobrazuji <b>%d</b> až <b>%d</b> (z <b>%d</b> nových článků)');
 define('TEXT_ARTICLES', 'Níže je seznam všech článků od nejnovějších k nejstarším.');
-define('TABLE_HEADING_AUTHOR', 'Author');
-define('TABLE_HEADING_ABSTRACT', 'Abstract');
-define('TEXT_PXSELL_ARTICLES', 'Related Articles');
-define('BOX_HEADING_AUTHORS', 'Articles by Author');
-define('BOX_ARTICLES_BLOG_COMMENTS', 'Blog Comments');
-define('NAVBAR_TITLE_DEFAULT', 'Articles');
-define('BOX_RSS_ARTICLES', 'Articles RSS Feed');
-define('BOX_UPCOMING_ARTICLES', 'Upcoming Articles');
-define('BOX_HEADING_TELL_A_FRIEND', 'Email Friend');
+define('TABLE_HEADING_AUTHOR', 'Autor');
+define('TABLE_HEADING_ABSTRACT', 'Shrnutí');
+define('TEXT_PXSELL_ARTICLES', 'Příbuzné články');
+define('BOX_HEADING_AUTHORS', 'Články podle autora');
+define('BOX_ARTICLES_BLOG_COMMENTS', 'Diskuse k článkům');
+define('NAVBAR_TITLE_DEFAULT', 'Články');
+define('BOX_RSS_ARTICLES', 'RSS Feed k článkům');
+define('BOX_UPCOMING_ARTICLES', 'Připravované články');
+define('BOX_HEADING_TELL_A_FRIEND', 'Poslat na e-mail');
 /**** END ARTICLE MANAGER ****/
 
 /*** Begin Header Tags SEO ***/
-define('BOX_HEADING_HEADERTAGS_TAGCLOUD', 'Popular Searches');
-define('TEXT_SEE_MORE', 'see more');
-define('TEXT_SEE_MORE_FULL', 'see more about %s');
-define('HTS_OG_AVAILABLE_STOCK', 'Available Stock');
-define('HTS_OG_PRICE', 'Price');
+define('BOX_HEADING_HEADERTAGS_TAGCLOUD', 'Populární vyhledávání');
+define('TEXT_SEE_MORE', 'více');
+define('TEXT_SEE_MORE_FULL', 'více o %s');
+define('HTS_OG_AVAILABLE_STOCK', 'Sostupnost skladem');
+define('HTS_OG_PRICE', 'Cena');
 /*** End Header Tags SEO ***/
 

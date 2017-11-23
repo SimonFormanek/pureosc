@@ -1,7 +1,28 @@
 <?php
-/*
+/* 
+May 03 2004 1:43 CST
+******************Coding Monkey Update*******************
+*                                                       *
+*  This script has now been updated to do flat and      *
+*  percentage based shipping i.e.                       *
+*                                                       *
+*  3:8.50,500:13%,99999:20.00                           *
+*                                                       *
+*  This means that anything up to three dollars or      *
+*  pounds = $8.50 upto 500 $ or pounds = 13% of total   *
+*  99999 lbs or $ = $20.00                              *
+*                                                       *
+*  You can have as many percentage or flat setting as   *
+*  you wish                                             *
+*                                                       *
+*  I have not updated any of the other info someone     *
+*  else Can if they wish or I may do it later.          * 
+*                                                       *
+*********************************************************
 
-  $Id$
+
+
+  $Id: zones.php,v 1.20 2003/06/15 19:48:09 thomasamoulton Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -48,7 +69,7 @@
   separated by commas with no spaces or other punctuation. For example:
     1: US
     2: CA
-    3: AT,BE,GB,FR,DE,GL,IS,IE,IT,NO,NL,DK,PL,ES,SE,CH,FI,PT,IL,GR
+    3: GB,FR,DE,NL,JP
     4: JP,AU,NZ,SG
     5: TW,CN,HK
 
@@ -81,7 +102,7 @@
   shops, you will not want to enter every country.  This is often 
   because of too much fraud from certain places. If a country is not
   listed, then the module will add a $0.00 shipping charge and will
-  indicate that shipping is not available to that destination.  
+  indicate that shipping is not available to that destination.
   PLEASE NOTE THAT THE ORDER CAN STILL BE COMPLETED AND PROCESSED!
 
   It appears that the osC shipping system automatically rounds the 
@@ -108,12 +129,18 @@
       $this->enabled = ((MODULE_SHIPPING_ZONES_STATUS == 'True') ? true : false);
 
       // CUSTOMIZE THIS SETTING FOR THE NUMBER OF ZONES NEEDED
-      $this->num_zones = 1;
+      $this->num_zones = 3;
     }
 
 // class methods
     function quote($method = '') {
-      global $order, $shipping_weight, $shipping_num_boxes;
+      global $order, $cart, $shipping_weight, $shipping_num_boxes;
+      
+      if (MODULE_SHIPPING_ZONES_MODE == 'price') {
+        $order_total = $cart->show_total();
+      } else {
+        $order_total = $shipping_weight;
+      }
 
       $dest_country = $order->delivery['country']['iso_code_2'];
       $dest_zone = 0;
@@ -121,12 +148,18 @@
 
       for ($i=1; $i<=$this->num_zones; $i++) {
         $countries_table = constant('MODULE_SHIPPING_ZONES_COUNTRIES_' . $i);
-        $country_zones = preg_split("/[,]/", $countries_table);
+        $country_zones = preg_split("/[,]/i", $countries_table);
         if (in_array($dest_country, $country_zones)) {
           $dest_zone = $i;
           break;
+        }// rest of the world
+        if ($countries_table == 'WORLD') {
+          $dest_zone = $i;
+          break;
         }
+// rest of the world eof
       }
+
 
       if ($dest_zone == 0) {
         $error = true;
@@ -134,12 +167,14 @@
         $shipping = -1;
         $zones_cost = constant('MODULE_SHIPPING_ZONES_COST_' . $dest_zone);
 
-        $zones_table = preg_split("/[:,]/" , $zones_cost);
+        $zones_table = preg_split("/[:,]/i" , $zones_cost);
         $size = sizeof($zones_table);
         for ($i=0; $i<$size; $i+=2) {
-          if ($shipping_weight <= $zones_table[$i]) {
+          if ($order_total <= $zones_table[$i]) {
             $shipping = $zones_table[$i+1];
-            $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country . ' : ' . $shipping_weight . ' ' . MODULE_SHIPPING_ZONES_TEXT_UNITS;
+            $shipping_method = constant('MODULE_SHIPPING_ZONES_TITLE_' . $dest_zone);
+            if (MODULE_SHIPPING_ZONES_MODE == 'weight') 
+            	$shipping_method .= " : " . $shipping_weight . ' ' . MODULE_SHIPPING_ZONES_TEXT_UNITS;
             break;
           }
         }
@@ -148,7 +183,27 @@
           $shipping_cost = 0;
           $shipping_method = MODULE_SHIPPING_ZONES_UNDEFINED_RATE;
         } else {
-          $shipping_cost = ($shipping * $shipping_num_boxes) + constant('MODULE_SHIPPING_ZONES_HANDLING_' . $dest_zone);
+          
+		 
+		  
+		  
+		  //edited by the thecodingmonkey
+
+
+          if (strpos($shipping, "%") === false) {
+	      $shipping_cost = ($shipping * $shipping_num_boxes) + constant('MODULE_SHIPPING_ZONES_HANDLING_' . $dest_zone);
+         } else {
+         $shipcost = (str_replace("%","",$shipping) / 100);
+         $shipping_cost = ($order_total * $shipcost) + constant('MODULE_SHIPPING_ZONES_HANDLING_' . $dest_zone);
+          }
+
+
+
+        //edited
+
+
+
+
         }
       }
 
@@ -165,7 +220,12 @@
       if (tep_not_null($this->icon)) $this->quotes['icon'] = tep_image($this->icon, $this->title);
 
       if ($error == true) $this->quotes['error'] = MODULE_SHIPPING_ZONES_INVALID_ZONE;
+	  if ($shipping == -1) $this->quotes['error'] = MODULE_SHIPPING_ZONES_UNDEFINED_RATE;
 
+/*  the above IF statement was added by C. Holmes chris@airchris.com October 2007. 
+It disables user selection of this zone shipping method if the rate is undefined. 
+ */
+	  
       return $this->quotes;
     }
 
@@ -181,12 +241,16 @@
       tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Zones Method', 'MODULE_SHIPPING_ZONES_STATUS', 'True', 'Do you want to offer zone rate shipping?', '6', '0', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
       tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_ZONES_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'tep_get_tax_class_title', 'tep_cfg_pull_down_tax_classes(', now())");
       tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_ZONES_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
+      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Table Method', 'MODULE_SHIPPING_ZONES_MODE', 'weight', 'The shipping cost is based on the order total or the total weight of the items ordered.', '6', '0', 'tep_cfg_select_option(array(\'weight\', \'price\'), ', now())");
       for ($i = 1; $i <= $this->num_zones; $i++) {
         $default_countries = '';
         if ($i == 1) {
-          $default_countries = 'US,CA';
+          $default_countries = 'US';
+        } else if ($i == 2) {
+          $default_countries = 'CA';
         }
         tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Zone " . $i ." Countries', 'MODULE_SHIPPING_ZONES_COUNTRIES_" . $i ."', '" . $default_countries . "', 'Comma separated list of two character ISO country codes that are part of Zone " . $i . ".', '6', '0', now())");
+        tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Zone " . $i ." Shipping Method Name', 'MODULE_SHIPPING_ZONES_TITLE_" . $i ."', 'UPS Ground " . $default_countries . "', 'Description of this shipping method shown during checkout. ie. UPS Ground.', '6', '0', now())");
         tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Zone " . $i ." Shipping Table', 'MODULE_SHIPPING_ZONES_COST_" . $i ."', '3:8.50,7:10.50,99:20.00', 'Shipping rates to Zone " . $i . " destinations based on a group of maximum order weights. Example: 3:8.50,7:10.50,... Weights less than or equal to 3 would cost 8.50 for Zone " . $i . " destinations.', '6', '0', now())");
         tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Zone " . $i ." Handling Fee', 'MODULE_SHIPPING_ZONES_HANDLING_" . $i."', '0', 'Handling Fee for this shipping zone', '6', '0', now())");
       }
@@ -197,10 +261,11 @@
     }
 
     function keys() {
-      $keys = array('MODULE_SHIPPING_ZONES_STATUS', 'MODULE_SHIPPING_ZONES_TAX_CLASS', 'MODULE_SHIPPING_ZONES_SORT_ORDER');
+      $keys = array('MODULE_SHIPPING_ZONES_STATUS', 'MODULE_SHIPPING_ZONES_MODE', 'MODULE_SHIPPING_ZONES_TAX_CLASS', 'MODULE_SHIPPING_ZONES_SORT_ORDER');
 
       for ($i=1; $i<=$this->num_zones; $i++) {
         $keys[] = 'MODULE_SHIPPING_ZONES_COUNTRIES_' . $i;
+        $keys[] = 'MODULE_SHIPPING_ZONES_TITLE_' . $i;
         $keys[] = 'MODULE_SHIPPING_ZONES_COST_' . $i;
         $keys[] = 'MODULE_SHIPPING_ZONES_HANDLING_' . $i;
       }

@@ -45,4 +45,6 @@ define('TEXT_EMAIL_VIA', 'via',true);
   
 // Purchase Without Account
   define('EMAIL_WARNING', 'NOTE: This email address has been submitted by a visitor to our online-shop. If you were not this visitor, please send a message to:  ' . STORE_OWNER_EMAIL_ADDRESS . 'Thank you for your purchase and have a nice day.',true);  
-?>
+//ORDER_SEND_CUSTOMERS_EMAIL_PHONE
+define('CUSTOMERS_PHONE','Phone: ');
+define('CUSTOMERS_E_MAIL','E-mail: ');

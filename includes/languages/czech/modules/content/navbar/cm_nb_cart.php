@@ -16,5 +16,5 @@
   define('HEADER_CART_CONTENTS', '<i class="fa fa-shopping-cart"></i> %s kusů <span class="caret"></span>');
   define('HEADER_CART_NO_CONTENTS', '<i class="fa fa-shopping-cart"></i> 0 kusů');
   define('HEADER_CART_HAS_CONTENTS', '%s kusů, %s');
-  define('HEADER_CART_VIEW_CART', 'View Cart');
+  define('HEADER_CART_VIEW_CART', 'Zobrazit košík');
   define('HEADER_CART_CHECKOUT', '<i class="fa fa-angle-right"></i> Pokladna');

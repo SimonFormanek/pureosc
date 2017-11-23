@@ -1,6 +1,6 @@
 <?php
 /*
-  $Id$
+  $Id: zones.php,v 1.3 2002/11/19 01:48:08 dgw_ Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -10,10 +10,10 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_SHIPPING_ZONES_TEXT_TITLE', 'Zone Rates',true);
-define('MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION', 'Zone Based Rates',true);
-define('MODULE_SHIPPING_ZONES_TEXT_WAY', 'Shipping to',true);
-define('MODULE_SHIPPING_ZONES_TEXT_UNITS', 'lb(s)',true);
-define('MODULE_SHIPPING_ZONES_INVALID_ZONE', 'No shipping available to the selected country',true);
-define('MODULE_SHIPPING_ZONES_UNDEFINED_RATE', 'The shipping rate cannot be determined at this time',true);
+define('MODULE_SHIPPING_ZONES_TEXT_TITLE', 'Poštovné dle tabulky zemí');
+define('MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION', 'Poštovné tabulka zemí');
+define('MODULE_SHIPPING_ZONES_TEXT_WAY', 'Ground'); //no longer used
+define('MODULE_SHIPPING_ZONES_TEXT_UNITS', 'kg');
+define('MODULE_SHIPPING_ZONES_INVALID_ZONE', 'Do dané země nelze dodat');
+define('MODULE_SHIPPING_ZONES_UNDEFINED_RATE', 'Cenu dopravy nelze vypočítat');
 ?>

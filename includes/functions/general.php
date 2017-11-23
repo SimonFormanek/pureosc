@@ -1048,32 +1048,12 @@ return $address;
 // $from_email_name   The name of the sender, e.g. Shop Administration
 // $from_email_adress The eMail address of the sender,
 //                    e.g. info@mytepshop.com
-
-/*SMAZAT OLD
-  function tep_mail($to_name, $to_email_address, $email_subject, $email_text, $from_email_name, $from_email_address) {
-    if (SEND_EMAILS != 'true') return false;
-
-    // Instantiate a new mail object
-    $message = new email(array('X-Mailer: osCommerce'));
-
-    // Build the text version
-    $text = strip_tags($email_text);
-    if (EMAIL_USE_HTML == 'true') {
-      $message->add_html($email_text, $text);
-    } else {
-      $message->add_text($text);
-    }
-
-    // Send message
-    $message->build_message();
-    $message->send($to_name, $to_email_address, $from_email_name, $from_email_address, $email_subject);
-  }
-*/
   function tep_mail($to_name, $to_email_address, $email_subject, $email_text, $from_email_name, $from_email_address, $attachments=array()) {
     if (SEND_EMAILS != 'true') return false;
 
     // Instantiate a new mail object
-    $message = new email(array('X-Mailer: osCommerce'));
+    //$message = new email(array('X-Mailer: osCommerce'));
+    $message = new email();
 
     // Build the text version
     $text = strip_tags($email_text);
@@ -1083,17 +1063,15 @@ return $address;
       $message->add_text($text);
     }
     
-    
     if(count($attachments) > 0) foreach($attachments as $aK => $aV) {
-    
-      $message->add_attachment(file_get_contents($aV), $aK, 'application/octet-stream'); 
-      
+      $message->add_attachment($aV, $aK, 'base64', 'application/octet-stream'); 
     }
 
     // Send message
     $message->build_message();
     
     $message->send($to_name, $to_email_address, $from_email_name, $from_email_address, iconv("UTF-8", "ISO-8859-1//TRANSLIT",$email_subject));
+//    $message->send($to_name, $to_email_address, $from_email_name, $from_email_address, $email_subject);
   }
 
 ////

@@ -9,7 +9,7 @@
 
   Released under the GNU General Public License
 */
-  
+
   define('MODULE_NAVIGATION_BAR_STORE_SEARCH_TITLE', 'Navigační lišta - vyhledávání ');
   define('MODULE_NAVIGATION_BAR_STORE_SEARCH_DESCRIPTION', 'Přidat vyhledávání do navigační lišty.');
   define('MODULE_NAVIGATION_BAR_STORE_SEARCH_PLACEHOLDER', 'vyhledávání');
