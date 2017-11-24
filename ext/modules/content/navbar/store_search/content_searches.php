@@ -175,7 +175,7 @@
   }
 
   //Start content searches in files
-
+/*TODO
   if (tep_not_null(MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGES)) {
     $content_files = array();
 
@@ -230,6 +230,7 @@
 
     }
   }
+*/
   // build json
   echo json_encode($array);
 ?>
