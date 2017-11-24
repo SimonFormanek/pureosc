@@ -433,7 +433,7 @@ if ($debug_level>2) echo "GENERATING_INFORMATION_PAGES\n";
 			$output = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('" . $chdir_dest_dir . "');
-\$_GET['information_id']=" . $information['information_id'] . ";
+\$_GET['info_id']=" . $information['information_id'] . ";
 \$PHP_SELF = '" . FILENAME_INFORMATION . "';
 include('" . FILENAME_INFORMATION . "');
 exit;
