@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ORDER_TOTAL_SHIPPING_TITLE', 'Shipping',true);
-  define('MODULE_ORDER_TOTAL_SHIPPING_DESCRIPTION', 'Order Shipping Cost',true);
+  define('MODULE_ORDER_TOTAL_SHIPPING_TITLE', 'Doprava',true);
+  define('MODULE_ORDER_TOTAL_SHIPPING_DESCRIPTION', 'Výše poštovného',true);
 
-  define('FREE_SHIPPING_TITLE', 'Free Shipping',true);
-  define('FREE_SHIPPING_DESCRIPTION', 'Free shipping for orders over %s',true);
+  define('FREE_SHIPPING_TITLE', 'Doprava zdarma',true);
+  define('FREE_SHIPPING_DESCRIPTION', 'Doprava zdarma pro objednávky nad  %s',true);
 ?>
