@@ -54,25 +54,6 @@
   </div>
 </div>
     
-    <div class="panel panel-success">
-  <div class="panel-heading">
-    <?php echo ITEMS; ?>
-      </div>
-  <div class="panel-body">
-   <?php 
-    
-    $products_displayed = array();
-    for ($i=0, $n=sizeof($products_array); $i<$n; $i++) {
-      if (!in_array($products_array[$i]['id'], $products_displayed)) {
-        echo '- ' . $products_array[$i]['text'];
-        echo '<br />';
-      }
-    }
-?>
-
-    </div>
-   </div>
-  </div>
 
 
 
