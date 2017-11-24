@@ -12,5 +12,5 @@
 
 define('HEADING_TITLE', 'Odhlášeno',true);
 define('NAVBAR_TITLE', 'Odhlášeno',true);
-define('TEXT_MAIN', 'Byl jste právě bezpečně odhlášen ze svého účtu.<br /><br />vaše rozpracované objednávky byly uloženy a můžete se k nim kdykoli vrátit po přihlášení.',true);
+define('TEXT_MAIN', 'Byl(a) jste právě bezpečně odhlášen(a) ze svého účtu.<br /><br />vaše rozpracované objednávky byly uloženy a můžete se k nim kdykoli vrátit po přihlášení.',true);
 ?>
