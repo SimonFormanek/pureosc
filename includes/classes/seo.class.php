@@ -1931,12 +1931,9 @@ class SEO_URL{
  */    
 
         function strip($string){
-                if ( /*CHARSET == 'utf-8'*/ true ) {
-                   //$string =  iconv("ISO-8859-1", "UTF-8//TRANSLIT", $string);
+                if (CHARSET == 'utf-8') {
                    $string = remove_accents($string); 
-                   //setlocale(LC_ALL, 'cs_CZ');
-                   //$string = iconv("UTF-8", "ASCII//TRANSLIT", $string);
-  return $string;
+                   $string = iconv("UTF-8", "ASCII//TRANSLIT", $string);
                 }
                 if ( is_array($this->attributes['SEO_CHAR_CONVERT_SET']) ) $string = strtr($string, $this->attributes['SEO_CHAR_CONVERT_SET']);
 

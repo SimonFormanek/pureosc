@@ -1070,8 +1070,7 @@ return $address;
     // Send message
     $message->build_message();
     
-    $message->send($to_name, $to_email_address, $from_email_name, $from_email_address, iconv("UTF-8", "ISO-8859-1//TRANSLIT",$email_subject));
-//    $message->send($to_name, $to_email_address, $from_email_name, $from_email_address, $email_subject);
+    $message->send($to_name, $to_email_address, $from_email_name, $from_email_address, iconv("UTF-8", "ASCII//TRANSLIT",$email_subject));
   }
 
 ////
