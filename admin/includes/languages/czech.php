@@ -318,7 +318,7 @@ define('ERROR_DESTINATION_NOT_WRITEABLE', 'Chyba: Cíl není zapisovatelný.',tr
 define('ERROR_FILE_NOT_SAVED', 'Chyba: Soubor se neuložil.',true);
 define('ERROR_FILETYPE_NOT_ALLOWED', 'Chyba: tento typ souboru není povolen.',true);
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Povedlo se: soubor se správně nahrál.',true);
-define('WARNING_NO_FILE_UPLOADED', 'Chyba: No file uploaded.',true);
+define('WARNING_NO_FILE_UPLOADED', 'Chyba: soubor se nenahrál.',true);
 
 // bootstrap helper
 define('MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION', '<p>Content Width can be 12 or less per column per row.</p><p>12/12 = 100% width, 6/12 = 50% width, 4/12 = 33% width.</p><p>Total of all columns in any one row must equal 12 (eg:  3 boxes of 4 columns each, 1 box of 12 columns and so on).</p>',true);
@@ -330,7 +330,7 @@ define('MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION', '<p>Content Width can be 12 o
 */
 // Definition for SEO Header Tags Reloaded
   define('BOX_CUSTOMERS_ORDERS', 'Objednávky',true);
-  define('PLACEHOLDER_COMMA_SEPARATION', 'Must, Be, Comma, Separated',true);
+  define('PLACEHOLDER_COMMA_SEPARATION', 'Musí, být, odděleno, čárkami',true);
 // BOF Order Maker
   define('IMAGE_CREATE_ORDER', 'Vytvořit',true);
   define('BOX_CUSTOMERS_CREATE_ORDER', 'Vytvořit objednávku',true);
@@ -346,62 +346,62 @@ define('MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION', '<p>Content Width can be 12 o
 // Database Check Tool
   define('BOX_TOOLS_DATABASE_CHECK', 'Database Check',true);
 // CCGV
-  define('BOX_HEADING_GV_ADMIN', 'Vouchers/Coupons',true);
-  define('BOX_GV_ADMIN_QUEUE', 'Gift Voucher Queue',true);
-  define('BOX_GV_ADMIN_MAIL', 'Mail Gift Voucher',true);
-  define('BOX_GV_ADMIN_SENT', 'Gift Vouchers sent',true);
-  define('BOX_COUPON_ADMIN','Kupon Admin',true);
-  define('IMAGE_RELEASE', 'Redeem Gift Voucher',true);
-  define('TEXT_DISPLAY_NUMBER_OF_GIFT_VOUCHERS', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> gift vouchers)',true);
-  define('TEXT_DISPLAY_NUMBER_OF_COUPONS', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> coupons)',true);
+  define('BOX_HEADING_GV_ADMIN', 'Dárkové poukazy',true);
+  define('BOX_GV_ADMIN_QUEUE', 'Fronta dárkových poukazů',true);
+  define('BOX_GV_ADMIN_MAIL', 'Zasílání dárkových poukazů e-mailem',true);
+  define('BOX_GV_ADMIN_SENT', 'Dárkové poukazy odeslané',true);
+  define('BOX_COUPON_ADMIN','Administrace dárkových poukazů',true);
+  define('IMAGE_RELEASE', 'Uplatnění dárkového poukazu',true);
+  define('TEXT_DISPLAY_NUMBER_OF_GIFT_VOUCHERS', 'Zobrazit <b>%d</b> do <b>%d</b> (z <b>%d</b> dárkových poukazů)',true);
+  define('TEXT_DISPLAY_NUMBER_OF_COUPONS', 'Zobrazit <b>%d</b> do <b>%d</b> (z <b>%d</b> kuponů)',true);
   define('TEXT_VALID_PRODUCTS_LIST', 'Zboží - seznam',true);
   define('TEXT_VALID_PRODUCTS_ID', 'Zboží ID',true);
   define('TEXT_VALID_PRODUCTS_NAME', 'Název zboží',true);
-  define('TEXT_VALID_PRODUCTS_MODEL', 'Zboží - model Products Model',true);
+  define('TEXT_VALID_PRODUCTS_MODEL', 'Zboží - model',true);
   define('TEXT_VALID_CATEGORIES_LIST', 'Kategorie - seznam',true);
   define('TEXT_VALID_CATEGORIES_ID', 'Kategorie ID',true);
   define('TEXT_VALID_CATEGORIES_NAME', 'Kategorie název',true);  
 // Mail Manager
   define('BOX_HEADING_MAIL_MANAGER', 'Mail Manager',true);
   define('BOX_MM_BULKMAIL', 'BulkMail Manager',true);
-  define('BOX_MM_TEMPLATES', 'Template Manager',true);
+  define('BOX_MM_TEMPLATES', 'Šablony',true);
   define('BOX_MM_EMAIL', 'zaslat e-mail',true);
   define('BOX_MM_RESPONSEMAIL', 'Response Mail',true);
   define('BOX_TOOLS_MAIL_MANAGER', 'Mail Manager',true);
 // BOF Order Maker
-define('TABLE_HEADING_EDIT_ORDERS', 'To modify the order',true);
-define('TEXT_IMAGE_CREATE','Create Order',true);
-define('TEXT_INFO_CUSTOMER_SERVICE_ID','Entered by:',true);
-define('IMAGE_CREATE_ORDER', 'Create New Order',true);
-define('BOX_CUSTOMERS_CREATE_ORDER', 'Create Order',true);
+define('TABLE_HEADING_EDIT_ORDERS', 'Změnit objednávku',true);
+define('TEXT_IMAGE_CREATE','Vytvořit objednávku',true);
+define('TEXT_INFO_CUSTOMER_SERVICE_ID','Vloženo:',true);
+define('IMAGE_CREATE_ORDER', 'Vytvořit novou objednávku',true);
+define('BOX_CUSTOMERS_CREATE_ORDER', 'Vytvořit objednávku',true);
 // EOF Order Maker
 // BOF Create Account 
 define('BOX_CUSTOMERS_CREATE_ACCOUNT', 'Vytvořit zákazníka',true);
-define('IMAGE_CONTINUE', 'Continue',true);
+define('IMAGE_CONTINUE', 'Pokračovat',true);
 // EOF Create Account
 //VAT number
 define('ENTRY_VAT_NUMBER', 'DIČ:',true);
 
 /**** BEGIN ARTICLE MANAGER ****/
-define('BOX_HEADING_ARTICLES', 'Manager Článků');
-define('BOX_TOPICS_ARTICLES', 'Kategorie/Články');
-define('BOX_ARTICLES_CONFIG', 'Konfigurace');
-define('BOX_ARTICLES_AUTHORS', 'Autoři');
-define('BOX_ARTICLES_BLOG_COMMENTS', 'Blogovací komentáře');
-define('BOX_ARTICLES_REVIEWS', 'Hodnocení článků - Reviews');
-define('BOX_ARTICLES_XSELL', 'Přiřazení produktů k článkům');
-define('IMAGE_NEW_TOPIC', 'Nová kategorie');
-define('IMAGE_NEW_ARTICLE', 'Nový článek');
-define('TEXT_DISPLAY_NUMBER_OF_AUTHORS', 'Zobrazení <b>%d</b> do <b>%d</b> (z <b>%d</b> autorů)');
+define('BOX_HEADING_ARTICLES', 'Manager článků',true);
+define('BOX_TOPICS_ARTICLES', 'Kategorie/Články',true);
+define('BOX_ARTICLES_CONFIG', 'Konfigurace',true);
+define('BOX_ARTICLES_AUTHORS', 'Autoři',true);
+define('BOX_ARTICLES_BLOG_COMMENTS', 'Blogovací komentáře',true);
+define('BOX_ARTICLES_REVIEWS', 'Hodnocení článků - Reviews',true);
+define('BOX_ARTICLES_XSELL', 'Přiřazení produktů k článkům',true);
+define('IMAGE_NEW_TOPIC', 'Nová kategorie',true);
+define('IMAGE_NEW_ARTICLE', 'Nový článek',true);
+define('TEXT_DISPLAY_NUMBER_OF_AUTHORS', 'Zobrazit <b>%d</b> do <b>%d</b> (z <b>%d</b> autorů)',true);
 /**** END ARTICLE MANAGER ****/
 
 /*** Begin Header Tags SEO ***/
 // header_tags_seo text in includes/boxes/header_tags_seo.php
-define('BOX_HEADING_HEADER_TAGS_SEO', 'Header Tags SEO');
-define('BOX_HEADER_TAGS_ADD_A_PAGE', 'Page Control');
-define('BOX_HEADER_TAGS_FILL_TAGS', 'Fill Tags');
-define('BOX_HEADER_TAGS_KEYWORDS', 'Keywords');
-define('BOX_HEADER_TAGS_SILO', 'Silo Control');
-define('BOX_HEADER_TAGS_SOCIAL', 'Social');
-define('BOX_HEADER_TAGS_TEST', 'Test');
+define('BOX_HEADING_HEADER_TAGS_SEO', 'Header Tags SEO',true);
+define('BOX_HEADER_TAGS_ADD_A_PAGE', 'Page Control',true);
+define('BOX_HEADER_TAGS_FILL_TAGS', 'Fill Tags',true);
+define('BOX_HEADER_TAGS_KEYWORDS', 'Klíčová slova',true);
+define('BOX_HEADER_TAGS_SILO', 'Silo Control',true);
+define('BOX_HEADER_TAGS_SOCIAL', 'Sociální sítě',true);
+define('BOX_HEADER_TAGS_TEST', 'Test',true);
 /*** End Header Tags SEO ***/
