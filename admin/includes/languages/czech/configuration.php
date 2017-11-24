@@ -37,3 +37,6 @@ define('CONFIG_DESCRIPTION_LISTING_SNIPPET_LENGHT','Zkrácení délky úryvku v�
 //Monthly Products Sales Report 
 define('CONFIG_TITLE_COMISSION_PERCENTAGE','Rabat', true);
 define('CONFIG_DESCRIPTION_COMISSION_PERCENTAGE','Nastavit percentuální výši rabatu pro modul výkazy/Měsíční přehled prodeje produktů. 0 = nezobrazovat rabat', true);
+
+define('CONFIG_TITLE_ORDER_SEND_CUSTOMERS_EMAIL_PHONE','Email a telefon zákazníka v objednávce');
+define('CONFIG_DESCRIPTION_ORDER_SEND_CUSTOMERS_EMAIL_PHONE','Zasílat email a telefon zákazníka v emailovém potvrzení objednávky?');

@@ -27,24 +27,35 @@ color: #FF0000;
 .articlePaddingSubmit {padding-bottom:10px}
 /**** END ARTICLE MANAGER ****/
 
-/* Banner rotator contnent module */
+/* Banner rotator content module */
 #rotator {
     visibility: hidden;
 }
-
 .visible { 
     visibility: visible !important; 
+}
+/* typeahead searchbox */
+ul.typeahead>li>a {
+    white-space: normal;
+}
+
+ul.typeahead.dropdown-menu {
+    width: 350px;
 }
 
 /*MainPage Articles*/
 .mainpage-blog{font-weight:bold;font-size:130%}
 
+h2{margin:0;padding:0.5em 0 0.5em 0;font-weight:bold;font-size:120%}
+
 
 /* @media Default values */
 .piGalDiv{float:right; width:45%;margin-left:15px}
+.fixedHeightBox{min-height:390px;}
 
 @media only screen and (max-width:639px){
 	.piGalDiv{float:none; margin:auto;clear:left;width:90%;margin-bottom:20px}
+	.fixedHeightBox{min-height:auto;}
 }
 
 @media only screen and (max-width:569px){

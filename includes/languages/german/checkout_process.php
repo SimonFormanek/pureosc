@@ -25,4 +25,6 @@ define('EMAIL_TEXT_PAYMENT_METHOD', 'Zahlungsweise',true);
 
 define('EMAIL_SEPARATOR', '------------------------------------------------------',true);
 define('TEXT_EMAIL_VIA', 'durch',true);
-?>
+//send_customers_email_phone
+define('CUSTOMERS_PHONE','Phone: ');
+define('CUSTOMERS_E_MAIL','E-mail: ');

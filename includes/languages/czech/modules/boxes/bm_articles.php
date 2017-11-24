@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_ARTICLES_TITLE', 'Articles');
-  define('MODULE_BOXES_ARTICLES_DESCRIPTION', 'Show Article Manager Articles InfoBox');
-  define('MODULE_BOXES_ARTICLES_BOX_TITLE', 'Articles');
+  define('MODULE_BOXES_ARTICLES_TITLE', 'Články');
+  define('MODULE_BOXES_ARTICLES_DESCRIPTION', 'Zobrazit InfoBox Správce článků');
+  define('MODULE_BOXES_ARTICLES_BOX_TITLE', 'Články');
 ?>
