@@ -92,7 +92,7 @@ if (file_exists('../cronlock/' . $argv['1'] . '.' . $argv['2'])){
 //TODO:move to configure.php
 if (!file_exists('../crontime/' . $argv['1'] . '.' . $argv['2']))  file_put_contents('../crontime/' . $argv['1'] . '.' . $argv['2'], '0301');
 $crontime = (int)file_get_contents('../crontime/' . $argv['1'] . '.' . $argv['2']);
-echo 'Conf. loaded OK' ."\n";
+if ($debug_level>2) echo 'Conf. loaded OK' ."\n";
 
 /*
 } else {
@@ -136,10 +136,10 @@ echo "cas: " . date("H:i:s") . "\n";
     tep_db_query("UPDATE " . TABLE_INFORMATION . " SET " . $cached_flag . " = 0 WHERE language_id =" . $lng['languages_id']);
     tep_db_query("UPDATE " . TABLE_MANUFACTURERS_INFO . " SET " . $cached_flag . " = 0 WHERE languages_id =" . $lng['languages_id']);
     tep_db_query("UPDATE " . TABLE_TOPICS_DESCRIPTION . " SET " . $cached_flag . " = 0 WHERE language_id =" . $lng['languages_id']);
-echo "Action: Cleaning destination\n";
+if ($debug_level>2) echo "Action: Cleaning destination\n";
 	shell_exec('rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . ' --delete');
 } else {
-echo "Action: updating...\n";
+if ($debug_level>2) echo "Action: updating...\n";
 }
 
 if ($debug_level>2) echo "GENERATING_PRODUCTS\n";
@@ -158,7 +158,6 @@ $products_query = tep_db_query("SELECT p.products_id
     if (tep_db_num_rows($products_query)) {
 		//select only products from active (sort_order > 0) categories:
     if (SERVER_INSTANCE !='admin') {
-//    $canonical_category_query = tep_db_query("SELECT categories_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE canonical = '1' AND ");
   	$inactive_query = tep_db_query("SELECT sort_order FROM " . TABLE_CATEGORIES . " c, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c WHERE 
   	c.categories_id = p2c.categories_id AND canonical = '1' AND p2c.products_id = " . $products['products_id']);
   	$inactive = tep_db_fetch_array($inactive_query);
@@ -166,14 +165,23 @@ $products_query = tep_db_query("SELECT p.products_id
   	if ($debug_level>2) echo "id NEAKT:" . $products['products_id'];
 		continue;
   	}
+	}    
+	$canonical_category_query = tep_db_query("SELECT categories_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE canonical = '1' AND products_id=" . $products['products_id']);
+//	if (tep_db_num_rows($canonical_category_query)) {
+		$canonical_category = tep_db_fetch_array($canonical_category_query);
+		if ($canonical_category['categories_id'] >0){
+	if ($debug_level>2) echo "canonical je: " .tep_get_category_path($canonical_category['categories_id']) . "Produkt:" .$products['products_id'] . "\n";
+	} else {
+		echo "ERROR: Canonical not found Products_id: " . $products['products_id'] . "\n";
 	}
-			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $products['products_id'])) . "/";
+			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_PRODUCT_INFO, 'cPath=' . tep_get_category_path($canonical_category['categories_id']) . '&products_id=' . $products['products_id'])) . "/";
 				if (!is_dir($newpath)){
 				shell_exec('mkdir -p ' . $newpath);
 				}
 			$output = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('" . $chdir_dest_dir . "');
+\$_GET['cPath']='" . tep_get_category_path($canonical_category['categories_id']) . "';
 \$_GET['products_id']=" . $products['products_id'] . ";
 \$PHP_SELF = '" . FILENAME_PRODUCT_INFO . "';
 include('" . FILENAME_PRODUCT_INFO . "');
@@ -183,7 +191,7 @@ exit;
 ";
 			//create static
 			$curl_handle=curl_init();
-			curl_setopt($curl_handle, CURLOPT_URL,HTTP_SERVER . '/product_info.php?products_id=' . $products['products_id']);
+			curl_setopt($curl_handle, CURLOPT_URL,HTTP_SERVER . '/product_info.php?cPath=' . tep_get_category_path($canonical_category['categories_id']) . '&products_id=' . $products['products_id']);
 			curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER . ":" . WGET_PASSWORD);
 			curl_setopt($curl_handle,CURLOPT_USERAGENT,'wget');
 			curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
@@ -259,9 +267,7 @@ if ($debug_level>2) echo GENERATING_CATEGORIES ."\n";
     AND sort_order > 0");
     while ($categories = tep_db_fetch_array($categories_query)) {
     if (tep_db_num_rows($categories_query)) {
-    echo 'path:' .  tep_get_category_path($categories['categories_id']) . "\n";
-//			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_DEFAULT, 'cPath=3_4_5')) . "/";
-//			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_DEFAULT, 'cPath=' . tep_get_category_path($categories['categories_id']))) . "/";
+if ($debug_level>2)    echo 'cPath:' .  tep_get_category_path($categories['categories_id']) . "\n";
 			$newpath =  RSYNC_LOCAL_DEST_PATH . OSC_DIR . str_replace(HTTP_SERVER , '' , tep_href_link(FILENAME_DEFAULT, 'cPath=' . $categories['categories_id'])) . "/";
 
 				if (!is_dir($newpath)){
@@ -274,7 +280,6 @@ chdir('" . $chdir_dest_dir . "');
 \$PHP_SELF = '" . FILENAME_DEFAULT . "';
 include('" . FILENAME_DEFAULT . "');
 exit;
-//tady to je
 }
 ?>
 ";
@@ -340,7 +345,7 @@ if ($debug_level>2) "GENERATING_MANUFACTURERS\n";
 */
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-if ($debug_level>2) echo "GENERATING_TOPICS\n";
+if ($debug_level>2) echo "GENERATING TOPICS\n";
     $topics_query = tep_db_query("SELECT topics_id, topics_name FROM " . TABLE_TOPICS_DESCRIPTION . " td
     WHERE 
     " . $cached_flag . " = 0 
@@ -377,7 +382,7 @@ exit;
 
 }}
 
-echo "GENERATING ARTICLES\n";
+if ($debug_level>2) echo "GENERATING ARTICLES\n";
 
 //TODO: generate admin version articles_status=0
     $articles_query = tep_db_query("SELECT a.articles_id, articles_name FROM " . TABLE_ARTICLES . " a, " . TABLE_ARTICLES_DESCRIPTION . " ad 
