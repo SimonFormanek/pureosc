@@ -83,6 +83,7 @@
   <h1 class="pull-right" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><?php echo $products_price; ?></h1>
   <?php } ?>
   <h1><?php echo $products_name; ?></h1>
+<br />
 </div>
 
 <?php
@@ -154,9 +155,11 @@
 	  } else {
       	list($width, $height) = file_exists(DIR_WS_IMAGES . $product_info['products_image'])? getimagesize(DIR_WS_IMAGES . $product_info['products_image']) : array(150,150); 
 ?>
-    <div id="piGal">
-      <?php echo tep_image(DIR_WS_IMAGES . $product_info['products_image'], addslashes($product_info['products_name']), KISSIT_MAIN_PRODUCT_IMAGE_WIDTH, KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT, ((KISSIT_MAIN_PRODUCT_WATERMARK_SIZE > 0)? preg_replace('%<img width="[0-9 ]+" height="[0-9 ]+" src="(.*)title=.+%', 'data-highres="$1', tep_image(DIR_WS_IMAGES . $product_info['products_image'], null, $width, $height)) : 'data-highres="'. DIR_WS_IMAGES . $product_info['products_image'] . '"')); ?>
-    </div>
+    <div class="piGalDiv">
+      <?php 
+echo tep_image(DIR_WS_IMAGES . $product_info['products_image'], addslashes($product_info['products_name']), KISSIT_MAIN_PRODUCT_IMAGE_WIDTH, KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT, ((KISSIT_MAIN_PRODUCT_WATERMARK_SIZE > 0)? preg_replace('%<img width="[0-9 ]+" height="[0-9 ]+" src="(.*)title=.+%', 'data-highres="$1', tep_image(DIR_WS_IMAGES . $product_info['products_image'], null, $width, $height)) : 'data-highres="'. DIR_WS_IMAGES . $product_info['products_image'] . '"')); 
+?>
+
 <?php /* ** EOF alterations for KISS IT ** */ ?>
 <?php
       }
