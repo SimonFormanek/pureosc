@@ -13,5 +13,5 @@
 define('NAVBAR_TITLE_1', 'Vytvořit účet',true);
 define('NAVBAR_TITLE_2', 'Povedlo se',true);
 define('HEADING_TITLE', 'Váš účet byl vytvořen!',true);
-define('TEXT_ACCOUNT_CREATED', 'Blahopřejeme! Máte u nás vytvořený účet! Můžete plně využít služeb našeho elektronického obchodu. Máte-li dotaz, napište nám. <a href="' . tep_href_link(FILENAME_CONTACT_US) . '">provozovatel obchodu</a>.<br /><br />potvrzení Vám bude zasláno va Váš e-mail. Pokud jej neobdržíte během jedné hodiny,  <a href="' . tep_href_link(FILENAME_CONTACT_US) . '">kontaktujte nás:</a>.',true);
+define('TEXT_ACCOUNT_CREATED', 'Blahopřejeme, váš účet byl vytvořen. Můžete plně využít služeb našeho eshopu. Máte-li dotaz, využijte kontaktní formulář: <a href="' . tep_href_link(FILENAME_CONTACT_US) . '">Napište nám</a>.<br /><br />potvrzení Vám bude zasláno na e-mail. Pokud jej neobdržíte během jedné hodiny,  kontaktujte nás',true);
 ?>
