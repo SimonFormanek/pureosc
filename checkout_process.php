@@ -285,7 +285,8 @@ $order_total_modules->apply_credit(); // CCGV
 /* ** EOF alteration for CCGV ** */
 
 // lets start with the email confirmation
-  $email_order = STORE_NAME . "\n" . 
+  $email_order = EMAIL_HEADER_TXT . "\n\n" .
+  							 STORE_NAME . "\n" . 
                  EMAIL_SEPARATOR . "\n" . 
                  EMAIL_TEXT_ORDER_NUMBER . ' ' . $insert_id . "\n";
 /* ** Altered for PWA ** 				 

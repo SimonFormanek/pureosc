@@ -18,7 +18,7 @@
   Released under the GNU General Public License
 */
 
-define('EMAIL_TEXT_SUBJECT', 'Vaše objednávka na serveru ' . STORE_NAME);
+define('EMAIL_TEXT_SUBJECT', 'Vaše objednávka na serveru ' . STORE_NAME, true);
 define('EMAIL_TEXT_ORDER_NUMBER', 'Variabilní symbol:',true);
 define('EMAIL_TEXT_INVOICE_URL', 'Detail faktury:',true);
 define('EMAIL_TEXT_DATE_ORDERED', 'Datum objednávky:',true);
@@ -34,6 +34,12 @@ define('EMAIL_TEXT_PAYMENT_METHOD', 'Způsob platby',true);
 define('EMAIL_SEPARATOR', '------------------------------------------------------',true);
 define('TEXT_EMAIL_VIA', 'via',true);
 
+define('EMAIL_HEADER_TXT','Vážený(á) zákazníku, děkujeme za Váš nákup.
+Vaši objednávku jsme v pořádku přijali.
+O stavu vyřízení objednávky Vás budeme postupně informovat.
+V případě nejasností nás neváhejte kontaktovat. 
+Děkujeme a věříme, že s našimi službami budete spokojeni. ');
+
 /*
 ************************************************************************
 ************** Custom Filenames can be defined below here **************
@@ -44,5 +50,5 @@ define('TEXT_EMAIL_VIA', 'via',true);
   define('EMAIL_TEXT_CONFIRM', 'Nová objednávka z ',true);
   
 // Purchase Without Account
-  define('EMAIL_WARNING', 'POZNÁMKA: Vaše emailová adresa byla zadána návštěvníkem našeho online obchodu. Pokud jste u nás neobjednával(a), napšte nám prosím na tuto adresu:  ' . STORE_OWNER_EMAIL_ADDRESS',true);
+  define('EMAIL_WARNING', 'POZNÁMKA: Vaše emailová adresa byla zadána návštěvníkem našeho online obchodu. Pokud jste u nás neobjednával(a), napšte nám prosím na tuto adresu:  ' . STORE_OWNER_EMAIL_ADDRESS,true);
 ?>

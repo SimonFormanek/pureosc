@@ -23,19 +23,19 @@ define('HEADING_TITLE', 'Informace o mém účtu',true);
 
 define('TEXT_ORIGIN_LOGIN', '<font color="#FF0000"><small><strong>poznámka:</strong></small></font> Pokud už máte účet, přihlašte se zde. <a href="%s"><u>login page</u></a>.',true);
 
-define('EMAIL_SUBJECT', 'Vítáme Vás v eshopu' . STORE_NAME);
+define('EMAIL_SUBJECT', 'Vítáme Vás v eshopu ' . STORE_NAME);
 define('EMAIL_GREET_MR', 'Vážený pane %s,' . "\n\n");
 define('EMAIL_GREET_MS', 'Vážená paní %s,' . "\n\n");
 define('EMAIL_GREET_NONE', 'Vážený %s' . "\n\n");
 define('EMAIL_WELCOME', 'Vítáme Vás <strong>' . STORE_NAME . '</strong>.' . "\n\n");
 define('EMAIL_TEXT', 
 'Nyní můžete využívat veškeré služby našeho obchodu:' . "\n\n" . 
-'<li><strong>Trvalý košík</strong> - Všechny produkty přidané do vašeho košíku online zůstanou tam, dokud je neodstraníte, nebo je nevyzkoušejte.' . "\n" . 
+'<li><strong>Trvalý košík</strong> - Všechny produkty se automaticky ukádají a zůstanou v košíku, dokud je nekoupíte nebo neodstraníte.' . "\n" . 
 '<li><strong>Adresář</strong> - Můžeme zaslat naše zboží na jakoukoli adresu! To je ideální pro odeslání dárků přímo obdarovávané osobě.' . "\n" . 
-'<li><strong>Historie objednávek</strong> - Zobrazení historie nákupů, které jste provedli u nás.' . "\n" . 
-'<li><strong>Recenze produktů</strong> - Podělte se o své názory na produkty s našimi dalšími zákazníky.' . "\n\n");
-define('EMAIL_CONTACT', 'Pokud budete otřebovat pomoc, kontaktujte provozovatele obchodu na adrese: ' . STORE_OWNER_EMAIL_ADDRESS . '.' . "\n\n");
-define('EMAIL_WARNING', '<strong>>Pozor:</strong> Tento e-mail jste dostal(a) na základě registrace v našem obchodě. Pokud jste se v našem obchodě neregistroval(a), napište nám na adresu ' . STORE_OWNER_EMAIL_ADDRESS . '.' . "\n");
+'<li><strong>Historie objednávek</strong> - Zobrazení historie nákupů, které jste v našem obchodě udělali.' . "\n" . 
+'<li><strong>Recenze produktů</strong> - Podělte se o své názory na produkty s ostatními zákazníky.' . "\n\n");
+define('EMAIL_CONTACT', 'Pokud budete potřebovat pomoc, kontaktujte provozovatele obchodu ' . STORE_OWNER_EMAIL_ADDRESS . '.' . "\n\n");
+define('EMAIL_WARNING', '<strong>Pozor:</strong> Tento e-mail jste dostal(a) na základě registrace v našem obchodě. Pokud jste se v našem obchodě neregistroval(a), napište nám na adresu ' . STORE_OWNER_EMAIL_ADDRESS . '.' . "\n");
 /*
 ************************************************************************
 ************** Custom Filenames can be defined below here **************
