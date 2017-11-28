@@ -1,5 +1,6 @@
 <?php
-define('DIR_FS_MASTER_ROOT_DIR','/home/f/git/osc/osc/');
+	define('CATALOG_DOMAIN',''); //eg www.my-shop.com
+  define('DIR_FS_MASTER_ROOT_DIR','/home/f/git/osc/osc/');
   define('ENABLE_SSL_CATALOG', false);
   define('ENABLE_SSL', false);
   define('SERVER_INSTANCE','admin'); // admin or empty for shop ???? TODO
@@ -10,8 +11,8 @@ define('DIR_FS_MASTER_ROOT_DIR','/home/f/git/osc/osc/');
   define('HTTPS_COOKIE_DOMAIN', '');
   define('HTTP_COOKIE_PATH', '/admin');
   define('HTTPS_COOKIE_PATH', '/admin');
-  define('HTTP_CATALOG_SERVER', 'http://' . $_SERVER['HTTP_HOST']); // <------ need to bee configured
-  define('HTTPS_CATALOG_SERVER', 'https://' . $_SERVER['HTTP_HOST']); // <------ need to bee configured
+  define('HTTP_CATALOG_SERVER', 'http://' . CATALOG_DOMAIN); // <------ need to bee configured
+  define('HTTPS_CATALOG_SERVER', 'https://' . CATALOG_DOMAIN); // <------ need to bee configured
   define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR); // <------ need to bee configured
   define('DIR_WS_ADMIN', '/admin/');
   define('DIR_WS_HTTPS_ADMIN', '/admin/');// <------ need to bee configured SECURITY: obfuscation
@@ -35,6 +36,7 @@ define('DIR_FS_MASTER_ROOT_DIR','/home/f/git/osc/osc/');
   define('DIR_FS_BACKUP', DIR_FS_ADMIN . '../../data/backups/');
   define('DIR_FS_DOWNLOAD', DIR_FS_CATALOG . 'download/');
   define('DIR_FS_DOWNLOAD_PUBLIC', DIR_FS_CATALOG . 'pub/');
+  define('WEBMASTER_EMAIL', '00420602604992@sms.cz.o2.com');
 
 //  define('MULTI_DATABASE','false'); //true if defined multipe databases
 //local db

@@ -24,7 +24,7 @@ define('USE_SEO_REDIRECT','true'); //TODO: experimental: test all possible urls 
   define('DIR_WS_HTTP_CATALOG', '/');
   define('DIR_WS_HTTPS_CATALOG', '/');
   define('DIR_WS_IMAGES', 'images/');
-#  define('DIR_WS_IMAGES', 'http://images.knizninovinky/'); // <------ need to bee configured
+//  define('DIR_WS_IMAGES', 'http://images.knizninovinky/'); // <------ need to bee configured
   define('DIR_WS_ICONS', 'icons/');
   define('DIR_WS_INCLUDES', 'includes/');
   define('DIR_WS_FUNCTIONS', DIR_WS_INCLUDES . 'functions/');
@@ -40,3 +40,4 @@ define('USE_SEO_REDIRECT','true'); //TODO: experimental: test all possible urls 
   define('USE_PCONNECT', 'false'); 
   define('STORE_SESSIONS', 'mysql'); 
   define('CFG_TIME_ZONE', 'Europe/Prague'); // <------ need to bee configured
+  define('WEBMASTER_EMAIL', '00420602604992@sms.cz.o2.com');
