@@ -13,6 +13,6 @@
 define('NAVBAR_TITLE_1', 'Dodávka',true);
 define('NAVBAR_TITLE_2', 'v pořádku',true);
 
-define('HEADING_TITLE', 'Vaše objednávka je vyřízena!',true);
+define('HEADING_TITLE', 'Vaše objednávka je vyřízena',true);
 
 define('TABLE_HEADING_COMMENTS', 'Můžete napsat komentář',true);

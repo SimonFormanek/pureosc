@@ -259,7 +259,7 @@ define('TEXT_VIEW_GRID', ' Grid',true);
 define('TEXT_SEARCH_PLACEHOLDER','Vyhledávání',true);
 
 // message for required inputs
-define('FORM_REQUIRED_INFORMATION', '<span class="glyphicon glyphicon-asterisk inputRequirement"></span> Důležité údaje',true);
+define('FORM_REQUIRED_INFORMATION', '<span class="glyphicon glyphicon-asterisk inputRequirement"></span> Nutno vyplnit',true);
 define('FORM_REQUIRED_INPUT', '<span><span class="glyphicon glyphicon-asterisk form-control-feedback inputRequirement"></span></span>',true);
 
 // reviews
