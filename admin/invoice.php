@@ -16,7 +16,10 @@
   $currencies = new currencies();
 
   $oID = tep_db_prepare_input($HTTP_GET_VARS['oID']);
-  $orders_query = tep_db_query("select orders_id from " . TABLE_ORDERS . " where orders_id = '" . (int)$oID . "'");
+  $orders_query = tep_db_query("select orders_id  from " . TABLE_ORDERS . " where orders_id = '" . (int)$oID . "'");
+  $datetax_query = tep_db_query("select date_tax from " . TABLE_ORDERS . " where orders_id = '" . (int)$oID . "'");
+  $datetax = tep_db_fetch_array($datetax_query);
+  $date_tax = tep_date_short($datetax['date_tax']);
 
   include(DIR_WS_CLASSES . 'order.php');
   $order = new order($oID);
@@ -35,8 +38,13 @@
   <tr>
     <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
       <tr>
-        <td class="pageHeading"><?php echo STORE_NAME . '<br>' . nl2br(STORE_ADDRESS) . '<br>' . STORE_PHONE; ?></td>
-        <td class="pageHeading" align="right"><?php echo tep_image(HTTP_CATALOG_SERVER . DIR_WS_CATALOG_IMAGES . STORE_LOGO, STORE_NAME); ?></td>
+        <td class="pageHeading"><?php echo STORE_NAME . '<br><span style="font-size:12px">' . nl2br(STORE_ADDRESS) . '<br>' . STORE_PHONE; ?></span></td>
+        <td class="pageHeading" align="right">
+        <?php echo INVOICE_HEADER ?>: <?php echo  $oID; ?><span style="font-size:12px">
+        <br /><?php echo DATE_VYSTAVENI ?> <?php echo $date_tax; ?>
+        <br /><a style="color: #727272; font-weight: bold;" href="date_tax_set.php?oID=<?php echo $oID ?>"><?php echo DATE_USKUTECNENENI . $date_tax;?></a>
+        <br /><?php echo INVOICE_VARSYMBOL?>: <?php echo $oID ?></span>
+        <?php //echo tep_image(HTTP_CATALOG_SERVER . DIR_WS_CATALOG_IMAGES . STORE_LOGO, STORE_NAME); ?></td>
       </tr>
     </table></td>
   </tr>
