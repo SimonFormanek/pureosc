@@ -57,8 +57,8 @@ define('ENTRY_TAX', 'Daň',true);
 define('ENTRY_SHIPPING', 'Dopravné:',true); //???
 define('ENTRY_TOTAL', 'Celkem:',true);
 define('ENTRY_STATUS', 'Status:',true);
-define('ENTRY_NOTIFY_CUSTOMER', 'Zaslat Notifikaci zákazníkovi:',true);
-define('ENTRY_NOTIFY_COMMENTS', 'Zaslat komnetář:',true);
+define('ENTRY_NOTIFY_CUSTOMER', 'Zaslat notifikaci zákazníkovi:',true);
+define('ENTRY_NOTIFY_COMMENTS', 'Zaslat komentář:',true);
 define('ENTRY_CURRENCY_TYPE', 'Měna',true);
 define('ENTRY_CURRENCY_VALUE', 'Hodnota měny',true);
 

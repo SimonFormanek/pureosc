@@ -865,7 +865,7 @@ document.onmousemove=positiontip
 			 <?php if (ORDER_EDITOR_USE_AJAX == 'true') { ?>
 			  <script language="JavaScript" type="text/javascript"><!--
 			  //this button only works with javascript and is therefore only displayed on browsers with javascript enabled
-              document.write("<li><span class=\"tdbLink\"><a id=\"tdb0\" href=\"javascript:newOrderEmail()\" class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary\" role=\"button\" aria-disabled=\"false\"><span class=\"ui-button-icon-primary ui-icon ui-icon-mail-closed\"></span><span class=\"ui-button-text\">Send confirmation Email</span></a></span></li>");
+              document.write("<li><span class=\"tdbLink\"><a id=\"tdb0\" href=\"javascript:newOrderEmail()\" class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-priority-secondary\" role=\"button\" aria-disabled=\"false\"><span class=\"ui-button-icon-primary ui-icon ui-icon-mail-closed\"></span><span class=\"ui-button-text\"><?php echo IMAGE_NEW_ORDER_EMAIL;?></span></a></span></li>");
 	           //--></script>
 			   <?php } ?>
 			 

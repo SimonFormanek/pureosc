@@ -248,7 +248,7 @@ define('IMAGE_NEW_TAX_ZONE', 'Nová daňová zóna',true);
 define('IMAGE_NEW_ZONE', 'Nová zóna',true);
 define('IMAGE_ORDERS', 'Objednávky',true);
 define('IMAGE_ORDERS_INVOICE', 'Faktury',true);
-define('IMAGE_ORDERS_PACKINGSLIP', 'Packing Slip',true);
+define('IMAGE_ORDERS_PACKINGSLIP', 'Dodací list',true);
 define('IMAGE_PREVIEW', 'Zobrazení',true);
 define('IMAGE_RESTORE', 'Obnovit',true);
 define('IMAGE_RESET', 'Reset',true);
@@ -259,11 +259,11 @@ define('IMAGE_SEND', 'Zaslat',true);
 define('IMAGE_SEND_EMAIL', 'Zaslat E-mail',true);
 define('IMAGE_UNLOCK', 'Odemknout',true);
 define('IMAGE_UPDATE', 'Změnit',true);
-define('IMAGE_UPDATE_CURRENCIES', 'Update Exchange Rate',true);
+define('IMAGE_UPDATE_CURRENCIES', 'Aktualizovat měnový kurs',true);
 define('IMAGE_UPLOAD', 'Upload',true);
 
 define('ICON_CROSS', 'Vypnuto',true);
-define('ICON_CURRENT_FOLDER', 'Hlavní adresář',true);
+define('ICON_CURRENT_FOLDER', 'Aktuální adresář pro ikony',true);
 define('ICON_DELETE', 'Smazat',true);
 define('ICON_ERROR', 'Chyba',true);
 define('ICON_FILE', 'Soubor',true);
@@ -334,7 +334,7 @@ define('MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION', '<p>Content Width can be 12 o
 // BOF Order Maker
   define('IMAGE_CREATE_ORDER', 'Vytvořit',true);
   define('BOX_CUSTOMERS_CREATE_ORDER', 'Vytvořit objednávku',true);
-  define('IMAGE_DETAIL', 'Details',true);
+  define('IMAGE_DETAIL', 'Zobrazit podrobnosti',true);
   define('TEXT_INFO_CUSTOMER_SERVICE_ID', 'Vytvořeno:',true);
   
 // Alternative Administration System
