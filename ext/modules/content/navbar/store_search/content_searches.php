@@ -73,7 +73,7 @@
 
   //Select categories, that are second level, and that match our query
 
-  $sqlquery = tep_db_query("SELECT distinct(c.categories_id), cd.categories_name, c.parent_id FROM categories_description cd, categories c WHERE cd.categories_id = c.categories_id AND" . $like_statement_category . " and cd.language_id = '" . (int)$languages_id . "' limit 22");
+  $sqlquery = tep_db_query("SELECT distinct(c.categories_id), cd.categories_name, c.parent_id FROM categories_description cd, categories c WHERE cd.categories_id = c.categories_id AND" . $like_statement_category . " and cd.language_id = '" . (int)$languages_id . "' AND c.sort_order > 0 limit 22");
 
   if (tep_db_num_rows($sqlquery)) {
 
