@@ -140,4 +140,10 @@ define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Error: Category cannot be moved 
  define('NEW_PRODUCT_INSERTING','NOVÝ PRODUKT:',true);
   define('TEXT_SAVE_NOW','Pro automatické generování META uložte název a popis (jinak je nutné ručně vyplnit následující META title/description)',true);
   define('GOTO_META_ANCHOR','Skok na editaci META title/description',true);
+
+//pure:NEW show all products categories, set canonical
+define('SAVE_NEW_CANONICAL','Uložit');
+define('SET_CANONICAL_TITLE','Změnit kanonickou (hlavní) kategorii');
   
+define('SAVE_NEW_CANONICAL','Uložit');
+define('SET_CANONICAL_TITLE','Změnit kanonickou kategorii');

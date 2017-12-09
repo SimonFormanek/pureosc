@@ -146,3 +146,7 @@ define('TEXT_PRODUCTS_SUB_TEXT', 'Product Page Sub Text',true);
  define('NEW_PRODUCT_INSERTING','NEW PRODUCT:',true);
   define('TEXT_SAVE_NOW','For automatic META generation save now',true);
   define('GOTO_META_ANCHOR','Jump to META title/description edit',true);
+
+//pure:NEW show all products categories, set canonical
+define('SAVE_NEW_CANONICAL','Save');
+define('SET_CANONICAL_TITLE','Change canonical (master) category');

@@ -18,12 +18,44 @@ TODO: cache refresh/triggers
   require(DIR_WS_CLASSES . 'currencies.php');
   $currencies = new currencies();
 
+
+//pure:NEW show all products categories, set canonical START
+//save canonical category and return back to category listing
+if(isset($HTTP_POST_VARS['set_canonical_return_back'])) {
+
+  if(isset($HTTP_POST_VARS['product_canon_category']) && isset($HTTP_POST_VARS['product_cat_exists'])) {
+
+    foreach($HTTP_POST_VARS['product_cat_exists'] as $catId) {
+      
+      $cQ = tep_db_query("SELECT canonical FROM products_to_categories WHERE products_id=".$HTTP_POST_VARS['products_id']." AND categories_id = ".$catId); 
+      
+      $cA = tep_db_fetch_array($cQ);
+      $can = ($cA['canonical'] > 0) ? true : false; 
+
+      
+      if($can && ($HTTP_POST_VARS['product_canon_category'] != $catId)) { //odkanonizovat
+      
+        tep_db_query("UPDATE products_to_categories SET canonical=null WHERE products_id=".$HTTP_POST_VARS['products_id']." AND categories_id = ".$catId); 
+        
+      } else if((! $can) && ($HTTP_POST_VARS['product_canon_category'] == $catId)) { //kanonizovat
+
+        tep_db_query("UPDATE products_to_categories SET canonical=1 WHERE products_id=".$HTTP_POST_VARS['products_id']." AND categories_id = ".$catId); 
+
+      } 
+      
+    }
+  }
+  
+  tep_redirect($HTTP_POST_VARS['set_canonical_return_back']);
+}
+  
   $action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
 // Ultimate SEO URLs v2.2d
 // If the action will affect the cache entries
    if ( preg_match("/(insert|update|setflag)/i", $action) ) include_once('includes/reset_seo_cache.php');
 
   if (tep_not_null($action)) {
+  
     switch ($action) {
       case 'setflag':
         if ( ($HTTP_GET_VARS['flag'] == '0') || ($HTTP_GET_VARS['flag'] == '1') ) {
@@ -510,6 +542,7 @@ if (tep_not_null(tep_db_insert_id())) {
                        'products_weight' => '',
                        'products_date_added' => '',
                        'products_last_modified' => '',
+                       'canonical' => '',
                        'products_date_available' => '',
                        'products_status' => '',
                        'products_tax_class_id' => '',
@@ -525,8 +558,9 @@ if (tep_not_null(tep_db_insert_id())) {
 
     $pInfo = new objectInfo($parameters);
 
-    if (isset($HTTP_GET_VARS['pID']) && empty($HTTP_POST_VARS)) {
-      $product_query = tep_db_query("select pd.products_name, pd.products_description, pd.products_url, p.products_id, p.products_quantity, p.products_model, p.products_image, p.products_price, p.products_weight, p.products_date_added, p.products_last_modified, p2c.canonical, date_format(p.products_date_available, '%Y-%m-%d') as products_date_available, p.products_status, p.products_tax_class_id, p.manufacturers_id, p.product_template, pd.products_mini_description, date_format(p.products_custom_date, '%Y-%m-%d') as products_custom_date, p.products_sort_order from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, ".TABLE_PRODUCTS_TO_CATEGORIES." p2c  where p.products_id = '" . (int)$HTTP_GET_VARS['pID'] . "' and p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "'");
+    if (isset($HTTP_GET_VARS['pID']) && empty($HTTP_POST_VARS)) { 
+    
+  $product_query = tep_db_query("select pd.products_name, pd.products_description, pd.products_url, p.products_id, p.products_quantity, p.products_model, p.products_image, p.products_price, p.products_weight, p.products_date_added, p.products_last_modified, p2c.canonical, date_format(p.products_date_available, '%Y-%m-%d') as products_date_available, p.products_status, p.products_tax_class_id, p.manufacturers_id, p.product_template, pd.products_mini_description, date_format(p.products_custom_date, '%Y-%m-%d') as products_custom_date, p.products_sort_order from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, ".TABLE_PRODUCTS_TO_CATEGORIES." p2c WHERE p2c.products_id=".(int)$_GET['pID']." AND p2c.categories_id=".$current_category_id." AND p.products_id = '" . (int)$HTTP_GET_VARS['pID'] . "' AND p.products_id = pd.products_id AND pd.language_id = '" . (int)$languages_id . "'");
       $product = tep_db_fetch_array($product_query);
 
       $pInfo->objectInfo($product);
@@ -1478,6 +1512,29 @@ $category_seo_title_string .= '<br />' . TEXT_META_TITLE_LENGHT_REMAINING_CHARAC
             $contents[] = array('text' => '<br />' . tep_info_image($pInfo->products_image, $pInfo->products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '<br />' . $pInfo->products_image);
             $contents[] = array('text' => '<br />' . TEXT_PRODUCTS_PRICE_INFO . ' ' . $currencies->format($pInfo->products_price) . '<br />' . TEXT_PRODUCTS_QUANTITY_INFO . ' ' . $pInfo->products_quantity);
             $contents[] = array('text' => '<br />' . TEXT_PRODUCTS_AVERAGE_RATING . ' ' . number_format($pInfo->average_rating, 2) . '%');
+            
+						//pure:NEW show all products categories, set canonical START
+        		$contents[] = array('text' => '<br /><b>' . SET_CANONICAL_TITLE . '</b><br />');
+        		$contents[] = array('text' => '<form action="' . FILENAME_CATEGORIES . '" method="POST">' );
+        		$product_categories_string = '';
+        		$product_categories = tep_generate_category_path($pInfo->products_id, 'product');
+        		for ($i = 0, $n = sizeof($product_categories); $i < $n; $i++) {
+            	$category_path = '';
+          		for ($j = 0, $k = sizeof($product_categories[$i]); $j < $k; $j++) {
+            		$category_path .= $product_categories[$i][$j]['text'] . '&nbsp;&gt;&nbsp;';
+            		$catId = $product_categories[$i][$j]['id']; //posl.zustane neprepsana-tedy platna
+          		}
+          		$category_path = substr($category_path, 0, -16);
+          		$canQ = tep_db_query("SELECT * FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE categories_id = ".$catId." AND products_id = ".$pInfo->products_id." AND canonical > 0");
+          		$product_categories_string .= tep_draw_radio_field('product_canon_category', $product_categories[$i][sizeof($product_categories[$i])-1]['id'], ((tep_db_num_rows($canQ) > 0) ? true : false)) . '&nbsp;' . $category_path .  '<INPUT type="HIDDEN" name="product_cat_exists[]" value="'.$product_categories[$i][sizeof($product_categories[$i])-1]['id'].'"><br />'; //((tep_db_num_rows($canQ) > 0) ? '&nbsp;<b>KANONICKÁ</b>' : '') .
+        		}
+        		$product_categories_string = substr($product_categories_string, 0, -4);
+        		$contents[] = array('text' => '<br />' . $product_categories_string);
+        		$contents[] = array('text' => '<br />');
+        		$contents[] = array('text' => '<INPUT type="HIDDEN" name="set_canonical_return_back" value="'.$_SERVER['REQUEST_URI'].'"><INPUT type="HIDDEN" name="products_id" value="'.$pInfo->products_id.'"><INPUT type="SUBMIT" style="border:1px solid red" value="' . SAVE_NEW_CANONICAL .'"></ br>'); //
+        		$contents[] = array('text' => '</form></ br>'); 
+						//pure:NEW show all products categories, set canonical END
+        
           }
         } else { // create category/product info
           $heading[] = array('text' => '<strong>' . EMPTY_CATEGORY . '</strong>');
