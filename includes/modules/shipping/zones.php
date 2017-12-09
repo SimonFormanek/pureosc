@@ -123,13 +123,15 @@ May 03 2004 1:43 CST
       $this->code = 'zones';
       $this->title = MODULE_SHIPPING_ZONES_TEXT_TITLE;
       $this->description = MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION;
+      $this->num_zones = NUM_ZONES;
       $this->sort_order = MODULE_SHIPPING_ZONES_SORT_ORDER;
       $this->icon = '';
       $this->tax_class = MODULE_SHIPPING_ZONES_TAX_CLASS;
       $this->enabled = ((MODULE_SHIPPING_ZONES_STATUS == 'True') ? true : false);
 
       // CUSTOMIZE THIS SETTING FOR THE NUMBER OF ZONES NEEDED
-      $this->num_zones = 3;
+      if (!defined(NUM_ZONES)) define('NUM_ZONES','10');
+     $this->num_zones = NUM_ZONES;
     }
 
 // class methods
@@ -153,7 +155,7 @@ May 03 2004 1:43 CST
           $dest_zone = $i;
           break;
         }// rest of the world
-        if ($countries_table == 'WORLD') {
+        if ($countries_table == '') { //pure:new empty string orig: WORLD
           $dest_zone = $i;
           break;
         }
@@ -238,10 +240,14 @@ It disables user selection of this zone shipping method if the rate is undefined
     }
 
     function install() {
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Zones Method', 'MODULE_SHIPPING_ZONES_STATUS', 'True', 'Do you want to offer zone rate shipping?', '6', '0', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_ZONES_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'tep_get_tax_class_title', 'tep_cfg_pull_down_tax_classes(', now())");
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_ZONES_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Table Method', 'MODULE_SHIPPING_ZONES_MODE', 'weight', 'The shipping cost is based on the order total or the total weight of the items ordered.', '6', '0', 'tep_cfg_select_option(array(\'weight\', \'price\'), ', now())");
+      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('CONFIG_TITLE_MODULE_SHIPPING_ZONES_STATUS', 'MODULE_SHIPPING_ZONES_STATUS', 'True', 'CONFIG_DESCRIPTION_MODULE_SHIPPING_ZONES_STATUS', '6', '0', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('CONFIG_TITLE_MODULE_SHIPPING_ZONES_TAX_CLASS', 'MODULE_SHIPPING_ZONES_TAX_CLASS', '0', 'CONFIG_DESCRIPTION_MODULE_SHIPPING_ZONES_TAX_CLASS', '6', '0', 'tep_get_tax_class_title', 'tep_cfg_pull_down_tax_classes(', now())");
+      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('CONFIG_TITLE_MODULE_SHIPPING_ZONES_SORT_ORDER', 'MODULE_SHIPPING_ZONES_SORT_ORDER', '0', 'CONFIG_DESCRIPTION_MODULE_SHIPPING_ZONES_SORT_ORDER', '6', '0', now())");
+
+      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('CONFIG_TITLE_NUM_ZONES', 'NUM_ZONES', '10', 'CONFIG_DESCRIPTION_NUM_ZONES', '6', '0', now())");
+
+
+      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('CONFIG_TITLE_MODULE_SHIPPING_ZONES_MODE', 'MODULE_SHIPPING_ZONES_MODE', 'price', 'CONFIG_DESCRIPTION_MODULE_SHIPPING_ZONES_MODE', '6', '0', 'tep_cfg_select_option(array(\'weight\', \'price\'), ', now())");
       for ($i = 1; $i <= $this->num_zones; $i++) {
         $default_countries = '';
         if ($i == 1) {
@@ -261,7 +267,7 @@ It disables user selection of this zone shipping method if the rate is undefined
     }
 
     function keys() {
-      $keys = array('MODULE_SHIPPING_ZONES_STATUS', 'MODULE_SHIPPING_ZONES_MODE', 'MODULE_SHIPPING_ZONES_TAX_CLASS', 'MODULE_SHIPPING_ZONES_SORT_ORDER');
+      $keys = array('MODULE_SHIPPING_ZONES_STATUS', 'NUM_ZONES', 'MODULE_SHIPPING_ZONES_MODE', 'MODULE_SHIPPING_ZONES_TAX_CLASS', 'MODULE_SHIPPING_ZONES_SORT_ORDER');
 
       for ($i=1; $i<=$this->num_zones; $i++) {
         $keys[] = 'MODULE_SHIPPING_ZONES_COUNTRIES_' . $i;
