@@ -26,7 +26,7 @@ define('CONFIG_TITLE_NUM_ZONES','Počet zón');
 define('CONFIG_DESCRIPTION_NUM_ZONES','Zadejte počet zón (max. 10)');
 
 define('CONFIG_TITLE_MODULE_SHIPPING_ZONES_TAX_CLASS','Sazba DPH');
-define('CONFIG_DESCRIPTION_MODULE_SHIPPING_ZONES_TAX_CLASS','Vybrat saznu DPH.');
+define('CONFIG_DESCRIPTION_MODULE_SHIPPING_ZONES_TAX_CLASS','Zvolte sazbu DPH pro poštovné. Pokud používáte Českou poštu - nastavte 0% (je osvobozena od DPH).');
 
 define('CONFIG_TITLE_MODULE_SHIPPING_ZONES_SORT_ORDER','Pořadí');
 define('CONFIG_DESCRIPTION_MODULE_SHIPPING_ZONES_SORT_ORDER','Pořadí zobrazení.');
