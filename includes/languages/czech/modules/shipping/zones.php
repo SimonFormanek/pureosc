@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_SHIPPING_ZONES_TEXT_TITLE', 'Poštovné dle tabulky zemí');
-define('MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION', 'Různá výše poštovného pro každou zemi, na základě váhy nebo ceny.');
+define('MODULE_SHIPPING_ZONES_TEXT_TITLE', 'Zóny (Zone Based Shipping Rates)');
+define('MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION', 'Modul umožǔje nastavit různou výši poštovného pro několik zón, definovaných jako seznam zemí. Poštovné se počítá na základě váhy nebo ceny.');
 define('MODULE_SHIPPING_ZONES_TEXT_WAY', 'Ground'); //no longer used
 define('MODULE_SHIPPING_ZONES_TEXT_UNITS', 'kg');
 define('MODULE_SHIPPING_ZONES_INVALID_ZONE', 'Do dané země nelze dodat');
@@ -23,7 +23,7 @@ Náklady na dopravu jsou počítány na základě celkové objednávky nebo celk
 Vyplňte tabulku dopravného pro různé skupiny zemí, v poslední skupině ponechte pole "Zóna N - země" prázdnou - příslušná Tabulka poštovného se použije pro všechny ostatní země .
 ');
 define('CONFIG_TITLE_NUM_ZONES','Počet zón');
-define('CONFIG_DESCRIPTION_NUM_ZONES','Zadejte počet zón (max. 10)');
+define('CONFIG_DESCRIPTION_NUM_ZONES','Zadejte počet zón (max. 10), uložte a znovu editujte, teprve tehdy se objeví nové zóny.');
 
 define('CONFIG_TITLE_MODULE_SHIPPING_ZONES_TAX_CLASS','Sazba DPH');
 define('CONFIG_DESCRIPTION_MODULE_SHIPPING_ZONES_TAX_CLASS','Zvolte sazbu DPH pro poštovné. Pokud používáte Českou poštu - nastavte 0% (je osvobozena od DPH).');

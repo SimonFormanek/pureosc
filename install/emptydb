@@ -1,0 +1,8 @@
+#!/bin/bash
+db=oscempty
+mysql -D${db} -e "truncate administrators"
+mysql -D${db} -e "truncate sessions"
+#mysql -D${db} -e ""
+#mysql -D${db} -e ""
+#mysql -D${db} -e ""
+#mysql -D${db} -e ""
