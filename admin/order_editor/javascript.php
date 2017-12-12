@@ -474,6 +474,7 @@ function updateShippingZone(field, value) {
 	 
   function openWindow(file, windowName) {
     msgWindow = window.open(file, windowName,'top=250, left=250, width=550, height=450, location=0, status=1, toolbar=0, resize=1');
+    msgWindow.focus();
     if (!msgWindow.opener) msgWindow.opener = self;
   }
 
