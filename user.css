@@ -1,5 +1,5 @@
 /* user.css ----------------------------------------------------------------- */
-@import url("headertags_seo_styles.css");
+/*@import url("headertags_seo_styles.css");*/
 
 /**** BEGIN ARTICLE MANAGER ****/
 .separatorArticle {
@@ -46,13 +46,17 @@ ul.typeahead.dropdown-menu {
 /*MainPage Articles*/
 .mainpage-blog{font-weight:bold;font-size:130%}
 
-h2{margin:0;padding:0.5em 0 0.5em 0;font-weight:bold;font-size:120%}
+
 
 
 /* @media Default values */
+.searchbox-margin{max-width:280px}
 .piGalDiv{float:right; width:45%;margin-left:15px}
 .fixedHeightBox{min-height:390px;}
 
+@media only screen and (max-width:759px){
+	.searchbox-margin{max-width:100%}
+}
 @media only screen and (max-width:639px){
 	.piGalDiv{float:none; margin:auto;clear:left;width:90%;margin-bottom:20px}
 	.fixedHeightBox{min-height:auto;}

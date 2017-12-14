@@ -463,3 +463,7 @@ p.lead del {
 /*pure:new:addons*/
 .navbar_logo{margin-left:10px;max-width:80%}
 
+h1,h2{margin:0;padding:0.5em 0 0.2em 0;}
+h1{font-size:180%}
+h2{font-size:140%}
+h3{font-size:120%}
