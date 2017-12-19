@@ -420,7 +420,7 @@
 		 '          </tr>' . "\n" . 
 		 '          <tr class="dataTableRow">' . "\n" .
 		 '             <td></td>' . "\n" . 
-		 '             <td colspan="2"><input type="submit" value="' . TEXT_BUTTON_ADD_PRODUCT .'">' . "\n" .
+		 '             <td colspan="2">' . tep_draw_button(TEXT_BUTTON_ADD_PRODUCT, 'disk', null, 'primary') . "\n" .
 		 '           ';
     if (isset($_POST['add_product_options'])) {
       foreach($_POST['add_product_options'] as $option_id => $option_value_id) {

@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2015 osCommerce
+  Copyright (c) 2002 osCommerce
 
   Released under the GNU General Public License
   
@@ -17,7 +17,7 @@
                             array('id' => '0',
                                   'text' => ENTRY_NEWSLETTER_NO));
 
-function sbs_get_zone_name($country_id, $zone_id) {
+  function sbs_get_zone_name($country_id, $zone_id) {
     $zone_query = tep_db_query("select zone_name from " . TABLE_ZONES . " where zone_country_id = '" . $country_id . "' and zone_id = '" . $zone_id . "'");
     if (tep_db_num_rows($zone_query)) {
       $zone = tep_db_fetch_array($zone_query);
@@ -52,19 +52,19 @@ function sbs_get_zone_name($country_id, $zone_id) {
     }
 
     return $countries_array;
-  } 
-  ////
-function sbs_get_country_list($name, $selected = '', $parameters = '') { 
-   $countries_array = array(array('id' => '', 'text' => PULL_DOWN_DEFAULT)); 
-   $countries = sbs_get_countries(); 
-   $size = sizeof($countries); 
-   for ($i=0; $i<$size; $i++) { 
-     $countries_array[] = array('id' => $countries[$i]['countries_id'], 'text' => $countries[$i]['countries_name']); 
-   } 
+  }
 
-   return tep_draw_pull_down_menu($name, $countries_array, $selected, $parameters); 
-}
+////
+  function sbs_get_country_list($name, $selected = '', $parameters = '') { 
+    $countries_array = array(array('id' => '', 'text' => PULL_DOWN_DEFAULT)); 
+    $countries = sbs_get_countries(); 
+    $size = sizeof($countries); 
+    for ($i=0; $i<$size; $i++) { 
+      $countries_array[] = array('id' => $countries[$i]['countries_id'], 'text' => $countries[$i]['countries_name']); 
+    } 
 
+    return tep_draw_pull_down_menu($name, $countries_array, $selected, $parameters); 
+  }
 
 ////
 // Alias function to tep_get_countries, which also returns the countries iso codes
@@ -86,7 +86,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
     $female = ($account['customers_gender'] == 'f') ? true : false;
 ?>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_GENDER; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_GENDER; ?></td>
             <td class="main">&nbsp;
 <?php
     if ($is_read_only) {
@@ -99,7 +99,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
         echo tep_draw_hidden_field('gender');
       }
     } else {
-      echo tep_draw_radio_field('gender', 'm', $male) . '&nbsp;&nbsp;' . MALE . '&nbsp;&nbsp;' . tep_draw_radio_field('gender', 'f', $female) . '&nbsp;&nbsp;' . FEMALE . '&nbsp;' ;
+      echo tep_draw_radio_field('gender', 'm', $male) . '&nbsp;&nbsp;' . MALE . '&nbsp;&nbsp;' . tep_draw_radio_field('gender', 'f', $female) . '&nbsp;&nbsp;' . FEMALE . '&nbsp;' . TEXT_FIELD_REQUIRED;
     }
 ?></td>
           </tr>
@@ -107,7 +107,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
   }
 ?>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_FIRST_NAME; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_FIRST_NAME; ?></td>
             <td class="main">&nbsp;
 <?php
   if ($is_read_only) {
@@ -119,12 +119,12 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
       echo $firstname . tep_draw_hidden_field('firstname');
     }
   } else {
-    echo tep_draw_input_field('firstname', $account['customers_firstname']) . '&nbsp;' ;
+    echo tep_draw_input_field('firstname', $account['customers_firstname']) . '&nbsp;' . TEXT_FIELD_REQUIRED;
   }
 ?></td>
           </tr>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_LAST_NAME; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_LAST_NAME; ?></td>
             <td class="main">&nbsp;
 <?php
   if ($is_read_only) {
@@ -136,7 +136,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
       echo $lastname . tep_draw_hidden_field('lastname');
     }
   } else {
-    echo tep_draw_input_field('lastname', $account['customers_lastname']) . '&nbsp;' ;
+    echo tep_draw_input_field('lastname', $account['customers_lastname']) . '&nbsp;' . TEXT_FIELD_REQUIRED;
   }
 ?></td>
           </tr>
@@ -144,7 +144,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
   if (ACCOUNT_DOB == 'true') {
 ?>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_DATE_OF_BIRTH; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_DATE_OF_BIRTH; ?></td>
             <td class="main">&nbsp;
 <?php
     if ($is_read_only) {
@@ -156,7 +156,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
         echo $dob . tep_draw_hidden_field('dob');
       }
     } else {
-      echo tep_draw_input_field('dob', tep_date_short($account['customers_dob'])) . '&nbsp;' ;
+      echo tep_draw_input_field('dob', tep_date_short($account['customers_dob'])) . '&nbsp;' . TEXT_FIELD_REQUIRED;
     }
 ?></td>
           </tr>
@@ -164,7 +164,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
   }
 ?>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_EMAIL_ADDRESS; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_EMAIL_ADDRESS; ?></td>
             <td class="main">&nbsp;
 <?php
   if ($is_read_only) {
@@ -180,7 +180,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
       echo $email_address . tep_draw_hidden_field('email_address');
     }
   } else {
-    echo tep_draw_input_field('email_address', $account['customers_email_address']) . '&nbsp;' ;
+    echo tep_draw_input_field('email_address', $account['customers_email_address']) . '&nbsp;' . TEXT_FIELD_REQUIRED;
   }
 ?></td>
           </tr>
@@ -192,14 +192,14 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
   if (ACCOUNT_COMPANY == 'true') {
 ?>  
   <tr>
-    <td class="formAreaTitle"><br><?php echo CATEGORY_COMPANY; ?></td>
+    <td class="formAreaTitle" width="130"><br /><?php echo CATEGORY_COMPANY; ?></td>
   </tr>
   <tr>
     <td class="main"><table border="0" width="100%" cellspacing="0" cellpadding="2" class="formArea">
       <tr>
         <td class="main"><table border="0" cellspacing="0" cellpadding="2">
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_COMPANY; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_COMPANY; ?></td>
             <td class="main">&nbsp;
 <?php
     if ($is_read_only) {
@@ -215,26 +215,6 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
     }
 ?></td>
           </tr>
-
-          <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_VAT_NUMBER; ?></td>
-            <td class="main">&nbsp;
-<?php
-    if ($is_read_only) {
-      echo $account['entry_vat_number'];
-    } elseif ($error) {
-      if ($entry_vat_number_error) {
-        echo tep_draw_input_field('vat_number') . '&nbsp;' . ENTRY_VAT_NUMBER_ERROR;
-      } else {
-        echo $entry_vat_number . tep_draw_hidden_field('vat_number');
-      }
-    } else {
-      echo tep_draw_input_field('vat_number', $account['entry_vat_number']) . '&nbsp;' ;
-    }
-?></td>
-          </tr>
-
-
         </table></td>
       </tr>
     </table></td>
@@ -243,14 +223,14 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
   }
 ?>
   <tr>
-    <td class="formAreaTitle"><br><?php echo CATEGORY_ADDRESS; ?></td>
+    <td class="formAreaTitle"><br /><?php echo CATEGORY_ADDRESS; ?></td>
   </tr>
   <tr>
     <td class="main"><table border="0" width="100%" cellspacing="0" cellpadding="2" class="formArea">
       <tr>
         <td class="main"><table border="0" cellspacing="0" cellpadding="2">
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_STREET_ADDRESS; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_STREET_ADDRESS; ?></td>
             <td class="main">&nbsp;
 <?php
   if ($is_read_only) {
@@ -262,7 +242,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
       echo $street_address . tep_draw_hidden_field('street_address');
     }
   } else {
-    echo tep_draw_input_field('street_address', $account['entry_street_address']) . '&nbsp;' ;
+    echo tep_draw_input_field('street_address', $account['entry_street_address']) . '&nbsp;' . TEXT_FIELD_REQUIRED;
   }
 ?></td>
           </tr>
@@ -270,7 +250,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
   if (ACCOUNT_SUBURB == 'true') {
 ?>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_SUBURB; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_SUBURB; ?></td>
             <td class="main">&nbsp;
 <?php
     if ($is_read_only) {
@@ -290,7 +270,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
   }
 ?>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_POST_CODE; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_POST_CODE; ?></td>
             <td class="main">&nbsp;
 <?php
   if ($is_read_only) {
@@ -302,12 +282,12 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
       echo $postcode . tep_draw_hidden_field('postcode');
     }
   } else {
-    echo tep_draw_input_field('postcode', $account['entry_postcode']) . '&nbsp;' ;
+    echo tep_draw_input_field('postcode', $account['entry_postcode']) . '&nbsp;' . TEXT_FIELD_REQUIRED;
   }
 ?></td>
           </tr>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_CITY; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_CITY; ?></td>
             <td class="main">&nbsp;
 <?php
   if ($is_read_only) {
@@ -327,7 +307,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
   if (ACCOUNT_STATE == 'true') {
 ?>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_STATE; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_STATE; ?></td>
             <td class="main">&nbsp;
 <?php
     $state = sbs_get_zone_name($country, $zone_id);
@@ -357,22 +337,21 @@ function sbs_get_country_list($name, $selected = '', $parameters = '') {
      }
 ?>
              <tr>
-               <td class="main">&nbsp;<?php echo ENTRY_COUNTRY; ?></td>
+               <td class="main" width="130">&nbsp;<?php echo ENTRY_COUNTRY; ?></td>
                <td class="main">&nbsp;
 <?php
-      $account['entry_country_id'] = STORE_COUNTRY;
-	 if ($is_read_only) {       echo tep_get_country_name($account['entry_country_id']);     } 
-elseif 
-($error) {
-       if ($entry_country_error) {
-        
-		 echo sbs_get_country_list('country') . '&nbsp;' . ENTRY_COUNTRY_ERROR;
-       } else {
-         echo tep_get_country_name($country) . tep_draw_hidden_field('country');
-       }
-     } else {
-       echo sbs_get_country_list('country', $account['entry_country_id']) . '&nbsp;' ;
-     }
+  $account['entry_country_id'] = STORE_COUNTRY;
+  if ($is_read_only) {
+    echo tep_get_country_name($account['entry_country_id']);
+  } elseif ($error) {
+    if ($entry_country_error) {
+      echo sbs_get_country_list('country') . '&nbsp;' . ENTRY_COUNTRY_ERROR;
+    } else {
+      echo tep_get_country_name($country) . tep_draw_hidden_field('country');
+    }
+  } else {
+    echo sbs_get_country_list('country', $account['entry_country_id']) . '&nbsp;' ;
+  }
 ?></td>
           </tr>
         </table></td>
@@ -380,14 +359,14 @@ elseif
     </table></td>
   </tr>
   <tr>
-    <td class="formAreaTitle"><br><?php echo CATEGORY_CONTACT; ?></td>
+    <td class="formAreaTitle"><br /><?php echo CATEGORY_CONTACT; ?></td>
   </tr>
   <tr>
     <td class="main"><table border="0" width="100%" cellspacing="0" cellpadding="2" class="formArea">
       <tr>
         <td class="main"><table border="0" cellspacing="0" cellpadding="2">
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_TELEPHONE_NUMBER; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_TELEPHONE_NUMBER; ?></td>
             <td class="main">&nbsp;
 <?php
   if ($is_read_only) {
@@ -404,7 +383,7 @@ elseif
 ?></td>
           </tr>
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_FAX_NUMBER; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_FAX_NUMBER; ?></td>
             <td class="main">&nbsp;
 <?php
   if ($is_read_only) {
@@ -421,14 +400,14 @@ elseif
     </table></td>
   </tr>
   <tr>
-    <td class="formAreaTitle"><br><?php echo CATEGORY_OPTIONS; ?></td>
+    <td class="formAreaTitle"><br /><?php echo CATEGORY_OPTIONS; ?></td>
   </tr>
   <tr>
     <td class="main"><table border="0" width="100%" cellspacing="0" cellpadding="2" class="formArea">
       <tr>
         <td class="main"><table border="0" cellspacing="0" cellpadding="2">
           <tr>
-            <td class="main">&nbsp;<?php echo ENTRY_NEWSLETTER; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo ENTRY_NEWSLETTER; ?></td>
             <td class="main">&nbsp;
 <?php
   if ($is_read_only) {
@@ -445,7 +424,7 @@ elseif
     }
     echo tep_draw_hidden_field('newsletter');  
   } else {
-    echo tep_draw_pull_down_menu('newsletter', $newsletter_array, $account['customers_newsletter']) . '&nbsp;' ;
+    echo tep_draw_pull_down_menu('newsletter', $newsletter_array, $account['customers_newsletter']) . '&nbsp;';
   }
 ?></td>
           </tr>
@@ -453,5 +432,4 @@ elseif
       </tr>
     </table></td>
   </tr>
-
 </table>

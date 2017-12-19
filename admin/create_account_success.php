@@ -18,39 +18,27 @@
 
   require(DIR_WS_LANGUAGES . $language . '/' . FILENAME_CREATE_ACCOUNT);
 
+  require(DIR_WS_INCLUDES . 'template_top.php');
+?>
 
-require(DIR_WS_INCLUDES . 'template_top.php'); ?>
-<!-- header_eof //-->
-
-<!-- body //-->
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
   <tr>
-    <td width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
-    </table></td>
-<!-- body_text //-->
     <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="0">
       <tr>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
-            
-            <td valign="top" class="main"><div align="center" class="pageHeading"><?php echo HEADING_TITLE_CREATE_ACCOUNT_SUCCESS; ?></div><br></td>
+            <td valign="top" class="main"><div align="center" class="pageHeading"><?php echo HEADING_TITLE_CREATE_ACCOUNT_SUCCESS; ?></div><br /></td>
           </tr>
         </table></td>
       </tr>
       <tr>
-        <td align="right" class="main"><?php echo tep_draw_button(IMAGE_BACK, 'triangle-1-w', tep_href_link(FILENAME_CUSTOMERS, tep_get_all_get_params(array('action')))); ?></td>
+        <td align="right" class="main"><?php echo tep_draw_button(IMAGE_BACK, 'triangle-1-w', tep_href_link(FILENAME_CUSTOMERS, tep_get_all_get_params(array('action'))), 'primary'); ?></td>
       </tr>
     </table></td>
-<!-- body_text_eof //-->
-
   </tr>
 </table>
-<!-- body_eof //-->
 
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'template_bottom.php'); ?>
-<!-- footer_eof //-->
-<br>
-</body>
-</html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<?php
+  require(DIR_WS_INCLUDES . 'template_bottom.php');
+  require(DIR_WS_INCLUDES . 'application_bottom.php');
+?>

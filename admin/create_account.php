@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2015 osCommerce
+  Copyright (c) 2002 osCommerce
 
   Released under the GNU General Public License
    
@@ -15,15 +15,19 @@
 */
 
   require('includes/application_top.php');
+
+  require(DIR_WS_LANGUAGES . $language . '/' . FILENAME_CREATE_ACCOUNT);
+
   require(DIR_WS_INCLUDES . 'template_top.php');
-  require('includes/form_check.js.php'); 
+
+  require('includes/form_check.js.php');
 ?>
-	<form name="account_edit" method="post" <?php echo 'action="' . tep_href_link(FILENAME_CREATE_ACCOUNT_PROCESS, '', 'SSL') . '"'; ?> onSubmit="return check_form();">
-		<input type="hidden" name="action" value="process">
-	<table border="0" width="50%" cellspacing="0" cellpadding="2">
-		<tr>
-			<td>
-	<table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+<table border="0" width="100%" cellspacing="2" cellpadding="2">
+  <tr>
+    <td width="100%" valign="top"><form name="account_edit" method="post" <?php echo 'action="' . tep_href_link(FILENAME_CREATE_ACCOUNT_PROCESS, '', 'SSL') . '"'; ?> onSubmit="return check_form();"><input type="hidden" name="action" value="process"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
             <td class="pageHeading"><?php echo HEADING_TITLE_CREATE_ACCOUNT; ?></td>
           </tr>
@@ -33,7 +37,7 @@
   if (sizeof($navigation->snapshot) > 0) {
 ?>
       <tr>
-        <td class="smallText"><br><?php echo sprintf(TEXT_ORIGIN_LOGIN, tep_href_link(FILENAME_LOGIN, tep_get_all_get_params(), 'SSL')); ?></td>
+        <td class="smallText"><br /><?php echo sprintf(TEXT_ORIGIN_LOGIN, tep_href_link(FILENAME_LOGIN, tep_get_all_get_params(), 'SSL')); ?></td>
       </tr>
 <?php
   }
@@ -53,10 +57,13 @@
         </td>
       </tr>
       <tr>
-        <td align="right" class="main"><br /><?php echo tep_draw_button(IMAGE_CONTINUE, 'triangle-1-e'); ?></td>
+        <td align="right" class="main"><br /><?php echo tep_draw_button(IMAGE_CONTINUE, 'person', null, 'primary'); ?>&nbsp;&nbsp;</td>
       </tr>
-    </table></form>
+    </table></form></td>
+  </tr>
+</table>
+
 <?php
-	require(DIR_WS_INCLUDES . 'template_bottom.php');
+    require(DIR_WS_INCLUDES . 'template_bottom.php');
 	require(DIR_WS_INCLUDES . 'application_bottom.php');
 ?>
