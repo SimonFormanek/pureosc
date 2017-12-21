@@ -13,5 +13,5 @@
   define('MODULE_CONTENT_NAVBAR_SETTINGS_TITLE', 'Navbar Settings');
   define('MODULE_CONTENT_NAVBAR_SETTINGS_DESCRIPTION', 'Show the settings menu in the navbar.');
 
-  define('HEADER_SITE_SETTINGS', '<i class="fa fa-cog"></i><span class="hidden-sm"> Jazyk/Měna</span> <span class="caret"></span>');
-  define('USER_LOCALIZATION', '<abbr title="Selected Language">L:</abbr> %s <abbr title="Selected Currency">C:</abbr> %s');
+  define('HEADER_SITE_SETTINGS', '<i class="fa fa-cog"></i><span class="hidden-sm"> International</span> <span class="caret"></span>');
+  define('USER_LOCALIZATION', '<abbr title="Vybraný jazyk">L:</abbr> %s <abbr title="Vybraná měna">C:</abbr> %s');

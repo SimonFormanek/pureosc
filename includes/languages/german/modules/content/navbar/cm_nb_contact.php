@@ -13,4 +13,4 @@
   define('MODULE_CONTENT_NAVBAR_CONTACT_TITLE', 'Navbar Contact Us');
   define('MODULE_CONTENT_NAVBAR_CONTACT_DESCRIPTION', 'Show the contact us link in the navbar.');
 
-  define('HEADER_CONTACT_US', '<i class="fa fa-envelope"></i><span class="hidden-sm"> Contact Us</span>');
+  define('HEADER_CONTACT_US', '<i class="fa fa-envelope"></i><span class="hidden-lg hidden-md hidden-sm"> Contact Us</span>');

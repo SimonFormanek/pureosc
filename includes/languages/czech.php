@@ -303,8 +303,8 @@ define('TEXT_SORT_BY', 'Třídit podle ',true);
 */
 // SEO Header Tags Reloaded
   //header titles
-define('HEADER_CART_CONTENTS', '<i class="glyphicon glyphicon-shopping-cart"></i> %s item(s) <span class="caret"></span>',true);
-define('HEADER_CART_NO_CONTENTS', '<i class="glyphicon glyphicon-shopping-cart"></i> 0 items',true);
+define('HEADER_CART_CONTENTS', '<i class="glyphicon glyphicon-shopping-cart"></i> %s kusůxx<span class="caret"></span>',true);
+define('HEADER_CART_NO_CONTENTS', '<i class="glyphicon glyphicon-shopping-cart"></i><span class="hidden-lg hidden-md hidden-sm"> košík</span><span class="caret"></span>',true); //pure:static version needed clickable statc cart if you go back to generated page - no idea about cart contents
 define('HEADER_ACCOUNT_LOGGED_OUT', '<i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> Můj účet</span> <span class="caret"></span>',true);
 define('HEADER_ACCOUNT_LOGGED_IN', '<i class="glyphicon glyphicon-user"></i> %s <span class="caret"></span>',true);
 define('HEADER_SITE_SETTINGS', '<i class="glyphicon glyphicon-cog"></i><span class="hidden-sm"> Site Settings</span> <span class="caret"></span>',true);

@@ -13,7 +13,7 @@
   define('MODULE_CONTENT_NAVBAR_ACCOUNT_TITLE', 'Navigační lišta - Účet');
   define('MODULE_CONTENT_NAVBAR_ACCOUNT_DESCRIPTION', 'Zobrazit účet v navigační liště.');
 
-  define('HEADER_ACCOUNT_LOGGED_OUT', '<i class="fa fa-user"></i><span class="hidden-sm"> Můj účet</span> <span class="caret"></span>');
+  define('HEADER_ACCOUNT_LOGGED_OUT', '<i class="fa fa-user"></i><span class="hidden-lg hidden-md hidden-sm"> Můj účet</span> <span class="caret"></span>');
   define('HEADER_ACCOUNT_LOGGED_IN', '<i class="fa fa-user"></i> %s <span class="caret"></span>');
   define('HEADER_ACCOUNT_LOGIN', '<i class="fa fa-sign-in"></i> Přihlásit');
   define('HEADER_ACCOUNT_LOGOFF', '<i class="fa fa-sign-out"></i> Odhlásit');
