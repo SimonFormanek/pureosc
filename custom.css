@@ -457,13 +457,96 @@ p.lead del {
 .form-control-feedback{
 	padding-right:2%;
 }
+
+/*other addons -------------------------------------------------------- */
+
+/**** BEGIN ARTICLE MANAGER ****/
+.separatorArticle {
+height: 1px;
+color: #FF0000;
+}
+.separatorBlogArticle {
+height: 1px;
+color: #FF0000;
+}
+.separatorNewArticle {
+height: 1px;
+color: #FF0000;
+}
+.separatorTopic {
+height: 1px;
+color: #FF0000;
+}
+.articleLinkHdr {font-size:12px; font-weight:600}
+.articleLinkMarker {font-size:10px; padding-left:2px}
+.articleBlogEntry {padding-left:4px; background-color:lightyellow}
+.articleSearch {font-size:12px; font-weight:600; padding-top:6px; color:red}
+.articleBox {border:2px inset #ccc}
+.articlePadding {padding:10px 0}
+.articlePaddingSubmit {padding-bottom:10px}
+/**** END ARTICLE MANAGER ****/
+
+/* Banner rotator content module */
+#rotator {
+    visibility: hidden;
+}
+.visible { 
+    visibility: visible !important; 
+}
+/* typeahead searchbox */
+ul.typeahead>li>a {
+    white-space: normal;
+}
+
+ul.typeahead.dropdown-menu {
+    width: 350px;
+}
+
+/*MainPage Articles*/
+.mainpage-blog{font-weight:bold;font-size:130%}
+
+
+/* PURE:NEW -------------------------------------------------------------------- */
 /*pure:new:shortcuts*/
 .fl{float:left}
 
-/*pure:new:addons*/
-.navbar_logo{margin-left:10px;max-width:80%}
-
+/*basic typography*/
 h1,h2{margin:0;padding:0.5em 0 0.2em 0;}
 h1{font-size:180%}
 h2{font-size:140%}
 h3{font-size:120%}
+
+/*pure:new:addons*/
+.navbar_logo{margin-left:10px;max-width:80%}
+
+
+
+
+
+/* extra resposive rules BEGIN ----------------------------------------------------*/
+
+/*@media Default*/
+.searchbox-margin{max-width:280px}
+.piGalDiv{float:right; width:45%;margin-left:15px}
+.fixedHeightBox{min-height:390px;}
+
+
+@media only screen and (max-width:999px){
+	.searchbox-margin{max-width:230px}
+}
+
+
+@media only screen and (max-width:759px){
+	.searchbox-margin{max-width:100%}
+}
+
+
+@media only screen and (max-width:639px){
+	.piGalDiv{float:none; margin:auto;clear:left;width:90%;margin-bottom:20px}
+	.fixedHeightBox{min-height:auto;}
+}
+
+
+@media only screen and (max-width:569px){
+/*img{max-width:100% !important}*/
+}
