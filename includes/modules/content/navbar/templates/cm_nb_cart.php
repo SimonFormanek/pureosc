@@ -12,8 +12,8 @@
 ?>
 
 <!-- Start cm_nb_cart -->
-         <?php  if ($cart->count_contents() > 0) { ?>
             <li class="dropdown">
+         <?php  if ($cart->count_contents() > 0) { ?>
               <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo sprintf(HEADER_CART_CONTENTS, $cart->count_contents()); ?></a>
               <ul class="dropdown-menu">
                 <li><a href="<?php echo tep_href_link(FILENAME_SHOPPING_CART); ?>"><?php echo sprintf(HEADER_CART_HAS_CONTENTS, $cart->count_contents(), $currencies->format($cart->show_total())); ?></a></li>
@@ -26,6 +26,15 @@
             
           <?php  } else { ?>
             
-            <li class="nav navbar-text"><?php echo HEADER_CART_NO_CONTENTS; ?></li>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo HEADER_CART_NO_CONTENTS; ?></a>
+              <ul class="dropdown-menu">
+
+                  <li><a href="<?php echo tep_href_link(FILENAME_SHOPPING_CART); ?>"><?php echo HEADER_CART_VIEW_CART; ?></a></li>
+              </ul>
+            </li>
+
+
+
+<!--ORIG:            <li class="nav navbar-text"><?php echo HEADER_CART_NO_CONTENTS; ?></li>-->
           <?php  } ?>
 <!-- End cm_nb_cart -->
