@@ -1,18 +1,18 @@
 <?php
 	define('CATALOG_DOMAIN',''); //eg www.my-shop.com
-  define('DIR_FS_MASTER_ROOT_DIR','/home/f/git/osc/osc/');
+  define('DIR_FS_MASTER_ROOT_DIR', '/home/vitex/Projects/PureHTML/pureosc/');
   define('ENABLE_SSL_CATALOG', false);
   define('ENABLE_SSL', false);
   define('SERVER_INSTANCE','admin'); // admin or empty for shop ???? TODO
 
-  define('HTTP_SERVER', 'http://' . $_SERVER['HTTP_HOST']); // <------ need to bee configured
-  define('HTTPS_SERVER', 'https://' . $_SERVER['HTTP_HOST']); // <------ need to bee configured
+  define('HTTP_SERVER', 'http://' . $_SERVER['HTTP_HOST'].'/PureHTML/pureosc'); // <------ need to bee configured
+  define('HTTPS_SERVER', 'https://' . $_SERVER['HTTP_HOST'].'/PureHTML/pureosc'); // <------ need to bee configured
   define('HTTP_COOKIE_DOMAIN', '');
   define('HTTPS_COOKIE_DOMAIN', '');
   define('HTTP_COOKIE_PATH', '/admin');
   define('HTTPS_COOKIE_PATH', '/admin');
-  define('HTTP_CATALOG_SERVER', 'http://' . CATALOG_DOMAIN); // <------ need to bee configured
-  define('HTTPS_CATALOG_SERVER', 'https://' . CATALOG_DOMAIN); // <------ need to bee configured
+  define('HTTP_CATALOG_SERVER', 'http://' . CATALOG_DOMAIN.'/PureHTML/pureosc'); // <------ need to bee configured
+  define('HTTPS_CATALOG_SERVER', 'https://' . CATALOG_DOMAIN.'/PureHTML/pureosc'); // <------ need to bee configured
   define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR); // <------ need to bee configured
   define('DIR_WS_ADMIN', '/admin/');
   define('DIR_WS_HTTPS_ADMIN', '/admin/');// <------ need to bee configured SECURITY: obfuscation

@@ -13,10 +13,16 @@
   class logger {
     var $timer_start, $timer_stop, $timer_total;
 
-// class constructor
-    function logger() {
-      $this->timer_start();
+    public function __construct()
+    {
+        $this->logger();
     }
+
+
+// class constructor
+//    function logger() {
+//      $this->timer_start();
+//    }
 
     function timer_start() {
       if (defined("PAGE_PARSE_START_TIME")) {

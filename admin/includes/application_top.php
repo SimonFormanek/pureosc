@@ -147,7 +147,7 @@
       $HTTP_GET_VARS = array();
     }
 
-    if ($current_page != FILENAME_LOGIN) {
+    if (basename($current_page) != FILENAME_LOGIN) {
       if (!tep_session_is_registered('redirect_origin')) {
         tep_session_register('redirect_origin');
 
