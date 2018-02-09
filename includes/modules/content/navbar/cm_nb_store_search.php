@@ -132,7 +132,7 @@ $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_LG';
     $search_link .= tep_draw_form('quick_find', tep_href_link(FILENAME_ADVANCED_SEARCH_RESULT, '', $request_type, false), 'get', 'class="form-horizontal"');
     $search_link .= '   <div class="input-group">' .
                             tep_draw_input_field('keywords', '', 'required placeholder="' . MODULE_NAVIGATION_BAR_STORE_SEARCH_PLACEHOLDER . '" id="quick_search" data-provide="typeahead" autocomplete="off" style="margin-right:-2px;"', 'search') .
-                     ' 		<span class="input-group-btn"><button type="submit" class="btn ' . $btnclass .'" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;"><i class="fa fa-search"></i></button></span>';
+                     ' 		<span class="input-group-btn"><button type="submit" class="btn btn-submit-search" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;"><i class="fa fa-search"></i></button></span>';
     if (tep_not_null($description) && ($description === true)) {
       $search_link .= tep_draw_hidden_field('search_in_description', '1');
     }

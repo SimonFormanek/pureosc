@@ -74,6 +74,13 @@
   $payment_modules->before_process();
 /* ** EOF alterations for CCGV ** */  
 
+//flexibee init
+  require_once './ext/flexibee/init.php';
+  $invoice = new PureOSC\flexibee\FakturaVydana();
+  $invoice->setDataValue("firma", 'ext:customers:' . $customer_id);
+$invoice->setDataValue("typDokl", 'code:FAKTURA');
+$invoice->setDataValue("stavMailK", 'stavMail.odeslat');
+
 // Stock Check
   $any_out_of_stock = false;
   if (STOCK_CHECK == 'true') {
@@ -220,6 +227,13 @@
                             'products_quantity' => $order->products[$i]['qty']);
     tep_db_perform(TABLE_ORDERS_PRODUCTS, $sql_data_array);
     $order_products_id = tep_db_insert_id();
+    $invoice->addArrayToBranch([
+        'nazev'=>$order->products[$i]['name'],
+        'mnozMj'=>$order->products[$i]['qty'],
+        'cenaMj'=>$order->products[$i]['price'],
+            'typPolozkyK'=>'typPolozky.obecny'
+            ], 'polozkyDokladu');
+    
 /* ** Altered for CCGV ** */
     $order_total_modules->update_credit_account($i);// CCGV
 /* **EOF alteration for CCGV ** */
@@ -359,7 +373,7 @@ $order_total_modules->apply_credit(); // CCGV
   if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
     tep_mail('', SEND_EXTRA_ORDER_EMAILS_TO, EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
   }
-
+$invoice->insertToFlexiBee();
 // load the after_process function from the payment modules
   $payment_modules->after_process();
 
