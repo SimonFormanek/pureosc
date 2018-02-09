@@ -1,0 +1,23 @@
+{
+    "name": "vendor/pureosc",
+    "description": "Description of project pureosc.",
+    "authors": [
+        {
+            "name": "vitex",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+
+        "spoje.net/flexipeehp": "dev-master",
+        "vitexsoftware/ease-framework": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "PureOSC\\": "includes/classes/",
+            "PureOSC\\flexibee\\": "ext/flexibee/",
+            "PureOSC\\Admin\\": "admin/includes/classes/",
+            "PureOSC\\Admin\\flexibee\\": "admin/ext/flexibee/"
+        }
+    }
+}

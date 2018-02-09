@@ -185,6 +185,9 @@
                               'customers_newsletter' => $newsletter,
                               'customers_password' => tep_encrypt_password($password));
 
+      require_once './ext/flexibee/init.php';
+      
+      
       if (ACCOUNT_GENDER == 'true') $sql_data_array['customers_gender'] = $gender;
       if (ACCOUNT_DOB == 'true') $sql_data_array['customers_dob'] = tep_date_raw($dob);
 
@@ -192,6 +195,27 @@
 
       $customer_id = tep_db_insert_id();
 
+      $adresar = new \PureOSC\flexibee\Adresar();
+
+        $nazev = strlen($company) ? $company : $firstname.' '.$lastname;
+
+        $adresar->insertToFlexiBee( [
+            'id'=>'ext:customers:'.$customer_id,
+            'poznam' => 'zalozeno z eshopu',
+            'nazev' => $nazev,
+            'email' => $email_address,
+            'ic' => $ico,
+            'dic' => $vat_number,
+            'ulice' => $street_address,
+            'mesto' => $city,
+            'psc' => $postcode,
+//            'stat' => $country,
+            'tel' => $telephone,
+            'fax' => $fax,
+        ] );
+      
+      
+      
       $sql_data_array = array('customers_id' => $customer_id,
                               'entry_firstname' => $firstname,
                               'entry_lastname' => $lastname,
@@ -219,6 +243,22 @@
 
       $address_id = tep_db_insert_id();
 
+      
+       $kontakter = new \PureOSC\flexibee\Kontakt();
+ 
+     $kontakter->insertToFlexiBee([
+            'id'=>'ext:customers:'.$addres_id,
+             'firma' => $adresar,
+             'jmeno' => $firstname,
+             'prijmeni' => $lastname,
+            'email' => $email_address,
+            'ulice' => $street_address,
+            'mesto' => $city,
+            'psc' => $postcode ,
+//            'stat' => $country,
+            'tel' => $telephone,
+            'fax' => $fax]);
+      
       tep_db_query("update " . TABLE_CUSTOMERS . " set customers_default_address_id = '" . (int)$address_id . "' where customers_id = '" . (int)$customer_id . "'");
 
       tep_db_query("insert into " . TABLE_CUSTOMERS_INFO . " (customers_info_id, customers_info_number_of_logons, customers_info_date_account_created) values ('" . (int)$customer_id . "', '0', now())");
