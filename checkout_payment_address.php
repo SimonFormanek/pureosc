@@ -38,6 +38,7 @@
       $firstname = tep_db_prepare_input($HTTP_POST_VARS['firstname']);
       $lastname = tep_db_prepare_input($HTTP_POST_VARS['lastname']);
       $vat_number = tep_db_prepare_input($HTTP_POST_VARS['vat_number']);
+      $company_number = tep_db_prepare_input($HTTP_POST_VARS['company_number']);
       $street_address = tep_db_prepare_input($HTTP_POST_VARS['street_address']);
       if (ACCOUNT_SUBURB == 'true') $suburb = tep_db_prepare_input($HTTP_POST_VARS['suburb']);
       $postcode = tep_db_prepare_input($HTTP_POST_VARS['postcode']);
@@ -125,6 +126,7 @@
                                 'entry_firstname' => $firstname,
                                 'entry_lastname' => $lastname,
                                 'entry_vat_number' => $vat_number,
+                                'entry_company_number' => $company_number,
                                 'entry_street_address' => $street_address,
                                 'entry_postcode' => $postcode,
                                 'entry_city' => $city,
@@ -250,7 +252,7 @@
 <?php
       $radio_buttons = 0;
 
-      $addresses_query = tep_db_query("select address_book_id, entry_firstname as firstname, entry_lastname as lastname, entry_company as company, entry_vat_number as vat_number, entry_street_address as street_address, entry_suburb as suburb, entry_city as city, entry_postcode as postcode, entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id from " . TABLE_ADDRESS_BOOK . " where customers_id = '" . (int)$customer_id . "'");
+      $addresses_query = tep_db_query("select address_book_id, entry_firstname as firstname, entry_lastname as lastname, entry_company as company, entry_vat_number as vat_number, entry_company_number as company_number, entry_street_address as street_address, entry_suburb as suburb, entry_city as city, entry_postcode as postcode, entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id from " . TABLE_ADDRESS_BOOK . " where customers_id = '" . (int)$customer_id . "'");
       while ($addresses = tep_db_fetch_array($addresses_query)) {
         $format_id = tep_get_address_format_id($addresses['country_id']);
 

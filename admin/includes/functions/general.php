@@ -409,6 +409,7 @@ $lastname = '';
 }
 // Vat Address Field mod:
 $vat_number = tep_output_string_protected($address['vat_number']);
+$company_number = tep_output_string_protected($address['company_number']);
 // :Vat Address Field mod
 $street = tep_output_string_protected($address['street_address']);
 $suburb = tep_output_string_protected($address['suburb']);
@@ -458,7 +459,7 @@ $fmt = $address_format['format'];
 eval("\$address = \"$fmt\";");
 
 if ( (ACCOUNT_COMPANY == 'true') && (tep_not_null($company)) ) {
-$address = $company . $cr . $vat_number . $cr . $address;
+$address = $company . $cr . $company_number . $cr . $vat_number . $cr . $address;
 }
 
 return $address;

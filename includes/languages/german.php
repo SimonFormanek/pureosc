@@ -267,3 +267,5 @@ define('TABLE_HEADING_SORT_ORDER','Sort Order',true);
 //VAT numbber
 define('ENTRY_VAT_NUMBER', 'VAT Number:',true);
 define('ENTRY_VAT_NUMBER_TEXT_2', '',true);
+define('ENTRY_COMPANY_NUMBER', 'COMPANY ID:',true);
+define('ENTRY_COMPANY_NUMBER_TEXT_2', '',true);

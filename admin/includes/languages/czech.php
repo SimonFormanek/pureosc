@@ -381,7 +381,7 @@ define('IMAGE_CONTINUE', 'Pokračovat',true);
 // EOF Create Account
 //VAT number
 define('ENTRY_VAT_NUMBER', 'DIČ:',true);
-
+define('ENTRY_COMPANY_NUMBER', 'DIČ:',true);
 /**** BEGIN ARTICLE MANAGER ****/
 define('BOX_HEADING_ARTICLES', 'Manager článků',true);
 define('BOX_TOPICS_ARTICLES', 'Kategorie/Články',true);

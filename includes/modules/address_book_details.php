@@ -84,6 +84,13 @@
         if (tep_not_null(ENTRY_VAT_NUMBER_TEXT_2)) echo '<span id="atVatnumber" class="help-block">' . ENTRY_VAT_NUMBER_TEXT_2 . '</span>';
         ?>
       </div>
+      <label for="inputVatnumber" class="control-label col-sm-3"><?php echo ENTRY_COMPANY_NUMBER; ?></label>
+      <div class="col-sm-9">
+        <?php
+        echo tep_draw_input_field('company_number', (isset($entry['entry_company_number']) ? $entry['entry_company_number'] : ''), 'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="' . ENTRY_COMPANY_NUMBER . '"');
+        if (tep_not_null(ENTRY_COMPANY_NUMBER_TEXT_2)) echo '<span id="atVatnumber" class="help-block">' . ENTRY_COMPANY_NUMBER_TEXT_2 . '</span>';
+        ?>
+      </div>
 
 
       </div>

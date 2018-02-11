@@ -378,7 +378,7 @@ define('IMAGE_CONTINUE', 'Continue',true);
 // EOF Create Account
 //VAT number
 define('ENTRY_VAT_NUMBER', 'VAT Number:',true);
-
+define('ENTRY_COMPANY_NUMBER', 'Company Number:',true);
 /**** BEGIN ARTICLE MANAGER ****/
 define('BOX_HEADING_ARTICLES', 'Article Manager');
 define('BOX_TOPICS_ARTICLES', 'Topics/Articles');

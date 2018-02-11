@@ -87,6 +87,7 @@
 						'customers_name' => tep_db_input(tep_db_prepare_input($_POST['update_customer_name'])),
 						'customers_company' => tep_db_input(tep_db_prepare_input($_POST['update_customer_company'])),
 						'customers_vat_number' => tep_db_input(tep_db_prepare_input($_POST['update_customer_vat_number'])),
+						'customers_company_number' => tep_db_input(tep_db_prepare_input($_POST['update_customer_company_number'])),
 						'customers_street_address' => tep_db_input(tep_db_prepare_input($_POST['update_customer_street_address'])),
 						'customers_suburb' => tep_db_input(tep_db_prepare_input($_POST['update_customer_suburb'])),
 						'customers_city' => tep_db_input(tep_db_prepare_input($_POST['update_customer_city'])),
@@ -98,6 +99,7 @@
 						'billing_name' => tep_db_input(tep_db_prepare_input(((isset($_POST['billing_same_as_customer']) && $_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_name'] : $_POST['update_billing_name']))),
 						'billing_company' => tep_db_input(tep_db_prepare_input(((isset($_POST['billing_same_as_customer']) && $_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_company'] : $_POST['update_billing_company']))),
 						'billing_vat_number' => tep_db_input(tep_db_prepare_input(((isset($_POST['billing_same_as_customer']) && $_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_vat_number'] : $_POST['update_vat_number']))),
+						'billing_company_number' => tep_db_input(tep_db_prepare_input(((isset($_POST['billing_same_as_customer']) && $_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_company_number'] : $_POST['update_company_number']))),
 						'billing_street_address' => tep_db_input(tep_db_prepare_input(((isset($_POST['billing_same_as_customer']) && $_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_street_address'] : $_POST['update_billing_street_address']))),
 						'billing_suburb' => tep_db_input(tep_db_prepare_input(((isset($_POST['billing_same_as_customer']) && $_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_suburb'] : $_POST['update_billing_suburb']))),
 						'billing_city' => tep_db_input(tep_db_prepare_input(((isset($_POST['billing_same_as_customer']) && $_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_city'] : $_POST['update_billing_city']))),
@@ -107,6 +109,7 @@
 						'delivery_name' => tep_db_input(tep_db_prepare_input(((isset($_POST['shipping_same_as_billing']) && $_POST['shipping_same_as_billing'] == 'on') ? (($_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_name'] : $_POST['update_billing_name']) : $_POST['update_delivery_name']))),
 						'delivery_company' => tep_db_input(tep_db_prepare_input(((isset($_POST['shipping_same_as_billing']) && $_POST['shipping_same_as_billing'] == 'on') ? (($_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_company'] : $_POST['update_billing_company']) : $_POST['update_delivery_company']))),
 						'delivery_vat_number' => tep_db_input(tep_db_prepare_input(((isset($_POST['shipping_same_as_billing']) && $_POST['shipping_same_as_billing'] == 'on') ? (($_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_vat_number'] : $_POST['update_customer_vat_number']) : $_POST['update_customer_vat_number']))),
+						'delivery_company_number' => tep_db_input(tep_db_prepare_input(((isset($_POST['shipping_same_as_billing']) && $_POST['shipping_same_as_billing'] == 'on') ? (($_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_company_number'] : $_POST['update_customer_company_number']) : $_POST['update_customer_company_number']))),
 						'delivery_street_address' => tep_db_input(tep_db_prepare_input(((isset($_POST['shipping_same_as_billing']) && $_POST['shipping_same_as_billing'] == 'on') ? (($_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_street_address'] : $_POST['update_billing_street_address']) : $_POST['update_delivery_street_address']))),
 						'delivery_suburb' => tep_db_input(tep_db_prepare_input(((isset($_POST['shipping_same_as_billing']) && $_POST['shipping_same_as_billing'] == 'on') ? (($_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_suburb'] : $_POST['update_billing_suburb']) : $_POST['update_delivery_suburb']))),
 						'delivery_city' => tep_db_input(tep_db_prepare_input(((isset($_POST['shipping_same_as_billing']) && $_POST['shipping_same_as_billing'] == 'on') ? (($_POST['billing_same_as_customer'] == 'on') ? $_POST['update_customer_city'] : $_POST['update_billing_city']) : $_POST['update_delivery_city']))),
@@ -557,6 +560,7 @@
 					if ($order->billing['company']) {
 						$Text_Billing_Adress .= $order->billing['company'] . "\n";
 						$Text_Billing_Adress .= $order->billing['vat_number'] . "\n";
+						$Text_Billing_Adress .= $order->billing['company_number'] . "\n";
 					}
 					$Text_Billing_Adress .= $order->billing['street_address'] . "\n";
 					if ($order->billing['suburb']) {
@@ -574,6 +578,7 @@
 					if ($order->delivery['company']) {
 						$Text_Delivery_Address .= $order->delivery['company'] . "\n";
 						$Text_Delivery_Address .= $order->delivery['vat_number'] . "\n";
+						$Text_Delivery_Address .= $order->delivery['company_number'] . "\n";
 					}
 					$Text_Delivery_Address .= $order->delivery['street_address'] . "\n";
 					if ($order->delivery['suburb']) {
@@ -672,8 +677,8 @@
 							$email_order .= EMAIL_TEXT_FOOTER . "\n\n";
 						}
 
-						//code for plain text emails which changes the € sign to EUR, otherwise the email will show ? instead of €
-						$email_order = str_replace("€","EUR",$email_order);
+						//code for plain text emails which changes the ï¿½ sign to EUR, otherwise the email will show ? instead of ï¿½
+						$email_order = str_replace("ï¿½","EUR",$email_order);
 						$email_order = str_replace("&nbsp;"," ",$email_order);
 
 						//code which replaces the <br> tags within EMAIL_TEXT_PAYMENT_INFO and EMAIL_TEXT_FOOTER with the proper \n
@@ -761,7 +766,7 @@
 <script type="text/javascript">
 
 /***********************************************
-* Cool DHTML tooltip script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* Cool DHTML tooltip script- ï¿½ Dynamic Drive DHTML code library (www.dynamicdrive.com)
 * This notice MUST stay intact for legal use
 * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
 ***********************************************/
@@ -937,6 +942,10 @@ document.onmousemove=positiontip
                 <td colspan="3" valign="top" class="dataTableContent"><input name="update_customer_vat_number" size="37" value="<?php echo stripslashes($order->customer['vat_number']); ?>" <?php if (ORDER_EDITOR_USE_AJAX == 'true') { ?>onChange="updateOrdersField('customers_vat_number', encodeURIComponent(this.value))"<?php } ?>></td>
               </tr>
               <tr class="dataTableRow"> 
+                <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo ENTRY_COMPANY_NUMBER; ?></td>
+                <td colspan="3" valign="top" class="dataTableContent"><input name="update_customer_company_number" size="37" value="<?php echo stripslashes($order->customer['company_number']); ?>" <?php if (ORDER_EDITOR_USE_AJAX == 'true') { ?>onChange="updateOrdersField('customers_company_number', encodeURIComponent(this.value))"<?php } ?>></td>
+              </tr>
+              <tr class="dataTableRow"> 
                 <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo ENTRY_STREET_ADDRESS; ?></td>
                 <td colspan="3" valign="top" class="dataTableContent" nowrap><input name="update_customer_street_address" size="37" value="<?php echo stripslashes($order->customer['street_address']); ?>" <?php if (ORDER_EDITOR_USE_AJAX == 'true') { ?>onChange="updateOrdersField('customers_street_address', encodeURIComponent(this.value))"<?php } ?>></td>
               </tr>
@@ -1023,6 +1032,10 @@ document.onmousemove=positiontip
                     <td colspan="3" valign="top" class="dataTableContent"><input name="update_delivery_vat_number" size="37" value="<?php echo stripslashes($order->delivery['vat_number']); ?>" <?php if (ORDER_EDITOR_USE_AJAX == 'true') { ?>onChange="updateOrdersField('delivery_vat_number', encodeURIComponent(this.value))"<?php } ?>></td>
                   </tr>
                   <tr class="dataTableRow"> 
+                    <td class="dataTableContent" valign="middle" align="right"><?php echo ENTRY_COMPANY_NUMBER; ?></td>
+                    <td colspan="3" valign="top" class="dataTableContent"><input name="update_delivery_company_number" size="37" value="<?php echo stripslashes($order->delivery['company_number']); ?>" <?php if (ORDER_EDITOR_USE_AJAX == 'true') { ?>onChange="updateOrdersField('delivery_company_number', encodeURIComponent(this.value))"<?php } ?>></td>
+                  </tr>
+                  <tr class="dataTableRow"> 
                     <td class="dataTableContent" valign="middle" align="right"><?php echo ENTRY_STREET_ADDRESS; ?></td>
                     <td colspan="3" valign="top" class="dataTableContent"><input name="update_delivery_street_address" size="37" value="<?php echo stripslashes($order->delivery['street_address']); ?>" <?php if (ORDER_EDITOR_USE_AJAX == 'true') { ?>onChange="updateOrdersField('delivery_street_address', encodeURIComponent(this.value))"<?php } ?>></td>
                   </tr>
@@ -1096,6 +1109,10 @@ document.onmousemove=positiontip
                   <tr class="dataTableRow"> 
                     <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo ENTRY_VAT_NUMBER; ?></td>
                     <td colspan="3" valign="top" class="dataTableContent"><input name="update_billing_vat_number" size="37" value="<?php echo stripslashes($order->billing['vat_number']); ?>" <?php if (ORDER_EDITOR_USE_AJAX == 'true') { ?>onChange="updateOrdersField('billing_vat_number', encodeURIComponent(this.value))"<?php } ?>></td>
+                  </tr>
+                  <tr class="dataTableRow"> 
+                    <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo ENTRY_COMPANY_NUMBER; ?></td>
+                    <td colspan="3" valign="top" class="dataTableContent"><input name="update_billing_company_number" size="37" value="<?php echo stripslashes($order->billing['company_number']); ?>" <?php if (ORDER_EDITOR_USE_AJAX == 'true') { ?>onChange="updateOrdersField('billing_company_number', encodeURIComponent(this.value))"<?php } ?>></td>
                   </tr>
                   <tr class="dataTableRow"> 
                     <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo ENTRY_STREET_ADDRESS; ?></td>

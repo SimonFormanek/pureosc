@@ -306,7 +306,7 @@ define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Success: File upload erfolgreich gesp
 define('WARNING_NO_FILE_UPLOADED', 'Warning: kein File uploaded.',true);
 //VAT number
 define('ENTRY_VAT_NUMBER', 'VAT Number:',true);
-
+define('ENTRY_COMPANY_NUMBER', 'Company Number:',true);
 /**** BEGIN ARTICLE MANAGER ****/
 define('BOX_HEADING_ARTICLES', 'Article Manager');
 define('BOX_TOPICS_ARTICLES', 'Topics/Articles');
