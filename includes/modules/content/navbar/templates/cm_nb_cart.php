@@ -14,7 +14,9 @@
 <!-- Start cm_nb_cart -->
             <li class="dropdown">
          <?php  if ($cart->count_contents() > 0) { ?>
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo sprintf(HEADER_CART_CONTENTS, $cart->count_contents()); ?></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php 
+              echo sprintf(HEADER_CART_CONTENTS.' ', $cart->count_contents(),$cart->count_contents()); 
+              ?></a>
               <ul class="dropdown-menu">
                 <li><a href="<?php echo tep_href_link(FILENAME_SHOPPING_CART); ?>"><?php echo sprintf(HEADER_CART_HAS_CONTENTS, $cart->count_contents(), $currencies->format($cart->show_total())); ?></a></li>
                   <li class="divider"></li>
