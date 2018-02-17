@@ -19,7 +19,13 @@
     var $table_row_parameters = '';
     var $table_data_parameters = '';
 
-    function tableBlock($contents) {
+    function __construct($contents)
+    {
+        $this->tableBlock($contents);
+    }
+
+
+    function tableBlock($contents = []) {
       $tableBox_string = '';
 
       $form_set = false;
@@ -76,5 +82,7 @@
 
       return $tableBox_string;
     }
+    
+     
   }
 ?>
