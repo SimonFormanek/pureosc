@@ -299,6 +299,9 @@ $security_pro->addExclusion( 'advanced_search.php' );
     }
     $language = $lng->language['directory'];
     $languages_id = $lng->language['id'];
+
+    require_once dirname(__DIR__).'/vendor/autoload.php';
+    \Ease\Shared::initializeGetText('pureosc', $lng, 'i18n');
  
 //original version:
 /*
