@@ -474,7 +474,7 @@ if (tep_not_null(ENTRY_EMAIL_ADDRESS_TEXT))
     ?>
                 </div>
 
-                <label for="inputVatnumber" class="control-label col-sm-3"><?php echo ENTRY_COMPANY_NUMBER; ?></label>
+                <label for="inputVatnumber" class="control-label col-sm-3"><?php echo _('Company number'); ?></label>
                 <div class="col-sm-9">
     <?php
     echo tep_draw_input_field('company_number', NULL, 'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="' . ENTRY_COMPANY_NUMBER . '"');
