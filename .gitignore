@@ -18,3 +18,5 @@ OM/Custom/*
 mailhive/common/templates_c/
 admin/.htaccess
 mailhive/cloudbeez/cloudloader/install.log
+/nbproject/private/
+/vendor/

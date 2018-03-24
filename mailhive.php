@@ -23,9 +23,9 @@ if (file_exists('mailhive/common/main/inc_mailhive.php')) {
 
         function mh_db_check_field_exists($table, $field)
         {
-            $query_raw = "SHOW COLUMNS FROM " . $table . "";
-            $query = xtc_db_query($query_raw);
-            while ($item = xtc_db_fetch_array($query)) {
+            $query_raw = "SHOW COLUMNS FROM ".$table."";
+            $query     = xtc_db_query($query_raw);
+            while ($item      = xtc_db_fetch_array($query)) {
                 if ($item['Field'] == $field) {
                     return $item;
                 }
@@ -48,8 +48,6 @@ if (file_exists('mailhive/common/main/inc_mailhive.php')) {
                 }
             }
         }
-
-
         // gambio has removed TABLE_ADMIN_ACCESS from storefront context...
         if (!defined('TABLE_ADMIN_ACCESS')) {
             define('TABLE_ADMIN_ACCESS', 'admin_access');
@@ -59,18 +57,18 @@ if (file_exists('mailhive/common/main/inc_mailhive.php')) {
 	<br />
 	";
 
-        $sql = array();
-        $sql[] = "ALTER TABLE " . TABLE_ADMIN_ACCESS . " ADD mailbeez INT(1) DEFAULT '0' NOT NULL ;";
+        $sql   = array();
+        $sql[] = "ALTER TABLE ".TABLE_ADMIN_ACCESS." ADD mailbeez INT(1) DEFAULT '0' NOT NULL ;";
         mh_db_add_field(TABLE_ADMIN_ACCESS, 'mailbeez', $sql);
 
         $field_info = mh_db_check_field_exists(TABLE_ADMIN_ACCESS, 'mailbeez');
 
         if ($field_info != false) {
-            echo 'TABLE_ADMIN_ACCESS (' . TABLE_ADMIN_ACCESS . ') updated - added column "mailbeez"<br />';
+            echo 'TABLE_ADMIN_ACCESS ('.TABLE_ADMIN_ACCESS.') updated - added column "mailbeez"<br />';
         }
 
-        xtc_db_query("UPDATE " . TABLE_ADMIN_ACCESS . " SET mailbeez = '2' WHERE customers_id = 'groups' LIMIT 1");
-        xtc_db_query("UPDATE " . TABLE_ADMIN_ACCESS . " SET mailbeez = '1' WHERE customers_id = '1' LIMIT 1");
+        xtc_db_query("UPDATE ".TABLE_ADMIN_ACCESS." SET mailbeez = '2' WHERE customers_id = 'groups' LIMIT 1");
+        xtc_db_query("UPDATE ".TABLE_ADMIN_ACCESS." SET mailbeez = '1' WHERE customers_id = '1' LIMIT 1");
         // UPDATE `admin_access` SET mailbeez = 1;
 
         echo "<br />done<br><br />";
@@ -81,11 +79,10 @@ if (file_exists('mailhive/common/main/inc_mailhive.php')) {
         Please follow the installation manual on
         <a href="http://www.mailbeez.com/documentation/installation/">http://www.mailbeez.com/documentation/installation/</a>
 
-    <?php
+        <?php
     }
-
     ?>
     Please install MailBeez
-<?php
+    <?php
 }
 ?>
