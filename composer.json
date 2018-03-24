@@ -10,7 +10,8 @@
     "require": {
 
         "spoje.net/flexipeehp": "dev-master",
-        "vitexsoftware/ease-framework": "dev-master"
+        "vitexsoftware/ease-framework": "dev-master",
+        "vitexsoftware/flexipeehp-bricks": "dev-master"
     },
     "autoload": {
         "psr-4": {
