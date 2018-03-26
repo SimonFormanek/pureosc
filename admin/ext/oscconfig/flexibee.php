@@ -11,6 +11,6 @@ if (!defined('EASE_LOGGER')) {
     define('EASE_LOGGER', 'syslog');
 }
 define('FLEXIBEE_URL', 'https://vitexsoftware.flexibee.eu:5434');
-define('FLEXIBEE_LOGIN', 'vitex');
-define('FLEXIBEE_PASSWORD', 'Sod1orp');
+define('FLEXIBEE_LOGIN', 'purehtml');
+define('FLEXIBEE_PASSWORD', 'jeansolpartre');
 define('FLEXIBEE_COMPANY', 'oikoymenh__z__s_');
