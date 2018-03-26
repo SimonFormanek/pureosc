@@ -29,11 +29,8 @@ define('DB_SERVER_PASSWORD', 'pureosc');
 //admin: f / fZ2p2OPBIQcXY21l3GW4
 
 
-define('EASE_APPNAME', 'PureOSC');
-define('EASE_LOGGER', 'syslog');
+
 define('DB_HOST', constant('DB_SERVER'));
 define('DB_PASSWORD', constant('DB_SERVER_PASSWORD'));
-define('DB_DATABASE', constant('DB_DATABASE'));
 define('DB_USERNAME', constant('DB_SERVER_USERNAME'));
-define('DB_PORT', constant('DB_PORT'));
 define('DB_TYPE', 'mysql');
