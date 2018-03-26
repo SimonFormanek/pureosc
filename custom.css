@@ -5,8 +5,8 @@
 /* Historical osCommerce ---------------------------------------------------- */
 
 .buttonSet {
-  margin-top: 10px;
-  margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .buttonSet { zoom: 1; }
@@ -14,73 +14,73 @@
 .buttonSet:after { clear: both; }
 
 .buttonAction {
-  float: right;
+    float: right;
 }
 
 .piGal {
-  width: 250px !important;
+    width: 250px !important;
 }
 
 .piGal img {
-  max-width: 250px;
-  height: auto;
+    max-width: 250px;
+    height: auto;
 }
 
 .inputRequirement, .markProductOutOfStock, .stockWarning {
-  color: #B33A3A;
+    color: #B33A3A;
 }
 
 .markProductOutOfStock, .stockWarning {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 ul.accountLinkList {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  line-height: 2;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    line-height: 2;
 }
 
 ul.shoppingCartList {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 ul.shoppingCartList li.newItemInCart, ul.shoppingCartList li.newItemInCart A {
-  color: red;
+    color: red;
 }
 
 /* Alignment of Form Inputs ------------------------------------------------- */
 
 .form-control {
-  margin-bottom: 5px;
-  display: inline;
+    margin-bottom: 5px;
+    display: inline;
 }
 
 /* for the product page rework ---------------------------------------------- */
 
 .page-header h1 del {
-  font-size: 0.5em;
+    font-size: 0.5em;
 }
 
 /* for the listings module rework ------------------------------------------- */
 
 .productHolder {
-  border: 1px solid #eee;
-  padding: 10px;
-  border-radius: 4px;
-  -webkit-transition: border .5s ease-in-out;
-       -o-transition: border .5s ease-in-out;
-          transition: border .5s ease-in-out;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 4px;
+    -webkit-transition: border .5s ease-in-out;
+    -o-transition: border .5s ease-in-out;
+    transition: border .5s ease-in-out;
 }
 
 .productHolder:hover {
-  border: 1px solid #428bca;
+    border: 1px solid #428bca;
 }
 
 .productHolder h2 {
-  font-size: 1.3em;
+    font-size: 1.3em;
 }
 
 .item.list-group-item {
@@ -96,28 +96,28 @@ ul.shoppingCartList li.newItemInCart, ul.shoppingCartList li.newItemInCart A {
 }
 
 .grid-group-item {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .grid-group-item .list-group-item-text {
-  display: none;
+    display: none;
 }
 
 p.lead del {
-  font-size: 0.5em;
+    font-size: 0.5em;
 }
 
 /* Responsive Images  ------------------------------------------------------- */
 /* the inbuilt bootstrap responsive images class breaks the text-center class */
 
 #bodyContent .img-responsive, #columnLeft .img-responsive, #columnRight .img-responsive {
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Checkout Bar ------------------------------------------------------------- */
 .stepwizard {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .stepwizard-step p {
@@ -158,29 +158,29 @@ p.lead del {
 }
 
 .btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
 }
 /* Pagination  ------------------------------------------------------- */
 .pagenav {
-   position: relative;
-   top:-25px;
-   left:3px;
-   height: 40px !important;
+    position: relative;
+    top:-25px;
+    left:3px;
+    height: 40px !important;
 }
 .pagenumber {
-  margin-bottom:7px;
+    margin-bottom:7px;
 }
 
 /* Reviews ------------------------------------------------------------------ */
 
 .reviews blockquote p {
-  font-size: 0.8em;
+    font-size: 0.8em;
 }
 
 /* Responsive Text Alignment ------------------------------------------------ */
@@ -270,212 +270,212 @@ p.lead del {
 
 /* Footer ------------------------------------------------------------------- */
 .footer {
-  background: #eee;
-  border-top: 2px solid #ddd;
+    background: #eee;
+    border-top: 2px solid #ddd;
 }
 
 .footer .footerbox {
-  padding: 10px 10px 0px 10px;
+    padding: 10px 10px 0px 10px;
 }
 
 .footer-extra {
-  background: #111;
-  color: silver;
-  line-height: 3;
+    background: #111;
+    color: silver;
+    line-height: 3;
 }
 
 .footer-extra A {
-  color: silver;
+    color: silver;
 }
 
 .footer h2 {
-  padding: 0;
-  margin: 0;
-  font-size: 1em;
-  letter-spacing: 0.1em;
-  color: rgb(142,11,0);
-  text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    color: rgb(142,11,0);
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
 .contact {
-  border-left: 1px solid #ddd;
+    border-left: 1px solid #ddd;
 }
 
 /* Account History Info ----------------------------------------------------- */
 .timeline {
-  list-style: none;
-  padding: 20px 0 20px;
-  position: relative;
+    list-style: none;
+    padding: 20px 0 20px;
+    position: relative;
 }
 .timeline:before {
-  top: 0;
-  bottom: 0;
-  position: absolute;
-  content: " ";
-  width: 3px;
-  background-color: #eeeeee;
-  right: 25px;
-  margin-left: -1.5px;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 3px;
+    background-color: #eeeeee;
+    right: 25px;
+    margin-left: -1.5px;
 }
 .timeline > li {
-  margin-bottom: 20px;
-  position: relative;
+    margin-bottom: 20px;
+    position: relative;
 }
 .timeline > li:before,
 .timeline > li:after {
-  content: " ";
-  display: table;
+    content: " ";
+    display: table;
 }
 .timeline > li:after {
-  clear: both;
+    clear: both;
 }
 .timeline > li:before,
 .timeline > li:after {
-  content: " ";
-  display: table;
+    content: " ";
+    display: table;
 }
 .timeline > li:after {
-  clear: both;
+    clear: both;
 }
 .timeline > li > .timeline-panel {
-  width: calc( 100% - 75px );
-  float: left;
-  border: 1px solid #d4d4d4;
-  border-radius: 2px;
-  padding: 20px;
-  position: relative;
-  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    width: calc( 100% - 75px );
+    float: left;
+    border: 1px solid #d4d4d4;
+    border-radius: 2px;
+    padding: 20px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
 }
 .timeline > li > .timeline-panel:before {
-  position: absolute;
-  top: 26px;
-  right: -15px;
-  display: inline-block;
-  border-top: 15px solid transparent;
-  border-left: 15px solid #ccc;
-  border-right: 0 solid #ccc;
-  border-bottom: 15px solid transparent;
-  content: " ";
+    position: absolute;
+    top: 26px;
+    right: -15px;
+    display: inline-block;
+    border-top: 15px solid transparent;
+    border-left: 15px solid #ccc;
+    border-right: 0 solid #ccc;
+    border-bottom: 15px solid transparent;
+    content: " ";
 }
 .timeline > li > .timeline-panel:after {
-  position: absolute;
-  top: 27px;
-  right: -14px;
-  display: inline-block;
-  border-top: 14px solid transparent;
-  border-left: 14px solid #fff;
-  border-right: 0 solid #fff;
-  border-bottom: 14px solid transparent;
-  content: " ";
+    position: absolute;
+    top: 27px;
+    right: -14px;
+    display: inline-block;
+    border-top: 14px solid transparent;
+    border-left: 14px solid #fff;
+    border-right: 0 solid #fff;
+    border-bottom: 14px solid transparent;
+    content: " ";
 }
 .timeline > li > .timeline-badge {
-  color: #fff;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  font-size: 1.4em;
-  text-align: center;
-  position: absolute;
-  top: 16px;
-  right: 0px;
-  margin-left: -25px;
-  background-color: #999999;
-  z-index: 100;
-  border-top-right-radius: 50%;
-  border-top-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-  border-bottom-left-radius: 50%;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+    text-align: center;
+    position: absolute;
+    top: 16px;
+    right: 0px;
+    margin-left: -25px;
+    background-color: #999999;
+    z-index: 100;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
 }
 .timeline > li.timeline-inverted > .timeline-panel {
-  float: right;
+    float: right;
 }
 .timeline > li.timeline-inverted > .timeline-panel:before {
-  border-left-width: 0;
-  border-right-width: 15px;
-  left: -15px;
-  right: auto;
+    border-left-width: 0;
+    border-right-width: 15px;
+    left: -15px;
+    right: auto;
 }
 .timeline > li.timeline-inverted > .timeline-panel:after {
-  border-left-width: 0;
-  border-right-width: 14px;
-  left: -14px;
-  right: auto;
+    border-left-width: 0;
+    border-right-width: 14px;
+    left: -14px;
+    right: auto;
 }
 .timeline-badge.primary {
-  background-color: #2e6da4 !important;
+    background-color: #2e6da4 !important;
 }
 .timeline-badge.success {
-  background-color: #3f903f !important;
+    background-color: #3f903f !important;
 }
 .timeline-badge.warning {
-  background-color: #f0ad4e !important;
+    background-color: #f0ad4e !important;
 }
 .timeline-badge.danger {
-  background-color: #d9534f !important;
+    background-color: #d9534f !important;
 }
 .timeline-badge.info {
-  background-color: #5bc0de !important;
+    background-color: #5bc0de !important;
 }
 .timeline-title {
-  margin-top: 0;
-  color: inherit;
+    margin-top: 0;
+    color: inherit;
 }
 .timeline-body > p .timeline-body > ul {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 .timeline-body > p + p {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 .timeline-body blockquote {
-  font-size: 1em;
+    font-size: 1em;
 }
 
 /* Nav Bars ----------------------------------------------------------------- */
 
 .navbar-no-corners {
-  border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-left: none;
-  border-right: none;
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-left: none;
+    border-right: none;
 }
 
 .navbar-no-margin {
-  margin-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .searchbox-margin {
-  margin-top: 7px;
-  margin-bottom: 4px;
-	width:100%;
+    margin-top: 7px;
+    margin-bottom: 4px;
+    width:100%;
 }
 
 .form-control-feedback{
-	padding-right:2%;
+    padding-right:2%;
 }
 
 /*other addons -------------------------------------------------------- */
 
 /**** BEGIN ARTICLE MANAGER ****/
 .separatorArticle {
-height: 1px;
-color: #FF0000;
+    height: 1px;
+    color: #FF0000;
 }
 .separatorBlogArticle {
-height: 1px;
-color: #FF0000;
+    height: 1px;
+    color: #FF0000;
 }
 .separatorNewArticle {
-height: 1px;
-color: #FF0000;
+    height: 1px;
+    color: #FF0000;
 }
 .separatorTopic {
-height: 1px;
-color: #FF0000;
+    height: 1px;
+    color: #FF0000;
 }
 .articleLinkHdr {font-size:12px; font-weight:600}
 .articleLinkMarker {font-size:10px; padding-left:2px}
@@ -532,21 +532,21 @@ h3{font-size:120%}
 
 
 @media only screen and (max-width:999px){
-	.searchbox-margin{max-width:230px}
+    .searchbox-margin{max-width:230px}
 }
 
 
 @media only screen and (max-width:759px){
-	.searchbox-margin{max-width:100%}
+    .searchbox-margin{max-width:100%}
 }
 
 
 @media only screen and (max-width:639px){
-	.piGalDiv{float:none; margin:auto;clear:left;width:90%;margin-bottom:20px}
-	.fixedHeightBox{min-height:auto;}
+    .piGalDiv{float:none; margin:auto;clear:left;width:90%;margin-bottom:20px}
+    .fixedHeightBox{min-height:auto;}
 }
 
 
 @media only screen and (max-width:569px){
-/*img{max-width:100% !important}*/
+    /*img{max-width:100% !important}*/
 }

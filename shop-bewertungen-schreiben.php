@@ -18,6 +18,6 @@ if (file_exists('mailhive/configbeez/config_shopvoting/includes/inc_shopvoting_w
 } else {
     ?>
     Please install Shopvoting module
-<?php
+    <?php
 }
 ?>

@@ -8,37 +8,38 @@
   Copyright (c) 2010 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
-  require_once('includes/application_top.php');
+require_once('includes/application_top.php');
 
-  require(DIR_WS_LANGUAGES . $language . '/' . FILENAME_GV_FAQ);
+require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_GV_FAQ);
 
-  $breadcrumb->add(NAVBAR_TITLE, tep_href_link(FILENAME_GV_FAQ));
+$breadcrumb->add(NAVBAR_TITLE, tep_href_link(FILENAME_GV_FAQ));
 
-  require(DIR_WS_INCLUDES . 'template_top.php');
+require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 
 <h1><?php echo HEADING_TITLE; ?></h1>
 
 <div class="contentContainer">
-  <div class="contentText">
-    <?php echo TEXT_INFORMATION; ?>
-  </div>
-  
     <div class="contentText">
-     <strong><?php echo SUB_HEADING_TITLE; ?></strong>
-     <p class="main"><?php echo SUB_HEADING_TEXT; ?></p>
+        <?php echo TEXT_INFORMATION; ?>
+    </div>
+
+    <div class="contentText">
+        <strong><?php echo SUB_HEADING_TITLE; ?></strong>
+        <p class="main"><?php echo SUB_HEADING_TEXT; ?></p>
     </div> 
 
 
 
-  <div class="buttonSet">
-    <span class="buttonAction"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'triangle-1-e', tep_href_link(FILENAME_DEFAULT)); ?></span>
-  </div>
+    <div class="buttonSet">
+        <span class="buttonAction"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
+            'triangle-1-e', tep_href_link(FILENAME_DEFAULT)); ?></span>
+    </div>
 </div>
 
 <?php
-  require(DIR_WS_INCLUDES . 'template_bottom.php');
-  require(DIR_WS_INCLUDES . 'application_bottom.php');
+require(DIR_WS_INCLUDES.'template_bottom.php');
+require(DIR_WS_INCLUDES.'application_bottom.php');
 ?>

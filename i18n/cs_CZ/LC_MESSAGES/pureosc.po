@@ -1,0 +1,863 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PureOSC\n"
+"POT-Creation-Date: 2018-02-17 06:26+0100\n"
+"PO-Revision-Date: 2018-02-17 06:27+0100\n"
+"Last-Translator: VÃ­tÄzslav DvoÅÃ¡k <info@vitexsoftware.cz>\n"
+"Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: vendor\n"
+
+#: account_history.php:67
+msgid "Invoice"
+msgstr "Faktura"
+
+#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+msgid "align"
+msgstr ""
+
+#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+msgid "blockquote"
+msgstr ""
+
+#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+msgid "p"
+msgstr ""
+
+#~ msgid "About application"
+#~ msgstr "O Aplikaci"
+
+#~ msgid "Used Libraries"
+#~ msgstr "PouÅ¾itÃ© knihovny"
+
+#, fuzzy
+#~ msgid "%s was deleted"
+#~ msgstr "ZÃ¡znam byl smazÃ¡n"
+
+#, fuzzy
+#~ msgid "%s was not deleted"
+#~ msgstr "ZÃ¡znam nebyl smazÃ¡n"
+
+#~ msgid "Backups"
+#~ msgstr "ZÃ¡lohy"
+
+#~ msgid "FlexiBee Buttons"
+#~ msgstr "FlexiBee TlaÄÃ­tka"
+
+#~ msgid "Evidence"
+#~ msgstr "Evidence"
+
+#~ msgid "This button open current FlexiBee evidence in FlexPlorer"
+#~ msgstr "TlaÄÃ­tko otevÅe aktuÃ¡lnÃ­ evidenci FlexiBee ve FlexPloreru"
+
+#~ msgid "Download Buttons XML install file"
+#~ msgstr "Stahnout XML pro instalaci tlaÄÃ­tek"
+
+#~ msgid "Install Buttons into FlexiBee"
+#~ msgstr "Instaluj tlaÄÃ­tka do FlexiBee"
+
+#~ msgid "File witch Change %s was deleted"
+#~ msgstr "Soubor zmÄny %s byl smazÃ¡n"
+
+#~ msgid "File with Change %s was not deleted"
+#~ msgstr "Soubor se zmÄnami %s nebyl smazÃ¡n"
+
+#~ msgid "Changes recieved"
+#~ msgstr "PÅijatÃ© zmÄny"
+
+#~ msgid "Add new webhook"
+#~ msgstr "PÅidej novÃ½ webhook"
+
+#~ msgid "Probe"
+#~ msgstr "Zkusit"
+
+#~ msgid "Delete"
+#~ msgstr "Smazat"
+
+#~ msgid "FlexiBee WebHook income"
+#~ msgstr "Data pÅijatÃ¡ WebHookem"
+
+#~ msgid "Delete All"
+#~ msgstr "Smazat vÅ¡echny"
+
+#~ msgid "Target to FlexPlorer"
+#~ msgstr "NasemÄrovat na FlexPlorer"
+
+#~ msgid "ChangesAPI was enabled"
+#~ msgstr "API ZmÄn bylo povoleno"
+
+#~ msgid "ChangesAPI was disabled"
+#~ msgstr "API zmÄn bylo zakÃ¡zÃ¡no"
+
+#~ msgid "Hook %s was registered"
+#~ msgstr "Hook %s byl registrovÃ¡n"
+
+#~ msgid "Hook %s not registered"
+#~ msgstr "Hook %s nebyl registrovÃ¡n"
+
+#~ msgid "Hook was unregistered"
+#~ msgstr "Hook byl odregistrovÃ¡n"
+
+#~ msgid "Hook was not unregistered"
+#~ msgstr "Hook nebyl odregistrovÃ¡n"
+
+#~ msgid "Hook refreshed"
+#~ msgstr "Hook obÄerstven"
+
+#~ msgid "Hook refresh failed"
+#~ msgstr "ObnovenÃ­ hooku nebylo ÃºspÄÅ¡nÃ©"
+
+#~ msgid "ChangesAPI Tool"
+#~ msgstr "NÃ¡stroj pro API ZmÄn"
+
+#~ msgid "Enable"
+#~ msgstr "Povolit"
+
+#~ msgid "Disable"
+#~ msgstr "ZakÃ¡zat"
+
+#~ msgid "Changes API"
+#~ msgstr "API ZmÄn"
+
+#~ msgid "If it is turned on , FlexiBee records all changes made ââto the database company in the changelog and provides a list of changes recovered"
+#~ msgstr "Je-li to zapnuto, FlexiBee zaznamenÃ¡vÃ¡ vÅ¡echny zmÄny provedenÃ© v databÃ¡zi firmy do changelogu a umoÅ¾Åuje seznam zmÄn zpÄtnÄ zÃ­skat."
+
+#~ msgid "Web Hook"
+#~ msgstr "Web Hook"
+
+#~ msgid "When the database FlexiBee to change the POST HTTP request sent to all registered URL"
+#~ msgstr "dyÅ¾ dojde v databÃ¡zi FlexiBee ke zmÄnÄ, je odeslÃ¡n POST HTTP request na vÅ¡echna zaregistrovanÃ¡ URL"
+
+#~ msgid "Data format"
+#~ msgstr "FormÃ¡t dat"
+
+#~ msgid "Skip URL test"
+#~ msgstr "PÅeskoÄ test URL"
+
+#~ msgid "Suppress URL functionality test"
+#~ msgstr "PÅeskoÄ test funkÄnosti URL"
+
+#~ msgid "Last version"
+#~ msgstr "PoslednÃ­ verze"
+
+#~ msgid "Version of which will begin sending FOLLOW changes , ie. The next higher version . The default value is equal to the current global version ( globalVersion ) at the moment of registration Hook. Permissible values ââare in the range [ 0 , % s ]"
+#~ msgstr "Verze od kterÃ© zapoÄne posÃ­lÃ¡nÃ­ nÃ¡sledujÃ­ch zmÄn, tj. od nejbliÅ¾Å¡Ã­ vyÅ¡Å¡Ã­ verze. DefaultnÃ­ hodnota je rovna aktuÃ¡lnÃ­ globÃ¡lnÃ­ verzi (globalVersion) v momentÄ registrace hooku. PÅÃ­pustnÃ© hodnoty jsou z intervalu: [0, %s]."
+
+#~ msgid "Security Code"
+#~ msgstr "BezeÄnostnÃ­ kÃ³d"
+
+#~ msgid "Any string (eg. %s) that will be sent with each change notifications in the HTTP header. Used to easily verify that include incoming notifications you registered Hook. Key name is in the HTTP header X-FB-Hook-SecKey ."
+#~ msgstr "LibovolnÃ½ ÅetÄzec (napÅ. %s), kterÃ½ bude odesÃ­lÃ¡n s kaÅ¾dou notifikacÃ­ zmÄn v HTTP hlaviÄce. SlouÅ¾Ã­ k jednoduchÃ©mu ovÄÅenÃ­, zda patÅÃ­ pÅÃ­chozÃ­ notifikace VÃ¡mi registrovanÃ©mu hooku. NÃ¡zev klÃ­Äe v HTTP hlaviÄce je X-FB-Hook-SecKey."
+
+#~ msgid "Perform operation"
+#~ msgstr "Vykonej operaci"
+
+#~ msgid "Test"
+#~ msgstr "Test\t"
+
+#~ msgid "Webhooks registered"
+#~ msgstr "RegistrovanÃ© WebHooky"
+
+#~ msgid "ChangesAPI & WebHooks"
+#~ msgstr "ChangesAPI & WebHooks"
+
+#~ msgid "Deleted"
+#~ msgstr "SmÃ¡no"
+
+#~ msgid "Record was added"
+#~ msgstr "ZÃ¡znam  byl pÅidÃ¡m"
+
+#~ msgid "Record was not added"
+#~ msgstr "ZÃ¡znam nebyl pÅidÃ¡n"
+
+#~ msgid "Record was updated"
+#~ msgstr "ZÃ¡znam byl aktualizovÃ¡n"
+
+#~ msgid "Record update failed"
+#~ msgstr "ZÃ¡znam se nepovedlo aktualizovat"
+
+#~ msgid "Unserialization error %s #%s "
+#~ msgstr "Chyba deserializace %s #%s "
+
+#~ msgid "File %s was used"
+#~ msgstr "Byl pouÅ¾it soubor %s"
+
+#~ msgid "URL %s was used"
+#~ msgstr "Byla pouÅ¾ita adresa %s"
+
+#~ msgid "Error %s obataing %s"
+#~ msgstr "Chyba %s zÃ­skÃ¡nÃ­ %s"
+
+#~ msgid "External ID"
+#~ msgstr "ExternÃ­ ID"
+
+#~ msgid "WebHook %s triggered"
+#~ msgstr "Webhook byl %s byl pÅijat"
+
+#~ msgid "Empty WebHook request"
+#~ msgstr "Webhook vrÃ¡til prÃ¡zdnou odezvu"
+
+#~ msgid "No search results"
+#~ msgstr "Å½Ã¡dnÃ© vÃ½sledky vyhledÃ¡vÃ¡nÃ­"
+
+#~ msgid "Login Failed"
+#~ msgstr "Chyba pÅihlÃ¡Å¡enÃ­"
+
+#~ msgid "Loading evidence list failed"
+#~ msgstr "NaÄÃ­tÃ¡nÃ­ evidence se nezdaÅilo"
+
+#~ msgid "File"
+#~ msgstr "Soubor"
+
+#~ msgid "Size"
+#~ msgstr "Velikost"
+
+#~ msgid "Age"
+#~ msgstr "StÃ¡ÅÃ­"
+
+#~ msgid "Restore"
+#~ msgstr "Obnovit"
+
+#~ msgid "Yes"
+#~ msgstr "Ano"
+
+#~ msgid "No"
+#~ msgstr "Ne"
+
+#~ msgid "About"
+#~ msgstr "O aplikaci"
+
+#~ msgid "Sign in"
+#~ msgstr "PÅihlÃ¡sit"
+
+#~ msgid "Server"
+#~ msgstr "Server"
+
+#~ msgid "login"
+#~ msgstr "login"
+
+#~ msgid "Password"
+#~ msgstr "Heslo"
+
+#~ msgid "Remeber me"
+#~ msgstr "Pamatuj si mne"
+
+#~ msgid "Settings"
+#~ msgstr "NastavenÃ­"
+
+#~ msgid "Sign off"
+#~ msgstr "OdhlÃ¡Å¡enÃ­"
+
+#~ msgid "Click to hide messages"
+#~ msgstr "Klikni pro skrytÃ­ zprÃ¡v"
+
+#~ msgid "Save"
+#~ msgstr "UloÅ¾"
+
+#~ msgid "Save & go to listing"
+#~ msgstr "UloÅ¾ a jdi na vÃ½pis"
+
+#~ msgid "Save and next"
+#~ msgstr "UloÅ¾ & dalÅ¡Ã­"
+
+#~ msgid "ColumnsGroups"
+#~ msgstr "Skupny sloupeÄkÅ¯"
+
+#~ msgid "Mandatory"
+#~ msgstr "PovinnÃ©"
+
+#~ msgid "ID List"
+#~ msgstr "VÃ½pis ID"
+
+#~ msgid "Summary List"
+#~ msgstr "PÅehled"
+
+#~ msgid "Full List"
+#~ msgstr "PlnÃ½ vÃ½pis"
+
+#~ msgid "Sortable"
+#~ msgstr "TÅÃ­ditelnÃ©"
+
+#~ msgid "Non Sortable"
+#~ msgstr "NetÅÃ­ditelnÃ©"
+
+#~ msgid "Writable"
+#~ msgstr "ZapisovatelnÃ©"
+
+#~ msgid "Read Only"
+#~ msgstr "Pouze pro ÄtenÃ­"
+
+#~ msgid "Companies Listing"
+#~ msgstr "PÅehled firem"
+
+#, fuzzy
+#~ msgid "Name"
+#~ msgstr "JmÃ©no"
+
+#, fuzzy
+#~ msgid "Database"
+#~ msgstr "Chyba zÃ¡pisu do databÃ¡ze"
+
+#~ msgid "before"
+#~ msgstr "pÅed"
+
+#, fuzzy
+#~ msgid "Company name"
+#~ msgstr "Firma"
+
+#~ msgid "My Company"
+#~ msgstr "Moje Firma"
+
+#~ msgid "Json"
+#~ msgstr "Json"
+
+#~ msgid "XML"
+#~ msgstr "XML"
+
+#~ msgid "Add"
+#~ msgstr "PÅidej"
+
+#~ msgid "Edit"
+#~ msgstr "Uprav"
+
+#~ msgid "Select All"
+#~ msgstr "Vyber vÅ¡e"
+
+#~ msgid "Title missing"
+#~ msgstr "ChybÃ­ nadpis"
+
+#~ msgid "Please mark some rows"
+#~ msgstr "ProsÃ­m oznaÄ nejakÃ© ÅÃ¡dkz"
+
+#~ msgid "Save to FlexiBee"
+#~ msgstr "UloÅ¾it do FlexiBee"
+
+#~ msgid "Show in editor"
+#~ msgstr "Zobraz v editoru"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "Required"
+#~ msgstr "VyÅ¾adovÃ¡no"
+
+#~ msgid "Edit targeted record"
+#~ msgstr "Uprav zvolenÃ½ zÃ¡znam"
+
+#~ msgid "Unknown type of data %s"
+#~ msgstr "NeznÃ¡mÃ½ typ dat %s "
+
+#~ msgid "Type"
+#~ msgstr "Typ"
+
+#~ msgid "Columns"
+#~ msgstr "SloupeÄky"
+
+#~ msgid "External IDs"
+#~ msgstr "ExternÃ­ IDÄka"
+
+#~ msgid "Labels"
+#~ msgstr "Å tÃ­tky"
+
+#~ msgid "Query"
+#~ msgstr "Dotaz"
+
+#~ msgid "FlexiBee"
+#~ msgstr "FlexiBee"
+
+#~ msgid "Remove"
+#~ msgstr "Odstranit"
+
+#~ msgid "New"
+#~ msgstr "NovÃ½"
+
+#~ msgid "Listing"
+#~ msgstr "VÃ½pis"
+
+#~ msgid "Company"
+#~ msgstr "Firma"
+
+#~ msgid "Overview"
+#~ msgstr "PÅehled"
+
+#~ msgid "Tools"
+#~ msgstr "NÃ¡stroje"
+
+#~ msgid "Buttons"
+#~ msgstr "TlaÄÃ­tka"
+
+#~ msgid "Changes Recieved"
+#~ msgstr "PÅijatÃ© zmÄny"
+
+#~ msgid "WebHook test"
+#~ msgstr "Test\tWebHooku"
+
+#~ msgid "Accounting period"
+#~ msgstr "ÃÄetnÃ­ obdobÃ­"
+
+#~ msgid "Search"
+#~ msgstr "HledÃ¡nÃ­"
+
+#~ msgid "Close"
+#~ msgstr "ZavÅÃ­t"
+
+#~ msgid "Sources"
+#~ msgstr "ZdrojÃ¡ky"
+
+#~ msgid "Support"
+#~ msgstr "Podpora"
+
+#~ msgid "Services"
+#~ msgstr "SluÅ¾by"
+
+#~ msgid "Docs"
+#~ msgstr "Dokumentace"
+
+#~ msgid "Author"
+#~ msgstr "Autor"
+
+#~ msgid "Vitex Software"
+#~ msgstr "Vitex Software"
+
+#~ msgid "Sponsored by"
+#~ msgstr "SponzorovÃ¡no"
+
+#~ msgid "Spoje.Net"
+#~ msgstr "Spoje.Net"
+
+#~ msgid "&copy; 2016-2017 VÃ­tÄzslav \"Vitex\" DvoÅÃ¡k"
+#~ msgstr "&copy; 2016-2017 VÃ­tÄzslav \"Vitex\" DvoÅÃ¡k"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "URL Compositon"
+#~ msgstr "SklÃ¡dÃ¡nÃ­ URL"
+
+#~ msgid "Query body Text"
+#~ msgstr "Text TÄla dotazu"
+
+#~ msgid "Query body from File"
+#~ msgstr "NaÄÃ­st tÄlo dotazu ze souboru"
+
+#~ msgid "This file overwrite \"request body\""
+#~ msgstr "Tento soubor pÅepÃ­Å¡e \"tÄlo poÅ¾adavku\""
+
+#~ msgid "Source URL"
+#~ msgstr "Adresa URL zdroje"
+
+#~ msgid "Get Query Body from url"
+#~ msgstr "PouÅ¾ij tÄlo dotazu z URL adresy"
+
+#~ msgid "Method"
+#~ msgstr "Metoda"
+
+#~ msgid "Supported HTTP Operations"
+#~ msgstr "PodporovanÃ© HTTP Operace"
+
+#~ msgid "Format"
+#~ msgstr "FormÃ¡t"
+
+#~ msgid "Send"
+#~ msgstr "OdeÅ¡li"
+
+#~ msgid "days"
+#~ msgstr "dnÃ­"
+
+#~ msgid "Make new request from this response"
+#~ msgstr "VytvoÅit poÅ¾adavek z odpovÄdi"
+
+#~ msgid "Save this response to file"
+#~ msgstr "UloÅ¾it odpovÄÄ do souboru"
+
+#~ msgid "Chanes API Settings"
+#~ msgstr "NastavenÃ­ API ZmÄn"
+
+#~ msgid "Please sign in as admin first"
+#~ msgstr "Nejprve se prosÃ­m pÅihlaÅ¡ jako admin"
+
+#~ msgid "Companies"
+#~ msgstr "Firmy"
+
+#~ msgid "Reset"
+#~ msgstr "Reset"
+
+#~ msgid "Drop company and create again"
+#~ msgstr "Smazat firmu a znovu ji vytvoÅit"
+
+#~ msgid "Duplicate"
+#~ msgstr "Duplikace"
+
+#~ msgid "Create company"
+#~ msgstr "ZaloÅ¾ firmu"
+
+#~ msgid "database"
+#~ msgstr "databÃ¡ze"
+
+#, fuzzy
+#~ msgid "created"
+#~ msgstr "vytvoÅeno"
+
+#~ msgid "Watching changes"
+#~ msgstr "SledovÃ¡nÃ­ zmÄn"
+
+#, fuzzy
+#~ msgid "Show"
+#~ msgstr "Zobraz"
+
+#~ msgid "License Group"
+#~ msgstr "LicenÄnÃ­ skupina"
+
+#~ msgid "Clone company"
+#~ msgstr "Klonovat Firmu"
+
+#~ msgid "backup saved"
+#~ msgstr "zÃ¡loha uloÅ¾ena"
+
+#, fuzzy
+#~ msgid "company %s was not restored"
+#~ msgstr "Rok %s nebyl odregistrovÃ¡n"
+
+#~ msgid "Record was deleted"
+#~ msgstr "ZÃ¡znam byl smazÃ¡n"
+
+#~ msgid "Record was not deleted"
+#~ msgstr "ZÃ¡znam nebyl smazÃ¡n"
+
+#~ msgid "Record Delete"
+#~ msgstr "Smazat zÃ¡znam"
+
+#~ msgid "Keep record"
+#~ msgstr "Uchovat zÃ¡znam"
+
+#~ msgid "Delete record"
+#~ msgstr "Smazat zÃ¡znam"
+
+#~ msgid "New record"
+#~ msgstr "NovÃ½ zÃ¡znam"
+
+#~ msgid "Record was saved"
+#~ msgstr "ZÃ¡znam byl uloÅ¾en"
+
+#~ msgid "Record was not saved"
+#~ msgstr "ZÃ¡znam nebyl uloÅ¾en"
+
+#~ msgid "Editor"
+#~ msgstr "Editor"
+
+#~ msgid "Evidence %s does not exist"
+#~ msgstr "Evidence %s neexistuje"
+
+#~ msgid "Evidence %s"
+#~ msgstr "Evidence %s"
+
+#~ msgid "Column Groups"
+#~ msgstr "Skupiny SloupeÄkÅ¯"
+
+#~ msgid "User Query"
+#~ msgstr "UÅ¾ivatelskÃ½ dotaz"
+
+#~ msgid "Items overview"
+#~ msgstr "PÅehled poloÅ¾ek"
+
+#~ msgid "no"
+#~ msgstr "ne"
+
+#~ msgid "yes"
+#~ msgstr "Ano"
+
+#~ msgid "Allowed by license"
+#~ msgstr "Povoleno licencÃ­"
+
+#~ msgid "Relations"
+#~ msgstr "Vstahy"
+
+#~ msgid "Info"
+#~ msgstr "info"
+
+#~ msgid "Labels Availble"
+#~ msgstr "DostupnÃ© Å¡tÃ­tky"
+
+#~ msgid "Evidences"
+#~ msgstr "Evidence"
+
+#~ msgid "License"
+#~ msgstr "Licence"
+
+#~ msgid "Availble %s"
+#~ msgstr "DostupnÃ© %s"
+
+#~ msgid "Unlicensed %s"
+#~ msgstr "NelicencovanÃ© %s"
+
+#~ msgid "All %s"
+#~ msgstr "VÅ¡echny %s"
+
+#~ msgid "licence ok"
+#~ msgstr "licence v poÅÃ¡dku"
+
+#~ msgid "unavialble"
+#~ msgstr "nepÅÃ­stupno"
+
+#~ msgid "WebHook successfully triggered"
+#~ msgstr "Webhook byl ÃºspÄÅ¡nÄ zavolÃ¡n"
+
+#~ msgid "WebHook returns non empty response"
+#~ msgstr "Webhook vrÃ¡til neprÃ¡zdnou odezvu"
+
+#~ msgid "Which version of the changes will begin sending following changes"
+#~ msgstr "Verze od kterÃ© zapoÄne posÃ­lÃ¡nÃ­ nÃ¡sledujÃ­ch zmÄn"
+
+#~ msgid "Operation"
+#~ msgstr "Operace"
+
+#~ msgid "Record number"
+#~ msgstr "ÄÃ­slo zÃ¡znamu"
+
+#~ msgid "Internal number of record edited"
+#~ msgstr "VnitÅnÃ­ ÄÃ­slo upravovanÃ©ho zÃ¡znamu"
+
+#~ msgid "External number"
+#~ msgstr "ExternÃ­ ÄÃ­slo"
+
+#~ msgid "External number of record edited"
+#~ msgstr "ExternÃ­ ÄÃ­slo upravovanÃ©ho zÃ¡znamu"
+
+#~ msgid "Build change"
+#~ msgstr "ZmÄÅ sestavenÃ­"
+
+#~ msgid "Choose Registered"
+#~ msgstr "Zvol registrovanÃ½"
+
+#~ msgid "When the database FlexiBee is changed the POST HTTP request sent to all registered URL"
+#~ msgstr "KdyÅ¾ dojde v databÃ¡zi FlexiBee ke zmÄnÄ, je odeslÃ¡n POST HTTP request na vÅ¡echna zaregistrovanÃ¡ URL"
+
+#~ msgid "Response"
+#~ msgstr "OdpovÄÄ"
+
+#~ msgid "Request"
+#~ msgstr "PoÅ¾adavek"
+
+#~ msgid "WebHook probe"
+#~ msgstr "ZkouÅ¡ka webhooku"
+
+#~ msgid "Open %s in Flexplorer"
+#~ msgstr "OtevÅÃ­t %s ve Flexploreru"
+
+#~ msgid "Edit Record in Flexplorer"
+#~ msgstr "Uprava zÃ¡znam ve Flexploreru"
+
+#~ msgid "JSON in Flexplorer"
+#~ msgstr "JSON ve Flexploreru"
+
+#~ msgid "XML in Flexplorer"
+#~ msgstr "XML ve Flexploreru"
+
+#~ msgid "flexplorer %s lexibee-buttons"
+#~ msgstr "flexplorer %s lexibee-buttons"
+
+#~ msgid "FlexiBee info"
+#~ msgstr "FlexiBee info"
+
+#~ msgid "server info"
+#~ msgstr "Informace o serveru"
+
+#~ msgid "license info"
+#~ msgstr "informace o licenci"
+
+#~ msgid "Label %s occurencies"
+#~ msgstr "VÃ½skyty Å¡tÃ­tku %s"
+
+#~ msgid "All Evidencies"
+#~ msgstr "VÅ¡echny Evidence"
+
+#~ msgid "Server added to bookmarks"
+#~ msgstr "Server byl pÅidÃ¡n do zÃ¡loÅ¾ek"
+
+#~ msgid "Signed in as: "
+#~ msgstr "PÅihlÃ¡Å¡en jako: "
+
+#~ msgid "Please confirm your login credentials"
+#~ msgstr "ProsÃ­m potvrÄ svÃ© pÅihlaÅ¡ovacÃ­ Ãºdaje"
+
+#~ msgid "FlexiBee server URL. ex.:"
+#~ msgstr "FlexiBee servr URL. napÅ.:"
+
+#~ msgid "User name"
+#~ msgstr "UÅ¾ivatelskÃ© JmÃ©no"
+
+#~ msgid "Login name"
+#~ msgstr "PÅihlaÅ¡ovacÃ­ JmÃ©no"
+
+#~ msgid "User's password"
+#~ msgstr "Heslo uÅ¾ivatele"
+
+#~ msgid "Add this to Login History"
+#~ msgstr "PÅidej do historie pÅihlÃ¡Å¡enÃ­"
+
+#~ msgid "display the contents of all the available records in all companies"
+#~ msgstr "zobrazovat obsah vÅ¡ech dostupnÃ½ch evidencÃ­ ve vÅ¡ech firmÃ¡ch"
+
+#~ msgid "show the structure of evidence"
+#~ msgstr "zobrazovat strukturu evidence"
+
+#~ msgid "send direct requests to the server and display results"
+#~ msgstr "odesÃ­lat pÅÃ­mÃ© poÅ¾adavky na server a zobrazovat vÃ½sledky"
+
+#~ msgid "set up ChangesAPI and add WebHooks"
+#~ msgstr "Nastavovat ChangesAPI a pÅidÃ¡vat WebHooks"
+
+#~ msgid "Test WebHook script processing changes from FlexiBee answers"
+#~ msgstr "Test odpovÄdi WebHook skriptu zpracovÃ¡vajÃ­cÃ­ho zmÄny z FlexiBee"
+
+#~ msgid "Collectively establish and abolish the accounting period"
+#~ msgstr "HromadnÄ zaklÃ¡dat a ruÅ¡it ÃºÄetnÃ­ obdobÃ­"
+
+#~ msgid "Evidnece distinguish which are inaccessible because of the license"
+#~ msgstr "RozliÅ¡it evidnece kterÃ© jsou z dÅ¯vodu licence nedostupnÃ©"
+
+#~ msgid "Shown next to json result of the request and page FlexiBee"
+#~ msgstr "Zobrazovat vedle json vÃ½sledku poÅ¾adavku i strÃ¡nku z FlexiBee"
+
+#~ msgid "Edit External ID numbers"
+#~ msgstr "Upravovat ExternÃ­ ID zÃ¡znamÅ¯"
+
+#~ msgid "Features"
+#~ msgstr "Schopnosti"
+
+#~ msgid "Sign out"
+#~ msgstr "OdhlÃ¡Å¡enÃ­"
+
+#~ msgid "Thank you for your patronage and look forward to another visit"
+#~ msgstr "DÃ­ky za vÃ¡Å¡ zÃ¡jem a tÄÅ¡Ã­m se na dalÅ¡Ã­ nÃ¡vÅ¡tÄvu"
+
+#~ msgid "Main Page"
+#~ msgstr "HlavnÃ­ strÃ¡nka"
+
+#~ msgid "Company %s was created"
+#~ msgstr "Firma %s byla registrovÃ¡n"
+
+#~ msgid "Custom request"
+#~ msgstr "UÅ¾ivatelskÃ½ poÅ¾adavek"
+
+#~ msgid "Company %s was recreated"
+#~ msgstr "Firma %s byl znovuvytvoÅena"
+
+#, fuzzy
+#~ msgid "backup save failed"
+#~ msgstr "ZÃ¡znam se nepovedlo aktualizovat"
+
+#~ msgid "Company Backup"
+#~ msgstr "Chyba zÃ¡lohovÃ¡nÃ­"
+
+#~ msgid "Save Company As"
+#~ msgstr "ZazÃ¡lohuj firmu jako"
+
+#~ msgid "Search results"
+#~ msgstr "VÃ½sledky vyhledÃ¡vÃ¡nÃ­"
+
+#~ msgid "Search for %s results in %s"
+#~ msgstr "HledÃ¡m %s v %s"
+
+#~ msgid "History empty"
+#~ msgstr "Historie je prÃ¡zdnÃ¡"
+
+#~ msgid "Reset history"
+#~ msgstr "Vymazat historii"
+
+#~ msgid "Year %s was unregistred"
+#~ msgstr "Rok %s byl odregistorvÃ¡n"
+
+#~ msgid "Year %s was not unregistred"
+#~ msgstr "Rok %s nebyl odregistrovÃ¡n"
+
+#~ msgid "Year was unregistred"
+#~ msgstr "Rok byl odregistrovÃ¡n"
+
+#~ msgid "Year was not unregistred"
+#~ msgstr "Rok nebyl odregistrovÃ¡n"
+
+#~ msgid "From Year"
+#~ msgstr "Od roku"
+
+#~ msgid "To Year"
+#~ msgstr "Do roku"
+
+#~ msgid "Registered Accounting periods"
+#~ msgstr "RegistrovanÃ¡ ÃºÄetnÃ­ obdobÃ­"
+
+#~ msgid "Remove unused"
+#~ msgstr "Odstranit nepouÅ¾itÃ©"
+
+#~ msgid "Tool for massive creating Accounting periods"
+#~ msgstr "NÃ¡stroj pro hromadnÃ© zaklÃ¡dÃ¡nÃ­ ÃºÄetnÃ­ch obdobÃ­"
+
+#~ msgid "Evidence proprties overview"
+#~ msgstr "PÅehled vlastnostÃ­ Evidence"
+
+#~ msgid "Structure"
+#~ msgstr "Struktura"
+
+#~ msgid "Custom query"
+#~ msgstr "Dotaz na API"
+
+#~ msgid "Login History"
+#~ msgstr "Historie pÅihlÃ¡Å¡enÃ­"
+
+#~ msgid "Query does not sent yet"
+#~ msgstr "Dotaz nebyl zatÃ­m odeslÃ¡n"
+
+#~ msgid "localized name"
+#~ msgstr "LokalizovanÃ© jmÃ©no"
+
+#~ msgid "targeted evidence"
+#~ msgstr "CÃ­lovÃ¡ evidence"
+
+#~ msgid "subitems collection name"
+#~ msgstr "JmÃ©no skupiny poloÅ¾ek"
+
+#~ msgid "Welcome"
+#~ msgstr "VÃ­tejte"
+
+#~ msgid "Nothig here yet"
+#~ msgstr "Nothig here yet"
+
+#, fuzzy
+#~ msgid "ZÃ¡znam nebyl uloÅ¾en"
+#~ msgstr "Dotaz nebyl zatÃ­m odeslÃ¡n"
+
+#, fuzzy
+#~ msgid "Struktura"
+#~ msgstr "Structure"
+
+#, fuzzy
+#~ msgid "Rok nebyl odregistrovÃ¡n"
+#~ msgstr "Dotaz nebyl zatÃ­m odeslÃ¡n"
+
+#, fuzzy
+#~ msgid "PÅeskoÄit test URL"
+#~ msgstr "Test"
+
+#, fuzzy
+#~ msgid "Test Web Hooku"
+#~ msgstr "Test"
+
+#, fuzzy
+#~ msgid "PÅehled vlastnostÃ­ evidence"
+#~ msgstr "Evidence"
+
+#, fuzzy
+#~ msgid "Dotaz"
+#~ msgstr "Dotaz nebyl zatÃ­m odeslÃ¡n"
+
+#, fuzzy
+#~ msgid "UloÅ¾it do FlexiBee"
+#~ msgstr "FlexiBee"
