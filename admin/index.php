@@ -24,6 +24,7 @@ for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
 }
 
 require(DIR_WS_INCLUDES.'template_top.php');
+
 ?>
 
 <table border="0" width="100%" cellspacing="0" cellpadding="2">

@@ -20,3 +20,4 @@ admin/.htaccess
 mailhive/cloudbeez/cloudloader/install.log
 /nbproject/private/
 /vendor/
+/images/

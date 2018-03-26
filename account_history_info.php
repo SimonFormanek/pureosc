@@ -39,6 +39,8 @@ $breadcrumb->add(sprintf(NAVBAR_TITLE_3, $HTTP_GET_VARS['order_id']),
 require(DIR_WS_CLASSES.'order.php');
 $order = new order($HTTP_GET_VARS['order_id']);
 
+$invoice = new PureOSC\flexibee\FakturaVydana('ext:osc:'.$_GET['order_id']);
+
 require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 
@@ -164,7 +166,13 @@ if ($order->delivery != false) {
             <div class="panel panel-warning">
                 <div class="panel-heading"><?php echo '<strong>'.HEADING_PAYMENT_METHOD.'</strong>'; ?></div>
                 <div class="panel-body">
-<?php echo $order->info['payment_method']; ?>
+<?php echo $order->info['payment_method']; 
+
+
+                    $qrImage = new \Ease\Html\ImgTag($invoice->getQrCodeBase64(), $invoice->getRecordIdent());
+                    echo $qrImage;
+
+?>
                 </div>
             </div>
         </div>

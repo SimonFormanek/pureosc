@@ -54,7 +54,8 @@ include(DIR_WS_LANGUAGES.$language.'/'.FILENAME_CHECKOUT_PROCESS);
 // load selected payment module
 require(DIR_WS_CLASSES.'payment.php');
 /* * * Altered for CCGV ** */
-if ($credit_covers) $payment         = ''; // CCGV
+if ($credit_covers)
+        $payment         = ''; // CCGV
     /*     * * EOF alteration for CCGV ** */
 $payment_modules = new payment($payment);
 
@@ -79,7 +80,7 @@ require_once './ext/flexibee/init.php';
 $invoice = new PureOSC\flexibee\FakturaVydana();
 $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
 $invoice->setDataValue("typDokl", 'code:FAKTURA');
-$invoice->setDataValue("stavMailK", 'stavMail.odeslat');
+$invoice->setDataValue("stavMailK", 'stavMail.neodesilat');
 
 // Stock Check
 $any_out_of_stock = false;
@@ -310,11 +311,16 @@ for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
 $order_total_modules->apply_credit(); // CCGV
 /* * * EOF alteration for CCGV ** */
 
+$invoice->setDataValue('id', 'ext:osc:'.$insert_id);
+
+$invoice->sync();
+
+
 // lets start with the email confirmation
 $email_order = EMAIL_HEADER_TXT."\n\n".
     STORE_NAME."\n".
     EMAIL_SEPARATOR."\n".
-    EMAIL_TEXT_ORDER_NUMBER.' '.$insert_id."\n";
+    EMAIL_TEXT_ORDER_NUMBER.' '.$invoice->getDataValue('varSym')."\n";
 /* * * Altered for PWA ** 				 
   EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false) . "\n" .
   EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n\n";
@@ -391,7 +397,6 @@ if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
     tep_mail('', SEND_EXTRA_ORDER_EMAILS_TO, EMAIL_TEXT_SUBJECT, $email_order,
         STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
 }
-$invoice->insertToFlexiBee();
 // load the after_process function from the payment modules
 $payment_modules->after_process();
 
@@ -418,4 +423,4 @@ tep_session_is_registered('customer_is_guest') ? tep_redirect(tep_href_link('che
 /* * * EOE for PWA ** */
 
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+

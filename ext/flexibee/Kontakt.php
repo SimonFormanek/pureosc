@@ -15,4 +15,24 @@ namespace PureOSC\flexibee;
 class Kontakt extends \FlexiPeeHP\Kontakt
 {
 
+    public function convertOscData($contactData)
+    {
+        $kontaktData['id'] = 'ext:contact'.$contactData['caddress_book_id'];
+        $kontaktData['ic'] = $contactData['ico'];
+        if (empty($contactData['entry_company'])) {
+            $kodSource = $contactData['entry_firstname'].' '.$contactData['entry_lastname'];
+        } else {
+            $kodSource = $contactData['entry_company'];
+        }
+        $kontaktData['jmeno']    = $contactData['entry_firstname'];
+        $kontaktData['prijmeni'] = $contactData['entry_lastname'];
+
+        $kontaktData['dic']   = $contactData['entry_company_tax_id'];
+        $kontaktData['ic']    = $contactData['entry_company_id'];
+        $kontaktData['ulice'] = $contactData['entry_street_address'];
+        $kontaktData['mesto'] = $contactData['entry_city'];
+        $kontaktData['psc']   = $contactData['entry_postcode'];
+        $kontaktData['kod']   = \FlexiPeeHP\FlexiBeeRO::uncode($this->getKod($kodSource));
+        return $kontaktData;
+    }
 }

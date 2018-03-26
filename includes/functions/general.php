@@ -77,7 +77,7 @@ function tep_output_string($string, $translate = false, $protected = false)
         if (!is_string($string)) {
             echo '';
         }
-        return htmlspecialchars($string);
+        return htmlspecialchars( is_array($string) ? implode('', $string) : $string);
     } else {
         if ($translate == false) {
             return tep_parse_input_field_data($string, array('"' => '&quot;'));

@@ -309,7 +309,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
             $HTTP_GET_VARS['sort'])) || (substr($HTTP_GET_VARS['sort'], 0, 1) > sizeof($column_list))) {
         for ($i = 0, $n = sizeof($column_list); $i < $n; $i++) {
             if ($column_list[$i] == 'PRODUCT_LIST_NAME') {
-                $HTTP_GET_VARS['sort'] = $i + 1.'a';
+                $HTTP_GET_VARS['sort'] = ($i + 1).'a';
                 $order_str             = " order by pd.products_name";
                 break;
             }

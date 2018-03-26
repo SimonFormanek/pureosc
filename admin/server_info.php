@@ -190,6 +190,10 @@ if ($action == 'export') {
         <tr>
             <td>
                 <?php
+                
+                echo new \Ease\Html\DivTag( new FlexiPeeHP\ui\StatusInfoBox());
+
+                
                 if (function_exists('ob_start')) {
                     ?>
                     <style type="text/css">

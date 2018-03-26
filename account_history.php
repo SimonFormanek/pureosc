@@ -65,33 +65,39 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         </div>
                     </div>
                     <div class="panel-footer">
-        <?php echo tep_draw_button(SMALL_IMAGE_BUTTON_VIEW,
-            'fa fa-file',
-            tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO,
-                (isset($HTTP_GET_VARS['page']) ? 'page='.$HTTP_GET_VARS['page'].'&'
-                        : '').'order_id='.$history['orders_id'], 'SSL'),
-            'primary', NULL, 'btn-primary btn-xs'); ?>
-            <?php echo tep_draw_button(_('Invoice'), 'fa fa-file',
-                tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO,
-                    (isset($HTTP_GET_VARS['page']) ? 'page='.$HTTP_GET_VARS['page'].'&'
-                            : '').'order_id='.$history['orders_id'], 'SSL'),
-                'primary', NULL, 'btn-primary btn-xs'); ?>
+                        <?php
+                        echo tep_draw_button(SMALL_IMAGE_BUTTON_VIEW,
+                            'fa fa-file',
+                            tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO,
+                                (isset($HTTP_GET_VARS['page']) ? 'page='.$HTTP_GET_VARS['page'].'&'
+                                        : '').'order_id='.$history['orders_id'],
+                                'SSL'), 'primary', NULL, 'btn-primary btn-xs');
+                        ?>
+                        <?php
+                        $button  = new \Ease\TWB\LinkButton('getpdf.php?evidence=faktura-vydana&id='.$history['orders_id'].'&embed=true',
+                            _('PDF Invoice'), 'success btn-xs');
+                        $button2 = new \Ease\TWB\LinkButton('getisdoc.php?evidence=faktura-vydana&id='.$history['orders_id'].'&embed=true',
+                            _('ISDOC Invoice'), 'success btn-xs');
+
+                        echo $button.$button2;
+                        ?>
                     </div>
                 </div>
             </div>
 
-        <?php
-    }
-    ?>
+                            <?php
+                        }
+                        ?>
         <div class="row">
             <div class="col-md-6 pagenumber"><?php echo $history_split->display_count(TEXT_DISPLAY_NUMBER_OF_ORDERS); ?></div>
             <div class="col-md-6"><span class="pull-right pagenav"><ul class="pagination"><?php echo $history_split->display_links(MAX_DISPLAY_PAGE_LINKS,
-        tep_get_all_get_params(array('page', 'info', 'x', 'y'))); ?></ul></span><span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span></div>
+        tep_get_all_get_params(array('page', 'info', 'x', 'y')));
+    ?></ul></span><span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span></div>
         </div>
 
-            <?php
-        } else {
-            ?>
+        <?php
+    } else {
+        ?>
 
         <div class="alert alert-info">
             <p><?php echo TEXT_NO_PURCHASES; ?></p>
@@ -103,7 +109,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     <div class="buttonSet">
 <?php echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
-    tep_href_link(FILENAME_ACCOUNT, '', 'SSL')); ?>
+    tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+?>
     </div>
 </div>
 

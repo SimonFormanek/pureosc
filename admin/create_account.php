@@ -74,7 +74,7 @@ if (isset($HTTP_POST_VARS['action']) && ($HTTP_POST_VARS['action'] == 'process')
         if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
-            $messageStack->add('create_account', ENTRY_GENDER_ERROR);
+        $messageStack->add('create_account', ENTRY_GENDER_ERROR);
         }
     }
 

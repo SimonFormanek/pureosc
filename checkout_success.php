@@ -53,9 +53,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <h1><?php echo HEADING_TITLE; ?></h1>
 </div>
 
-<?php echo tep_draw_form('order',
+<?php
+echo tep_draw_form('order',
     tep_href_link('checkout_success.php', 'action=update', 'SSL'), 'post',
-    'class="form-horizontal" role="form"'); ?>
+    'class="form-horizontal" role="form"');
+?>
 
 <div class="contentContainer">
     <?php echo $page_content; ?>
@@ -65,21 +67,37 @@ require(DIR_WS_INCLUDES.'template_top.php');
     if ($gv_result = tep_db_fetch_array($gv_query)) {
         if ($gv_result['amount'] > 0) {
             ?>
-            <?php echo GV_HAS_VOUCHERA;
+            <?php
+            echo GV_HAS_VOUCHERA;
             echo tep_href_link(FILENAME_GV_SEND);
-            echo GV_HAS_VOUCHERB; ?>
-
+            echo GV_HAS_VOUCHERB;
+            ?>
             <?php
         }
     }
+
+    $invoice = new PureOSC\flexibee\FakturaVydana('ext:osc:'.$order_id);
+    $qrImage = new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
+        $invoice->getRecordIdent());
+
+    $button  = new \Ease\TWB\LinkButton('getpdf.php?evidence=faktura-vydana&id='.$order_id.'&embed=true',
+        _('PDF Invoice'), 'success btn-xs');
+    $button2 = new \Ease\TWB\LinkButton('getisdoc.php?evidence=faktura-vydana&id='.$order_id.'&embed=true',
+        _('ISDOC Invoice'), 'success btn-xs');
+    
+    
+    echo $qrImage.$button.$button2;
+    
     ?>
-<?php /* * * EOF alteration for CCGV ** */ ?>
+    <?php /*     * * EOF alteration for CCGV ** */ ?>
 </div>
 
 <div class="contentContainer">
     <div class="buttonSet">
-        <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-angle-right', null, 'primary', null, 'btn-success'); ?></div>
+        <div class="text-right"><?php
+    echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right', null,
+        'primary', null, 'btn-success');
+    ?></div>
     </div>
 </div>
 
