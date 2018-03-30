@@ -350,6 +350,12 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
         }
         /*         * * EOF alterations for Mail Manager ** */
 
+        if ($newsletter !== false) {
+            $gdprNewsLetterConsentReq = new \PureOSC\NewsletterConsentMailer($customer_id,$email_address,
+                $name);
+            $gdprNewsLetterConsentReq->send();
+        }
+
         tep_redirect(tep_href_link(FILENAME_CREATE_ACCOUNT_SUCCESS, '', 'SSL'));
     }
 }
@@ -400,12 +406,12 @@ echo tep_draw_form('create_account',
                         ?>
                     </label>
                     <label class="radio-inline">
-                        <?php echo tep_draw_radio_field('gender',
-                            'f').' '.FEMALE;
+                        <?php
+                        echo tep_draw_radio_field('gender', 'f').' '.FEMALE;
                         ?>
                     </label>
-    <?php echo FORM_REQUIRED_INPUT; ?>
-            <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
+                    <?php echo FORM_REQUIRED_INPUT; ?>
+                    <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
                 </div>
             </div>
             <?php
@@ -656,7 +662,7 @@ echo tep_draw_form('create_account',
                         echo tep_draw_checkbox_field('newsletter', '1', NULL,
                             'id="inputNewsletter"');
                         ?>
-<?php if (tep_not_null(ENTRY_NEWSLETTER_TEXT)) echo ENTRY_NEWSLETTER_TEXT; ?>
+                        <?php if (tep_not_null(ENTRY_NEWSLETTER_TEXT)) echo ENTRY_NEWSLETTER_TEXT; ?>
                     </label>
                 </div>
             </div>
@@ -697,9 +703,9 @@ echo tep_draw_form('create_account',
 
     <div class="buttonSet">
         <div class="text-right"><?php
-                echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-user', null,
-                    'primary', null, 'btn-success');
-                ?></div>
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-user', null,
+                'primary', null, 'btn-success');
+            ?></div>
     </div>
 
 </div>

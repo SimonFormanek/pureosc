@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
-"POT-Creation-Date: 2018-02-17 06:26+0100\n"
-"PO-Revision-Date: 2018-02-17 06:27+0100\n"
-"Last-Translator: VÃ­tÄzslav DvoÅÃ¡k <info@vitexsoftware.cz>\n"
+"POT-Creation-Date: 2018-03-30 22:21+0200\n"
+"PO-Revision-Date: 2018-03-30 22:32+0200\n"
+"Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
@@ -16,19 +16,84 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: vendor\n"
 
-#: account_history.php:67
-msgid "Invoice"
-msgstr "Faktura"
+#: admin/flexibeesync.php:27 catalog/admin/flexibeesync.php:27
+msgid "FlexiBee sync"
+msgstr "FlexiBee synchronizace"
+
+#: catalog/account_history.php:79 catalog/checkout_success.php:84
+msgid "PDF Invoice"
+msgstr "PDF Faktura"
+
+#: catalog/account_history.php:82 catalog/checkout_success.php:86
+msgid "ISDOC Invoice"
+msgstr "ISDOC Faktura"
+
+#: catalog/create_account.php:504
+msgid "Company number"
+msgstr "Ičo"
+
+#: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Cenik.php:38
+#: catalog/ext/flexibee/FakturaVydana.php:42
+msgid "FlexiBee import"
+msgstr "Import z FlexiBee "
+
+#: catalog/getisdoc.php:26 catalog/getpdf.php:32
+msgid "Wrong call"
+msgstr "Špatné volání"
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:15
+msgid "Newsletter GDPR Consent"
+msgstr "GDPR Souhlas s odběrem novinek mailem"
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:16
+msgid "Dear Customer"
+msgstr "Vážený zálazníku,"
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:17
+#, php-format
+msgid "Would you like to subsribe to newsletter updates from %s ?"
+msgstr "Chcete se přihlásit k odběru emailových novinek z %s ?"
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:20
+msgid "Click here to Agree"
+msgstr "Klikněte zde pro vyjádření souhlasu"
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
+msgid "Google Buzz"
+msgstr "Google Buzz"
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
+msgid "Share on Google Buzz"
+msgstr "Sdílet na Google Buzz"
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
+msgid "Share products on Google Buzz."
+msgstr "Sdílet produkty na Google Buzz."
+
+#: catalog/newsletterconfirm.php:31
+msgid "Newsletter Consent"
+msgstr "Souhlas se zasíláním novinek"
+
+#: catalog/newsletterconfirm.php:37
+msgid "Consent Recieved"
+msgstr "Souhlas byl přijat"
+
+#: catalog/newsletterconfirm.php:42
+msgid "Newsletter subscription consent was accepted"
+msgstr "Souhlas k odběru mailových novinek byl přijat"
 
 #: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+#: catalog/admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
 msgid "align"
-msgstr ""
+msgstr "zarovnání"
 
 #: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+#: catalog/admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
 msgid "blockquote"
 msgstr ""
 
 #: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+#: catalog/admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
 msgid "p"
 msgstr ""
 
@@ -309,10 +374,6 @@ msgstr ""
 #~ msgid "before"
 #~ msgstr "pÅed"
 
-#, fuzzy
-#~ msgid "Company name"
-#~ msgstr "Firma"
-
 #~ msgid "My Company"
 #~ msgstr "Moje Firma"
 
@@ -393,9 +454,6 @@ msgstr ""
 
 #~ msgid "Buttons"
 #~ msgstr "TlaÄÃ­tka"
-
-#~ msgid "Changes Recieved"
-#~ msgstr "PÅijatÃ© zmÄny"
 
 #~ msgid "WebHook test"
 #~ msgstr "Test\tWebHooku"
@@ -664,9 +722,6 @@ msgstr ""
 #~ msgid "flexplorer %s lexibee-buttons"
 #~ msgstr "flexplorer %s lexibee-buttons"
 
-#~ msgid "FlexiBee info"
-#~ msgstr "FlexiBee info"
-
 #~ msgid "server info"
 #~ msgstr "Informace o serveru"
 
@@ -805,9 +860,6 @@ msgstr ""
 
 #~ msgid "Structure"
 #~ msgstr "Struktura"
-
-#~ msgid "Custom query"
-#~ msgstr "Dotaz na API"
 
 #~ msgid "Login History"
 #~ msgstr "Historie pÅihlÃ¡Å¡enÃ­"
