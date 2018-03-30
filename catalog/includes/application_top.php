@@ -294,7 +294,7 @@ $language     = $lng->language['directory'];
 $languages_id = $lng->language['id'];
 
 require_once dirname(__DIR__).'/../vendor/autoload.php';
-\Ease\Shared::initializeGetText('pureosc', $lng, 'i18n');
+\Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
 //original version:
 // set the language
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
@@ -302,9 +302,6 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
         tep_session_register('language');
         tep_session_register('languages_id');
     }
-
-    include(DIR_WS_CLASSES.'language.php');
-    $lng = new language();
 
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);

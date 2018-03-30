@@ -37,7 +37,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
     include('../../oscconfig/dbconfigure.php');
 }
 
-require_once '/home/vitex/Projects/PureHTML/pureosc/vendor/autoload.php';
+require_once DIR_FS_ADMIN . '/../vendor/autoload.php';
 
 // some code to solve compatibility issues
 require(DIR_WS_FUNCTIONS.'compatibility.php');

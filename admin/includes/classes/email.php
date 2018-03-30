@@ -20,7 +20,7 @@
   sendmail, SMTP and gmail compatibility
 */
 
-  require_once '../ext/modules/PHPMailer/class.phpmailer.php';
+  require_once DIR_FS_CATALOG . 'ext/modules/PHPMailer/class.phpmailer.php';
   $phpMail = new PHPMailer();
 
   class email {
