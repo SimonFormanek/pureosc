@@ -28,18 +28,31 @@ class CompanyNumber extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('address_book_real');
-        if (!$table->hasColumn('entry_company_number')) {
-            $table->addColumn('entry_company_number', 'string')
-                ->save();
-        }
-        if (!$table->hasColumn('entry_vat_number')) {
-            $table->addColumn('entry_vat_number', 'string')
-                ->save();
-        }
-        
-        
-        $this->execute('ALTER
+        if ($this->hasTable('address_book')) {
+            $table = $this->table('address_book');
+            if (!$table->hasColumn('entry_company_number')) {
+                $table->addColumn('entry_company_number', 'string')
+                    ->save();
+            }
+            if (!$table->hasColumn('entry_vat_number')) {
+                $table->addColumn('entry_vat_number', 'string')
+                    ->save();
+            }
+            
+        } else {
+
+            $table = $this->table('address_book_real');
+            if (!$table->hasColumn('entry_company_number')) {
+                $table->addColumn('entry_company_number', 'string')
+                    ->save();
+            }
+            if (!$table->hasColumn('entry_vat_number')) {
+                $table->addColumn('entry_vat_number', 'string')
+                    ->save();
+            }
+
+
+            $this->execute('ALTER
  ALGORITHM = UNDEFINED
 DEFINER=`root`@`localhost` 
  SQL SECURITY DEFINER
@@ -62,12 +75,13 @@ DEFINER=`root`@`localhost`
  `address_book_real`.`entry_zone_id` AS `entry_zone_id`,
  `address_book_real`.`crypt_request` AS `crypt_request`,
  `address_book_real`.`crypt_auth` AS `crypt_auth` from `address_book_real` where ((`address_book_real`.`customers_id` = (select substr(substring_index(user(),\'@\',1),-(7)))) or (substring_index(user(),\'@\',1) = \'yinyang_all\'))');
-        
-        
-        $table = $this->table('orders_real');
-        $table->addColumn('customers_company_number', 'string')
-            ->addColumn('delivery_company_number', 'string')
-            ->addColumn('billing_company_number', 'string')
-            ->save();
+
+
+            $table = $this->table('orders_real');
+            $table->addColumn('customers_company_number', 'string')
+                ->addColumn('delivery_company_number', 'string')
+                ->addColumn('billing_company_number', 'string')
+                ->save();
+        }
     }
 }
