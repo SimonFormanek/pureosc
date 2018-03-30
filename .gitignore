@@ -20,7 +20,6 @@ admin/.htaccess
 mailhive/cloudbeez/cloudloader/install.log
 /nbproject/private/
 /vendor/
-/images/
 /composer.lock
 phinx.yml
 Makefile
