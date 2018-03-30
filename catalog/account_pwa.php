@@ -43,7 +43,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     if (ACCOUNT_COMPANY == 'true')
             $company        = tep_db_prepare_input($_POST['company']);
     if (ACCOUNT_COMPANY == 'true')
-            $vat_number     = tep_db_prepare_input($HTTP_POST_VARS['vat_number']);
+            $vat_number     = tep_db_prepare_input($_POST['vat_number']);
     $street_address = tep_db_prepare_input($_POST['street_address']);
     if (ACCOUNT_SUBURB == 'true')
             $suburb         = tep_db_prepare_input($_POST['suburb']);

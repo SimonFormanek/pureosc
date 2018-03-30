@@ -28,11 +28,11 @@ if (tep_not_null($action)) {
             break;
         case 'insert':
         case 'update':
-            if (isset($HTTP_POST_VARS['newsletter_id']))
-                    $newsletter_id     = tep_db_prepare_input($HTTP_POST_VARS['newsletter_id']);
-            $newsletter_module = tep_db_prepare_input($HTTP_POST_VARS['module']);
-            $title             = tep_db_prepare_input($HTTP_POST_VARS['title']);
-            $content           = tep_db_prepare_input($HTTP_POST_VARS['content']);
+            if (isset($_POST['newsletter_id']))
+                    $newsletter_id     = tep_db_prepare_input($_POST['newsletter_id']);
+            $newsletter_module = tep_db_prepare_input($_POST['module']);
+            $title             = tep_db_prepare_input($_POST['title']);
+            $content           = tep_db_prepare_input($_POST['content']);
 
             $newsletter_error = false;
             if (empty($title)) {
@@ -139,8 +139,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
             $newsletter       = tep_db_fetch_array($newsletter_query);
 
             $nInfo->objectInfo($newsletter);
-        } elseif ($HTTP_POST_VARS) {
-            $nInfo->objectInfo($HTTP_POST_VARS);
+        } elseif ($_POST) {
+            $nInfo->objectInfo($_POST);
         }
 
         $file_extension  = substr($PHP_SELF, strrpos($PHP_SELF, '.'));

@@ -99,7 +99,7 @@ function selectAll(FormName, SelectBox) {
 		  $count = tep_db_fetch_array($count_query);
 		  
 		} else {
-		  $chosen = $HTTP_POST_VARS['chosen'];
+		  $chosen = $_POST['chosen'];
   
 		  $ids = implode(',', $chosen);
 		  

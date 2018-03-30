@@ -18,13 +18,13 @@ if (tep_not_null($action)) {
     switch ($action) {
         case 'insert':
         case 'update':
-            if (isset($HTTP_POST_VARS['template_id']))
-                    $template_id = tep_db_prepare_input($HTTP_POST_VARS['template_id']);
-            $title       = tep_db_prepare_input($HTTP_POST_VARS['title']);
-            $htmlheader  = tep_db_prepare_input($HTTP_POST_VARS['htmlheader']);
-            $htmlfooter  = tep_db_prepare_input($HTTP_POST_VARS['htmlfooter']);
-            $txtheader   = tep_db_prepare_input($HTTP_POST_VARS['txtheader']);
-            $txtfooter   = tep_db_prepare_input($HTTP_POST_VARS['txtfooter']);
+            if (isset($_POST['template_id']))
+                    $template_id = tep_db_prepare_input($_POST['template_id']);
+            $title       = tep_db_prepare_input($_POST['title']);
+            $htmlheader  = tep_db_prepare_input($_POST['htmlheader']);
+            $htmlfooter  = tep_db_prepare_input($_POST['htmlfooter']);
+            $txtheader   = tep_db_prepare_input($_POST['txtheader']);
+            $txtfooter   = tep_db_prepare_input($_POST['txtfooter']);
 
 
             $sql_data_array = array('title' => $title,
@@ -96,8 +96,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
             $template       = tep_db_fetch_array($template_query);
 
             $nInfo->objectInfo($template);
-        } elseif ($HTTP_POST_VARS) {
-            $nInfo->objectInfo($HTTP_POST_VARS);
+        } elseif ($_POST) {
+            $nInfo->objectInfo($_POST);
         }
         ?>
         <tr>

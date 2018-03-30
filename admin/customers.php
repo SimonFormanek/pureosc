@@ -21,32 +21,32 @@ if (tep_not_null($action)) {
     switch ($action) {
         case 'update':
             $customers_id            = tep_db_prepare_input($_GET['cID']);
-            $customers_firstname     = tep_db_prepare_input($HTTP_POST_VARS['customers_firstname']);
-            $customers_lastname      = tep_db_prepare_input($HTTP_POST_VARS['customers_lastname']);
-            $customers_email_address = tep_db_prepare_input($HTTP_POST_VARS['customers_email_address']);
-            $customers_telephone     = tep_db_prepare_input($HTTP_POST_VARS['customers_telephone']);
-            $customers_fax           = tep_db_prepare_input($HTTP_POST_VARS['customers_fax']);
-            $customers_newsletter    = tep_db_prepare_input($HTTP_POST_VARS['customers_newsletter']);
+            $customers_firstname     = tep_db_prepare_input($_POST['customers_firstname']);
+            $customers_lastname      = tep_db_prepare_input($_POST['customers_lastname']);
+            $customers_email_address = tep_db_prepare_input($_POST['customers_email_address']);
+            $customers_telephone     = tep_db_prepare_input($_POST['customers_telephone']);
+            $customers_fax           = tep_db_prepare_input($_POST['customers_fax']);
+            $customers_newsletter    = tep_db_prepare_input($_POST['customers_newsletter']);
 
-            $customers_gender = tep_db_prepare_input($HTTP_POST_VARS['customers_gender']);
-            $customers_dob    = tep_db_prepare_input($HTTP_POST_VARS['customers_dob']);
+            $customers_gender = tep_db_prepare_input($_POST['customers_gender']);
+            $customers_dob    = tep_db_prepare_input($_POST['customers_dob']);
 
-            $default_address_id   = tep_db_prepare_input($HTTP_POST_VARS['default_address_id']);
-            $entry_vat_number     = tep_db_prepare_input($HTTP_POST_VARS['entry_vat_number']);
-            $entry_company_number = tep_db_prepare_input($HTTP_POST_VARS['entry_company_number']);
-            $entry_street_address = tep_db_prepare_input($HTTP_POST_VARS['entry_street_address']);
-            $entry_suburb         = tep_db_prepare_input($HTTP_POST_VARS['entry_suburb']);
-            $entry_postcode       = tep_db_prepare_input($HTTP_POST_VARS['entry_postcode']);
-            $entry_city           = tep_db_prepare_input($HTTP_POST_VARS['entry_city']);
-            $entry_country_id     = tep_db_prepare_input($HTTP_POST_VARS['entry_country_id']);
+            $default_address_id   = tep_db_prepare_input($_POST['default_address_id']);
+            $entry_vat_number     = tep_db_prepare_input($_POST['entry_vat_number']);
+            $entry_company_number = tep_db_prepare_input($_POST['entry_company_number']);
+            $entry_street_address = tep_db_prepare_input($_POST['entry_street_address']);
+            $entry_suburb         = tep_db_prepare_input($_POST['entry_suburb']);
+            $entry_postcode       = tep_db_prepare_input($_POST['entry_postcode']);
+            $entry_city           = tep_db_prepare_input($_POST['entry_city']);
+            $entry_country_id     = tep_db_prepare_input($_POST['entry_country_id']);
 
-            $entry_company        = tep_db_prepare_input($HTTP_POST_VARS['entry_company']);
-            $entry_vat_number     = tep_db_prepare_input($HTTP_POST_VARS['entry_vat_number']);
-            $entry_company_number = tep_db_prepare_input($HTTP_POST_VARS['entry_company_number']);
+            $entry_company        = tep_db_prepare_input($_POST['entry_company']);
+            $entry_vat_number     = tep_db_prepare_input($_POST['entry_vat_number']);
+            $entry_company_number = tep_db_prepare_input($_POST['entry_company_number']);
 
-            $entry_state   = tep_db_prepare_input($HTTP_POST_VARS['entry_state']);
-            if (isset($HTTP_POST_VARS['entry_zone_id']))
-                    $entry_zone_id = tep_db_prepare_input($HTTP_POST_VARS['entry_zone_id']);
+            $entry_state   = tep_db_prepare_input($_POST['entry_state']);
+            if (isset($_POST['entry_zone_id']))
+                    $entry_zone_id = tep_db_prepare_input($_POST['entry_zone_id']);
 
             if (strlen($customers_firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
                 $error                 = true;
@@ -209,7 +209,7 @@ if (tep_not_null($action)) {
                 tep_redirect(tep_href_link(FILENAME_CUSTOMERS,
                         tep_get_all_get_params(array('cID', 'action')).'cID='.$customers_id));
             } else if ($error == true) {
-                $cInfo     = new objectInfo($HTTP_POST_VARS);
+                $cInfo     = new objectInfo($_POST);
                 $processed = true;
             }
 
@@ -217,7 +217,7 @@ if (tep_not_null($action)) {
         case 'deleteconfirm':
             $customers_id = tep_db_prepare_input($_GET['cID']);
 
-            if (isset($HTTP_POST_VARS['delete_reviews']) && ($HTTP_POST_VARS['delete_reviews']
+            if (isset($_POST['delete_reviews']) && ($_POST['delete_reviews']
                 == 'on')) {
                 $reviews_query = tep_db_query("select reviews_id from ".TABLE_REVIEWS." where customers_id = '".(int) $customers_id."'");
                 while ($reviews       = tep_db_fetch_array($reviews_query)) {

@@ -52,8 +52,8 @@ if (tep_not_null($action)) {
         case 'insert':
             require('includes/functions/password_funcs.php');
 
-            $username = tep_db_prepare_input($HTTP_POST_VARS['username']);
-            $password = tep_db_prepare_input($HTTP_POST_VARS['password']);
+            $username = tep_db_prepare_input($_POST['username']);
+            $password = tep_db_prepare_input($_POST['password']);
 
             $check_query = tep_db_query("select id from ".TABLE_ADMINISTRATORS." where user_name = '".tep_db_input($username)."' limit 1");
 
@@ -70,7 +70,7 @@ if (tep_not_null($action)) {
                         }
                     }
 
-                    if (isset($HTTP_POST_VARS['htaccess']) && ($HTTP_POST_VARS['htaccess']
+                    if (isset($_POST['htaccess']) && ($_POST['htaccess']
                         == 'true')) {
                         $htpasswd_array[] = $username.':'.tep_crypt_apr_md5($password);
                     }
@@ -105,8 +105,8 @@ if (tep_not_null($action)) {
         case 'save':
             require('includes/functions/password_funcs.php');
 
-            $username = tep_db_prepare_input($HTTP_POST_VARS['username']);
-            $password = tep_db_prepare_input($HTTP_POST_VARS['password']);
+            $username = tep_db_prepare_input($_POST['username']);
+            $password = tep_db_prepare_input($_POST['password']);
 
             $check_query = tep_db_query("select id, user_name from ".TABLE_ADMINISTRATORS." where id = '".(int) $_GET['aID']."'");
             $check       = tep_db_fetch_array($check_query);
@@ -143,14 +143,14 @@ if (tep_not_null($action)) {
                         }
                     }
 
-                    if (isset($HTTP_POST_VARS['htaccess']) && ($HTTP_POST_VARS['htaccess']
+                    if (isset($_POST['htaccess']) && ($_POST['htaccess']
                         == 'true')) {
                         $htpasswd_array[] = $username.':'.tep_crypt_apr_md5($password);
                     }
                 }
 
                 tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".tep_db_input(tep_encrypt_password($password))."' where id = '".(int) $_GET['aID']."'");
-            } elseif (!isset($HTTP_POST_VARS['htaccess']) || ($HTTP_POST_VARS['htaccess']
+            } elseif (!isset($_POST['htaccess']) || ($_POST['htaccess']
                 != 'true')) {
                 if (is_array($htpasswd_array)) {
                     for ($i = 0, $n = sizeof($htpasswd_array); $i < $n; $i++) {

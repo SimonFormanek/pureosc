@@ -33,8 +33,8 @@ $action = (isset($_GET['action']) ? $_GET['action'] : '');
 if (tep_not_null($action)) {
     switch ($action) {
         case 'save':
-            reset($HTTP_POST_VARS['configuration']);
-            while (list($key, $value) = each($HTTP_POST_VARS['configuration'])) {
+            reset($_POST['configuration']);
+            while (list($key, $value) = each($_POST['configuration'])) {
                 tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".$value."' where configuration_key = '".$key."'");
             }
             tep_redirect(tep_href_link(FILENAME_MODULES,

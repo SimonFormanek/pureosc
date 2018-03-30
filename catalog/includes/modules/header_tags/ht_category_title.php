@@ -18,6 +18,12 @@
     var $sort_order;
     var $enabled = false;
 
+    public function __construct()
+    {
+        $this->ht_category_title();
+    }
+
+
     function ht_category_title() {
       $this->title = MODULE_HEADER_TAGS_CATEGORY_TITLE_TITLE;
       $this->description = MODULE_HEADER_TAGS_CATEGORY_TITLE_DESCRIPTION;

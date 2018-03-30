@@ -40,8 +40,8 @@ if (tep_not_null($action)) {
     switch ($action) {
         case 'update_order':
             $oID      = tep_db_prepare_input($_GET['oID']);
-            $status   = tep_db_prepare_input($HTTP_POST_VARS['status']);
-            $comments = tep_db_prepare_input($HTTP_POST_VARS['comments']);
+            $status   = tep_db_prepare_input($_POST['status']);
+            $comments = tep_db_prepare_input($_POST['comments']);
 
             $order_updated      = false;
             /*             * * Altered for PWA **		
@@ -56,10 +56,10 @@ if (tep_not_null($action)) {
                 tep_db_query("update ".TABLE_ORDERS." set orders_status = '".tep_db_input($status)."', last_modified = now() where orders_id = '".(int) $oID."'");
 
                 $customer_notified = '0';
-                if (isset($HTTP_POST_VARS['notify']) && ($HTTP_POST_VARS['notify']
+                if (isset($_POST['notify']) && ($_POST['notify']
                     == 'on')) {
                     $notify_comments = '';
-                    if (isset($HTTP_POST_VARS['notify_comments']) && ($HTTP_POST_VARS['notify_comments']
+                    if (isset($_POST['notify_comments']) && ($_POST['notify_comments']
                         == 'on')) {
                         $notify_comments = sprintf(EMAIL_TEXT_COMMENTS_UPDATE,
                                 $comments)."\n\n";
@@ -103,7 +103,7 @@ if (tep_not_null($action)) {
         case 'deleteconfirm':
             $oID = tep_db_prepare_input($_GET['oID']);
 
-            tep_remove_order($oID, $HTTP_POST_VARS['restock']);
+            tep_remove_order($oID, $_POST['restock']);
 
             tep_redirect(tep_href_link(FILENAME_ORDERS,
                     tep_get_all_get_params(array('oID', 'action'))));

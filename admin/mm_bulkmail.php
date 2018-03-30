@@ -28,15 +28,15 @@ if (tep_not_null($action)) {
             break;
         case 'insert':
         case 'update':
-            if (isset($HTTP_POST_VARS['newsletter_id']))
-                    $newsletter_id     = tep_db_prepare_input($HTTP_POST_VARS['newsletter_id']);
-            $newsletter_module = tep_db_prepare_input($HTTP_POST_VARS['module']);
-            $mailrate          = tep_db_prepare_input($HTTP_POST_VARS['mailrate']);
-            $txtcontent        = tep_db_prepare_input($HTTP_POST_VARS['txtcontent']);
-            $title             = tep_db_prepare_input($HTTP_POST_VARS['title']);
-            $subject           = tep_db_prepare_input($HTTP_POST_VARS['subject']);
-            $content           = tep_db_prepare_input($HTTP_POST_VARS['content']);
-            $template          = tep_db_prepare_input($HTTP_POST_VARS['template']);
+            if (isset($_POST['newsletter_id']))
+                    $newsletter_id     = tep_db_prepare_input($_POST['newsletter_id']);
+            $newsletter_module = tep_db_prepare_input($_POST['module']);
+            $mailrate          = tep_db_prepare_input($_POST['mailrate']);
+            $txtcontent        = tep_db_prepare_input($_POST['txtcontent']);
+            $title             = tep_db_prepare_input($_POST['title']);
+            $subject           = tep_db_prepare_input($_POST['subject']);
+            $content           = tep_db_prepare_input($_POST['content']);
+            $template          = tep_db_prepare_input($_POST['template']);
 
             $newsletter_error = false;
             if (empty($title)) {
@@ -154,8 +154,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
             $newsletter_query = tep_db_query("select title, subject, content, txtcontent, template, module, mailrate from ".TABLE_MM_NEWSLETTERS." where newsletters_id = '".(int) $nID."'");
             $newsletter       = tep_db_fetch_array($newsletter_query);
             $nInfo->objectInfo($newsletter);
-        } elseif ($HTTP_POST_VARS) {
-            $nInfo->objectInfo($HTTP_POST_VARS);
+        } elseif ($_POST) {
+            $nInfo->objectInfo($_POST);
         }
 
         $file_extension  = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
@@ -420,7 +420,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
             IMAGE_CANCEL).'</a></td></tr>
 		  <tr><td class="main">'.TEXT_PREVIEW.'</td></tr><tr><td class="main"><br />Subject: '.$output_subject.'</td></tr><tr><td>'.$output_content_html.'<br /></td></tr>';
     } elseif ($newsletter['module'] == 'product_notification') {
-        $chosen = $HTTP_POST_VARS['chosen'];
+        $chosen = $_POST['chosen'];
         $ids    = implode('-', $chosen);
         echo $ids;
         echo '<tr><td><b>'.TEXT_NEWSLETTER_TITLE.' '.$newsletter['module'].'<br /> '.sprintf(TEXT_COUNT_CUSTOMERS,

@@ -89,7 +89,7 @@ function selectAll(FormName, SelectBox) {
     }
 
     function confirm() {
-      global $_GET, $HTTP_POST_VARS;
+      global $_GET, $_POST;
 
       $audience = array();
 
@@ -104,7 +104,7 @@ function selectAll(FormName, SelectBox) {
           $audience[$customers['customers_info_id']] = '1';
         }
       } else {
-        $chosen = $HTTP_POST_VARS['chosen'];
+        $chosen = $_POST['chosen'];
 
         $ids = implode(',', $chosen);
 
@@ -158,11 +158,11 @@ function selectAll(FormName, SelectBox) {
     }
 
     function send($newsletter_id) {
-      global $HTTP_POST_VARS;
+      global $_POST;
 
       $audience = array();
 
-      if (isset($HTTP_POST_VARS['global']) && ($HTTP_POST_VARS['global'] == 'true')) {
+      if (isset($_POST['global']) && ($_POST['global'] == 'true')) {
         $products_query = tep_db_query("select distinct pn.customers_id, c.customers_firstname, c.customers_lastname, c.customers_email_address from " . TABLE_CUSTOMERS . " c, " . TABLE_PRODUCTS_NOTIFICATIONS . " pn where c.customers_id = pn.customers_id");
         while ($products = tep_db_fetch_array($products_query)) {
           $audience[$products['customers_id']] = array('firstname' => $products['customers_firstname'],
@@ -177,7 +177,7 @@ function selectAll(FormName, SelectBox) {
                                                         'email_address' => $customers['customers_email_address']);
         }
       } else {
-        $chosen = $HTTP_POST_VARS['chosen'];
+        $chosen = $_POST['chosen'];
 
         $ids = implode(',', $chosen);
 

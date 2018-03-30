@@ -48,12 +48,12 @@ if (tep_not_null($action)) {
 
         case 'insert':
         case 'update':
-            if (isset($HTTP_POST_VARS['mail_id']))
-                    $mail_id    = tep_db_prepare_input($HTTP_POST_VARS['mail_id']);
-            $title      = tep_db_prepare_input($HTTP_POST_VARS['title']);
-            $content    = tep_db_prepare_input($HTTP_POST_VARS['htmlcontent']);
-            $txtcontent = tep_db_prepare_input($HTTP_POST_VARS['txtcontent']);
-            $template   = tep_db_prepare_input($HTTP_POST_VARS['template']);
+            if (isset($_POST['mail_id']))
+                    $mail_id    = tep_db_prepare_input($_POST['mail_id']);
+            $title      = tep_db_prepare_input($_POST['title']);
+            $content    = tep_db_prepare_input($_POST['htmlcontent']);
+            $txtcontent = tep_db_prepare_input($_POST['txtcontent']);
+            $template   = tep_db_prepare_input($_POST['template']);
 
             if ($mail_error == false) {
                 $sql_data_array = array('title' => $title,
@@ -123,8 +123,8 @@ if ($action == 'new') {
         $placeholders   = $mail['placeholders'];
         $template_title = $mail['template'];
         $nInfo->objectInfo($mail);
-    } elseif ($HTTP_POST_VARS) {
-        $nInfo->objectInfo($HTTP_POST_VARS);
+    } elseif ($_POST) {
+        $nInfo->objectInfo($_POST);
     }
     ?>
 

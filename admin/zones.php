@@ -17,9 +17,9 @@ $action = (isset($_GET['action']) ? $_GET['action'] : '');
 if (tep_not_null($action)) {
     switch ($action) {
         case 'insert':
-            $zone_country_id = tep_db_prepare_input($HTTP_POST_VARS['zone_country_id']);
-            $zone_code       = tep_db_prepare_input($HTTP_POST_VARS['zone_code']);
-            $zone_name       = tep_db_prepare_input($HTTP_POST_VARS['zone_name']);
+            $zone_country_id = tep_db_prepare_input($_POST['zone_country_id']);
+            $zone_code       = tep_db_prepare_input($_POST['zone_code']);
+            $zone_name       = tep_db_prepare_input($_POST['zone_name']);
 
             tep_db_query("insert into ".TABLE_ZONES." (zone_country_id, zone_code, zone_name) values ('".(int) $zone_country_id."', '".tep_db_input($zone_code)."', '".tep_db_input($zone_name)."')");
 
@@ -27,9 +27,9 @@ if (tep_not_null($action)) {
             break;
         case 'save':
             $zone_id         = tep_db_prepare_input($_GET['cID']);
-            $zone_country_id = tep_db_prepare_input($HTTP_POST_VARS['zone_country_id']);
-            $zone_code       = tep_db_prepare_input($HTTP_POST_VARS['zone_code']);
-            $zone_name       = tep_db_prepare_input($HTTP_POST_VARS['zone_name']);
+            $zone_country_id = tep_db_prepare_input($_POST['zone_country_id']);
+            $zone_code       = tep_db_prepare_input($_POST['zone_code']);
+            $zone_name       = tep_db_prepare_input($_POST['zone_name']);
 
             tep_db_query("update ".TABLE_ZONES." set zone_country_id = '".(int) $zone_country_id."', zone_code = '".tep_db_input($zone_code)."', zone_name = '".tep_db_input($zone_name)."' where zone_id = '".(int) $zone_id."'");
 

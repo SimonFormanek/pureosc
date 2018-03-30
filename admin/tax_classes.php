@@ -17,8 +17,8 @@ $action = (isset($_GET['action']) ? $_GET['action'] : '');
 if (tep_not_null($action)) {
     switch ($action) {
         case 'insert':
-            $tax_class_title       = tep_db_prepare_input($HTTP_POST_VARS['tax_class_title']);
-            $tax_class_description = tep_db_prepare_input($HTTP_POST_VARS['tax_class_description']);
+            $tax_class_title       = tep_db_prepare_input($_POST['tax_class_title']);
+            $tax_class_description = tep_db_prepare_input($_POST['tax_class_description']);
 
             tep_db_query("insert into ".TABLE_TAX_CLASS." (tax_class_title, tax_class_description, date_added) values ('".tep_db_input($tax_class_title)."', '".tep_db_input($tax_class_description)."', now())");
 
@@ -26,8 +26,8 @@ if (tep_not_null($action)) {
             break;
         case 'save':
             $tax_class_id          = tep_db_prepare_input($_GET['tID']);
-            $tax_class_title       = tep_db_prepare_input($HTTP_POST_VARS['tax_class_title']);
-            $tax_class_description = tep_db_prepare_input($HTTP_POST_VARS['tax_class_description']);
+            $tax_class_title       = tep_db_prepare_input($_POST['tax_class_title']);
+            $tax_class_description = tep_db_prepare_input($_POST['tax_class_description']);
 
             tep_db_query("update ".TABLE_TAX_CLASS." set tax_class_id = '".(int) $tax_class_id."', tax_class_title = '".tep_db_input($tax_class_title)."', tax_class_description = '".tep_db_input($tax_class_description)."', last_modified = now() where tax_class_id = '".(int) $tax_class_id."'");
 

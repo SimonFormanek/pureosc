@@ -122,8 +122,7 @@ if ($category_depth == 'nested') {
     </div>
 
     <?php
-} elseif ($category_depth == 'products' || (isset($_GET['manufacturers_id'])
-    && !empty($_GET['manufacturers_id']))) {
+} elseif ($category_depth == 'products' || (isset($_GET['manufacturers_id']) && !empty($_GET['manufacturers_id']))) {
 
     //PURE:NEW:inactive_category: if sort_order < 1 -> redirect to Index
     //TODO: MORE AI PLEASE .... starting realistic with: go to parent category
@@ -212,8 +211,8 @@ if ($category_depth == 'nested') {
         }
     }
 
-    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/',
-            $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > sizeof($column_list))) {
+    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort']))
+        || (substr($_GET['sort'], 0, 1) > sizeof($column_list))) {
         for ($i = 0, $n = sizeof($column_list); $i < $n; $i++) {
             /*             * *Altered default sort type and sorting order**	  
               if ($column_list[$i] == 'PRODUCT_LIST_NAME') {
@@ -332,8 +331,8 @@ if ($category_depth == 'nested') {
                     $options[] = array('id' => $filterlist['id'], 'text' => $filterlist['name']);
                 }
                 echo tep_draw_pull_down_menu('filter_id', $options,
-                    (isset($_GET['filter_id']) ? $_GET['filter_id']
-                            : ''), 'onchange="this.form.submit()"');
+                    (isset($_GET['filter_id']) ? $_GET['filter_id'] : ''),
+                    'onchange="this.form.submit()"');
                 echo tep_hide_session_id().'</p></form></div>'."\n";
             }
         }
