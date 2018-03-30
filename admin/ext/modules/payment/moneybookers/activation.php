@@ -15,7 +15,7 @@
   require('../includes/languages/' . $language . '/modules/payment/moneybookers.php');
   require('../includes/modules/payment/moneybookers.php');
 
-  $action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+  $action = (isset($_GET['action']) ? $_GET['action'] : '');
   $pass = false;
 
   switch ($action) {

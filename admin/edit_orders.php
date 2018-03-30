@@ -1033,7 +1033,7 @@ if (($action == 'edit') && ($order_exists == true)) {
     <?php } ?>		 				    
     <?php if (FILENAME_GOOGLE_MAP !== 'FILENAME_GOOGLE_MAP') { ?>        			   
                                 <li><?php echo '<a href="'.tep_href_link(FILENAME_GOOGLE_MAP,
-            'oID='.$HTTP_GET_VARS['oID']).'" TARGET="_blank">'.tep_image_button('button_google_directions.gif',
+            'oID='.$_GET['oID']).'" TARGET="_blank">'.tep_image_button('button_google_directions.gif',
             IMAGE_GOOGLE_DIRECTIONS).'</a>'; ?></li>  
     <?php } ?>	
                             <!- eof 5.0.8 -->							

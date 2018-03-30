@@ -56,7 +56,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'getversion') {
                     tep_reset_cache_block('topics');
                 }
                 //pure new: cache reset
-                if ($HTTP_GET_VARS['flag'] == '0') {
+                if ($_GET['flag'] == '0') {
                     //deleting product need full reset
                     tep_db_query("UPDATE ".TABLE_RESET." SET reset='1' WHERE admin = 'shop' AND section='all'");
                     tep_db_query("UPDATE ".TABLE_RESET." SET reset='1' WHERE admin = 'admin' AND section='all'");

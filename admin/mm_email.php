@@ -11,9 +11,9 @@
  */
 
 require('includes/application_top.php');
-$search = (isset($HTTP_GET_VARS['search_customers']) ? $HTTP_GET_VARS['search_customers']
+$search = (isset($_GET['search_customers']) ? $_GET['search_customers']
         : '');
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (($action == 'send_email_to_user') && isset($HTTP_POST_VARS['customers_email_address'])
     && !isset($HTTP_POST_VARS['back_x'])) {
@@ -42,9 +42,9 @@ if (($action == 'preview') && !isset($HTTP_POST_VARS['customers_email_address'])
     $messageStack->add(ERROR_NO_CUSTOMER_SELECTED, 'error');
 }
 
-if (isset($HTTP_GET_VARS['mail_sent_to'])) {
+if (isset($_GET['mail_sent_to'])) {
     $messageStack->add(sprintf(NOTICE_EMAIL_SENT_TO,
-            $HTTP_GET_VARS['mail_sent_to']), 'success');
+            $_GET['mail_sent_to']), 'success');
 }
 require(DIR_WS_INCLUDES.'template_top.php');
 ?>
@@ -85,19 +85,19 @@ require(DIR_WS_INCLUDES.'template_top.php');
         </td>
         <td bgcolor="#F2F2F2">
             <?php
-            if ($HTTP_GET_VARS['search_email']) {
-                $search_email = tep_db_prepare_input($HTTP_GET_VARS['search_email']);
+            if ($_GET['search_email']) {
+                $search_email = tep_db_prepare_input($_GET['search_email']);
                 $where_clause = "customers_email_address RLIKE '".tep_db_input($search_email)."'";
             }
 
-            if ($HTTP_GET_VARS['search_phone']) {
-                $search_phone = tep_db_prepare_input($HTTP_GET_VARS['search_phone']);
+            if ($_GET['search_phone']) {
+                $search_phone = tep_db_prepare_input($_GET['search_phone']);
                 $where_clause .= ($where_clause ? ' or ' : '')."customers_telephone RLIKE '".tep_db_input($search_phone)."'";
             }
 
 
-            if ($HTTP_GET_VARS['search_lastname']) {
-                $search_lastname = tep_db_prepare_input($HTTP_GET_VARS['search_lastname']);
+            if ($_GET['search_lastname']) {
+                $search_lastname = tep_db_prepare_input($_GET['search_lastname']);
                 $where_clause    .= ($where_clause ? ' or ' : '')." customers_lastname RLIKE '".tep_db_input($search_lastname)."'";
             }
 
@@ -263,7 +263,7 @@ if (($action == 'preview') && isset($HTTP_POST_VARS['customers_email_address']))
                             <tr>
                                 <td>
     <?php echo '<a href="'.tep_href_link(FILENAME_MM_MAIL_MANAGER,
-        'page='.$HTTP_GET_VARS['page'].'&nID='.$HTTP_GET_VARS['nID']).'">'.tep_image_button('button_back.gif',
+        'page='.$_GET['page'].'&nID='.$_GET['nID']).'">'.tep_image_button('button_back.gif',
         IMAGE_BACK).'</a>'; ?>
                                 </td>
                                 <td align="right"><?php echo tep_image_submit('button_send_mail.gif',

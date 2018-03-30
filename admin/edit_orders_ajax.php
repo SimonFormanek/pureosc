@@ -683,7 +683,7 @@ if ($action == 'insert_new_comment') {
             if ($status == GOOGLE_MAP_ORDER_STATUS) {    // wenn "Versendet"
                 //require(DIR_WS_LANGUAGES . $language . '/report_googlemap.php');
 
-                $oID = tep_db_prepare_input($HTTP_GET_VARS['oID']);
+                $oID = tep_db_prepare_input($_GET['oID']);
 
                 $orders_query = tep_db_query("select orders_id from ".TABLE_ORDERS." where orders_id = '".(int) $oID."'");
                 $order_exists = true;

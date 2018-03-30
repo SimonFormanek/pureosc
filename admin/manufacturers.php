@@ -12,14 +12,14 @@
 
 require('includes/application_top.php');
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (tep_not_null($action)) {
     switch ($action) {
         case 'insert':
         case 'save':
-            if (isset($HTTP_GET_VARS['mID']))
-                    $manufacturers_id        = tep_db_prepare_input($HTTP_GET_VARS['mID']);
+            if (isset($_GET['mID']))
+                    $manufacturers_id        = tep_db_prepare_input($_GET['mID']);
             $manufacturers_name      = tep_db_prepare_input($HTTP_POST_VARS['manufacturers_name']);
             $manufacturers_seo_title = tep_db_prepare_input($HTTP_POST_VARS['manufacturers_seo_title']);
 
@@ -83,11 +83,11 @@ if (tep_not_null($action)) {
             }
 
             tep_redirect(tep_href_link(FILENAME_MANUFACTURERS,
-                    (isset($HTTP_GET_VARS['page']) ? 'page='.$HTTP_GET_VARS['page'].'&'
+                    (isset($_GET['page']) ? 'page='.$_GET['page'].'&'
                             : '').'mID='.$manufacturers_id));
             break;
         case 'deleteconfirm':
-            $manufacturers_id = tep_db_prepare_input($HTTP_GET_VARS['mID']);
+            $manufacturers_id = tep_db_prepare_input($_GET['mID']);
 
             if (isset($HTTP_POST_VARS['delete_image']) && ($HTTP_POST_VARS['delete_image']
                 == 'on')) {
@@ -117,7 +117,7 @@ if (tep_not_null($action)) {
             }
 
             tep_redirect(tep_href_link(FILENAME_MANUFACTURERS,
-                    'page='.$HTTP_GET_VARS['page']));
+                    'page='.$_GET['page']));
             break;
     }
 }
@@ -145,14 +145,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $manufacturers_query_raw = "select manufacturers_id, manufacturers_name, manufacturers_seo_title, manufacturers_image, date_added, last_modified from ".TABLE_MANUFACTURERS." order by manufacturers_name";
-                            $manufacturers_split     = new splitPageResults($HTTP_GET_VARS['page'],
+                            $manufacturers_split     = new splitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS,
                                 $manufacturers_query_raw,
                                 $manufacturers_query_numrows);
                             $manufacturers_query     = tep_db_query($manufacturers_query_raw);
                             while ($manufacturers           = tep_db_fetch_array($manufacturers_query)) {
-                                if ((!isset($HTTP_GET_VARS['mID']) || (isset($HTTP_GET_VARS['mID'])
-                                    && ($HTTP_GET_VARS['mID'] == $manufacturers['manufacturers_id'])))
+                                if ((!isset($_GET['mID']) || (isset($_GET['mID'])
+                                    && ($_GET['mID'] == $manufacturers['manufacturers_id'])))
                                     && !isset($mInfo) && (substr($action, 0, 3) != 'new')) {
                                     $manufacturer_products_query = tep_db_query("select count(*) as products_count from ".TABLE_PRODUCTS." where manufacturers_id = '".(int) $manufacturers['manufacturers_id']."'");
                                     $manufacturer_products       = tep_db_fetch_array($manufacturer_products_query);
@@ -165,10 +165,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 if (isset($mInfo) && is_object($mInfo) && ($manufacturers['manufacturers_id']
                                     == $mInfo->manufacturers_id)) {
                                     echo '              <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_MANUFACTURERS,
-                                        'page='.$HTTP_GET_VARS['page'].'&mID='.$manufacturers['manufacturers_id'].'&action=edit').'\'">'."\n";
+                                        'page='.$_GET['page'].'&mID='.$manufacturers['manufacturers_id'].'&action=edit').'\'">'."\n";
                                 } else {
                                     echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_MANUFACTURERS,
-                                        'page='.$HTTP_GET_VARS['page'].'&mID='.$manufacturers['manufacturers_id']).'\'">'."\n";
+                                        'page='.$_GET['page'].'&mID='.$manufacturers['manufacturers_id']).'\'">'."\n";
                                 }
                                 ?>
                                 <td class="dataTableContent"><?php echo $manufacturers['manufacturers_name']; ?></td>
@@ -178,7 +178,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
                 } else {
                     echo '<a href="'.tep_href_link(FILENAME_MANUFACTURERS,
-                        'page='.$HTTP_GET_VARS['page'].'&mID='.$manufacturers['manufacturers_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                        'page='.$_GET['page'].'&mID='.$manufacturers['manufacturers_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
                         IMAGE_ICON_INFO).'</a>';
                 } ?>&nbsp;</td>
                     </tr>
@@ -189,11 +189,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <td colspan="3"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
                                 <td class="smallText" valign="top"><?php echo $manufacturers_split->display_count($manufacturers_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $HTTP_GET_VARS['page'],
+            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
             TEXT_DISPLAY_NUMBER_OF_MANUFACTURERS); ?></td>
                                 <td class="smallText" align="right"><?php echo $manufacturers_split->display_links($manufacturers_query_numrows,
             MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $HTTP_GET_VARS['page']); ?></td>
+            $_GET['page']); ?></td>
                             </tr>
                         </table></td>
                 </tr>
@@ -204,7 +204,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         <td align="right" colspan="3" class="smallText"><?php echo tep_draw_button(IMAGE_INSERT,
             'plus',
             tep_href_link(FILENAME_MANUFACTURERS,
-                'page='.$HTTP_GET_VARS['page'].'&mID='.$mInfo->manufacturers_id.'&action=new')); ?></td>
+                'page='.$_GET['page'].'&mID='.$mInfo->manufacturers_id.'&action=new')); ?></td>
                     </tr>
             <?php
         }
@@ -267,14 +267,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_MANUFACTURERS,
-                            'page='.$HTTP_GET_VARS['page'].'&mID='.$HTTP_GET_VARS['mID'])));
+                            'page='.$_GET['page'].'&mID='.$_GET['mID'])));
                 break;
             case 'edit':
                 $heading[]  = array('text' => '<strong>'.TEXT_HEADING_EDIT_MANUFACTURER.'</strong>');
 
                 $contents   = array('form' => tep_draw_form('manufacturers',
                         FILENAME_MANUFACTURERS,
-                        'page='.$HTTP_GET_VARS['page'].'&mID='.$mInfo->manufacturers_id.'&action=save',
+                        'page='.$_GET['page'].'&mID='.$mInfo->manufacturers_id.'&action=save',
                         'post', 'enctype="multipart/form-data"'));
                 $contents[] = array('text' => TEXT_EDIT_INTRO);
                 $contents[] = array('text' => '<br />'.TEXT_MANUFACTURERS_NAME.'<br />'.tep_draw_input_field('manufacturers_name',
@@ -330,14 +330,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_MANUFACTURERS,
-                            'page='.$HTTP_GET_VARS['page'].'&mID='.$mInfo->manufacturers_id)));
+                            'page='.$_GET['page'].'&mID='.$mInfo->manufacturers_id)));
                 break;
             case 'delete':
                 $heading[]  = array('text' => '<strong>'.TEXT_HEADING_DELETE_MANUFACTURER.'</strong>');
 
                 $contents   = array('form' => tep_draw_form('manufacturers',
                         FILENAME_MANUFACTURERS,
-                        'page='.$HTTP_GET_VARS['page'].'&mID='.$mInfo->manufacturers_id.'&action=deleteconfirm'));
+                        'page='.$_GET['page'].'&mID='.$mInfo->manufacturers_id.'&action=deleteconfirm'));
                 $contents[] = array('text' => TEXT_DELETE_INTRO);
                 $contents[] = array('text' => '<br /><strong>'.$mInfo->manufacturers_name.'</strong>');
                 $contents[] = array('text' => '<br />'.tep_draw_checkbox_field('delete_image',
@@ -353,7 +353,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         'trash', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_MANUFACTURERS,
-                            'page='.$HTTP_GET_VARS['page'].'&mID='.$mInfo->manufacturers_id)));
+                            'page='.$_GET['page'].'&mID='.$mInfo->manufacturers_id)));
                 break;
             default:
                 if (isset($mInfo) && is_object($mInfo)) {
@@ -361,10 +361,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT,
                             'document',
                             tep_href_link(FILENAME_MANUFACTURERS,
-                                'page='.$HTTP_GET_VARS['page'].'&mID='.$mInfo->manufacturers_id.'&action=edit')).tep_draw_button(IMAGE_DELETE,
+                                'page='.$_GET['page'].'&mID='.$mInfo->manufacturers_id.'&action=edit')).tep_draw_button(IMAGE_DELETE,
                             'trash',
                             tep_href_link(FILENAME_MANUFACTURERS,
-                                'page='.$HTTP_GET_VARS['page'].'&mID='.$mInfo->manufacturers_id.'&action=delete')));
+                                'page='.$_GET['page'].'&mID='.$mInfo->manufacturers_id.'&action=delete')));
                     $contents[] = array('text' => '<br />'.TEXT_DATE_ADDED.' '.tep_date_short($mInfo->date_added));
                     if (tep_not_null($mInfo->last_modified))
                             $contents[] = array('text' => TEXT_LAST_MODIFIED.' '.tep_date_short($mInfo->last_modified));

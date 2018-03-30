@@ -12,7 +12,7 @@
 
 require('includes/application_top.php');
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (tep_not_null($action)) {
     switch ($action) {
@@ -69,11 +69,11 @@ if (tep_not_null($action)) {
             }
 
             tep_redirect(tep_href_link(FILENAME_LANGUAGES,
-                    (isset($HTTP_GET_VARS['page']) ? 'page='.$HTTP_GET_VARS['page'].'&'
+                    (isset($_GET['page']) ? 'page='.$_GET['page'].'&'
                             : '').'lID='.$insert_id));
             break;
         case 'save':
-            $lID        = tep_db_prepare_input($HTTP_GET_VARS['lID']);
+            $lID        = tep_db_prepare_input($_GET['lID']);
             $name       = tep_db_prepare_input($HTTP_POST_VARS['name']);
             $code       = tep_db_prepare_input(substr($HTTP_POST_VARS['code'],
                     0, 2));
@@ -88,10 +88,10 @@ if (tep_not_null($action)) {
             }
 
             tep_redirect(tep_href_link(FILENAME_LANGUAGES,
-                    'page='.$HTTP_GET_VARS['page'].'&lID='.$HTTP_GET_VARS['lID']));
+                    'page='.$_GET['page'].'&lID='.$_GET['lID']));
             break;
         case 'deleteconfirm':
-            $lID = tep_db_prepare_input($HTTP_GET_VARS['lID']);
+            $lID = tep_db_prepare_input($_GET['lID']);
 
             $lng_query = tep_db_query("select languages_id from ".TABLE_LANGUAGES." where code = '".DEFAULT_CURRENCY."'");
             $lng       = tep_db_fetch_array($lng_query);
@@ -108,10 +108,10 @@ if (tep_not_null($action)) {
             tep_db_query("delete from ".TABLE_LANGUAGES." where languages_id = '".(int) $lID."'");
 
             tep_redirect(tep_href_link(FILENAME_LANGUAGES,
-                    'page='.$HTTP_GET_VARS['page']));
+                    'page='.$_GET['page']));
             break;
         case 'delete':
-            $lID = tep_db_prepare_input($HTTP_GET_VARS['lID']);
+            $lID = tep_db_prepare_input($_GET['lID']);
 
             $lng_query = tep_db_query("select code from ".TABLE_LANGUAGES." where languages_id = '".(int) $lID."'");
             $lng       = tep_db_fetch_array($lng_query);
@@ -149,14 +149,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $languages_query_raw = "select languages_id, name, code, image, directory, sort_order from ".TABLE_LANGUAGES." order by sort_order";
-                            $languages_split     = new splitPageResults($HTTP_GET_VARS['page'],
+                            $languages_split     = new splitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS,
                                 $languages_query_raw, $languages_query_numrows);
                             $languages_query     = tep_db_query($languages_query_raw);
 
                             while ($languages = tep_db_fetch_array($languages_query)) {
-                                if ((!isset($HTTP_GET_VARS['lID']) || (isset($HTTP_GET_VARS['lID'])
-                                    && ($HTTP_GET_VARS['lID'] == $languages['languages_id'])))
+                                if ((!isset($_GET['lID']) || (isset($_GET['lID'])
+                                    && ($_GET['lID'] == $languages['languages_id'])))
                                     && !isset($lInfo) && (substr($action, 0, 3) != 'new')) {
                                     $lInfo = new objectInfo($languages);
                                 }
@@ -164,10 +164,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 if (isset($lInfo) && is_object($lInfo) && ($languages['languages_id']
                                     == $lInfo->languages_id)) {
                                     echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_LANGUAGES,
-                                        'page='.$HTTP_GET_VARS['page'].'&lID='.$lInfo->languages_id.'&action=edit').'\'">'."\n";
+                                        'page='.$_GET['page'].'&lID='.$lInfo->languages_id.'&action=edit').'\'">'."\n";
                                 } else {
                                     echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_LANGUAGES,
-                                        'page='.$HTTP_GET_VARS['page'].'&lID='.$languages['languages_id']).'\'">'."\n";
+                                        'page='.$_GET['page'].'&lID='.$languages['languages_id']).'\'">'."\n";
                                 }
 
                                 if (DEFAULT_LANGUAGE == $languages['code']) {
@@ -183,7 +183,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
                             } else {
                                 echo '<a href="'.tep_href_link(FILENAME_LANGUAGES,
-                                    'page='.$HTTP_GET_VARS['page'].'&lID='.$languages['languages_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                    'page='.$_GET['page'].'&lID='.$languages['languages_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
                                     IMAGE_ICON_INFO).'</a>';
                             } ?>&nbsp;</td>
                     </tr>
@@ -194,11 +194,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <td colspan="3"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
                                 <td class="smallText" valign="top"><?php echo $languages_split->display_count($languages_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $HTTP_GET_VARS['page'],
+            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
             TEXT_DISPLAY_NUMBER_OF_LANGUAGES); ?></td>
                                 <td class="smallText" align="right"><?php echo $languages_split->display_links($languages_query_numrows,
             MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $HTTP_GET_VARS['page']); ?></td>
+            $_GET['page']); ?></td>
                             </tr>
         <?php
         if (empty($action)) {
@@ -207,7 +207,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <td class="smallText" align="right" colspan="2"><?php echo tep_draw_button(IMAGE_NEW_LANGUAGE,
             'plus',
             tep_href_link(FILENAME_LANGUAGES,
-                'page='.$HTTP_GET_VARS['page'].'&lID='.$lInfo->languages_id.'&action=new')); ?></td>
+                'page='.$_GET['page'].'&lID='.$lInfo->languages_id.'&action=new')); ?></td>
                                 </tr>
             <?php
         }
@@ -237,14 +237,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_LANGUAGES,
-                            'page='.$HTTP_GET_VARS['page'].'&lID='.$HTTP_GET_VARS['lID'])));
+                            'page='.$_GET['page'].'&lID='.$_GET['lID'])));
                 break;
             case 'edit':
                 $heading[]  = array('text' => '<strong>'.TEXT_INFO_HEADING_EDIT_LANGUAGE.'</strong>');
 
                 $contents   = array('form' => tep_draw_form('languages',
                         FILENAME_LANGUAGES,
-                        'page='.$HTTP_GET_VARS['page'].'&lID='.$lInfo->languages_id.'&action=save'));
+                        'page='.$_GET['page'].'&lID='.$lInfo->languages_id.'&action=save'));
                 $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
                 $contents[] = array('text' => '<br />'.TEXT_INFO_LANGUAGE_NAME.'<br />'.tep_draw_input_field('name',
                         $lInfo->name));
@@ -262,7 +262,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_LANGUAGES,
-                            'page='.$HTTP_GET_VARS['page'].'&lID='.$lInfo->languages_id)));
+                            'page='.$_GET['page'].'&lID='.$lInfo->languages_id)));
                 break;
             case 'delete':
                 $heading[]  = array('text' => '<strong>'.TEXT_INFO_HEADING_DELETE_LANGUAGE.'</strong>');
@@ -272,10 +272,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 $contents[] = array('align' => 'center', 'text' => '<br />'.(($remove_language)
                         ? tep_draw_button(IMAGE_DELETE, 'trash',
                         tep_href_link(FILENAME_LANGUAGES,
-                            'page='.$HTTP_GET_VARS['page'].'&lID='.$lInfo->languages_id.'&action=deleteconfirm'),
+                            'page='.$_GET['page'].'&lID='.$lInfo->languages_id.'&action=deleteconfirm'),
                         'primary') : '').tep_draw_button(IMAGE_CANCEL, 'close',
                         tep_href_link(FILENAME_LANGUAGES,
-                            'page='.$HTTP_GET_VARS['page'].'&lID='.$lInfo->languages_id)));
+                            'page='.$_GET['page'].'&lID='.$lInfo->languages_id)));
                 break;
             default:
                 if (is_object($lInfo)) {
@@ -284,10 +284,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT,
                             'document',
                             tep_href_link(FILENAME_LANGUAGES,
-                                'page='.$HTTP_GET_VARS['page'].'&lID='.$lInfo->languages_id.'&action=edit')).tep_draw_button(IMAGE_DELETE,
+                                'page='.$_GET['page'].'&lID='.$lInfo->languages_id.'&action=edit')).tep_draw_button(IMAGE_DELETE,
                             'trash',
                             tep_href_link(FILENAME_LANGUAGES,
-                                'page='.$HTTP_GET_VARS['page'].'&lID='.$lInfo->languages_id.'&action=delete')).tep_draw_button(IMAGE_DETAILS,
+                                'page='.$_GET['page'].'&lID='.$lInfo->languages_id.'&action=delete')).tep_draw_button(IMAGE_DETAILS,
                             'info',
                             tep_href_link(FILENAME_DEFINE_LANGUAGE,
                                 'lngdir='.$lInfo->directory)));

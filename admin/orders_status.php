@@ -12,14 +12,14 @@
 
 require('includes/application_top.php');
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (tep_not_null($action)) {
     switch ($action) {
         case 'insert':
         case 'save':
-            if (isset($HTTP_GET_VARS['oID']))
-                    $orders_status_id = tep_db_prepare_input($HTTP_GET_VARS['oID']);
+            if (isset($_GET['oID']))
+                    $orders_status_id = tep_db_prepare_input($_GET['oID']);
 
             $languages = tep_get_languages();
             for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
@@ -59,10 +59,10 @@ if (tep_not_null($action)) {
             }
 
             tep_redirect(tep_href_link(FILENAME_ORDERS_STATUS,
-                    'page='.$HTTP_GET_VARS['page'].'&oID='.$orders_status_id));
+                    'page='.$_GET['page'].'&oID='.$orders_status_id));
             break;
         case 'deleteconfirm':
-            $oID = tep_db_prepare_input($HTTP_GET_VARS['oID']);
+            $oID = tep_db_prepare_input($_GET['oID']);
 
             $orders_status_query = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'DEFAULT_ORDERS_STATUS_ID'");
             $orders_status       = tep_db_fetch_array($orders_status_query);
@@ -74,10 +74,10 @@ if (tep_not_null($action)) {
             tep_db_query("delete from ".TABLE_ORDERS_STATUS." where orders_status_id = '".tep_db_input($oID)."'");
 
             tep_redirect(tep_href_link(FILENAME_ORDERS_STATUS,
-                    'page='.$HTTP_GET_VARS['page']));
+                    'page='.$_GET['page']));
             break;
         case 'delete':
-            $oID = tep_db_prepare_input($HTTP_GET_VARS['oID']);
+            $oID = tep_db_prepare_input($_GET['oID']);
 
             $status_query = tep_db_query("select count(*) as count from ".TABLE_ORDERS." where orders_status = '".(int) $oID."'");
             $status       = tep_db_fetch_array($status_query);
@@ -126,14 +126,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $orders_status_query_raw = "select * from ".TABLE_ORDERS_STATUS." where language_id = '".(int) $languages_id."' order by orders_status_id";
-                            $orders_status_split     = new splitPageResults($HTTP_GET_VARS['page'],
+                            $orders_status_split     = new splitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS,
                                 $orders_status_query_raw,
                                 $orders_status_query_numrows);
                             $orders_status_query     = tep_db_query($orders_status_query_raw);
                             while ($orders_status           = tep_db_fetch_array($orders_status_query)) {
-                                if ((!isset($HTTP_GET_VARS['oID']) || (isset($HTTP_GET_VARS['oID'])
-                                    && ($HTTP_GET_VARS['oID'] == $orders_status['orders_status_id'])))
+                                if ((!isset($_GET['oID']) || (isset($_GET['oID'])
+                                    && ($_GET['oID'] == $orders_status['orders_status_id'])))
                                     && !isset($oInfo) && (substr($action, 0, 3) != 'new')) {
                                     $oInfo = new objectInfo($orders_status);
                                 }
@@ -141,10 +141,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 if (isset($oInfo) && is_object($oInfo) && ($orders_status['orders_status_id']
                                     == $oInfo->orders_status_id)) {
                                     echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_ORDERS_STATUS,
-                                        'page='.$HTTP_GET_VARS['page'].'&oID='.$oInfo->orders_status_id.'&action=edit').'\'">'."\n";
+                                        'page='.$_GET['page'].'&oID='.$oInfo->orders_status_id.'&action=edit').'\'">'."\n";
                                 } else {
                                     echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_ORDERS_STATUS,
-                                        'page='.$HTTP_GET_VARS['page'].'&oID='.$orders_status['orders_status_id']).'\'">'."\n";
+                                        'page='.$_GET['page'].'&oID='.$orders_status['orders_status_id']).'\'">'."\n";
                                 }
 
                                 if (DEFAULT_ORDERS_STATUS_ID == $orders_status['orders_status_id']) {
@@ -164,7 +164,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     '');
                             } else {
                                 echo '<a href="'.tep_href_link(FILENAME_ORDERS_STATUS,
-                                    'page='.$HTTP_GET_VARS['page'].'&oID='.$orders_status['orders_status_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                    'page='.$_GET['page'].'&oID='.$orders_status['orders_status_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
                                     IMAGE_ICON_INFO).'</a>';
                             } ?>&nbsp;</td>
                     </tr>
@@ -175,11 +175,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <td colspan="4"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
                                 <td class="smallText" valign="top"><?php echo $orders_status_split->display_count($orders_status_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $HTTP_GET_VARS['page'],
+            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
             TEXT_DISPLAY_NUMBER_OF_ORDERS_STATUS); ?></td>
                                 <td class="smallText" align="right"><?php echo $orders_status_split->display_links($orders_status_query_numrows,
             MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $HTTP_GET_VARS['page']); ?></td>
+            $_GET['page']); ?></td>
                             </tr>
         <?php
         if (empty($action)) {
@@ -188,7 +188,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <td class="smallText" colspan="2" align="right"><?php echo tep_draw_button(IMAGE_INSERT,
             'plus',
             tep_href_link(FILENAME_ORDERS_STATUS,
-                'page='.$HTTP_GET_VARS['page'].'&action=new')); ?></td>
+                'page='.$_GET['page'].'&action=new')); ?></td>
                                 </tr>
             <?php
         }
@@ -206,7 +206,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
                 $contents   = array('form' => tep_draw_form('status',
                         FILENAME_ORDERS_STATUS,
-                        'page='.$HTTP_GET_VARS['page'].'&action=insert'));
+                        'page='.$_GET['page'].'&action=insert'));
                 $contents[] = array('text' => TEXT_INFO_INSERT_INTRO);
 
                 $orders_status_inputs_string = '';
@@ -226,14 +226,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_ORDERS_STATUS,
-                            'page='.$HTTP_GET_VARS['page'])));
+                            'page='.$_GET['page'])));
                 break;
             case 'edit':
                 $heading[]  = array('text' => '<strong>'.TEXT_INFO_HEADING_EDIT_ORDERS_STATUS.'</strong>');
 
                 $contents   = array('form' => tep_draw_form('status',
                         FILENAME_ORDERS_STATUS,
-                        'page='.$HTTP_GET_VARS['page'].'&oID='.$oInfo->orders_status_id.'&action=save'));
+                        'page='.$_GET['page'].'&oID='.$oInfo->orders_status_id.'&action=save'));
                 $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
 
                 $orders_status_inputs_string = '';
@@ -256,14 +256,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_ORDERS_STATUS,
-                            'page='.$HTTP_GET_VARS['page'].'&oID='.$oInfo->orders_status_id)));
+                            'page='.$_GET['page'].'&oID='.$oInfo->orders_status_id)));
                 break;
             case 'delete':
                 $heading[]  = array('text' => '<strong>'.TEXT_INFO_HEADING_DELETE_ORDERS_STATUS.'</strong>');
 
                 $contents   = array('form' => tep_draw_form('status',
                         FILENAME_ORDERS_STATUS,
-                        'page='.$HTTP_GET_VARS['page'].'&oID='.$oInfo->orders_status_id.'&action=deleteconfirm'));
+                        'page='.$_GET['page'].'&oID='.$oInfo->orders_status_id.'&action=deleteconfirm'));
                 $contents[] = array('text' => TEXT_INFO_DELETE_INTRO);
                 $contents[] = array('text' => '<br /><strong>'.$oInfo->orders_status_name.'</strong>');
                 if ($remove_status)
@@ -271,7 +271,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             'trash', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                             'close',
                             tep_href_link(FILENAME_ORDERS_STATUS,
-                                'page='.$HTTP_GET_VARS['page'].'&oID='.$oInfo->orders_status_id)));
+                                'page='.$_GET['page'].'&oID='.$oInfo->orders_status_id)));
                 break;
             default:
                 if (isset($oInfo) && is_object($oInfo)) {
@@ -280,10 +280,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT,
                             'document',
                             tep_href_link(FILENAME_ORDERS_STATUS,
-                                'page='.$HTTP_GET_VARS['page'].'&oID='.$oInfo->orders_status_id.'&action=edit')).tep_draw_button(IMAGE_DELETE,
+                                'page='.$_GET['page'].'&oID='.$oInfo->orders_status_id.'&action=edit')).tep_draw_button(IMAGE_DELETE,
                             'trash',
                             tep_href_link(FILENAME_ORDERS_STATUS,
-                                'page='.$HTTP_GET_VARS['page'].'&oID='.$oInfo->orders_status_id.'&action=delete')));
+                                'page='.$_GET['page'].'&oID='.$oInfo->orders_status_id.'&action=delete')));
 
                     $orders_status_inputs_string = '';
                     $languages                   = tep_get_languages();
