@@ -24,8 +24,8 @@ require_once('includes/application_top.php');
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_CREATE_ACCOUNT);
 
 $process = false;
-if (isset($_POST['action']) && ($_POST['action'] == 'process')
-    && isset($_POST['formid']) && ($_POST['formid'] == $sessiontoken)) {
+if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid'])
+    && ($_POST['formid'] == $sessiontoken)) {
     $process = true;
 
     if (ACCOUNT_GENDER == 'true') {
@@ -37,8 +37,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')
     }
     $firstname     = tep_db_prepare_input($_POST['firstname']);
     $lastname      = tep_db_prepare_input($_POST['lastname']);
-    if (ACCOUNT_DOB == 'true')
-            $dob           = tep_db_prepare_input($_POST['dob']);
+    if (ACCOUNT_DOB == 'true') $dob           = tep_db_prepare_input($_POST['dob']);
     $email_address = tep_db_prepare_input($_POST['email_address']);
     if (ACCOUNT_COMPANY == 'true')
             $company       = tep_db_prepare_input($_POST['company']);
@@ -195,9 +194,6 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')
             'customers_fax' => $fax,
             'customers_newsletter' => $newsletter,
             'customers_password' => tep_encrypt_password($password));
-
-        require_once './ext/flexibee/init.php';
-
 
         if (ACCOUNT_GENDER == 'true')
                 $sql_data_array['customers_gender'] = $gender;
@@ -374,7 +370,8 @@ if ($messageStack->size('create_account') > 0) {
 ?>
 
 <div class="alert alert-warning">
-    <?php echo sprintf(TEXT_ORIGIN_LOGIN,
+    <?php
+    echo sprintf(TEXT_ORIGIN_LOGIN,
         tep_href_link(FILENAME_LOGIN, tep_get_all_get_params(), 'SSL'));
     ?><span class="inputRequirement pull-right text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></span>
 </div>
@@ -397,21 +394,23 @@ echo tep_draw_form('create_account',
                 <label class="control-label col-sm-3"><?php echo ENTRY_GENDER; ?></label>
                 <div class="col-sm-9">
                     <label class="radio-inline">
-    <?php echo tep_draw_radio_field('gender', 'm', NULL,
-        'required aria-required="true" aria-describedby="atGender"').' '.MALE;
-    ?>
+                        <?php
+                        echo tep_draw_radio_field('gender', 'm', NULL,
+                            'required aria-required="true" aria-describedby="atGender"').' '.MALE;
+                        ?>
                     </label>
                     <label class="radio-inline">
-                    <?php echo tep_draw_radio_field('gender',
-                        'f').' '.FEMALE; ?>
+                        <?php echo tep_draw_radio_field('gender',
+                            'f').' '.FEMALE;
+                        ?>
                     </label>
-            <?php echo FORM_REQUIRED_INPUT; ?>
+    <?php echo FORM_REQUIRED_INPUT; ?>
             <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputFirstName" class="control-label col-sm-3"><?php echo ENTRY_FIRST_NAME; ?></label>
             <div class="col-sm-9">
@@ -436,9 +435,9 @@ echo tep_draw_form('create_account',
                 ?>
             </div>
         </div>
-<?php
-if (ACCOUNT_DOB == 'true') {
-    ?>
+        <?php
+        if (ACCOUNT_DOB == 'true') {
+            ?>
             <div class="form-group has-feedback">
                 <label for="dob" class="control-label col-sm-3"><?php echo ENTRY_DATE_OF_BIRTH; ?></label>
                 <div class="col-sm-9">
@@ -451,9 +450,9 @@ if (ACCOUNT_DOB == 'true') {
                     ?>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputEmail" class="control-label col-sm-3"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
             <div class="col-sm-9">
@@ -468,9 +467,9 @@ if (ACCOUNT_DOB == 'true') {
             </div>
         </div>
     </div>
-<?php
-if (ACCOUNT_COMPANY == 'true') {
-    ?>
+    <?php
+    if (ACCOUNT_COMPANY == 'true') {
+        ?>
 
         <h2><?php echo CATEGORY_COMPANY; ?></h2>
 
@@ -510,9 +509,9 @@ if (ACCOUNT_COMPANY == 'true') {
             </div>
         </div>
 
-    <?php
-}
-?>
+        <?php
+    }
+    ?>
 
     <h2><?php echo CATEGORY_ADDRESS; ?></h2>
     <div class="contentText">
@@ -529,9 +528,9 @@ if (ACCOUNT_COMPANY == 'true') {
             </div>
         </div>
 
-<?php
-if (ACCOUNT_SUBURB == 'true') {
-    ?>
+        <?php
+        if (ACCOUNT_SUBURB == 'true') {
+            ?>
             <div class="form-group">
                 <label for="inputSuburb" class="control-label col-sm-3"><?php echo ENTRY_SUBURB; ?></label>
                 <div class="col-sm-9">
@@ -543,9 +542,9 @@ if (ACCOUNT_SUBURB == 'true') {
                     ?>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputCity" class="control-label col-sm-3"><?php echo ENTRY_CITY; ?></label>
             <div class="col-sm-9">
@@ -570,9 +569,9 @@ if (ACCOUNT_SUBURB == 'true') {
                 ?>
             </div>
         </div>
-<?php
-if (ACCOUNT_STATE == 'true') {
-    ?>
+        <?php
+        if (ACCOUNT_STATE == 'true') {
+            ?>
             <div class="form-group has-feedback">
                 <label for="inputState" class="control-label col-sm-3"><?php echo ENTRY_STATE; ?></label>
                 <div class="col-sm-9">
@@ -603,9 +602,9 @@ if (ACCOUNT_STATE == 'true') {
                     ?>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputCountry" class="control-label col-sm-3"><?php echo ENTRY_COUNTRY; ?></label>
             <div class="col-sm-9">
@@ -653,9 +652,10 @@ if (ACCOUNT_STATE == 'true') {
             <div class="col-sm-9">
                 <div class="checkbox">
                     <label>
-<?php echo tep_draw_checkbox_field('newsletter', '1', NULL,
-    'id="inputNewsletter"');
-?>
+                        <?php
+                        echo tep_draw_checkbox_field('newsletter', '1', NULL,
+                            'id="inputNewsletter"');
+                        ?>
 <?php if (tep_not_null(ENTRY_NEWSLETTER_TEXT)) echo ENTRY_NEWSLETTER_TEXT; ?>
                     </label>
                 </div>
@@ -696,8 +696,9 @@ if (ACCOUNT_STATE == 'true') {
     </div>
 
     <div class="buttonSet">
-        <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-                    'fa fa-user', null, 'primary', null, 'btn-success');
+        <div class="text-right"><?php
+                echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-user', null,
+                    'primary', null, 'btn-success');
                 ?></div>
     </div>
 

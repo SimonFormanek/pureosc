@@ -18,6 +18,12 @@
     var $sort_order;
     var $enabled = false;
 
+    public function __construct()
+    {
+        $this->ht_google_analytics();
+    }
+
+
     function ht_google_analytics() {
       $this->title = MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_TITLE;
       $this->description = MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_DESCRIPTION;

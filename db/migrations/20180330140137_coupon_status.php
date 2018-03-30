@@ -2,9 +2,8 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Product extends AbstractMigration
+class CouponStatus extends AbstractMigration
 {
-
     /**
      * Change Method.
      *
@@ -28,9 +27,15 @@ class Product extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('products');
-        if (!$table->hasColumn('product_template')) {
-            $table->addColumn('product_template', 'string')
+        $table = $this->table('coupons');
+
+//        if($table->hasColumn('coupon_active')){
+//            $table->renameColumn('coupon_active', 'coupon_status');
+//        } 
+        
+  
+        if (!$table->hasColumn('coupon_status')) {
+            $table->addColumn('coupon_status', 'integer')
                 ->update();
         }
     }
