@@ -22,11 +22,11 @@ require_once('includes/application_top.php');
 
     if ($_GET['agree'] == hash('sha256', $check_email['customers_email_address'])) {
         tep_db_query('UPDATE customers SET customers_newsletter_date_ccepted = NOW() WHERE customers_id='.$_GET['uid']);
+        $success = true;
+    }  else {
+        $success = false;
     }
 //}
-
-
-
 
 $breadcrumb->add(_('Newsletter Consent'), tep_href_link(basename(__FILE__)));
 
@@ -34,12 +34,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 
 <div class="page-header">
-    <h1><?php echo _('Consent Recieved'); ?></h1>
+    <h1><?php echo $success ? _('Consent Recieved') : _('Consent not recieved') ; ?></h1>
 </div>
 
 <div class="contentContainer">
     <div class="contentText">
-        <?php echo _('Newsletter subscription consent was accepted') ?>
+        <?php 
+        
+        echo $success ? _('Newsletter subscription consent was accepted') : _('Newsletter subscription consent was not accepted'); ?>
     </div>
 
     <div class="buttonSet">
