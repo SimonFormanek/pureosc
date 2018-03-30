@@ -145,7 +145,7 @@
     }
 
     function before_process() {
-      global $_GET, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
+      global $_GET, $_POST, $HTTP_SERVER_VARS;
 
       if ( ($_GET['valid'] == 'true') && ($_GET['code'] == 'A') && !empty($_GET['auth_code']) && empty($_GET['resp_code']) && !empty($_GET[tep_session_name()]) ) {
         $DIGEST_PASSWORD = MODULE_PAYMENT_PAYPOINT_SECPAY_READERS_DIGEST;

@@ -396,14 +396,14 @@ EOD;
     }
 
     function before_process() {
-      global $_GET, $HTTP_POST_VARS, $cart_PayPal_Pro_HS_ID, $customer_id, $pphs_result, $order, $order_totals, $sendto, $billto, $languages_id, $payment, $currencies, $cart, $$payment;
+      global $_GET, $_POST, $cart_PayPal_Pro_HS_ID, $customer_id, $pphs_result, $order, $order_totals, $sendto, $billto, $languages_id, $payment, $currencies, $cart, $$payment;
 
       $result = false;
 
       if ( isset($_GET['tx']) && !empty($_GET['tx']) ) { // direct payment (eg, credit card)
         $result = $this->getTransactionDetails($_GET['tx']);
-      } elseif ( isset($HTTP_POST_VARS['txn_id']) && !empty($HTTP_POST_VARS['txn_id']) ) { // paypal payment
-        $result = $this->getTransactionDetails($HTTP_POST_VARS['txn_id']);
+      } elseif ( isset($_POST['txn_id']) && !empty($_POST['txn_id']) ) { // paypal payment
+        $result = $this->getTransactionDetails($_POST['txn_id']);
       }
 
       if ( !is_array($result) || !isset($result['ACK']) || (($result['ACK'] != 'Success') && ($result['ACK'] != 'SuccessWithWarning')) ) {
@@ -1035,7 +1035,7 @@ EOD;
     }
 
     function sendDebugEmail($response = array()) {
-      global $HTTP_POST_VARS, $_GET;
+      global $_POST, $_GET;
 
       if (tep_not_null(MODULE_PAYMENT_PAYPAL_PRO_HS_DEBUG_EMAIL)) {
         $email_body = '';
@@ -1044,8 +1044,8 @@ EOD;
           $email_body .= 'RESPONSE:' . "\n\n" . print_r($response, true) . "\n\n";
         }
 
-        if (!empty($HTTP_POST_VARS)) {
-          $email_body .= '$HTTP_POST_VARS:' . "\n\n" . print_r($HTTP_POST_VARS, true) . "\n\n";
+        if (!empty($_POST)) {
+          $email_body .= '$HTTP_POST_VARS:' . "\n\n" . print_r($_POST, true) . "\n\n";
         }
 
         if (!empty($_GET)) {

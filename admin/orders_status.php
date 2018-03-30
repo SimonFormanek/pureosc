@@ -23,14 +23,14 @@ if (tep_not_null($action)) {
 
             $languages = tep_get_languages();
             for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-                $orders_status_name_array = $HTTP_POST_VARS['orders_status_name'];
+                $orders_status_name_array = $_POST['orders_status_name'];
                 $language_id              = $languages[$i]['id'];
 
                 $sql_data_array = array('orders_status_name' => tep_db_prepare_input($orders_status_name_array[$language_id]),
-                    'public_flag' => ((isset($HTTP_POST_VARS['public_flag']) && ($HTTP_POST_VARS['public_flag']
+                    'public_flag' => ((isset($_POST['public_flag']) && ($_POST['public_flag']
                     == '1')) ? '1' : '0'),
-                    'downloads_flag' => ((isset($HTTP_POST_VARS['downloads_flag'])
-                    && ($HTTP_POST_VARS['downloads_flag'] == '1')) ? '1' : '0'));
+                    'downloads_flag' => ((isset($_POST['downloads_flag'])
+                    && ($_POST['downloads_flag'] == '1')) ? '1' : '0'));
 
                 if ($action == 'insert') {
                     if (empty($orders_status_id)) {
@@ -53,7 +53,7 @@ if (tep_not_null($action)) {
                 }
             }
 
-            if (isset($HTTP_POST_VARS['default']) && ($HTTP_POST_VARS['default']
+            if (isset($_POST['default']) && ($_POST['default']
                 == 'on')) {
                 tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".tep_db_input($orders_status_id)."' where configuration_key = 'DEFAULT_ORDERS_STATUS_ID'");
             }

@@ -20,8 +20,8 @@ if (tep_not_null($action)) {
         case 'save':
             if (isset($_GET['mID']))
                     $manufacturers_id        = tep_db_prepare_input($_GET['mID']);
-            $manufacturers_name      = tep_db_prepare_input($HTTP_POST_VARS['manufacturers_name']);
-            $manufacturers_seo_title = tep_db_prepare_input($HTTP_POST_VARS['manufacturers_seo_title']);
+            $manufacturers_name      = tep_db_prepare_input($_POST['manufacturers_name']);
+            $manufacturers_seo_title = tep_db_prepare_input($_POST['manufacturers_seo_title']);
 
             $sql_data_array = array('manufacturers_name' => $manufacturers_name,
                 'manufacturers_seo_title' => $manufacturers_seo_title);
@@ -51,10 +51,10 @@ if (tep_not_null($action)) {
 
             $languages = tep_get_languages();
             for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-                $manufacturers_url_array             = $HTTP_POST_VARS['manufacturers_url'];
-                $manufacturers_description_array     = $HTTP_POST_VARS['manufacturers_description'];
-                $manufacturers_seo_description_array = tep_db_prepare_input($HTTP_POST_VARS['manufacturers_seo_description']);
-                $manufacturers_seo_keywords_array    = tep_db_prepare_input($HTTP_POST_VARS['manufacturers_seo_keywords']);
+                $manufacturers_url_array             = $_POST['manufacturers_url'];
+                $manufacturers_description_array     = $_POST['manufacturers_description'];
+                $manufacturers_seo_description_array = tep_db_prepare_input($_POST['manufacturers_seo_description']);
+                $manufacturers_seo_keywords_array    = tep_db_prepare_input($_POST['manufacturers_seo_keywords']);
 
                 $language_id = $languages[$i]['id'];
 
@@ -89,7 +89,7 @@ if (tep_not_null($action)) {
         case 'deleteconfirm':
             $manufacturers_id = tep_db_prepare_input($_GET['mID']);
 
-            if (isset($HTTP_POST_VARS['delete_image']) && ($HTTP_POST_VARS['delete_image']
+            if (isset($_POST['delete_image']) && ($_POST['delete_image']
                 == 'on')) {
                 $manufacturer_query = tep_db_query("select manufacturers_image from ".TABLE_MANUFACTURERS." where manufacturers_id = '".(int) $manufacturers_id."'");
                 $manufacturer       = tep_db_fetch_array($manufacturer_query);
@@ -102,7 +102,7 @@ if (tep_not_null($action)) {
             tep_db_query("delete from ".TABLE_MANUFACTURERS." where manufacturers_id = '".(int) $manufacturers_id."'");
             tep_db_query("delete from ".TABLE_MANUFACTURERS_INFO." where manufacturers_id = '".(int) $manufacturers_id."'");
 
-            if (isset($HTTP_POST_VARS['delete_products']) && ($HTTP_POST_VARS['delete_products']
+            if (isset($_POST['delete_products']) && ($_POST['delete_products']
                 == 'on')) {
                 $products_query = tep_db_query("select products_id from ".TABLE_PRODUCTS." where manufacturers_id = '".(int) $manufacturers_id."'");
                 while ($products       = tep_db_fetch_array($products_query)) {

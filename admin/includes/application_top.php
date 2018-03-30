@@ -173,7 +173,7 @@ if (!tep_session_is_registered('admin')) {
         $redirect = true;
     }
 
-    if (!isset($login_request) || isset($_GET['login_request']) || isset($HTTP_POST_VARS['login_request'])
+    if (!isset($login_request) || isset($_GET['login_request']) || isset($_POST['login_request'])
         || isset($HTTP_COOKIE_VARS['login_request']) || isset($HTTP_SESSION_VARS['login_request'])
         || isset($HTTP_POST_FILES['login_request']) || isset($HTTP_SERVER_VARS['login_request'])) {
         $redirect = true;

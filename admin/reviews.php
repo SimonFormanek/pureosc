@@ -29,9 +29,9 @@ if (tep_not_null($action)) {
             break;
         case 'update':
             $reviews_id     = tep_db_prepare_input($_GET['rID']);
-            $reviews_rating = tep_db_prepare_input($HTTP_POST_VARS['reviews_rating']);
-            $reviews_text   = tep_db_prepare_input($HTTP_POST_VARS['reviews_text']);
-            $reviews_status = tep_db_prepare_input($HTTP_POST_VARS['reviews_status']);
+            $reviews_rating = tep_db_prepare_input($_POST['reviews_rating']);
+            $reviews_text   = tep_db_prepare_input($_POST['reviews_text']);
+            $reviews_status = tep_db_prepare_input($_POST['reviews_status']);
 
             tep_db_query("update ".TABLE_REVIEWS." set reviews_rating = '".tep_db_input($reviews_rating)."', reviews_status = '".tep_db_input($reviews_status)."', last_modified = now() where reviews_id = '".(int) $reviews_id."'");
             tep_db_query("update ".TABLE_REVIEWS_DESCRIPTION." set reviews_text = '".tep_db_input($reviews_text)."' where reviews_id = '".(int) $reviews_id."'");
@@ -50,10 +50,10 @@ if (tep_not_null($action)) {
             break;
 // admin - add review
         case 'addnew':
-            $products_id  = tep_db_prepare_input($HTTP_POST_VARS['products_id']);
-            $customers_id = tep_db_prepare_input($HTTP_POST_VARS['customer_id']);
-            $review       = tep_db_prepare_input($HTTP_POST_VARS['reviews_text']);
-            $rating       = tep_db_prepare_input($HTTP_POST_VARS['rating']);
+            $products_id  = tep_db_prepare_input($_POST['products_id']);
+            $customers_id = tep_db_prepare_input($_POST['customer_id']);
+            $review       = tep_db_prepare_input($_POST['reviews_text']);
+            $rating       = tep_db_prepare_input($_POST['rating']);
 
             tep_db_query("insert into ".TABLE_REVIEWS." (products_id, customers_id, customers_name, reviews_rating, date_added, reviews_status) values ('".(int) $products_id."', '".(int) $customers_id."', '".tep_customers_name($customers_id)."', '".(int) $rating."', now(), 1)");
             $insert_id = tep_db_insert_id();
@@ -65,8 +65,8 @@ if (tep_not_null($action)) {
 
 // admin - add testimonial
         case 'addnewtestimonial':
-            $customers_name = tep_db_prepare_input($HTTP_POST_VARS['customer_name']);
-            $review         = tep_db_prepare_input($HTTP_POST_VARS['reviews_text']);
+            $customers_name = tep_db_prepare_input($_POST['customer_name']);
+            $review         = tep_db_prepare_input($_POST['reviews_text']);
 
             tep_db_query("insert into ".TABLE_REVIEWS." (products_id, customers_id, customers_name, reviews_rating, date_added, reviews_status, is_testimonial) values ('0', '0', '".$customers_name."', '1', now(), 1, 1)");
             $insert_id = tep_db_insert_id();
@@ -178,8 +178,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
             </form></tr>
     <?php
 } elseif ($action == 'preview') {
-    if (tep_not_null($HTTP_POST_VARS)) {
-        $rInfo = new objectInfo($HTTP_POST_VARS);
+    if (tep_not_null($_POST)) {
+        $rInfo = new objectInfo($_POST);
     } else {
         $rID = tep_db_prepare_input($_GET['rID']);
 
@@ -229,10 +229,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
         </tr>
     <?php
-    if (tep_not_null($HTTP_POST_VARS)) {
+    if (tep_not_null($_POST)) {
         /* Re-Post all POST'ed variables */
-        reset($HTTP_POST_VARS);
-        while (list($key, $value) = each($HTTP_POST_VARS))
+        reset($_POST);
+        while (list($key, $value) = each($_POST))
             echo tep_draw_hidden_field($key,
                 htmlspecialchars(stripslashes($value)));
         ?>

@@ -17,11 +17,11 @@ $action = (isset($_GET['action']) ? $_GET['action'] : '');
 if (tep_not_null($action)) {
     switch ($action) {
         case 'insert':
-            $tax_zone_id     = tep_db_prepare_input($HTTP_POST_VARS['tax_zone_id']);
-            $tax_class_id    = tep_db_prepare_input($HTTP_POST_VARS['tax_class_id']);
-            $tax_rate        = tep_db_prepare_input($HTTP_POST_VARS['tax_rate']);
-            $tax_description = tep_db_prepare_input($HTTP_POST_VARS['tax_description']);
-            $tax_priority    = tep_db_prepare_input($HTTP_POST_VARS['tax_priority']);
+            $tax_zone_id     = tep_db_prepare_input($_POST['tax_zone_id']);
+            $tax_class_id    = tep_db_prepare_input($_POST['tax_class_id']);
+            $tax_rate        = tep_db_prepare_input($_POST['tax_rate']);
+            $tax_description = tep_db_prepare_input($_POST['tax_description']);
+            $tax_priority    = tep_db_prepare_input($_POST['tax_priority']);
 
             tep_db_query("insert into ".TABLE_TAX_RATES." (tax_zone_id, tax_class_id, tax_rate, tax_description, tax_priority, date_added) values ('".(int) $tax_zone_id."', '".(int) $tax_class_id."', '".tep_db_input($tax_rate)."', '".tep_db_input($tax_description)."', '".tep_db_input($tax_priority)."', now())");
 
@@ -29,11 +29,11 @@ if (tep_not_null($action)) {
             break;
         case 'save':
             $tax_rates_id    = tep_db_prepare_input($_GET['tID']);
-            $tax_zone_id     = tep_db_prepare_input($HTTP_POST_VARS['tax_zone_id']);
-            $tax_class_id    = tep_db_prepare_input($HTTP_POST_VARS['tax_class_id']);
-            $tax_rate        = tep_db_prepare_input($HTTP_POST_VARS['tax_rate']);
-            $tax_description = tep_db_prepare_input($HTTP_POST_VARS['tax_description']);
-            $tax_priority    = tep_db_prepare_input($HTTP_POST_VARS['tax_priority']);
+            $tax_zone_id     = tep_db_prepare_input($_POST['tax_zone_id']);
+            $tax_class_id    = tep_db_prepare_input($_POST['tax_class_id']);
+            $tax_rate        = tep_db_prepare_input($_POST['tax_rate']);
+            $tax_description = tep_db_prepare_input($_POST['tax_description']);
+            $tax_priority    = tep_db_prepare_input($_POST['tax_priority']);
 
             tep_db_query("update ".TABLE_TAX_RATES." set tax_rates_id = '".(int) $tax_rates_id."', tax_zone_id = '".(int) $tax_zone_id."', tax_class_id = '".(int) $tax_class_id."', tax_rate = '".tep_db_input($tax_rate)."', tax_description = '".tep_db_input($tax_description)."', tax_priority = '".tep_db_input($tax_priority)."', last_modified = now() where tax_rates_id = '".(int) $tax_rates_id."'");
 

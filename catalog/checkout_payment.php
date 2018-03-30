@@ -85,8 +85,8 @@ $order_total_modules = new order_total; // CCGV
 /* * * EOF alterations for CCGV ** */
 
 if (!tep_session_is_registered('comments')) tep_session_register('comments');
-if (isset($HTTP_POST_VARS['comments']) && tep_not_null($HTTP_POST_VARS['comments'])) {
-    $comments = tep_db_prepare_input($HTTP_POST_VARS['comments']);
+if (isset($_POST['comments']) && tep_not_null($_POST['comments'])) {
+    $comments = tep_db_prepare_input($_POST['comments']);
 }
 
 $total_weight = $cart->show_weight();
