@@ -12,7 +12,7 @@
 
 require('includes/application_top.php');
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (($action == 'send_email_to_user') && isset($HTTP_POST_VARS['customers_email_address'])
     && !isset($HTTP_POST_VARS['back_x'])) {
@@ -62,9 +62,9 @@ if (($action == 'preview') && !isset($HTTP_POST_VARS['customers_email_address'])
     $messageStack->add(ERROR_NO_CUSTOMER_SELECTED, 'error');
 }
 
-if (isset($HTTP_GET_VARS['mail_sent_to'])) {
+if (isset($_GET['mail_sent_to'])) {
     $messageStack->add(sprintf(NOTICE_EMAIL_SENT_TO,
-            $HTTP_GET_VARS['mail_sent_to']), 'success');
+            $_GET['mail_sent_to']), 'success');
 }
 
 require(DIR_WS_INCLUDES.'template_top.php');
@@ -175,7 +175,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <td class="main"><?php echo TEXT_CUSTOMER; ?></td>
                                     <td><?php echo tep_draw_pull_down_menu('customers_email_address',
         $customers,
-        (isset($HTTP_GET_VARS['customer']) ? $HTTP_GET_VARS['customer'] : '')); ?></td>
+        (isset($_GET['customer']) ? $_GET['customer'] : '')); ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',

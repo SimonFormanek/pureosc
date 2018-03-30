@@ -28,10 +28,12 @@ class CompanyNumber extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('address_book');
-        $table->addColumn('entry_company_number', 'string')
-            ->save();
-        $table = $this->table('orders');
+        $table = $this->table('address_book_real');
+        if (!$table->hasColumn('entry_company_number')) {
+            $table->addColumn('entry_company_number', 'string')
+                ->save();
+        }
+        $table = $this->table('orders_real');
         $table->addColumn('customers_company_number', 'string')
             ->addColumn('delivery_company_number', 'string')
             ->addColumn('billing_company_number', 'string')

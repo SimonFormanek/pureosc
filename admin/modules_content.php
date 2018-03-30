@@ -94,12 +94,12 @@ if (implode(';', $_installed) != MODULE_CONTENT_INSTALLED) {
             $_installed)."' where configuration_key = 'MODULE_CONTENT_INSTALLED'");
 }
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (tep_not_null($action)) {
     switch ($action) {
         case 'save':
-            $class = basename($HTTP_GET_VARS['module']);
+            $class = basename($_GET['module']);
 
             foreach ($modules['installed'] as $m) {
                 if ($m['code'] == $class) {
@@ -119,7 +119,7 @@ if (tep_not_null($action)) {
             break;
 
         case 'install':
-            $class = basename($HTTP_GET_VARS['module']);
+            $class = basename($_GET['module']);
 
             foreach ($modules['new'] as $m) {
                 if ($m['code'] == $class) {
@@ -143,7 +143,7 @@ if (tep_not_null($action)) {
             break;
 
         case 'remove':
-            $class = basename($HTTP_GET_VARS['module']);
+            $class = basename($_GET['module']);
 
             foreach ($modules['installed'] as $m) {
                 if ($m['code'] == $class) {
@@ -210,8 +210,8 @@ if ($action == 'list_new') {
                                 foreach ($modules['new'] as $m) {
                                     $module = new $m['code']();
 
-                                    if ((!isset($HTTP_GET_VARS['module']) || (isset($HTTP_GET_VARS['module'])
-                                        && ($HTTP_GET_VARS['module'] == $module->code)))
+                                    if ((!isset($_GET['module']) || (isset($_GET['module'])
+                                        && ($_GET['module'] == $module->code)))
                                         && !isset($mInfo)) {
                                         $module_info = array('code' => $module->code,
                                             'title' => $module->title,
@@ -261,8 +261,8 @@ if ($action == 'list_new') {
                     foreach ($modules['installed'] as $m) {
                         $module = new $m['code']();
 
-                        if ((!isset($HTTP_GET_VARS['module']) || (isset($HTTP_GET_VARS['module'])
-                            && ($HTTP_GET_VARS['module'] == $module->code))) && !isset($mInfo)) {
+                        if ((!isset($_GET['module']) || (isset($_GET['module'])
+                            && ($_GET['module'] == $module->code))) && !isset($mInfo)) {
                             $module_info = array('code' => $module->code,
                                 'title' => $module->title,
                                 'description' => $module->description,

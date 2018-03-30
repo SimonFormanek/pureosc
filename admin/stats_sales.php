@@ -10,12 +10,12 @@ require('includes/application_top.php');
 require(DIR_WS_CLASSES.'currencies.php');
 $currencies = new currencies();
 
-if ($HTTP_GET_VARS['month'] == '') {
+if ($_GET['month'] == '') {
     $month = date("m");
     $year  = '20'.date("y");
 } else {
-    $month = $HTTP_GET_VARS['month'];
-    $year  = $HTTP_GET_VARS['year'];
+    $month = $_GET['month'];
+    $year  = $_GET['year'];
 }
 
 
@@ -47,7 +47,7 @@ for ($counter_year = $start_year; $counter_year <= '20'.date("y"); $counter_year
     $years[] = array('id' => $counter_year, 'text' => $counter_year);
 }
 
-$status = (int) $HTTP_GET_VARS['status'];
+$status = (int) $_GET['status'];
 
 $statuses_query = tep_db_query("select * from ".TABLE_ORDERS_STATUS." where language_id = $languages_id order by orders_status_name");
 $statuses       = array();
@@ -62,7 +62,7 @@ if ($status != 0) {
     $os = '';
 }
 
-switch ($HTTP_GET_VARS['by']) {
+switch ($_GET['by']) {
     default:
     case 'product':
         $sales_products_query = tep_db_query("select sum(op.final_price*op.products_quantity) as daily_prod, sum(op.final_price*op.products_quantity*(1+op.products_tax/100)) as withtax, o.date_purchased, op.products_name, sum(op.products_quantity) as qty, op.products_model from ".TABLE_ORDERS." as o, ".TABLE_ORDERS_PRODUCTS." as op where o.orders_id = op.orders_id and month(o.date_purchased) = ".$month." and year(o.date_purchased) = ".$year.$os." GROUP by products_id ORDER BY daily_prod DESC");
@@ -125,7 +125,7 @@ if (!defined('COMISSION_PERCENTAGE')) {
                 </table>
             </td>
         </tr>
-        <input type="hidden" name="by" value="<?= $HTTP_GET_VARS['by'] ?>">
+        <input type="hidden" name="by" value="<?= $_GET['by'] ?>">
     </form>
     <tr>
         <td><?php echo tep_draw_separator('pixel_trans.gif', '100%', '10'); ?></td>
@@ -160,8 +160,8 @@ if (!defined('COMISSION_PERCENTAGE')) {
         $total          = 0;
         $total_wtax     = 0;
         while ($sales_products = tep_db_fetch_array($sales_products_query)) {
-            if ($HTTP_GET_VARS['by'] == 'product' || $HTTP_GET_VARS['by'] == 'units'
-                || $HTTP_GET_VARS['by'] == 'name') {
+            if ($_GET['by'] == 'product' || $_GET['by'] == 'units'
+                || $_GET['by'] == 'name') {
                 $ddp         = 'Product';
                 $table_title = '';
             } else {

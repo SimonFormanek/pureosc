@@ -12,7 +12,7 @@
 
 require('includes/application_top.php');
 
-$set = (isset($HTTP_GET_VARS['set']) ? $HTTP_GET_VARS['set'] : '');
+$set = (isset($_GET['set']) ? $_GET['set'] : '');
 
 $modules = $cfgModules->getAll();
 
@@ -28,7 +28,7 @@ $module_key                = $cfgModules->get($set, 'key');
 define('HEADING_TITLE', $cfgModules->get($set, 'title'));
 $template_integration      = $cfgModules->get($set, 'template_integration');
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (tep_not_null($action)) {
     switch ($action) {
@@ -38,12 +38,12 @@ if (tep_not_null($action)) {
                 tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".$value."' where configuration_key = '".$key."'");
             }
             tep_redirect(tep_href_link(FILENAME_MODULES,
-                    'set='.$set.'&module='.$HTTP_GET_VARS['module']));
+                    'set='.$set.'&module='.$_GET['module']));
             break;
         case 'install':
         case 'remove':
             $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
-            $class          = basename($HTTP_GET_VARS['module']);
+            $class          = basename($_GET['module']);
             if (file_exists($module_directory.$class.$file_extension)) {
                 include($module_directory.$class.$file_extension);
                 $module = new $class;
@@ -97,7 +97,7 @@ if ($dir             = @dir($module_directory)) {
     while ($file = $dir->read()) {
         if (!is_dir($module_directory.$file)) {
             if (substr($file, strrpos($file, '.')) == $file_extension) {
-                if (isset($HTTP_GET_VARS['list']) && ($HTTP_GET_VARS['list'] = 'new')) {
+                if (isset($_GET['list']) && ($_GET['list'] = 'new')) {
                     if (!in_array($file, $modules_installed)) {
                         $directory_array[] = $file;
                     }
@@ -124,7 +124,7 @@ if ($dir             = @dir($module_directory)) {
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
                         HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
 <?php
-if (isset($HTTP_GET_VARS['list'])) {
+if (isset($_GET['list'])) {
     echo '            <td class="smallText" align="right">'.tep_draw_button(IMAGE_BACK,
         'triangle-1-w', tep_href_link(FILENAME_MODULES, 'set='.$set)).'</td>';
 } else {
@@ -164,8 +164,8 @@ if (isset($HTTP_GET_VARS['list'])) {
                                         }
                                     }
 
-                                    if ((!isset($HTTP_GET_VARS['module']) || (isset($HTTP_GET_VARS['module'])
-                                        && ($HTTP_GET_VARS['module'] == $class)))
+                                    if ((!isset($_GET['module']) || (isset($_GET['module'])
+                                        && ($_GET['module'] == $class)))
                                         && !isset($mInfo)) {
                                         $module_info = array('code' => $module->code,
                                             'title' => $module->title,
@@ -211,7 +211,7 @@ if (isset($HTTP_GET_VARS['list'])) {
                                         }
                                     } else {
                                         echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_MODULES,
-                                            'set='.$set.(isset($HTTP_GET_VARS['list'])
+                                            'set='.$set.(isset($_GET['list'])
                                                     ? '&list=new' : '').'&module='.$class).'\'">'."\n";
                                     }
                                     ?>
@@ -223,7 +223,7 @@ if (isset($HTTP_GET_VARS['list'])) {
                     echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
                 } else {
                     echo '<a href="'.tep_href_link(FILENAME_MODULES,
-                        'set='.$set.(isset($HTTP_GET_VARS['list']) ? '&list=new'
+                        'set='.$set.(isset($_GET['list']) ? '&list=new'
                                 : '').'&module='.$class).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
                         IMAGE_ICON_INFO).'</a>';
                 } ?>&nbsp;</td>
@@ -232,7 +232,7 @@ if (isset($HTTP_GET_VARS['list'])) {
             }
         }
 
-        if (!isset($HTTP_GET_VARS['list'])) {
+        if (!isset($_GET['list'])) {
             ksort($installed_modules);
             $check_query = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = '".$module_key."'");
             if (tep_db_num_rows($check_query)) {
@@ -304,13 +304,13 @@ if (isset($HTTP_GET_VARS['list'])) {
 
                 $contents   = array('form' => tep_draw_form('modules',
                         FILENAME_MODULES,
-                        'set='.$set.'&module='.$HTTP_GET_VARS['module'].'&action=save'));
+                        'set='.$set.'&module='.$_GET['module'].'&action=save'));
                 $contents[] = array('text' => $keys);
                 $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_SAVE,
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_MODULES,
-                            'set='.$set.'&module='.$HTTP_GET_VARS['module'])));
+                            'set='.$set.'&module='.$_GET['module'])));
                 break;
             default:
                 $heading[]  = array('text' => '<strong>'.$mInfo->title.'</strong>');
@@ -368,7 +368,7 @@ if (isset($HTTP_GET_VARS['list'])) {
 
                     $contents[] = array('text' => '<br />'.$mInfo->description);
                     $contents[] = array('text' => '<br />'.$keys);
-                } elseif (isset($HTTP_GET_VARS['list']) && ($HTTP_GET_VARS['list']
+                } elseif (isset($_GET['list']) && ($_GET['list']
                     == 'new')) {
                     if (isset($mInfo)) {
                         $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_MODULE_INSTALL,

@@ -13,14 +13,14 @@
 require('includes/application_top.php');
 $languages = tep_get_languages();
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
-$option_page    = (isset($HTTP_GET_VARS['option_page']) && is_numeric($HTTP_GET_VARS['option_page']))
-        ? $HTTP_GET_VARS['option_page'] : 1;
-$value_page     = (isset($HTTP_GET_VARS['value_page']) && is_numeric($HTTP_GET_VARS['value_page']))
-        ? $HTTP_GET_VARS['value_page'] : 1;
-$attribute_page = (isset($HTTP_GET_VARS['attribute_page']) && is_numeric($HTTP_GET_VARS['attribute_page']))
-        ? $HTTP_GET_VARS['attribute_page'] : 1;
+$option_page    = (isset($_GET['option_page']) && is_numeric($_GET['option_page']))
+        ? $_GET['option_page'] : 1;
+$value_page     = (isset($_GET['value_page']) && is_numeric($_GET['value_page']))
+        ? $_GET['value_page'] : 1;
+$attribute_page = (isset($_GET['attribute_page']) && is_numeric($_GET['attribute_page']))
+        ? $_GET['attribute_page'] : 1;
 
 $page_info = 'option_page='.$option_page.'&value_page='.$value_page.'&attribute_page='.$attribute_page;
 
@@ -125,14 +125,14 @@ if (tep_not_null($action)) {
             tep_redirect(tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES, $page_info));
             break;
         case 'delete_option':
-            $option_id = tep_db_prepare_input($HTTP_GET_VARS['option_id']);
+            $option_id = tep_db_prepare_input($_GET['option_id']);
 
             tep_db_query("delete from ".TABLE_PRODUCTS_OPTIONS." where products_options_id = '".(int) $option_id."'");
 
             tep_redirect(tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES, $page_info));
             break;
         case 'delete_value':
-            $value_id = tep_db_prepare_input($HTTP_GET_VARS['value_id']);
+            $value_id = tep_db_prepare_input($_GET['value_id']);
 
             tep_db_query("delete from ".TABLE_PRODUCTS_OPTIONS_VALUES." where products_options_values_id = '".(int) $value_id."'");
             tep_db_query("delete from ".TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS." where products_options_values_id = '".(int) $value_id."'");
@@ -140,7 +140,7 @@ if (tep_not_null($action)) {
             tep_redirect(tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES, $page_info));
             break;
         case 'delete_attribute':
-            $attribute_id = tep_db_prepare_input($HTTP_GET_VARS['attribute_id']);
+            $attribute_id = tep_db_prepare_input($_GET['attribute_id']);
 
             tep_db_query("delete from ".TABLE_PRODUCTS_ATTRIBUTES." where products_attributes_id = '".(int) $attribute_id."'");
 
@@ -164,7 +164,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             <!-- options //-->
                             <?php
                             if ($action == 'delete_product_option') { // delete product option
-                                $options        = tep_db_query("select products_options_id, products_options_name from ".TABLE_PRODUCTS_OPTIONS." where products_options_id = '".(int) $HTTP_GET_VARS['option_id']."' and language_id = '".(int) $languages_id."'");
+                                $options        = tep_db_query("select products_options_id, products_options_name from ".TABLE_PRODUCTS_OPTIONS." where products_options_id = '".(int) $_GET['option_id']."' and language_id = '".(int) $languages_id."'");
                                 $options_values = tep_db_fetch_array($options);
                                 ?>
                                 <tr>
@@ -176,7 +176,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                 <td colspan="3"><?php echo tep_black_line(); ?></td>
                                             </tr>
                                             <?php
-                                            $products       = tep_db_query("select p.products_id, pd.products_name, pov.products_options_values_name from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_OPTIONS_VALUES." pov, ".TABLE_PRODUCTS_ATTRIBUTES." pa, ".TABLE_PRODUCTS_DESCRIPTION." pd where pd.products_id = p.products_id and pov.language_id = '".(int) $languages_id."' and pd.language_id = '".(int) $languages_id."' and pa.products_id = p.products_id and pa.options_id='".(int) $HTTP_GET_VARS['option_id']."' and pov.products_options_values_id = pa.options_values_id order by pd.products_name");
+                                            $products       = tep_db_query("select p.products_id, pd.products_name, pov.products_options_values_name from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_OPTIONS_VALUES." pov, ".TABLE_PRODUCTS_ATTRIBUTES." pa, ".TABLE_PRODUCTS_DESCRIPTION." pd where pd.products_id = p.products_id and pov.language_id = '".(int) $languages_id."' and pd.language_id = '".(int) $languages_id."' and pa.products_id = p.products_id and pa.options_id='".(int) $_GET['option_id']."' and pov.products_options_values_id = pa.options_values_id order by pd.products_name");
                                             if (tep_db_num_rows($products)) {
                                                 ?>
                                                 <tr class="dataTableHeadingRow">
@@ -224,7 +224,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                     <td class="smallText" align="right" colspan="3"><br /><?php echo tep_draw_button(IMAGE_DELETE,
                                             'trash',
                                             tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES,
-                                                'action=delete_option&option_id='.$HTTP_GET_VARS['option_id'].'&'.$page_info),
+                                                'action=delete_option&option_id='.$_GET['option_id'].'&'.$page_info),
                                             'primary').tep_draw_button(IMAGE_CANCEL,
                                             'close',
                                             tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES,
@@ -276,7 +276,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <tr class="<?php echo (floor($rows / 2) == ($rows / 2)
                 ? 'attributes-even' : 'attributes-odd'); ?>">
                                         <?php
-                                        if (($action == 'update_option') && ($HTTP_GET_VARS['option_id']
+                                        if (($action == 'update_option') && ($_GET['option_id']
                                             == $options_values['products_options_id'])) {
                                             echo '<form name="option" action="'.tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES,
                                                 'action=update_option_name&'.$page_info).'" method="post">';
@@ -355,7 +355,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             <!-- value //-->
                                         <?php
                                         if ($action == 'delete_option_value') { // delete product option value
-                                            $values        = tep_db_query("select products_options_values_id, products_options_values_name from ".TABLE_PRODUCTS_OPTIONS_VALUES." where products_options_values_id = '".(int) $HTTP_GET_VARS['value_id']."' and language_id = '".(int) $languages_id."'");
+                                            $values        = tep_db_query("select products_options_values_id, products_options_values_name from ".TABLE_PRODUCTS_OPTIONS_VALUES." where products_options_values_id = '".(int) $_GET['value_id']."' and language_id = '".(int) $languages_id."'");
                                             $values_values = tep_db_fetch_array($values);
                                             ?>
                                 <tr>
@@ -367,7 +367,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                 <td colspan="3"><?php echo tep_black_line(); ?></td>
                                             </tr>
     <?php
-    $products      = tep_db_query("select p.products_id, pd.products_name, po.products_options_name from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_ATTRIBUTES." pa, ".TABLE_PRODUCTS_OPTIONS." po, ".TABLE_PRODUCTS_DESCRIPTION." pd where pd.products_id = p.products_id and pd.language_id = '".(int) $languages_id."' and po.language_id = '".(int) $languages_id."' and pa.products_id = p.products_id and pa.options_values_id='".(int) $HTTP_GET_VARS['value_id']."' and po.products_options_id = pa.options_id order by pd.products_name");
+    $products      = tep_db_query("select p.products_id, pd.products_name, po.products_options_name from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_ATTRIBUTES." pa, ".TABLE_PRODUCTS_OPTIONS." po, ".TABLE_PRODUCTS_DESCRIPTION." pd where pd.products_id = p.products_id and pd.language_id = '".(int) $languages_id."' and po.language_id = '".(int) $languages_id."' and pa.products_id = p.products_id and pa.options_values_id='".(int) $_GET['value_id']."' and po.products_options_id = pa.options_id order by pd.products_name");
     if (tep_db_num_rows($products)) {
         ?>
                                                 <tr class="dataTableHeadingRow">
@@ -413,7 +413,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                     <td class="smallText" align="right" colspan="3"><br /><?php echo tep_draw_button(IMAGE_DELETE,
                                 'trash',
                                 tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES,
-                                    'action=delete_value&value_id='.$HTTP_GET_VARS['value_id'].'&'.$page_info),
+                                    'action=delete_value&value_id='.$_GET['value_id'].'&'.$page_info),
                                 'primary').tep_draw_button(IMAGE_CANCEL,
                                 'close',
                                 tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES,
@@ -472,7 +472,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                             ? 'attributes-even' : 'attributes-odd'); ?>">
                                                 <?php
                                                 if (($action == 'update_option_value')
-                                                    && ($HTTP_GET_VARS['value_id']
+                                                    && ($_GET['value_id']
                                                     == $values_values['products_options_values_id'])) {
                                                     echo '<form name="values" action="'.tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES,
                                                         'action=update_value&'.$page_info).'" method="post">';
@@ -634,7 +634,7 @@ while ($attributes_values = tep_db_fetch_array($attributes)) {
                         <tr class="<?php echo (floor($rows / 2) == ($rows / 2) ? 'attributes-even'
                             : 'attributes-odd'); ?>">
                         <?php
-                        if (($action == 'update_attribute') && ($HTTP_GET_VARS['attribute_id']
+                        if (($action == 'update_attribute') && ($_GET['attribute_id']
                             == $attributes_values['products_attributes_id'])) {
                             ?>
                                 <td class="smallText">&nbsp;<?php echo $attributes_values['products_attributes_id']; ?><input type="hidden" name="attribute_id" value="<?php echo $attributes_values['products_attributes_id']; ?>">&nbsp;</td>
@@ -720,7 +720,7 @@ while ($attributes_values = tep_db_fetch_array($attributes)) {
                             }
                             ?>
                             <?php
-                        } elseif (($action == 'delete_product_attribute') && ($HTTP_GET_VARS['attribute_id']
+                        } elseif (($action == 'delete_product_attribute') && ($_GET['attribute_id']
                             == $attributes_values['products_attributes_id'])) {
                             ?>
                             <td class="smallText">&nbsp;<strong><?php echo $attributes_values["products_attributes_id"]; ?></strong>&nbsp;</td>
@@ -732,7 +732,7 @@ while ($attributes_values = tep_db_fetch_array($attributes)) {
                             <td align="center" class="smallText">&nbsp;<?php echo tep_draw_button(IMAGE_DELETE,
                         'trash',
                         tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES,
-                            'action=delete_attribute&attribute_id='.$HTTP_GET_VARS['attribute_id'].'&'.$page_info),
+                            'action=delete_attribute&attribute_id='.$_GET['attribute_id'].'&'.$page_info),
                         'primary').tep_draw_button(IMAGE_CANCEL, 'close',
                         tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES, $page_info)); ?>&nbsp;</td>
         <?php

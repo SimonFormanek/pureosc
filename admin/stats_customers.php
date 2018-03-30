@@ -38,12 +38,12 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_TOTAL_PURCHASED; ?>&nbsp;</td>
                             </tr>
                             <?php
-                            if (isset($HTTP_GET_VARS['page']) && ($HTTP_GET_VARS['page']
+                            if (isset($_GET['page']) && ($_GET['page']
                                 > 1))
-                                    $rows                    = $HTTP_GET_VARS['page']
+                                    $rows                    = $_GET['page']
                                     * MAX_DISPLAY_SEARCH_RESULTS - MAX_DISPLAY_SEARCH_RESULTS;
                             $customers_query_raw     = "select c.customers_firstname, c.customers_lastname, sum(op.products_quantity * op.final_price) as ordersum from ".TABLE_CUSTOMERS." c, ".TABLE_ORDERS_PRODUCTS." op, ".TABLE_ORDERS." o where c.customers_id = o.customers_id and o.orders_id = op.orders_id group by c.customers_firstname, c.customers_lastname order by ordersum DESC";
-                            $customers_split         = new splitPageResults($HTTP_GET_VARS['page'],
+                            $customers_split         = new splitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS,
                                 $customers_query_raw, $customers_query_numrows);
 // fix counted customers
@@ -75,10 +75,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <td colspan="3"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
                                 <td class="smallText" valign="top"><?php echo $customers_split->display_count($customers_query_numrows,
-    MAX_DISPLAY_SEARCH_RESULTS, $HTTP_GET_VARS['page'],
+    MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
     TEXT_DISPLAY_NUMBER_OF_CUSTOMERS); ?></td>
                                 <td class="smallText" align="right"><?php echo $customers_split->display_links($customers_query_numrows,
-    MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $HTTP_GET_VARS['page']); ?>&nbsp;</td>
+    MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?>&nbsp;</td>
                             </tr>
                         </table></td>
                 </tr>

@@ -38,13 +38,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $products_query_raw = "select pd.products_id, pd.products_name, p.products_date_available from ".TABLE_PRODUCTS_DESCRIPTION." pd, ".TABLE_PRODUCTS." p where p.products_id = pd.products_id and p.products_date_available != '' and pd.language_id = '".(int) $languages_id."' order by p.products_date_available DESC";
-                            $products_split     = new splitPageResults($HTTP_GET_VARS['page'],
+                            $products_split     = new splitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS, $products_query_raw,
                                 $products_query_numrows);
                             $products_query     = tep_db_query($products_query_raw);
                             while ($products           = tep_db_fetch_array($products_query)) {
-                                if ((!isset($HTTP_GET_VARS['pID']) || (isset($HTTP_GET_VARS['pID'])
-                                    && ($HTTP_GET_VARS['pID'] == $products['products_id'])))
+                                if ((!isset($_GET['pID']) || (isset($_GET['pID'])
+                                    && ($_GET['pID'] == $products['products_id'])))
                                     && !isset($pInfo)) {
                                     $pInfo = new objectInfo($products);
                                 }
@@ -55,7 +55,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                         'pID='.$products['products_id'].'&action=new_product').'\'">'."\n";
                                 } else {
                                     echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_PRODUCTS_EXPECTED,
-                                        'page='.$HTTP_GET_VARS['page'].'&pID='.$products['products_id']).'\'">'."\n";
+                                        'page='.$_GET['page'].'&pID='.$products['products_id']).'\'">'."\n";
                                 }
                                 ?>
                                 <td class="dataTableContent"><?php echo $products['products_name']; ?></td>
@@ -66,7 +66,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
                                 } else {
                                     echo '<a href="'.tep_href_link(FILENAME_PRODUCTS_EXPECTED,
-                                        'page='.$HTTP_GET_VARS['page'].'&pID='.$products['products_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                        'page='.$_GET['page'].'&pID='.$products['products_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
                                         IMAGE_ICON_INFO).'</a>';
                                 } ?>&nbsp;</td>
                     </tr>
@@ -77,11 +77,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <td colspan="3"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
                                 <td class="smallText" valign="top"><?php echo $products_split->display_count($products_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $HTTP_GET_VARS['page'],
+            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
             TEXT_DISPLAY_NUMBER_OF_PRODUCTS_EXPECTED); ?></td>
                                 <td class="smallText" align="right"><?php echo $products_split->display_links($products_query_numrows,
             MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $HTTP_GET_VARS['page']); ?></td>
+            $_GET['page']); ?></td>
                             </tr>
                         </table></td>
                 </tr>

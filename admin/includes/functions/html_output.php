@@ -228,14 +228,14 @@ function tep_draw_input_field($name, $value = '', $parameters = '',
                               $required = false, $type = 'text',
                               $reinsert_value = true)
 {
-    global $HTTP_GET_VARS, $HTTP_POST_VARS;
+    global $_GET, $HTTP_POST_VARS;
 
     $field = '<input type="'.tep_output_string($type).'" name="'.tep_output_string($name).'"';
 
-    if (($reinsert_value == true) && ( (isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name]))
+    if (($reinsert_value == true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name])) )) {
-        if (isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name])) {
-            $value = stripslashes($HTTP_GET_VARS[$name]);
+        if (isset($_GET[$name]) && is_string($_GET[$name])) {
+            $value = stripslashes($_GET[$name]);
         } elseif (isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name])) {
             $value = stripslashes($HTTP_POST_VARS[$name]);
         }
@@ -278,15 +278,15 @@ function tep_draw_file_field($name, $required = false)
 function tep_draw_selection_field($name, $type, $value = '', $checked = false,
                                   $compare = '')
 {
-    global $HTTP_GET_VARS, $HTTP_POST_VARS;
+    global $_GET, $HTTP_POST_VARS;
 
     $selection = '<input type="'.tep_output_string($type).'" name="'.tep_output_string($name).'"';
 
     if (tep_not_null($value))
             $selection .= ' value="'.tep_output_string($value).'"';
 
-    if (($checked == true) || (isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name])
-        && (($HTTP_GET_VARS[$name] == 'on') || (stripslashes($HTTP_GET_VARS[$name])
+    if (($checked == true) || (isset($_GET[$name]) && is_string($_GET[$name])
+        && (($_GET[$name] == 'on') || (stripslashes($_GET[$name])
         == $value))) || (isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name])
         && (($HTTP_POST_VARS[$name] == 'on') || (stripslashes($HTTP_POST_VARS[$name])
         == $value))) || (tep_not_null($compare) && ($value == $compare))) {
@@ -321,7 +321,7 @@ function tep_draw_textarea_field_ckeditor($name, $wrap, $width, $height,
                                           $text = '', $parameters = '',
                                           $reinsert_value = true)
 {
-    global $HTTP_GET_VARS, $HTTP_POST_VARS;
+    global $_GET, $HTTP_POST_VARS;
 
     $field = '<textarea name="'.tep_output_string($name).'" class="ckeditor" cols="'.tep_output_string($width).'" rows="'.tep_output_string($height).'"';
 
@@ -330,10 +330,10 @@ function tep_draw_textarea_field_ckeditor($name, $wrap, $width, $height,
 
     $field .= '>';
 
-    if (($reinsert_value == true) && ( (isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name]))
+    if (($reinsert_value == true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name])) )) {
-        if (isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name])) {
-            $field .= tep_output_string_protected(stripslashes($HTTP_GET_VARS[$name]));
+        if (isset($_GET[$name]) && is_string($_GET[$name])) {
+            $field .= tep_output_string_protected(stripslashes($_GET[$name]));
         } elseif (isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name])) {
             $field .= tep_output_string_protected(stripslashes($HTTP_POST_VARS[$name]));
         }
@@ -352,7 +352,7 @@ function tep_draw_textarea_field_ckeditor($name, $wrap, $width, $height,
 function tep_draw_textarea_field($name, $wrap, $width, $height, $text = '',
                                  $parameters = '', $reinsert_value = true)
 {
-    global $HTTP_GET_VARS, $HTTP_POST_VARS;
+    global $_GET, $HTTP_POST_VARS;
 
     $field = '<textarea name="'.tep_output_string($name).'" cols="'.tep_output_string($width).'" rows="'.tep_output_string($height).'"';
 
@@ -360,10 +360,10 @@ function tep_draw_textarea_field($name, $wrap, $width, $height, $text = '',
 
     $field .= '>';
 
-    if (($reinsert_value == true) && ( (isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name]))
+    if (($reinsert_value == true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name])) )) {
-        if (isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name])) {
-            $field .= tep_output_string_protected(stripslashes($HTTP_GET_VARS[$name]));
+        if (isset($_GET[$name]) && is_string($_GET[$name])) {
+            $field .= tep_output_string_protected(stripslashes($_GET[$name]));
         } elseif (isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name])) {
             $field .= tep_output_string_protected(stripslashes($HTTP_POST_VARS[$name]));
         }
@@ -380,16 +380,16 @@ function tep_draw_textarea_field($name, $wrap, $width, $height, $text = '',
 // Output a form hidden field
 function tep_draw_hidden_field($name, $value = '', $parameters = '')
 {
-    global $HTTP_GET_VARS, $HTTP_POST_VARS;
+    global $_GET, $HTTP_POST_VARS;
 
     $field = '<input type="hidden" name="'.tep_output_string($name).'"';
 
     if (tep_not_null($value)) {
         $field .= ' value="'.tep_output_string($value).'"';
-    } elseif ((isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name]))
+    } elseif ((isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name]))) {
-        if ((isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name]))) {
-            $field .= ' value="'.tep_output_string(stripslashes($HTTP_GET_VARS[$name])).'"';
+        if ((isset($_GET[$name]) && is_string($_GET[$name]))) {
+            $field .= ' value="'.tep_output_string(stripslashes($_GET[$name])).'"';
         } elseif ((isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name]))) {
             $field .= ' value="'.tep_output_string(stripslashes($HTTP_POST_VARS[$name])).'"';
         }
@@ -420,7 +420,7 @@ function tep_hide_session_id()
 function tep_draw_pull_down_menu($name, $values, $default = '',
                                  $parameters = '', $required = false)
 {
-    global $HTTP_GET_VARS, $HTTP_POST_VARS;
+    global $_GET, $HTTP_POST_VARS;
 
     $field = '<select name="'.tep_output_string($name).'"';
 
@@ -428,10 +428,10 @@ function tep_draw_pull_down_menu($name, $values, $default = '',
 
     $field .= '>';
 
-    if (empty($default) && ( (isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name]))
+    if (empty($default) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name])) )) {
-        if (isset($HTTP_GET_VARS[$name]) && is_string($HTTP_GET_VARS[$name])) {
-            $default = stripslashes($HTTP_GET_VARS[$name]);
+        if (isset($_GET[$name]) && is_string($_GET[$name])) {
+            $default = stripslashes($_GET[$name]);
         } elseif (isset($HTTP_POST_VARS[$name]) && is_string($HTTP_POST_VARS[$name])) {
             $default = stripslashes($HTTP_POST_VARS[$name]);
         }

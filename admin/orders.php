@@ -34,12 +34,12 @@ while ($orders_status       = tep_db_fetch_array($orders_status_query)) {
     $orders_status_array[$orders_status['orders_status_id']] = $orders_status['orders_status_name'];
 }
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (tep_not_null($action)) {
     switch ($action) {
         case 'update_order':
-            $oID      = tep_db_prepare_input($HTTP_GET_VARS['oID']);
+            $oID      = tep_db_prepare_input($_GET['oID']);
             $status   = tep_db_prepare_input($HTTP_POST_VARS['status']);
             $comments = tep_db_prepare_input($HTTP_POST_VARS['comments']);
 
@@ -101,7 +101,7 @@ if (tep_not_null($action)) {
                     tep_get_all_get_params(array('action')).'action=edit'));
             break;
         case 'deleteconfirm':
-            $oID = tep_db_prepare_input($HTTP_GET_VARS['oID']);
+            $oID = tep_db_prepare_input($_GET['oID']);
 
             tep_remove_order($oID, $HTTP_POST_VARS['restock']);
 
@@ -111,8 +111,8 @@ if (tep_not_null($action)) {
     }
 }
 
-if (($action == 'edit') && isset($HTTP_GET_VARS['oID'])) {
-    $oID = tep_db_prepare_input($HTTP_GET_VARS['oID']);
+if (($action == 'edit') && isset($_GET['oID'])) {
+    $oID = tep_db_prepare_input($_GET['oID']);
 
     $orders_query = tep_db_query("select orders_id from ".TABLE_ORDERS." where orders_id = '".(int) $oID."'");
     $order_exists = true;
@@ -151,14 +151,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_CREATE_ORDER,
         'plus', tep_href_link(FILENAME_CREATE_ORDER)).tep_draw_button(IMAGE_EDIT,
         'pencil',
-        tep_href_link(FILENAME_ORDERS_EDIT, 'oID='.$HTTP_GET_VARS['oID']), null,
+        tep_href_link(FILENAME_ORDERS_EDIT, 'oID='.$_GET['oID']), null,
         array('newwindow' => true)).tep_draw_button(IMAGE_ORDERS_INVOICE,
         'document',
-        tep_href_link(FILENAME_ORDERS_INVOICE, 'oID='.$HTTP_GET_VARS['oID']),
+        tep_href_link(FILENAME_ORDERS_INVOICE, 'oID='.$_GET['oID']),
         null, array('newwindow' => true)).tep_draw_button(IMAGE_ORDERS_PACKINGSLIP,
         'document',
         tep_href_link(FILENAME_ORDERS_PACKINGSLIP,
-            'oID='.$HTTP_GET_VARS['oID']), null, array('newwindow' => true)).tep_draw_button(IMAGE_BACK,
+            'oID='.$_GET['oID']), null, array('newwindow' => true)).tep_draw_button(IMAGE_BACK,
         'triangle-1-w',
         tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('action')))); ?></td>
     <?php /*     * * EOF alteration for Order Editor ** */ ?>
@@ -433,8 +433,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
                                 </tr>
             <?php
-            if (isset($HTTP_GET_VARS['cID'])) {
-                $cID              = tep_db_prepare_input($HTTP_GET_VARS['cID']);
+            if (isset($_GET['cID'])) {
+                $cID              = tep_db_prepare_input($_GET['cID']);
                 /*                 * * Altered for PWA **	  
                   $orders_query_raw = "select o.orders_id, o.customers_name, o.customers_id, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.customers_id = '" . (int)$cID . "' and o.orders_status = s.orders_status_id and s.language_id = '" . (int)$languages_id . "' and ot.class = 'ot_total' order by orders_id DESC";
                   } elseif (isset($HTTP_GET_VARS['status']) && is_numeric($HTTP_GET_VARS['status']) && ($HTTP_GET_VARS['status'] > 0)) {
@@ -444,9 +444,9 @@ require(DIR_WS_INCLUDES.'template_top.php');
                  */
                 $orders_query_raw = "select o.orders_id, o.customers_name, o.customers_id, ".( defined('MODULE_CONTENT_PWA_LOGIN_STATUS')
                         ? "o.customers_guest, " : '' )." o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where o.customers_id = '".(int) $cID."' and o.orders_status = s.orders_status_id and s.language_id = '".(int) $languages_id."' and ot.class = 'ot_total' order by orders_id DESC";
-            } elseif (isset($HTTP_GET_VARS['status']) && is_numeric($HTTP_GET_VARS['status'])
-                && ($HTTP_GET_VARS['status'] > 0)) {
-                $status           = tep_db_prepare_input($HTTP_GET_VARS['status']);
+            } elseif (isset($_GET['status']) && is_numeric($_GET['status'])
+                && ($_GET['status'] > 0)) {
+                $status           = tep_db_prepare_input($_GET['status']);
                 $orders_query_raw = "select o.orders_id, o.customers_name, ".( defined('MODULE_CONTENT_PWA_LOGIN_STATUS')
                         ? "o.customers_guest, " : '' )." o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where o.orders_status = s.orders_status_id and s.language_id = '".(int) $languages_id."' and s.orders_status_id = '".(int) $status."' and ot.class = 'ot_total' order by o.orders_id DESC";
             } else {
@@ -459,13 +459,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 /*                 * * EOE for Order Maker ** */
                 /*                 * * EOE for PWA ** */
             }
-            $orders_split = new splitPageResults($HTTP_GET_VARS['page'],
+            $orders_split = new splitPageResults($_GET['page'],
                 MAX_DISPLAY_SEARCH_RESULTS, $orders_query_raw,
                 $orders_query_numrows);
             $orders_query = tep_db_query($orders_query_raw);
             while ($orders       = tep_db_fetch_array($orders_query)) {
-                if ((!isset($HTTP_GET_VARS['oID']) || (isset($HTTP_GET_VARS['oID'])
-                    && ($HTTP_GET_VARS['oID'] == $orders['orders_id']))) && !isset($oInfo)) {
+                if ((!isset($_GET['oID']) || (isset($_GET['oID'])
+                    && ($_GET['oID'] == $orders['orders_id']))) && !isset($oInfo)) {
                     $oInfo = new objectInfo($orders);
                 }
 
@@ -503,11 +503,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         <td colspan="5"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                                 <tr>
                                     <td class="smallText" valign="top"><?php echo $orders_split->display_count($orders_query_numrows,
-        MAX_DISPLAY_SEARCH_RESULTS, $HTTP_GET_VARS['page'],
+        MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
         TEXT_DISPLAY_NUMBER_OF_ORDERS); ?></td>
                                     <td class="smallText" align="right"><?php echo $orders_split->display_links($orders_query_numrows,
         MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-        $HTTP_GET_VARS['page'],
+        $_GET['page'],
         tep_get_all_get_params(array('page', 'oID', 'action'))); ?></td>
                                 </tr>
                             </table></td>

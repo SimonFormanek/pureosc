@@ -12,23 +12,23 @@
 
 require('includes/application_top.php');
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (tep_not_null($action)) {
     switch ($action) {
         case 'save':
             $configuration_value = tep_db_prepare_input($HTTP_POST_VARS['configuration_value']);
-            $cID                 = tep_db_prepare_input($HTTP_GET_VARS['cID']);
+            $cID                 = tep_db_prepare_input($_GET['cID']);
 
             tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".tep_db_input($configuration_value)."', last_modified = now() where configuration_id = '".(int) $cID."'");
 
             tep_redirect(tep_href_link(FILENAME_CONFIGURATION,
-                    'gID='.$HTTP_GET_VARS['gID'].'&cID='.$cID));
+                    'gID='.$_GET['gID'].'&cID='.$cID));
             break;
     }
 }
 
-$gID = (isset($HTTP_GET_VARS['gID'])) ? $HTTP_GET_VARS['gID'] : 1;
+$gID = (isset($_GET['gID'])) ? $_GET['gID'] : 1;
 
 $cfg_group_query = tep_db_query("select configuration_group_title from ".TABLE_CONFIGURATION_GROUP." where configuration_group_id = '".(int) $gID."'");
 $cfg_group       = tep_db_fetch_array($cfg_group_query);
@@ -78,8 +78,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     $cfgValue = $configuration['configuration_value'];
                                 }
 
-                                if ((!isset($HTTP_GET_VARS['cID']) || (isset($HTTP_GET_VARS['cID'])
-                                    && ($HTTP_GET_VARS['cID'] == $configuration['configuration_id'])))
+                                if ((!isset($_GET['cID']) || (isset($_GET['cID'])
+                                    && ($_GET['cID'] == $configuration['configuration_id'])))
                                     && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
                                     $cfg_extra_query = tep_db_query("select configuration_key, configuration_description, date_added, last_modified, use_function, set_function from ".TABLE_CONFIGURATION." where configuration_id = '".(int) $configuration['configuration_id']."'");
                                     $cfg_extra       = tep_db_fetch_array($cfg_extra_query);
@@ -92,10 +92,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 if ((isset($cInfo) && is_object($cInfo)) && ($configuration['configuration_id']
                                     == $cInfo->configuration_id)) {
                                     echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_CONFIGURATION,
-                                        'gID='.$HTTP_GET_VARS['gID'].'&cID='.$cInfo->configuration_id.'&action=edit').'\'">'."\n";
+                                        'gID='.$_GET['gID'].'&cID='.$cInfo->configuration_id.'&action=edit').'\'">'."\n";
                                 } else {
                                     echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_CONFIGURATION,
-                                        'gID='.$HTTP_GET_VARS['gID'].'&cID='.$configuration['configuration_id']).'\'">'."\n";
+                                        'gID='.$_GET['gID'].'&cID='.$configuration['configuration_id']).'\'">'."\n";
                                 }
                                 ?>
                                 <td class="dataTableContent"><?php
@@ -111,7 +111,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
             echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif', '');
         } else {
             echo '<a href="'.tep_href_link(FILENAME_CONFIGURATION,
-                'gID='.$HTTP_GET_VARS['gID'].'&cID='.$configuration['configuration_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                'gID='.$_GET['gID'].'&cID='.$configuration['configuration_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
                 IMAGE_ICON_INFO).'</a>';
         } ?>&nbsp;</td>
                     </tr>
@@ -148,14 +148,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
                 $contents   = array('form' => tep_draw_form('configuration',
                         FILENAME_CONFIGURATION,
-                        'gID='.$HTTP_GET_VARS['gID'].'&cID='.$cInfo->configuration_id.'&action=save'));
+                        'gID='.$_GET['gID'].'&cID='.$cInfo->configuration_id.'&action=save'));
                 $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
                 $contents[] = array('text' => '<br /><strong>'.$configuration_title.'</strong><br />'.$configuration_description.'<br />'.$value_field);
                 $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_SAVE,
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_CONFIGURATION,
-                            'gID='.$HTTP_GET_VARS['gID'].'&cID='.$cInfo->configuration_id)));
+                            'gID='.$_GET['gID'].'&cID='.$cInfo->configuration_id)));
                 break;
             default:
                 if (isset($cInfo) && is_object($cInfo)) {
@@ -164,7 +164,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT,
                             'document',
                             tep_href_link(FILENAME_CONFIGURATION,
-                                'gID='.$HTTP_GET_VARS['gID'].'&cID='.$cInfo->configuration_id.'&action=edit')));
+                                'gID='.$_GET['gID'].'&cID='.$cInfo->configuration_id.'&action=edit')));
                     $contents[] = array('text' => '<br />'.$configuration_description);
                     $contents[] = array('text' => '<br />'.TEXT_INFO_DATE_ADDED.' '.tep_date_short($cInfo->date_added));
                     if (tep_not_null($cInfo->last_modified))

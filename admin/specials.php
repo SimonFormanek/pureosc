@@ -15,16 +15,16 @@ require('includes/application_top.php');
 require(DIR_WS_CLASSES.'currencies.php');
 $currencies = new currencies();
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (tep_not_null($action)) {
     switch ($action) {
         case 'setflag':
-            tep_set_specials_status($HTTP_GET_VARS['id'], $HTTP_GET_VARS['flag']);
+            tep_set_specials_status($_GET['id'], $_GET['flag']);
 
             tep_redirect(tep_href_link(FILENAME_SPECIALS,
-                    (isset($HTTP_GET_VARS['page']) ? 'page='.$HTTP_GET_VARS['page'].'&'
-                            : '').'sID='.$HTTP_GET_VARS['id']));
+                    (isset($_GET['page']) ? 'page='.$_GET['page'].'&'
+                            : '').'sID='.$_GET['id']));
             break;
         case 'insert':
             $products_id    = tep_db_prepare_input($HTTP_POST_VARS['products_id']);
@@ -50,7 +50,7 @@ if (tep_not_null($action)) {
                         ? "'".tep_db_input($expires_date)."'" : 'null').", '1')");
 
             tep_redirect(tep_href_link(FILENAME_SPECIALS,
-                    'page='.$HTTP_GET_VARS['page']));
+                    'page='.$_GET['page']));
             break;
         case 'update':
             $specials_id    = tep_db_prepare_input($HTTP_POST_VARS['specials_id']);
@@ -72,15 +72,15 @@ if (tep_not_null($action)) {
                         ? "'".tep_db_input($expires_date)."'" : 'null')." where specials_id = '".(int) $specials_id."'");
 
             tep_redirect(tep_href_link(FILENAME_SPECIALS,
-                    'page='.$HTTP_GET_VARS['page'].'&sID='.$specials_id));
+                    'page='.$_GET['page'].'&sID='.$specials_id));
             break;
         case 'deleteconfirm':
-            $specials_id = tep_db_prepare_input($HTTP_GET_VARS['sID']);
+            $specials_id = tep_db_prepare_input($_GET['sID']);
 
             tep_db_query("delete from ".TABLE_SPECIALS." where specials_id = '".(int) $specials_id."'");
 
             tep_redirect(tep_href_link(FILENAME_SPECIALS,
-                    'page='.$HTTP_GET_VARS['page']));
+                    'page='.$_GET['page']));
             break;
     }
 }
@@ -101,10 +101,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <?php
     if (($action == 'new') || ($action == 'edit')) {
         $form_action = 'insert';
-        if (($action == 'edit') && isset($HTTP_GET_VARS['sID'])) {
+        if (($action == 'edit') && isset($_GET['sID'])) {
             $form_action = 'update';
 
-            $product_query = tep_db_query("select p.products_id, pd.products_name, p.products_price, s.specials_new_products_price, s.expires_date from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd, ".TABLE_SPECIALS." s where p.products_id = pd.products_id and pd.language_id = '".(int) $languages_id."' and p.products_id = s.products_id and s.specials_id = '".(int) $HTTP_GET_VARS['sID']."'");
+            $product_query = tep_db_query("select p.products_id, pd.products_name, p.products_price, s.specials_new_products_price, s.expires_date from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd, ".TABLE_SPECIALS." s where p.products_id = pd.products_id and pd.language_id = '".(int) $languages_id."' and p.products_id = s.products_id and s.specials_id = '".(int) $_GET['sID']."'");
             $product       = tep_db_fetch_array($product_query);
 
             $sInfo = new objectInfo($product);
@@ -123,7 +123,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <tr><form name="new_special" <?php echo 'action="'.tep_href_link(FILENAME_SPECIALS,
             tep_get_all_get_params(array('action', 'info', 'sID')).'action='.$form_action).'"'; ?> method="post"><?php if ($form_action
             == 'update') echo tep_draw_hidden_field('specials_id',
-                $HTTP_GET_VARS['sID']); ?>
+                $_GET['sID']); ?>
             <td><br /><table border="0" cellspacing="0" cellpadding="2">
                     <tr>
                         <td class="main"><?php echo TEXT_SPECIALS_PRODUCT; ?>&nbsp;</td>
@@ -164,8 +164,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                             'close',
                             tep_href_link(FILENAME_SPECIALS,
-                                'page='.$HTTP_GET_VARS['page'].(isset($HTTP_GET_VARS['sID'])
-                                        ? '&sID='.$HTTP_GET_VARS['sID'] : ''))); ?></td>
+                                'page='.$_GET['page'].(isset($_GET['sID'])
+                                        ? '&sID='.$_GET['sID'] : ''))); ?></td>
                         </tr>
                     </table></td>
         </form></tr>
@@ -184,13 +184,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                 <?php
                 $specials_query_raw = "select p.products_id, pd.products_name, p.products_price, s.specials_id, s.specials_new_products_price, s.specials_date_added, s.specials_last_modified, s.expires_date, s.date_status_change, s.status from ".TABLE_PRODUCTS." p, ".TABLE_SPECIALS." s, ".TABLE_PRODUCTS_DESCRIPTION." pd where p.products_id = pd.products_id and pd.language_id = '".(int) $languages_id."' and p.products_id = s.products_id order by pd.products_name";
-                $specials_split     = new splitPageResults($HTTP_GET_VARS['page'],
+                $specials_split     = new splitPageResults($_GET['page'],
                     MAX_DISPLAY_SEARCH_RESULTS, $specials_query_raw,
                     $specials_query_numrows);
                 $specials_query     = tep_db_query($specials_query_raw);
                 while ($specials           = tep_db_fetch_array($specials_query)) {
-                    if ((!isset($HTTP_GET_VARS['sID']) || (isset($HTTP_GET_VARS['sID'])
-                        && ($HTTP_GET_VARS['sID'] == $specials['specials_id'])))
+                    if ((!isset($_GET['sID']) || (isset($_GET['sID'])
+                        && ($_GET['sID'] == $specials['specials_id'])))
                         && !isset($sInfo)) {
                         $products_query = tep_db_query("select products_image from ".TABLE_PRODUCTS." where products_id = '".(int) $specials['products_id']."'");
                         $products       = tep_db_fetch_array($products_query);
@@ -201,10 +201,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     if (isset($sInfo) && is_object($sInfo) && ($specials['specials_id']
                         == $sInfo->specials_id)) {
                         echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_SPECIALS,
-                            'page='.$HTTP_GET_VARS['page'].'&sID='.$sInfo->specials_id.'&action=edit').'\'">'."\n";
+                            'page='.$_GET['page'].'&sID='.$sInfo->specials_id.'&action=edit').'\'">'."\n";
                     } else {
                         echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_SPECIALS,
-                            'page='.$HTTP_GET_VARS['page'].'&sID='.$specials['specials_id']).'\'">'."\n";
+                            'page='.$_GET['page'].'&sID='.$specials['specials_id']).'\'">'."\n";
                     }
                     ?>
                                 <td  class="dataTableContent"><?php echo $specials['products_name']; ?></td>
@@ -228,7 +228,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
             echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif', '');
         } else {
             echo '<a href="'.tep_href_link(FILENAME_SPECIALS,
-                'page='.$HTTP_GET_VARS['page'].'&sID='.$specials['specials_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                'page='.$_GET['page'].'&sID='.$specials['specials_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
                 IMAGE_ICON_INFO).'</a>';
         } ?>&nbsp;</td>
                     </tr>
@@ -239,11 +239,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <td colspan="4"><table border="0" width="100%" cellpadding="0"cellspacing="2">
                             <tr>
                                 <td class="smallText" valign="top"><?php echo $specials_split->display_count($specials_query_numrows,
-        MAX_DISPLAY_SEARCH_RESULTS, $HTTP_GET_VARS['page'],
+        MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
         TEXT_DISPLAY_NUMBER_OF_SPECIALS); ?></td>
                                 <td class="smallText" align="right"><?php echo $specials_split->display_links($specials_query_numrows,
         MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-        $HTTP_GET_VARS['page']); ?></td>
+        $_GET['page']); ?></td>
                             </tr>
     <?php
     if (empty($action)) {
@@ -252,7 +252,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <td class="smallText" colspan="2" align="right"><?php echo tep_draw_button(IMAGE_NEW_PRODUCT,
             'plus',
             tep_href_link(FILENAME_SPECIALS,
-                'page='.$HTTP_GET_VARS['page'].'&action=new')); ?></td>
+                'page='.$_GET['page'].'&action=new')); ?></td>
                                 </tr>
         <?php
     }
@@ -270,14 +270,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
             $contents   = array('form' => tep_draw_form('specials',
                     FILENAME_SPECIALS,
-                    'page='.$HTTP_GET_VARS['page'].'&sID='.$sInfo->specials_id.'&action=deleteconfirm'));
+                    'page='.$_GET['page'].'&sID='.$sInfo->specials_id.'&action=deleteconfirm'));
             $contents[] = array('text' => TEXT_INFO_DELETE_INTRO);
             $contents[] = array('text' => '<br /><strong>'.$sInfo->products_name.'</strong>');
             $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_DELETE,
                     'trash', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                     'close',
                     tep_href_link(FILENAME_SPECIALS,
-                        'page='.$HTTP_GET_VARS['page'].'&sID='.$sInfo->specials_id)));
+                        'page='.$_GET['page'].'&sID='.$sInfo->specials_id)));
             break;
         default:
             if (is_object($sInfo)) {
@@ -286,10 +286,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT,
                         'document',
                         tep_href_link(FILENAME_SPECIALS,
-                            'page='.$HTTP_GET_VARS['page'].'&sID='.$sInfo->specials_id.'&action=edit')).tep_draw_button(IMAGE_DELETE,
+                            'page='.$_GET['page'].'&sID='.$sInfo->specials_id.'&action=edit')).tep_draw_button(IMAGE_DELETE,
                         'trash',
                         tep_href_link(FILENAME_SPECIALS,
-                            'page='.$HTTP_GET_VARS['page'].'&sID='.$sInfo->specials_id.'&action=delete')));
+                            'page='.$_GET['page'].'&sID='.$sInfo->specials_id.'&action=delete')));
                 $contents[] = array('text' => '<br />'.TEXT_INFO_DATE_ADDED.' '.tep_date_short($sInfo->specials_date_added));
                 $contents[] = array('text' => ''.TEXT_INFO_LAST_MODIFIED.' '.tep_date_short($sInfo->specials_last_modified));
                 $contents[] = array('align' => 'center', 'text' => '<br />'.tep_info_image($sInfo->products_image,

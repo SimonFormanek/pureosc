@@ -45,7 +45,7 @@ if (!$is_iis && file_exists(DIR_FS_ADMIN.'.htpasswd_oscommerce') && tep_is_writa
     }
 }
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (tep_not_null($action)) {
     switch ($action) {
@@ -108,7 +108,7 @@ if (tep_not_null($action)) {
             $username = tep_db_prepare_input($HTTP_POST_VARS['username']);
             $password = tep_db_prepare_input($HTTP_POST_VARS['password']);
 
-            $check_query = tep_db_query("select id, user_name from ".TABLE_ADMINISTRATORS." where id = '".(int) $HTTP_GET_VARS['aID']."'");
+            $check_query = tep_db_query("select id, user_name from ".TABLE_ADMINISTRATORS." where id = '".(int) $_GET['aID']."'");
             $check       = tep_db_fetch_array($check_query);
 
 // update username in current session if changed
@@ -129,7 +129,7 @@ if (tep_not_null($action)) {
                 }
             }
 
-            tep_db_query("update ".TABLE_ADMINISTRATORS." set user_name = '".tep_db_input($username)."' where id = '".(int) $HTTP_GET_VARS['aID']."'");
+            tep_db_query("update ".TABLE_ADMINISTRATORS." set user_name = '".tep_db_input($username)."' where id = '".(int) $_GET['aID']."'");
 
             if (tep_not_null($password)) {
 // update password in htpasswd
@@ -149,7 +149,7 @@ if (tep_not_null($action)) {
                     }
                 }
 
-                tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".tep_db_input(tep_encrypt_password($password))."' where id = '".(int) $HTTP_GET_VARS['aID']."'");
+                tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".tep_db_input(tep_encrypt_password($password))."' where id = '".(int) $_GET['aID']."'");
             } elseif (!isset($HTTP_POST_VARS['htaccess']) || ($HTTP_POST_VARS['htaccess']
                 != 'true')) {
                 if (is_array($htpasswd_array)) {
@@ -188,10 +188,10 @@ if (tep_not_null($action)) {
             }
 
             tep_redirect(tep_href_link(FILENAME_ADMINISTRATORS,
-                    'aID='.(int) $HTTP_GET_VARS['aID']));
+                    'aID='.(int) $_GET['aID']));
             break;
         case 'deleteconfirm':
-            $id = tep_db_prepare_input($HTTP_GET_VARS['aID']);
+            $id = tep_db_prepare_input($_GET['aID']);
 
             $check_query = tep_db_query("select id, user_name from ".TABLE_ADMINISTRATORS." where id = '".(int) $id."'");
             $check       = tep_db_fetch_array($check_query);
@@ -279,8 +279,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             <?php
                             $admins_query = tep_db_query("select id, user_name from ".TABLE_ADMINISTRATORS." order by user_name");
                             while ($admins       = tep_db_fetch_array($admins_query)) {
-                                if ((!isset($HTTP_GET_VARS['aID']) || (isset($HTTP_GET_VARS['aID'])
-                                    && ($HTTP_GET_VARS['aID'] == $admins['id'])))
+                                if ((!isset($_GET['aID']) || (isset($_GET['aID'])
+                                    && ($_GET['aID'] == $admins['id'])))
                                     && !isset($aInfo) && (substr($action, 0, 3) != 'new')) {
                                     $aInfo = new objectInfo($admins);
                                 }

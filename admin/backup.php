@@ -12,7 +12,7 @@
 
 require('includes/application_top.php');
 
-$action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
 
 if (tep_not_null($action)) {
     switch ($action) {
@@ -171,11 +171,11 @@ if (tep_not_null($action)) {
             tep_set_time_limit(0);
 
             if ($action == 'restorenow') {
-                $read_from = $HTTP_GET_VARS['file'];
+                $read_from = $_GET['file'];
 
-                if (file_exists(DIR_FS_BACKUP.$HTTP_GET_VARS['file'])) {
-                    $restore_file = DIR_FS_BACKUP.$HTTP_GET_VARS['file'];
-                    $extension    = substr($HTTP_GET_VARS['file'], -3);
+                if (file_exists(DIR_FS_BACKUP.$_GET['file'])) {
+                    $restore_file = DIR_FS_BACKUP.$_GET['file'];
+                    $extension    = substr($_GET['file'], -3);
 
                     if (($extension == 'sql') || ($extension == '.gz') || ($extension
                         == 'zip')) {
@@ -298,16 +298,16 @@ if (tep_not_null($action)) {
             tep_redirect(tep_href_link(FILENAME_BACKUP));
             break;
         case 'download':
-            $extension = substr($HTTP_GET_VARS['file'], -3);
+            $extension = substr($_GET['file'], -3);
 
             if (($extension == 'zip') || ($extension == '.gz') || ($extension == 'sql')) {
-                if ($fp = fopen(DIR_FS_BACKUP.$HTTP_GET_VARS['file'], 'rb')) {
+                if ($fp = fopen(DIR_FS_BACKUP.$_GET['file'], 'rb')) {
                     $buffer = fread($fp,
-                        filesize(DIR_FS_BACKUP.$HTTP_GET_VARS['file']));
+                        filesize(DIR_FS_BACKUP.$_GET['file']));
                     fclose($fp);
 
                     header('Content-type: application/x-octet-stream');
-                    header('Content-disposition: attachment; filename='.$HTTP_GET_VARS['file']);
+                    header('Content-disposition: attachment; filename='.$_GET['file']);
 
                     echo $buffer;
 
@@ -318,10 +318,10 @@ if (tep_not_null($action)) {
             }
             break;
         case 'deleteconfirm':
-            if (strstr($HTTP_GET_VARS['file'], '..'))
+            if (strstr($_GET['file'], '..'))
                     tep_redirect(tep_href_link(FILENAME_BACKUP));
 
-            tep_remove(DIR_FS_BACKUP.'/'.$HTTP_GET_VARS['file']);
+            tep_remove(DIR_FS_BACKUP.'/'.$_GET['file']);
 
             if (!$tep_remove_error) {
                 $messageStack->add_session(SUCCESS_BACKUP_DELETED, 'success');
@@ -384,8 +384,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
                                     $check = 0;
 
-                                    if ((!isset($HTTP_GET_VARS['file']) || (isset($HTTP_GET_VARS['file'])
-                                        && ($HTTP_GET_VARS['file'] == $entry))) && !isset($buInfo)
+                                    if ((!isset($_GET['file']) || (isset($_GET['file'])
+                                        && ($_GET['file'] == $entry))) && !isset($buInfo)
                                         && ($action != 'backup') && ($action != 'restorelocal')) {
                                         $file_array['file'] = $entry;
                                         $file_array['date'] = date(PHP_DATE_TIME_FORMAT,

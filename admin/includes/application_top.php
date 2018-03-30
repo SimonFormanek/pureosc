@@ -121,7 +121,7 @@ if ((PHP_VERSION >= 4.3) && function_exists('ini_get') && (ini_get('register_glo
 }
 
 // set the language
-if (!tep_session_is_registered('language') || isset($HTTP_GET_VARS['language'])) {
+if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (!tep_session_is_registered('language')) {
         tep_session_register('language');
         tep_session_register('languages_id');
@@ -130,8 +130,8 @@ if (!tep_session_is_registered('language') || isset($HTTP_GET_VARS['language']))
     include(DIR_WS_CLASSES.'language.php');
     $lng = new language();
 
-    if (isset($HTTP_GET_VARS['language']) && tep_not_null($HTTP_GET_VARS['language'])) {
-        $lng->set_language($HTTP_GET_VARS['language']);
+    if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
+        $lng->set_language($_GET['language']);
     } else {
         $lng->get_browser_language();
     }
@@ -150,7 +150,7 @@ if (!tep_session_is_registered('admin')) {
 // so the redirection on a successful login is not made to the login page again
     if (($current_page == FILENAME_LOGIN) && !tep_session_is_registered('redirect_origin')) {
         $current_page  = FILENAME_DEFAULT;
-        $HTTP_GET_VARS = array();
+        $_GET = array();
     }
 
     if (basename($current_page) != FILENAME_LOGIN) {
@@ -158,7 +158,7 @@ if (!tep_session_is_registered('admin')) {
             tep_session_register('redirect_origin');
 
             $redirect_origin = array('page' => $current_page,
-                'get' => $HTTP_GET_VARS);
+                'get' => $_GET);
         }
 
 // try to automatically login with the HTTP Authentication values if it exists
@@ -173,7 +173,7 @@ if (!tep_session_is_registered('admin')) {
         $redirect = true;
     }
 
-    if (!isset($login_request) || isset($HTTP_GET_VARS['login_request']) || isset($HTTP_POST_VARS['login_request'])
+    if (!isset($login_request) || isset($_GET['login_request']) || isset($HTTP_POST_VARS['login_request'])
         || isset($HTTP_COOKIE_VARS['login_request']) || isset($HTTP_SESSION_VARS['login_request'])
         || isset($HTTP_POST_FILES['login_request']) || isset($HTTP_SERVER_VARS['login_request'])) {
         $redirect = true;
@@ -236,8 +236,8 @@ require(DIR_WS_CLASSES.'upload.php');
 require(DIR_WS_CLASSES.'action_recorder.php');
 
 // calculate category path
-if (isset($HTTP_GET_VARS['cPath'])) {
-    $cPath = $HTTP_GET_VARS['cPath'];
+if (isset($_GET['cPath'])) {
+    $cPath = $_GET['cPath'];
 } else {
     $cPath = '';
 }
@@ -272,8 +272,8 @@ $_SESSION['KCFINDER']['disabled'] = false;
 require(DIR_WS_FUNCTIONS.'articles.php');
 
 // Article Manager
-if (isset($HTTP_GET_VARS['tPath'])) {
-    $tPath = $HTTP_GET_VARS['tPath'];
+if (isset($_GET['tPath'])) {
+    $tPath = $_GET['tPath'];
 } else {
     $tPath = '';
 }

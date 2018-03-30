@@ -35,13 +35,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_VIEWED; ?>&nbsp;</td>
                             </tr>
                             <?php
-                            if (isset($HTTP_GET_VARS['page']) && ($HTTP_GET_VARS['page']
+                            if (isset($_GET['page']) && ($_GET['page']
                                 > 1))
-                                    $rows               = $HTTP_GET_VARS['page']
+                                    $rows               = $_GET['page']
                                     * MAX_DISPLAY_SEARCH_RESULTS - MAX_DISPLAY_SEARCH_RESULTS;
                             $rows               = 0;
                             $products_query_raw = "select p.products_id, pd.products_name, pd.products_viewed, l.name from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd, ".TABLE_LANGUAGES." l where p.products_id = pd.products_id and l.languages_id = pd.language_id order by pd.products_viewed DESC";
-                            $products_split     = new splitPageResults($HTTP_GET_VARS['page'],
+                            $products_split     = new splitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS, $products_query_raw,
                                 $products_query_numrows);
                             $products_query     = tep_db_query($products_query_raw);
@@ -53,10 +53,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 }
                                 ?>
                                 <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href = '<?php echo tep_href_link(FILENAME_CATEGORIES,
-                                'action=new_product_preview&read=only&pID='.$products['products_id'].'&origin='.FILENAME_STATS_PRODUCTS_VIEWED.'?page='.$HTTP_GET_VARS['page']); ?>'">
+                                'action=new_product_preview&read=only&pID='.$products['products_id'].'&origin='.FILENAME_STATS_PRODUCTS_VIEWED.'?page='.$_GET['page']); ?>'">
                                     <td class="dataTableContent"><?php echo $rows; ?>.</td>
                                     <td class="dataTableContent"><?php echo '<a href="'.tep_href_link(FILENAME_CATEGORIES,
-                                'action=new_product_preview&read=only&pID='.$products['products_id'].'&origin='.FILENAME_STATS_PRODUCTS_VIEWED.'?page='.$HTTP_GET_VARS['page']).'">'.$products['products_name'].'</a> ('.$products['name'].')'; ?></td>
+                                'action=new_product_preview&read=only&pID='.$products['products_id'].'&origin='.FILENAME_STATS_PRODUCTS_VIEWED.'?page='.$_GET['page']).'">'.$products['products_name'].'</a> ('.$products['name'].')'; ?></td>
                                     <td class="dataTableContent" align="center"><?php echo $products['products_viewed']; ?>&nbsp;</td>
                                 </tr>
     <?php
@@ -68,10 +68,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <td colspan="3"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
                                 <td class="smallText" valign="top"><?php echo $products_split->display_count($products_query_numrows,
-    MAX_DISPLAY_SEARCH_RESULTS, $HTTP_GET_VARS['page'],
+    MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
     TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?></td>
                                 <td class="smallText" align="right"><?php echo $products_split->display_links($products_query_numrows,
-    MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $HTTP_GET_VARS['page']); ?></td>
+    MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>
                             </tr>
                         </table></td>
                 </tr>
