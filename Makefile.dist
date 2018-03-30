@@ -1,0 +1,14 @@
+clean:
+	echo drop database myDB | mysql -h localhost -u DBusername -ppassword
+	echo create database myDB | mysql -h localhost -u DBusername -ppassword
+
+reset:
+	cat install/oscommerce.sql | mysql myDB -h localhost -u DBusername -ppassword
+	echo drop table phinxlog | mysql myDB -h localhost -u DBusername -ppassword
+	phinx migrate
+
+fresh:
+	cat install/oscommerce.sql | mysql myDB -h localhost -u DBusername -ppassword
+	git pull
+	composer update
+	phinx migrate

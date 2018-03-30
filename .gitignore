@@ -22,3 +22,5 @@ mailhive/cloudbeez/cloudloader/install.log
 /vendor/
 /images/
 /composer.lock
+phinx.yml
+Makefile

@@ -17,9 +17,9 @@ environments:
     development:
         adapter: mysql
         host: localhost
-        name: pureosc
-        user: pureosc
-        pass: pureosc
+        name: devel_db
+        user: root 
+        pass: ''
         port: 3306
         charset: utf8
 
