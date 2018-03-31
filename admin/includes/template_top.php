@@ -18,11 +18,10 @@
 <title><?php echo STORE_NAME . ' - ' . TITLE; ?></title>
 <base href="<?php echo ($request_type == 'SSL') ? HTTPS_SERVER . DIR_WS_HTTPS_ADMIN : HTTP_SERVER . DIR_WS_ADMIN; ?>" />
 <!--[if IE]><script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/flot/excanvas.min.js', '', 'SSL'); ?>"></script><![endif]-->
-<script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/jquery/jquery-1.11.1.min.js', '', 'SSL'); ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo tep_catalog_href_link('ext/jquery/ui/redmond/jquery-ui-1.10.4.min.css', '', 'SSL'); ?>">
-<link rel="stylesheet" href="<?php echo tep_catalog_href_link('ext/bootstrap4/css/bootstrap.css', '', 'SSL'); ?>" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/jquery/jquery-1.11.1.min.js', '', 'SSL'); ?>"></script>
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/jquery/ui/jquery-ui-1.10.4.min.js', '', 'SSL'); ?>"></script>
-<script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/bootstrap4/js/bootstrap.min.js', '', 'SSL'); ?>"></script>
+
 <?php
   if (tep_not_null(JQUERY_DATEPICKER_I18N_CODE)) {
 ?>
