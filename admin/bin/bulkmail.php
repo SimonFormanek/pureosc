@@ -7,16 +7,30 @@ require_once 'vendor/autoload.php';
 
 $oPage = new \Ease\Page();
 
+define('HTTPS_SERVER', 'https://pureosc');
+define('DIR_WS_CATALOG', 'https://pureosc');
+define('EMAIL_CONTACT','demo@pureosc.cz') ;
 
-require('admin/ext/oscconfig/flexibee.php');
 require('admin/ext/oscconfig/dbconfigure.php');
 
-$dbHelper   = new Ease\SQL\PDO();
+$dbHelper = new Ease\SQL\PDO();
+
+$configurations = $dbHelper->queryToArray("select configuration_key,configuration_value FROM configuration");
+foreach ($configurations as $configure) {
+    if (!defined($configure['configuration_key'])) {
+        define($configure['configuration_key'],
+            $configure['configuration_value']);
+    }
+}
+
+
 $recipients = $dbHelper->queryToArray("select customers_id, customers_firstname, customers_lastname, customers_email_address from customers where customers_newsletter = '1'");
 
 $oPage->addStatusMessage(count($recipients).' recipients to spam');
 foreach ($recipients as $recipientId => $recipientData) {
-    $mailer = new \PureOSC\Admin\BulkMail($recipientData['customers_id'], $recipientData['customers_email_address'], $recipientData['customers_firstname'].' '.$recipientData['customers_lastname']);
+    $mailer = new \PureOSC\Admin\BulkMail($recipientData['customers_id'],
+        $recipientData['customers_email_address'],
+        $recipientData['customers_firstname'].' '.$recipientData['customers_lastname']);
     if ($mailer->send()) {
         $oPage->addStatusMessage(($recipientId + 1).'/'.count($recipients).':'.$recipientData['customers_email_address'],
             'success');
