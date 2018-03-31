@@ -21,7 +21,7 @@ require_once('includes/application_top.php');
     $check_email       = tep_db_fetch_array($check_email_query);
 
     if ($_GET['agree'] == hash('sha256', $check_email['customers_email_address'])) {
-        tep_db_query('UPDATE customers SET customers_newsletter_date_ccepted = NOW() WHERE customers_id='.$_GET['uid']);
+        tep_db_query('UPDATE customers SET customers_newsletter_date_accepted = NOW() WHERE customers_id='.$_GET['uid']);
         $success = true;
     }  else {
         $success = false;
