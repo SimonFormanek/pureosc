@@ -18,6 +18,12 @@
     var $sort_order;
     var $enabled = false;
 
+    public function __construct()
+    {
+        $this->cm_footer_extra_copyright();
+    }
+
+
     function cm_footer_extra_copyright() {
       $this->code = get_class($this);
       $this->group = basename(dirname(__FILE__));
