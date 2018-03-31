@@ -41,7 +41,7 @@ class NewsletterConsentMailer extends \Ease\Mailer
 
     public function getAgreeLink()
     {
-        return constant( 'HTTPS_SERVER' ) . constant('DIR_WS_CATALOG').'newsletterconfirm.php?uid='.$userId.'&agree='.hash('sha256',
+        return constant( 'HTTPS_SERVER' ) . constant('DIR_WS_CATALOG').'newsletterconfirm.php?uid='.$this->customer_id.'&agree='.hash('sha256',
                 $this->customer_email);
     }
 }
