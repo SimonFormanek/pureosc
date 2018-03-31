@@ -20,6 +20,8 @@ class NewsletterConsentMailer extends \Ease\Mailer
         $this->customer_name  = $name;
         parent::__construct($email, _('Newsletter GDPR Consent'),
             _('Dear Customer').' '.$name."\n");
+        $this->setMailHeaders(['from'=> constant('STORE_OWNER').' <' . constant('STORE_OWNER_EMAIL_ADDRESS').'>' ]);
+        
         $this->addContent();
     }
 
