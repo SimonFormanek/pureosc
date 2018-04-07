@@ -200,29 +200,49 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
         if (ACCOUNT_DOB == 'true')
                 $sql_data_array['customers_dob']    = tep_date_raw($dob);
 
-        tep_db_perform(TABLE_CUSTOMERS, $sql_data_array);
+        $sqlResult = tep_db_perform(TABLE_CUSTOMERS, $sql_data_array);
 
         $customer_id = tep_db_insert_id();
 
-        $adresar = new \PureOSC\flexibee\Adresar();
+        $userLog->setCustomerID($customer_id);
+        $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_password',
+            $customer_id, 'created');
+        $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_firstname',
+            $customer_id, $firstname);
+        $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_lastname',
+            $customer_id, $lastname);
+        $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_telephone',
+            $customer_id, $telephone);
+        $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_newsletter',
+            $customer_id, $newsletter);
 
-        $nazev = strlen($company) ? $company : $firstname.' '.$lastname;
 
-        $adresar->insertToFlexiBee([
-            'id' => 'ext:customers:'.$customer_id,
-            'poznam' => 'zalozeno z eshopu',
-            'nazev' => $nazev,
-            'email' => $email_address,
-            'ic' => $company_number,
-            'dic' => $vat_number,
-            'ulice' => $street_address,
-            'mesto' => $city,
-            'psc' => $postcode,
+        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+
+            $nazev = strlen($company) ? $company : $firstname.' '.$lastname;
+
+            $adresar = new \PureOSC\flexibee\Adresar([
+                'id' => 'ext:customers:'.$customer_id,
+                'poznam' => 'zalozeno z eshopu',
+                'nazev' => $nazev,
+                'email' => $email_address,
+                'ic' => $company_number,
+                'dic' => $vat_number,
+                'ulice' => $street_address,
+                'mesto' => $city,
+                'psc' => $postcode,
 //            'stat' => $country,
-            'tel' => $telephone,
-            'fax' => $fax,
-        ]);
+                'tel' => $telephone,
+                'fax' => $fax,
+            ]);
 
+            $adresar->insertToFlexiBee();
+            
+            if ($adresar->lastResponseCode == 201) {
+                $userLog->logFlexiBeeEvent($adresar,
+                    ['nazev', 'email', 'ic', 'dic']);
+            }
+        }
 
 
         $sql_data_array = array('customers_id' => $customer_id,
@@ -257,21 +277,28 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
 
         $address_id = tep_db_insert_id();
 
-
-        $kontakter = new \PureOSC\flexibee\Kontakt();
-
-        $kontakter->insertToFlexiBee([
-            'id' => 'ext:customers:'.$addres_id,
-            'firma' => $adresar,
-            'jmeno' => $firstname,
-            'prijmeni' => $lastname,
-            'email' => $email_address,
-            'ulice' => $street_address,
-            'mesto' => $city,
-            'psc' => $postcode,
+        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            $kontakter = new \PureOSC\flexibee\Kontakt([
+                'id' => 'ext:customers:'.$addres_id,
+                'firma' => $adresar,
+                'jmeno' => $firstname,
+                'prijmeni' => $lastname,
+                'email' => $email_address,
+                'ulice' => $street_address,
+                'mesto' => $city,
+                'psc' => $postcode,
 //            'stat' => $country,
-            'tel' => $telephone,
-            'fax' => $fax]);
+                'tel' => $telephone,
+                'fax' => $fax]);
+
+            $kontakter->insertToFlexiBee();
+            
+            if ($kontakter->lastResponseCode == 201) {
+                $userLog->logFlexiBeeEvent($kontakter,
+                    ['jmeno','prijmeni', 'email']);
+            }
+            
+        }
 
         tep_db_query("update ".TABLE_CUSTOMERS." set customers_default_address_id = '".(int) $address_id."' where customers_id = '".(int) $customer_id."'");
 
@@ -351,8 +378,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
         /*         * * EOF alterations for Mail Manager ** */
 
         if ($newsletter !== false) {
-            $gdprNewsLetterConsentReq = new \PureOSC\NewsletterConsentMailer($customer_id,$email_address,
-                $name);
+            $gdprNewsLetterConsentReq = new \PureOSC\NewsletterConsentMailer($customer_id,
+                $email_address, $name);
             $gdprNewsLetterConsentReq->send();
         }
 

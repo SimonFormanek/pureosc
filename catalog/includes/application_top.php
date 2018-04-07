@@ -663,3 +663,5 @@ tep_information_define_constants();
 
 
 \Ease\Shared::instanced()->webPage(new Ease\Page());
+
+$userLog = new PureOSC\CustomerLog();

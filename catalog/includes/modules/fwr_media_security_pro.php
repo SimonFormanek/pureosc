@@ -27,6 +27,12 @@
     var $_enabled = true; // Turn on or off - bool true / false
     var $_basename;
     var $_cleanse_keys; // Turn on or off - bool true / false
+    
+    public function __construct($cleanse_keys = false)
+    {
+        $this->Fwr_Media_Security_Pro();
+    }
+
     /**
     * Constructor
     * 
