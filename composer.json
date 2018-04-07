@@ -11,7 +11,9 @@
 
         "spoje.net/flexipeehp": "dev-master",
         "vitexsoftware/ease-framework": "dev-master",
-        "vitexsoftware/flexipeehp-bricks": "dev-master"
+        "vitexsoftware/flexipeehp-bricks": "dev-master",
+				"league/commonmark": "dev-master",
+				"dompdf/dompdf": "dev-master"
     },
     "autoload": {
         "psr-4": {
