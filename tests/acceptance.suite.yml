@@ -1,0 +1,9 @@
+# acceptance.suite.yml
+
+class_name: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver:
+            url: http://pureosc/
+            browser: chrome
+        - \Helper\Acceptance
