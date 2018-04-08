@@ -41,7 +41,8 @@ if ($product_check['total'] < 1) {
 
         <div class="pull-right">
             <?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-                'fa fa-angle-right', tep_href_link(FILENAME_DEFAULT)); ?>
+                'fa fa-angle-right', tep_href_link(FILENAME_DEFAULT));
+            ?>
         </div>
     </div>
 
@@ -85,26 +86,28 @@ if ($product_check['total'] < 1) {
     }
     ?>
 
-        <?php echo tep_draw_form('cart_quantity',
-            tep_href_link_original(FILENAME_PRODUCT_INFO,
-                tep_get_all_get_params(array('action', 'atts')).'action=add_product',
-                'NONSSL'), 'post', 'class="form-horizontal" role="form"'); ?>
+    <?php
+    echo tep_draw_form('cart_quantity',
+        tep_href_link_original(FILENAME_PRODUCT_INFO,
+            tep_get_all_get_params(array('action', 'atts')).'action=add_product',
+            'NONSSL'), 'post', 'class="form-horizontal" role="form"');
+    ?>
 
     <div itemscope itemtype="http://schema.org/Product">
 
         <div class="page-header">
     <?php if ($product_info['product_template'] == 1) { ?>
                 <h1 class="pull-right" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><?php echo $products_price; ?></h1>
-                <?php } ?>
+    <?php } ?>
             <h1><?php echo $products_name; ?></h1>
             <br />
         </div>
 
-                <?php
-                if ($messageStack->size('product_action') > 0) {
-                    echo $messageStack->output('product_action');
-                }
-                ?>
+        <?php
+        if ($messageStack->size('product_action') > 0) {
+            echo $messageStack->output('product_action');
+        }
+        ?>
 
         <div class="contentContainer">
             <div class="contentText">
@@ -137,76 +140,79 @@ if ($product_check['total'] < 1) {
                         <div class="piGalDiv">
                             <div id="piGal" data-imgcount="<?php echo $photoset_layout; ?>">
 
-            <?php
-            $pi_counter = 0;
-            $pi_html    = array();
+                                <?php
+                                $pi_counter = 0;
+                                $pi_html    = array();
 
-            while ($pi = tep_db_fetch_array($pi_query)) {
-                $pi_counter++;
+                                while ($pi = tep_db_fetch_array($pi_query)) {
+                                    $pi_counter++;
 
-                if (tep_not_null($pi['htmlcontent'])) {
-                    $pi_html[] = '<div id="piGalDiv_'.$pi_counter.'">'.$pi['htmlcontent'].'</div>';
-                }
-                /*                 * * BOF alterations for KISS IT ** */
-                list($width, $height) = file_exists(DIR_WS_IMAGES.$pi['image']) ? getimagesize(DIR_WS_IMAGES.$pi['image'])
-                        : array(150, 150);
-                echo tep_image(DIR_WS_IMAGES.$pi['image'],
-                    addslashes($product_info['products_name']).' '.$pi_counter,
-                    (($pi_counter > 1 ) ? round(KISSIT_MAIN_PRODUCT_IMAGE_WIDTH / (($pi_total
-                            <= 5) ? $pi_total - 1 : 5)) : KISSIT_MAIN_PRODUCT_IMAGE_WIDTH),
-                    (($pi_counter > 1 ) ? round(KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT
-                            / (($pi_total <= 5) ? $pi_total - 1 : 5)) : KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT),
-                    'id="piGalImg_'.$pi_counter.'" '.((KISSIT_MAIN_PRODUCT_WATERMARK_SIZE
-                    > 0) ? preg_replace('%<img width="[0-9 ]+" height="[0-9 ]+" src="(.*)title=.+%',
-                            'data-highres="$1',
-                            tep_image(DIR_WS_IMAGES.$pi['image'], null, $width,
-                                $height)) : 'data-highres="'.DIR_WS_IMAGES.$pi['image'].'"'));
-                /*                 * * EOF alterations for KISS IT ** */
-            }
-            ?>
+                                    if (tep_not_null($pi['htmlcontent'])) {
+                                        $pi_html[] = '<div id="piGalDiv_'.$pi_counter.'">'.$pi['htmlcontent'].'</div>';
+                                    }
+                                    /*                                     * * BOF alterations for KISS IT ** */
+                                    list($width, $height) = file_exists(DIR_WS_IMAGES.$pi['image'])
+                                            ? getimagesize(DIR_WS_IMAGES.$pi['image'])
+                                            : array(150, 150);
+                                    echo tep_image(DIR_WS_IMAGES.$pi['image'],
+                                        addslashes($product_info['products_name']).' '.$pi_counter,
+                                        (($pi_counter > 1 ) ? round(KISSIT_MAIN_PRODUCT_IMAGE_WIDTH
+                                                / (($pi_total <= 5) ? $pi_total - 1
+                                                        : 5)) : KISSIT_MAIN_PRODUCT_IMAGE_WIDTH),
+                                        (($pi_counter > 1 ) ? round(KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT
+                                                / (($pi_total <= 5) ? $pi_total - 1
+                                                        : 5)) : KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT),
+                                        'id="piGalImg_'.$pi_counter.'" '.((KISSIT_MAIN_PRODUCT_WATERMARK_SIZE
+                                        > 0) ? preg_replace('%<img width="[0-9 ]+" height="[0-9 ]+" src="(.*)title=.+%',
+                                                'data-highres="$1',
+                                                tep_image(DIR_WS_IMAGES.$pi['image'],
+                                                    null, $width, $height)) : 'data-highres="'.DIR_WS_IMAGES.$pi['image'].'"'));
+                                    /*                                     * * EOF alterations for KISS IT ** */
+                                }
+                                ?>
 
                             </div>
 
-                                <?php
-                                if (!empty($pi_html)) {
-                                    echo '    <div style="display: none;">'.implode('',
-                                        $pi_html).'</div>';
-                                }
-                                /*                                 * * BOF alterations for KISS IT ** 		
-                                  } else {
-                                  ?>
+                            <?php
+                            if (!empty($pi_html)) {
+                                echo '    <div style="display: none;">'.implode('',
+                                    $pi_html).'</div>';
+                            }
+                            /*                             * * BOF alterations for KISS IT ** 		
+                              } else {
+                              ?>
 
 
-                                  <div class="piGal pull-right">
-                                  <?php echo tep_image(DIR_WS_IMAGES . $product_info['products_image'], addslashes($product_info['products_name']), KISSIT_MAIN_PRODUCT_IMAGE_WIDTH, KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT, 'id="piGalImg_' . $pi_counter . '" data-highres="'. DIR_WS_IMAGES . $product_info['products_image'] .'"'); ?>
-                                  </div>
-                                 */
-                            } else {
-                                list($width, $height) = file_exists(DIR_WS_IMAGES.$product_info['products_image'])
-                                        ? getimagesize(DIR_WS_IMAGES.$product_info['products_image'])
-                                        : array(150, 150);
-                                ?>
+                              <div class="piGal pull-right">
+                              <?php echo tep_image(DIR_WS_IMAGES . $product_info['products_image'], addslashes($product_info['products_name']), KISSIT_MAIN_PRODUCT_IMAGE_WIDTH, KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT, 'id="piGalImg_' . $pi_counter . '" data-highres="'. DIR_WS_IMAGES . $product_info['products_image'] .'"'); ?>
+                              </div>
+                             */
+                        } else {
+                            list($width, $height) = file_exists(DIR_WS_IMAGES.$product_info['products_image'])
+                                    ? getimagesize(DIR_WS_IMAGES.$product_info['products_image'])
+                                    : array(150, 150);
+                            ?>
                             <div class="piGalDiv">
-            <?php
-            echo tep_image(DIR_WS_IMAGES.$product_info['products_image'],
-                addslashes($product_info['products_name']),
-                KISSIT_MAIN_PRODUCT_IMAGE_WIDTH,
-                KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT,
-                ((KISSIT_MAIN_PRODUCT_WATERMARK_SIZE > 0) ? preg_replace('%<img width="[0-9 ]+" height="[0-9 ]+" src="(.*)title=.+%',
-                        'data-highres="$1',
-                        tep_image(DIR_WS_IMAGES.$product_info['products_image'],
-                            null, $width, $height)) : 'data-highres="'.DIR_WS_IMAGES.$product_info['products_image'].'"'));
-            ?>
+                                <?php
+                                echo tep_image(DIR_WS_IMAGES.$product_info['products_image'],
+                                    addslashes($product_info['products_name']),
+                                    KISSIT_MAIN_PRODUCT_IMAGE_WIDTH,
+                                    KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT,
+                                    ((KISSIT_MAIN_PRODUCT_WATERMARK_SIZE > 0) ? preg_replace('%<img width="[0-9 ]+" height="[0-9 ]+" src="(.*)title=.+%',
+                                            'data-highres="$1',
+                                            tep_image(DIR_WS_IMAGES.$product_info['products_image'],
+                                                null, $width, $height)) : 'data-highres="'.DIR_WS_IMAGES.$product_info['products_image'].'"'));
+                                ?>
 
-            <?php /*             * * EOF alterations for KISS IT ** */ ?>
-            <?php
-        }
-        echo '</div>';
-    }
-    /* TODO:JS
-      orig: width: '250px' replaced by: width: '45%' mobile small
-     */
-    ?>
+                                <?php /*                                 * * EOF alterations for KISS IT ** */ ?>
+                                <?php
+                            }
+                            echo '</div>';
+                        }
+                        /* TODO:JS
+                          orig: width: '250px' replaced by: width: '45%' mobile small
+                         */
+                        ?>
                         <script type="text/javascript">
                             $(function () {
                                 $('#piGal').css({
@@ -240,99 +246,108 @@ if ($product_check['total'] < 1) {
                         </script>
 
                         <div itemprop="description">
-    <?php echo stripslashes($product_info['products_description']); ?>
+                        <?php echo stripslashes($product_info['products_description']); ?>
                         </div>
 
-                        <?php
-                        $products_attributes_query = tep_db_query("select count(*) as total from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_ATTRIBUTES." patrib where patrib.products_id='".(int) $_GET['products_id']."' and patrib.options_id = popt.products_options_id and popt.language_id = '".(int) $languages_id."'");
-                        $products_attributes       = tep_db_fetch_array($products_attributes_query);
-                        if ($products_attributes['total'] > 0) {
-                            ?>
+    <?php
+    $products_attributes_query = tep_db_query("select count(*) as total from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_ATTRIBUTES." patrib where patrib.products_id='".(int) $_GET['products_id']."' and patrib.options_id = popt.products_options_id and popt.language_id = '".(int) $languages_id."'");
+    $products_attributes       = tep_db_fetch_array($products_attributes_query);
+    if ($products_attributes['total'] > 0) {
+        ?>
 
                             <h4><?php echo TEXT_PRODUCT_OPTIONS; ?></h4>
 
                             <p>
-        <?php
-        $products_options_name_query = tep_db_query("select distinct popt.products_options_id, popt.products_options_name from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_ATTRIBUTES." patrib where patrib.products_id='".(int) $_GET['products_id']."' and patrib.options_id = popt.products_options_id and popt.language_id = '".(int) $languages_id."' order by popt.products_options_name");
-        while ($products_options_name       = tep_db_fetch_array($products_options_name_query)) {
-            $products_options_array = array();
-            /*             * * Altered for custom change for Custom Attribute Sort Ordering **
-              $products_options_query = tep_db_query("select pov.products_options_values_id, pov.products_options_values_name, pa.options_values_price, pa.price_prefix from " . TABLE_PRODUCTS_ATTRIBUTES . " pa, " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov where pa.products_id = '" . (int)$HTTP_GET_VARS['products_id'] . "' and pa.options_id = '" . (int)$products_options_name['products_options_id'] . "' and pa.options_values_id = pov.products_options_values_id and pov.language_id = '" . (int)$languages_id . "'");
-             */
-            $products_options_query = tep_db_query("select pov.products_options_values_id, pov.products_options_values_name, pa.options_values_price, pa.price_prefix, pa.products_attributes_id from ".TABLE_PRODUCTS_ATTRIBUTES." pa, ".TABLE_PRODUCTS_OPTIONS_VALUES." pov where pa.products_id = '".(int) $_GET['products_id']."' and pa.options_id = '".(int) $products_options_name['products_options_id']."' and pa.options_values_id = pov.products_options_values_id and pov.language_id = '".(int) $languages_id."'"." order by pov.products_options_values_id, pa.products_attributes_id");
-            /*             * * EOF alteration for Custom Attribute Sort Ordering ** */
-            while ($products_options       = tep_db_fetch_array($products_options_query)) {
-                $products_options_array[] = array('id' => $products_options['products_options_values_id'],
-                    'text' => $products_options['products_options_values_name']);
-                if ($products_options['options_values_price'] != '0') {
-                    $products_options_array[sizeof($products_options_array) - 1]['text']
-                        .= ' ('.$products_options['price_prefix'].$currencies->display_price($products_options['options_values_price'],
-                            tep_get_tax_rate($product_info['products_tax_class_id'])).') ';
-                }
-            }
+                                <?php
+                                $products_options_name_query = tep_db_query("select distinct popt.products_options_id, popt.products_options_name from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_ATTRIBUTES." patrib where patrib.products_id='".(int) $_GET['products_id']."' and patrib.options_id = popt.products_options_id and popt.language_id = '".(int) $languages_id."' order by popt.products_options_name");
+                                while ($products_options_name       = tep_db_fetch_array($products_options_name_query)) {
+                                    $products_options_array = array();
+                                    /*                                     * * Altered for custom change for Custom Attribute Sort Ordering **
+                                      $products_options_query = tep_db_query("select pov.products_options_values_id, pov.products_options_values_name, pa.options_values_price, pa.price_prefix from " . TABLE_PRODUCTS_ATTRIBUTES . " pa, " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov where pa.products_id = '" . (int)$HTTP_GET_VARS['products_id'] . "' and pa.options_id = '" . (int)$products_options_name['products_options_id'] . "' and pa.options_values_id = pov.products_options_values_id and pov.language_id = '" . (int)$languages_id . "'");
+                                     */
+                                    $products_options_query = tep_db_query("select pov.products_options_values_id, pov.products_options_values_name, pa.options_values_price, pa.price_prefix, pa.products_attributes_id from ".TABLE_PRODUCTS_ATTRIBUTES." pa, ".TABLE_PRODUCTS_OPTIONS_VALUES." pov where pa.products_id = '".(int) $_GET['products_id']."' and pa.options_id = '".(int) $products_options_name['products_options_id']."' and pa.options_values_id = pov.products_options_values_id and pov.language_id = '".(int) $languages_id."'"." order by pov.products_options_values_id, pa.products_attributes_id");
+                                    /*                                     * * EOF alteration for Custom Attribute Sort Ordering ** */
+                                    while ($products_options       = tep_db_fetch_array($products_options_query)) {
+                                        $products_options_array[] = array('id' => $products_options['products_options_values_id'],
+                                            'text' => $products_options['products_options_values_name']);
+                                        if ($products_options['options_values_price']
+                                            != '0') {
+                                            $products_options_array[sizeof($products_options_array)
+                                                - 1]['text'] .= ' ('.$products_options['price_prefix'].$currencies->display_price($products_options['options_values_price'],
+                                                    tep_get_tax_rate($product_info['products_tax_class_id'])).') ';
+                                        }
+                                    }
 
-            if (is_string($_GET['products_id']) && isset($cart->contents[$_GET['products_id']]['attributes'][$products_options_name['products_options_id']])) {
-                $selected_attribute = $cart->contents[$_GET['products_id']]['attributes'][$products_options_name['products_options_id']];
-            } else {
-                $selected_attribute = false;
-            }
-            ?>
-                                    <strong><?php echo $products_options_name['products_options_name'].':'; ?></strong><br /><?php echo tep_draw_pull_down_menu('id['.$products_options_name['products_options_id'].']',
-                $products_options_array, $selected_attribute,
-                'style="width: 200px;"'); ?><br />
-                            <?php
-                        }
-                        ?>
+                                    if (is_string($_GET['products_id']) && isset($cart->contents[$_GET['products_id']]['attributes'][$products_options_name['products_options_id']])) {
+                                        $selected_attribute = $cart->contents[$_GET['products_id']]['attributes'][$products_options_name['products_options_id']];
+                                    } else {
+                                        $selected_attribute = false;
+                                    }
+                                    ?>
+                                    <strong><?php echo $products_options_name['products_options_name'].':'; ?></strong><br /><?php
+                                echo tep_draw_pull_down_menu('id['.$products_options_name['products_options_id'].']',
+                                    $products_options_array,
+                                    $selected_attribute, 'style="width: 200px;"');
+                                ?><br />
+            <?php
+        }
+        ?>
                             </p>
-
-                        <?php
-                    }
-                    ?>
-
-                        <div class="clearfix"></div>
-
-                    <?php
-                    if ($product_info['products_date_available'] > date('Y-m-d H:i:s')) {
-                        ?>
-
-                            <div class="alert alert-info"><?php echo sprintf(TEXT_DATE_AVAILABLE,
-                            tep_date_long($product_info['products_date_available'])); ?></div>
 
         <?php
     }
     ?>
 
+                        <div class="clearfix"></div>
+
+                        <?php
+                        if ($product_info['products_date_available'] > date('Y-m-d H:i:s')) {
+                            ?>
+
+                            <div class="alert alert-info"><?php echo sprintf(TEXT_DATE_AVAILABLE,
+                                tep_date_long($product_info['products_date_available']));
+                            ?></div>
+
+                        <?php
+                    }
+                    ?>
+
                     </div>
 
-            <?php
-            $reviews_query = tep_db_query("select count(*) as count, avg(reviews_rating) as avgrating from ".TABLE_REVIEWS." r, ".TABLE_REVIEWS_DESCRIPTION." rd where r.products_id = '".(int) $_GET['products_id']."' and r.reviews_id = rd.reviews_id and rd.languages_id = '".(int) $languages_id."' and reviews_status = 1");
-            $reviews       = tep_db_fetch_array($reviews_query);
+                            <?php
+                            $reviews_query = tep_db_query("select count(*) as count, avg(reviews_rating) as avgrating from ".TABLE_REVIEWS." r, ".TABLE_REVIEWS_DESCRIPTION." rd where r.products_id = '".(int) $_GET['products_id']."' and r.reviews_id = rd.reviews_id and rd.languages_id = '".(int) $languages_id."' and reviews_status = 1");
+                            $reviews       = tep_db_fetch_array($reviews_query);
 
-            if ($reviews['count'] > 0) {
-                echo '<span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><meta itemprop="ratingValue" content="'.$reviews['avgrating'].'" /><meta itemprop="ratingCount" content="'.$reviews['count'].'" /></span>';
-            }
-            ?>
+                            if ($reviews['count'] > 0) {
+                                echo '<span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><meta itemprop="ratingValue" content="'.$reviews['avgrating'].'" /><meta itemprop="ratingCount" content="'.$reviews['count'].'" /></span>';
+                            }
+                            ?>
 
                     <div class="buttonSet row">
-                        <div class="col-xs-6"><?php /* pure:new allow reviews */ if (($product_info['product_template']
-                == 1 && ALLOW_REVIEWS == 'true') || ($product_info['product_template']
-                == 3)) {
-                echo tep_draw_button(IMAGE_BUTTON_REVIEWS.(($reviews['count'] > 0)
-                            ? ' ('.$reviews['count'].')' : ''),
-                    'fa fa-commenting',
-                    tep_href_link(FILENAME_PRODUCT_REVIEWS,
-                        tep_get_all_get_params(array('atts'))));
-            } ?></div>
-                        <div class="col-xs-6 text-right"><?php /* pure:new if product cart TRUE */ if ($product_info['product_template']
-                == 1) {
-                echo tep_draw_hidden_field('products_id',
-                    $product_info['products_id']).tep_draw_button(IMAGE_BUTTON_IN_CART,
-                    'fa fa-shopping-cart', null, 'primary', null, 'btn-success');
-            } ?></div>
+                        <div class="col-xs-6"><?php
+                            /* pure:new allow reviews */ if (($product_info['product_template']
+                                == 1 && ALLOW_REVIEWS == 'true') || ($product_info['product_template']
+                                == 3)) {
+                                echo tep_draw_button(IMAGE_BUTTON_REVIEWS.(($reviews['count']
+                                    > 0) ? ' ('.$reviews['count'].')' : ''),
+                                    'fa fa-commenting',
+                                    tep_href_link(FILENAME_PRODUCT_REVIEWS,
+                                        tep_get_all_get_params(array('atts'))));
+                            }
+                            ?></div>
+                        <div class="col-xs-6 text-right"><?php
+                    /* pure:new if product cart TRUE */ if ($product_info['product_template']
+                        == 1) {
+                        echo tep_draw_hidden_field('products_id',
+                            $product_info['products_id']).tep_draw_button(IMAGE_BUTTON_IN_CART,
+                            'fa fa-shopping-cart', null, 'primary', null,
+                            'btn-success');
+                    }
+                    ?></div>
                     </div>
 
                     <div class="row">
-    <?php echo $oscTemplate->getContent('product_info'); ?>
+                    <?php echo $oscTemplate->getContent('product_info'); ?>
                     </div>
 
     <?php

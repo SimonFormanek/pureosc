@@ -1086,12 +1086,12 @@ if (($action == 'edit') && ($order_exists == true)) {
         == 'true') { ?>onChange="updateOrdersField('customers_name', encodeURIComponent(this.value))"<?php } ?>></td>
                                     </tr>
                                     <tr class="dataTableRow"> 
-                                        <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo ENTRY_COMPANY; ?></td>
+                                        <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo _('Company Name'); ?></td>
                                         <td colspan="3" valign="top" class="dataTableContent"><input name="update_customer_company" size="37" value="<?php echo stripslashes($order->customer['company']); ?>" <?php if (ORDER_EDITOR_USE_AJAX
                                                 == 'true') { ?>onChange="updateOrdersField('customers_company', encodeURIComponent(this.value))"<?php } ?>></td>
                                     </tr>
                                     <tr class="dataTableRow"> 
-                                        <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo ENTRY_VAT_NUMBER; ?></td>
+                                        <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo _('Vat Number'); ?></td>
                                         <td colspan="3" valign="top" class="dataTableContent"><input name="update_customer_vat_number" size="37" value="<?php echo stripslashes($order->customer['vat_number']); ?>" <?php if (ORDER_EDITOR_USE_AJAX
                                                 == 'true') { ?>onChange="updateOrdersField('customers_vat_number', encodeURIComponent(this.value))"<?php } ?>></td>
                                     </tr>
@@ -1203,12 +1203,12 @@ if (($action == 'edit') && ($order_exists == true)) {
                                                         == 'true') { ?>onChange="updateOrdersField('delivery_name', encodeURIComponent(this.value))"<?php } ?>></td>
                                                 </tr>
                                                 <tr class="dataTableRow"> 
-                                                    <td class="dataTableContent" valign="middle" align="right"><?php echo ENTRY_COMPANY; ?></td>
+                                                    <td class="dataTableContent" valign="middle" align="right"><?php echo _('Company Name'); ?></td>
                                                     <td colspan="3" valign="top" class="dataTableContent"><input name="update_delivery_company" size="37" value="<?php echo stripslashes($order->delivery['company']); ?>" <?php if (ORDER_EDITOR_USE_AJAX
                                                         == 'true') { ?>onChange="updateOrdersField('delivery_company', encodeURIComponent(this.value))"<?php } ?>></td>
                                                 </tr>
                                                 <tr class="dataTableRow"> 
-                                                    <td class="dataTableContent" valign="middle" align="right"><?php echo ENTRY_VAT_NUMBER; ?></td>
+                                                    <td class="dataTableContent" valign="middle" align="right"><?php echo _('Vat Number'); ?></td>
                                                     <td colspan="3" valign="top" class="dataTableContent"><input name="update_delivery_vat_number" size="37" value="<?php echo stripslashes($order->delivery['vat_number']); ?>" <?php if (ORDER_EDITOR_USE_AJAX
                                                         == 'true') { ?>onChange="updateOrdersField('delivery_vat_number', encodeURIComponent(this.value))"<?php } ?>></td>
                                                 </tr>
@@ -1309,12 +1309,12 @@ if (($action == 'edit') && ($order_exists == true)) {
         == 'true') { ?>onChange="updateOrdersField('billing_name', encodeURIComponent(this.value))"<?php } ?>></td>
                                                 </tr>
                                                 <tr class="dataTableRow"> 
-                                                    <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo ENTRY_COMPANY; ?></td>
+                                                    <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo _('Company Name'); ?></td>
                                                     <td colspan="3" valign="top" class="dataTableContent"><input name="update_billing_company" size="37" value="<?php echo stripslashes($order->billing['company']); ?>" <?php if (ORDER_EDITOR_USE_AJAX
         == 'true') { ?>onChange="updateOrdersField('billing_company', encodeURIComponent(this.value))"<?php } ?>></td>
                                                 </tr>
                                                 <tr class="dataTableRow"> 
-                                                    <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo ENTRY_VAT_NUMBER; ?></td>
+                                                    <td class="dataTableContent" valign="middle" align="right" nowrap><?php echo _('Vat Number'); ?></td>
                                                     <td colspan="3" valign="top" class="dataTableContent"><input name="update_billing_vat_number" size="37" value="<?php echo stripslashes($order->billing['vat_number']); ?>" <?php if (ORDER_EDITOR_USE_AJAX
         == 'true') { ?>onChange="updateOrdersField('billing_vat_number', encodeURIComponent(this.value))"<?php } ?>></td>
                                                 </tr>

@@ -20,8 +20,8 @@ if (!tep_session_is_registered('customer_id')) {
 // needs to be included earlier to set the success message in the messageStack
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ACCOUNT_PASSWORD);
 
-if (isset($_POST['action']) && ($_POST['action'] == 'process')
-    && isset($_POST['formid']) && ($_POST['formid'] == $sessiontoken)) {
+if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid'])
+    && ($_POST['formid'] == $sessiontoken)) {
     $password_current      = tep_db_prepare_input($_POST['password_current']);
     $password_new          = tep_db_prepare_input($_POST['password_new']);
     $password_confirmation = tep_db_prepare_input($_POST['password_confirmation']);
@@ -79,52 +79,61 @@ if ($messageStack->size('account_password') > 0) {
 }
 ?>
 
-<?php echo tep_draw_form('account_password',
+<?php
+echo tep_draw_form('account_password',
     tep_href_link(FILENAME_ACCOUNT_PASSWORD, '', 'SSL'), 'post',
-    'class="form-horizontal"', true).tep_draw_hidden_field('action', 'process'); ?>
+    'class="form-horizontal"', true).tep_draw_hidden_field('action', 'process');
+?>
 
 <div class="contentContainer">
-    <p class="inputRequirement text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></p>
+    <p class="inputRequirement text-right"><?php echo _('Requied Information'); ?></p>
 
     <div class="contentText">
         <div class="form-group has-feedback">
             <label for="inputCurrent" class="control-label col-sm-3"><?php echo ENTRY_PASSWORD_CURRENT; ?></label>
             <div class="col-sm-9">
-                <?php echo tep_draw_input_field('password_current',
-                    NULL,
+                <?php
+                echo tep_draw_input_field('password_current', NULL,
                     'required aria-required="true" aria-describedby="atPassword" autofocus="autofocus" id="inputCurrent" placeholder="'.ENTRY_PASSWORD_CURRENT.'"',
-                    'password'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
+                    'password');
+                ?>
+<?php echo _('Required'); ?>
 <?php if (tep_not_null(ENTRY_PASSWORD_CURRENT_TEXT)) echo '<span id="atPassword" class="help-block">'.ENTRY_PASSWORD_CURRENT_TEXT.'</span>'; ?>
             </div>
         </div>
         <div class="form-group has-feedback">
             <label for="inputNew" class="control-label col-sm-3"><?php echo ENTRY_PASSWORD_NEW; ?></label>
             <div class="col-sm-9">
-<?php echo tep_draw_input_field('password_new', NULL,
-    'required aria-required="true" aria-describedby="atNewPassword" id="inputNew" placeholder="'.ENTRY_PASSWORD_NEW.'"',
-    'password'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
-<?php if (tep_not_null(ENTRY_PASSWORD_NEW_TEXT)) echo '<span id="atNewPassword" class="help-block">'.ENTRY_PASSWORD_NEW_TEXT.'</span>'; ?>
+                <?php
+                echo tep_draw_input_field('password_new', NULL,
+                    'required aria-required="true" aria-describedby="atNewPassword" id="inputNew" placeholder="'.ENTRY_PASSWORD_NEW.'"',
+                    'password');
+                ?>
+<?php echo _('Required'); ?>
+                <?php if (tep_not_null(ENTRY_PASSWORD_NEW_TEXT)) echo '<span id="atNewPassword" class="help-block">'.ENTRY_PASSWORD_NEW_TEXT.'</span>'; ?>
             </div>
         </div>
         <div class="form-group has-feedback">
             <label for="inputConfirmation" class="control-label col-sm-3"><?php echo ENTRY_PASSWORD_CONFIRMATION; ?></label>
             <div class="col-sm-9">
-<?php echo tep_draw_input_field('password_confirmation', NULL,
+<?php
+echo tep_draw_input_field('password_confirmation', NULL,
     'required aria-required="true"  aria-describedby="atNewPasswordConfirmation" id="inputConfirmation" placeholder="'.ENTRY_PASSWORD_CONFIRMATION.'"',
-    'password'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
-<?php if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT)) echo '<span id="atNewPasswordConfirmation" class="help-block">'.ENTRY_PASSWORD_CONFIRMATION_TEXT.'</span>'; ?>
+    'password');
+?>
+            <?php echo _('Required'); ?>
+            <?php if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT)) echo '<span id="atNewPasswordConfirmation" class="help-block">'.ENTRY_PASSWORD_CONFIRMATION_TEXT.'</span>'; ?>
             </div>
         </div>
     </div>
 
     <div class="buttonSet row">
         <div class="col-xs-6"><?php echo tep_draw_button(IMAGE_BUTTON_BACK,
-    'fa fa-angle-left', tep_href_link(FILENAME_ACCOUNT, '', 'SSL')); ?></div>
+                'fa fa-angle-left', tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+            ?></div>
         <div class="col-xs-6 text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-angle-right', null, 'primary', null, 'btn-success'); ?></div>
+                'fa fa-angle-right', null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 </div>
 

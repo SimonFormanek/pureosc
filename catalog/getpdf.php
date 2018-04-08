@@ -1,5 +1,4 @@
 <?php
-
 require_once('includes/application_top.php');
 
 $oPage = new \Ease\TWB\WebPage('PDF');

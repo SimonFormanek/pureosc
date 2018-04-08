@@ -166,7 +166,7 @@ function checkForm() {
                     <?php
                     echo tep_draw_textarea_field('review', 'soft', 60, 15, NULL,
                         'required aria-required="true" id="inputReview" placeholder="'.SUB_TITLE_REVIEW.'"');
-                    echo FORM_REQUIRED_INPUT;
+                    echo _('Required');
                     ?>
             </div>
         </div>

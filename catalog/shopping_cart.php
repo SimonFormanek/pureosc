@@ -39,7 +39,8 @@ if ($cart->count_contents() > 0) {
     ?>
 
     <?php echo tep_draw_form('cart_quantity',
-        tep_href_link(FILENAME_SHOPPING_CART, 'action=update_product')); ?>
+        tep_href_link(FILENAME_SHOPPING_CART, 'action=update_product'));
+    ?>
 
     <div class="contentContainer">
         <div class="contentText">
@@ -131,38 +132,39 @@ if ($cart->count_contents() > 0) {
 
             <p class="text-right"><strong><?php echo SUB_TITLE_SUB_TOTAL; ?> <?php echo $currencies->format($cart->show_total()); ?></strong></p>
 
-    <?php
-    if ($any_out_of_stock == 1) {
-        if (STOCK_ALLOW_CHECKOUT == 'true') {
-            ?>
+            <?php
+            if ($any_out_of_stock == 1) {
+                if (STOCK_ALLOW_CHECKOUT == 'true') {
+                    ?>
 
                     <div class="alert alert-warning"><?php echo OUT_OF_STOCK_CAN_CHECKOUT; ?></div>
 
-                <?php
-            } else {
-                ?>
+                    <?php
+                } else {
+                    ?>
 
                     <div class="alert alert-danger"><?php echo OUT_OF_STOCK_CANT_CHECKOUT; ?></div>
 
-                <?php
+                    <?php
+                }
             }
-        }
-        ?>
+            ?>
 
         </div>
 
         <div class="buttonSet">
-            <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CHECKOUT,
-        'fa fa-angle-right',
-        tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'), 'primary', NULL,
-        'btn-success'); ?></div>
+            <div class="text-right"><?php
+                echo tep_draw_button(IMAGE_BUTTON_CHECKOUT, 'fa fa-angle-right',
+                    tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'),
+                    'primary', NULL, 'btn-success');
+                ?></div>
         </div>
 
-    <?php
-    $initialize_checkout_methods = $payment_modules->checkout_initialization_method();
+        <?php
+        $initialize_checkout_methods = $payment_modules->checkout_initialization_method();
 
-    if (!empty($initialize_checkout_methods)) {
-        ?>
+        if (!empty($initialize_checkout_methods)) {
+            ?>
             <div class="clearfix"></div>
             <p class="text-right"><?php echo TEXT_ALTERNATIVE_CHECKOUT_METHODS; ?></p>
 
@@ -173,10 +175,10 @@ if ($cart->count_contents() > 0) {
 
                 <p class="text-right"><?php echo $value; ?></p>
 
-            <?php
+                <?php
+            }
         }
-    }
-    ?>
+        ?>
 
     </div>
 
@@ -190,9 +192,10 @@ if ($cart->count_contents() > 0) {
     <?php echo TEXT_CART_EMPTY; ?>
     </div>
 
-    <p class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-        'fa fa-angle-right', tep_href_link(FILENAME_DEFAULT), 'primary', NULL,
-        'btn-danger'); ?></p>
+    <p class="text-right"><?php
+    echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+        tep_href_link(FILENAME_DEFAULT), 'primary', NULL, 'btn-danger');
+    ?></p>
 
     <?php
 }

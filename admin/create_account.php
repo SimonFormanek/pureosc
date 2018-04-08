@@ -24,8 +24,7 @@ require_once('includes/application_top.php');
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_CREATE_ACCOUNT);
 
 $process = false;
-if (isset($_POST['action']) && ($_POST['action'] == 'process')
-    && isset($_POST['formid']) && ($_POST['formid'] == $sessiontoken)) {
+if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     $process = true;
 
     if (ACCOUNT_GENDER == 'true') {
@@ -35,15 +34,15 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')
             $gender = false;
         }
     }
-    $firstname      = tep_db_prepare_input($_POST['firstname']);
-    $lastname       = tep_db_prepare_input($_POST['lastname']);
-    if (ACCOUNT_DOB == 'true')
-            $dob            = tep_db_prepare_input($_POST['dob']);
-    $email_address  = tep_db_prepare_input($_POST['email_address']);
-    if (ACCOUNT_COMPANY == 'true')
-            $company        = tep_db_prepare_input($_POST['company']);
-    if (ACCOUNT_COMPANY == 'true')
-            $vat_number     = tep_db_prepare_input($_POST['vat_number']);
+    $firstname     = tep_db_prepare_input($_POST['firstname']);
+    $lastname      = tep_db_prepare_input($_POST['lastname']);
+    if (ACCOUNT_DOB == 'true') $dob           = tep_db_prepare_input($_POST['dob']);
+    $email_address = tep_db_prepare_input($_POST['email_address']);
+    if (ACCOUNT_COMPANY == 'true') {
+        $company        = tep_db_prepare_input($_POST['company']);
+        $vat_number     = tep_db_prepare_input($_POST['vat_number']);
+        $company_number = tep_db_prepare_input($_POST['company_number']);
+    }
     $street_address = tep_db_prepare_input($_POST['street_address']);
     if (ACCOUNT_SUBURB == 'true')
             $suburb         = tep_db_prepare_input($_POST['suburb']);
@@ -74,7 +73,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')
         if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
-        $messageStack->add('create_account', ENTRY_GENDER_ERROR);
+            $messageStack->add('create_account', ENTRY_GENDER_ERROR);
         }
     }
 
@@ -186,6 +185,9 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')
     }
 
     if ($error == false) {
+
+        include_once 'includes/functions/password_funcs.php';
+
         $sql_data_array = array('customers_firstname' => $firstname,
             'customers_lastname' => $lastname,
             'customers_email_address' => $email_address,
@@ -193,9 +195,6 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')
             'customers_fax' => $fax,
             'customers_newsletter' => $newsletter,
             'customers_password' => tep_encrypt_password($password));
-
-        require_once './ext/flexibee/init.php';
-
 
         if (ACCOUNT_GENDER == 'true')
                 $sql_data_array['customers_gender'] = $gender;
@@ -205,32 +204,39 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')
         tep_db_perform(TABLE_CUSTOMERS, $sql_data_array);
 
         $customer_id = tep_db_insert_id();
+        $adminLog->setCustomerID($customer_id);
+        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
 
-        $adresar = new \PureOSC\flexibee\Adresar();
+            $nazev = strlen($company) ? $company : $firstname.' '.$lastname;
 
-        $nazev = strlen($company) ? $company : $firstname.' '.$lastname;
-
-        $adresar->insertToFlexiBee([
-            'id' => 'ext:customers:'.$customer_id,
-            'poznam' => 'zalozeno z eshopu',
-            'nazev' => $nazev,
-            'email' => $email_address,
-            'ic' => $ico,
-            'dic' => $vat_number,
-            'ulice' => $street_address,
-            'mesto' => $city,
-            'psc' => $postcode,
+            $adresar = new \PureOSC\flexibee\Adresar([
+                'id' => 'ext:customers:'.$customer_id,
+                'poznam' => _('Created by admin'),
+                'nazev' => $nazev,
+                'email' => $email_address,
+                'ic' => $company_number,
+                'dic' => $vat_number,
+                'ulice' => $street_address,
+                'mesto' => $city,
+                'psc' => $postcode,
 //            'stat' => $country,
-            'tel' => $telephone,
-            'fax' => $fax,
-        ]);
+                'tel' => $telephone,
+                'fax' => $fax,
+            ]);
 
+            $adresar->insertToFlexiBee();
 
+            if ($adresar->lastResponseCode == 201) {
+                $adminLog->logFlexiBeeEvent($adresar,
+                    ['nazev', 'email', 'ic', 'dic']);
+            }
+        }
 
         $sql_data_array = array('customers_id' => $customer_id,
             'entry_firstname' => $firstname,
             'entry_lastname' => $lastname,
             'entry_vat_number' => $vat_number,
+            'entry_company_number' => $company_number,
             'entry_street_address' => $street_address,
             'entry_postcode' => $postcode,
             'entry_city' => $city,
@@ -257,28 +263,31 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')
         $address_id = tep_db_insert_id();
 
 
-        $kontakter = new \PureOSC\flexibee\Kontakt();
-
-        $kontakter->insertToFlexiBee([
-            'id' => 'ext:customers:'.$address_id,
-            'firma' => $adresar,
-            'jmeno' => $firstname,
-            'prijmeni' => $lastname,
-            'email' => $email_address,
-            'ulice' => $street_address,
-            'mesto' => $city,
-            'psc' => $postcode,
+        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            $kontakter = new \PureOSC\flexibee\Kontakt([
+                'id' => 'ext:customers:'.$addres_id,
+                'firma' => $adresar,
+                'jmeno' => $firstname,
+                'prijmeni' => $lastname,
+                'email' => $email_address,
+                'ulice' => $street_address,
+                'mesto' => $city,
+                'psc' => $postcode,
 //            'stat' => $country,
-            'tel' => $telephone,
-            'fax' => $fax]);
+                'tel' => $telephone,
+                'fax' => $fax]);
+
+            $kontakter->insertToFlexiBee();
+
+            if ($kontakter->lastResponseCode == 201) {
+                $adminLog->logFlexiBeeEvent($kontakter,
+                    ['jmeno', 'prijmeni', 'email']);
+            }
+        }
 
         tep_db_query("update ".TABLE_CUSTOMERS." set customers_default_address_id = '".(int) $address_id."' where customers_id = '".(int) $customer_id."'");
 
         tep_db_query("insert into ".TABLE_CUSTOMERS_INFO." (customers_info_id, customers_info_number_of_logons, customers_info_date_account_created) values ('".(int) $customer_id."', '0', now())");
-
-        if (SESSION_RECREATE == 'True') {
-            tep_session_recreate();
-        }
 
         $customer_first_name         = $firstname;
         $customer_default_address_id = $address_id;
@@ -292,9 +301,6 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')
 
 // reset session token
         $sessiontoken = md5(tep_rand().tep_rand().tep_rand().tep_rand());
-
-// restore cart contents
-        $cart->restore_contents();
 
 // build the message content
         $name = $firstname.' '.$lastname;
@@ -359,45 +365,51 @@ require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 
 <div class="page-header">
-    <h1><?php echo HEADING_TITLE; ?></h1>
+    <h1><?php echo _('New Customer'); ?></h1>
 </div>
 
-        <?php
-        if ($messageStack->size('create_account') > 0) {
-            echo $messageStack->output('create_account');
-        }
-        ?>
+<?php
+if ($messageStack->size('create_account') > 0) {
+    echo $messageStack->output('create_account');
+}
+?>
 
 <div class="alert alert-warning">
-                    <?php echo sprintf(TEXT_ORIGIN_LOGIN,
-                        tep_href_link(FILENAME_LOGIN, tep_get_all_get_params(),
-                            'SSL')); ?><span class="inputRequirement pull-right text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></span>
+    <?php
+    echo sprintf(TEXT_ORIGIN_LOGIN,
+        tep_href_link(FILENAME_LOGIN, tep_get_all_get_params(), 'SSL'));
+    ?><span class="inputRequirement pull-right text-right"><?php echo _('Requied Information'); ?></span>
 </div>
 
-                <?php echo tep_draw_form('create_account',
-                    tep_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL'), 'post',
-                    'class="form-horizontal"', true).tep_draw_hidden_field('action',
-                    'process'); ?>
+<?php
+echo tep_draw_form('create_account', 'create_account.php', '', 'post',
+    'class="form-horizontal"', true)
+.tep_draw_hidden_field('action', 'process');
+?>
 
 <div class="contentContainer">
 
     <h2><?php echo CATEGORY_PERSONAL; ?></h2>
     <div class="contentText">
 
-                <?php
-                if (ACCOUNT_GENDER == 'true') {
-                    ?>
+        <?php
+        if (ACCOUNT_GENDER == 'true') {
+            ?>
             <div class="form-group has-feedback">
                 <label class="control-label col-sm-3"><?php echo ENTRY_GENDER; ?></label>
                 <div class="col-sm-9">
                     <label class="radio-inline">
-    <?php echo tep_draw_radio_field('gender', 'm', NULL,
-        'required aria-required="true" aria-describedby="atGender"').' '.MALE; ?>
+                        <?php
+                        echo tep_draw_radio_field('gender', 'm', NULL,
+                            'required aria-required="true" aria-describedby="atGender"').' '.MALE;
+                        ?>
                     </label>
                     <label class="radio-inline">
-                    <?php echo tep_draw_radio_field('gender', 'f').' '.FEMALE; ?>
+                        <?php
+                        echo tep_draw_radio_field('gender', 'f').' '.FEMALE;
+                        ?>
                     </label>
-                    <?php echo FORM_REQUIRED_INPUT; ?>
+                    <?php echo _('Required'); ?>
                     <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
                 </div>
             </div>
@@ -410,7 +422,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <?php
                 echo tep_draw_input_field('firstname', NULL,
                     'required aria-required="true" aria-describedby="atFirstname" id="inputFirstName" placeholder="'.ENTRY_FIRST_NAME.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_FIRST_NAME_TEXT))
                         echo '<span id="atFirstName" class="help-block">'.ENTRY_FIRST_NAME_TEXT.'</span>';
                 ?>
@@ -419,33 +431,33 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <div class="form-group has-feedback">
             <label for="inputLastName" class="control-label col-sm-3"><?php echo ENTRY_LAST_NAME; ?></label>
             <div class="col-sm-9">
-<?php
-echo tep_draw_input_field('lastname', NULL,
-    'required aria-required="true" aria-describedby="atLastname" id="inputLastName" placeholder="'.ENTRY_LAST_NAME.'"');
-echo FORM_REQUIRED_INPUT;
-if (tep_not_null(ENTRY_LAST_NAME_TEXT))
-        echo '<span id="atLastname" class="help-block">'.ENTRY_LAST_NAME_TEXT.'</span>';
-?>
+                <?php
+                echo tep_draw_input_field('lastname', NULL,
+                    'required aria-required="true" aria-describedby="atLastname" id="inputLastName" placeholder="'.ENTRY_LAST_NAME.'"');
+                echo _('Required');
+                if (tep_not_null(ENTRY_LAST_NAME_TEXT))
+                        echo '<span id="atLastname" class="help-block">'.ENTRY_LAST_NAME_TEXT.'</span>';
+                ?>
             </div>
         </div>
-    <?php
-    if (ACCOUNT_DOB == 'true') {
-        ?>
+        <?php
+        if (ACCOUNT_DOB == 'true') {
+            ?>
             <div class="form-group has-feedback">
                 <label for="dob" class="control-label col-sm-3"><?php echo ENTRY_DATE_OF_BIRTH; ?></label>
                 <div class="col-sm-9">
-    <?php
-    echo tep_draw_input_field('dob', '',
-        'required aria-required="true" aria-describedby="atDob" id="dob" placeholder="'.ENTRY_DATE_OF_BIRTH.'"');
-    echo FORM_REQUIRED_INPUT;
-    if (tep_not_null(ENTRY_DATE_OF_BIRTH_TEXT))
-            echo '<span id="atDob" class="help-block">'.ENTRY_DATE_OF_BIRTH_TEXT.'</span>';
-    ?>
+                    <?php
+                    echo tep_draw_input_field('dob', '',
+                        'required aria-required="true" aria-describedby="atDob" id="dob" placeholder="'.ENTRY_DATE_OF_BIRTH.'"');
+                    echo _('Required');
+                    if (tep_not_null(ENTRY_DATE_OF_BIRTH_TEXT))
+                            echo '<span id="atDob" class="help-block">'.ENTRY_DATE_OF_BIRTH_TEXT.'</span>';
+                    ?>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputEmail" class="control-label col-sm-3"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
             <div class="col-sm-9">
@@ -453,36 +465,46 @@ if (tep_not_null(ENTRY_LAST_NAME_TEXT))
                 echo tep_draw_input_field('email_address', NULL,
                     'required aria-required="true" aria-describedby="atEmail" id="inputEmail" placeholder="'.ENTRY_EMAIL_ADDRESS.'"',
                     'email');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_EMAIL_ADDRESS_TEXT))
                         echo '<span id="atEmail" class="help-block">'.ENTRY_EMAIL_ADDRESS_TEXT.'</span>';
                 ?>
             </div>
         </div>
     </div>
-<?php
-if (ACCOUNT_COMPANY == 'true') {
-    ?>
+    <?php
+    if (ACCOUNT_COMPANY == 'true') {
+        ?>
 
         <h2><?php echo CATEGORY_COMPANY; ?></h2>
 
         <div class="contentText">
             <div class="form-group">
-                <label for="inputCompany" class="control-label col-sm-3"><?php echo ENTRY_COMPANY; ?></label>
+                <label for="inputCompany" class="control-label col-sm-3"><?php echo _('Company Name'); ?></label>
                 <div class="col-sm-9">
                     <?php
                     echo tep_draw_input_field('company', NULL,
-                        'id="inputCompany" aria-describedby="atCompany" placeholder="'.ENTRY_COMPANY.'"');
+                        'id="inputCompany" aria-describedby="atCompany" placeholder="'._('Company Name').'"');
                     if (tep_not_null(ENTRY_COMPANY_TEXT))
                             echo '<span id="atCompany" class="help-block">'.ENTRY_COMPANY_TEXT.'</span>';
                     ?>
                 </div>
 
-                <label for="inputVatnumber" class="control-label col-sm-3"><?php echo ENTRY_VAT_NUMBER; ?></label>
+                <label for="inputVatnumber" class="control-label col-sm-3"><?php echo _('Company Number'); ?></label>
+                <div class="col-sm-9">
+                    <?php
+                    echo tep_draw_input_field('company_number', NULL,
+                        'id="inputCompanynumber" aria-describedby="atVatnumber" placeholder="'._('Company Number').'"');
+                    if (tep_not_null(ENTRY_COMPANY_NUMBER_TEXT_2))
+                            echo '<span id="atVatnumber" class="help-block">'.ENTRY_COMPANY_NUMBER_TEXT_2.'</span>';
+                    ?>
+                </div>
+
+                <label for="inputVatnumber" class="control-label col-sm-3"><?php echo _('Vat Number'); ?></label>
                 <div class="col-sm-9">
                     <?php
                     echo tep_draw_input_field('vat_number', NULL,
-                        'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="'.ENTRY_VAT_NUMBER.'"');
+                        'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="'._('Vat Number').'"');
                     if (tep_not_null(ENTRY_VAT_NUMBER_TEXT_2))
                             echo '<span id="atVatnumber" class="help-block">'.ENTRY_VAT_NUMBER_TEXT_2.'</span>';
                     ?>
@@ -492,9 +514,9 @@ if (ACCOUNT_COMPANY == 'true') {
             </div>
         </div>
 
-                    <?php
-                }
-                ?>
+        <?php
+    }
+    ?>
 
     <h2><?php echo CATEGORY_ADDRESS; ?></h2>
     <div class="contentText">
@@ -504,7 +526,7 @@ if (ACCOUNT_COMPANY == 'true') {
                 <?php
                 echo tep_draw_input_field('street_address', NULL,
                     'required aria-required="true" aria-describedby="atStreetAddress" id="inputStreet" placeholder="'.ENTRY_STREET_ADDRESS.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_STREET_ADDRESS_TEXT))
                         echo '<span id="atStreetAddress" class="help-block">'.ENTRY_STREET_ADDRESS_TEXT.'</span>';
                 ?>
@@ -525,16 +547,16 @@ if (ACCOUNT_COMPANY == 'true') {
                     ?>
                 </div>
             </div>
-                    <?php
-                }
-                ?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputCity" class="control-label col-sm-3"><?php echo ENTRY_CITY; ?></label>
             <div class="col-sm-9">
                 <?php
                 echo tep_draw_input_field('city', NULL,
                     'required aria-required="true" aria-describedby="atCity" id="inputCity" placeholder="'.ENTRY_CITY.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_CITY_TEXT))
                         echo '<span id="atCity" class="help-block">'.ENTRY_CITY_TEXT.'</span>';
                 ?>
@@ -546,15 +568,15 @@ if (ACCOUNT_COMPANY == 'true') {
                 <?php
                 echo tep_draw_input_field('postcode', NULL,
                     'required aria-required="true" aria-describedby="atZip" id="inputZip" placeholder="'.ENTRY_POST_CODE.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_POST_CODE_TEXT))
                         echo '<span id="atZip" class="help-block">'.ENTRY_POST_CODE_TEXT.'</span>';
                 ?>
             </div>
         </div>
-<?php
-if (ACCOUNT_STATE == 'true') {
-    ?>
+        <?php
+        if (ACCOUNT_STATE == 'true') {
+            ?>
             <div class="form-group has-feedback">
                 <label for="inputState" class="control-label col-sm-3"><?php echo ENTRY_STATE; ?></label>
                 <div class="col-sm-9">
@@ -569,35 +591,35 @@ if (ACCOUNT_STATE == 'true') {
                             }
                             echo tep_draw_pull_down_menu('state', $zones_array,
                                 0, 'id="inputState" aria-describedby="atState"');
-                            echo FORM_REQUIRED_INPUT;
+                            echo _('Required');
                         } else {
                             echo tep_draw_input_field('state', NULL,
                                 'id="inputState" aria-describedby="atState" placeholder="'.ENTRY_STATE.'"');
-                            echo FORM_REQUIRED_INPUT;
+                            echo _('Required');
                         }
                     } else {
                         echo tep_draw_input_field('state', NULL,
                             'id="inputState" aria-describedby="atState" placeholder="'.ENTRY_STATE.'"');
-                        echo FORM_REQUIRED_INPUT;
+                        echo _('Required');
                     }
                     if (tep_not_null(ENTRY_STATE_TEXT))
                             echo '<span id="atState" class="help-block">'.ENTRY_STATE_TEXT.'</span>';
                     ?>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputCountry" class="control-label col-sm-3"><?php echo ENTRY_COUNTRY; ?></label>
             <div class="col-sm-9">
-<?php
-echo tep_get_country_list('country', NULL,
-    'required aria-required="true" aria-describedby="atCountry" id="inputCountry"');
-echo FORM_REQUIRED_INPUT;
-if (tep_not_null(ENTRY_COUNTRY_TEXT))
-        echo '<span id="atCountry" class="help-block">'.ENTRY_COUNTRY_TEXT.'</span>';
-?>
+                <?php
+                echo tep_get_country_list('country', NULL,
+                    'required aria-required="true" aria-describedby="atCountry" id="inputCountry"');
+                echo _('Required');
+                if (tep_not_null(ENTRY_COUNTRY_TEXT))
+                        echo '<span id="atCountry" class="help-block">'.ENTRY_COUNTRY_TEXT.'</span>';
+                ?>
             </div>
         </div>
     </div>
@@ -612,7 +634,7 @@ if (tep_not_null(ENTRY_COUNTRY_TEXT))
                 echo tep_draw_input_field('telephone', NULL,
                     'required aria-required="true" aria-describedby="atTelephone" id="inputTelephone" placeholder="'.ENTRY_TELEPHONE_NUMBER.'"',
                     'tel');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_TELEPHONE_NUMBER_TEXT))
                         echo '<span id="atTelephone" class="help-block">'.ENTRY_TELEPHONE_NUMBER_TEXT.'</span>';
                 ?>
@@ -621,13 +643,13 @@ if (tep_not_null(ENTRY_COUNTRY_TEXT))
         <div class="form-group">
             <label for="inputFax" class="control-label col-sm-3"><?php echo ENTRY_FAX_NUMBER; ?></label>
             <div class="col-sm-9">
-<?php
-echo tep_draw_input_field('fax', '',
-    'id="inputFax" aria-describedby="atFax" placeholder="'.ENTRY_FAX_NUMBER.'"',
-    'tel');
-if (tep_not_null(ENTRY_FAX_NUMBER_TEXT))
-        echo '<span id="atFax" class="help-block">'.ENTRY_FAX_NUMBER_TEXT.'</span>';
-?>
+                <?php
+                echo tep_draw_input_field('fax', '',
+                    'id="inputFax" aria-describedby="atFax" placeholder="'.ENTRY_FAX_NUMBER.'"',
+                    'tel');
+                if (tep_not_null(ENTRY_FAX_NUMBER_TEXT))
+                        echo '<span id="atFax" class="help-block">'.ENTRY_FAX_NUMBER_TEXT.'</span>';
+                ?>
             </div>
         </div>
         <div class="form-group">
@@ -635,9 +657,11 @@ if (tep_not_null(ENTRY_FAX_NUMBER_TEXT))
             <div class="col-sm-9">
                 <div class="checkbox">
                     <label>
-<?php echo tep_draw_checkbox_field('newsletter', '1', NULL,
-    'id="inputNewsletter"'); ?>
-<?php if (tep_not_null(ENTRY_NEWSLETTER_TEXT)) echo ENTRY_NEWSLETTER_TEXT; ?>
+                        <?php
+                        echo tep_draw_checkbox_field('newsletter', '1', NULL,
+                            'id="inputNewsletter"');
+                        ?>
+                        <?php if (tep_not_null(ENTRY_NEWSLETTER_TEXT)) echo ENTRY_NEWSLETTER_TEXT; ?>
                     </label>
                 </div>
             </div>
@@ -645,40 +669,42 @@ if (tep_not_null(ENTRY_FAX_NUMBER_TEXT))
 
     </div>
 
-    <h2><?php echo CATEGORY_PASSWORD; ?></h2>
+    <h2><?php echo _('Password'); ?></h2>
 
     <div class="contentText">
         <div class="form-group has-feedback">
-            <label for="inputPassword" class="control-label col-sm-3"><?php echo ENTRY_PASSWORD; ?></label>
+            <label for="inputPassword" class="control-label col-sm-3"><?php echo _('Password'); ?></label>
             <div class="col-sm-9">
-<?php
-echo tep_draw_input_field('password', NULL,
-    'required aria-required="true" aria-describedby="atPassword" id="inputPassword" placeholder="'.ENTRY_PASSWORD.'"',
-    'password');
-echo FORM_REQUIRED_INPUT;
-if (tep_not_null(ENTRY_PASSWORD_TEXT))
-        echo '<span id="atPassword" class="help-block">'.ENTRY_PASSWORD_TEXT.'</span>';
-?>
+                <?php
+                echo tep_draw_input_field('password', NULL,
+                    'required aria-required="true" aria-describedby="atPassword" id="inputPassword" placeholder="'._('Password').'"',
+                    'password');
+                echo _('Required');
+                if (tep_not_null(ENTRY_PASSWORD_TEXT))
+                        echo '<span id="atPassword" class="help-block">'.ENTRY_PASSWORD_TEXT.'</span>';
+                ?>
             </div>
         </div>
         <div class="form-group has-feedback">
-            <label for="inputConfirmation" class="control-label col-sm-3"><?php echo ENTRY_PASSWORD_CONFIRMATION; ?></label>
+            <label for="inputConfirmation" class="control-label col-sm-3"><?php echo _('Password Confirmation'); ?></label>
             <div class="col-sm-9">
-<?php
-echo tep_draw_input_field('confirmation', NULL,
-    'required aria-required="true" aria-describedby="atPasswordNew" id="inputConfirmation" placeholder="'.ENTRY_PASSWORD_CONFIRMATION.'"',
-    'password');
-echo FORM_REQUIRED_INPUT;
-if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT))
-        echo '<span id="atPasswordNew" class="help-block">'.ENTRY_PASSWORD_CONFIRMATION_TEXT.'</span>';
-?>
+                <?php
+                echo tep_draw_input_field('confirmation', NULL,
+                    'required aria-required="true" aria-describedby="atPasswordNew" id="inputConfirmation" placeholder="'._('Password Confirmation').'"',
+                    'password');
+                echo _('Required');
+                if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT))
+                        echo '<span id="atPasswordNew" class="help-block">'.ENTRY_PASSWORD_CONFIRMATION_TEXT.'</span>';
+                ?>
             </div>
         </div>
     </div>
 
     <div class="buttonSet">
-        <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-user', null, 'primary', null, 'btn-success'); ?></div>
+        <div class="text-right"><?php
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-user', null,
+                'primary', null, 'btn-success');
+            ?></div>
     </div>
 
 </div>
@@ -688,4 +714,4 @@ if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT))
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+

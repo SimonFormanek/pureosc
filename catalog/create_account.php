@@ -220,11 +220,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
         $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_password',
             $customer_id, 'created');
         $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_firstname',
-            $customer_id, $firstname);
+            $customer_id, 'created');
         $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_lastname',
-            $customer_id, $lastname);
+            $customer_id, 'created');
         $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_telephone',
-            $customer_id, $telephone);
+            $customer_id, 'created');
         $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_newsletter',
             $customer_id, $newsletter);
 
@@ -249,7 +249,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
             ]);
 
             $adresar->insertToFlexiBee();
-            
+
             if ($adresar->lastResponseCode == 201) {
                 $userLog->logFlexiBeeEvent($adresar,
                     ['nazev', 'email', 'ic', 'dic']);
@@ -304,12 +304,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
                 'fax' => $fax]);
 
             $kontakter->insertToFlexiBee();
-            
+
             if ($kontakter->lastResponseCode == 201) {
                 $userLog->logFlexiBeeEvent($kontakter,
-                    ['jmeno','prijmeni', 'email']);
+                    ['jmeno', 'prijmeni', 'email']);
             }
-            
         }
 
         tep_db_query("update ".TABLE_CUSTOMERS." set customers_default_address_id = '".(int) $address_id."' where customers_id = '".(int) $customer_id."'");
@@ -418,7 +417,7 @@ if ($messageStack->size('create_account') > 0) {
     <?php
     echo sprintf(TEXT_ORIGIN_LOGIN,
         tep_href_link(FILENAME_LOGIN, tep_get_all_get_params(), 'SSL'));
-    ?><span class="inputRequirement pull-right text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></span>
+    ?><span class="inputRequirement pull-right text-right"><?php echo _('Requied Information'); ?></span>
 </div>
 
 <?php
@@ -449,7 +448,7 @@ echo tep_draw_form('create_account',
                         echo tep_draw_radio_field('gender', 'f').' '.FEMALE;
                         ?>
                     </label>
-                    <?php echo FORM_REQUIRED_INPUT; ?>
+                    <?php echo _('Required'); ?>
                     <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
                 </div>
             </div>
@@ -462,7 +461,7 @@ echo tep_draw_form('create_account',
                 <?php
                 echo tep_draw_input_field('firstname', NULL,
                     'required aria-required="true" aria-describedby="atFirstname" id="inputFirstName" placeholder="'.ENTRY_FIRST_NAME.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_FIRST_NAME_TEXT))
                         echo '<span id="atFirstName" class="help-block">'.ENTRY_FIRST_NAME_TEXT.'</span>';
                 ?>
@@ -474,7 +473,7 @@ echo tep_draw_form('create_account',
                 <?php
                 echo tep_draw_input_field('lastname', NULL,
                     'required aria-required="true" aria-describedby="atLastname" id="inputLastName" placeholder="'.ENTRY_LAST_NAME.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_LAST_NAME_TEXT))
                         echo '<span id="atLastname" class="help-block">'.ENTRY_LAST_NAME_TEXT.'</span>';
                 ?>
@@ -489,7 +488,7 @@ echo tep_draw_form('create_account',
                     <?php
                     echo tep_draw_input_field('dob', '',
                         'required aria-required="true" aria-describedby="atDob" id="dob" placeholder="'.ENTRY_DATE_OF_BIRTH.'"');
-                    echo FORM_REQUIRED_INPUT;
+                    echo _('Required');
                     if (tep_not_null(ENTRY_DATE_OF_BIRTH_TEXT))
                             echo '<span id="atDob" class="help-block">'.ENTRY_DATE_OF_BIRTH_TEXT.'</span>';
                     ?>
@@ -505,7 +504,7 @@ echo tep_draw_form('create_account',
                 echo tep_draw_input_field('email_address', NULL,
                     'required aria-required="true" aria-describedby="atEmail" id="inputEmail" placeholder="'.ENTRY_EMAIL_ADDRESS.'"',
                     'email');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_EMAIL_ADDRESS_TEXT))
                         echo '<span id="atEmail" class="help-block">'.ENTRY_EMAIL_ADDRESS_TEXT.'</span>';
                 ?>
@@ -520,21 +519,21 @@ echo tep_draw_form('create_account',
 
         <div class="contentText">
             <div class="form-group">
-                <label for="inputCompany" class="control-label col-sm-3"><?php echo ENTRY_COMPANY; ?></label>
+                <label for="inputCompany" class="control-label col-sm-3"><?php echo _('Company Name'); ?></label>
                 <div class="col-sm-9">
                     <?php
                     echo tep_draw_input_field('company', NULL,
-                        'id="inputCompany" aria-describedby="atCompany" placeholder="'.ENTRY_COMPANY.'"');
+                        'id="inputCompany" aria-describedby="atCompany" placeholder="'._('Company Name').'"');
                     if (tep_not_null(ENTRY_COMPANY_TEXT))
                             echo '<span id="atCompany" class="help-block">'.ENTRY_COMPANY_TEXT.'</span>';
                     ?>
                 </div>
 
-                <label for="inputVatnumber" class="control-label col-sm-3"><?php echo ENTRY_VAT_NUMBER; ?></label>
+                <label for="inputVatnumber" class="control-label col-sm-3"><?php echo _('Vat Number'); ?></label>
                 <div class="col-sm-9">
                     <?php
                     echo tep_draw_input_field('vat_number', NULL,
-                        'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="'.ENTRY_VAT_NUMBER.'"');
+                        'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="'._('Vat Number').'"');
                     if (tep_not_null(ENTRY_VAT_NUMBER_TEXT_2))
                             echo '<span id="atVatnumber" class="help-block">'.ENTRY_VAT_NUMBER_TEXT_2.'</span>';
                     ?>
@@ -566,7 +565,7 @@ echo tep_draw_form('create_account',
                 <?php
                 echo tep_draw_input_field('street_address', NULL,
                     'required aria-required="true" aria-describedby="atStreetAddress" id="inputStreet" placeholder="'.ENTRY_STREET_ADDRESS.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_STREET_ADDRESS_TEXT))
                         echo '<span id="atStreetAddress" class="help-block">'.ENTRY_STREET_ADDRESS_TEXT.'</span>';
                 ?>
@@ -596,7 +595,7 @@ echo tep_draw_form('create_account',
                 <?php
                 echo tep_draw_input_field('city', NULL,
                     'required aria-required="true" aria-describedby="atCity" id="inputCity" placeholder="'.ENTRY_CITY.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_CITY_TEXT))
                         echo '<span id="atCity" class="help-block">'.ENTRY_CITY_TEXT.'</span>';
                 ?>
@@ -608,7 +607,7 @@ echo tep_draw_form('create_account',
                 <?php
                 echo tep_draw_input_field('postcode', NULL,
                     'required aria-required="true" aria-describedby="atZip" id="inputZip" placeholder="'.ENTRY_POST_CODE.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_POST_CODE_TEXT))
                         echo '<span id="atZip" class="help-block">'.ENTRY_POST_CODE_TEXT.'</span>';
                 ?>
@@ -631,16 +630,16 @@ echo tep_draw_form('create_account',
                             }
                             echo tep_draw_pull_down_menu('state', $zones_array,
                                 0, 'id="inputState" aria-describedby="atState"');
-                            echo FORM_REQUIRED_INPUT;
+                            echo _('Required');
                         } else {
                             echo tep_draw_input_field('state', NULL,
                                 'id="inputState" aria-describedby="atState" placeholder="'.ENTRY_STATE.'"');
-                            echo FORM_REQUIRED_INPUT;
+                            echo _('Required');
                         }
                     } else {
                         echo tep_draw_input_field('state', NULL,
                             'id="inputState" aria-describedby="atState" placeholder="'.ENTRY_STATE.'"');
-                        echo FORM_REQUIRED_INPUT;
+                        echo _('Required');
                     }
                     if (tep_not_null(ENTRY_STATE_TEXT))
                             echo '<span id="atState" class="help-block">'.ENTRY_STATE_TEXT.'</span>';
@@ -656,7 +655,7 @@ echo tep_draw_form('create_account',
                 <?php
                 echo tep_get_country_list('country', NULL,
                     'required aria-required="true" aria-describedby="atCountry" id="inputCountry"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_COUNTRY_TEXT))
                         echo '<span id="atCountry" class="help-block">'.ENTRY_COUNTRY_TEXT.'</span>';
                 ?>
@@ -674,7 +673,7 @@ echo tep_draw_form('create_account',
                 echo tep_draw_input_field('telephone', NULL,
                     'required aria-required="true" aria-describedby="atTelephone" id="inputTelephone" placeholder="'.ENTRY_TELEPHONE_NUMBER.'"',
                     'tel');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_TELEPHONE_NUMBER_TEXT))
                         echo '<span id="atTelephone" class="help-block">'.ENTRY_TELEPHONE_NUMBER_TEXT.'</span>';
                 ?>
@@ -719,7 +718,7 @@ echo tep_draw_form('create_account',
                 echo tep_draw_input_field('password', NULL,
                     'required aria-required="true" aria-describedby="atPassword" id="inputPassword" placeholder="'.ENTRY_PASSWORD.'"',
                     'password');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_PASSWORD_TEXT))
                         echo '<span id="atPassword" class="help-block">'.ENTRY_PASSWORD_TEXT.'</span>';
                 ?>
@@ -732,7 +731,7 @@ echo tep_draw_form('create_account',
                 echo tep_draw_input_field('confirmation', NULL,
                     'required aria-required="true" aria-describedby="atPasswordNew" id="inputConfirmation" placeholder="'.ENTRY_PASSWORD_CONFIRMATION.'"',
                     'password');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT))
                         echo '<span id="atPasswordNew" class="help-block">'.ENTRY_PASSWORD_CONFIRMATION_TEXT.'</span>';
                 ?>
@@ -742,9 +741,9 @@ echo tep_draw_form('create_account',
 
     <div class="buttonSet">
         <div class="text-right"><?php
-            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-user', null,
-                'primary', null, 'btn-success');
-            ?></div>
+                echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-user', null,
+                    'primary', null, 'btn-success');
+                ?></div>
     </div>
 
 </div>

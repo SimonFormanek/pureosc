@@ -174,7 +174,6 @@ define('ENTRY_EMAIL_ADDRESS', 'Correo Electr&oacute;nico:',true);
 define('ENTRY_EMAIL_ADDRESS_ERROR', '&nbsp;<span class="errorText">min ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' caracteres</span>',true);
 define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', '&nbsp;<span class="errorText">El correo electr&oacute;nico no es v&aacute;lido !</span>',true);
 define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', '&nbsp;<span class="errorText">El correo electr&oacute;nico ya existe!</span>',true);
-define('ENTRY_COMPANY', 'Nombre empresa:',true);
 define('ENTRY_STREET_ADDRESS', 'Direcci&oacute;n:',true);
 define('ENTRY_STREET_ADDRESS_ERROR', '&nbsp;<span class="errorText">min ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' caracteres</span>',true);
 define('ENTRY_SUBURB', '',true);
@@ -304,7 +303,6 @@ define('ERROR_FILETYPE_NOT_ALLOWED', 'Error: Tipo de archivo subido no permitido
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Exito: Archivo subido guardado exitosamente.',true);
 define('WARNING_NO_FILE_UPLOADED', 'Advertencia: Ning&uacute;n archivo subido.',true);
 //VAT number
-define('ENTRY_VAT_NUMBER', 'VAT Number:',true);
 define('ENTRY_COMPANY_NUMBER', 'Company Number:',true);
 /**** BEGIN ARTICLE MANAGER ****/
 define('BOX_HEADING_ARTICLES', 'Article Manager');

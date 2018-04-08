@@ -15,5 +15,8 @@ fresh:
 	composer update
 	phinx migrate
 
+doc:
+	apigen generate --source catalog --destination docs --title "PureOSC" --charset UTF-8 --access-levels public --access-levels protected --php --tree
+
 test:
 	codecept run

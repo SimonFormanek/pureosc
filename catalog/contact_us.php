@@ -74,8 +74,9 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
         </div>
 
         <div class="pull-right">
-    <?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
-        tep_href_link(FILENAME_DEFAULT)); ?>
+            <?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
+                'fa fa-angle-right', tep_href_link(FILENAME_DEFAULT));
+            ?>
         </div>
     </div>
 
@@ -83,14 +84,16 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
 } else {
     ?>
 
-    <?php echo tep_draw_form('contact_us',
+    <?php
+    echo tep_draw_form('contact_us',
         tep_href_link(FILENAME_CONTACT_US, 'action=send'), 'post',
-        'class="form-horizontal"', true); ?>
+        'class="form-horizontal"', true);
+    ?>
 
     <div class="contentContainer">
         <div class="contentText">
 
-            <p class="inputRequirement text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></p>
+            <p class="inputRequirement text-right"><?php echo _('Requied Information'); ?></p>
             <div class="clearfix"></div>
 
             <div class="form-group has-feedback">
@@ -99,7 +102,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
                     <?php
                     echo tep_draw_input_field('name', NULL,
                         'required autofocus="autofocus" aria-required="true" id="inputFromName" placeholder="'.ENTRY_NAME.'"');
-                    echo FORM_REQUIRED_INPUT;
+                    echo _('Required');
                     ?>
                 </div>
             </div>
@@ -110,25 +113,27 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
                     echo tep_draw_input_field('email', NULL,
                         'required aria-required="true" id="inputFromEmail" placeholder="'.ENTRY_EMAIL.'"',
                         'email');
-                    echo FORM_REQUIRED_INPUT;
+                    echo _('Required');
                     ?>
                 </div>
             </div>
             <div class="form-group has-feedback">
                 <label for="inputEnquiry" class="control-label col-sm-3"><?php echo ENTRY_ENQUIRY; ?></label>
                 <div class="col-sm-9">
-    <?php
-    echo tep_draw_textarea_field('enquiry', 'soft', 50, 15, NULL,
-        'required aria-required="true" id="inputEnquiry" placeholder="'.ENTRY_ENQUIRY.'"');
-    echo FORM_REQUIRED_INPUT;
-    ?>
+                    <?php
+                    echo tep_draw_textarea_field('enquiry', 'soft', 50, 15,
+                        NULL,
+                        'required aria-required="true" id="inputEnquiry" placeholder="'.ENTRY_ENQUIRY.'"');
+                    echo _('Required');
+                    ?>
                 </div>
             </div>
         </div>
 
         <div class="buttonSet">
             <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-        'fa fa-send', null, 'primary', null, 'btn-success'); ?></div>
+                        'fa fa-send', null, 'primary', null, 'btn-success');
+                    ?></div>
         </div>
     </div>
 

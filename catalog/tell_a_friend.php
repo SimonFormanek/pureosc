@@ -104,8 +104,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['fo
 
         $email_body .= sprintf(TEXT_EMAIL_LINK,
                 tep_href_link(FILENAME_PRODUCT_INFO,
-                    'products_id='.(int) $_GET['products_id'],
-                    'NONSSL', false))."\n\n".
+                    'products_id='.(int) $_GET['products_id'], 'NONSSL', false))."\n\n".
             sprintf(TEXT_EMAIL_SIGNATURE,
                 STORE_NAME."\n".HTTP_SERVER.DIR_WS_CATALOG."\n");
 
@@ -149,20 +148,22 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <h1><?php echo sprintf(HEADING_TITLE, $product_info['products_name']); ?></h1>
 </div>
 
-                <?php
-                if ($messageStack->size('friend') > 0) {
-                    echo $messageStack->output('friend');
-                }
-                ?>
+<?php
+if ($messageStack->size('friend') > 0) {
+    echo $messageStack->output('friend');
+}
+?>
 
-<?php echo tep_draw_form('email_friend',
+<?php
+echo tep_draw_form('email_friend',
     tep_href_link(FILENAME_TELL_A_FRIEND,
-        'action=process&products_id='.(int) $_GET['products_id']),
-    'post', 'class="form-horizontal"', true); ?>
+        'action=process&products_id='.(int) $_GET['products_id']), 'post',
+    'class="form-horizontal"', true);
+?>
 
 <div class="contentContainer">
 
-    <div class="inputRequirement text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></div>
+    <div class="inputRequirement text-right"><?php echo _('Requied Information'); ?></div>
 
     <h2><?php echo FORM_TITLE_CUSTOMER_DETAILS; ?></h2>
 
@@ -173,7 +174,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <?php
                 echo tep_draw_input_field('from_name', NULL,
                     'required aria-required="true" id="inputFromName" placeholder="'.FORM_FIELD_CUSTOMER_NAME.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 ?>
             </div>
         </div>
@@ -184,7 +185,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 echo tep_draw_input_field('from_email_address', NULL,
                     'required aria-required="true" id="inputFromEmail" placeholder="'.FORM_FIELD_CUSTOMER_EMAIL.'"',
                     'email');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 ?>
             </div>
         </div>
@@ -199,19 +200,19 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <?php
                 echo tep_draw_input_field('to_name', NULL,
                     'required aria-required="true" id="inputToName" placeholder="'.FORM_FIELD_FRIEND_NAME.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 ?>
             </div>
         </div>
         <div class="form-group has-feedback">
             <label for="inputToEmail" class="control-label col-sm-3"><?php echo FORM_FIELD_FRIEND_EMAIL; ?></label>
             <div class="col-sm-9">
-<?php
-echo tep_draw_input_field('to_email_address', NULL,
-    'required aria-required="true" id="inputToEmail" placeholder="'.FORM_FIELD_FRIEND_EMAIL.'"',
-    'email');
-echo FORM_REQUIRED_INPUT;
-?>
+                <?php
+                echo tep_draw_input_field('to_email_address', NULL,
+                    'required aria-required="true" id="inputToEmail" placeholder="'.FORM_FIELD_FRIEND_EMAIL.'"',
+                    'email');
+                echo _('Required');
+                ?>
             </div>
         </div>
     </div>
@@ -222,22 +223,24 @@ echo FORM_REQUIRED_INPUT;
         <div class="form-group has-feedback">
             <label for="inputMessage" class="control-label col-sm-3"><?php echo FORM_TITLE_FRIEND_MESSAGE; ?></label>
             <div class="col-sm-9">
-<?php
-echo tep_draw_textarea_field('message', 'soft', 40, 8, NULL,
-    'required aria-required="true" id="inputMessage" placeholder="'.FORM_TITLE_FRIEND_MESSAGE.'"');
-echo FORM_REQUIRED_INPUT;
-?>
+                <?php
+                echo tep_draw_textarea_field('message', 'soft', 40, 8, NULL,
+                    'required aria-required="true" id="inputMessage" placeholder="'.FORM_TITLE_FRIEND_MESSAGE.'"');
+                echo _('Required');
+                ?>
             </div>
         </div>
     </div>
 
     <div class="buttonSet row">
-        <div class="col-xs-6"><?php echo tep_draw_button(IMAGE_BUTTON_BACK,
-    'fa fa-angle-left',
-    tep_href_link(FILENAME_PRODUCT_INFO,
-        'products_id='.(int) $_GET['products_id'])); ?></div>
+        <div class="col-xs-6"><?php
+            echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+                tep_href_link(FILENAME_PRODUCT_INFO,
+                    'products_id='.(int) $_GET['products_id']));
+            ?></div>
         <div class="col-xs-6 text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-send', null, 'primary', null, 'btn-success'); ?></div>
+                'fa fa-send', null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 </div>
 

@@ -41,7 +41,6 @@ define('CATEGORY_PASSWORD', 'Heslo',true);
 define('CATEGORY_CORRECT', 'Pokud je to ten správný zákazník klikněte na tlačítko Potvrdit',true);
 define('ENTRY_CUSTOMERS_ID', 'Zákaznické ID:',true);
 define('ENTRY_CUSTOMERS_ID_TEXT', '&nbsp;',true);
-define('ENTRY_COMPANY', 'Firma:',true);
 define('ENTRY_COMPANY_ERROR', '',true);
 define('ENTRY_COMPANY_TEXT', '',true);
 define('ENTRY_GENDER', 'Pohlaví:',true);

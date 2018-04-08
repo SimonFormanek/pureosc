@@ -23,8 +23,8 @@ require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ACCOUNT_NOTIFICATIONS);
 $global_query = tep_db_query("select global_product_notifications from ".TABLE_CUSTOMERS_INFO." where customers_info_id = '".(int) $customer_id."'");
 $global       = tep_db_fetch_array($global_query);
 
-if (isset($_POST['action']) && ($_POST['action'] == 'process')
-    && isset($_POST['formid']) && ($_POST['formid'] == $sessiontoken)) {
+if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid'])
+    && ($_POST['formid'] == $sessiontoken)) {
     if (isset($_POST['product_global']) && is_numeric($_POST['product_global'])) {
         $product_global = tep_db_prepare_input($_POST['product_global']);
     } else {
@@ -83,14 +83,16 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <h1><?php echo HEADING_TITLE; ?></h1>
 </div>
 
-<?php echo tep_draw_form('account_notifications',
+<?php
+echo tep_draw_form('account_notifications',
     tep_href_link(FILENAME_ACCOUNT_NOTIFICATIONS, '', 'SSL'), 'post',
-    'class="form-horizontal"', true).tep_draw_hidden_field('action', 'process'); ?>
+    'class="form-horizontal"', true).tep_draw_hidden_field('action', 'process');
+?>
 
 <div class="contentContainer">
 
     <div class="alert alert-info">
-                        <?php echo MY_NOTIFICATIONS_DESCRIPTION; ?>
+<?php echo MY_NOTIFICATIONS_DESCRIPTION; ?>
     </div>
 
     <div class="contentText">
@@ -99,9 +101,12 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <div class="col-sm-8">
                 <div class="checkbox">
                     <label>
-    <?php echo tep_draw_checkbox_field('product_global', '1',
-        (($global['global_product_notifications'] == '1') ? true : false)); ?>
-    <?php if (tep_not_null(GLOBAL_NOTIFICATIONS_DESCRIPTION)) echo GLOBAL_NOTIFICATIONS_DESCRIPTION; ?>
+                        <?php echo tep_draw_checkbox_field('product_global',
+                            '1',
+                            (($global['global_product_notifications'] == '1') ? true
+                                    : false));
+                        ?>
+<?php if (tep_not_null(GLOBAL_NOTIFICATIONS_DESCRIPTION)) echo GLOBAL_NOTIFICATIONS_DESCRIPTION; ?>
                     </label>
                 </div>
             </div>
@@ -128,47 +133,50 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         <label class="control-label col-sm-4"><?php echo MY_NOTIFICATIONS_TITLE; ?></label>
                         <div class="col-sm-8">
 
-                            <?php
-                            $products_query = tep_db_query("select pd.products_id, pd.products_name from ".TABLE_PRODUCTS_DESCRIPTION." pd, ".TABLE_PRODUCTS_NOTIFICATIONS." pn where pn.customers_id = '".(int) $customer_id."' and pn.products_id = pd.products_id and pd.language_id = '".(int) $languages_id."' order by pd.products_name");
-                            while ($products       = tep_db_fetch_array($products_query)) {
-                                ?>
+                                    <?php
+                                    $products_query = tep_db_query("select pd.products_id, pd.products_name from ".TABLE_PRODUCTS_DESCRIPTION." pd, ".TABLE_PRODUCTS_NOTIFICATIONS." pn where pn.customers_id = '".(int) $customer_id."' and pn.products_id = pd.products_id and pd.language_id = '".(int) $languages_id."' order by pd.products_name");
+                                    while ($products       = tep_db_fetch_array($products_query)) {
+                                        ?>
                                 <div class="checkbox">
                                     <label>
-            <?php echo tep_draw_checkbox_field('products['.$counter.']',
-                $products['products_id'], true).$products['products_name']; ?>
+                                <?php echo tep_draw_checkbox_field('products['.$counter.']',
+                                    $products['products_id'], true).$products['products_name'];
+                                ?>
                                     </label>
                                 </div>
-                    <?php
-                }
-                ?>
+            <?php
+        }
+        ?>
 
                         </div>
                     </div>
                 </div>
 
-                <?php
-            } else {
-                ?>
+        <?php
+    } else {
+        ?>
 
                 <div class="alert alert-warning">
-            <?php echo NOTIFICATIONS_NON_EXISTING; ?>
+        <?php echo NOTIFICATIONS_NON_EXISTING; ?>
                 </div>
 
-        <?php
-    }
-    ?>
+            <?php
+        }
+        ?>
 
         </div>
 
-    <?php
-}
-?>
+                <?php
+            }
+            ?>
 
     <div class="buttonSet row">
         <div class="col-xs-6"><?php echo tep_draw_button(IMAGE_BUTTON_BACK,
-    'fa fa-angle-left', tep_href_link(FILENAME_ACCOUNT, '', 'SSL')); ?></div>
+                'fa fa-angle-left', tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+            ?></div>
         <div class="col-xs-6 text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-angle-right', null, 'primary', null, 'btn-success'); ?></div>
+                'fa fa-angle-right', null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 </div>
 

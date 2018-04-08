@@ -90,7 +90,7 @@ if ($messageStack->size('login') > 0) {
 
 <div id="loginModules">
     <div class="row">
-<?php echo $page_content; ?>
+        <?php echo $page_content; ?>
     </div>
 </div>
 

@@ -142,9 +142,11 @@ echo tep_draw_form('checkout_confirmation', $form_action_url, 'post');
     <div class="contentText">
 
         <div class="panel panel-default">
-            <div class="panel-heading"><?php echo '<strong>'.HEADING_PRODUCTS.'</strong>'.tep_draw_button(TEXT_EDIT,
-    'fa fa-edit', tep_href_link(FILENAME_SHOPPING_CART), NULL, NULL,
-    'pull-right btn-info btn-xs'); ?></div>
+            <div class="panel-heading"><?php
+                echo '<strong>'.HEADING_PRODUCTS.'</strong>'.tep_draw_button(TEXT_EDIT,
+                    'fa fa-edit', tep_href_link(FILENAME_SHOPPING_CART), NULL,
+                    NULL, 'pull-right btn-info btn-xs');
+                ?></div>
             <div class="panel-body">
                 <table width="100%" class="table-hover order_confirmation">
                     <tbody>
@@ -186,14 +188,14 @@ echo tep_draw_form('checkout_confirmation', $form_action_url, 'post');
                 <hr>
                 <table width="100%" class="pull-right">
 
-<?php
-if (MODULE_ORDER_TOTAL_INSTALLED) {
-    /*     * * Altered for CCGV ** */
-    $order_total_modules->process();
-    /*     * * EOF alteration for CCGV ** */
-    echo $order_total_modules->output();
-}
-?>
+                    <?php
+                    if (MODULE_ORDER_TOTAL_INSTALLED) {
+                        /*                         * * Altered for CCGV ** */
+                        $order_total_modules->process();
+                        /*                         * * EOF alteration for CCGV ** */
+                        echo $order_total_modules->output();
+                    }
+                    ?>
 
                 </table>
             </div>
@@ -211,51 +213,64 @@ if (MODULE_ORDER_TOTAL_INSTALLED) {
             ?>
             <div class="col-sm-4">
                 <div class="panel panel-info">
-                    <div class="panel-heading"><?php echo '<strong>'.HEADING_DELIVERY_ADDRESS.'</strong>'.tep_draw_button(TEXT_EDIT,
-            'fa fa-edit',
-            tep_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'), NULL,
-            NULL, 'pull-right btn-info btn-xs'); ?></div>
+                    <div class="panel-heading"><?php
+                        echo '<strong>'.HEADING_DELIVERY_ADDRESS.'</strong>'.tep_draw_button(TEXT_EDIT,
+                            'fa fa-edit',
+                            tep_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS,
+                                '', 'SSL'), NULL, NULL,
+                            'pull-right btn-info btn-xs');
+                        ?></div>
                     <div class="panel-body">
-    <?php echo tep_address_format($order->delivery['format_id'],
-        $order->delivery, 1, ' ', '<br />'); ?>
+            <?php echo tep_address_format($order->delivery['format_id'],
+                $order->delivery, 1, ' ', '<br />');
+            ?>
                     </div>
                 </div>
             </div>
-    <?php
-}
-?>
+                        <?php
+                    }
+                    ?>
         <div class="col-sm-4">
             <div class="panel panel-warning">
-                <div class="panel-heading"><?php echo '<strong>'.HEADING_BILLING_ADDRESS.'</strong>'.tep_draw_button(TEXT_EDIT,
-    'fa fa-edit', tep_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL'),
-    NULL, NULL, 'pull-right btn-info btn-xs'); ?></div>
+                <div class="panel-heading"><?php
+                    echo '<strong>'.HEADING_BILLING_ADDRESS.'</strong>'.tep_draw_button(TEXT_EDIT,
+                        'fa fa-edit',
+                        tep_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '',
+                            'SSL'), NULL, NULL, 'pull-right btn-info btn-xs');
+                    ?></div>
                 <div class="panel-body">
-<?php echo tep_address_format($order->billing['format_id'],
-    $order->billing, 1, ' ', '<br />'); ?>
+<?php echo tep_address_format($order->billing['format_id'], $order->billing, 1,
+    ' ', '<br />');
+?>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
-<?php
-if ($order->info['shipping_method']) {
-    ?>
+            <?php
+            if ($order->info['shipping_method']) {
+                ?>
                 <div class="panel panel-info">
-                    <div class="panel-heading"><?php echo '<strong>'.HEADING_SHIPPING_METHOD.'</strong>'.tep_draw_button(TEXT_EDIT,
-        'fa fa-edit', tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'),
-        NULL, NULL, 'pull-right btn-info btn-xs'); ?></div>
+                    <div class="panel-heading"><?php
+            echo '<strong>'.HEADING_SHIPPING_METHOD.'</strong>'.tep_draw_button(TEXT_EDIT,
+                'fa fa-edit',
+                tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'), NULL,
+                NULL, 'pull-right btn-info btn-xs');
+            ?></div>
                     <div class="panel-body">
-        <?php echo $order->info['shipping_method']; ?>
+    <?php echo $order->info['shipping_method']; ?>
                     </div>
                 </div>
     <?php
 }
 ?>
             <div class="panel panel-warning">
-                <div class="panel-heading"><?php echo '<strong>'.HEADING_PAYMENT_METHOD.'</strong>'.tep_draw_button(TEXT_EDIT,
-    'fa fa-edit', tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'), NULL,
-    NULL, 'pull-right btn-info btn-xs'); ?></div>
+                <div class="panel-heading"><?php
+    echo '<strong>'.HEADING_PAYMENT_METHOD.'</strong>'.tep_draw_button(TEXT_EDIT,
+        'fa fa-edit', tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'), NULL,
+        NULL, 'pull-right btn-info btn-xs');
+    ?></div>
                 <div class="panel-body">
-        <?php echo $order->info['payment_method']; ?>
+<?php echo $order->info['payment_method']; ?>
                 </div>
             </div>
         </div>
@@ -273,45 +288,48 @@ if ($order->info['shipping_method']) {
             <h2><?php echo HEADING_PAYMENT_INFORMATION; ?></h2>
 
             <div class="contentText row">
+                <?php
+                if (tep_not_null($confirmation['title'])) {
+                    echo '<div class="col-sm-6">';
+                    echo '  <div class="alert alert-danger">';
+                    echo $confirmation['title'];
+                    echo '  </div>';
+                    echo '</div>';
+                }
+                ?>
             <?php
-            if (tep_not_null($confirmation['title'])) {
+            if (isset($confirmation['fields'])) {
                 echo '<div class="col-sm-6">';
-                echo '  <div class="alert alert-danger">';
-                echo $confirmation['title'];
+                echo '  <div class="alert alert-info">';
+                for ($i = 0, $n = sizeof($confirmation['fields']); $i < $n; $i++) {
+                    echo $confirmation['fields'][$i]['title'].' '.$confirmation['fields'][$i]['field'];
+                }
                 echo '  </div>';
                 echo '</div>';
             }
             ?>
-        <?php
-        if (isset($confirmation['fields'])) {
-            echo '<div class="col-sm-6">';
-            echo '  <div class="alert alert-info">';
-            for ($i = 0, $n = sizeof($confirmation['fields']); $i < $n; $i++) {
-                echo $confirmation['fields'][$i]['title'].' '.$confirmation['fields'][$i]['field'];
-            }
-            echo '  </div>';
-            echo '</div>';
-        }
-        ?>
             </div>
             <div class="clearfix"></div>
 
-                    <?php
-                }
+                <?php
             }
+        }
 
-            if (tep_not_null($order->info['comments'])) {
-                ?>
+        if (tep_not_null($order->info['comments'])) {
+            ?>
         <hr>
 
-        <h2><?php echo '<strong>'.HEADING_ORDER_COMMENTS.'</strong>'.tep_draw_button(TEXT_EDIT,
+        <h2><?php
+                echo '<strong>'.HEADING_ORDER_COMMENTS.'</strong>'.tep_draw_button(TEXT_EDIT,
                     'fa fa-edit',
                     tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'), NULL,
-                    NULL, 'pull-right btn-info btn-xs'); ?></h2>
+                    NULL, 'pull-right btn-info btn-xs');
+                ?></h2>
 
         <blockquote>
     <?php echo nl2br(tep_output_string_protected($order->info['comments'])).tep_draw_hidden_field('comments',
-        $order->info['comments']); ?>
+        $order->info['comments']);
+    ?>
         </blockquote>
 
     <?php
@@ -320,13 +338,13 @@ if ($order->info['shipping_method']) {
 
     <div class="buttonSet">
         <div class="text-right">
-<?php
-if (is_array($payment_modules->modules)) {
-    echo $payment_modules->process_button();
-}
-echo tep_draw_button(IMAGE_BUTTON_CONFIRM_ORDER, 'fa fa-ok', null, 'primary',
-    null, 'btn-success');
-?>
+                          <?php
+                          if (is_array($payment_modules->modules)) {
+                              echo $payment_modules->process_button();
+                          }
+                          echo tep_draw_button(IMAGE_BUTTON_CONFIRM_ORDER,
+                              'fa fa-ok', null, 'primary', null, 'btn-success');
+                          ?>
         </div>
     </div>
 
@@ -337,15 +355,19 @@ echo tep_draw_button(IMAGE_BUTTON_CONFIRM_ORDER, 'fa fa-ok', null, 'primary',
             <div class="stepwizard-row">
                 <div class="stepwizard-step">
                     <a href="<?php echo tep_href_link(FILENAME_CHECKOUT_SHIPPING,
-    '', 'SSL'); ?>"><button type="button" class="btn btn-default btn-circle">1</button></a>
+                              '', 'SSL');
+                          ?>"><button type="button" class="btn btn-default btn-circle">1</button></a>
                     <p><a href="<?php echo tep_href_link(FILENAME_CHECKOUT_SHIPPING,
-    '', 'SSL'); ?>"><?php echo CHECKOUT_BAR_DELIVERY; ?></a></p>
+                              '', 'SSL');
+                          ?>"><?php echo CHECKOUT_BAR_DELIVERY; ?></a></p>
                 </div>
                 <div class="stepwizard-step">
                     <a href="<?php echo tep_href_link(FILENAME_CHECKOUT_PAYMENT,
-    '', 'SSL'); ?>"><button type="button" class="btn btn-default btn-circle">2</button></a>
+    '', 'SSL');
+                          ?>"><button type="button" class="btn btn-default btn-circle">2</button></a>
                     <p><a href="<?php echo tep_href_link(FILENAME_CHECKOUT_PAYMENT,
-    '', 'SSL'); ?>"><?php echo CHECKOUT_BAR_PAYMENT; ?></a></p>
+    '', 'SSL');
+                          ?>"><?php echo CHECKOUT_BAR_PAYMENT; ?></a></p>
                 </div>
                 <div class="stepwizard-step">
                     <button type="button" class="btn btn-primary btn-circle">3</button>

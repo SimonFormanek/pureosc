@@ -38,6 +38,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
 }
 
 require_once DIR_FS_ADMIN . '/../vendor/autoload.php';
+\Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
 
 // some code to solve compatibility issues
 require(DIR_WS_FUNCTIONS.'compatibility.php');
@@ -295,3 +296,6 @@ require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');
 $breadcrumb = new breadcrumb;
 
 $messageStack = new messageStack;
+$adminLog = new PureOSC\CustomerLog();
+$adminLog->setAdministratorID($_SESSION['admin']['id']);
+

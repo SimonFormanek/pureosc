@@ -187,7 +187,6 @@ define('ENTRY_EMAIL_ADDRESS', 'E-Mail Address:',true);
 define('ENTRY_EMAIL_ADDRESS_ERROR', '&nbsp;<span class="errorText">min ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' chars</span>',true);
 define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', '&nbsp;<span class="errorText">The email address doesn\'t appear to be valid!</span>',true);
 define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', '&nbsp;<span class="errorText">This email address already exists!</span>',true);
-define('ENTRY_COMPANY', 'Company name:',true);
 define('ENTRY_STREET_ADDRESS', 'Street Address:',true);
 define('ENTRY_STREET_ADDRESS_ERROR', '&nbsp;<span class="errorText">min ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' chars</span>',true);
 define('ENTRY_SUBURB', 'Suburb:',true);
@@ -377,8 +376,6 @@ define('BOX_CUSTOMERS_CREATE_ACCOUNT', 'Create Customer',true);
 define('IMAGE_CONTINUE', 'Continue',true);
 // EOF Create Account
 //VAT number
-define('ENTRY_VAT_NUMBER', 'VAT Number:',true);
-define('ENTRY_COMPANY_NUMBER', 'Company Number:',true);
 /**** BEGIN ARTICLE MANAGER ****/
 define('BOX_HEADING_ARTICLES', 'Article Manager');
 define('BOX_TOPICS_ARTICLES', 'Topics/Articles');

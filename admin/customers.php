@@ -21,6 +21,9 @@ if (tep_not_null($action)) {
     switch ($action) {
         case 'update':
             $customers_id            = tep_db_prepare_input($_GET['cID']);
+            $customerator = new \PureOSC\Admin\Customers(intval($customers_id));
+            $customerator->loadFromSQL(intval($customers_id));
+            $adminLog->setCustomerID($customers_id);
             $customers_firstname     = tep_db_prepare_input($_POST['customers_firstname']);
             $customers_lastname      = tep_db_prepare_input($_POST['customers_lastname']);
             $customers_email_address = tep_db_prepare_input($_POST['customers_email_address']);
@@ -206,6 +209,39 @@ if (tep_not_null($action)) {
                 tep_db_perform(TABLE_ADDRESS_BOOK, $sql_data_array, 'update',
                     "customers_id = '".(int) $customers_id."' and address_book_id = '".(int) $default_address_id."'");
 
+
+        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+
+            $nazev = strlen($company) ? $company : $customers_firstname.' '.$customers_lastname;
+
+            $adresar = new \PureOSC\flexibee\Adresar('ext:customers:'.$customers_id);
+            $originalData = $adresar->getData();
+        
+            $adresar->setData([
+                'id' => 'ext:customers:'.$customers_id,
+                'poznam' => 'zalozeno z eshopu',
+                'nazev' => $nazev,
+                'email' => $customers_email_address,
+                'ic' => $entry_company_number,
+                'dic' => $entry_vat_number,
+                'ulice' => $entry_street_address,
+                'mesto' => $entry_city,
+                'psc' => $entry_postcode,
+//            'stat' => $country,
+                'tel' => $customers_telephone,
+                'fax' => $customers_fax,
+            ],true);
+
+            $adresar->insertToFlexiBee();
+            
+            if ($adresar->lastResponseCode == 201) {
+                $adminLog->logFlexiBeeChange($adresar,$originalData,['nazev', 'email', 'ic', 'dic']);
+            }
+        }
+
+         $adminLog->logMySQLChange($customerator->getData(), $sql_data_array, 'customers',
+                                       $customers_id, ['nentry_firstname', 'entry_lastname', 'entry_vat_number', 'entry_company_number', 'customers_email_address', 'customers_telephone', 'entry_street_address', 'customers_newsletter']);
+
                 tep_redirect(tep_href_link(FILENAME_CUSTOMERS,
                         tep_get_all_get_params(array('cID', 'action')).'cID='.$customers_id));
             } else if ($error == true) {
@@ -236,13 +272,18 @@ if (tep_not_null($action)) {
             tep_db_query("delete from ".TABLE_CUSTOMERS_BASKET_ATTRIBUTES." where customers_id = '".(int) $customers_id."'");
             tep_db_query("delete from ".TABLE_WHOS_ONLINE." where customer_id = '".(int) $customers_id."'");
 
+            $adminLog->logEvent('Remove what?', 'Customer Data', null, PureOSC\CustomerLog::sqlUri('customers', $customers_id, 'all'),$customers_id);
+
             tep_redirect(tep_href_link(FILENAME_CUSTOMERS,
                     tep_get_all_get_params(array('cID', 'action'))));
             break;
         default:
+            $customers_id            = tep_db_prepare_input($_GET['cID']);
+
             $customers_query = tep_db_query("select c.customers_id, c.customers_gender, c.customers_firstname, c.customers_lastname, c.customers_dob, c.customers_email_address, a.entry_company, a.entry_vat_number, a.entry_company_number, a.entry_street_address, a.entry_suburb, a.entry_postcode, a.entry_city, a.entry_state, a.entry_zone_id, a.entry_country_id, c.customers_telephone, c.customers_fax, c.customers_newsletter, c.customers_default_address_id from ".TABLE_CUSTOMERS." c left join ".TABLE_ADDRESS_BOOK." a on c.customers_default_address_id = a.address_book_id where a.customers_id = c.customers_id and c.customers_id = '".(int) $_GET['cID']."'");
             $customers       = tep_db_fetch_array($customers_query);
             $cInfo           = new objectInfo($customers);
+            $adminLog->logEvent('See what?', 'Customer Data', null, PureOSC\CustomerLog::sqlUri('customers', $customers_id, 'all'),$customers_id);
     }
 }
 
@@ -508,7 +549,7 @@ if ($action == 'edit' || $action == 'update') {
                     <tr>
                         <td class="formArea"><table border="0" cellspacing="2" cellpadding="2">
                                 <tr>
-                                    <td class="main"><?php echo ENTRY_COMPANY; ?></td>
+                                    <td class="main"><?php echo _('Company Name'); ?></td>
                                     <td class="main">
                                         <?php
                                         if ($error == true) {
@@ -522,7 +563,7 @@ if ($action == 'edit' || $action == 'update') {
                                 </tr>
 
                                 <tr>
-                                    <td class="main"><?php echo ENTRY_VAT_NUMBER; ?></td>
+                                    <td class="main"><?php echo _('Vat number'); ?></td>
                                     <td class="main">
                                         <?php
                                         if ($error == true) {
@@ -530,6 +571,20 @@ if ($action == 'edit' || $action == 'update') {
                                         } else {
                                             echo tep_draw_input_field('entry_vat_number',
                                                 $cInfo->entry_vat_number,
+                                                'maxlength="32"');
+                                        }
+                                        ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="main"><?php echo _('Company number');; ?></td>
+                                    <td class="main">
+                                        <?php
+                                        if ($error == true) {
+                                            echo $cInfo->entry_company_number.tep_draw_hidden_field('entry_company_number');
+                                        } else {
+                                            echo tep_draw_input_field('entry_company_number',
+                                                $cInfo->entry_company_number,
                                                 'maxlength="32"');
                                         }
                                         ?></td>

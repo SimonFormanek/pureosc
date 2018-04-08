@@ -51,7 +51,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <div class="panel-body">
                 <p><?php echo TEXT_SUCCESS; ?></p>
                 <p><?php echo sprintf(TEXT_CONTACT_STORE_OWNER,
-                    tep_href_link(FILENAME_CONTACT_US)); ?></p>
+                    tep_href_link(FILENAME_CONTACT_US));
+                ?></p>
             </div>
         </div>
 
@@ -82,9 +83,12 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
         <div class="contentContainer">
             <div class="buttonSet">
-                <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-            'glyphicon glyphicon-chevron-right',
-            tep_href_link(FILENAME_DEFAULT), 'primary', null, 'btn-success'); ?></div>
+                <div class="text-right"><?php
+                    echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
+                        'glyphicon glyphicon-chevron-right',
+                        tep_href_link(FILENAME_DEFAULT), 'primary', null,
+                        'btn-success');
+                    ?></div>
             </div>
         </div>
     </div>

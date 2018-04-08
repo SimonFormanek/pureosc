@@ -115,8 +115,8 @@ if (defined('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING') && (MODULE_ORDER_TOTAL_
 }
 
 // process the selected shipping method
-if (isset($_POST['action']) && ($_POST['action'] == 'process')
-    && isset($_POST['formid']) && ($_POST['formid'] == $sessiontoken)) {
+if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid'])
+    && ($_POST['formid'] == $sessiontoken)) {
     if (!tep_session_is_registered('comments'))
             tep_session_register('comments');
     if (tep_not_null($_POST['comments'])) {
@@ -127,8 +127,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')
             tep_session_register('shipping');
 
     if ((tep_count_shipping_modules() > 0) || ($free_shipping == true)) {
-        if ((isset($_POST['shipping'])) && (strpos($_POST['shipping'],
-                '_'))) {
+        if ((isset($_POST['shipping'])) && (strpos($_POST['shipping'], '_'))) {
             $shipping = $_POST['shipping'];
 
             list($module, $method) = explode('_', $shipping);
@@ -199,9 +198,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <h1><?php echo HEADING_TITLE; ?></h1>
 </div>
 
-<?php echo tep_draw_form('checkout_address',
+<?php
+echo tep_draw_form('checkout_address',
     tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'), 'post',
-    'class="form-horizontal"', true).tep_draw_hidden_field('action', 'process'); ?>
+    'class="form-horizontal"', true).tep_draw_hidden_field('action', 'process');
+?>
 
 <div class="contentContainer">
     <h2><?php echo TABLE_HEADING_SHIPPING_ADDRESS; ?></h2>
@@ -212,9 +213,12 @@ require(DIR_WS_INCLUDES.'template_top.php');
 <?php echo TEXT_CHOOSE_SHIPPING_DESTINATION; ?>
                 <div class="clearfix"></div>
                 <div class="pull-right">
-    <?php echo tep_draw_button(IMAGE_BUTTON_CHANGE_ADDRESS,
-        'fa fa-home',
-        tep_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL')); ?>
+                    <?php
+                    echo tep_draw_button(IMAGE_BUTTON_CHANGE_ADDRESS,
+                        'fa fa-home',
+                        tep_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '',
+                            'SSL'));
+                    ?>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -223,8 +227,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <div class="panel panel-primary">
                 <div class="panel-heading"><?php echo TITLE_SHIPPING_ADDRESS; ?></div>
                 <div class="panel-body">
-<?php echo tep_address_label($customer_id, $sendto, true, ' ',
-    '<br />'); ?>
+<?php echo tep_address_label($customer_id, $sendto, true, ' ', '<br />');
+?>
                 </div>
             </div>
         </div>
@@ -249,7 +253,7 @@ if (tep_count_shipping_modules() > 0) {
         <?php echo TEXT_CHOOSE_SHIPPING_METHOD; ?>
                         </div>
                         <div class="col-xs-4 text-right">
-                        <?php echo '<strong>'.TITLE_PLEASE_SELECT.'</strong>'; ?>
+        <?php echo '<strong>'.TITLE_PLEASE_SELECT.'</strong>'; ?>
                         </div>
                     </div>
                 </div>
@@ -263,9 +267,9 @@ if (tep_count_shipping_modules() > 0) {
                 <div class="alert alert-info"><?php echo TEXT_ENTER_SHIPPING_INFORMATION; ?></div>
             </div>
 
-                    <?php
-                }
-                ?>
+        <?php
+    }
+    ?>
 
         <div class="contentText">
             <table class="table table-striped table-condensed table-hover">
@@ -279,22 +283,23 @@ if (tep_count_shipping_modules() > 0) {
                         <div class="panel panel-success">
                             <div class="panel-heading"><strong><?php echo FREE_SHIPPING_TITLE; ?></strong>&nbsp;<?php echo $quotes[$i]['icon']; ?></div>
                             <div class="panel-body">
-                            <?php echo sprintf(FREE_SHIPPING_DESCRIPTION,
-                                $currencies->format(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)).tep_draw_hidden_field('shipping',
-                                'free_free'); ?>
+        <?php
+        echo sprintf(FREE_SHIPPING_DESCRIPTION,
+            $currencies->format(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)).tep_draw_hidden_field('shipping',
+            'free_free');
+        ?>
                             </div>
                         </div>
                     </div>
 
-                            <?php
-                        } else {
-                            for ($i = 0, $n = sizeof($quotes); $i < $n; $i++) {
-                                for ($j = 0, $n2 = sizeof($quotes[$i]['methods']); $j
-                                    < $n2; $j++) {
+                    <?php
+                } else {
+                    for ($i = 0, $n = sizeof($quotes); $i < $n; $i++) {
+                        for ($j = 0, $n2 = sizeof($quotes[$i]['methods']); $j < $n2; $j++) {
 // set the radio button to be checked if it is the method chosen
-                                    $checked = (($quotes[$i]['id'].'_'.$quotes[$i]['methods'][$j]['id']
-                                        == $shipping['id']) ? true : false);
-                                    ?>
+                            $checked = (($quotes[$i]['id'].'_'.$quotes[$i]['methods'][$j]['id']
+                                == $shipping['id']) ? true : false);
+                            ?>
                             <tr class="table-selection">
                                 <td>
                                     <strong><?php echo $quotes[$i]['module']; ?></strong>
@@ -303,50 +308,53 @@ if (tep_count_shipping_modules() > 0) {
                                             echo '&nbsp;'.$quotes[$i]['icon'];
                                     ?>
 
-                <?php
-                if (isset($quotes[$i]['error'])) {
-                    echo '<div class="help-block">'.$quotes[$i]['error'].'</div>';
-                }
-                ?>
-
-                <?php
-                if (tep_not_null($quotes[$i]['methods'][$j]['title']))
-                        echo '<div class="help-block">'.$quotes[$i]['methods'][$j]['title'].'</div>';
-                ?>
-                                </td>
-
-                <?php
-                if (($n > 1) || ($n2 > 1)) {
-                    ?>
-
-                                    <td align="right">
-                                <?php
-                                if (isset($quotes[$i]['error'])) {
-                                    // nothing
-                                    echo '&nbsp;';
-                                } else {
-                                    echo $currencies->format(tep_add_tax($quotes[$i]['methods'][$j]['cost'],
-                                            (isset($quotes[$i]['tax']) ? $quotes[$i]['tax']
-                                                    : 0)));
-                                    ?>&nbsp;&nbsp;<?php
-                            echo tep_draw_radio_field('shipping',
-                                $quotes[$i]['id'].'_'.$quotes[$i]['methods'][$j]['id'],
-                                $checked, 'required aria-required="true"');
-                        }
-                        ?>
-                                    </td>
-
                                     <?php
-                                } else {
+                                    if (isset($quotes[$i]['error'])) {
+                                        echo '<div class="help-block">'.$quotes[$i]['error'].'</div>';
+                                    }
                                     ?>
 
-                                    <td align="right"><?php echo $currencies->format(tep_add_tax($quotes[$i]['methods'][$j]['cost'],
-                            (isset($quotes[$i]['tax']) ? $quotes[$i]['tax'] : 0))).tep_draw_hidden_field('shipping',
-                        $quotes[$i]['id'].'_'.$quotes[$i]['methods'][$j]['id']); ?></td>
+                                <?php
+                                if (tep_not_null($quotes[$i]['methods'][$j]['title']))
+                                        echo '<div class="help-block">'.$quotes[$i]['methods'][$j]['title'].'</div>';
+                                ?>
+                                </td>
 
-                    <?php
-                }
-                ?>
+                                    <?php
+                                    if (($n > 1) || ($n2 > 1)) {
+                                        ?>
+
+                                    <td align="right">
+                                        <?php
+                                        if (isset($quotes[$i]['error'])) {
+                                            // nothing
+                                            echo '&nbsp;';
+                                        } else {
+                                            echo $currencies->format(tep_add_tax($quotes[$i]['methods'][$j]['cost'],
+                                                    (isset($quotes[$i]['tax']) ? $quotes[$i]['tax']
+                                                            : 0)));
+                                            ?>&nbsp;&nbsp;<?php
+                        echo tep_draw_radio_field('shipping',
+                            $quotes[$i]['id'].'_'.$quotes[$i]['methods'][$j]['id'],
+                            $checked, 'required aria-required="true"');
+                    }
+                                        ?>
+                                    </td>
+
+                                        <?php
+                                    } else {
+                                        ?>
+
+                                    <td align="right"><?php
+                                    echo $currencies->format(tep_add_tax($quotes[$i]['methods'][$j]['cost'],
+                                            (isset($quotes[$i]['tax']) ? $quotes[$i]['tax']
+                                                    : 0))).tep_draw_hidden_field('shipping',
+                                        $quotes[$i]['id'].'_'.$quotes[$i]['methods'][$j]['id']);
+                                    ?></td>
+
+                                <?php
+                            }
+                            ?>
 
                             </tr>
 
@@ -380,7 +388,8 @@ echo tep_draw_textarea_field('comments', 'soft', 60, 5, $comments,
 
     <div class="buttonSet">
         <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-angle-right', null, 'primary', null, 'btn-success'); ?></div>
+    'fa fa-angle-right', null, 'primary', null, 'btn-success');
+?></div>
     </div>
 
     <div class="clearfix"></div>

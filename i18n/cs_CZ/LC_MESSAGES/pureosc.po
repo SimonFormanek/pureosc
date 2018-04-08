@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
-"POT-Creation-Date: 2018-03-30 22:21+0200\n"
-"PO-Revision-Date: 2018-03-30 22:32+0200\n"
+"POT-Creation-Date: 2018-04-08 10:42+0200\n"
+"PO-Revision-Date: 2018-04-08 10:42+0200\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -16,6 +16,67 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: vendor\n"
 
+#: admin/create_account.php:361 catalog/admin/create_account.php:361
+msgid "New Customer"
+msgstr "Nový zákazník"
+
+#: admin/create_account.php:374 catalog/account_edit.php:151
+#: catalog/account_password.php:87 catalog/account_pwa.php:272
+#: catalog/admin/create_account.php:374 catalog/contact_us.php:93
+#: catalog/create_account.php:409
+#: catalog/ext/modules/content/account/set_password.php:80
+#: catalog/includes/modules/address_book_details.php:16
+#: catalog/tell_a_friend.php:165
+msgid "Requied Information"
+msgstr ""
+
+#: admin/create_account.php:476 admin/create_account.php:480
+#: admin/customers.php:552 admin/edit_orders.php:1089
+#: admin/edit_orders.php:1206 admin/edit_orders.php:1312
+#: admin/includes/modules/account_details.php:202
+#: admin/includes/modules/create_order_details.php:71
+#: catalog/account_pwa.php:363 catalog/account_pwa.php:367
+#: catalog/admin/create_account.php:476 catalog/admin/create_account.php:480
+#: catalog/admin/customers.php:552 catalog/admin/edit_orders.php:1089
+#: catalog/admin/edit_orders.php:1206 catalog/admin/edit_orders.php:1312
+#: catalog/admin/includes/modules/account_details.php:202
+#: catalog/admin/includes/modules/create_order_details.php:71
+#: catalog/create_account.php:511 catalog/create_account.php:515
+#: catalog/includes/modules/address_book_details.php:72
+#: catalog/includes/modules/address_book_details.php:75
+#: catalog/includes/modules/checkout_new_address.php:70
+#: catalog/includes/modules/checkout_new_address.php:73
+msgid "Company Name"
+msgstr "Název firmy"
+
+#: admin/create_account.php:486 admin/create_account.php:490
+#: catalog/admin/create_account.php:486 catalog/admin/create_account.php:490
+msgid "Company Number"
+msgstr "Ičo"
+
+#: admin/create_account.php:496 admin/create_account.php:500
+#: admin/edit_orders.php:1094 admin/edit_orders.php:1211
+#: admin/edit_orders.php:1317 catalog/account_pwa.php:373
+#: catalog/account_pwa.php:377 catalog/admin/create_account.php:496
+#: catalog/admin/create_account.php:500 catalog/admin/edit_orders.php:1094
+#: catalog/admin/edit_orders.php:1211 catalog/admin/edit_orders.php:1317
+#: catalog/create_account.php:521 catalog/create_account.php:525
+#: catalog/includes/modules/address_book_details.php:80
+#: catalog/includes/modules/address_book_details.php:83
+#: catalog/includes/modules/checkout_new_address.php:78
+#: catalog/includes/modules/checkout_new_address.php:81
+msgid "Vat Number"
+msgstr "DIČ"
+
+#: admin/customers.php:566 catalog/admin/customers.php:566
+msgid "Vat number"
+msgstr "Dič"
+
+#: admin/customers.php:580 catalog/admin/customers.php:580
+#: catalog/create_account.php:531
+msgid "Company number"
+msgstr "Ičo"
+
 #: admin/flexibeesync.php:27 catalog/admin/flexibeesync.php:27
 msgid "FlexiBee sync"
 msgstr "FlexiBee synchronizace"
@@ -28,10 +89,6 @@ msgstr "PDF Faktura"
 msgid "ISDOC Invoice"
 msgstr "ISDOC Faktura"
 
-#: catalog/create_account.php:504
-msgid "Company number"
-msgstr "Ičo"
-
 #: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Cenik.php:38
 #: catalog/ext/flexibee/FakturaVydana.php:42
 msgid "FlexiBee import"
@@ -41,20 +98,20 @@ msgstr "Import z FlexiBee "
 msgid "Wrong call"
 msgstr "Špatné volání"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:15
+#: catalog/includes/classes/NewsletterConsentMailer.php:21
 msgid "Newsletter GDPR Consent"
 msgstr "GDPR Souhlas s odběrem novinek mailem"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:16
+#: catalog/includes/classes/NewsletterConsentMailer.php:22
 msgid "Dear Customer"
 msgstr "Vážený zálazníku,"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:17
+#: catalog/includes/classes/NewsletterConsentMailer.php:30
 #, php-format
 msgid "Would you like to subsribe to newsletter updates from %s ?"
 msgstr "Chcete se přihlásit k odběru emailových novinek z %s ?"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:20
+#: catalog/includes/classes/NewsletterConsentMailer.php:36
 msgid "Click here to Agree"
 msgstr "Klikněte zde pro vyjádření souhlasu"
 
@@ -78,9 +135,17 @@ msgstr "Souhlas se zasíláním novinek"
 msgid "Consent Recieved"
 msgstr "Souhlas byl přijat"
 
-#: catalog/newsletterconfirm.php:42
+#: catalog/newsletterconfirm.php:37
+msgid "Consent not recieved"
+msgstr "Souhlas nebyl přijat"
+
+#: catalog/newsletterconfirm.php:44
 msgid "Newsletter subscription consent was accepted"
 msgstr "Souhlas k odběru mailových novinek byl přijat"
+
+#: catalog/newsletterconfirm.php:44
+msgid "Newsletter subscription consent was not accepted"
+msgstr "Souhlas k odběru mailových novinek nebyl přijat"
 
 #: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
 #: catalog/admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6

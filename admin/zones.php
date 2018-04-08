@@ -41,8 +41,7 @@ if (tep_not_null($action)) {
 
             tep_db_query("delete from ".TABLE_ZONES." where zone_id = '".(int) $zone_id."'");
 
-            tep_redirect(tep_href_link(FILENAME_ZONES,
-                    'page='.$_GET['page']));
+            tep_redirect(tep_href_link(FILENAME_ZONES, 'page='.$_GET['page']));
             break;
     }
 }
@@ -56,7 +55,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -78,8 +78,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             $zones_query     = tep_db_query($zones_query_raw);
                             while ($zones           = tep_db_fetch_array($zones_query)) {
                                 if ((!isset($_GET['cID']) || (isset($_GET['cID'])
-                                    && ($_GET['cID'] == $zones['zone_id'])))
-                                    && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
+                                    && ($_GET['cID'] == $zones['zone_id']))) && !isset($cInfo)
+                                    && (substr($action, 0, 3) != 'new')) {
                                     $cInfo = new objectInfo($zones);
                                 }
 
@@ -95,37 +95,44 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableContent"><?php echo $zones['countries_name']; ?></td>
                                 <td class="dataTableContent"><?php echo $zones['zone_name']; ?></td>
                                 <td class="dataTableContent" align="center"><?php echo $zones['zone_code']; ?></td>
-                                <td class="dataTableContent" align="right"><?php if (isset($cInfo)
-                                    && is_object($cInfo) && ($zones['zone_id'] == $cInfo->zone_id)) {
-                                    echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
-                                        '');
-                                } else {
-                                    echo '<a href="'.tep_href_link(FILENAME_ZONES,
-                                        'page='.$_GET['page'].'&cID='.$zones['zone_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                                        IMAGE_ICON_INFO).'</a>';
-                                } ?>&nbsp;</td>
+                                <td class="dataTableContent" align="right"><?php
+                                    if (isset($cInfo) && is_object($cInfo) && ($zones['zone_id']
+                                        == $cInfo->zone_id)) {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                            '');
+                                    } else {
+                                        echo '<a href="'.tep_href_link(FILENAME_ZONES,
+                                            'page='.$_GET['page'].'&cID='.$zones['zone_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                            IMAGE_ICON_INFO).'</a>';
+                                    }
+                                    ?>&nbsp;</td>
                     </tr>
-    <?php
-}
-?>
+                    <?php
+                }
+                ?>
                 <tr>
                     <td colspan="4"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-                                <td class="smallText" valign="top"><?php echo $zones_split->display_count($zones_query_numrows,
-    MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-    TEXT_DISPLAY_NUMBER_OF_ZONES); ?></td>
-                                <td class="smallText" align="right"><?php echo $zones_split->display_links($zones_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $_GET['page']); ?></td>
+                                <td class="smallText" valign="top"><?php
+                echo $zones_split->display_count($zones_query_numrows,
+                    MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
+                    TEXT_DISPLAY_NUMBER_OF_ZONES);
+                ?></td>
+                                <td class="smallText" align="right"><?php
+                            echo $zones_split->display_links($zones_query_numrows,
+                                MAX_DISPLAY_SEARCH_RESULTS,
+                                MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+                            ?></td>
                             </tr>
-        <?php
-        if (empty($action)) {
-            ?>
+                                    <?php
+                                    if (empty($action)) {
+                                        ?>
                                 <tr>
-                                    <td class="smallText" colspan="2" align="right"><?php echo tep_draw_button(IMAGE_NEW_ZONE,
-            'plus',
-            tep_href_link(FILENAME_ZONES,
-                'page='.$_GET['page'].'&action=new')); ?></td>
+                                    <td class="smallText" colspan="2" align="right"><?php
+                                echo tep_draw_button(IMAGE_NEW_ZONE, 'plus',
+                                    tep_href_link(FILENAME_ZONES,
+                                        'page='.$_GET['page'].'&action=new'));
+                                ?></td>
                                 </tr>
             <?php
         }
@@ -142,8 +149,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 $heading[] = array('text' => '<strong>'.TEXT_INFO_HEADING_NEW_ZONE.'</strong>');
 
                 $contents   = array('form' => tep_draw_form('zones',
-                        FILENAME_ZONES,
-                        'page='.$_GET['page'].'&action=insert'));
+                        FILENAME_ZONES, 'page='.$_GET['page'].'&action=insert'));
                 $contents[] = array('text' => TEXT_INFO_INSERT_INTRO);
                 $contents[] = array('text' => '<br />'.TEXT_INFO_ZONES_NAME.'<br />'.tep_draw_input_field('zone_name'));
                 $contents[] = array('text' => '<br />'.TEXT_INFO_ZONES_CODE.'<br />'.tep_draw_input_field('zone_code'));
@@ -152,8 +158,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_SAVE,
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
-                        tep_href_link(FILENAME_ZONES,
-                            'page='.$_GET['page'])));
+                        tep_href_link(FILENAME_ZONES, 'page='.$_GET['page'])));
                 break;
             case 'edit':
                 $heading[]  = array('text' => '<strong>'.TEXT_INFO_HEADING_EDIT_ZONE.'</strong>');

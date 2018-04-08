@@ -132,12 +132,12 @@ require(DIR_WS_INCLUDES.'template_top.php');
         }
 
 
-        $heading  = array();
-        $contents = array();
+        $heading  = [];
+        $contents = [];
 
         switch ($action) {
             case 'edit':
-                $heading[] = array('text' => '<strong>'.$configuration_title.'</strong>');
+                $heading[] = ['text' => '<strong>'.$configuration_title.'</strong>'];
 
                 if ($cInfo->set_function) {
                     eval('$value_field = '.$cInfo->set_function.'"'.htmlspecialchars($cInfo->configuration_value).'");');
@@ -146,29 +146,29 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         $cInfo->configuration_value);
                 }
 
-                $contents   = array('form' => tep_draw_form('configuration',
+                $contents   = ['form' => tep_draw_form('configuration',
                         FILENAME_CONFIGURATION,
-                        'gID='.$_GET['gID'].'&cID='.$cInfo->configuration_id.'&action=save'));
-                $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
-                $contents[] = array('text' => '<br /><strong>'.$configuration_title.'</strong><br />'.$configuration_description.'<br />'.$value_field);
-                $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_SAVE,
+                        'gID='.$_GET['gID'].'&cID='.$cInfo->configuration_id.'&action=save')];
+                $contents[] = ['text' => TEXT_INFO_EDIT_INTRO];
+                $contents[] = ['text' => '<br /><strong>'.$configuration_title.'</strong><br />'.$configuration_description.'<br />'.$value_field];
+                $contents[] = ['align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_SAVE,
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_CONFIGURATION,
-                            'gID='.$_GET['gID'].'&cID='.$cInfo->configuration_id)));
+                            'gID='.$_GET['gID'].'&cID='.$cInfo->configuration_id))];
                 break;
             default:
                 if (isset($cInfo) && is_object($cInfo)) {
-                    $heading[] = array('text' => '<strong>'.$configuration_title.'</strong>');
+                    $heading[] = ['text' => '<strong>'.$configuration_title.'</strong>'];
 
-                    $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT,
+                    $contents[] = ['align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT,
                             'document',
                             tep_href_link(FILENAME_CONFIGURATION,
-                                'gID='.$_GET['gID'].'&cID='.$cInfo->configuration_id.'&action=edit')));
-                    $contents[] = array('text' => '<br />'.$configuration_description);
-                    $contents[] = array('text' => '<br />'.TEXT_INFO_DATE_ADDED.' '.tep_date_short($cInfo->date_added));
+                                'gID='.$_GET['gID'].'&cID='.$cInfo->configuration_id.'&action=edit'))];
+                    $contents[] = ['text' => '<br />'.$configuration_description];
+                    $contents[] = ['text' => '<br />'.TEXT_INFO_DATE_ADDED.' '.tep_date_short($cInfo->date_added)];
                     if (tep_not_null($cInfo->last_modified))
-                            $contents[] = array('text' => TEXT_INFO_LAST_MODIFIED.' '.tep_date_short($cInfo->last_modified));
+                            $contents[] = ['text' => TEXT_INFO_LAST_MODIFIED.' '.tep_date_short($cInfo->last_modified)];
                 }
                 break;
         }

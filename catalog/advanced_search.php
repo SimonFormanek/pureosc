@@ -20,8 +20,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 
 <script src="includes/general.js"></script>
-    <script><!--
-    function check_form() {
+<script><!--
+function check_form() {
         var error_message = "<?php echo JS_ERROR; ?>";
         var error_found = false;
         var error_field;
@@ -113,9 +113,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
     }
     ?>
 
-    <?php echo tep_draw_form('advanced_search',
+    <?php
+    echo tep_draw_form('advanced_search',
         tep_href_link(FILENAME_ADVANCED_SEARCH_RESULT, '', 'NONSSL', false),
-        'get', 'class="form-horizontal" onsubmit="return check_form(this);"').tep_hide_session_id(); ?>
+        'get', 'class="form-horizontal" onsubmit="return check_form(this);"').tep_hide_session_id();
+    ?>
 
     <div class="contentContainer">
 
@@ -127,7 +129,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     echo tep_draw_input_field('keywords', '',
                         'required aria-required="true" id="inputKeywords" placeholder="'.TEXT_SEARCH_PLACEHOLDER.'"',
                         'search');
-                    echo FORM_REQUIRED_INPUT;
+                    echo _('Required');
                     echo tep_draw_hidden_field('search_in_description', '1');
                     ?>
                 </div>
@@ -136,7 +138,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <div class="buttonSet row">
                 <div class="col-xs-6"><a data-toggle="modal" href="#helpSearch" class="btn btn-primary"><?php echo TEXT_SEARCH_HELP_LINK; ?></a></div>
                 <div class="col-xs-6 text-right"><?php echo tep_draw_button(IMAGE_BUTTON_SEARCH,
-                        'fa fa-search', null, 'primary', null, 'btn-success'); ?></div>
+                        'fa fa-search', null, 'primary', null, 'btn-success');
+                    ?></div>
             </div>
 
             <div class="modal fade" id="helpSearch" tabindex="-1" role="dialog" aria-labelledby="helpSearchLabel" aria-hidden="true">
@@ -158,11 +161,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <div class="form-group">
                 <label for="entryCategories" class="control-label col-sm-3"><?php echo ENTRY_CATEGORIES; ?></label>
                 <div class="col-sm-9">
-<?php
-echo tep_draw_pull_down_menu('categories_id',
-    tep_get_categories(array(array('id' => '', 'text' => TEXT_ALL_CATEGORIES))),
-    NULL, 'id="entryCategories"');
-?>
+                    <?php
+                    echo tep_draw_pull_down_menu('categories_id',
+                        tep_get_categories(array(array('id' => '', 'text' => TEXT_ALL_CATEGORIES))),
+                        NULL, 'id="entryCategories"');
+                    ?>
                 </div>
             </div>
             <div class="form-group">
@@ -170,8 +173,9 @@ echo tep_draw_pull_down_menu('categories_id',
                 <div class="col-sm-9">
                     <div class="checkbox">
                         <label>
-                    <?php echo tep_draw_checkbox_field('inc_subcat',
-                        '1', true, 'id="entryIncludeSubs"'); ?>
+<?php echo tep_draw_checkbox_field('inc_subcat', '1', true,
+    'id="entryIncludeSubs"');
+?>
                         </label>
                     </div>
                 </div>
@@ -189,10 +193,10 @@ echo tep_draw_pull_down_menu('categories_id',
             <div class="form-group">
                 <label for="PriceFrom" class="control-label col-sm-3"><?php echo ENTRY_PRICE_FROM; ?></label>
                 <div class="col-sm-9">
-                    <?php
-                    echo tep_draw_input_field('pfrom', '',
-                        'id="PriceFrom" placeholder="'.ENTRY_PRICE_FROM.'"');
-                    ?>
+<?php
+echo tep_draw_input_field('pfrom', '',
+    'id="PriceFrom" placeholder="'.ENTRY_PRICE_FROM.'"');
+?>
                 </div>
             </div>
             <div class="form-group">
@@ -217,8 +221,7 @@ echo tep_draw_input_field('dfrom', '',
                 <label for="dto" class="control-label col-sm-3"><?php echo ENTRY_DATE_TO; ?></label>
                 <div class="col-sm-9">
 <?php
-echo tep_draw_input_field('dto', '',
-    'id="dto" placeholder="'.ENTRY_DATE_TO.'"');
+echo tep_draw_input_field('dto', '', 'id="dto" placeholder="'.ENTRY_DATE_TO.'"');
 ?>
                 </div>
             </div>
