@@ -162,7 +162,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
 <div class="contentContainer">
 
-    <div class="inputRequirement text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></div>
+    <div class="inputRequirement text-right"><?php echo _('Requied Information'); ?></div>
 
     <h2><?php echo FORM_TITLE_CUSTOMER_DETAILS; ?></h2>
 
@@ -173,7 +173,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <?php
                 echo tep_draw_input_field('from_name', NULL,
                     'required aria-required="true" id="inputFromName" placeholder="'.FORM_FIELD_CUSTOMER_NAME.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 ?>
             </div>
         </div>
@@ -184,7 +184,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 echo tep_draw_input_field('from_email_address', NULL,
                     'required aria-required="true" id="inputFromEmail" placeholder="'.FORM_FIELD_CUSTOMER_EMAIL.'"',
                     'email');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 ?>
             </div>
         </div>
@@ -199,7 +199,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <?php
                 echo tep_draw_input_field('to_name', NULL,
                     'required aria-required="true" id="inputToName" placeholder="'.FORM_FIELD_FRIEND_NAME.'"');
-                echo FORM_REQUIRED_INPUT;
+                echo _('Required');
                 ?>
             </div>
         </div>
@@ -210,7 +210,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 echo tep_draw_input_field('to_email_address', NULL,
     'required aria-required="true" id="inputToEmail" placeholder="'.FORM_FIELD_FRIEND_EMAIL.'"',
     'email');
-echo FORM_REQUIRED_INPUT;
+echo _('Required');
 ?>
             </div>
         </div>
@@ -225,7 +225,7 @@ echo FORM_REQUIRED_INPUT;
 <?php
 echo tep_draw_textarea_field('message', 'soft', 40, 8, NULL,
     'required aria-required="true" id="inputMessage" placeholder="'.FORM_TITLE_FRIEND_MESSAGE.'"');
-echo FORM_REQUIRED_INPUT;
+echo _('Required');
 ?>
             </div>
         </div>

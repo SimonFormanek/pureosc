@@ -191,7 +191,6 @@ define('ENTRY_EMAIL_ADDRESS', 'E-Mail Adresa:',true);
 define('ENTRY_EMAIL_ADDRESS_ERROR', '&nbsp;<span class="errorText">min. ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' znaků</span>',true);
 define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', '&nbsp;<span class="errorText">Email není správně!</span>',true);
 define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', '&nbsp;<span class="errorText">Email již existuje!</span>',true);
-define('ENTRY_COMPANY', 'Jméno společnosti:',true);
 define('ENTRY_STREET_ADDRESS', 'Ulice:',true);
 define('ENTRY_STREET_ADDRESS_ERROR', '&nbsp;<span class="errorText">min. ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' znaků</span>',true);
 define('ENTRY_SUBURB', 'Číslo:',true);
@@ -380,8 +379,6 @@ define('BOX_CUSTOMERS_CREATE_ACCOUNT', 'Vytvořit zákazníka',true);
 define('IMAGE_CONTINUE', 'Pokračovat',true);
 // EOF Create Account
 //VAT number
-define('ENTRY_VAT_NUMBER', 'DIČ:',true);
-define('ENTRY_COMPANY_NUMBER', 'DIČ:',true);
 /**** BEGIN ARTICLE MANAGER ****/
 define('BOX_HEADING_ARTICLES', 'Manager článků',true);
 define('BOX_TOPICS_ARTICLES', 'Kategorie/Články',true);

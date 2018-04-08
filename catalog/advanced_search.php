@@ -127,7 +127,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     echo tep_draw_input_field('keywords', '',
                         'required aria-required="true" id="inputKeywords" placeholder="'.TEXT_SEARCH_PLACEHOLDER.'"',
                         'search');
-                    echo FORM_REQUIRED_INPUT;
+                    echo _('Required');
                     echo tep_draw_hidden_field('search_in_description', '1');
                     ?>
                 </div>

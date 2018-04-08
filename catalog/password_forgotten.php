@@ -120,7 +120,7 @@ if ($password_reset_initiated == true) {
     <?php echo tep_draw_input_field('email_address', NULL,
         'required aria-required="true" autofocus="autofocus" id="inputEmail" placeholder="'.ENTRY_EMAIL_ADDRESS.'"',
         'email'); ?>
-    <?php echo FORM_REQUIRED_INPUT; ?>
+    <?php echo _('Required'); ?>
                 </div>
             </div>
         </div>

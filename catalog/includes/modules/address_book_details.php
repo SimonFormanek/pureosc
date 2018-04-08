@@ -13,7 +13,7 @@
   if (!isset($process)) $process = false;
 ?>
 
-  <p class="text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></p>
+  <p class="text-right"><?php echo _('Requied Information'); ?></p>
 
   <div class="contentText">
 
@@ -38,7 +38,7 @@
           <label class="radio-inline">
             <?php echo tep_draw_radio_field('gender', 'f', $female) . ' ' . FEMALE; ?>
           </label>
-          <?php echo FORM_REQUIRED_INPUT; ?>
+          <?php echo _('Required'); ?>
           <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">' . ENTRY_GENDER_TEXT . '</span>'; ?>
         </div>
       </div>
@@ -51,7 +51,7 @@
         <label for="inputFirstName" class="control-label col-sm-3"><?php echo ENTRY_FIRST_NAME; ?></label>
         <div class="col-sm-9">
           <?php echo tep_draw_input_field('firstname', (isset($entry['entry_firstname']) ? $entry['entry_firstname'] : ''), 'required aria-required="true" aria-describedby="atFirstName" id="inputFirstName" placeholder="' . ENTRY_FIRST_NAME . '"'); ?>
-          <?php echo FORM_REQUIRED_INPUT; ?>
+          <?php echo _('Required'); ?>
           <?php if (tep_not_null(ENTRY_FIRST_NAME_TEXT)) echo '<span id="atFirstName" class="help-block">' . ENTRY_FIRST_NAME_TEXT . '</span>'; ?>
         </div>
       </div>
@@ -59,7 +59,7 @@
         <label for="inputLastName" class="control-label col-sm-3"><?php echo ENTRY_LAST_NAME; ?></label>
         <div class="col-sm-9">
           <?php echo tep_draw_input_field('lastname', (isset($entry['entry_lastname']) ? $entry['entry_lastname'] : ''), 'required aria-required="true" aria-describedby="atLastName" id="inputLastName" placeholder="' . ENTRY_LAST_NAME . '"'); ?>
-          <?php echo FORM_REQUIRED_INPUT; ?>
+          <?php echo _('Required'); ?>
           <?php if (tep_not_null(ENTRY_LAST_NAME_TEXT)) echo '<span id="atLastName" class="help-block">' . ENTRY_LAST_NAME_TEXT . '</span>'; ?>
         </div>
       </div>
@@ -69,18 +69,18 @@
 ?>
 
       <div class="form-group">
-        <label for="inputCompany" class="control-label col-sm-3"><?php echo ENTRY_COMPANY; ?></label>
+        <label for="inputCompany" class="control-label col-sm-3"><?php echo _('Company Name'); ?></label>
         <div class="col-sm-9">
           <?php
-          echo tep_draw_input_field('company', (isset($entry['entry_company']) ? $entry['entry_company'] : ''), 'id="inputCompany" aria-describedby="atCompany" placeholder="' . ENTRY_COMPANY . '"');
+          echo tep_draw_input_field('company', (isset($entry['entry_company']) ? $entry['entry_company'] : ''), 'id="inputCompany" aria-describedby="atCompany" placeholder="' . _('Company Name') . '"');
           if (tep_not_null(ENTRY_COMPANY_TEXT)) echo '<span id="atCompany" class="help-block">' . ENTRY_COMPANY_TEXT . '</span>';
           ?>
         </div>
 
-      <label for="inputVatnumber" class="control-label col-sm-3"><?php echo ENTRY_VAT_NUMBER; ?></label>
+      <label for="inputVatnumber" class="control-label col-sm-3"><?php echo _('Vat Number'); ?></label>
       <div class="col-sm-9">
         <?php
-        echo tep_draw_input_field('vat_number', (isset($entry['entry_vat_number']) ? $entry['entry_vat_number'] : ''), 'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="' . ENTRY_VAT_NUMBER . '"');
+        echo tep_draw_input_field('vat_number', (isset($entry['entry_vat_number']) ? $entry['entry_vat_number'] : ''), 'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="' . _('Vat Number') . '"');
         if (tep_not_null(ENTRY_VAT_NUMBER_TEXT_2)) echo '<span id="atVatnumber" class="help-block">' . ENTRY_VAT_NUMBER_TEXT_2 . '</span>';
         ?>
       </div>
@@ -104,7 +104,7 @@
         <div class="col-sm-9">
           <?php
           echo tep_draw_input_field('street_address', (isset($entry['entry_street_address']) ? $entry['entry_street_address'] : ''), 'required aria-required="true" aria-describedby="atStreetAddress" id="inputStreet" placeholder="' . ENTRY_STREET_ADDRESS . '"');
-          echo FORM_REQUIRED_INPUT;
+          echo _('Required');
           if (tep_not_null(ENTRY_STREET_ADDRESS_TEXT)) echo '<span id="atStreetAddress" class="help-block">' . ENTRY_STREET_ADDRESS_TEXT . '</span>';
           ?>
         </div>
@@ -133,7 +133,7 @@
         <div class="col-sm-9">
           <?php
           echo tep_draw_input_field('city', (isset($entry['entry_city']) ? $entry['entry_city'] : ''), 'required aria-required="true" aria-describedby="atCity" id="inputCity" placeholder="' . ENTRY_CITY. '"');
-          echo FORM_REQUIRED_INPUT;
+          echo _('Required');
           if (tep_not_null(ENTRY_CITY_TEXT)) echo '<span id="atCity" class="help-block">' . ENTRY_CITY_TEXT . '</span>';
           ?>
         </div>
@@ -143,7 +143,7 @@
         <div class="col-sm-9">
           <?php
           echo tep_draw_input_field('postcode', (isset($entry['entry_postcode']) ? $entry['entry_postcode'] : ''), 'required aria-required="true" aria-describedby="atZip" id="inputZip" placeholder="' . ENTRY_POST_CODE . '"');
-          echo FORM_REQUIRED_INPUT;
+          echo _('Required');
           if (tep_not_null(ENTRY_POST_CODE_TEXT)) echo '<span id="atZip" class="help-block">' . ENTRY_POST_CODE_TEXT . '</span>';
           ?>
        </div>
@@ -185,7 +185,7 @@
         <div class="col-sm-9">
           <?php
           echo tep_get_country_list('country', (isset($entry['entry_country_id']) ? $entry['entry_country_id'] : STORE_COUNTRY), 0, 'required aria-required="true" aria-describedby="atCountry" id="inputCountry"');
-          echo FORM_REQUIRED_INPUT;
+          echo _('Required');
           if (tep_not_null(ENTRY_COUNTRY_TEXT)) echo '<span id="atCountry" class="help-block">' . ENTRY_COUNTRY_TEXT . '</span>';
           ?>
         </div>

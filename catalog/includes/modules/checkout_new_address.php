@@ -67,18 +67,18 @@
 ?>
 
     <div class="form-group">
-      <label for="inputCompany" class="control-label col-sm-3"><?php echo ENTRY_COMPANY; ?></label>
+      <label for="inputCompany" class="control-label col-sm-3"><?php echo _('Company Name'); ?></label>
       <div class="col-sm-9">
         <?php
-        echo tep_draw_input_field('company', NULL, 'id="inputCompany" aria-describedby="atCompany" placeholder="' . ENTRY_COMPANY . '"');
+        echo tep_draw_input_field('company', NULL, 'id="inputCompany" aria-describedby="atCompany" placeholder="' . _('Company Name') . '"');
         if (tep_not_null(ENTRY_COMPANY_TEXT)) echo '<span id="atCompany" class="help-block">' . ENTRY_COMPANY_TEXT . '</span>';
         ?>
       </div>
 
-      <label for="inputVatnumber" class="control-label col-sm-3"><?php echo ENTRY_VAT_NUMBER; ?></label>
+      <label for="inputVatnumber" class="control-label col-sm-3"><?php echo _('Vat Number'); ?></label>
       <div class="col-sm-9">
         <?php
-        echo tep_draw_input_field('vat_number', NULL, 'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="' . ENTRY_VAT_NUMBER . '"');
+        echo tep_draw_input_field('vat_number', NULL, 'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="' . _('Vat Number') . '"');
         if (tep_not_null(ENTRY_VAT_NUMBER_TEXT_2)) echo '<span id="atVatnumber" class="help-block">' . ENTRY_VAT_NUMBER_TEXT_2 . '</span>';
         ?>
       </div>

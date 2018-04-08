@@ -90,7 +90,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
     <div class="contentContainer">
         <div class="contentText">
 
-            <p class="inputRequirement text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></p>
+            <p class="inputRequirement text-right"><?php echo _('Requied Information'); ?></p>
             <div class="clearfix"></div>
 
             <div class="form-group has-feedback">
@@ -99,7 +99,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
                     <?php
                     echo tep_draw_input_field('name', NULL,
                         'required autofocus="autofocus" aria-required="true" id="inputFromName" placeholder="'.ENTRY_NAME.'"');
-                    echo FORM_REQUIRED_INPUT;
+                    echo _('Required');
                     ?>
                 </div>
             </div>
@@ -110,7 +110,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
                     echo tep_draw_input_field('email', NULL,
                         'required aria-required="true" id="inputFromEmail" placeholder="'.ENTRY_EMAIL.'"',
                         'email');
-                    echo FORM_REQUIRED_INPUT;
+                    echo _('Required');
                     ?>
                 </div>
             </div>
@@ -120,7 +120,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
     <?php
     echo tep_draw_textarea_field('enquiry', 'soft', 50, 15, NULL,
         'required aria-required="true" id="inputEnquiry" placeholder="'.ENTRY_ENQUIRY.'"');
-    echo FORM_REQUIRED_INPUT;
+    echo _('Required');
     ?>
                 </div>
             </div>

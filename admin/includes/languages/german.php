@@ -176,7 +176,6 @@ define('ENTRY_EMAIL_ADDRESS', 'eMail Adresse:',true);
 define('ENTRY_EMAIL_ADDRESS_ERROR', '&nbsp;<span class="errorText">mindestens ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' Buchstaben</span>',true);
 define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', '&nbsp;<span class="errorText">ungültige eMail-Adresse!</span>',true);
 define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', '&nbsp;<span class="errorText">Diese eMail-Adresse existiert schon!</span>',true);
-define('ENTRY_COMPANY', 'Firmenname:',true);
 define('ENTRY_STREET_ADDRESS', 'Strasse:',true);
 define('ENTRY_STREET_ADDRESS_ERROR', '&nbsp;<span class="errorText">mindestens ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' Buchstaben</span>',true);
 define('ENTRY_SUBURB', 'weitere Anschrift:',true);
@@ -305,7 +304,6 @@ define('ERROR_FILETYPE_NOT_ALLOWED', 'Error: File upload typ nicht erlaubt.',tru
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Success: File upload erfolgreich gespeichert.',true);
 define('WARNING_NO_FILE_UPLOADED', 'Warning: kein File uploaded.',true);
 //VAT number
-define('ENTRY_VAT_NUMBER', 'VAT Number:',true);
 define('ENTRY_COMPANY_NUMBER', 'Company Number:',true);
 /**** BEGIN ARTICLE MANAGER ****/
 define('BOX_HEADING_ARTICLES', 'Article Manager');

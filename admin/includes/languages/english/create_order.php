@@ -41,7 +41,6 @@ define('CATEGORY_PASSWORD', 'Password',true);
 define('CATEGORY_CORRECT', 'If this is the right customer, press the Confirm button below.',true);
 define('ENTRY_CUSTOMERS_ID', 'Customer ID:',true);
 define('ENTRY_CUSTOMERS_ID_TEXT', '&nbsp;',true);
-define('ENTRY_COMPANY', 'Company Name:',true);
 define('ENTRY_COMPANY_ERROR', '',true);
 define('ENTRY_COMPANY_TEXT', '',true);
 define('ENTRY_GENDER', 'Gender:',true);

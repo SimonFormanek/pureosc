@@ -148,7 +148,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
         'process'); ?>
 
 <div class="contentContainer">
-    <div class="inputRequirement text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></div>
+    <div class="inputRequirement text-right"><?php echo _('Requied Information'); ?></div>
 
                 <?php
                 if (ACCOUNT_GENDER == 'true') {
@@ -169,7 +169,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <label class="radio-inline">
     <?php echo tep_draw_radio_field('gender', 'f', $female).' '.FEMALE; ?>
                 </label>
-    <?php echo FORM_REQUIRED_INPUT; ?>
+    <?php echo _('Required'); ?>
     <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
             </div>
         </div>
@@ -182,7 +182,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <?php echo tep_draw_input_field('firstname',
         $account['customers_firstname'],
         'required aria-required="true" id="inputFirstName" placeholder="'.ENTRY_FIRST_NAME.'"'); ?>
-            <?php echo FORM_REQUIRED_INPUT; ?>
+            <?php echo _('Required'); ?>
         </div>
     </div>
     <div class="form-group has-feedback">
@@ -191,7 +191,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <?php echo tep_draw_input_field('lastname',
         $account['customers_lastname'],
         'required aria-required="true" id="inputLastName" placeholder="'.ENTRY_LAST_NAME.'"'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
+<?php echo _('Required'); ?>
         </div>
     </div>
 
@@ -205,7 +205,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     tep_date_short($account['customers_dob']),
                     'required aria-required="true" aria-describedby="atDob" id="dob" placeholder="'.ENTRY_DATE_OF_BIRTH_TEXT.'"'); ?>
     <?php if (tep_not_null(ENTRY_DATE_OF_BIRTH_TEXT)) echo '<span id="atDob" class="help-block">'.ENTRY_DATE_OF_BIRTH_TEXT.'</span>'; ?>
-    <?php echo FORM_REQUIRED_INPUT; ?>
+    <?php echo _('Required'); ?>
             </div>
         </div>
                 <?php
@@ -219,7 +219,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
     $account['customers_email_address'],
     'required aria-required="true" id="inputEmail" placeholder="'.ENTRY_EMAIL_ADDRESS.'"',
     'email'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
+<?php echo _('Required'); ?>
         </div>
     </div>
     <div class="form-group has-feedback">
@@ -229,7 +229,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
     $account['customers_telephone'],
     'required aria-required="true" id="inputTelephone" placeholder="'.ENTRY_TELEPHONE_NUMBER.'"',
     'tel'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
+<?php echo _('Required'); ?>
         </div>
     </div>
     <div class="form-group">

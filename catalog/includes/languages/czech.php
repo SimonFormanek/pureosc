@@ -352,9 +352,7 @@ define('USER_LOCALIZATION', '<abbr title="Vybraný jazyk">L:</abbr> %s <abbr tit
 //pure:new link to advanced search
   define('IMAGE_BUTTON_ADVANCED_SEARCH_LINK','podrobné',true);
 //VAT numbber
-define('ENTRY_VAT_NUMBER', 'DIČ:',true);
 define('ENTRY_VAT_NUMBER_TEXT_2', '',true);
-define('ENTRY_COMPANY_NUMBER', 'IČO:',true);
 define('ENTRY_COMPANY_NUMBER_TEXT_2', '',true);
 
 /**** BEGIN ARTICLE MANAGER ****/

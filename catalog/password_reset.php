@@ -121,7 +121,7 @@ if ($messageStack->size('password_reset') > 0) {
 <?php echo tep_draw_input_field('password', NULL,
     'required aria-required="true"  autofocus="autofocus" id="inputPassword" placeholder="'.ENTRY_PASSWORD.'"',
     'password'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
+<?php echo _('Required'); ?>
             </div>
         </div>
         <div class="form-group has-feedback">
@@ -130,7 +130,7 @@ if ($messageStack->size('password_reset') > 0) {
 <?php echo tep_draw_input_field('confirmation', NULL,
     'required aria-required="true" id="inputConfirm" placeholder="'.ENTRY_PASSWORD_CONFIRMATION.'"',
     'password'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
+<?php echo _('Required'); ?>
             </div>
         </div>
     </div>

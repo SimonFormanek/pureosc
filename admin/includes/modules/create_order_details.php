@@ -68,7 +68,7 @@
       <tr>
         <td class="main"><table border="0" cellspacing="0" cellpadding="2">
           <tr>
-            <td class="main" width="130">&nbsp;<?php echo ENTRY_COMPANY; ?></td>
+            <td class="main" width="130">&nbsp;<?php echo _('Company Name'); ?></td>
             <td class="main">&nbsp;<?php echo tep_draw_input_field('company', $address['entry_company']) . '&nbsp;' . ENTRY_COMPANY_TEXT;?></td>
           </tr>
         </table></td>

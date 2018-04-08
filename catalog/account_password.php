@@ -84,7 +84,7 @@ if ($messageStack->size('account_password') > 0) {
     'class="form-horizontal"', true).tep_draw_hidden_field('action', 'process'); ?>
 
 <div class="contentContainer">
-    <p class="inputRequirement text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></p>
+    <p class="inputRequirement text-right"><?php echo _('Requied Information'); ?></p>
 
     <div class="contentText">
         <div class="form-group has-feedback">
@@ -94,7 +94,7 @@ if ($messageStack->size('account_password') > 0) {
                     NULL,
                     'required aria-required="true" aria-describedby="atPassword" autofocus="autofocus" id="inputCurrent" placeholder="'.ENTRY_PASSWORD_CURRENT.'"',
                     'password'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
+<?php echo _('Required'); ?>
 <?php if (tep_not_null(ENTRY_PASSWORD_CURRENT_TEXT)) echo '<span id="atPassword" class="help-block">'.ENTRY_PASSWORD_CURRENT_TEXT.'</span>'; ?>
             </div>
         </div>
@@ -104,7 +104,7 @@ if ($messageStack->size('account_password') > 0) {
 <?php echo tep_draw_input_field('password_new', NULL,
     'required aria-required="true" aria-describedby="atNewPassword" id="inputNew" placeholder="'.ENTRY_PASSWORD_NEW.'"',
     'password'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
+<?php echo _('Required'); ?>
 <?php if (tep_not_null(ENTRY_PASSWORD_NEW_TEXT)) echo '<span id="atNewPassword" class="help-block">'.ENTRY_PASSWORD_NEW_TEXT.'</span>'; ?>
             </div>
         </div>
@@ -114,7 +114,7 @@ if ($messageStack->size('account_password') > 0) {
 <?php echo tep_draw_input_field('password_confirmation', NULL,
     'required aria-required="true"  aria-describedby="atNewPasswordConfirmation" id="inputConfirmation" placeholder="'.ENTRY_PASSWORD_CONFIRMATION.'"',
     'password'); ?>
-<?php echo FORM_REQUIRED_INPUT; ?>
+<?php echo _('Required'); ?>
 <?php if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT)) echo '<span id="atNewPasswordConfirmation" class="help-block">'.ENTRY_PASSWORD_CONFIRMATION_TEXT.'</span>'; ?>
             </div>
         </div>

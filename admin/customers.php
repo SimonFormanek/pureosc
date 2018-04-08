@@ -549,7 +549,7 @@ if ($action == 'edit' || $action == 'update') {
                     <tr>
                         <td class="formArea"><table border="0" cellspacing="2" cellpadding="2">
                                 <tr>
-                                    <td class="main"><?php echo ENTRY_COMPANY; ?></td>
+                                    <td class="main"><?php echo _('Company Name'); ?></td>
                                     <td class="main">
                                         <?php
                                         if ($error == true) {
