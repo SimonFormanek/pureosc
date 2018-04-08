@@ -412,14 +412,6 @@ function tep_formatDate($val, $format='d-m-Y h:i:s'){
 	return date($format, $val);
 }
 
-function tep_dump($value){
-
-	echo '<pre>';
-	var_dump($value);
-	echo '</pre>';
-	
-}
-
 function tep_formatSeconds($secs,$display=array('year'=>1,'month'=>1,'week'=>1,'day'=>1,'hour'=>1,'min'=>1,'sec'=>1)) {
 
     if (!$secs = (int)$secs) return '0 secs';
