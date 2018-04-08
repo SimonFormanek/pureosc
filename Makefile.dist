@@ -15,6 +15,11 @@ fresh:
 	composer update
 	phinx migrate
 
+lang:
+	msgfmt -o i18n/cs_CZ/LC_MESSAGES/pureosc.mo i18n/cs_CZ/LC_MESSAGES/pureosc.po
+	msgfmt -o i18n/en_US/LC_MESSAGES/pureosc.mo i18n/en_US/LC_MESSAGES/pureosc.po
+	msgfmt -o i18n/sk_SK/LC_MESSAGES/pureosc.mo i18n/sk_SK/LC_MESSAGES/pureosc.po
+
 doc:
 	apigen generate --source catalog --destination docs --title "PureOSC" --charset UTF-8 --access-levels public --access-levels protected --php --tree
 
