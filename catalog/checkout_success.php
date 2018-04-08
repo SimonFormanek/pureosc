@@ -84,10 +84,9 @@ echo tep_draw_form('order',
         _('PDF Invoice'), 'success btn-xs');
     $button2 = new \Ease\TWB\LinkButton('getisdoc.php?evidence=faktura-vydana&id='.$order_id.'&embed=true',
         _('ISDOC Invoice'), 'success btn-xs');
-    
-    
+
+
     echo $qrImage.$button.$button2;
-    
     ?>
     <?php /*     * * EOF alteration for CCGV ** */ ?>
 </div>

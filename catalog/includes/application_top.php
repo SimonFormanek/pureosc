@@ -662,6 +662,8 @@ require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
 
-\Ease\Shared::instanced()->webPage(new Ease\Page());
+$oPage = new Ease\Page();
+
+\Ease\Shared::instanced()->webPage($oPage);
 
 $userLog = new PureOSC\CustomerLog();
