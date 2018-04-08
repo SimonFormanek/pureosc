@@ -74,27 +74,20 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 'SSL'), 'primary', NULL, 'btn-primary btn-xs');
                         ?>
                         <?php
-                        
-                        $button  = new \Ease\TWB\LinkButton('getpdf.php?evidence=faktura-vydana&id='.$history['orders_id'].'&embed=true',
-                            _('PDF Invoice'), 'success btn-xs');
-
-                        $button2 = new \Ease\TWB\LinkButton('getisdoc.php?evidence=faktura-vydana&id='.$history['orders_id'].'&embed=true',
-                            _('ISDOC Invoice'), 'success btn-xs');
-
-                        echo $button.$button2;
-                        
-                        
+                        echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&id='.$history['orders_id'].'&embed=true'.'">'._('PDF Invoice').'</a>';
+                        echo '<a class="btn btn-success btn-xs" role="button" href="'.'getisdoc.php?evidence=faktura-vydana&id='.$history['orders_id'].'&embed=true'.'">'._('ISDOC Invoice').'</a>';
                         ?>
                     </div>
                 </div>
             </div>
 
-                            <?php
-                        }
-                        ?>
+        <?php
+    }
+    ?>
         <div class="row">
             <div class="col-md-6 pagenumber"><?php echo $history_split->display_count(TEXT_DISPLAY_NUMBER_OF_ORDERS); ?></div>
-            <div class="col-md-6"><span class="pull-right pagenav"><ul class="pagination"><?php echo $history_split->display_links(MAX_DISPLAY_PAGE_LINKS,
+            <div class="col-md-6"><span class="pull-right pagenav"><ul class="pagination"><?php
+    echo $history_split->display_links(MAX_DISPLAY_PAGE_LINKS,
         tep_get_all_get_params(array('page', 'info', 'x', 'y')));
     ?></ul></span><span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span></div>
         </div>
@@ -107,14 +100,15 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <p><?php echo TEXT_NO_PURCHASES; ?></p>
         </div>
 
-    <?php
-}
-?>
+        <?php
+    }
+    ?>
 
     <div class="buttonSet">
-<?php echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
-    tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
-?>
+        <?php
+        echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+            tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+        ?>
     </div>
 </div>
 

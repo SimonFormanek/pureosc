@@ -80,11 +80,9 @@ echo tep_draw_form('order',
     $qrImage = new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
         $invoice->getRecordIdent());
 
-    $button  = new \Ease\TWB\LinkButton('getpdf.php?evidence=faktura-vydana&id='.$order_id.'&embed=true',
-        _('PDF Invoice'), 'success btn-xs');
-    $button2 = new \Ease\TWB\LinkButton('getisdoc.php?evidence=faktura-vydana&id='.$order_id.'&embed=true',
-        _('ISDOC Invoice'), 'success btn-xs');
 
+    echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&id='.$order_id.'&embed=true'.'">'._('PDF Invoice').'</a>';
+    echo '<a class="btn btn-success btn-xs" role="button" href="'.'getisdoc.php?evidence=faktura-vydana&id='.$order_id.'&embed=true'.'">'._('ISDOC Invoice').'</a>';
 
     echo $qrImage.$button.$button2;
     ?>
@@ -94,9 +92,9 @@ echo tep_draw_form('order',
 <div class="contentContainer">
     <div class="buttonSet">
         <div class="text-right"><?php
-    echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right', null,
-        'primary', null, 'btn-success');
-    ?></div>
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+                null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 </div>
 
