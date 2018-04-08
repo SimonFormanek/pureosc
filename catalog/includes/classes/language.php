@@ -17,6 +17,12 @@ class language
 {
     var $languages, $catalog_languages, $browser_languages, $language;
 
+    public function __construct($klng = '')
+    {
+        $this->language($lng);
+        ;
+    }
+
     function language($lng = '')
     {
         $this->languages = array('af' => 'af|afrikaans',
@@ -117,5 +123,3 @@ class language
         }
     }
 }
-
-
