@@ -323,11 +323,25 @@ if (tep_not_null(tep_db_insert_id())) {
 
         $duplicate_check_query = tep_db_query("select count(*) as total from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id = '" . (int)$products_id . "' and categories_id = '" . (int)$new_parent_id . "'");
         $duplicate_check = tep_db_fetch_array($duplicate_check_query);
+
+        $old_category_query = tep_db_query("select categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id = '" . (int)$products_id."'");
+        $oldCategories = tep_db_fetch_array($old_category_query);
+
+      
         if ($duplicate_check['total'] < 1) {
         	tep_db_query("update " . TABLE_PRODUCTS_TO_CATEGORIES . " set categories_id = '" . (int)$new_parent_id . "' where products_id = '" . (int)$products_id . "' and categories_id = '" . (int)$current_category_id . "'");
 					//pure:new cache reset full!
 	        tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
 					tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+        }
+        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+         
+              $sokoban = new PureOSC\flexibee\StromCenik();
+              $pricelist = new PureOSC\flexibee\Cenik('ext:products:'.$products_id,['detail'=>'id'] );
+              foreach ($oldCategories as $oldCategory){
+                $sokoban->deleteFromFlexiBee('ext:ptc:'.$oldCategory);
+              }
+              $sokoban->insertToFlexiBee(['id'=>'ext:ptc:'.$new_parent_id,'idZaznamu'=>$pricelist->getRecordID(), 'uzel'=>'ext:categories:'.$new_parent_id ]);
         }
 
         if (USE_CACHE == 'true') {
@@ -367,9 +381,9 @@ if (tep_not_null(tep_db_insert_id())) {
         if ($action == 'insert_product') {
           $insert_sql_data = ['products_date_added' => 'now()'];
 
-          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+          $sql_product_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-          tep_db_perform(TABLE_PRODUCTS, $sql_data_array);
+          tep_db_perform(TABLE_PRODUCTS, $sql_product_data_array);
           $products_id = tep_db_insert_id();
           //pure:new canonical
 					$canon = isset($_POST['canonical']) ? '1' : 'null';
@@ -377,9 +391,9 @@ if (tep_not_null(tep_db_insert_id())) {
         } elseif ($action == 'update_product') {
           $update_sql_data = ['products_last_modified' => 'now()'];
 
-          $sql_data_array = array_merge($sql_data_array, $update_sql_data);
+          $sql_product_data_array = array_merge($sql_data_array, $update_sql_data);
 
-          tep_db_perform(TABLE_PRODUCTS, $sql_data_array, 'update', "products_id = '" . (int)$products_id . "'");
+          tep_db_perform(TABLE_PRODUCTS, $sql_product_data_array, 'update', "products_id = '" . (int)$products_id . "'");
           if(isset($_POST['canonical'])) { //je zaskrt.
 
   				$wQ = tep_db_query("SELECT categories_id FROM ".TABLE_PRODUCTS_TO_CATEGORIES." WHERE products_id = ".(int)$products_id);
@@ -412,12 +426,13 @@ if (tep_not_null(tep_db_insert_id())) {
           } elseif ($action == 'update_product') {
             tep_db_perform(TABLE_PRODUCTS_DESCRIPTION, $sql_data_array, 'update', "products_id = '" . (int)$products_id . "' and language_id = '" . (int)$language_id . "'");
           }
+          $proLangs[$languages[$i]['code']] = $sql_data_array;
         }
 
         $pi_sort_order = 0;
         $piArray = [0];
 
-        foreach ($HTTP_POST_FILES as $key => $value) {
+        foreach ($_FILES as $key => $value) {
 // Update existing large product images
           if (preg_match('/^products_image_large_([0-9]+)$/', $key, $matches)) {
             $pi_sort_order++;
@@ -485,6 +500,27 @@ if (tep_not_null(tep_db_insert_id())) {
 
 
 	//pure:new reload page
+
+        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            $pricelist = new \PureOSC\flexibee\Cenik();
+            $pricelist->takeData($pricelist->convertOscData($sql_product_data_array));
+            foreach ($proLangs as $langCode => $langData){
+                $pricelist->takeData($pricelist->convertOscData($langData,$langCode));
+            }
+            if(!empty($products_id)){
+                $pricelist->setDataValue('id','ext:products:'.$products_id);
+            }
+
+            $pricelist->sync();
+            if(isset($_FILES['products_image'])){
+                FlexiPeeHP\Priloha::addAttachmentFromFile($pricelist, DIR_FS_CATALOG_IMAGES . $_FILES['products_image']['name']);
+            }
+      
+
+        }
+
+
+
 if (tep_not_null(tep_db_insert_id())) {
 	tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $products_id . '&action=new_product&#meta-edit'));
 	} else {
@@ -1525,7 +1561,16 @@ $category_seo_title_string .= '<br />' . TEXT_META_TITLE_LENGHT_REMAINING_CHARAC
           } elseif (isset($pInfo) && is_object($pInfo)) { // product info box contents
             $heading[] = ['text' => '<strong>' . tep_get_products_name($pInfo->products_id, $languages_id) . '</strong>'];
 
-            $contents[] = ['align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT, 'document', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product')) . tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=delete_product')) . tep_draw_button(IMAGE_MOVE, 'arrow-4', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=move_product')) . tep_draw_button(IMAGE_COPY_TO, 'copy', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to'))];
+            $buttons = tep_draw_button(IMAGE_EDIT, 'document', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product')) . tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=delete_product')) . tep_draw_button(IMAGE_MOVE, 'arrow-4', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=move_product')) . tep_draw_button(IMAGE_COPY_TO, 'copy', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to'));
+
+            if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+                $linker = new FlexiPeeHP\Cenik(null,['offline'=>true]);
+                $linker->setMyKey('ext:products:'.$_GET['pID']);
+                $buttons .= tep_draw_button(_('Open in FlexiBee'), 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcyIgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICB3aWR0aD0iMTIwIgogICBoZWlnaHQ9IjEyMCIKICAgdmlld0JveD0iMCAwIDEyMCAxMjAiCiAgIHNvZGlwb2RpOmRvY25hbWU9ImZsZXhpYmVlLWxvZ28uc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIwLjkyLjEgcjE1MzcxIj48bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE4Ij48cmRmOlJERj48Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+PGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+PGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPjxkYzp0aXRsZT48L2RjOnRpdGxlPjwvY2M6V29yaz48L3JkZjpSREY+PC9tZXRhZGF0YT48ZGVmcwogICAgIGlkPSJkZWZzNiIgLz48c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjNjY2NjY2IgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgb2JqZWN0dG9sZXJhbmNlPSIxMCIKICAgICBncmlkdG9sZXJhbmNlPSIxMCIKICAgICBndWlkZXRvbGVyYW5jZT0iMTAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjEyODAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iOTU1IgogICAgIGlkPSJuYW1lZHZpZXc0IgogICAgIHNob3dncmlkPSJmYWxzZSIKICAgICBpbmtzY2FwZTp6b29tPSIxLjMzNjI2NzQiCiAgICAgaW5rc2NhcGU6Y3g9IjI0My42ODg2MyIKICAgICBpbmtzY2FwZTpjeT0iMzAuODg2NjY3IgogICAgIGlua3NjYXBlOndpbmRvdy14PSIwIgogICAgIGlua3NjYXBlOndpbmRvdy15PSIzMiIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9ImcxMCIgLz48ZwogICAgIGlkPSJnMTAiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpbmtzY2FwZTpsYWJlbD0iaW5rX2V4dF9YWFhYWFgiCiAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMS4zMzMzMzMzLDAsMCwtMS4zMzMzMzMzLDAsMTIwKSI+PGcKICAgICAgIGlkPSJnNDU0MSIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMTIuMjUyOTgsMjEuMzI4MDY2KSI+PHBhdGgKICAgICAgICAgZD0iTSAxNzAuODY4LDAgMTg0LjI0NiwyMy4xNjE3IDE5Ny42MTcsMCBaIgogICAgICAgICBzdHlsZT0iZmlsbDojZjlhZTJkO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDowLjEiCiAgICAgICAgIGlkPSJwYXRoMjIiCiAgICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiIC8+PHBhdGgKICAgICAgICAgZD0ibSAxNzAuODY4LDAgLTEzLjM3NSwyMy4xNjE3IGggMjYuNzUzIHoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiNkMjhiMjU7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjAuMSIKICAgICAgICAgaWQ9InBhdGgyNCIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz48cGF0aAogICAgICAgICBkPSJtIDE1Ny40OTMsMjMuMTYxNyAxMy4zNzUsMjMuMTY4IDEzLjM3OCwtMjMuMTY4IHoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM5MzYzMjc7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjAuMSIKICAgICAgICAgaWQ9InBhdGgyNiIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz48cGF0aAogICAgICAgICBkPSJNIDE3MC44NjgsNDYuMzI5NyBIIDE0NC4xMjEgTCAxMTcuMzY1LDAgaCAyNi43NTYgbCAyNi43NDcsNDYuMzI5NyIKICAgICAgICAgc3R5bGU9ImZpbGw6Izc2N2E3YztmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MC4xIgogICAgICAgICBpZD0icGF0aDI4IgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPjwvZz48L2c+PC9zdmc+', $linker->getApiURL());
+            }
+
+            $contents[] = ['align' => 'center', 'text' => $buttons];
+
             $contents[] = ['text' => '<br />' . TEXT_DATE_ADDED . ' ' . tep_date_short($pInfo->products_date_added)];
             if (tep_not_null($pInfo->products_last_modified)) $contents[] = ['text' => TEXT_LAST_MODIFIED . ' ' . tep_date_short($pInfo->products_last_modified)];
             if (tep_not_null($pInfo->products_date_available)) $contents[] = ['text' => TEXT_DATE_AVAILABLE . ' ' . tep_date_short($pInfo->products_date_available)];

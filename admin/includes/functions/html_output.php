@@ -162,12 +162,15 @@ function tep_image_button($image, $alt = '', $params = '')
 
 ////
 // Creates a pull-down list of countries
-  function tep_get_country_list($name, $selected = '', $parameters = '') {
-    if ( strlen($selected)==0 ) $selected = STORE_COUNTRY;
+function tep_get_country_list($name, $selected = '', $parameters = '')
+{
+    if (strlen($selected) == 0) $selected        = STORE_COUNTRY;
     $countries_array = array(array('id' => '', 'text' => PULL_DOWN_DEFAULT));
 
-    return tep_draw_pull_down_menu($name, array_merge($countries_array, tep_get_countries()), $selected, $parameters);
-  }
+    return tep_draw_pull_down_menu($name,
+        array_merge($countries_array, tep_get_countries()), $selected,
+        $parameters);
+}
 
 ////
 // javascript to dynamically update the states/provinces list when the country is changed
@@ -285,10 +288,9 @@ function tep_draw_selection_field($name, $type, $value = '', $checked = false,
     if (tep_not_null($value))
             $selection .= ' value="'.tep_output_string($value).'"';
 
-    if (($checked == true) || (isset($_GET[$name]) && is_string($_GET[$name])
-        && (($_GET[$name] == 'on') || (stripslashes($_GET[$name])
-        == $value))) || (isset($_POST[$name]) && is_string($_POST[$name])
-        && (($_POST[$name] == 'on') || (stripslashes($_POST[$name])
+    if (($checked == true) || (isset($_GET[$name]) && is_string($_GET[$name]) && (($_GET[$name]
+        == 'on') || (stripslashes($_GET[$name]) == $value))) || (isset($_POST[$name])
+        && is_string($_POST[$name]) && (($_POST[$name] == 'on') || (stripslashes($_POST[$name])
         == $value))) || (tep_not_null($compare) && ($value == $compare))) {
         $selection .= ' checked="checked"';
     }
@@ -386,8 +388,8 @@ function tep_draw_hidden_field($name, $value = '', $parameters = '')
 
     if (tep_not_null($value)) {
         $field .= ' value="'.tep_output_string($value).'"';
-    } elseif ((isset($_GET[$name]) && is_string($_GET[$name]))
-        || (isset($_POST[$name]) && is_string($_POST[$name]))) {
+    } elseif ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name])
+        && is_string($_POST[$name]))) {
         if ((isset($_GET[$name]) && is_string($_GET[$name]))) {
             $field .= ' value="'.tep_output_string(stripslashes($_GET[$name])).'"';
         } elseif ((isset($_POST[$name]) && is_string($_POST[$name]))) {
@@ -428,8 +430,8 @@ function tep_draw_pull_down_menu($name, $values, $default = '',
 
     $field .= '>';
 
-    if (empty($default) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
-        || (isset($_POST[$name]) && is_string($_POST[$name])) )) {
+    if (empty($default) && ( (isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name])
+        && is_string($_POST[$name])) )) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
             $default = stripslashes($_GET[$name]);
         } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
@@ -494,7 +496,13 @@ function tep_draw_button($title = null, $icon = null, $link = null,
         $button .= ' '.$params['params'];
     }
 
-    $button .= '>'.$title;
+    $button .= '>';
+
+    if (isset($icon) && strstr($icon, 'data:')) {
+        $button .= '<img height="15" src="'.$icon.'">&nbsp;';
+    }
+
+    $button .= $title;
 
     if (($params['type'] == 'button') && isset($link)) {
         $button .= '</a>';
@@ -506,7 +514,7 @@ function tep_draw_button($title = null, $icon = null, $link = null,
 
     $args = array();
 
-    if (isset($icon)) {
+    if (isset($icon) && !strstr($icon, 'data:')) {
         if (!isset($params['iconpos'])) {
             $params['iconpos'] = 'left';
         }

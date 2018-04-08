@@ -76,9 +76,6 @@ $payment_modules->before_process();
 /* * * EOF alterations for CCGV ** */
 
 if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
-
-//flexibee init
-    require_once './ext/flexibee/init.php';
     $invoice = new PureOSC\flexibee\FakturaVydana();
     $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
     $invoice->setDataValue("typDokl", 'code:FAKTURA');
@@ -239,12 +236,16 @@ for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
         'products_quantity' => $order->products[$i]['qty']);
     tep_db_perform(TABLE_ORDERS_PRODUCTS, $sql_data_array);
     $order_products_id = tep_db_insert_id();
-    $invoice->addArrayToBranch([
-        'nazev' => $order->products[$i]['name'],
-        'mnozMj' => $order->products[$i]['qty'],
-        'cenaMj' => $order->products[$i]['price'],
-        'typPolozkyK' => 'typPolozky.obecny'
-        ], 'polozkyDokladu');
+
+    if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        $invoice->addArrayToBranch([
+            'cenik' => 'ext:products:'.$order->products[$i]['id'],
+            'nazev' => $order->products[$i]['name'],
+            'mnozMj' => $order->products[$i]['qty'],
+            'cenaMj' => $order->products[$i]['price'],
+            'typPolozkyK' => 'typPolozky.obecny'
+            ], 'polozkyDokladu');
+    }
 
     /*     * * Altered for CCGV ** */
     $order_total_modules->update_credit_account($i); // CCGV
@@ -316,13 +317,16 @@ $order_total_modules->apply_credit(); // CCGV
 if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
     $invoice->setDataValue('id', 'ext:osc:'.$insert_id);
     $invoice->sync();
+    $varSym = $invoice->getDataValue('varSym');
+} else {
+    $varSym = $insert_id;
 }
 
 // lets start with the email confirmation
 $email_order = EMAIL_HEADER_TXT."\n\n".
     STORE_NAME."\n".
     EMAIL_SEPARATOR."\n".
-    EMAIL_TEXT_ORDER_NUMBER.' '.$invoice->getDataValue('varSym')."\n";
+    EMAIL_TEXT_ORDER_NUMBER.' '.$varSym."\n";
 /* * * Altered for PWA ** 				 
   EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false) . "\n" .
   EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n\n";
