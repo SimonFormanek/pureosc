@@ -108,6 +108,16 @@ class CustomerLog extends \Ease\Brick
         $this->customers_id = $customers_id;
     }
 
+    /**
+     * Log event in MySQL database
+     * 
+     * @param string $tableName   affected table name
+     * @param string $columnName
+     * @param int    $recordID
+     * @param string $columnValue
+     * 
+     * @return boolean success
+     */
     public function logMySQLEvent($tableName, $columnName, $recordID,
                                   $columnValue)
     {
@@ -116,12 +126,13 @@ class CustomerLog extends \Ease\Brick
     }
 
     /**
-     * 
-     * @param type $originalData
-     * @param type $newData
-     * @param type $tableName
-     * @param type $recordID
-     * @param type $columns
+     * Log MySQL change
+     *  
+     * @param array  $originalData
+     * @param array  $newData
+     * @param string $tableName
+     * @param int    $recordID
+     * @param arrays $columns
      */
     public function logMySQLChange($originalData, $newData, $tableName,
                                    $recordID, $columns)
@@ -134,6 +145,15 @@ class CustomerLog extends \Ease\Brick
         }
     }
 
+    /**
+     * URI In MySQL
+     * 
+     * @param string $tableName
+     * @param int    $recordID
+     * @param string $columnName
+     * 
+     * @return string
+     */
     static public function sqlUri($tableName, $recordID, $columnName)
     {
         return 'mysql://'.constant('DB_HOST').'/'.constant('DB_DATABASE').'/'.$tableName.'/'.$recordID.'#'.$columnName;
@@ -154,6 +174,13 @@ class CustomerLog extends \Ease\Brick
         }
     }
 
+    /**
+     * Log Change in FlexiBee
+     * 
+     * @param \FlexiPeeHP\FlexiBeeRW $flexibee
+     * @param array $originalData
+     * @param array $columns
+     */
     public function logFlexiBeeChange($flexibee, $originalData, $columns)
     {
         foreach ($columns as $columnName) {
