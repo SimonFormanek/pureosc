@@ -208,11 +208,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
         $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_password',
             $customer_id, 'created');
         $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_firstname',
-            $customer_id, $firstname);
+            $customer_id, 'created');
         $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_lastname',
-            $customer_id, $lastname);
+            $customer_id, 'created');
         $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_telephone',
-            $customer_id, $telephone);
+            $customer_id, 'created');
         $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_newsletter',
             $customer_id, $newsletter);
 

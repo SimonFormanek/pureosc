@@ -8,23 +8,33 @@
   Copyright (c) 2010 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
-  class securityCheck_file_uploads {
+class securityCheck_file_uploads
+{
     var $type = 'warning';
 
-    function securityCheck_file_uploads() {
-      global $language;
-
-      include(DIR_FS_ADMIN . 'includes/languages/' . $language . '/modules/security_check/file_uploads.php');
+    public function __construct()
+    {
+        $this->securityCheck_file_uploads();
     }
 
-    function pass() {
-      return (bool)ini_get('file_uploads');
+    function securityCheck_file_uploads()
+    {
+        global $language;
+
+        include(DIR_FS_ADMIN.'includes/languages/'.$language.'/modules/security_check/file_uploads.php');
     }
 
-    function getMessage() {
-      return WARNING_FILE_UPLOADS_DISABLED;
+    function pass()
+    {
+        return (bool) ini_get('file_uploads');
     }
-  }
-?>
+
+    function getMessage()
+    {
+        return WARNING_FILE_UPLOADS_DISABLED;
+    }
+}
+
+

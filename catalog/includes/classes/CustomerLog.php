@@ -66,6 +66,8 @@ class CustomerLog extends \Ease\Brick
         return $this->insertToSQL([
                 'customers_id' => empty($customers_id) ? $this->customers_id : $customers_id,
                 'customers_id' => empty($customers_id) ? $this->customers_id : $customers_id,
+                'administrators_id' => empty($administrators_id) ? $this->administrators_id
+                    : $administrators_id,
                 'venue' => empty($venue) ? $this->venue : $venue,
                 'question' => $question,
                 'answer' => $answer,
@@ -110,7 +112,31 @@ class CustomerLog extends \Ease\Brick
                                   $columnValue)
     {
         return $this->logEvent($columnName, $columnValue, null,
-                'mysql://'.constant('DB_HOST').'/'.constant('DB_DATABASE').'/'.$tableName.'/'.$columnName.'/'.$recordID);
+                self::sqlUri($tableName.$recordID, $columnName));
+    }
+
+    /**
+     * 
+     * @param type $originalData
+     * @param type $newData
+     * @param type $tableName
+     * @param type $recordID
+     * @param type $columns
+     */
+    public function logMySQLChange($originalData, $newData, $tableName,
+                                   $recordID, $columns)
+    {
+        foreach ($columns as $columnName) {
+            if ($originalData[$columnName] != $newData[$columnName]) {
+                $this->logEvent($columnName, 'update', null,
+                    self::sqlUri($tableName, current($originalData), $columnName));
+            }
+        }
+    }
+
+    static public function sqlUri($tableName, $recordID, $columnName)
+    {
+        return 'mysql://'.constant('DB_HOST').'/'.constant('DB_DATABASE').'/'.$tableName.'/'.$recordID.'#'.$columnName;
     }
 
     /**
@@ -122,8 +148,19 @@ class CustomerLog extends \Ease\Brick
     public function logFlexiBeeEvent($flexibee, $columns)
     {
         foreach ($columns as $columnName) {
-            $this->logEvent($columnName, $flexibee->getDataValue($columnName),
-                null, $flexibee->getApiURL());
+            $this->logEvent($columnName,
+                empty($flexibee->lastInsertedID) ? 'update' : 'create', null,
+                $flexibee->getApiURL().'#'.$columnName);
+        }
+    }
+
+    public function logFlexiBeeChange($flexibee, $originalData, $columns)
+    {
+        foreach ($columns as $columnName) {
+            if ($originalData[$columnName] != $flexibee->getDataValue($columnName)) {
+                $this->logEvent($columnName, 'update', null,
+                    $flexibee->getApiURL().'#'.$columnName);
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
-"POT-Creation-Date: 2018-03-30 22:21+0200\n"
-"PO-Revision-Date: 2018-03-30 22:32+0200\n"
+"POT-Creation-Date: 2018-04-08 02:06+0200\n"
+"PO-Revision-Date: 2018-04-08 02:06+0200\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -16,6 +16,15 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: vendor\n"
 
+#: admin/customers.php:555 catalog/admin/customers.php:555
+msgid "Vat number"
+msgstr "Dič"
+
+#: admin/customers.php:569 catalog/admin/customers.php:569
+#: catalog/create_account.php:531
+msgid "Company number"
+msgstr "Ičo"
+
 #: admin/flexibeesync.php:27 catalog/admin/flexibeesync.php:27
 msgid "FlexiBee sync"
 msgstr "FlexiBee synchronizace"
@@ -28,10 +37,6 @@ msgstr "PDF Faktura"
 msgid "ISDOC Invoice"
 msgstr "ISDOC Faktura"
 
-#: catalog/create_account.php:504
-msgid "Company number"
-msgstr "Ičo"
-
 #: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Cenik.php:38
 #: catalog/ext/flexibee/FakturaVydana.php:42
 msgid "FlexiBee import"
@@ -41,20 +46,20 @@ msgstr "Import z FlexiBee "
 msgid "Wrong call"
 msgstr "Špatné volání"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:15
+#: catalog/includes/classes/NewsletterConsentMailer.php:21
 msgid "Newsletter GDPR Consent"
 msgstr "GDPR Souhlas s odběrem novinek mailem"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:16
+#: catalog/includes/classes/NewsletterConsentMailer.php:22
 msgid "Dear Customer"
 msgstr "Vážený zálazníku,"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:17
+#: catalog/includes/classes/NewsletterConsentMailer.php:30
 #, php-format
 msgid "Would you like to subsribe to newsletter updates from %s ?"
 msgstr "Chcete se přihlásit k odběru emailových novinek z %s ?"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:20
+#: catalog/includes/classes/NewsletterConsentMailer.php:36
 msgid "Click here to Agree"
 msgstr "Klikněte zde pro vyjádření souhlasu"
 
@@ -78,9 +83,17 @@ msgstr "Souhlas se zasíláním novinek"
 msgid "Consent Recieved"
 msgstr "Souhlas byl přijat"
 
-#: catalog/newsletterconfirm.php:42
+#: catalog/newsletterconfirm.php:37
+msgid "Consent not recieved"
+msgstr "Souhlas nebyl přijat"
+
+#: catalog/newsletterconfirm.php:44
 msgid "Newsletter subscription consent was accepted"
 msgstr "Souhlas k odběru mailových novinek byl přijat"
+
+#: catalog/newsletterconfirm.php:44
+msgid "Newsletter subscription consent was not accepted"
+msgstr "Souhlas k odběru mailových novinek nebyl přijat"
 
 #: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
 #: catalog/admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6

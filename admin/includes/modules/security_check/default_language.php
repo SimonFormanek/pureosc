@@ -8,23 +8,33 @@
   Copyright (c) 2010 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
-  class securityCheck_default_language {
+class securityCheck_default_language
+{
     var $type = 'error';
 
-    function securityCheck_default_language() {
-      global $language;
-
-      include(DIR_FS_ADMIN . 'includes/languages/' . $language . '/modules/security_check/default_language.php');
+    public function __construct()
+    {
+        $this->securityCheck_default_language();
     }
 
-    function pass() {
-      return defined('DEFAULT_LANGUAGE');
+    function securityCheck_default_language()
+    {
+        global $language;
+
+        include(DIR_FS_ADMIN.'includes/languages/'.$language.'/modules/security_check/default_language.php');
     }
 
-    function getMessage() {
-      return ERROR_NO_DEFAULT_LANGUAGE_DEFINED;
+    function pass()
+    {
+        return defined('DEFAULT_LANGUAGE');
     }
-  }
-?>
+
+    function getMessage()
+    {
+        return ERROR_NO_DEFAULT_LANGUAGE_DEFINED;
+    }
+}
+
+

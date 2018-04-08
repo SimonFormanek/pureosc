@@ -41,8 +41,14 @@ class UserLog extends AbstractMigration
         foreach ($columnsUsed as $columnUsed) {
             $columnsToChecksum[] = '`'.$columnUsed->getName().'`';
         }
+        $this->query('INSERT INTO user_log VALUES(0,NOW(),0,0,\'dbseed\',\'established\',\'yes\',\'none\',\'NULL\')');
 
-        $this->query('INSERT INTO user_log VALUES(0,NOW(),0,0,\'dbseed\',\'established\',\'yes\',\'mysql://\',\'NULL\')');
+//        $table->insert([
+//            'venue' => 'dbseed',
+//            'question' => 'established',
+//            'answer' => 'yes',
+//            'extid' => 'none'
+//        ]);
 
 
         $this->execute("
@@ -70,7 +76,16 @@ BEGIN
  SET NEW.predecessor = row_checksum(lastrowid);
 END;
 ");
-        $this->query('INSERT INTO '.$this->tableName.' VALUES(0,NOW(),0,0,\'checksumcheck\',\'passed\',\'yes\',\'mysql://\',NULL)');
+        $this->query('INSERT INTO '.$this->tableName.' VALUES(0,NOW(),0,0,\'checksum check\',\'passed\',\'yes\',\'none\',NULL)');
+
+//        $table->insert([
+//            'venue' => 'checksum check',
+//            'question' => 'passed',
+//            'answer' => 'yes',
+//            'extid' => 'none'
+//        ]);
+
+
 
         $this->execute("
  CREATE TRIGGER ".$this->tableName."_upd BEFORE UPDATE ON ".$this->tableName." FOR EACH ROW

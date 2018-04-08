@@ -295,3 +295,6 @@ require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');
 $breadcrumb = new breadcrumb;
 
 $messageStack = new messageStack;
+$adminLog = new PureOSC\CustomerLog();
+$adminLog->setAdministratorID($_SESSION['admin']['id']);
+
