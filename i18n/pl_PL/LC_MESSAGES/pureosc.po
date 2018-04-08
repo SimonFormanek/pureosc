@@ -1,0 +1,274 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-08 17:46+0200\n"
+"PO-Revision-Date: 2018-04-08 17:47+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: pl_PL\n"
+
+#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Hooks.php:44
+msgid "Url allready registered"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Status.php:75
+msgid "Status has no relations"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Changes.php:102
+msgid "Changes has no relations"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FakturaVydana.php:184
+msgid "Unsupported $income parameter type"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FlexiBeeRW.php:530
+#, php-format
+msgid "Unsupported action %s for evidence %s"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FlexiBeeRO.php:2008
+msgid "ID requied to get record relations "
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Company.php:213
+msgid "Company has no relations"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Priloha.php:129
+#, php-format
+msgid "Attagment %s does no exist"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/demo.php:8
+msgid "FlexiBee Connection Test"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/demo.php:20
+msgid "FlexiBee server info"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/demo.php:34
+msgid "Chyba komunikace"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/demo.php:52
+msgid "ChangesApi Povoleno"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/demo.php:53
+msgid "ChangesAPI povoleno"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/src/demo.php:55
+msgid "ChangesAPI zakázáno"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/testing/src/FlexiPeeHP/FakturaVydanaTest.php:64
+msgid "Invoice settle error"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/testing/src/FlexiPeeHP/FakturaVydanaTest.php:95
+msgid "Invoice match error"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/InvoiceLockUnlock.php:46
+#, php-format
+msgid "Invoice %s lock switched"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/InvoiceLockUnlock.php:49
+#, php-format
+msgid "Invoice %s lock switch failed"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/AttachmentSaveToFile.php:24
+#, php-format
+msgid "Attachment %s was saved"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/AttachmentSaveToFile.php:28
+msgid "Invoice without attachment"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/SendReminders.php:49
+#, php-format
+msgid "Overdue invoice: %s"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/SendReminders.php:50
+#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:72
+#, php-format
+msgid "Please pay %s,-"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:70
+#, php-format
+msgid "Overdue invoice: %s - %s days"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:81
+#, php-format
+msgid "Message sent: %s to %s"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/sendInvoiceByMail.php:34
+msgid "Invoice was sent"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/sendInvoiceByMail.php:36
+msgid "Mailer does not work"
+msgstr ""
+
+#: vendor/spoje.net/flexipeehp/Examples/InvoiceCopy.php:55
+#, php-format
+msgid "Invoice copy from %s to id:%s done"
+msgstr ""
+
+#: catalog/getpdf.php:31 catalog/getisdoc.php:26
+msgid "Wrong call"
+msgstr ""
+
+#: catalog/advanced_search.php:132 catalog/account_edit.php:172
+#: catalog/account_edit.php:185 catalog/account_edit.php:194
+#: catalog/account_edit.php:208 catalog/account_edit.php:222
+#: catalog/account_edit.php:232 catalog/password_reset.php:128
+#: catalog/password_reset.php:139 catalog/account_password.php:100
+#: catalog/account_password.php:112 catalog/account_password.php:124
+#: catalog/password_forgotten.php:127
+#: catalog/includes/modules/address_book_details.php:41
+#: catalog/includes/modules/address_book_details.php:54
+#: catalog/includes/modules/address_book_details.php:62
+#: catalog/includes/modules/address_book_details.php:107
+#: catalog/includes/modules/address_book_details.php:136
+#: catalog/includes/modules/address_book_details.php:146
+#: catalog/includes/modules/address_book_details.php:188
+#: catalog/account_pwa.php:301 catalog/account_pwa.php:314
+#: catalog/account_pwa.php:326 catalog/account_pwa.php:341
+#: catalog/account_pwa.php:356 catalog/account_pwa.php:400
+#: catalog/account_pwa.php:430 catalog/account_pwa.php:442
+#: catalog/account_pwa.php:465 catalog/account_pwa.php:469
+#: catalog/account_pwa.php:474 catalog/account_pwa.php:490
+#: catalog/account_pwa.php:505
+#: catalog/ext/modules/content/account/set_password.php:87
+#: catalog/ext/modules/content/account/set_password.php:95
+#: catalog/contact_us.php:105 catalog/contact_us.php:116
+#: catalog/contact_us.php:127 catalog/create_account.php:451
+#: catalog/create_account.php:464 catalog/create_account.php:476
+#: catalog/create_account.php:491 catalog/create_account.php:507
+#: catalog/create_account.php:568 catalog/create_account.php:598
+#: catalog/create_account.php:610 catalog/create_account.php:633
+#: catalog/create_account.php:637 catalog/create_account.php:642
+#: catalog/create_account.php:658 catalog/create_account.php:676
+#: catalog/create_account.php:721 catalog/create_account.php:734
+#: catalog/tell_a_friend.php:177 catalog/tell_a_friend.php:188
+#: catalog/tell_a_friend.php:203 catalog/tell_a_friend.php:214
+#: catalog/tell_a_friend.php:229 catalog/product_reviews_write.php:169
+msgid "Required"
+msgstr ""
+
+#: catalog/account_edit.php:151 catalog/account_password.php:89
+#: catalog/includes/modules/address_book_details.php:16
+#: catalog/account_pwa.php:273
+#: catalog/ext/modules/content/account/set_password.php:80
+#: catalog/contact_us.php:96 catalog/create_account.php:420
+#: catalog/tell_a_friend.php:166
+msgid "Requied Information"
+msgstr ""
+
+#: catalog/checkout_success.php:84 catalog/account_history.php:79
+msgid "PDF Invoice"
+msgstr ""
+
+#: catalog/checkout_success.php:86 catalog/account_history.php:82
+msgid "ISDOC Invoice"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:21
+msgid "Newsletter GDPR Consent"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:22
+msgid "Dear Customer"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:30
+#, php-format
+msgid "Would you like to subsribe to newsletter updates from %s ?"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:36
+msgid "Click here to Agree"
+msgstr ""
+
+#: catalog/includes/modules/address_book_details.php:72
+#: catalog/includes/modules/address_book_details.php:75
+#: catalog/includes/modules/checkout_new_address.php:70
+#: catalog/includes/modules/checkout_new_address.php:73
+#: catalog/account_pwa.php:367 catalog/account_pwa.php:371
+#: catalog/create_account.php:522 catalog/create_account.php:526
+msgid "Company Name"
+msgstr ""
+
+#: catalog/includes/modules/address_book_details.php:80
+#: catalog/includes/modules/address_book_details.php:83
+#: catalog/includes/modules/checkout_new_address.php:78
+#: catalog/includes/modules/checkout_new_address.php:81
+#: catalog/account_pwa.php:377 catalog/account_pwa.php:381
+#: catalog/create_account.php:532 catalog/create_account.php:536
+msgid "Vat Number"
+msgstr ""
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
+msgid "Google Buzz"
+msgstr ""
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
+msgid "Share on Google Buzz"
+msgstr ""
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
+msgid "Share products on Google Buzz."
+msgstr ""
+
+#: catalog/ext/flexibee/FakturaVydana.php:42
+#: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Strom.php:44
+#: catalog/ext/flexibee/Cenik.php:42
+msgid "FlexiBee import"
+msgstr ""
+
+#: catalog/create_account.php:542
+msgid "Company number"
+msgstr ""
+
+#: catalog/newsletterconfirm.php:31
+msgid "Newsletter Consent"
+msgstr ""
+
+#: catalog/newsletterconfirm.php:37
+msgid "Consent Recieved"
+msgstr ""
+
+#: catalog/newsletterconfirm.php:37
+msgid "Consent not recieved"
+msgstr ""
+
+#: catalog/newsletterconfirm.php:44
+msgid "Newsletter subscription consent was accepted"
+msgstr ""
+
+#: catalog/newsletterconfirm.php:44
+msgid "Newsletter subscription consent was not accepted"
+msgstr ""
