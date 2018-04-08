@@ -1,0 +1,221 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PureOSC\n"
+"POT-Creation-Date: 2018-04-08 16:45+0100\n"
+"PO-Revision-Date: 2018-04-08 16:47+0100\n"
+"Last-Translator: Šimon Formánek <mail@simonformanek.cz>\n"
+"Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
+"Language: sk_SK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: vendor\n"
+
+#: admin/create_account.php:214 catalog/admin/create_account.php:214
+msgid "Created by admin"
+msgstr "Založeno administrátorom"
+
+#: admin/create_account.php:368 catalog/admin/create_account.php:368
+msgid "New Customer"
+msgstr ""
+
+#: admin/create_account.php:381 catalog/account_edit.php:151
+#: catalog/account_password.php:89 catalog/account_pwa.php:273
+#: catalog/admin/create_account.php:381 catalog/contact_us.php:96
+#: catalog/create_account.php:420
+#: catalog/ext/modules/content/account/set_password.php:80
+#: catalog/includes/modules/address_book_details.php:16
+#: catalog/tell_a_friend.php:166
+msgid "Requied Information"
+msgstr ""
+
+#: admin/create_account.php:412 admin/create_account.php:425
+#: admin/create_account.php:437 admin/create_account.php:452
+#: admin/create_account.php:468 admin/create_account.php:529
+#: admin/create_account.php:559 admin/create_account.php:571
+#: admin/create_account.php:594 admin/create_account.php:598
+#: admin/create_account.php:603 admin/create_account.php:619
+#: admin/create_account.php:637 admin/create_account.php:682
+#: admin/create_account.php:695 catalog/account_edit.php:172
+#: catalog/account_edit.php:185 catalog/account_edit.php:194
+#: catalog/account_edit.php:208 catalog/account_edit.php:222
+#: catalog/account_edit.php:232 catalog/account_password.php:100
+#: catalog/account_password.php:112 catalog/account_password.php:124
+#: catalog/account_pwa.php:301 catalog/account_pwa.php:314
+#: catalog/account_pwa.php:326 catalog/account_pwa.php:341
+#: catalog/account_pwa.php:356 catalog/account_pwa.php:400
+#: catalog/account_pwa.php:430 catalog/account_pwa.php:442
+#: catalog/account_pwa.php:465 catalog/account_pwa.php:469
+#: catalog/account_pwa.php:474 catalog/account_pwa.php:490
+#: catalog/account_pwa.php:505 catalog/admin/create_account.php:412
+#: catalog/admin/create_account.php:425 catalog/admin/create_account.php:437
+#: catalog/admin/create_account.php:452 catalog/admin/create_account.php:468
+#: catalog/admin/create_account.php:529 catalog/admin/create_account.php:559
+#: catalog/admin/create_account.php:571 catalog/admin/create_account.php:594
+#: catalog/admin/create_account.php:598 catalog/admin/create_account.php:603
+#: catalog/admin/create_account.php:619 catalog/admin/create_account.php:637
+#: catalog/admin/create_account.php:682 catalog/admin/create_account.php:695
+#: catalog/advanced_search.php:132 catalog/contact_us.php:105
+#: catalog/contact_us.php:116 catalog/contact_us.php:127
+#: catalog/create_account.php:451 catalog/create_account.php:464
+#: catalog/create_account.php:476 catalog/create_account.php:491
+#: catalog/create_account.php:507 catalog/create_account.php:568
+#: catalog/create_account.php:598 catalog/create_account.php:610
+#: catalog/create_account.php:633 catalog/create_account.php:637
+#: catalog/create_account.php:642 catalog/create_account.php:658
+#: catalog/create_account.php:676 catalog/create_account.php:721
+#: catalog/create_account.php:734
+#: catalog/ext/modules/content/account/set_password.php:87
+#: catalog/ext/modules/content/account/set_password.php:95
+#: catalog/includes/modules/address_book_details.php:41
+#: catalog/includes/modules/address_book_details.php:54
+#: catalog/includes/modules/address_book_details.php:62
+#: catalog/includes/modules/address_book_details.php:107
+#: catalog/includes/modules/address_book_details.php:136
+#: catalog/includes/modules/address_book_details.php:146
+#: catalog/includes/modules/address_book_details.php:188
+#: catalog/password_forgotten.php:127 catalog/password_reset.php:128
+#: catalog/password_reset.php:139 catalog/product_reviews_write.php:169
+#: catalog/tell_a_friend.php:177 catalog/tell_a_friend.php:188
+#: catalog/tell_a_friend.php:203 catalog/tell_a_friend.php:214
+#: catalog/tell_a_friend.php:229
+msgid "Required"
+msgstr ""
+
+#: admin/create_account.php:483 admin/create_account.php:487
+#: admin/customers.php:552 admin/edit_orders.php:1089
+#: admin/edit_orders.php:1206 admin/edit_orders.php:1312
+#: admin/includes/modules/account_details.php:202
+#: admin/includes/modules/create_order_details.php:71
+#: catalog/account_pwa.php:367 catalog/account_pwa.php:371
+#: catalog/admin/create_account.php:483 catalog/admin/create_account.php:487
+#: catalog/admin/customers.php:552 catalog/admin/edit_orders.php:1089
+#: catalog/admin/edit_orders.php:1206 catalog/admin/edit_orders.php:1312
+#: catalog/admin/includes/modules/account_details.php:202
+#: catalog/admin/includes/modules/create_order_details.php:71
+#: catalog/create_account.php:522 catalog/create_account.php:526
+#: catalog/includes/modules/address_book_details.php:72
+#: catalog/includes/modules/address_book_details.php:75
+#: catalog/includes/modules/checkout_new_address.php:70
+#: catalog/includes/modules/checkout_new_address.php:73
+msgid "Company Name"
+msgstr ""
+
+#: admin/create_account.php:493 admin/create_account.php:497
+#: catalog/admin/create_account.php:493 catalog/admin/create_account.php:497
+msgid "Company Number"
+msgstr ""
+
+#: admin/create_account.php:503 admin/create_account.php:507
+#: admin/edit_orders.php:1094 admin/edit_orders.php:1211
+#: admin/edit_orders.php:1317 catalog/account_pwa.php:377
+#: catalog/account_pwa.php:381 catalog/admin/create_account.php:503
+#: catalog/admin/create_account.php:507 catalog/admin/edit_orders.php:1094
+#: catalog/admin/edit_orders.php:1211 catalog/admin/edit_orders.php:1317
+#: catalog/create_account.php:532 catalog/create_account.php:536
+#: catalog/includes/modules/address_book_details.php:80
+#: catalog/includes/modules/address_book_details.php:83
+#: catalog/includes/modules/checkout_new_address.php:78
+#: catalog/includes/modules/checkout_new_address.php:81
+msgid "Vat Number"
+msgstr "DIČ"
+
+#: admin/create_account.php:672 admin/create_account.php:676
+#: admin/create_account.php:680 catalog/admin/create_account.php:672
+#: catalog/admin/create_account.php:676 catalog/admin/create_account.php:680
+msgid "Password"
+msgstr ""
+
+#: admin/create_account.php:689 admin/create_account.php:693
+#: catalog/admin/create_account.php:689 catalog/admin/create_account.php:693
+msgid "Password Confirmation"
+msgstr ""
+
+#: admin/customers.php:566 catalog/admin/customers.php:566
+msgid "Vat number"
+msgstr ""
+
+#: admin/customers.php:580 catalog/admin/customers.php:580
+#: catalog/create_account.php:542
+msgid "Company number"
+msgstr ""
+
+#: admin/flexibeesync.php:27 catalog/admin/flexibeesync.php:27
+msgid "FlexiBee sync"
+msgstr ""
+
+#: catalog/account_history.php:79 catalog/checkout_success.php:84
+msgid "PDF Invoice"
+msgstr ""
+
+#: catalog/account_history.php:82 catalog/checkout_success.php:86
+msgid "ISDOC Invoice"
+msgstr ""
+
+#: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Cenik.php:38
+#: catalog/ext/flexibee/FakturaVydana.php:42 catalog/ext/flexibee/Strom.php:44
+msgid "FlexiBee import"
+msgstr ""
+
+#: catalog/getisdoc.php:26 catalog/getpdf.php:31
+msgid "Wrong call"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:21
+msgid "Newsletter GDPR Consent"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:22
+msgid "Dear Customer"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:30
+#, php-format
+msgid "Would you like to subsribe to newsletter updates from %s ?"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:36
+msgid "Click here to Agree"
+msgstr ""
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
+msgid "Google Buzz"
+msgstr ""
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
+msgid "Share on Google Buzz"
+msgstr ""
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
+msgid "Share products on Google Buzz."
+msgstr ""
+
+#: catalog/newsletterconfirm.php:31
+msgid "Newsletter Consent"
+msgstr ""
+
+#: catalog/newsletterconfirm.php:37
+msgid "Consent Recieved"
+msgstr ""
+
+#: catalog/newsletterconfirm.php:37
+msgid "Consent not recieved"
+msgstr ""
+
+#: catalog/newsletterconfirm.php:44
+msgid "Newsletter subscription consent was accepted"
+msgstr ""
+
+#: catalog/newsletterconfirm.php:44
+msgid "Newsletter subscription consent was not accepted"
+msgstr ""
+
+#: catalog/tell_a_friend.php:148
+#, php-format
+msgid "Tell a friend about %s"
+msgstr ""

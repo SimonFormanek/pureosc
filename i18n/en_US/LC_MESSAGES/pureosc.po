@@ -1,36 +1,225 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
-"POT-Creation-Date: 2018-02-17 06:25+0100\n"
-"PO-Revision-Date: 2018-02-17 06:25+0100\n"
-"Last-Translator: VÃ­tÄzslav DvoÅÃ¡k <info@vitexsoftware.cz>\n"
+"POT-Creation-Date: 2018-04-08 16:48+0100\n"
+"PO-Revision-Date: 2018-04-08 16:58+0100\n"
+"Last-Translator: Šimon Formánek <mail@simonformanek.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: vendor\n"
 
-#: account_history.php:67
-msgid "Invoice"
-msgstr "Invoice"
+# sss
+#: admin/create_account.php:214 catalog/admin/create_account.php:214
+msgid "Created by admin"
+msgstr "Created by admin"
 
-#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
-msgid "align"
-msgstr ""
+#: admin/create_account.php:368 catalog/admin/create_account.php:368
+msgid "New Customer"
+msgstr "New Customer"
 
-#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
-msgid "blockquote"
-msgstr ""
+#: admin/create_account.php:381 catalog/account_edit.php:151
+#: catalog/account_password.php:89 catalog/account_pwa.php:273
+#: catalog/admin/create_account.php:381 catalog/contact_us.php:96
+#: catalog/create_account.php:420
+#: catalog/ext/modules/content/account/set_password.php:80
+#: catalog/includes/modules/address_book_details.php:16
+#: catalog/tell_a_friend.php:166
+msgid "Requied Information"
+msgstr "Requied Information"
 
-#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
-msgid "p"
-msgstr ""
+#: admin/create_account.php:412 admin/create_account.php:425
+#: admin/create_account.php:437 admin/create_account.php:452
+#: admin/create_account.php:468 admin/create_account.php:529
+#: admin/create_account.php:559 admin/create_account.php:571
+#: admin/create_account.php:594 admin/create_account.php:598
+#: admin/create_account.php:603 admin/create_account.php:619
+#: admin/create_account.php:637 admin/create_account.php:682
+#: admin/create_account.php:695 catalog/account_edit.php:172
+#: catalog/account_edit.php:185 catalog/account_edit.php:194
+#: catalog/account_edit.php:208 catalog/account_edit.php:222
+#: catalog/account_edit.php:232 catalog/account_password.php:100
+#: catalog/account_password.php:112 catalog/account_password.php:124
+#: catalog/account_pwa.php:301 catalog/account_pwa.php:314
+#: catalog/account_pwa.php:326 catalog/account_pwa.php:341
+#: catalog/account_pwa.php:356 catalog/account_pwa.php:400
+#: catalog/account_pwa.php:430 catalog/account_pwa.php:442
+#: catalog/account_pwa.php:465 catalog/account_pwa.php:469
+#: catalog/account_pwa.php:474 catalog/account_pwa.php:490
+#: catalog/account_pwa.php:505 catalog/admin/create_account.php:412
+#: catalog/admin/create_account.php:425 catalog/admin/create_account.php:437
+#: catalog/admin/create_account.php:452 catalog/admin/create_account.php:468
+#: catalog/admin/create_account.php:529 catalog/admin/create_account.php:559
+#: catalog/admin/create_account.php:571 catalog/admin/create_account.php:594
+#: catalog/admin/create_account.php:598 catalog/admin/create_account.php:603
+#: catalog/admin/create_account.php:619 catalog/admin/create_account.php:637
+#: catalog/admin/create_account.php:682 catalog/admin/create_account.php:695
+#: catalog/advanced_search.php:132 catalog/contact_us.php:105
+#: catalog/contact_us.php:116 catalog/contact_us.php:127
+#: catalog/create_account.php:451 catalog/create_account.php:464
+#: catalog/create_account.php:476 catalog/create_account.php:491
+#: catalog/create_account.php:507 catalog/create_account.php:568
+#: catalog/create_account.php:598 catalog/create_account.php:610
+#: catalog/create_account.php:633 catalog/create_account.php:637
+#: catalog/create_account.php:642 catalog/create_account.php:658
+#: catalog/create_account.php:676 catalog/create_account.php:721
+#: catalog/create_account.php:734
+#: catalog/ext/modules/content/account/set_password.php:87
+#: catalog/ext/modules/content/account/set_password.php:95
+#: catalog/includes/modules/address_book_details.php:41
+#: catalog/includes/modules/address_book_details.php:54
+#: catalog/includes/modules/address_book_details.php:62
+#: catalog/includes/modules/address_book_details.php:107
+#: catalog/includes/modules/address_book_details.php:136
+#: catalog/includes/modules/address_book_details.php:146
+#: catalog/includes/modules/address_book_details.php:188
+#: catalog/password_forgotten.php:127 catalog/password_reset.php:128
+#: catalog/password_reset.php:139 catalog/product_reviews_write.php:169
+#: catalog/tell_a_friend.php:177 catalog/tell_a_friend.php:188
+#: catalog/tell_a_friend.php:203 catalog/tell_a_friend.php:214
+#: catalog/tell_a_friend.php:229
+msgid "Required"
+msgstr "Required"
+
+#: admin/create_account.php:483 admin/create_account.php:487
+#: admin/customers.php:552 admin/edit_orders.php:1089
+#: admin/edit_orders.php:1206 admin/edit_orders.php:1312
+#: admin/includes/modules/account_details.php:202
+#: admin/includes/modules/create_order_details.php:71
+#: catalog/account_pwa.php:367 catalog/account_pwa.php:371
+#: catalog/admin/create_account.php:483 catalog/admin/create_account.php:487
+#: catalog/admin/customers.php:552 catalog/admin/edit_orders.php:1089
+#: catalog/admin/edit_orders.php:1206 catalog/admin/edit_orders.php:1312
+#: catalog/admin/includes/modules/account_details.php:202
+#: catalog/admin/includes/modules/create_order_details.php:71
+#: catalog/create_account.php:522 catalog/create_account.php:526
+#: catalog/includes/modules/address_book_details.php:72
+#: catalog/includes/modules/address_book_details.php:75
+#: catalog/includes/modules/checkout_new_address.php:70
+#: catalog/includes/modules/checkout_new_address.php:73
+msgid "Company Name"
+msgstr "Company Name"
+
+#: admin/create_account.php:493 admin/create_account.php:497
+#: catalog/admin/create_account.php:493 catalog/admin/create_account.php:497
+msgid "Company Number"
+msgstr "Company Number"
+
+#: admin/create_account.php:503 admin/create_account.php:507
+#: admin/edit_orders.php:1094 admin/edit_orders.php:1211
+#: admin/edit_orders.php:1317 catalog/account_pwa.php:377
+#: catalog/account_pwa.php:381 catalog/admin/create_account.php:503
+#: catalog/admin/create_account.php:507 catalog/admin/edit_orders.php:1094
+#: catalog/admin/edit_orders.php:1211 catalog/admin/edit_orders.php:1317
+#: catalog/create_account.php:532 catalog/create_account.php:536
+#: catalog/includes/modules/address_book_details.php:80
+#: catalog/includes/modules/address_book_details.php:83
+#: catalog/includes/modules/checkout_new_address.php:78
+#: catalog/includes/modules/checkout_new_address.php:81
+msgid "Vat Number"
+msgstr "Vat Number"
+
+#: admin/create_account.php:672 admin/create_account.php:676
+#: admin/create_account.php:680 catalog/admin/create_account.php:672
+#: catalog/admin/create_account.php:676 catalog/admin/create_account.php:680
+msgid "Password"
+msgstr "Password"
+
+#: admin/create_account.php:689 admin/create_account.php:693
+#: catalog/admin/create_account.php:689 catalog/admin/create_account.php:693
+msgid "Password Confirmation"
+msgstr "Password Confirmation"
+
+#: admin/customers.php:566 catalog/admin/customers.php:566
+msgid "Vat number"
+msgstr "Vat number"
+
+#: admin/customers.php:580 catalog/admin/customers.php:580
+#: catalog/create_account.php:542
+msgid "Company number"
+msgstr "Company number"
+
+#: admin/flexibeesync.php:27 catalog/admin/flexibeesync.php:27
+msgid "FlexiBee sync"
+msgstr "FlexiBee sync"
+
+#: catalog/account_history.php:79 catalog/checkout_success.php:84
+msgid "PDF Invoice"
+msgstr "PDF Invoice"
+
+#: catalog/account_history.php:82 catalog/checkout_success.php:86
+msgid "ISDOC Invoice"
+msgstr "ISDOC Invoice"
+
+#: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Cenik.php:38
+#: catalog/ext/flexibee/FakturaVydana.php:42 catalog/ext/flexibee/Strom.php:44
+msgid "FlexiBee import"
+msgstr "FlexiBee import"
+
+#: catalog/getisdoc.php:26 catalog/getpdf.php:31
+msgid "Wrong call"
+msgstr "Wrong call"
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:21
+msgid "Newsletter GDPR Consent"
+msgstr "Newsletter GDPR Consent"
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:22
+msgid "Dear Customer"
+msgstr "Dear Customer"
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:30
+#, php-format
+msgid "Would you like to subsribe to newsletter updates from %s ?"
+msgstr "Would you like to subsribe to newsletter updates from %s ?"
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:36
+msgid "Click here to Agree"
+msgstr "Click here to Agree"
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
+msgid "Google Buzz"
+msgstr "Google Buzz"
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
+msgid "Share on Google Buzz"
+msgstr "Share on Google Buzz"
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
+msgid "Share products on Google Buzz."
+msgstr "Share products on Google Buzz."
+
+#: catalog/newsletterconfirm.php:31
+msgid "Newsletter Consent"
+msgstr "Newsletter Consent"
+
+#: catalog/newsletterconfirm.php:37
+msgid "Consent Recieved"
+msgstr "Consent Recieved"
+
+#: catalog/newsletterconfirm.php:37
+msgid "Consent not recieved"
+msgstr "Consent not recieved"
+
+#: catalog/newsletterconfirm.php:44
+msgid "Newsletter subscription consent was accepted"
+msgstr "Newsletter subscription consent was accepted"
+
+#: catalog/newsletterconfirm.php:44
+msgid "Newsletter subscription consent was not accepted"
+msgstr "Newsletter subscription consent was not accepted"
+
+#: catalog/tell_a_friend.php:148
+#, php-format
+msgid "Tell a friend about %s"
+msgstr "Tell a friend about %s"
 
 #, fuzzy
 #~ msgid "Attachment %s was saved"
@@ -111,10 +300,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Text hint"
 #~ msgstr "Text hint"
-
-#, fuzzy
-#~ msgid "Number"
-#~ msgstr "Number"
 
 #, fuzzy
 #~ msgid "Number hint"
@@ -283,9 +468,6 @@ msgstr ""
 #~ msgid "Download Buttons XML install file"
 #~ msgstr "Download Buttons XML install file"
 
-#~ msgid "Changes recieved"
-#~ msgstr "Changes recieved"
-
 #~ msgid "FlexiBee WebHook income"
 #~ msgstr "FlexiBee WebHook income"
 
@@ -328,14 +510,22 @@ msgstr ""
 #~ msgid "Changes API"
 #~ msgstr "Changes API"
 
-#~ msgid "If it is turned on , FlexiBee records all changes made ââto the database company in the changelog and provides a list of changes recovered"
-#~ msgstr "If it is turned on , FlexiBee records all changes made ââto the database company in the changelog and provides a list of changes recovered"
+#~ msgid ""
+#~ "If it is turned on , FlexiBee records all changes made ââto the database "
+#~ "company in the changelog and provides a list of changes recovered"
+#~ msgstr ""
+#~ "If it is turned on , FlexiBee records all changes made ââto the database "
+#~ "company in the changelog and provides a list of changes recovered"
 
 #~ msgid "Web Hook"
 #~ msgstr "Web Hook"
 
-#~ msgid "When the database FlexiBee to change the POST HTTP request sent to all registered URL"
-#~ msgstr "When the database FlexiBee to change the POST HTTP request sent to all registered URL"
+#~ msgid ""
+#~ "When the database FlexiBee to change the POST HTTP request sent to all "
+#~ "registered URL"
+#~ msgstr ""
+#~ "When the database FlexiBee to change the POST HTTP request sent to all "
+#~ "registered URL"
 
 #~ msgid "Data format"
 #~ msgstr "Data format"
@@ -349,14 +539,30 @@ msgstr ""
 #~ msgid "Last version"
 #~ msgstr "Last version"
 
-#~ msgid "Version of which will begin sending FOLLOW changes , ie. The next higher version . The default value is equal to the current global version ( globalVersion ) at the moment of registration Hook. Permissible values ââare in the range [ 0 , % s ]"
-#~ msgstr "Version of which will begin sending FOLLOW changes , ie. The next higher version . The default value is equal to the current global version ( globalVersion ) at the moment of registration Hook. Permissible values ââare in the range [ 0 , % s ]"
+#~ msgid ""
+#~ "Version of which will begin sending FOLLOW changes , ie. The next higher "
+#~ "version . The default value is equal to the current global version "
+#~ "( globalVersion ) at the moment of registration Hook. Permissible values "
+#~ "ââare in the range [ 0 , % s ]"
+#~ msgstr ""
+#~ "Version of which will begin sending FOLLOW changes , ie. The next higher "
+#~ "version . The default value is equal to the current global version "
+#~ "( globalVersion ) at the moment of registration Hook. Permissible values "
+#~ "ââare in the range [ 0 , % s ]"
 
 #~ msgid "Security Code"
 #~ msgstr "Security Code"
 
-#~ msgid "Any string (eg. %s) that will be sent with each change notifications in the HTTP header. Used to easily verify that include incoming notifications you registered Hook. Key name is in the HTTP header X-FB-Hook-SecKey ."
-#~ msgstr "Any string (eg. %s) that will be sent with each change notifications in the HTTP header. Used to easily verify that include incoming notifications you registered Hook. Key name is in the HTTP header X-FB-Hook-SecKey ."
+#~ msgid ""
+#~ "Any string (eg. %s) that will be sent with each change notifications in "
+#~ "the HTTP header. Used to easily verify that include incoming "
+#~ "notifications you registered Hook. Key name is in the HTTP header X-FB-"
+#~ "Hook-SecKey ."
+#~ msgstr ""
+#~ "Any string (eg. %s) that will be sent with each change notifications in "
+#~ "the HTTP header. Used to easily verify that include incoming "
+#~ "notifications you registered Hook. Key name is in the HTTP header X-FB-"
+#~ "Hook-SecKey ."
 
 #~ msgid "Perform operation"
 #~ msgstr "Perform operation"
@@ -423,9 +629,6 @@ msgstr ""
 
 #~ msgid "login"
 #~ msgstr "login"
-
-#~ msgid "Password"
-#~ msgstr "Password"
 
 #~ msgid "Remeber me"
 #~ msgstr "Remeber me"
@@ -499,9 +702,6 @@ msgstr ""
 #~ msgid "OK"
 #~ msgstr "OK"
 
-#~ msgid "Required"
-#~ msgstr "Required"
-
 #~ msgid "Edit targeted record"
 #~ msgstr "Edit targeted record"
 
@@ -523,17 +723,11 @@ msgstr ""
 #~ msgid "Query"
 #~ msgstr "Query"
 
-#~ msgid "FlexiBee"
-#~ msgstr "FlexiBee"
-
 #~ msgid "Remove"
 #~ msgstr "Remove"
 
 #~ msgid "New"
 #~ msgstr "New"
-
-#~ msgid "Company"
-#~ msgstr "Company"
 
 #~ msgid "Overview"
 #~ msgstr "Overview"
@@ -543,9 +737,6 @@ msgstr ""
 
 #~ msgid "Buttons"
 #~ msgstr "Buttons"
-
-#~ msgid "Changes Recieved"
-#~ msgstr "Changes Recieved"
 
 #~ msgid "WebHook test"
 #~ msgstr "WebHook test"
@@ -721,9 +912,6 @@ msgstr ""
 #~ msgid "Internal number of record edited"
 #~ msgstr "Internal number of record edited"
 
-#~ msgid "External number"
-#~ msgstr "External number"
-
 #~ msgid "External number of record edited"
 #~ msgstr "External number of record edited"
 
@@ -733,8 +921,12 @@ msgstr ""
 #~ msgid "Choose Registered"
 #~ msgstr "Choose Registered"
 
-#~ msgid "When the database FlexiBee is changed the POST HTTP request sent to all registered URL"
-#~ msgstr "When the database FlexiBee is changed the POST HTTP request sent to all registered URL"
+#~ msgid ""
+#~ "When the database FlexiBee is changed the POST HTTP request sent to all "
+#~ "registered URL"
+#~ msgstr ""
+#~ "When the database FlexiBee is changed the POST HTTP request sent to all "
+#~ "registered URL"
 
 #~ msgid "Response"
 #~ msgstr "Response"
@@ -864,9 +1056,6 @@ msgstr ""
 
 #~ msgid "Structure"
 #~ msgstr "Structure"
-
-#~ msgid "Custom query"
-#~ msgstr "Custom query"
 
 #~ msgid "Query does not sent yet"
 #~ msgstr "Query does not sent yet"
