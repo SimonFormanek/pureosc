@@ -12,21 +12,3 @@ checks:
         code_rating: true
         duplication: true
         
-build:
-    nodes:
-        analysis:
-            project_setup:
-                override: true
-            tests:
-                override: php-scrutinizer-run
-    environment:
-        php:
-            version: 7.1.0
-        mysql: true
-    dependencies:
-        before:
-            - mysql -u root -e "CREATE DATABASE pureosc"
-            - mysql -u root -e "GRANT ALL PRIVILEGES ON pureosc.* TO 'pureosc'@'localhost' IDENTIFIED BY 'pureosc'"
-            - composer self-update
-            - composer install --no-interaction
-            - ./vendor/bin/phinx migrate  --configuration tests/phinx.yml
