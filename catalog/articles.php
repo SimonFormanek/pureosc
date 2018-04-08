@@ -133,7 +133,8 @@ if ($topic_depth == 'nested') {
             if (file_exists($authorsImage) && is_file($authorsImage)) {
                 ?>
                 <div align="right"><h1><?php echo tep_image($authorsImage,
-            HEADING_TITLE, HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></h1></div>
+            HEADING_TITLE, HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+                ?></h1></div>
             <?php } ?>
             <?php
             // optional Article List Filter
@@ -166,16 +167,17 @@ if ($topic_depth == 'nested') {
                 }
             }
             ?>
-    <?php if (tep_not_null($topic['topics_description'])) { ?>
+            <?php if (tep_not_null($topic['topics_description'])) { ?>
                 <div align="left" colspan="2"><h2><?php echo $topic['topics_description']; ?></h2></div>
             <?php } ?>
             <?php if (tep_not_null($authors_description)) { ?>
                 <div class="main" colspan="2" valign="top"><?php echo $authors_description; ?></div>
             <?php } ?>
-            <?php if (tep_not_null($authors_url)) { ?>
+                <?php if (tep_not_null($authors_url)) { ?>
                 <div class="main" colspan="2" valign="top"><?php echo sprintf(TEXT_MORE_INFORMATION,
-                    $authors_url); ?></div>
-            <?php } ?>
+                        $authors_url);
+                    ?></div>
+    <?php } ?>
 
             <div><?php include(DIR_WS_MODULES.FILENAME_ARTICLE_LISTING); ?></div>
 
@@ -183,12 +185,13 @@ if ($topic_depth == 'nested') {
         } else { // default page
             ?>
             <div class="main"><?php echo '<b>'.(($showBlogArticles == 'true') ? TEXT_CURRENT_ARTICLES
-                : TEXT_CURRENT_BLOG_ARTICLES).'</b>'; ?></div>
-                    <?php
-                    $articles_all_array     = array();
-                    $articles_all_query_raw = "select a.articles_id, a.articles_date_added, ad.articles_name, ad.articles_head_desc_tag, au.authors_id, au.authors_name, td.topics_id, td.topics_name from ".TABLE_ARTICLES." a left join ".TABLE_ARTICLES_TO_TOPICS." a2t on a.articles_id = a2t.articles_id left join ".TABLE_TOPICS_DESCRIPTION." td on a2t.topics_id = td.topics_id left join ".TABLE_AUTHORS." au on a.authors_id = au.authors_id left join ".TABLE_ARTICLES_DESCRIPTION." ad on a.articles_id = ad.articles_id  where (a.articles_date_available IS NULL or to_days(a.articles_date_available) <= to_days(now()))  and a.articles_status = '1' ".$showBlogArticles." and ad.language_id = '".(int) $languages_id."' and td.language_id = '".(int) $languages_id."' order by a.articles_date_added desc, ad.articles_name";
-                    $listing_sql            = $articles_all_query_raw;
-                    ?>
+                    : TEXT_CURRENT_BLOG_ARTICLES).'</b>';
+            ?></div>
+            <?php
+            $articles_all_array     = array();
+            $articles_all_query_raw = "select a.articles_id, a.articles_date_added, ad.articles_name, ad.articles_head_desc_tag, au.authors_id, au.authors_name, td.topics_id, td.topics_name from ".TABLE_ARTICLES." a left join ".TABLE_ARTICLES_TO_TOPICS." a2t on a.articles_id = a2t.articles_id left join ".TABLE_TOPICS_DESCRIPTION." td on a2t.topics_id = td.topics_id left join ".TABLE_AUTHORS." au on a.authors_id = au.authors_id left join ".TABLE_ARTICLES_DESCRIPTION." ad on a.articles_id = ad.articles_id  where (a.articles_date_available IS NULL or to_days(a.articles_date_available) <= to_days(now()))  and a.articles_status = '1' ".$showBlogArticles." and ad.language_id = '".(int) $languages_id."' and td.language_id = '".(int) $languages_id."' order by a.articles_date_added desc, ad.articles_name";
+            $listing_sql            = $articles_all_query_raw;
+            ?>
             <div><?php include(DIR_WS_MODULES.FILENAME_ARTICLE_LISTING); ?></div>
             <?php
             if (($articles_all_split->number_of_rows > 0) && ((ARTICLE_PREV_NEXT_BAR_LOCATION
@@ -196,25 +199,29 @@ if ($topic_depth == 'nested') {
                 ?> 
                 <div class="row">
                     <div class="col-sm-6 pagenumber hidden-xs">
-                <?php echo $articles_all_split->display_count(TEXT_DISPLAY_NUMBER_OF_ARTICLES); ?>
+                                <?php echo $articles_all_split->display_count(TEXT_DISPLAY_NUMBER_OF_ARTICLES); ?>
                     </div>
                     <div class="col-sm-6">
                         <div class="pull-right pagenav"><ul class="pagination"><?php echo $articles_all_split->display_links(MAX_DISPLAY_PAGE_LINKS,
-            tep_get_all_get_params(array('page', 'info', 'x', 'y'))); ?></ul></div>
+                                    tep_get_all_get_params(array('page', 'info',
+                                    'x', 'y')));
+                                ?></ul></div>
                         <span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span>
                     </div>
                 </div>            
-        <?php
-    }
-    ?>
+                <?php
+            }
+            ?>
             <div><?php include(DIR_WS_MODULES.FILENAME_ARTICLES_UPCOMING); ?></div>
-<?php }
-?>
+            <?php }
+            ?>
     </div>
 
     <div class="buttonSet">
         <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'glyphicon glyphicon-chevron-right', tep_href_link(FILENAME_DEFAULT)); ?></div>
+                'glyphicon glyphicon-chevron-right',
+                tep_href_link(FILENAME_DEFAULT));
+            ?></div>
     </div>
 </div>
 

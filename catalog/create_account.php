@@ -237,7 +237,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
             ]);
 
             $adresar->insertToFlexiBee();
-            
+
             if ($adresar->lastResponseCode == 201) {
                 $userLog->logFlexiBeeEvent($adresar,
                     ['nazev', 'email', 'ic', 'dic']);
@@ -292,12 +292,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
                 'fax' => $fax]);
 
             $kontakter->insertToFlexiBee();
-            
+
             if ($kontakter->lastResponseCode == 201) {
                 $userLog->logFlexiBeeEvent($kontakter,
-                    ['jmeno','prijmeni', 'email']);
+                    ['jmeno', 'prijmeni', 'email']);
             }
-            
         }
 
         tep_db_query("update ".TABLE_CUSTOMERS." set customers_default_address_id = '".(int) $address_id."' where customers_id = '".(int) $customer_id."'");
@@ -730,9 +729,9 @@ echo tep_draw_form('create_account',
 
     <div class="buttonSet">
         <div class="text-right"><?php
-            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-user', null,
-                'primary', null, 'btn-success');
-            ?></div>
+                echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-user', null,
+                    'primary', null, 'btn-success');
+                ?></div>
     </div>
 
 </div>

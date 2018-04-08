@@ -93,13 +93,15 @@ require(DIR_WS_INCLUDES.'template_top.php');
         function popupWindow(url) {
             window.open(url, 'popupWindow', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150')
         }
-    //--></script>
+        //--></script>
 <table border="0" width="100%" cellspacing="3" cellpadding="3">
             <tr>
-                <td width="100%" valign="top"><?php echo tep_draw_form('article_reviews_write',
-    tep_href_link(FILENAME_ARTICLE_REVIEWS_WRITE,
-        'action=process&articles_id='.$_GET['articles_id']), 'post',
-    'onSubmit="return checkForm();"'); ?><table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <td width="100%" valign="top"><?php
+                    echo tep_draw_form('article_reviews_write',
+                        tep_href_link(FILENAME_ARTICLE_REVIEWS_WRITE,
+                            'action=process&articles_id='.$_GET['articles_id']),
+                        'post', 'onSubmit="return checkForm();"');
+                    ?><table border="0" width="100%" cellspacing="0" cellpadding="0">
                         <tr>
                             <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                                     <tr>
@@ -109,7 +111,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         </tr>
                         <tr>
                             <td><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+                        '100%', '10');
+                    ?></td>
                         </tr>
 <?php
 if ($messageStack->size('review') > 0) {
@@ -119,7 +122,8 @@ if ($messageStack->size('review') > 0) {
                             </tr>
                             <tr>
                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-                            '100%', '10'); ?></td>
+        '100%', '10');
+    ?></td>
                             </tr>
     <?php
 }
@@ -141,13 +145,18 @@ if ($messageStack->size('review') > 0) {
                                                                 <td><table border="0" width="100%" cellspacing="2" cellpadding="2">
                                                                         <tr>
                                                                             <td class="main"><?php echo tep_draw_textarea_field('review',
-    'soft', 60, 15); ?></td>
+    'soft', 60, 15);
+?></td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="main"><?php echo '<b>'.SUB_TITLE_RATING.'</b> '.TEXT_BAD.' '.tep_draw_radio_field('rating',
-    '1').' '.tep_draw_radio_field('rating', '2').' '.tep_draw_radio_field('rating',
-    '3').' '.tep_draw_radio_field('rating', '4').' '.tep_draw_radio_field('rating',
-    '5').' '.TEXT_GOOD; ?></td>
+                                                                            <td class="main"><?php
+                                                                                echo '<b>'.SUB_TITLE_RATING.'</b> '.TEXT_BAD.' '.tep_draw_radio_field('rating',
+                                                                                    '1').' '.tep_draw_radio_field('rating',
+                                                                                    '2').' '.tep_draw_radio_field('rating',
+                                                                                    '3').' '.tep_draw_radio_field('rating',
+                                                                                    '4').' '.tep_draw_radio_field('rating',
+                                                                                    '5').' '.TEXT_GOOD;
+?></td>
                                                                         </tr>
                                                                     </table></td>
                                                             </tr>
@@ -158,11 +167,16 @@ if ($messageStack->size('review') > 0) {
                                                             <tr class="infoBoxContents">
                                                                 <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
                                                                         <tr>
-                                                                            <td class="main"><?php echo '<a href="'.tep_href_link(FILENAME_ARTICLE_REVIEWS,
-    tep_get_all_get_params(array('reviews_id', 'action'))).'">'.tep_image_button('button_back.gif',
-    IMAGE_BUTTON_BACK).'</a>'; ?></td>
+                                                                            <td class="main"><?php
+                                                                                echo '<a href="'.tep_href_link(FILENAME_ARTICLE_REVIEWS,
+                                                                                    tep_get_all_get_params(array(
+                                                                                    'reviews_id',
+                                                                                    'action'))).'">'.tep_image_button('button_back.gif',
+                                                                                    IMAGE_BUTTON_BACK).'</a>';
+?></td>
                                                                             <td class="main" align="right"><?php echo tep_image_submit('button_continue.gif',
-    IMAGE_BUTTON_CONTINUE); ?></td>
+                                                                                    IMAGE_BUTTON_CONTINUE);
+?></td>
                                                                         </tr>
                                                                     </table></td>
                                                             </tr>

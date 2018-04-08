@@ -106,10 +106,12 @@ if ($messageStack->size('password_reset') > 0) {
 }
 ?>
 
-                <?php echo tep_draw_form('password_reset',
-                    tep_href_link(FILENAME_PASSWORD_RESET,
-                        'account='.$email_address.'&key='.$password_key.'&action=process',
-                        'SSL'), 'post', 'class="form-horizontal"', true); ?>
+<?php
+echo tep_draw_form('password_reset',
+    tep_href_link(FILENAME_PASSWORD_RESET,
+        'account='.$email_address.'&key='.$password_key.'&action=process', 'SSL'),
+    'post', 'class="form-horizontal"', true);
+?>
 
 <div class="contentContainer">
     <div class="contentText">
@@ -118,26 +120,31 @@ if ($messageStack->size('password_reset') > 0) {
         <div class="form-group has-feedback">
             <label for="inputPassword" class="control-label col-sm-3"><?php echo ENTRY_PASSWORD; ?></label>
             <div class="col-sm-9">
-<?php echo tep_draw_input_field('password', NULL,
-    'required aria-required="true"  autofocus="autofocus" id="inputPassword" placeholder="'.ENTRY_PASSWORD.'"',
-    'password'); ?>
+                <?php
+                echo tep_draw_input_field('password', NULL,
+                    'required aria-required="true"  autofocus="autofocus" id="inputPassword" placeholder="'.ENTRY_PASSWORD.'"',
+                    'password');
+                ?>
 <?php echo _('Required'); ?>
             </div>
         </div>
         <div class="form-group has-feedback">
             <label for="inputConfirm" class="control-label col-sm-3"><?php echo ENTRY_PASSWORD_CONFIRMATION; ?></label>
             <div class="col-sm-9">
-<?php echo tep_draw_input_field('confirmation', NULL,
+<?php
+echo tep_draw_input_field('confirmation', NULL,
     'required aria-required="true" id="inputConfirm" placeholder="'.ENTRY_PASSWORD_CONFIRMATION.'"',
-    'password'); ?>
-<?php echo _('Required'); ?>
+    'password');
+?>
+            <?php echo _('Required'); ?>
             </div>
         </div>
     </div>
 
     <div class="buttonSet">
         <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-angle-right', null, 'primary', null, 'btn-success'); ?></div>
+                'fa fa-angle-right', null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 </div>
 

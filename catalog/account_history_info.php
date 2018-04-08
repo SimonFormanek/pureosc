@@ -33,8 +33,8 @@ $breadcrumb->add(NAVBAR_TITLE_1, tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
 $breadcrumb->add(NAVBAR_TITLE_2,
     tep_href_link(FILENAME_ACCOUNT_HISTORY, '', 'SSL'));
 $breadcrumb->add(sprintf(NAVBAR_TITLE_3, $_GET['order_id']),
-    tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO,
-        'order_id='.$_GET['order_id'], 'SSL'));
+    tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id='.$_GET['order_id'],
+        'SSL'));
 
 require(DIR_WS_CLASSES.'order.php');
 $order = new order($_GET['order_id']);
@@ -54,21 +54,22 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
         <div class="panel panel-default">
             <div class="panel-heading"><strong><?php echo sprintf(HEADING_ORDER_NUMBER,
-    $_GET['order_id']).' <span class="badge pull-right">'.$order->info['orders_status'].'</span>'; ?></strong></div>
+    $_GET['order_id']).' <span class="badge pull-right">'.$order->info['orders_status'].'</span>';
+?></strong></div>
             <div class="panel-body">
 
                 <table border="0" width="100%" cellspacing="0" cellpadding="2" class="table-hover order_confirmation">
-<?php
-if (sizeof($order->info['tax_groups']) > 1) {
-    ?>
+                    <?php
+                    if (sizeof($order->info['tax_groups']) > 1) {
+                        ?>
                         <tr>
                             <td colspan="2"><strong><?php echo HEADING_PRODUCTS; ?></strong></td>
                             <td align="right"><strong><?php echo HEADING_TAX; ?></strong></td>
                             <td align="right"><strong><?php echo HEADING_TOTAL; ?></strong></td>
                         </tr>
-    <?php
-} else {
-    ?>
+                        <?php
+                    } else {
+                        ?>
                         <tr>
                             <td colspan="2"><strong><?php echo HEADING_PRODUCTS; ?></strong></td>
                             <td align="right"><strong><?php echo HEADING_TOTAL; ?></strong></td>
@@ -105,14 +106,14 @@ if (sizeof($order->info['tax_groups']) > 1) {
                 </table>
                 <hr>
                 <table width="100%" class="pull-right">
-<?php
-for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) {
-    echo '          <tr>'."\n".
-    '            <td align="right" width="100%">'.$order->totals[$i]['title'].'&nbsp;</td>'."\n".
-    '            <td align="right">'.$order->totals[$i]['text'].'</td>'."\n".
-    '          </tr>'."\n";
-}
-?>
+                    <?php
+                    for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) {
+                        echo '          <tr>'."\n".
+                        '            <td align="right" width="100%">'.$order->totals[$i]['title'].'&nbsp;</td>'."\n".
+                        '            <td align="right">'.$order->totals[$i]['text'].'</td>'."\n".
+                        '          </tr>'."\n";
+                    }
+                    ?>
                 </table>
             </div>
 
@@ -126,38 +127,40 @@ for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) {
     <div class="clearfix"></div>
 
     <div class="row">
-<?php
-if ($order->delivery != false) {
-    ?>
+        <?php
+        if ($order->delivery != false) {
+            ?>
             <div class="col-sm-4">
                 <div class="panel panel-info">
                     <div class="panel-heading"><?php echo '<strong>'.HEADING_DELIVERY_ADDRESS.'</strong>'; ?></div>
                     <div class="panel-body">
-    <?php echo tep_address_format($order->delivery['format_id'],
-        $order->delivery, 1, ' ', '<br />'); ?>
+                        <?php echo tep_address_format($order->delivery['format_id'],
+                            $order->delivery, 1, ' ', '<br />');
+                        ?>
                     </div>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="col-sm-4">
             <div class="panel panel-warning">
                 <div class="panel-heading"><?php echo '<strong>'.HEADING_BILLING_ADDRESS.'</strong>'; ?></div>
                 <div class="panel-body">
-                    <?php echo tep_address_format($order->billing['format_id'],
-                        $order->billing, 1, ' ', '<br />'); ?>
+<?php echo tep_address_format($order->billing['format_id'],
+    $order->billing, 1, ' ', '<br />');
+?>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
-            <?php
-            if ($order->info['shipping_method']) {
-                ?>
+<?php
+if ($order->info['shipping_method']) {
+    ?>
                 <div class="panel panel-info">
                     <div class="panel-heading"><?php echo '<strong>'.HEADING_SHIPPING_METHOD.'</strong>'; ?></div>
                     <div class="panel-body">
-    <?php echo $order->info['shipping_method']; ?>
+                <?php echo $order->info['shipping_method']; ?>
                     </div>
                 </div>
     <?php
@@ -166,13 +169,14 @@ if ($order->delivery != false) {
             <div class="panel panel-warning">
                 <div class="panel-heading"><?php echo '<strong>'.HEADING_PAYMENT_METHOD.'</strong>'; ?></div>
                 <div class="panel-body">
-<?php echo $order->info['payment_method']; 
+                    <?php
+                    echo $order->info['payment_method'];
 
 
-                    $qrImage = new \Ease\Html\ImgTag($invoice->getQrCodeBase64(), $invoice->getRecordIdent());
+                    $qrImage = new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
+                        $invoice->getRecordIdent());
                     echo $qrImage;
-
-?>
+                    ?>
                 </div>
             </div>
         </div>
@@ -213,9 +217,11 @@ if (DOWNLOAD_ENABLED == 'true') include(DIR_WS_MODULES.'downloads.php');
 
     <div class="clearfix"></div>
     <div class="buttonSet">
-<?php echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+<?php
+echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
     tep_href_link(FILENAME_ACCOUNT_HISTORY,
-        tep_get_all_get_params(array('order_id')), 'SSL')); ?>
+        tep_get_all_get_params(array('order_id')), 'SSL'));
+?>
     </div>
 </div>
 

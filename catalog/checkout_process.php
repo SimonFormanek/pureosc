@@ -75,13 +75,15 @@ $order_totals        = $order_total_modules->process();
 $payment_modules->before_process();
 /* * * EOF alterations for CCGV ** */
 
-//flexibee init
-require_once './ext/flexibee/init.php';
-$invoice = new PureOSC\flexibee\FakturaVydana();
-$invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
-$invoice->setDataValue("typDokl", 'code:FAKTURA');
-$invoice->setDataValue("stavMailK", 'stavMail.neodesilat');
+if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
 
+//flexibee init
+    require_once './ext/flexibee/init.php';
+    $invoice = new PureOSC\flexibee\FakturaVydana();
+    $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
+    $invoice->setDataValue("typDokl", 'code:FAKTURA');
+    $invoice->setDataValue("stavMailK", 'stavMail.neodesilat');
+}
 // Stock Check
 $any_out_of_stock = false;
 if (STOCK_CHECK == 'true') {
@@ -311,10 +313,10 @@ for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
 $order_total_modules->apply_credit(); // CCGV
 /* * * EOF alteration for CCGV ** */
 
-$invoice->setDataValue('id', 'ext:osc:'.$insert_id);
-
-$invoice->sync();
-
+if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+    $invoice->setDataValue('id', 'ext:osc:'.$insert_id);
+    $invoice->sync();
+}
 
 // lets start with the email confirmation
 $email_order = EMAIL_HEADER_TXT."\n\n".

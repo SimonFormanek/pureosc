@@ -74,8 +74,9 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
         </div>
 
         <div class="pull-right">
-    <?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
-        tep_href_link(FILENAME_DEFAULT)); ?>
+            <?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
+                'fa fa-angle-right', tep_href_link(FILENAME_DEFAULT));
+            ?>
         </div>
     </div>
 
@@ -83,9 +84,11 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
 } else {
     ?>
 
-    <?php echo tep_draw_form('contact_us',
+    <?php
+    echo tep_draw_form('contact_us',
         tep_href_link(FILENAME_CONTACT_US, 'action=send'), 'post',
-        'class="form-horizontal"', true); ?>
+        'class="form-horizontal"', true);
+    ?>
 
     <div class="contentContainer">
         <div class="contentText">
@@ -117,18 +120,20 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
             <div class="form-group has-feedback">
                 <label for="inputEnquiry" class="control-label col-sm-3"><?php echo ENTRY_ENQUIRY; ?></label>
                 <div class="col-sm-9">
-    <?php
-    echo tep_draw_textarea_field('enquiry', 'soft', 50, 15, NULL,
-        'required aria-required="true" id="inputEnquiry" placeholder="'.ENTRY_ENQUIRY.'"');
-    echo _('Required');
-    ?>
+                    <?php
+                    echo tep_draw_textarea_field('enquiry', 'soft', 50, 15,
+                        NULL,
+                        'required aria-required="true" id="inputEnquiry" placeholder="'.ENTRY_ENQUIRY.'"');
+                    echo _('Required');
+                    ?>
                 </div>
             </div>
         </div>
 
         <div class="buttonSet">
             <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-        'fa fa-send', null, 'primary', null, 'btn-success'); ?></div>
+                        'fa fa-send', null, 'primary', null, 'btn-success');
+                    ?></div>
         </div>
     </div>
 
