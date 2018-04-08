@@ -30,3 +30,10 @@ build:
             - composer self-update
             - composer install --no-interaction
             - ./vendor/bin/phinx migrate  --configuration tests/phinx.yml
+    tests:
+        override: 
+            -
+                command: './vendor/bin/phpunit --coverage-clover=clover.log'
+                coverage:
+                    file: 'clover.log'
+                    format: 'clover'
