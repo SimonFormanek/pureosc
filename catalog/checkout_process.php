@@ -317,6 +317,13 @@ $order_total_modules->apply_credit(); // CCGV
 if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
     $invoice->setDataValue('id', 'ext:osc:'.$insert_id);
     $invoice->sync();
+
+    FlexiPeeHP\Priloha::addAttachmentFromFile($invoice,
+        'pub/obchodni-podminky.pdf');
+    FlexiPeeHP\Priloha::addAttachmentFromFile($invoice,
+        'pub/navratovy-reklamacni-list.pdf');
+    $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
+
     $varSym = $invoice->getDataValue('varSym');
 } else {
     $varSym = $insert_id;
