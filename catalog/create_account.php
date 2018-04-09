@@ -187,25 +187,13 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     }
 
     if ($error == false) {
-
-    tep_db_query("INSERT INTO " . TABLE_NEW_CUSTOMER_ID . " (created) values (1)");
-      $customer_id = tep_db_insert_id();
-
-  tep_db_close();
-  define('DB_SERVER_USERNAME_CUSTOMER', DB_SERVER_USERNAME_PREFIX . $customer_id);
-  define('DB_SERVER_PASSWORD_CUSTOMER', file_get_contents(SHOP_KEYS_PATH . $customer_id . '/customer_db_pwd'));
-    tep_db_connect_customer() or die('Unable to connect to database server (as customer)!');
-
-    pure_ssl_generate_customer_keys($customer_id, $password);
-    
-      $sql_data_array = array('customers_id' => $customer_id,
-    			      							'customers_firstname' => encrypt_all($firstname),
-                              'customers_lastname' => encrypt_all($lastname),
-                              'customers_email_address' => $email_address,
-                              'customers_telephone' => encrypt_all($telephone),
-                              'customers_fax' => encrypt_all($fax),
-                              'customers_newsletter' => $newsletter,
-                              'customers_password' => tep_encrypt_password($password));
+        $sql_data_array = array('customers_firstname' => $firstname,
+            'customers_lastname' => $lastname,
+            'customers_email_address' => $email_address,
+            'customers_telephone' => $telephone,
+            'customers_fax' => $fax,
+            'customers_newsletter' => $newsletter,
+            'customers_password' => tep_encrypt_password($password));
 
         if (ACCOUNT_GENDER == 'true')
                 $sql_data_array['customers_gender'] = $gender;
