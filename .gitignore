@@ -25,3 +25,4 @@ phinx.yml
 Makefile
 !/tests/phinx.yml
 i18n/*/LC_MESSAGES/pureosc.mo
+admin_private_keys/
