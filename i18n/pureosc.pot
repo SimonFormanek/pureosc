@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-08 17:51+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: catalog/includes/modules/address_book_details.php:16
+#: catalog/account_edit.php:151
+msgid "Requied Information"
+msgstr ""
+
+#: catalog/includes/modules/address_book_details.php:41
+#: catalog/includes/modules/address_book_details.php:54
+#: catalog/includes/modules/address_book_details.php:62
+#: catalog/includes/modules/address_book_details.php:107
+#: catalog/includes/modules/address_book_details.php:136
+#: catalog/includes/modules/address_book_details.php:146
+#: catalog/includes/modules/address_book_details.php:188
+#: catalog/account_edit.php:172 catalog/account_edit.php:185
+#: catalog/account_edit.php:194 catalog/account_edit.php:208
+#: catalog/account_edit.php:222 catalog/account_edit.php:232
+msgid "Required"
+msgstr ""
+
+#: catalog/includes/modules/address_book_details.php:72
+#: catalog/includes/modules/address_book_details.php:75
+#: catalog/includes/modules/checkout_new_address.php:70
+#: catalog/includes/modules/checkout_new_address.php:73
+msgid "Company Name"
+msgstr ""
+
+#: catalog/includes/modules/address_book_details.php:80
+#: catalog/includes/modules/address_book_details.php:83
+#: catalog/includes/modules/checkout_new_address.php:78
+#: catalog/includes/modules/checkout_new_address.php:81
+msgid "Vat Number"
+msgstr ""
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
+msgid "Google Buzz"
+msgstr ""
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
+msgid "Share on Google Buzz"
+msgstr ""
+
+#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
+msgid "Share products on Google Buzz."
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:21
+msgid "Newsletter GDPR Consent"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:22
+msgid "Dear Customer"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:30
+#, php-format
+msgid "Would you like to subsribe to newsletter updates from %s ?"
+msgstr ""
+
+#: catalog/includes/classes/NewsletterConsentMailer.php:36
+msgid "Click here to Agree"
+msgstr ""
