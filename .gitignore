@@ -24,3 +24,4 @@ mailhive/cloudbeez/cloudloader/install.log
 phinx.yml
 Makefile
 !/tests/phinx.yml
+i18n/*/LC_MESSAGES/pureosc.mo
