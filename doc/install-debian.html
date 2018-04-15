@@ -1,0 +1,51 @@
+<h1>install debian</h1>
+
+<h2>1. install requirements</h2>
+
+<h3>add repo keys for php-phinx</h3>
+
+<pre><code>wget -O - http://v.s.cz/info@vitexsoftware.cz.gpg.key | sudo apt-key add -
+echo deb http://v.s.cz/ stable main | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
+sudo apt update
+</code></pre>
+
+<h3>install packages</h3>
+
+<p>apt install php7.2 php7.2-mysql php7.2-dom php7.2-mbstring php-phinx</p>
+
+<h1>2. clone repo</h1>
+
+<p>git clone https://github.com/SimonFormanek/pureosc.git</p>
+
+<h2>create config files and fill details</h2>
+
+<p>cp -r oscconfig.dist ../</p>
+
+<h3>configure:</h3>
+
+<h4>configure.php</h4>
+
+<h4>admin/configure.php</h4>
+
+<h4>static.php</h4>
+
+<h4>dbconfigure.php</h4>
+
+<h3>rename and fill details</h3>
+
+<p>phinx.yml.dist -> phinx.yml
+Makefile.dist -> Makefile</p>
+
+<h3>install</h3>
+
+<p>Make fresh</p>
+
+<h2>Optional configuration</h2>
+
+<h3>Flexibee</h3>
+
+<p><img src="configure-flexibee.png" alt="configure Flexibee" title="" /></p>
+
+<h2>GP Webpay</h2>
+
+<h2>PayPal</h2>
