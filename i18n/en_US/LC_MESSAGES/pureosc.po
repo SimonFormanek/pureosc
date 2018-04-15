@@ -1,23 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 17:41+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: PureOSC\n"
+"POT-Creation-Date: 2018-04-08 16:48+0100\n"
+"PO-Revision-Date: 2018-04-08 21:58+0100\n"
+"Last-Translator: Šimon Formánek <mail@simonformanek.cz>\n"
+"Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: vendor\n"
 
-# sss
 #: admin/create_account.php:214 catalog/admin/create_account.php:214
 msgid "Created by admin"
 msgstr "Created by admin"
@@ -32,12 +30,6 @@ msgstr "New Customer"
 #: catalog/create_account.php:420
 #: catalog/ext/modules/content/account/set_password.php:80
 #: catalog/includes/modules/address_book_details.php:16
-#: catalog/tell_a_friend.php:166 catalog/account_edit.php:151
-#: catalog/account_password.php:89
-#: catalog/includes/modules/address_book_details.php:16
-#: catalog/account_pwa.php:273
-#: catalog/ext/modules/content/account/set_password.php:80
-#: catalog/contact_us.php:96 catalog/create_account.php:420
 #: catalog/tell_a_friend.php:166
 msgid "Requied Information"
 msgstr "Requied Information"
@@ -91,41 +83,7 @@ msgstr "Requied Information"
 #: catalog/password_reset.php:139 catalog/product_reviews_write.php:169
 #: catalog/tell_a_friend.php:177 catalog/tell_a_friend.php:188
 #: catalog/tell_a_friend.php:203 catalog/tell_a_friend.php:214
-#: catalog/tell_a_friend.php:229 catalog/advanced_search.php:132
-#: catalog/account_edit.php:172 catalog/account_edit.php:185
-#: catalog/account_edit.php:194 catalog/account_edit.php:208
-#: catalog/account_edit.php:222 catalog/account_edit.php:232
-#: catalog/password_reset.php:128 catalog/password_reset.php:139
-#: catalog/account_password.php:100 catalog/account_password.php:112
-#: catalog/account_password.php:124 catalog/password_forgotten.php:127
-#: catalog/includes/modules/address_book_details.php:41
-#: catalog/includes/modules/address_book_details.php:54
-#: catalog/includes/modules/address_book_details.php:62
-#: catalog/includes/modules/address_book_details.php:107
-#: catalog/includes/modules/address_book_details.php:136
-#: catalog/includes/modules/address_book_details.php:146
-#: catalog/includes/modules/address_book_details.php:188
-#: catalog/account_pwa.php:301 catalog/account_pwa.php:314
-#: catalog/account_pwa.php:326 catalog/account_pwa.php:341
-#: catalog/account_pwa.php:356 catalog/account_pwa.php:400
-#: catalog/account_pwa.php:430 catalog/account_pwa.php:442
-#: catalog/account_pwa.php:465 catalog/account_pwa.php:469
-#: catalog/account_pwa.php:474 catalog/account_pwa.php:490
-#: catalog/account_pwa.php:505
-#: catalog/ext/modules/content/account/set_password.php:87
-#: catalog/ext/modules/content/account/set_password.php:95
-#: catalog/contact_us.php:105 catalog/contact_us.php:116
-#: catalog/contact_us.php:127 catalog/create_account.php:451
-#: catalog/create_account.php:464 catalog/create_account.php:476
-#: catalog/create_account.php:491 catalog/create_account.php:507
-#: catalog/create_account.php:568 catalog/create_account.php:598
-#: catalog/create_account.php:610 catalog/create_account.php:633
-#: catalog/create_account.php:637 catalog/create_account.php:642
-#: catalog/create_account.php:658 catalog/create_account.php:676
-#: catalog/create_account.php:721 catalog/create_account.php:734
-#: catalog/tell_a_friend.php:177 catalog/tell_a_friend.php:188
-#: catalog/tell_a_friend.php:203 catalog/tell_a_friend.php:214
-#: catalog/tell_a_friend.php:229 catalog/product_reviews_write.php:169
+#: catalog/tell_a_friend.php:229
 msgid "Required"
 msgstr "Required"
 
@@ -145,12 +103,6 @@ msgstr "Required"
 #: catalog/includes/modules/address_book_details.php:75
 #: catalog/includes/modules/checkout_new_address.php:70
 #: catalog/includes/modules/checkout_new_address.php:73
-#: catalog/includes/modules/address_book_details.php:72
-#: catalog/includes/modules/address_book_details.php:75
-#: catalog/includes/modules/checkout_new_address.php:70
-#: catalog/includes/modules/checkout_new_address.php:73
-#: catalog/account_pwa.php:367 catalog/account_pwa.php:371
-#: catalog/create_account.php:522 catalog/create_account.php:526
 msgid "Company Name"
 msgstr "Company Name"
 
@@ -170,12 +122,6 @@ msgstr "Company Number"
 #: catalog/includes/modules/address_book_details.php:83
 #: catalog/includes/modules/checkout_new_address.php:78
 #: catalog/includes/modules/checkout_new_address.php:81
-#: catalog/includes/modules/address_book_details.php:80
-#: catalog/includes/modules/address_book_details.php:83
-#: catalog/includes/modules/checkout_new_address.php:78
-#: catalog/includes/modules/checkout_new_address.php:81
-#: catalog/account_pwa.php:377 catalog/account_pwa.php:381
-#: catalog/create_account.php:532 catalog/create_account.php:536
 msgid "Vat Number"
 msgstr "Vat Number"
 
@@ -195,7 +141,7 @@ msgid "Vat number"
 msgstr "Vat number"
 
 #: admin/customers.php:580 catalog/admin/customers.php:580
-#: catalog/create_account.php:542 catalog/create_account.php:542
+#: catalog/create_account.php:542
 msgid "Company number"
 msgstr "Company number"
 
@@ -204,83 +150,68 @@ msgid "FlexiBee sync"
 msgstr "FlexiBee sync"
 
 #: catalog/account_history.php:79 catalog/checkout_success.php:84
-#: catalog/checkout_success.php:84 catalog/account_history.php:79
 msgid "PDF Invoice"
 msgstr "PDF Invoice"
 
 #: catalog/account_history.php:82 catalog/checkout_success.php:86
-#: catalog/checkout_success.php:86 catalog/account_history.php:82
 msgid "ISDOC Invoice"
 msgstr "ISDOC Invoice"
 
 #: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Cenik.php:38
 #: catalog/ext/flexibee/FakturaVydana.php:42 catalog/ext/flexibee/Strom.php:44
-#: catalog/ext/flexibee/FakturaVydana.php:42
-#: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Strom.php:44
-#: catalog/ext/flexibee/Cenik.php:42
 msgid "FlexiBee import"
 msgstr "FlexiBee import"
 
 #: catalog/getisdoc.php:26 catalog/getpdf.php:31
-#: vendor/vitexsoftware/flexipeehp-bricks/src/getpdf.php:36
-#: vendor/vitexsoftware/flexipeehp-bricks/src/gethtml.php:53
-#: catalog/getpdf.php:31 catalog/getisdoc.php:26
 msgid "Wrong call"
 msgstr "Wrong call"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:21
 #: catalog/includes/classes/NewsletterConsentMailer.php:21
 msgid "Newsletter GDPR Consent"
 msgstr "Newsletter GDPR Consent"
 
 #: catalog/includes/classes/NewsletterConsentMailer.php:22
-#: catalog/includes/classes/NewsletterConsentMailer.php:22
 msgid "Dear Customer"
 msgstr "Dear Customer"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:30
 #: catalog/includes/classes/NewsletterConsentMailer.php:30
 #, php-format
 msgid "Would you like to subsribe to newsletter updates from %s ?"
 msgstr "Would you like to subsribe to newsletter updates from %s ?"
 
 #: catalog/includes/classes/NewsletterConsentMailer.php:36
-#: catalog/includes/classes/NewsletterConsentMailer.php:36
 msgid "Click here to Agree"
 msgstr "Click here to Agree"
 
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
 #: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
 msgid "Google Buzz"
 msgstr "Google Buzz"
 
 #: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
 msgid "Share on Google Buzz"
 msgstr "Share on Google Buzz"
 
 #: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
 msgid "Share products on Google Buzz."
 msgstr "Share products on Google Buzz."
 
-#: catalog/newsletterconfirm.php:31 catalog/newsletterconfirm.php:31
+#: catalog/newsletterconfirm.php:31
 msgid "Newsletter Consent"
 msgstr "Newsletter Consent"
 
-#: catalog/newsletterconfirm.php:37 catalog/newsletterconfirm.php:37
+#: catalog/newsletterconfirm.php:37
 msgid "Consent Recieved"
 msgstr "Consent Recieved"
 
-#: catalog/newsletterconfirm.php:37 catalog/newsletterconfirm.php:37
+#: catalog/newsletterconfirm.php:37
 msgid "Consent not recieved"
 msgstr "Consent not recieved"
 
-#: catalog/newsletterconfirm.php:44 catalog/newsletterconfirm.php:44
+#: catalog/newsletterconfirm.php:44
 msgid "Newsletter subscription consent was accepted"
 msgstr "Newsletter subscription consent was accepted"
 
-#: catalog/newsletterconfirm.php:44 catalog/newsletterconfirm.php:44
+#: catalog/newsletterconfirm.php:44
 msgid "Newsletter subscription consent was not accepted"
 msgstr "Newsletter subscription consent was not accepted"
 
@@ -289,546 +220,901 @@ msgstr "Newsletter subscription consent was not accepted"
 msgid "Tell a friend about %s"
 msgstr "Tell a friend about %s"
 
-#: vendor/vitexsoftware/ease-framework/src/Ease/Mailer.php:316
-#, php-format
-msgid "Message %s was sent to %s"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Mailer.php:319
-#, php-format
-msgid "Message %s, for %s was not sent because of %s"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Page.php:233
-msgid "Sign in first please"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/SQL/PDO.php:163
-msgid "Unimplemented Database type"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/SQL/Orm.php:241
-msgid "UpdateToSQL: Missing data"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:282
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:285
-msgid " not an folder. Current directory:"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:292
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:295
-msgid " not an readable folder. Current directory:"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:302
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:305
-msgid " not an writeable folder. Current directory:"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Carousel.php:116
-msgid "Previous"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Carousel.php:127
-msgid "Next"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Modal.php:70
-msgid "Close"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Modal.php:73
-msgid "Save"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Navbar.php:70
-msgid "Switch navigation"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/StatusMessages.php:19
-msgid "Click to hide messages"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:222
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:209
-msgid "missing login"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:227
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:214
-msgid "missing password"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:247
-msgid "invalid password"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:254
-#, php-format
-msgid "user %s does not exist"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:272
-msgid "Sign in denied by administrator"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:290
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:250
-#, php-format
-msgid "Sign in %s all ok"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:473
-msgid "Odhlášení proběhlo uspěšně"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:56
-msgid "Status message add test"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:80
-msgid "Stavové zprávy jsou mazány"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:125
-msgid "Windows Files conversion"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:130
-msgid "Unix File Conversion"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:15
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:18
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:15
-msgid "debug"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:16
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:19
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:16
-msgid "info"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:17
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:20
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:17
-msgid "success"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:18
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:21
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:18
-msgid "warning"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:19
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:22
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:19
-msgid "error"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:21
-msgid "Example Web Page"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:23
-msgid "Status messages"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:16
-msgid "Ul One"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:17
-msgid "Ul Two"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:18
-msgid "Ul Three"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:21
-msgid "Ol One"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:22
-msgid "Ol Two"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:23
-msgid "Ol Three"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Modal.php:13
-msgid "Modal Example"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Modal.php:17
-msgid "caution"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:20
-msgid "Homepage"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:21
-msgid "LinkQuick"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:24
-msgid "System"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:26
-msgid "Settings"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:27
-msgid "Shutdown"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:32
-msgid "Informace"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:34
-msgid "System log"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:35
-msgid "Hosting"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:16
-msgid "Twitter Bootstrap"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:24
-msgid "Back to examples"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:20
-#, php-format
-msgid "You enter: %s as text."
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:23
-msgid "Please enter any text"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:28
-#, php-format
-msgid "You enter: %s as number."
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:31
-msgid "Please enter any number"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:36
-msgid "Text"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:37
-msgid "Default text"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:37
-msgid "Text hint"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:39
-msgid "Number"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:40
-msgid "Number hint"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/twbtabs.php:18
-msgid "Twitter bootrstrap Tabs Example"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/index.php:16
-#: vendor/vitexsoftware/ease-framework/Examples/index.php:18
-msgid "Ease Framework - Usage examples"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/src/zalozUcetniObdobiOdDo.php:23
-#, php-format
-msgid "%s already exists."
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/ui/StatusInfoBox.php:44
-#: vendor/spoje.net/flexipeehp/src/demo.php:34
-msgid "Chyba komunikace"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/ui/RecordTypeSelect.php:33
-msgid "Undefined"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/ui/DownloadInvoiceButton.php:26
-#, php-format
-msgid "Download Your %s"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:52
-msgid "Getting clients"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:56
-#, php-format
-msgid "%s Clients Found"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:57
-msgid "Getting debts"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:70
-#, php-format
-msgid "%s Debts Found"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:95
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:98
-#, php-format
-msgid "Clear %s Remind labels"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:114
-#, php-format
-msgid "%d clients to remind process"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:120
-#, php-format
-msgid "(%d / %d) #%s code: %s %s "
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:153
-msgid "Invoice locked: skipping process"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:206
-#, php-format
-msgid "Invoice %s remind %s date saved"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:209
-#, php-format
-msgid "Invoice %s remind %s date save failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:215
-msgid "Remind send disbled"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:218
-#, php-format
-msgid "Remind %d already sent"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:222
-msgid "No debts to remind"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:231
-#, php-format
-msgid "Invoice %s locked again"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:234
-#, php-format
-msgid "Invoice %s locking failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:312
-msgid "Remind was not sent"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:316
-#, php-format
-msgid "Set Label %s "
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:72
-#, php-format
-msgid "Change version %s already processed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:103
-#, php-format
-msgid "Handler Class %s does not exist"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:125
-msgid "Empty WebHook request"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:149
-msgid "Last Processed Change ID Saving Failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:153
-#, php-format
-msgid "Last Processed Change ID #%s Saved"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:172
-msgid "Last Processed Change ID Loading Failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:225
-#, php-format
-msgid "Multiplete ContactID"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:228
-msgid "Using the first one"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominka.php:83
-#, php-format
-msgid ""
-"%s \n"
-"\n"
-"-----------------------\n"
-" celkem za %s,-"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominka.php:93
-#, php-format
-msgid "Klient %s nema email %s !!!"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/PotvrzeniUhrady.php:26
-msgid "Dear customer,"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/PotvrzeniUhrady.php:27
-#, php-format
-msgid "we confirm receipt of payment %s %s on %s "
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/PotvrzeniUhrady.php:34
-msgid "Confirmation of receipt of invoice payment"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Hooks.php:44
-msgid "Url allready registered"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Status.php:75
-msgid "Status has no relations"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Changes.php:102
-msgid "Changes has no relations"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FakturaVydana.php:184
-msgid "Unsupported $income parameter type"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FlexiBeeRW.php:530
-#, php-format
-msgid "Unsupported action %s for evidence %s"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FlexiBeeRO.php:2008
-msgid "ID requied to get record relations "
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Company.php:213
-msgid "Company has no relations"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Priloha.php:129
-#, php-format
-msgid "Attagment %s does no exist"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:8
-msgid "FlexiBee Connection Test"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:20
-msgid "FlexiBee server info"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:52
-msgid "ChangesApi Povoleno"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:53
-msgid "ChangesAPI povoleno"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:55
-msgid "ChangesAPI zakázáno"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/testing/src/FlexiPeeHP/FakturaVydanaTest.php:64
-msgid "Invoice settle error"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/testing/src/FlexiPeeHP/FakturaVydanaTest.php:95
-msgid "Invoice match error"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/InvoiceLockUnlock.php:46
-#, php-format
-msgid "Invoice %s lock switched"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/InvoiceLockUnlock.php:49
-#, php-format
-msgid "Invoice %s lock switch failed"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/AttachmentSaveToFile.php:24
-#, php-format
-msgid "Attachment %s was saved"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/AttachmentSaveToFile.php:28
-msgid "Invoice without attachment"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/SendReminders.php:49
-#, php-format
-msgid "Overdue invoice: %s"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/SendReminders.php:50
-#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:72
-#, php-format
-msgid "Please pay %s,-"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:70
-#, php-format
-msgid "Overdue invoice: %s - %s days"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:81
-#, php-format
-msgid "Message sent: %s to %s"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/sendInvoiceByMail.php:34
-msgid "Invoice was sent"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/sendInvoiceByMail.php:36
-msgid "Mailer does not work"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/InvoiceCopy.php:55
-#, php-format
-msgid "Invoice copy from %s to id:%s done"
-msgstr ""
+#, fuzzy
+#~ msgid "Attachment %s was saved"
+#~ msgstr "File %s was used"
+
+#, fuzzy
+#~ msgid "Url allready registered"
+#~ msgstr "Year was unregistred"
+
+#, fuzzy
+#~ msgid "Attagment %s does no exist"
+#~ msgstr "Evidence %s does not exist"
+
+#, fuzzy
+#~ msgid "FlexiBee Connection Test"
+#~ msgstr "FlexiBee Buttons"
+
+#, fuzzy
+#~ msgid "FlexiBee server info"
+#~ msgstr "FlexiBee info"
+
+#, fuzzy
+#~ msgid "ChangesApi Povoleno"
+#~ msgstr "ChangesAPI Tool"
+
+#, fuzzy
+#~ msgid "ChangesAPI povoleno"
+#~ msgstr "ChangesAPI Tool"
+
+#, fuzzy
+#~ msgid "ChangesAPI zakÃ¡zÃ¡no"
+#~ msgstr "ChangesAPI Tool"
+
+#, fuzzy
+#~ msgid "debug"
+#~ msgstr "debug"
+
+#, fuzzy
+#~ msgid "info"
+#~ msgstr "info"
+
+#, fuzzy
+#~ msgid "success"
+#~ msgstr "success"
+
+#, fuzzy
+#~ msgid "warning"
+#~ msgstr "warning"
+
+#, fuzzy
+#~ msgid "error"
+#~ msgstr "error"
+
+#, fuzzy
+#~ msgid "You enter: %s as text."
+#~ msgstr "You enter: %s as text."
+
+#, fuzzy
+#~ msgid "Please enter any text"
+#~ msgstr "Please enter any text"
+
+#, fuzzy
+#~ msgid "You enter: %s as number."
+#~ msgstr "You enter: %s as number."
+
+#, fuzzy
+#~ msgid "Please enter any number"
+#~ msgstr "Please enter any number"
+
+#, fuzzy
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#, fuzzy
+#~ msgid "Default text"
+#~ msgstr "Default text"
+
+#, fuzzy
+#~ msgid "Text hint"
+#~ msgstr "Text hint"
+
+#, fuzzy
+#~ msgid "Number hint"
+#~ msgstr "Number hint"
+
+#, fuzzy
+#~ msgid "Modal Example"
+#~ msgstr "Modal Example"
+
+#, fuzzy
+#~ msgid "caution"
+#~ msgstr "caution"
+
+#, fuzzy
+#~ msgid "Twitter Bootstrap"
+#~ msgstr "Twitter Bootstrap"
+
+#, fuzzy
+#~ msgid "Back to examples"
+#~ msgstr "Back to examples"
+
+#, fuzzy
+#~ msgid "Homepage"
+#~ msgstr "Homepage"
+
+#, fuzzy
+#~ msgid "System"
+#~ msgstr "System"
+
+#~ msgid "Settings"
+#~ msgstr "Settings"
+
+#, fuzzy
+#~ msgid "Shutdown"
+#~ msgstr "Shutdown"
+
+#, fuzzy
+#~ msgid "Informace"
+#~ msgstr "informace"
+
+#, fuzzy
+#~ msgid "System log"
+#~ msgstr "System log"
+
+#, fuzzy
+#~ msgid "Hosting"
+#~ msgstr "Listing"
+
+#, fuzzy
+#~ msgid "Example Web Page"
+#~ msgstr "Example Web Page"
+
+#, fuzzy
+#~ msgid "Status messages"
+#~ msgstr "Status messages"
+
+#, fuzzy
+#~ msgid "Ul One"
+#~ msgstr "Ul One"
+
+#, fuzzy
+#~ msgid "Ul Two"
+#~ msgstr "Ul Two"
+
+#, fuzzy
+#~ msgid "Ul Three"
+#~ msgstr "Ul Three"
+
+#, fuzzy
+#~ msgid "Ol One"
+#~ msgstr "Ol One"
+
+#, fuzzy
+#~ msgid "Ol Two"
+#~ msgstr "Ol Two"
+
+#, fuzzy
+#~ msgid "Ol Three"
+#~ msgstr "Ol Three"
+
+#, fuzzy
+#~ msgid " not an folder. Current directory:"
+#~ msgstr " not an folder. Current directory:"
+
+#, fuzzy
+#~ msgid " not an readable folder. Current directory:"
+#~ msgstr " not an readable folder. Current directory:"
+
+#, fuzzy
+#~ msgid " not an writeable folder. Current directory:"
+#~ msgstr " not an writeable folder. Current directory:"
+
+#, fuzzy
+#~ msgid "UpdateToSQL: Missing data"
+#~ msgstr "UpdateToSQL: Missing data"
+
+#, fuzzy
+#~ msgid "Previous"
+#~ msgstr "Previous"
+
+#, fuzzy
+#~ msgid "Next"
+#~ msgstr "Next"
+
+#~ msgid "Close"
+#~ msgstr "Close"
+
+#~ msgid "Save"
+#~ msgstr "Save"
+
+#, fuzzy
+#~ msgid "Switch navigation"
+#~ msgstr "Switch navigation"
+
+#~ msgid "Click to hide messages"
+#~ msgstr "Click to hide messages"
+
+#, fuzzy
+#~ msgid "missing login"
+#~ msgstr "missing login"
+
+#, fuzzy
+#~ msgid "missing password"
+#~ msgstr "missing password"
+
+#, fuzzy
+#~ msgid "invalid password"
+#~ msgstr "invalid password"
+
+#, fuzzy
+#~ msgid "user %s does not exist"
+#~ msgstr "user %s does not exist"
+
+#, fuzzy
+#~ msgid "Sign in denied by administrator"
+#~ msgstr "Sign in denied by administrator"
+
+#, fuzzy
+#~ msgid "Sign in %s all ok"
+#~ msgstr "Sign in %s all ok"
+
+#, fuzzy
+#~ msgid "Status message add test"
+#~ msgstr "Status message add test"
+
+#, fuzzy
+#~ msgid "Windows Files conversion"
+#~ msgstr "Windows Files conversion"
+
+#, fuzzy
+#~ msgid "Unix File Conversion"
+#~ msgstr "Unix File Conversion"
+
+#~ msgid "About application"
+#~ msgstr "About application"
+
+#~ msgid "Used Libraries"
+#~ msgstr "Used Libraries"
+
+#~ msgid "Evidence"
+#~ msgstr "Evidence"
+
+#~ msgid "This button open current FlexiBee evidence in FlexPlorer"
+#~ msgstr "This button open current FlexiBee evidence in FlexPlorer"
+
+#~ msgid "Download Buttons XML install file"
+#~ msgstr "Download Buttons XML install file"
+
+#~ msgid "FlexiBee WebHook income"
+#~ msgstr "FlexiBee WebHook income"
+
+#~ msgid "Delete All"
+#~ msgstr "Delete All"
+
+#~ msgid "Target to FlexPlorer"
+#~ msgstr "Target to FlexPlorer"
+
+#~ msgid "ChangesAPI was enabled"
+#~ msgstr "ChangesAPI was enabled"
+
+#~ msgid "ChangesAPI was disabled"
+#~ msgstr "ChangesAPI was disabled"
+
+#~ msgid "Hook %s was registered"
+#~ msgstr "Hook %s was registered"
+
+#~ msgid "Hook %s not registered"
+#~ msgstr "Hook %s not registered"
+
+#~ msgid "Hook was unregistered"
+#~ msgstr "Hook was unregistered"
+
+#~ msgid "Hook was not unregistered"
+#~ msgstr "Hook was not unregistered"
+
+#~ msgid "Hook refreshed"
+#~ msgstr "Hook refreshed"
+
+#~ msgid "Hook refresh failed"
+#~ msgstr "Hook refresh failed"
+
+#~ msgid "Enable"
+#~ msgstr "Enable"
+
+#~ msgid "Disable"
+#~ msgstr "Disable"
+
+#~ msgid "Changes API"
+#~ msgstr "Changes API"
+
+#~ msgid ""
+#~ "If it is turned on , FlexiBee records all changes made ââto the database "
+#~ "company in the changelog and provides a list of changes recovered"
+#~ msgstr ""
+#~ "If it is turned on , FlexiBee records all changes made ââto the database "
+#~ "company in the changelog and provides a list of changes recovered"
+
+#~ msgid "Web Hook"
+#~ msgstr "Web Hook"
+
+#~ msgid ""
+#~ "When the database FlexiBee to change the POST HTTP request sent to all "
+#~ "registered URL"
+#~ msgstr ""
+#~ "When the database FlexiBee to change the POST HTTP request sent to all "
+#~ "registered URL"
+
+#~ msgid "Data format"
+#~ msgstr "Data format"
+
+#~ msgid "Skip URL test"
+#~ msgstr "Skip URL test"
+
+#~ msgid "Suppress URL functionality test"
+#~ msgstr "Suppress URL functionality test"
+
+#~ msgid "Last version"
+#~ msgstr "Last version"
+
+#~ msgid ""
+#~ "Version of which will begin sending FOLLOW changes , ie. The next higher "
+#~ "version . The default value is equal to the current global version "
+#~ "( globalVersion ) at the moment of registration Hook. Permissible values "
+#~ "ââare in the range [ 0 , % s ]"
+#~ msgstr ""
+#~ "Version of which will begin sending FOLLOW changes , ie. The next higher "
+#~ "version . The default value is equal to the current global version "
+#~ "( globalVersion ) at the moment of registration Hook. Permissible values "
+#~ "ââare in the range [ 0 , % s ]"
+
+#~ msgid "Security Code"
+#~ msgstr "Security Code"
+
+#~ msgid ""
+#~ "Any string (eg. %s) that will be sent with each change notifications in "
+#~ "the HTTP header. Used to easily verify that include incoming "
+#~ "notifications you registered Hook. Key name is in the HTTP header X-FB-"
+#~ "Hook-SecKey ."
+#~ msgstr ""
+#~ "Any string (eg. %s) that will be sent with each change notifications in "
+#~ "the HTTP header. Used to easily verify that include incoming "
+#~ "notifications you registered Hook. Key name is in the HTTP header X-FB-"
+#~ "Hook-SecKey ."
+
+#~ msgid "Perform operation"
+#~ msgstr "Perform operation"
+
+#~ msgid "Test"
+#~ msgstr "Test"
+
+#~ msgid "Webhooks registered"
+#~ msgstr "Webhooks registered"
+
+#~ msgid "ChangesAPI & WebHooks"
+#~ msgstr "ChangesAPI & WebHooks"
+
+#~ msgid "Deleted"
+#~ msgstr "Deleted"
+
+#~ msgid "Record was added"
+#~ msgstr "Record was added"
+
+#~ msgid "Record was not added"
+#~ msgstr "Record was not added"
+
+#~ msgid "Record was updated"
+#~ msgstr "Record was updated"
+
+#~ msgid "Record update failed"
+#~ msgstr "Record update failed"
+
+#~ msgid "Unserialization error %s #%s "
+#~ msgstr "Unserialization error %s #%s "
+
+#~ msgid "URL %s was used"
+#~ msgstr "URL %s was used"
+
+#~ msgid "Error %s obataing %s"
+#~ msgstr "Error %s obataing %s"
+
+#~ msgid "External ID"
+#~ msgstr "External ID"
+
+#~ msgid "WebHook %s triggered"
+#~ msgstr "WebHook %s triggered"
+
+#~ msgid "Empty WebHook request"
+#~ msgstr "Empty WebHook request"
+
+#~ msgid "No search results"
+#~ msgstr "No search results"
+
+#~ msgid "Login Failed"
+#~ msgstr "Login Failed"
+
+#~ msgid "Loading evidence list failed"
+#~ msgstr "Loading evidence list failed"
+
+#~ msgid "About"
+#~ msgstr "About"
+
+#~ msgid "Sign in"
+#~ msgstr "Sign in"
+
+#~ msgid "Server"
+#~ msgstr "Server"
+
+#~ msgid "login"
+#~ msgstr "login"
+
+#~ msgid "Remeber me"
+#~ msgstr "Remeber me"
+
+#~ msgid "Sign off"
+#~ msgstr "Sign off"
+
+#~ msgid "Save & go to listing"
+#~ msgstr "Save & go to listing"
+
+#~ msgid "Save and next"
+#~ msgstr "Save and next"
+
+#~ msgid "ColumnsGroups"
+#~ msgstr "ColumnsGroups"
+
+#~ msgid "Mandatory"
+#~ msgstr "Mandatory"
+
+#~ msgid "ID List"
+#~ msgstr "ID List"
+
+#~ msgid "Summary List"
+#~ msgstr "Summary List"
+
+#~ msgid "Full List"
+#~ msgstr "Full List"
+
+#~ msgid "Sortable"
+#~ msgstr "Sortable"
+
+#~ msgid "Non Sortable"
+#~ msgstr "Non Sortable"
+
+#~ msgid "Writable"
+#~ msgstr "Writable"
+
+#~ msgid "Read Only"
+#~ msgstr "Read Only"
+
+#~ msgid "Json"
+#~ msgstr "Json"
+
+#~ msgid "XML"
+#~ msgstr "XML"
+
+#~ msgid "Add"
+#~ msgstr "Add"
+
+#~ msgid "Edit"
+#~ msgstr "Edit"
+
+#~ msgid "Delete"
+#~ msgstr "Delete"
+
+#~ msgid "Select All"
+#~ msgstr "Select All"
+
+#~ msgid "Title missing"
+#~ msgstr "Title missing"
+
+#~ msgid "Please mark some rows"
+#~ msgstr "Please mark some rows"
+
+#~ msgid "Save to FlexiBee"
+#~ msgstr "Save to FlexiBee"
+
+#~ msgid "Show in editor"
+#~ msgstr "Show in editor"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "Edit targeted record"
+#~ msgstr "Edit targeted record"
+
+#~ msgid "Unknown type of data %s"
+#~ msgstr "Unknown type of data %s"
+
+#~ msgid "Type"
+#~ msgstr "Type"
+
+#~ msgid "Columns"
+#~ msgstr "Columns"
+
+#~ msgid "External IDs"
+#~ msgstr "External IDs"
+
+#~ msgid "Labels"
+#~ msgstr "Labels"
+
+#~ msgid "Query"
+#~ msgstr "Query"
+
+#~ msgid "Remove"
+#~ msgstr "Remove"
+
+#~ msgid "New"
+#~ msgstr "New"
+
+#~ msgid "Overview"
+#~ msgstr "Overview"
+
+#~ msgid "Tools"
+#~ msgstr "Tools"
+
+#~ msgid "Buttons"
+#~ msgstr "Buttons"
+
+#~ msgid "WebHook test"
+#~ msgstr "WebHook test"
+
+#~ msgid "Accounting period"
+#~ msgstr "Accounting period"
+
+#~ msgid "Search"
+#~ msgstr "Search"
+
+#~ msgid "Sources"
+#~ msgstr "Sources"
+
+#~ msgid "Support"
+#~ msgstr "Support"
+
+#~ msgid "Services"
+#~ msgstr "Services"
+
+#~ msgid "Docs"
+#~ msgstr "Docs"
+
+#~ msgid "Author"
+#~ msgstr "Author"
+
+#~ msgid "Vitex Software"
+#~ msgstr "Vitex Software"
+
+#~ msgid "Sponsored by"
+#~ msgstr "Sponsored by"
+
+#~ msgid "Spoje.Net"
+#~ msgstr "Spoje.Net"
+
+#~ msgid "&copy; 2016 VÃ­tÄzslav \"Vitex\" DvoÅÃ¡k"
+#~ msgstr "&copy; 2016 VÃ­tÄzslav \"Vitex\" DvoÅÃ¡k"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "URL Compositon"
+#~ msgstr "URL Compositon"
+
+#~ msgid "Query body Text"
+#~ msgstr "Query body Text"
+
+#~ msgid "Query body from File"
+#~ msgstr "Query body from File"
+
+#~ msgid "This file overwrite \"request body\""
+#~ msgstr "This file overwrite \"request body\""
+
+#~ msgid "Source URL"
+#~ msgstr "Source URL"
+
+#~ msgid "Get Query Body from url"
+#~ msgstr "Get Query Body from url"
+
+#~ msgid "Method"
+#~ msgstr "Method"
+
+#~ msgid "Supported HTTP Operations"
+#~ msgstr "Supported HTTP Operations"
+
+#~ msgid "Format"
+#~ msgstr "Format"
+
+#~ msgid "Send"
+#~ msgstr "Send"
+
+#~ msgid "Make new request from this response"
+#~ msgstr "Make new request from this response"
+
+#~ msgid "Save this response to file"
+#~ msgstr "Save this response to file"
+
+#~ msgid "Yes"
+#~ msgstr "Yes"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid "Please sign in as admin first"
+#~ msgstr "Please sign in as admin first"
+
+#~ msgid "Record was deleted"
+#~ msgstr "Record was deleted"
+
+#~ msgid "Record was not deleted"
+#~ msgstr "Record was not deleted"
+
+#~ msgid "Record Delete"
+#~ msgstr "Record Delete"
+
+#~ msgid "Keep record"
+#~ msgstr "Keep record"
+
+#~ msgid "Delete record"
+#~ msgstr "Delete record"
+
+#~ msgid "New record"
+#~ msgstr "New record"
+
+#~ msgid "Record was saved"
+#~ msgstr "Record was saved"
+
+#~ msgid "Record was not saved"
+#~ msgstr "Record was not saved"
+
+#~ msgid "Editor"
+#~ msgstr "Editor"
+
+#~ msgid "Evidence %s"
+#~ msgstr "Evidence %s"
+
+#~ msgid "Column Groups"
+#~ msgstr "Column Groups"
+
+#~ msgid "User Query"
+#~ msgstr "User Query"
+
+#~ msgid "Items overview"
+#~ msgstr "Items overview"
+
+#~ msgid "no"
+#~ msgstr "no"
+
+#~ msgid "yes"
+#~ msgstr "yes"
+
+#~ msgid "Allowed by license"
+#~ msgstr "Allowed by license"
+
+#~ msgid "Labels Availble"
+#~ msgstr "Labels Availble"
+
+#~ msgid "Evidences"
+#~ msgstr "Evidences"
+
+#~ msgid "License"
+#~ msgstr "License"
+
+#~ msgid "Availble %s"
+#~ msgstr "Availble %s"
+
+#~ msgid "Unlicensed %s"
+#~ msgstr "Unlicensed %s"
+
+#~ msgid "All %s"
+#~ msgstr "All %s"
+
+#~ msgid "licence ok"
+#~ msgstr "licence ok"
+
+#~ msgid "unavialble"
+#~ msgstr "unavialble"
+
+#~ msgid "WebHook successfully triggered"
+#~ msgstr "WebHook successfully triggered"
+
+#~ msgid "WebHook returns non empty response"
+#~ msgstr "WebHook returns non empty response"
+
+#~ msgid "Which version of the changes will begin sending following changes"
+#~ msgstr "Which version of the changes will begin sending following changes"
+
+#~ msgid "Operation"
+#~ msgstr "Operation"
+
+#~ msgid "Record number"
+#~ msgstr "Record number"
+
+#~ msgid "Internal number of record edited"
+#~ msgstr "Internal number of record edited"
+
+#~ msgid "External number of record edited"
+#~ msgstr "External number of record edited"
+
+#~ msgid "Build change"
+#~ msgstr "Build change"
+
+#~ msgid "Choose Registered"
+#~ msgstr "Choose Registered"
+
+#~ msgid ""
+#~ "When the database FlexiBee is changed the POST HTTP request sent to all "
+#~ "registered URL"
+#~ msgstr ""
+#~ "When the database FlexiBee is changed the POST HTTP request sent to all "
+#~ "registered URL"
+
+#~ msgid "Response"
+#~ msgstr "Response"
+
+#~ msgid "Request"
+#~ msgstr "Request"
+
+#~ msgid "WebHook probe"
+#~ msgstr "WebHook probe"
+
+#~ msgid "flexplorer %s lexibee-buttons"
+#~ msgstr "flexplorer %s lexibee-buttons"
+
+#~ msgid "server info"
+#~ msgstr "server info"
+
+#~ msgid "license info"
+#~ msgstr "license info"
+
+#~ msgid "Label %s occurencies"
+#~ msgstr "Label %s occurencies"
+
+#~ msgid "All Evidencies"
+#~ msgstr "All Evidencies"
+
+#~ msgid "Server added to bookmarks"
+#~ msgstr "Server added to bookmarks"
+
+#~ msgid "Please confirm your login credentials"
+#~ msgstr "Please confirm your login credentials"
+
+#~ msgid "Login History"
+#~ msgstr "Login History"
+
+#~ msgid "FlexiBee server URL. ex.:"
+#~ msgstr "FlexiBee server URL. ex.:"
+
+#~ msgid "User name"
+#~ msgstr "User name"
+
+#~ msgid "Login name"
+#~ msgstr "Login name"
+
+#~ msgid "Add this to Login History"
+#~ msgstr "Add this to Login History"
+
+#~ msgid "display the contents of all the available records in all companies"
+#~ msgstr "display the contents of all the available records in all companies"
+
+#~ msgid "show the structure of evidence"
+#~ msgstr "show the structure of evidence"
+
+#~ msgid "send direct requests to the server and display results"
+#~ msgstr "send direct requests to the server and display results"
+
+#~ msgid "set up ChangesAPI and add WebHooks"
+#~ msgstr "set up ChangesAPI and add WebHooks"
+
+#~ msgid "Test WebHook script processing changes from FlexiBee answers"
+#~ msgstr "Test WebHook script processing changes from FlexiBee answers"
+
+#~ msgid "Collectively establish and abolish the accounting period"
+#~ msgstr "Collectively establish and abolish the accounting period"
+
+#~ msgid "Evidnece distinguish which are inaccessible because of the license"
+#~ msgstr "Evidnece distinguish which are inaccessible because of the license"
+
+#~ msgid "Shown next to json result of the request and page FlexiBee"
+#~ msgstr "Shown next to json result of the request and page FlexiBee"
+
+#~ msgid "Edit External ID numbers"
+#~ msgstr "Edit External ID numbers"
+
+#~ msgid "Features"
+#~ msgstr "Features"
+
+#~ msgid "Sign out"
+#~ msgstr "Sign out"
+
+#~ msgid "Thank you for your patronage and look forward to another visit"
+#~ msgstr "Thank you for your patronage and look forward to another visit"
+
+#~ msgid "Main Page"
+#~ msgstr "Main Page"
+
+#~ msgid "Custom request"
+#~ msgstr "Custom request"
+
+#~ msgid "Search results"
+#~ msgstr "Search results"
+
+#~ msgid "Search for %s results in %s"
+#~ msgstr "Search for %s results in %s"
+
+#~ msgid "History empty"
+#~ msgstr "History empty"
+
+#~ msgid "Reset history"
+#~ msgstr "Reset history"
+
+#~ msgid "Year %s was unregistred"
+#~ msgstr "Year %s was unregistred"
+
+#~ msgid "Year %s was not unregistred"
+#~ msgstr "Year %s was not unregistred"
+
+#~ msgid "Year was not unregistred"
+#~ msgstr "Year was not unregistred"
+
+#~ msgid "From Year"
+#~ msgstr "From Year"
+
+#~ msgid "To Year"
+#~ msgstr "To Year"
+
+#~ msgid "Registered Accounting periods"
+#~ msgstr "Registered Accounting periods"
+
+#~ msgid "Remove unused"
+#~ msgstr "Remove unused"
+
+#~ msgid "Tool for massive creating Accounting periods"
+#~ msgstr "Tool for massive creating Accounting periods"
+
+#~ msgid "Evidence proprties overview"
+#~ msgstr "Evidence proprties overview"
+
+#~ msgid "Structure"
+#~ msgstr "Structure"
+
+#~ msgid "Query does not sent yet"
+#~ msgstr "Query does not sent yet"
+
+#~ msgid "localized name"
+#~ msgstr "localized name"
+
+#~ msgid "targeted evidence"
+#~ msgstr "targeted evidence"
+
+#~ msgid "subitems collection name"
+#~ msgstr "subitems collection name"
+
+#~ msgid "File"
+#~ msgstr "File"
+
+#~ msgid "Welcome"
+#~ msgstr "Welcome"
+
+#~ msgid "Dotaz nebyl zatÃ­m odeslÃ¡n"
+#~ msgstr "Dotaz nebyl zatÃ­m odeslÃ¡n"
+
+#~ msgid "Flexplorer"
+#~ msgstr "Flexplorer"
+
+#~ msgid "Nothig here yet"
+#~ msgstr "Nothig here yet"
+
+#, fuzzy
+#~ msgid "ZÃ¡znam nebyl uloÅ¾en"
+#~ msgstr "Dotaz nebyl zatÃ­m odeslÃ¡n"
+
+#, fuzzy
+#~ msgid "Struktura"
+#~ msgstr "Structure"
+
+#, fuzzy
+#~ msgid "Rok nebyl odregistrovÃ¡n"
+#~ msgstr "Dotaz nebyl zatÃ­m odeslÃ¡n"
+
+#, fuzzy
+#~ msgid "PÅeskoÄit test URL"
+#~ msgstr "Test"
+
+#, fuzzy
+#~ msgid "Evidence [roprties overview"
+#~ msgstr "Evidence properties overview"
+
+#, fuzzy
+#~ msgid "Test Web Hooku"
+#~ msgstr "Test"
+
+#, fuzzy
+#~ msgid "PÅehled vlastnostÃ­ evidence"
+#~ msgstr "Evidence"
+
+#, fuzzy
+#~ msgid "Dotaz"
+#~ msgstr "Dotaz nebyl zatÃ­m odeslÃ¡n"
+
+#, fuzzy
+#~ msgid "UloÅ¾it do FlexiBee"
+#~ msgstr "FlexiBee"
