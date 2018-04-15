@@ -63,7 +63,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     <div class="contentContainer">
         <div class="contentText">
-        <?php echo stripslashes($article_info['articles_description']); ?>
+        <?php 
+        if ($article_info['articles_description_markdown'] !=''){
+        	$converter = new League\CommonMark\CommonMarkConverter();
+	echo $converter->convertToHtml($article_info['articles_description_markdown']);
+
+        	echo stripslashes($article_info['articles_description']); 
+        }
+        ?>
         </div>
 
         <?php if (tep_not_null($article_info['articles_url'])) { ?>

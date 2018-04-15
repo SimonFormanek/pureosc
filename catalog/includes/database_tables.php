@@ -20,7 +20,7 @@
 
 // define the database table names used in the project
   define('TABLE_ACTION_RECORDER', 'action_recorder');
-  define('TABLE_ADDRESS_BOOK', 'address_book');
+  define('TABLE_ADDRESS_BOOK', 'address_book'); //production: 'address_book' testing: 'address_book_real'
   define('TABLE_ADDRESS_FORMAT', 'address_format');
   define('TABLE_ADMINISTRATORS', 'administrators');
   define('TABLE_BANNERS', 'banners');
@@ -31,7 +31,7 @@
   define('TABLE_CONFIGURATION_GROUP', 'configuration_group');
   define('TABLE_COUNTRIES', 'countries');
   define('TABLE_CURRENCIES', 'currencies');
-  define('TABLE_CUSTOMERS', 'customers');
+  define('TABLE_CUSTOMERS', 'customers'); // customers | customers_real - UNSECURE real table
   define('TABLE_CUSTOMERS_BASKET', 'customers_basket');
   define('TABLE_CUSTOMERS_BASKET_ATTRIBUTES', 'customers_basket_attributes');
   define('TABLE_CUSTOMERS_INFO', 'customers_info');
@@ -117,3 +117,11 @@
 
 //PURE:NEW robot
   define('TABLE_RESET','reset');
+
+//PURE:NEW CRYPTO
+  define('TABLE_NEW_CUSTOMER_ID', 'new_customer_id');
+  define('TABLE_LAST_EMPTY_CUSTOMERS_ID','last_empty_customers_id');
+ define('TABLE_KEYS_CUSTOMER','keys_customer'); //DEBUG = keys_customer_real | production = keys_customer
+ define('TABLE_KEYS_CUSTOMER_REAL','keys_customer_real'); //DEBUG = keys_customer_real | production = keys_customer
+define('TABLE_KEYS_ADMIN','keys_admin');
+define('TABLE_CUSTOMERS_REAL','customers_real');

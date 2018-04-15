@@ -1,104 +1,12 @@
 <?php
 
-/*
-  $Id$
-
-  osCommerce, Open Source E-Commerce Solutions
-  http://www.oscommerce.com
-
-  Copyright (c) 2010 osCommerce
-
-  Released under the GNU General Public License
- */
-
-////
-// This function validates a plain text password with a
-// salted or phpass password
-function tep_validate_password($plain, $encrypted) {
-  if (tep_not_null($plain) && tep_not_null($encrypted)) {
-    if (tep_password_type($encrypted) == 'salt') {
-      return tep_validate_old_password($plain, $encrypted);
-    }
-
-    if (!class_exists('PasswordHash')) {
-      include(DIR_WS_CLASSES . 'passwordhash.php');
-    }
-
-    $hasher = new PasswordHash(10, true);
-
-    return $hasher->CheckPassword($plain, $encrypted);
-  }
-
-  return false;
-}
-
-////
-// This function validates a plain text password with a
-// salted password
-function tep_validate_old_password($plain, $encrypted) {
-  if (tep_not_null($plain) && tep_not_null($encrypted)) {
-// split apart the hash / salt
-    $stack = explode(':', $encrypted);
-
-    if (sizeof($stack) != 2)
-      return false;
-
-    if (md5($stack[1] . $plain) == $stack[0]) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-////
-// This function encrypts a phpass password from a plaintext
-// password.
-function tep_encrypt_password($plain) {
-  if (!class_exists('PasswordHash')) {
-    include(DIR_WS_CLASSES . 'passwordhash.php');
-  }
-
-  $hasher = new PasswordHash(10, true);
-
-  return $hasher->HashPassword($plain);
-}
-
-////
-// This function encrypts a salted password from a plaintext
-// password.
-function tep_encrypt_old_password($plain) {
-  $password = '';
-
-  for ($i = 0; $i < 10; $i++) {
-    $password .= tep_rand();
-  }
-
-  $salt = substr(md5($password), 0, 2);
-
-  $password = md5($salt . $plain) . ':' . $salt;
-
-  return $password;
-}
-
-////
-// This function returns the type of the encrpyted password
-// (phpass or salt)
-function tep_password_type($encrypted) {
-  if (preg_match('/^[A-Z0-9]{32}\:[A-Z0-9]{2}$/i', $encrypted) === 1) {
-    return 'salt';
-  }
-
-  return 'phpass';
-}
-
 /**
  * This function generate customers public and private keys, encrypt private key with passphrase
  *
- * @param string $password plaintext
  * @param int $customer_id used customer id
+ * @param string $password plaintext
  */
-function pure_ssl_generate_customer_keys($password, $customer_id) {
+function pure_ssl_generate_customer_keys($customer_id, $password) {
 //1.CUSTOMER
   $privateKey = openssl_pkey_new(array(
     'digest_alg' => 'sha512',
@@ -121,20 +29,18 @@ function pure_ssl_generate_customer_keys($password, $customer_id) {
 /**
  * Decrypt crypttext with customer key
  *
-
+ * @global int    $customer_id required cutomer id
  * @param sting   $crypttext   text to decrypt
  * @param string  $crypted_password    plaintext
- * @param int    $customer_id required cutomer id
- * @param string $role customer or admin
  *
  * @return string
  */
-function decrypt($crypttext, $crypted_password, $customer_id, $role = 'customer') {
+function decrypt($crypttext, $customer_id, $crypted_password, $role = 'customer') {
   $crypt_array = explode('|', $crypttext);
   if ($role == 'customer') {
     $crypttext = $crypt_array['0'];
 
-    $keys_query = tep_db_query("SELECT private_key_customer FROM " . constant('TABLE_KEYS_CUSTOMER') . " WHERE customers_id = '" . $customer_id . "'");
+    $keys_query = tep_db_query("SELECT private_key_customer FROM " . TABLE_KEYS_CUSTOMER . " WHERE customers_id = '" . $customer_id . "'");
     $keys = tep_db_fetch_array($keys_query);
     if (tep_db_num_rows($keys_query)) {
       $private_key_master_data = $keys['private_key_customer'];
@@ -149,12 +55,12 @@ function decrypt($crypttext, $crypted_password, $customer_id, $role = 'customer'
 
 /**
  * Encrypt string with customers and admins key
- * @param type $source
  * @param type $customer_id
+ * @param type $source
  * @param type $role
  * @return type
  */
-function encrypt($source, $customer_id, $role = 'customer') {
+function encrypt($customer_id, $source, $role = 'customer') {
   $pk_query = tep_db_query("SELECT public_key_customer FROM " . TABLE_KEYS_CUSTOMER . " WHERE customers_id = '" . $customer_id . "'");
   $pk = tep_db_fetch_array($pk_query);
 //    $pub_key = $pk['public_key_admin']; else $pub_key = $pk['public_key_customer'];
@@ -175,7 +81,7 @@ function encrypt_session_password($source) {
 
 function decrypt_session_password($crypttext) {
   if (file_exists(SERVER_SESSION_CUSTOMER_PRIVATE_KEY)) {
-    $private_key_data = file_get_contents(constant('SERVER_SESSION_CUSTOMER_PRIVATE_KEY'));
+    $private_key_data = file_get_contents(SERVER_SESSION_CUSTOMER_PRIVATE_KEY);
     $privateKey = openssl_pkey_get_private($private_key_data);
     openssl_private_decrypt(base64_decode($crypttext), $decrypted, $privateKey);
     openssl_free_key($privateKey);

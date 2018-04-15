@@ -29,6 +29,22 @@ function tep_db_connect($server = DB_SERVER, $username = DB_SERVER_USERNAME,
     return $$link;
 }
 
+  function tep_db_connect_customer($server = DB_SERVER, $username = DB_SERVER_USERNAME_CUSTOMER, $password = DB_SERVER_PASSWORD_CUSTOMER, $database = DB_DATABASE, $link = 'db_link') {
+    global $$link;
+
+    if (USE_PCONNECT == 'true') {
+      $server = 'p:' . $server;
+    }
+
+    $$link = mysqli_connect($server, $username, $password, $database);
+
+    if ( !mysqli_connect_errno() ) {
+      mysqli_set_charset($$link, 'utf8');
+    } 
+
+    return $$link;
+  }
+
 function tep_db_close($link = 'db_link')
 {
     global $$link;

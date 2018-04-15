@@ -1,6 +1,8 @@
 <?php
 	define('CATALOG_DOMAIN','osc.local'); //eg www.my-shop.com
   define('DIR_FS_MASTER_ROOT_DIR','/home/f/git/osc/osc/');
+  define('DB_SERVER_USERNAME_PREFIX','pu'); //2 chars
+	define('ADMIN_PRIVATE_KEYS_PATH', DIR_FS_MASTER_ROOT_DIR . '/admin_private_keys/'); //SECURITY WARNING: on production environement save keys on removable media
   define('ENABLE_SSL_CATALOG', false);
   define('ENABLE_SSL', false);
   define('SERVER_INSTANCE','admin'); // admin or empty for shop ???? TODO
@@ -53,5 +55,5 @@ $imgWidthSmall = 64;
 //define('DEFAULT_PRODUCT_TEMPLATE','2'); //1 = product 2 = arricle
 
 //  define('SHOP_KEYS_PATH','/home/printondemand/shop_keys/'); //SECURITY WARNING: need to bee obfuscated 
-//  define('ADMIN_PRIVATE_KEYS_PATH','/home/printondemand/admin_private_keys/'); //SECURITY WARNING: on production environement save keys on removable media
 //  define('DB_SERVER_USERNAME_PREFIX','os'); //2 chars
+  define('SESSION_FORCE_COOKIE_USE','true');

@@ -172,7 +172,7 @@ if (SESSION_FORCE_COOKIE_USE == 'False') {
 $session_started = false;
 if (SESSION_FORCE_COOKIE_USE == 'True') {
     tep_setcookie('cookie_test', 'please_accept_for_session', 0, $cookie_path,
-        $cookie_domain); //PURE:BUGFIX privacy - session expires: 0 = only session cookies 
+        $cookie_domain); //TODO: 2th check for long session to store settings (?) PURE:BUGFIX privacy - session expires: 0 = only session cookies 
 
     if (isset($HTTP_COOKIE_VARS['cookie_test'])) {
         tep_session_start();
@@ -260,6 +260,13 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
         tep_session_destroy();
         tep_redirect(tep_href_link(FILENAME_LOGIN));
     }
+}
+//PURE:CRYPTO
+if (tep_not_null($customer_id)) {
+  tep_db_close();
+  define('DB_SERVER_USERNAME_CUSTOMER', DB_SERVER_USERNAME_PREFIX . $customer_id);
+//  define('DB_SERVER_PASSWORD_CUSTOMER', file_get_contents(SHOP_KEYS_PATH . $customer_id . '/customer_db_pwd'));
+    tep_db_connect_customer() or die('Unable to connect to database server!');
 }
 
 // create the shopping cart

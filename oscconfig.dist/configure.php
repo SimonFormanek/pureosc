@@ -1,5 +1,9 @@
 <?php
+  define('DIR_FS_MASTER_ROOT_DIR','/home/f/git/osc/osc/');
+  define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . 'catalog/');
+  
   define('DIR_FS_CATALOG', '/home/f/git/osc/osc/catalog/');
+  define('DB_SERVER_USERNAME_PREFIX','pu'); //2 chars
 
 if (!defined(SERVER_INSTANCE)) define('SERVER_INSTANCE','admin'); //CONFIGURE: admin|shop <------ need to bee configured
 define('GENERATOR_INSTANCE','true'); // set to 'true'for generator dir set 'false' for shop or admin  <------ need to bee configured ! ! !
@@ -36,7 +40,6 @@ define('USE_SEO_REDIRECT','true'); //TODO: experimental: test all possible urls 
   define('DIR_FS_DOWNLOAD', DIR_FS_CATALOG . 'download/');
   define('DIR_FS_DOWNLOAD_PUBLIC', DIR_FS_CATALOG . 'pub/');
 
-//  define('DB_SERVER_USERNAME_PREFIX','os'); //2 chars
   define('USE_PCONNECT', 'false'); 
   define('STORE_SESSIONS', 'mysql'); 
   define('CFG_TIME_ZONE', 'Europe/Prague'); // <------ need to bee configured
@@ -59,3 +62,8 @@ define('USE_SEO_REDIRECT','true'); //TODO: experimental: test all possible urls 
 
 define('EASE_LOGGER','syslog');
 define('EASE_APPNAME','pureosc');
+
+//ENCRYPTION ######################################################
+//server_session_customer_key
+define('SERVER_SESSION_CUSTOMER_PRIVATE_KEY', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'server_session_customer_key.private') .'<br>';
+define('SERVER_SESSION_CUSTOMER_PUBLIC_KEY',dirname(__FILE__) . DIRECTORY_SEPARATOR . 'server_session_customer_key.pub');

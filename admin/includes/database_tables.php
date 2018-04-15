@@ -120,3 +120,11 @@
 //PURE:NEW static generator reset
   define('TABLE_RESET','reset');
 
+//PURE:NEW CRYPTO
+  define('TABLE_NEW_CUSTOMER_ID', 'new_customer_id');
+  define('TABLE_LAST_EMPTY_CUSTOMERS_ID','last_empty_customers_id');
+  define('TABLE_KEYS_CUSTOMER','keys_customer');
+//WARNING only for admin version of database_tables.php:
+  define('TABLE_LAST_EMPTY_CUSTOMERS_ID','last_empty_customers_id');
+  define('TABLE_KEYS_ADMIN','keys_admin');
+  define('TABLE_CUSTOMERS_REAL','customers_real');
