@@ -8,7 +8,7 @@
 
 # row level security
 
-address_book, customer, customer_keys and order tables are virtialized as view, where cuer can see only rows owned by 
+user row owned restrictions applied to tables: address_book, customer, customer_keys and orders tables are virtialized as view, where cuer can see only rows owned by 
 him.
 
 ## pregenerated admin keys
