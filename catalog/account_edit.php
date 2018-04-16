@@ -10,6 +10,9 @@
   Released under the GNU General Public License
  */
 
+use PureOSC\SslCrypto\SslDecryptCustomer;
+use PureOSC\SslCrypto\SslEncrypt;
+
 require_once('includes/application_top.php');
 
 if (!tep_session_is_registered('customer_id')) {
@@ -88,16 +91,16 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
   }
 
   if ($error == false) {
-    $sql_data_array = array('customers_firstname' => encrypt($firstname, $customer_id),
-      'customers_lastname' => encrypt($lastname, $customer_id),
+    $sql_data_array = array('customers_firstname' => SslEncrypt::encrypt($firstname, $customer_id),
+      'customers_lastname' => SslEncrypt::encrypt($lastname, $customer_id),
       'customers_email_address' => $email_address,
-      'customers_telephone' => encrypt($telephone, $customer_id),
-      'customers_fax' => encrypt(($fax), $customer_id));
+      'customers_telephone' => SslEncrypt::encrypt($telephone, $customer_id),
+      'customers_fax' => SslEncrypt::encrypt(($fax), $customer_id));
 
     if (ACCOUNT_GENDER == 'true')
       $sql_data_array['customers_gender'] = $gender;
     if (ACCOUNT_DOB == 'true')
-      $sql_data_array['customers_dob'] = encrypt(tep_date_raw($dob), $customer_id);
+      $sql_data_array['customers_dob'] = SslEncrypt::encrypt(tep_date_raw($dob), $customer_id);
 
     tep_db_perform(TABLE_CUSTOMERS, $sql_data_array, 'update', "customers_id = '" . (int) $customer_id . "'");
 
@@ -211,7 +214,7 @@ echo tep_draw_form('account_edit', tep_href_link(FILENAME_ACCOUNT_EDIT, '', 'SSL
         <label for="inputFirstName" class="control-label col-sm-3"><?php echo ENTRY_FIRST_NAME; ?></label>
         <div class="col-sm-9">
             <?php
-            echo tep_draw_input_field('firstname', decrypt($account['customers_firstname'], $customer_password, $customer_id), 'required aria-required="true" id="inputFirstName" placeholder="' . ENTRY_FIRST_NAME . '"');
+            echo tep_draw_input_field('firstname', SslDecryptCustomer::decrypt($account['customers_firstname'], $customer_password, $customer_id), 'required aria-required="true" id="inputFirstName" placeholder="' . ENTRY_FIRST_NAME . '"');
             ?>
             <?php echo _('Required'); ?>
         </div>
@@ -220,7 +223,7 @@ echo tep_draw_form('account_edit', tep_href_link(FILENAME_ACCOUNT_EDIT, '', 'SSL
         <label for="inputLastName" class="control-label col-sm-3"><?php echo ENTRY_LAST_NAME; ?></label>
         <div class="col-sm-9">
             <?php
-            echo tep_draw_input_field('lastname', decrypt($account['customers_lastname'], $customer_password, $customer_id), 'required aria-required="true" id="inputLastName" placeholder="' . ENTRY_LAST_NAME . '"');
+            echo tep_draw_input_field('lastname', SslDecryptCustomer::decrypt($account['customers_lastname'], $customer_password, $customer_id), 'required aria-required="true" id="inputLastName" placeholder="' . ENTRY_LAST_NAME . '"');
             ?>
             <?php echo _('Required'); ?>
         </div>
@@ -256,7 +259,7 @@ echo tep_draw_form('account_edit', tep_href_link(FILENAME_ACCOUNT_EDIT, '', 'SSL
         <label for="inputTelephone" class="control-label col-sm-3"><?php echo ENTRY_TELEPHONE_NUMBER; ?></label>
         <div class="col-sm-9">
             <?php
-            echo tep_draw_input_field('telephone', decrypt($account['customers_telephone'], $customer_password, $customer_id), 'required aria-required="true" id="inputTelephone" placeholder="' . ENTRY_TELEPHONE_NUMBER . '"', 'tel');
+            echo tep_draw_input_field('telephone', SslDecryptCustomer::decrypt($account['customers_telephone'], $customer_password, $customer_id), 'required aria-required="true" id="inputTelephone" placeholder="' . ENTRY_TELEPHONE_NUMBER . '"', 'tel');
             ?>
             <?php echo _('Required'); ?>
         </div>
@@ -265,7 +268,7 @@ echo tep_draw_form('account_edit', tep_href_link(FILENAME_ACCOUNT_EDIT, '', 'SSL
         <label for="inputFax" class="control-label col-sm-3"><?php echo ENTRY_FAX_NUMBER; ?></label>
         <div class="col-sm-9">
             <?php
-            echo tep_draw_input_field('fax', decrypt($account['customers_fax'], $customer_password, $customer_id), 'id="inputFax" placeholder="' . ENTRY_FAX_NUMBER . '"');
+            echo tep_draw_input_field('fax', SslDecryptCustomer::decrypt($account['customers_fax'], $customer_password, $customer_id), 'id="inputFax" placeholder="' . ENTRY_FAX_NUMBER . '"');
             ?>
         </div>
     </div>

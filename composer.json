@@ -20,7 +20,12 @@
             "PureOSC\\": "catalog/includes/classes/",
             "PureOSC\\flexibee\\": "catalog/ext/flexibee/",
             "PureOSC\\Admin\\": "admin/includes/classes/",
-            "PureOSC\\Admin\\flexibee\\": "admin/ext/flexibee/"
+            "PureOSC\\Admin\\flexibee\\": "admin/ext/flexibee/",
+            "PureOSC\\SslCrypto\\": "includes/classes/SslCrypto/",
+            "PureOSC\\Admin\\SslCrypto\\": "admin/includes/classes/SslCrypto/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "7.1.3"
     }
 }

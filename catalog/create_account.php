@@ -18,6 +18,10 @@
   Released under the GNU General Public License
  */
 
+use PureOSC\SslCrypto\SslGenerateCustomerKeys;
+use PureOSC\SslCrypto\SslEncrypt;
+use PureOSC\SslCrypto\SslEncryptSessionPassword;
+
 require_once('includes/application_top.php');
 
 // needs to be included earlier to set the success message in the messageStack
@@ -192,21 +196,21 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
 //MOVED TO CONFIG:  define('DB_SERVER_PASSWORD_CUSTOMER', file_get_contents(SHOP_KEYS_PATH . $customer_id . '/customer_db_pwd'));
     tep_db_connect_customer() or die('Unable to connect to database server (as customer)!');
 
-    pure_ssl_generate_customer_keys($password, $customer_id);
+    SslEncrypt::ssl_generate_customer_keys($password, $customer_id);
 
     $sql_data_array = array('customers_id' => $customer_id,
-      'customers_firstname' => encrypt($firstname, $customer_id),
-      'customers_lastname' => encrypt($lastname, $customer_id),
+      'customers_firstname' => SslEncrypt::encrypt($firstname, $customer_id),
+      'customers_lastname' => SslEncrypt::encrypt($lastname, $customer_id),
       'customers_email_address' => $email_address,
-      'customers_telephone' => encrypt($telephone, $customer_id),
-      'customers_fax' => encrypt($fax, $customer_id),
+      'customers_telephone' => SslEncrypt::encrypt($telephone, $customer_id),
+      'customers_fax' => SslEncrypt::encrypt($fax, $customer_id),
       'customers_newsletter' => $newsletter,
       'customers_password' => tep_encrypt_password($password));
 
     if (ACCOUNT_GENDER == 'true')
       $sql_data_array['customers_gender'] = $gender;
     if (ACCOUNT_DOB == 'true')
-      $sql_data_array['customers_dob'] = encrypt(tep_date_raw($dob), $customer_id);
+      $sql_data_array['customers_dob'] = SslEncrypt::encrypt(tep_date_raw($dob), $customer_id);
 
     $sqlResult = tep_db_perform(TABLE_CUSTOMERS, $sql_data_array);
 
