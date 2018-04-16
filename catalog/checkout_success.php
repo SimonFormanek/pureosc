@@ -77,6 +77,7 @@ if ($oPage->getRequestValue('RESULTTEXT') == 'OK') {
 
         //       $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
     }
+    $cart->reset(true);
 }
 
 

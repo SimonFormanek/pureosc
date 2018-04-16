@@ -414,12 +414,10 @@ class gpwebpay
         $successUrl   = tep_href_link(FILENAME_CHECKOUT_SUCCESS, '', 'SSL');
 
 
-        $request = new PaymentRequest($varSym, $totalPrice, $gpwpcurrency, 1,
+        $request = new PaymentRequest($varSym, intval($totalPrice), $gpwpcurrency, 1,
             $successUrl, $orderCode);
 
-        $request->setCustomParam('DESCRIPTION',
-            self::convertToAscii($products_info));
-
+        $request->setDescription('DESCRIPTION',self::convertToAscii($products_info));
 
         $parameters = $api->createPaymentParam($request);
 
