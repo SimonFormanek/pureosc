@@ -38,8 +38,8 @@ class FakturaVydana extends \FlexiPeeHP\FakturaVydana
         //$invoiceData['cenaZakl'] = $orderData['orders_price'];
 //        $invoiceData['nazev']  = $orderData['orders_name'];
 //        $invoiceData['popis']  = $orderData['orders_description'];
-        $kodSource             = $orderData['orders_id'];
-        $invoiceData['poznam'] = _('FlexiBee import');
+        $kodSource              = $orderData['orders_id'];
+        $invoiceData['poznam']  = _('FlexiBee import');
 //        $invoiceData['kod']    = \FlexiPeeHP\FlexiBeeRO::uncode($this->getKod($kodSource));
 
         return $invoiceData;
@@ -62,5 +62,23 @@ class FakturaVydana extends \FlexiPeeHP\FakturaVydana
                 $this->addArrayToBranch($itemData, 'polozkyFaktury');
             }
         }
+    }
+
+    public function insertToFlexiBee($data = null)
+    {
+        if (is_null($data)) {
+            $data = $this->getData();
+        }
+        $result = parent::insertToFlexiBee($data);
+
+        if ($this->responseStats['inserted'] == 1) {
+            FlexiPeeHP\Priloha::addAttachmentFromFile($invoice,
+                'pub/obchodni-podminky.pdf');
+            FlexiPeeHP\Priloha::addAttachmentFromFile($invoice,
+                'pub/navratovy-reklamacni-list.pdf');
+        }
+
+
+        return $result;
     }
 }

@@ -69,7 +69,7 @@ $order = new order;
 /* * * Altered for CCGV ** MOVED FUNCTION FURTHER UP IN CODE */
 // load the before_process function from the payment modules
 require_once(DIR_WS_CLASSES.'order_total.php');
-$order_total_modules = new order_total;
+$order_total_modules = new order_total();
 $order_totals        = $order_total_modules->process();
 
 $payment_modules->before_process();
@@ -315,14 +315,31 @@ $order_total_modules->apply_credit(); // CCGV
 /* * * EOF alteration for CCGV ** */
 
 if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+
+    foreach ($order_total_modules->process() as $orderTotalRow) {
+
+        switch ($orderTotalRow['code']) {
+            case 'ot_shipping':
+                if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+                    $invoice->addArrayToBranch([
+                        'nazev' => $orderTotalRow['title'],
+                        'mnozMj' => 1,
+                        'cenaMj' => $orderTotalRow['value'],
+                        'typPolozkyK' => 'typPolozky.obecny'
+                        ], 'polozkyDokladu');
+                }
+
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
     $invoice->setDataValue('id', 'ext:osc:'.$insert_id);
     $invoice->sync();
 
-    FlexiPeeHP\Priloha::addAttachmentFromFile($invoice,
-        'pub/obchodni-podminky.pdf');
-    FlexiPeeHP\Priloha::addAttachmentFromFile($invoice,
-        'pub/navratovy-reklamacni-list.pdf');
-    $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
 
     $varSym = $invoice->getDataValue('varSym');
 } else {

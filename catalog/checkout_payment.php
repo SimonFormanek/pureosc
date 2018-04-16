@@ -130,7 +130,7 @@ echo tep_draw_form('checkout_payment',
         ?>
 
         <div class="contentText">
-    <?php echo '<strong>'.tep_output_string_protected($error['title']).'</strong>'; ?>
+            <?php echo '<strong>'.tep_output_string_protected($error['title']).'</strong>'; ?>
 
             <p class="messageStackError"><?php echo tep_output_string_protected($error['error']); ?></p>
         </div>
@@ -144,12 +144,15 @@ echo tep_draw_form('checkout_payment',
     <div class="contentText row">
         <div class="col-sm-8">
             <div class="alert alert-warning">
-                    <?php echo TEXT_SELECTED_BILLING_DESTINATION; ?>
+                <?php echo TEXT_SELECTED_BILLING_DESTINATION; ?>
                 <div class="clearfix"></div>
                 <div class="pull-right">
-<?php echo tep_draw_button(IMAGE_BUTTON_CHANGE_ADDRESS, 'fa fa-home',
-    tep_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL'));
-?>
+                    <?php
+                    echo tep_draw_button(IMAGE_BUTTON_CHANGE_ADDRESS,
+                        'fa fa-home',
+                        tep_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '',
+                            'SSL'));
+                    ?>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -236,9 +239,9 @@ echo tep_draw_form('checkout_payment',
                             <td colspan="2"><?php echo $selection[$i]['error']; ?></td>
                         </tr>
 
-                                    <?php
-                                } elseif (isset($selection[$i]['fields']) && is_array($selection[$i]['fields'])) {
-                                    ?>
+        <?php
+    } elseif (isset($selection[$i]['fields']) && is_array($selection[$i]['fields'])) {
+        ?>
 
                         <tr>
                             <td colspan="2"><table border="0" cellspacing="0" cellpadding="2">
@@ -259,21 +262,21 @@ echo tep_draw_form('checkout_payment',
                                 </table></td>
                         </tr>
 
-                        <?php
-                    }
-                    ?>
+        <?php
+    }
+    ?>
 
 
 
-    <?php
-    $radio_buttons++;
-}
-?>
+                    <?php
+                    $radio_buttons++;
+                }
+                ?>
             </tbody>
         </table>
 
 <?php /* * * Altered for CCGV ** */ ?>
-<?php echo $order_total_modules->credit_selection(); // CCGV  ?>
+<?php echo $order_total_modules->credit_selection(); // CCGV   ?>
 <?php /* * * EOF alterations for CCGV ** */ ?>
     </div>
 
@@ -283,18 +286,20 @@ echo tep_draw_form('checkout_payment',
         <div class="form-group">
             <label for="inputComments" class="control-label col-sm-4"><?php echo TABLE_HEADING_COMMENTS; ?></label>
             <div class="col-sm-8">
-<?php
-echo tep_draw_textarea_field('comments', 'soft', 60, 5, $comments,
-    'id="inputComments" placeholder="'.TABLE_HEADING_COMMENTS.'"');
-?>
+                <?php
+                echo tep_draw_textarea_field('comments', 'soft', 60, 5,
+                    $comments,
+                    'id="inputComments" placeholder="'.TABLE_HEADING_COMMENTS.'"');
+                ?>
             </div>
         </div>
     </div>
 
     <div class="buttonSet">
-        <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-angle-right', null, 'primary', null, 'btn-success');
-?></div>
+        <div class="text-right"><?php
+                echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+                    null, 'primary', null, 'btn-success');
+                ?></div>
     </div>
 
     <div class="clearfix"></div>
@@ -303,12 +308,12 @@ echo tep_draw_textarea_field('comments', 'soft', 60, 5, $comments,
         <div class="stepwizard">
             <div class="stepwizard-row">
                 <div class="stepwizard-step">
-                    <a href="<?php echo tep_href_link(FILENAME_CHECKOUT_SHIPPING,
-    '', 'SSL');
-?>"><button type="button" class="btn btn-default btn-circle">1</button></a>
-                    <p><a href="<?php echo tep_href_link(FILENAME_CHECKOUT_SHIPPING,
-    '', 'SSL');
-?>"><?php echo CHECKOUT_BAR_DELIVERY; ?></a></p>
+                    <a href="<?php
+                echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
+                ?>"><button type="button" class="btn btn-default btn-circle">1</button></a>
+                    <p><a href="<?php
+                echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
+                ?>"><?php echo CHECKOUT_BAR_DELIVERY; ?></a></p>
                 </div>
                 <div class="stepwizard-step">
                     <button type="button" class="btn btn-primary btn-circle">2</button>

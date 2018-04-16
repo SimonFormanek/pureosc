@@ -18,7 +18,7 @@ class ot_tax
     {
         $this->ot_tax();
     }
-    
+
     function ot_tax()
     {
         $this->code        = 'ot_tax';
@@ -33,9 +33,7 @@ class ot_tax
     function process()
     {
         global $order, $currencies;
-
-        reset($order->info['tax_groups']);
-        while (list($key, $value) = each($order->info['tax_groups'])) {
+        foreach ($order->info['tax_groups'] as $key => $value) {
             if ($value > 0) {
                 $this->output[] = array('title' => $key.':',
                     'text' => $currencies->format($value, true,
@@ -72,5 +70,3 @@ class ot_tax
                 $this->keys())."')");
     }
 }
-
-

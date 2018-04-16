@@ -12,4 +12,4 @@
 
   define('MODULE_ORDER_TOTAL_SUBTOTAL_TITLE', 'Mezisoučet',true);
   define('MODULE_ORDER_TOTAL_SUBTOTAL_DESCRIPTION', 'Mezisoučet objednávky',true);
-?>
+  

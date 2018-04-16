@@ -12,4 +12,4 @@
 
   define('MODULE_ORDER_TOTAL_TOTAL_TITLE', 'Celkem k úhradě',true);
   define('MODULE_ORDER_TOTAL_TOTAL_DESCRIPTION', 'Celkem k úhradě',true);
-?>
+  

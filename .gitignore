@@ -24,3 +24,6 @@ mailhive/cloudbeez/cloudloader/install.log
 phinx.yml
 Makefile
 !/tests/phinx.yml
+/gpe.signing_test.cer
+/gpe.signing_test.pem
+/gpwebpay-pvk.key

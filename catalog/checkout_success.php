@@ -19,6 +19,7 @@
 
 require_once('includes/application_top.php');
 
+
 // if the customer is not logged on, redirect them to the shopping cart page
 if (!tep_session_is_registered('customer_id')) {
     tep_redirect(tep_href_link(FILENAME_SHOPPING_CART));
@@ -34,6 +35,53 @@ if (!tep_db_num_rows($orders_query)) {
 $orders = tep_db_fetch_array($orders_query);
 
 $order_id = $orders['orders_id'];
+
+
+if ($oPage->getRequestValue('RESULTTEXT') == 'OK') {
+////GPWEBPAY 
+//    &ORDERNUMBER=105542018&
+//    MERORDERNUM=6571&
+//    PRCODE=0&
+//    SRCODE=0&
+
+    require(DIR_WS_CLASSES.'order.php');
+    $order = new order($order_id);
+
+    if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        $banker = new FlexiPeeHP\FakturaVydana([
+            'typDokl' => FlexiPeeHP\FlexiBeeRO::code('ZDD'),
+            'varSym' => $oPage->getRequestValue('ORDERNUMBER'),
+            'popis' => 'gpwebpay'
+        ]);
+
+        foreach ($order->products as $orderItem) {
+            $banker->addArrayToBranch([
+                'cenik' => 'ext:products:'.$orderItem['id'],
+                'nazev' => $orderItem['name'],
+                'mnozMj' => $orderItem['qty'],
+                'cenaMj' => $orderItem['price'],
+                'typPolozkyK' => 'typPolozky.katalog'
+                ], 'polozkyDokladu');
+        }
+
+
+        $banker->insertToFlexiBee();
+        if ($banker->lastResponseCode == 201) {
+            $faktura = new FlexiPeeHP\FakturaVydana('ext:osc:'.$order_id,
+                ['detail' => 'id']);
+            $faktura->sparujPlatbu($banker);
+            if ($banker->lastResponseCode == 201) {
+                tep_db_query("update  ".TABLE_ORDERS." SET orders_status=105 where orders_id = '".(int) $order_id."' limit 1");
+            }
+        }
+
+        //       $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
+    }
+}
+
+
+
+
 
 $page_content = $oscTemplate->getContent('checkout_success');
 
@@ -92,9 +140,9 @@ echo tep_draw_form('order',
 <div class="contentContainer">
     <div class="buttonSet">
         <div class="text-right"><?php
-            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
-                null, 'primary', null, 'btn-success');
-            ?></div>
+    echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right', null,
+        'primary', null, 'btn-success');
+    ?></div>
     </div>
 </div>
 
@@ -103,4 +151,4 @@ echo tep_draw_form('order',
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+
