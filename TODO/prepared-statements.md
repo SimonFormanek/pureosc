@@ -1,0 +1,1 @@
+pouzit prekladac pro prepared statements
