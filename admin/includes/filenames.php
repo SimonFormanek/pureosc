@@ -129,4 +129,6 @@ define('FILENAME_STATS_SALES', 'stats_sales.php');
 // BOF: Information Pages Unlimited
   define('FILENAME_INFORMATION_MANAGER', 'information_manager.php');
 // EOF: Information Pages Unlimited
-?>
+
+  define('FILENAME_POST_MONEY_ORDER_PRINT', 'post_money_order_print.php');
+  
