@@ -10,6 +10,8 @@
   Released under the GNU General Public License
  */
 
+use PureOSC\SslCrypto\SslChangePassphrase;
+
 require_once('includes/application_top.php');
 
 if (!tep_session_is_registered('customer_id')) {
@@ -45,6 +47,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
 
         if (tep_validate_password($password_current,
                 $check_customer['customers_password'])) {
+           //ssl: need change passphrase
+            SslChangePassphrase::change_passphrase($password_current, $password_new, $customer_id);
             tep_db_query("update ".TABLE_CUSTOMERS." set customers_password = '".tep_encrypt_password($password_new)."' where customers_id = '".(int) $customer_id."'");
 
             tep_db_query("update ".TABLE_CUSTOMERS_INFO." set customers_info_date_account_last_modified = now() where customers_info_id = '".(int) $customer_id."'");

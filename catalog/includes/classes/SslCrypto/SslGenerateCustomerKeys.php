@@ -10,7 +10,7 @@ class SslGenerateCustomerKeys{
  * @param string $password plaintext
  * @param int $customer_id used customer id
  */
-function ssl_generate_customer_keys($password, $customer_id) {
+public static function ssl_generate_customer_keys($password, $customer_id) {
 //1.CUSTOMER
   $privateKey = openssl_pkey_new(array(
     'digest_alg' => 'sha512',
