@@ -110,6 +110,7 @@ define('BOX_HEADING_REPORTS', 'Reports',true);
 define('BOX_REPORTS_PRODUCTS_VIEWED', 'Products Viewed',true);
 define('BOX_REPORTS_PRODUCTS_PURCHASED', 'Products Purchased',true);
 define('BOX_REPORTS_ORDERS_TOTAL', 'Customer Orders-Total',true);
+define('BOX_REPORTS_STATS_SALES', 'Stat sales',true);
 
 // tools text in includes/boxes/tools.php
 define('BOX_HEADING_TOOLS', 'Tools',true);
@@ -124,6 +125,7 @@ define('BOX_TOOLS_SEC_DIR_PERMISSIONS', 'Security Directory Permissions',true);
 define('BOX_TOOLS_SERVER_INFO', 'Server Info',true);
 define('BOX_TOOLS_VERSION_CHECK', 'Version Checker',true);
 define('BOX_TOOLS_WHOS_ONLINE', 'Who\'s Online',true);
+define('BOX_TOOLS_FLEXIBEE_SYNC', 'Flexibee sync',true);
 
 // localizaion box text in includes/boxes/localization.php
 define('BOX_HEADING_LOCALIZATION', 'Localization',true);

@@ -9,6 +9,25 @@
 
   Released under the GNU General Public License
 */
+define('NAVBAR_TITLE', 'Vytvořit uživatelský účet',true);
+define('TEXT_ORIGIN_LOGIN', '<font color="#FF0000"><small><b>WARNING:</b></font></small>>Pokud již máte účet, přihlaste se na stránce <a href="%s"><u><b>Přihlášení</b></u></a>.',true);
+
+define ('ENTRY_FIRST_NAME_TEXT', 'Křestní jméno');
+define ('ENTRY_LAST_NAME_TEXT', 'Příjmení');
+define ('ENTRY_EMAIL_ADDRESS_TEXT', 'E-mailová adresa');
+define ('ENTRY_COMPANY_TEXT', 'Společnost');
+define ('ENTRY_COMPANY_NUMBER_TEXT_2', 'IČO');
+define ('ENTRY_VAT_NUMBER_TEXT_2', 'DIČ');
+define ('ENTRY_STREET_ADDRESS_TEXT', 'Ulice, číslo');
+define ('ENTRY_CITY_TEXT', 'Město');
+define ('ENTRY_POST_CODE_TEXT', 'PSČ');
+define ('ENTRY_COUNTRY_TEXT', 'Země');
+define ('ENTRY_TELEPHONE_NUMBER_TEXT', 'Telefonní číslo');
+define ('ENTRY_FAX_NUMBER_TEXT', 'Číslo faxu');
+define ('ENTRY_NEWSLETTER_TEXT', 'Newsletter');
+define ('ENTRY_PASSWORD_TEXT', 'Heslo');
+define ('ENTRY_PASSWORD_CONFIRMATION_TEXT', 'Heslo znovu pro kontrolu');
+define ('IMAGE_BUTTON_CONTINUE', 'Pokračovat');
 
 define('HEADING_TITLE_CREATE_ACCOUNT', 'Create an new Customer Account',true);
 define('PULL_DOWN_DEFAULT', 'Please select',true);

@@ -131,4 +131,5 @@ define('FILENAME_STATS_SALES', 'stats_sales.php');
 // EOF: Information Pages Unlimited
 
   define('FILENAME_POST_MONEY_ORDER_PRINT', 'post_money_order_print.php');
-  
+//flexibee
+  define('FILENAME_FLEXIBEE_SYNC','flexibeesync.php');
