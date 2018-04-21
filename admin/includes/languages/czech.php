@@ -114,6 +114,7 @@ define('BOX_HEADING_REPORTS', 'Zprávy',true);
 define('BOX_REPORTS_PRODUCTS_VIEWED', 'Přehled zboží',true);
 define('BOX_REPORTS_PRODUCTS_PURCHASED', 'Prodané zboží',true);
 define('BOX_REPORTS_ORDERS_TOTAL', 'Celkové prodeje dle zákazníků',true);
+define('BOX_REPORTS_STATS_SALES', 'Statistiky prodeje',true);
 
 // tools text in includes/boxes/tools.php
 define('BOX_HEADING_TOOLS', 'Nástroje',true);
@@ -128,6 +129,7 @@ define('BOX_TOOLS_SEC_DIR_PERMISSIONS', 'Security - práva na adresáře',true);
 define('BOX_TOOLS_SERVER_INFO', 'Server Info',true);
 define('BOX_TOOLS_VERSION_CHECK', 'Version Checker',true);
 define('BOX_TOOLS_WHOS_ONLINE', 'Kdo je online',true);
+define('BOX_TOOLS_FLEXIBEE_SYNC', 'Flexibee sync',true);
 
 // localizaion box text in includes/boxes/localization.php
 define('BOX_HEADING_LOCALIZATION', 'Lokalizace',true);

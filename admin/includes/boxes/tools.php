@@ -1,4 +1,5 @@
 <?php
+
 /*
   $Id$
 
@@ -80,7 +81,7 @@ $cl_box_groups[] = [
         /*         * * EOF alteration for Database Check 1.4 ** */
         /*         * * Altered for Mail Manager ** */
         [
-            'code' => FILENAME_MAIL_MANAGER,
+            'code' => FILENAME_MM_MAIL_MANAGER,
             'title' => BOX_TOOLS_MAIL_MANAGER,
             'link' => tep_href_link(FILENAME_MM_MAIL_MANAGER)
         ],
@@ -91,9 +92,9 @@ $cl_box_groups[] = [
             'link' => tep_href_link(FILENAME_WHOS_ONLINE)
         ],
         [
-            'code' => 'flexibeesync.php',
-            'title' => FLEXIBEE_SYNC,
-            'link' => tep_href_link('flexibeesync.php')
+            'code' => FILENAME_FLEXIBEE_SYNC,
+            'title' => BOX_TOOLS_FLEXIBEE_SYNC,
+            'link' => tep_href_link(FILENAME_FLEXIBEE_SYNC)
         ]
     ]
 ];

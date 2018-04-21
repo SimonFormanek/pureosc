@@ -48,7 +48,7 @@ function tep_information_show_category($information_group_id = 1) {
   }
   $count_child = empty($child_information) ? 0 : count($child_information);
 
-  // Test if a child has been requested and set $parent_child_selected
+// Test if a child has been requested and set $parent_child_selected
   for ($i = 1; $i < ($count_child + 1); $i++) {
     if ((isset($_GET['info_id'])) && ($child_information[$i]['child_info_id'] == $_GET['info_id'])) {
       $parent_child_selected = $child_information[$i]['parent_info_id'];

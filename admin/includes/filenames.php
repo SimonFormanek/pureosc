@@ -129,4 +129,6 @@ define('FILENAME_STATS_SALES', 'stats_sales.php');
 // BOF: Information Pages Unlimited
   define('FILENAME_INFORMATION_MANAGER', 'information_manager.php');
 // EOF: Information Pages Unlimited
-?>
+
+//flexibee
+  define('FILENAME_FLEXIBEE_SYNC','flexibeesync.php');

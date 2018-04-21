@@ -9,6 +9,26 @@
 
   Released under the GNU General Public License
 */
+define('NAVBAR_TITLE', 'Create Customer Account',true);
+define('TEXT_ORIGIN_LOGIN', '<font color="#FF0000"><small><b>WARNING:</b></font></small>If you already have an account, sign in on <a href="%s"><u><b>Login Page</b></u></a>.',true);
+
+define('ENTRY_FIRST_NAME_TEXT','First Name');
+define('ENTRY_LAST_NAME_TEXT','Last Name');
+define('ENTRY_EMAIL_ADDRESS_TEXT','E-mail address');
+define('ENTRY_COMPANY_TEXT','Company');
+define('ENTRY_COMPANY_NUMBER_TEXT_2','Company Number');
+define('ENTRY_VAT_NUMBER_TEXT_2','Vat Number');
+define('ENTRY_STREET_ADDRESS_TEXT','Street Address');
+define('ENTRY_CITY_TEXT','City');
+define('ENTRY_POST_CODE_TEXT','');
+define('ENTRY_COUNTRY_TEXT','Country');
+define('ENTRY_TELEPHONE_NUMBER_TEXT','Telephone Number');
+define('ENTRY_FAX_NUMBER_TEXT','Fax Number');
+define('ENTRY_NEWSLETTER_TEXT','Newsletter');
+define('ENTRY_PASSWORD_TEXT','Password');
+define('ENTRY_PASSWORD_CONFIRMATION_TEXT','Password Confirmation');
+define('IMAGE_BUTTON_CONTINUE','Continue');
+
 
 define('HEADING_TITLE_CREATE_ACCOUNT', 'Create an new Customer Account',true);
 define('PULL_DOWN_DEFAULT', 'Please select',true);
