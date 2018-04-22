@@ -10,7 +10,7 @@
   Released under the GNU General Public License
  */
 
-use PureOSC\SslCrypto\SslChangePassphraseCustomer;
+use PureOSC\SslCrypto;
 
 require_once('includes/application_top.php');
 
@@ -45,7 +45,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
 
     if (tep_validate_password($password_current, $check_customer['customers_password'])) {
 
-      if (SslChangePassphraseCustomer::ssl_change_passphrase_customer($password_current, $password_new, $customer_id) === true) {
+      if (SslCrypto::change_passphrase_customer($password_current, $password_new, $customer_id) === true) {
         tep_db_query("update " . TABLE_CUSTOMERS . " set customers_password = '" . tep_encrypt_password($password_new) . "' where customers_id = '" . (int) $customer_id . "'");
 
         tep_db_query("update " . TABLE_CUSTOMERS_INFO . " set customers_info_date_account_last_modified = now() where customers_info_id = '" . (int) $customer_id . "'");
