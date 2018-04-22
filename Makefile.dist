@@ -39,9 +39,6 @@ autoload:
 cryptoinit:
 	cd ../oscconfig && ../osc/bin/create_server_session_customer_key.php
 
-cryptocp:
-	cp admin/includes/classes/SslCrypto/SslEncrypt.php  catalog/includes/classes/SslCrypto/SslEncrypt.php
-
 flexibeeinstall:
 #for debian based architecture more info: doc/install-flexibee.md
 	wget -O - http://v.s.cz/info@vitexsoftware.cz.gpg.key | sudo apt-key add -
