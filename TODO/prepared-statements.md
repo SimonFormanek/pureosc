@@ -1,1 +1,3 @@
-pouzit prekladac pro prepared statements
+# prepared  statements
+use this file:
+		prepared-statements/database.php
