@@ -91,16 +91,16 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
   }
 
   if ($error == false) {
-    $sql_data_array = array('customers_firstname' => SslEncrypt::encrypt($firstname, $customer_id),
-      'customers_lastname' => SslEncrypt::encrypt($lastname, $customer_id),
+    $sql_data_array = array('customers_firstname' => SslEncrypt::ssl_encrypt($firstname, $customer_id),
+      'customers_lastname' => SslEncrypt::ssl_encrypt($lastname, $customer_id),
       'customers_email_address' => $email_address,
-      'customers_telephone' => SslEncrypt::encrypt($telephone, $customer_id),
-      'customers_fax' => SslEncrypt::encrypt(($fax), $customer_id));
+      'customers_telephone' => SslEncrypt::ssl_encrypt($telephone, $customer_id),
+      'customers_fax' => SslEncrypt::ssl_encrypt(($fax), $customer_id));
 
     if (ACCOUNT_GENDER == 'true')
       $sql_data_array['customers_gender'] = $gender;
     if (ACCOUNT_DOB == 'true')
-      $sql_data_array['customers_dob'] = SslEncrypt::encrypt(tep_date_raw($dob), $customer_id);
+      $sql_data_array['customers_dob'] = SslEncrypt::ssl_encrypt(tep_date_raw($dob), $customer_id);
 
     tep_db_perform(TABLE_CUSTOMERS, $sql_data_array, 'update', "customers_id = '" . (int) $customer_id . "'");
 

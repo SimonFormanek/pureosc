@@ -11,6 +11,8 @@
   Released under the GNU General Public License
  */
 
+use PureOSC\SslCrypto\SslEncryptSessionPassword;
+
 class cm_login_form {
 
   var $code;
@@ -57,7 +59,7 @@ class cm_login_form {
 // set $login_customer_id globally and perform post login code in catalog/login.php
           $login_customer_id = (int) $customer['customers_id'];
 //add crypted password to session
-          $login_customer_password = PureOSC\SslCrypto\SslEncryptSessionPassword::encrypt_session_password($password);
+          $login_customer_password = SslEncryptSessionPassword::ssl_encrypt_session_password($source);
 // migrate old hashed password to new phpass password
           if (tep_password_type($customer['customers_password']) != 'phpass') {
             tep_db_query("update " . TABLE_CUSTOMERS . " set customers_password = '" . tep_encrypt_password($password) . "' where customers_id = '" . (int) $login_customer_id . "'");

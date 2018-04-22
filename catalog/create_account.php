@@ -199,18 +199,18 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     SslGenerateCustomerKeys::ssl_generate_customer_keys($password, $customer_id);
 
     $sql_data_array = array('customers_id' => $customer_id,
-      'customers_firstname' => SslEncrypt::encrypt($firstname, $customer_id),
-      'customers_lastname' => SslEncrypt::encrypt($lastname, $customer_id),
+      'customers_firstname' => SslEncrypt::ssl_encrypt($firstname, $customer_id),
+      'customers_lastname' => SslEncrypt::ssl_encrypt($lastname, $customer_id),
       'customers_email_address' => $email_address,
-      'customers_telephone' => SslEncrypt::encrypt($telephone, $customer_id),
-      'customers_fax' => SslEncrypt::encrypt($fax, $customer_id),
+      'customers_telephone' => SslEncrypt::ssl_encrypt($telephone, $customer_id),
+      'customers_fax' => SslEncrypt::ssl_encrypt($fax, $customer_id),
       'customers_newsletter' => $newsletter,
       'customers_password' => tep_encrypt_password($password));
 
     if (ACCOUNT_GENDER == 'true')
       $sql_data_array['customers_gender'] = $gender;
     if (ACCOUNT_DOB == 'true')
-      $sql_data_array['customers_dob'] = SslEncrypt::encrypt(tep_date_raw($dob), $customer_id);
+      $sql_data_array['customers_dob'] = SslEncrypt::ssl_encrypt(tep_date_raw($dob), $customer_id);
 
     $sqlResult = tep_db_perform(TABLE_CUSTOMERS, $sql_data_array);
 
@@ -318,7 +318,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     $customer_default_address_id = $address_id;
     $customer_country_id = $country;
     $customer_zone_id = $zone_id;
-    $customer_password = SslEncryptSessionPassword::encrypt_session_password($password);
+    $customer_password = SslEncryptSessionPassword::ssl_encrypt_session_password($password);
     tep_session_register('customer_id');
     tep_session_register('customer_first_name');
     tep_session_register('customer_default_address_id');
