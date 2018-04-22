@@ -11,7 +11,7 @@ class SslEncrypt {
    * @param type $role
    * @return type
    */
-  public static function encrypt($source, $customer_id, $role = 'customer') {
+  public static function ssl_encrypt($source, $customer_id, $role = 'customer') {
     $pk_query = tep_db_query("SELECT public_key_customer FROM " . TABLE_KEYS_CUSTOMER . " WHERE customers_id = '" . $customer_id . "'");
     $pk = tep_db_fetch_array($pk_query);
 //    $pub_key = $pk['public_key_admin']; else $pub_key = $pk['public_key_customer'];
@@ -22,4 +22,6 @@ class SslEncrypt {
     return base64_encode($crypttext_customer) . '|' . base64_encode($crypttext_admin);
   }
 
-};
+}
+
+;
