@@ -45,3 +45,6 @@ flexibeeinstall:
 	echo deb http://v.s.cz/ stable main | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
 	sudo apt update
 	apt install flexibee-server
+
+pretest:
+	mysql pureosc < tests/pureosc_testing_user.sql

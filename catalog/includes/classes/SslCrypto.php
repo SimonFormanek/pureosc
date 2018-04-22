@@ -27,7 +27,7 @@ class SslCrypto {
 
     $crypttext_customer = null;
     $crypttext_admin = null;
-    $pk_customer = tep_db_fetch_array(tep_db_query("SELECT public_key_customer FROM " . TABLE_KEYS_CUSTOMER . " WHERE customers_id = '" . $customer_id . "'"));
+    $pk_customer = tep_db_fetch_array(tep_db_query("SELECT public_key_customer FROM " . constant('TABLE_KEYS_CUSTOMER') . " WHERE customers_id = '" . $customer_id . "'"));
     openssl_public_encrypt($source, $crypttext_customer, $pk_customer['public_key_customer']);
     $pk_admin = tep_db_fetch_array(tep_db_query("SELECT public_key_admin FROM " . TABLE_KEYS_ADMIN . " WHERE customers_id = '" . $customer_id . "'"));
     openssl_public_encrypt($source, $crypttext_admin, $pk_admin['public_key_admin']);
@@ -105,9 +105,6 @@ class SslCrypto {
     $keys = tep_db_fetch_array($keys_query);
     if (tep_db_num_rows($keys_query)) {
 
-      //$privateKey = openssl_pkey_get_private($private_key_master_data, self::decrypt_session_password($crypted_password));
-      //$decrypted_password = self::decrypt_session_password();
-
       $res = openssl_pkey_get_private($keys['private_key_customer'], $password_current);
       if ($res === false) {
         throw new \Exception("Loading private key failed: " . openssl_error_string());
@@ -119,21 +116,6 @@ class SslCrypto {
       }
       return $result;
     }
-
-    /**
-      function changePassphrase ($private, $old, $new=null) {
-      $res = openssl_pkey_get_private ($private, $old);
-      if ($res === false) {
-      throw new Exception ("Loading private key failed: ".openssl_error_string ());
-      return false;
-      }
-      if (openssl_pkey_export ($res, $result, $new) === false) {
-      throw new Exception ("Passphrase change failed: ".openssl_error_string ());
-      return false;
-      }
-      return $result;
-      }
-     */
   }
 
   /**
