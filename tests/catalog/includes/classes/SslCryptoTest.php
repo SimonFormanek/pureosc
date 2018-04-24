@@ -9,7 +9,12 @@ use PureOSC\SslCrypto;
  */
 class SslCryptoTest extends \PHPUnit_Framework_TestCase {
 
-  public $crypted = null;
+  public $customer_id = 1;
+  public $plaintext_password = 'testshop';
+  public $plaintext = 'text to encrypt šřčřžľ';
+  public $default_password = 'testshop';
+
+
 
   /**
    * @var SslCrypto
@@ -22,7 +27,11 @@ class SslCryptoTest extends \PHPUnit_Framework_TestCase {
    */
   protected function setUp() {
     $this->object = new SslCrypto;
-  }
+
+// make a connection to the database... now
+tep_db_connect() or die('Unable to connect to database server!');
+
+    }
 
   /**
    * Tears down the fixture, for example, closes a network connection.
@@ -37,54 +46,30 @@ class SslCryptoTest extends \PHPUnit_Framework_TestCase {
    * @covers PureOSC\SslCrypto::decrypt
    */
   public function testEncryptDecrypt() {
-    $plaintext = 'slovo plaintext';
-    $crypted = SslCrypto::encrypt($plaintext, 1);
-    $crypted_password = SslCrypto::encrypt_session_password('testshop');
-    $this->assertEquals($plaintext, SslCrypto::decrypt($crypted, $crypted_password, 1));
+    $crypted = SslCrypto::encrypt($this->plaintext, $this->customer_id);
+    $crypted_password = SslCrypto::encrypt_session_password($this->default_password);
+    $this->assertEquals($this->plaintext, SslCrypto::decrypt($crypted, $crypted_password, $this->customer_id));
   }
 
   /**
    * @covers PureOSC\SslCrypto::encrypt_session_password
-   * @todo   Implement testEncrypt_session_password().
-   */
-  public function testEncrypt_session_password() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-      'This test has not been implemented yet.'
-    );
-  }
-
-  /**
    * @covers PureOSC\SslCrypto::decrypt_session_password
-   * @todo   Implement testDecrypt_session_password().
    */
-  public function testDecrypt_session_password() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-      'This test has not been implemented yet.'
-    );
+  public function testEncryptDecrypt_session_password() {
+    
+    $crypted_password = SslCrypto::encrypt_session_password($this->plaintext_password);
+    $this->assertEquals($this->plaintext_password, SslCrypto::decrypt_session_password($crypted_password));
   }
 
-  /**
-   * @covers PureOSC\SslCrypto::crypto_fu
-   * @todo   Implement testCrypto_fu().
-   */
-  public function testCrypto_fu() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-      'This test has not been implemented yet.'
-    );
-  }
 
-  /**
+  /**+-
    * @covers PureOSC\SslCrypto::change_passphrase_customer
-   * @todo   Implement testChange_passphrase_customer().
    */
   public function testChange_passphrase_customer() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-      'This test has not been implemented yet.'
-    );
+    $password_current = 'testshop';
+    $password_new = 'newsecretpassword';
+    $res = SslCrypto::change_passphrase_customer($password_current, $password_new, $this->customer_id);
+    $this->assertTrue($res);
   }
 
   /**
@@ -92,10 +77,15 @@ class SslCryptoTest extends \PHPUnit_Framework_TestCase {
    * @todo   Implement testGenerate_customer_keys().
    */
   public function testGenerate_customer_keys() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-      'This test has not been implemented yet.'
-    );
+    $ustomer_id =5; //new customer
+    SslCrypto::generate_customer_keys($this->default_password, $ustomer_id);
+    $crypted = SslCrypto::encrypt($this->plaintext, $ustomer_id);
+
+    $crypted_password = SslCrypto::encrypt_session_password($this->default_password);
+    $this->assertEquals($this->plaintext, SslCrypto::decrypt($crypted, $crypted_password, $ustomer_id));
+
+    
+    
   }
 
 }

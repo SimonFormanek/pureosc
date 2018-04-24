@@ -51,6 +51,9 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
         tep_db_query("update " . TABLE_CUSTOMERS_INFO . " set customers_info_date_account_last_modified = now() where customers_info_id = '" . (int) $customer_id . "'");
 
         $messageStack->add_session('account', SUCCESS_PASSWORD_UPDATED, 'success');
+        
+        $customer_password = SslCrypto::encrypt_session_password($password);
+        tep_session_register('customer_password');
 
         tep_redirect(tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
       }

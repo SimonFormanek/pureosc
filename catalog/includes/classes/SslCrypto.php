@@ -83,22 +83,18 @@ class SslCrypto {
       echo 'ERROR: Admin Private key not found (decrypt_session_password)';
     return $decrypted;
   }
-
-  /**
-   * encrypt session password
-   * @param string $password plaintext
-   */
-  public static function crypto_fu($password) {
-    $public_key = file_get_contents(SERVER_SESSION_CUSTOMER_PUBLIC_KEY);
-    openssl_public_encrypt($password, $encrypted, $public_key);
-    return base64_encode($encrypted);
-  }
-
+/**
+ * change customers passphrase
+ * 
+ * @param type $password_current
+ * @param type $password_new
+ * @param type $customer_id
+ * 
+ * @return boolean
+ * 
+ * @throws \Exception
+ */
   public static function change_passphrase_customer($password_current, $password_new, $customer_id) {
-    /**
-     * update customers passphrase
-     * $oldpass string old password
-     */
     $result = false;
 
     $keys_query = tep_db_query("SELECT private_key_customer FROM " . constant('TABLE_KEYS_CUSTOMER') . " WHERE customers_id = '" . $customer_id . "'");
@@ -108,9 +104,11 @@ class SslCrypto {
       $res = openssl_pkey_get_private($keys['private_key_customer'], $password_current);
       if ($res === false) {
         throw new \Exception("Loading private key failed: " . openssl_error_string());
+//         $messageStack->add('account_password', "Loading private key failed: " . openssl_error_string());
       }
       if (openssl_pkey_export($res, $result, $password_new) === false) {
         throw new \Exception("Passphrase change failed: " . openssl_error_string());
+//        $messageStack->add('account_password', "Passphrase change failed: " . openssl_error_string());
       } else {
         $result = true;
       }

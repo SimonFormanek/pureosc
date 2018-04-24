@@ -17,8 +17,10 @@ class UserLog extends AbstractMigration
     {
         $table = $this->table($this->tableName, ['comment' => 'gdpr protocol']);
 
-        $table->addColumn('timestamp', 'datetime',
+        $table->addColumn('timestamp', 'datetime')
+/*        $table->addColumn('timestamp', 'datetime',
                 ['default' => 'CURRENT_TIMESTAMP'])
+ */
             ->addColumn('customers_id', 'integer',
                 ['null' => false, 'comment' => 'affecter customer id'])
             ->addColumn('administrators_id', 'integer',
