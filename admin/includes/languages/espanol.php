@@ -111,6 +111,7 @@ define('BOX_TOOLS_SEC_DIR_PERMISSIONS', 'Permisos de Seguridad del Directorio',t
 define('BOX_TOOLS_SERVER_INFO', 'Informaci&oacute;n del Servidor',true);
 define('BOX_TOOLS_VERSION_CHECK', 'Verificador de Versi&oacute;n',true);
 define('BOX_TOOLS_WHOS_ONLINE', 'Usuarios conectados',true);
+define('BOX_TOOLS_FLEXIBEE_SYNC', 'Flexibee sync',true);
 
 // localizaion box text in includes/boxes/localization.php
 define('BOX_HEADING_LOCALIZATION', 'Localizaci&oacute;n',true);

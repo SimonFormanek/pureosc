@@ -50,7 +50,10 @@ class payment
             }
 
             for ($i = 0, $n = sizeof($include_modules); $i < $n; $i++) {
-                include(DIR_WS_LANGUAGES.$language.'/modules/payment/'.$include_modules[$i]['file']);
+                $langFile = DIR_WS_LANGUAGES.$language.'/modules/payment/'.$include_modules[$i]['file'];
+                if (is_file($langFile)) {
+                    include($langFile);
+                }
                 include(DIR_WS_MODULES.'payment/'.$include_modules[$i]['file']);
 
                 $GLOBALS[$include_modules[$i]['class']] = new $include_modules[$i]['class'];
@@ -168,7 +171,7 @@ class payment
 
         if (is_array($this->modules)) {
             reset($this->modules);
-            while (list(, $value) = each($this->modules)) {
+            foreach ($this->modules as $value) {
                 $class = substr($value, 0, strrpos($value, '.'));
                 if ($GLOBALS[$class]->enabled) {
                     $selection         = $GLOBALS[$class]->selection();

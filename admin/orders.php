@@ -148,7 +148,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
       old version:
       <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_EDIT, 'document', tep_href_link(FILENAME_ORDERS_EDIT, tep_get_all_get_params(array('oID', 'action')) . 'oID=' . $HTTP_GET_VARS['oID'] . '&action=edit')) . tep_draw_button(IMAGE_ORDERS_INVOICE, 'document', tep_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $HTTP_GET_VARS['oID'])) . tep_draw_button(IMAGE_ORDERS_PACKINGSLIP, 'document', tep_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $HTTP_GET_VARS['oID']), null, array('newwindow' => true)) . tep_draw_button(IMAGE_BACK, 'triangle-1-w', tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('action')))); ?></td>
      */ ?>
-                        <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_CREATE_ORDER,
+                        <td class="smallText" align="right">A<?php 
+                        echo tep_draw_button(IMAGE_CREATE_ORDER,
         'plus', tep_href_link(FILENAME_CREATE_ORDER)).tep_draw_button(IMAGE_EDIT,
         'pencil',
         tep_href_link(FILENAME_ORDERS_EDIT, 'oID='.$_GET['oID']), null,
@@ -567,6 +568,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             'oID='.$oInfo->orders_id), null,
                         array('newwindow' => true)));
                 $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_CREATE_ORDER,
+                        'document', tep_href_link(FILENAME_CREATE_ORDER)));
+                $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_POST_MONEY_ORDER,
                         'document', tep_href_link(FILENAME_CREATE_ORDER)));
                 /*                 * * EOF alteration for Order Editor ** */
                 $contents[] = array('text' => '<br />'.TEXT_DATE_ORDER_CREATED.' '.tep_date_short($oInfo->date_purchased));

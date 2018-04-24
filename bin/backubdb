@@ -1,0 +1,5 @@
+#!/bin/bash
+if [ ! $1 ];then echo Missing DBname;fi
+DATE=`date +%y-%m-%d-%T`
+mysqldump --opt $1 |gzip> $1-${DATE}.sql.gz
+#sudo mysqldump --opt -uroot $1 |gzip> $1-${DATE}.sql.gz

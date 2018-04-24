@@ -20,9 +20,9 @@ if (!tep_session_is_registered('customer_id')) {
 // needs to be included earlier to set the success message in the messageStack
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ADDRESS_BOOK_PROCESS);
 
-if (isset($_GET['action']) && ($_GET['action'] == 'deleteconfirm')
-    && isset($_GET['delete']) && is_numeric($_GET['delete']) && isset($_GET['formid'])
-    && ($_GET['formid'] == md5($sessiontoken))) {
+if (isset($_GET['action']) && ($_GET['action'] == 'deleteconfirm') && isset($_GET['delete'])
+    && is_numeric($_GET['delete']) && isset($_GET['formid']) && ($_GET['formid']
+    == md5($sessiontoken))) {
     if ((int) $_GET['delete'] == $customer_default_address_id) {
         $messageStack->add_session('addressbook',
             WARNING_PRIMARY_ADDRESS_DELETION, 'warning');
@@ -38,9 +38,8 @@ if (isset($_GET['action']) && ($_GET['action'] == 'deleteconfirm')
 
 // error checking when updating or adding an entry
 $process = false;
-if (isset($_POST['action']) && (($_POST['action'] == 'process')
-    || ($_POST['action'] == 'update')) && isset($_POST['formid'])
-    && ($_POST['formid'] == $sessiontoken)) {
+if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['action']
+    == 'update')) && isset($_POST['formid']) && ($_POST['formid'] == $sessiontoken)) {
     $process = true;
     $error   = false;
 
@@ -166,8 +165,8 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process')
                     "address_book_id = '".(int) $_GET['edit']."' and customers_id ='".(int) $customer_id."'");
 
 // reregister session variables
-                if ((isset($_POST['primary']) && ($_POST['primary']
-                    == 'on')) || ($_GET['edit'] == $customer_default_address_id)) {
+                if ((isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit']
+                    == $customer_default_address_id)) {
                     $customer_first_name         = $firstname;
                     $customer_country_id         = $country;
                     $customer_zone_id            = (($zone_id > 0) ? (int) $zone_id
@@ -196,14 +195,12 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process')
                 $new_address_book_id = tep_db_insert_id();
 
 // reregister session variables
-                if (isset($_POST['primary']) && ($_POST['primary']
-                    == 'on')) {
+                if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) {
                     $customer_first_name         = $firstname;
                     $customer_country_id         = $country;
                     $customer_zone_id            = (($zone_id > 0) ? (int) $zone_id
                             : '0');
-                    if (isset($_POST['primary']) && ($_POST['primary']
-                        == 'on'))
+                    if (isset($_POST['primary']) && ($_POST['primary'] == 'on'))
                             $customer_default_address_id = $new_address_book_id;
 
                     $sql_data_array = array('customers_firstname' => $firstname,
@@ -211,8 +208,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process')
 
                     if (ACCOUNT_GENDER == 'true')
                             $sql_data_array['customers_gender']             = $gender;
-                    if (isset($_POST['primary']) && ($_POST['primary']
-                        == 'on'))
+                    if (isset($_POST['primary']) && ($_POST['primary'] == 'on'))
                             $sql_data_array['customers_default_address_id'] = $new_address_book_id;
 
                     tep_db_perform(TABLE_CUSTOMERS, $sql_data_array, 'update',
@@ -221,6 +217,29 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process')
                     $messageStack->add_session('addressbook',
                         SUCCESS_ADDRESS_BOOK_ENTRY_UPDATED, 'success');
                 }
+            }
+        }
+
+
+        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            $kontakter = new \PureOSC\flexibee\Kontakt([
+                'id' => 'ext:customers:'.$addres_id,
+                'firma' => $adresar,
+                'jmeno' => $firstname,
+                'prijmeni' => $lastname,
+                'email' => $email_address,
+                'ulice' => $street_address,
+                'mesto' => $city,
+                'psc' => $postcode,
+//            'stat' => $country,
+                'tel' => $telephone,
+                'fax' => $fax]);
+
+            $kontakter->insertToFlexiBee();
+
+            if ($kontakter->lastResponseCode == 201) {
+                $userLog->logFlexiBeeEvent($kontakter,
+                    ['jmeno', 'prijmeni', 'email']);
             }
         }
 
@@ -272,12 +291,12 @@ $breadcrumb->add(NAVBAR_TITLE_2, tep_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL')
 
 if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
     $breadcrumb->add(NAVBAR_TITLE_MODIFY_ENTRY,
-        tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS,
-            'edit='.$_GET['edit'], 'SSL'));
+        tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS, 'edit='.$_GET['edit'],
+            'SSL'));
 } elseif (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     $breadcrumb->add(NAVBAR_TITLE_DELETE_ENTRY,
-        tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS,
-            'delete='.$_GET['delete'], 'SSL'));
+        tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS, 'delete='.$_GET['delete'],
+            'SSL'));
 } else {
     $breadcrumb->add(NAVBAR_TITLE_ADD_ENTRY,
         tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS, '', 'SSL'));
@@ -287,13 +306,15 @@ require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 
 <div class="page-header">
-    <h1><?php if (isset($_GET['edit'])) {
-    echo HEADING_TITLE_MODIFY_ENTRY;
-} elseif (isset($_GET['delete'])) {
-    echo HEADING_TITLE_DELETE_ENTRY;
-} else {
-    echo HEADING_TITLE_ADD_ENTRY;
-} ?></h1>
+    <h1><?php
+        if (isset($_GET['edit'])) {
+            echo HEADING_TITLE_MODIFY_ENTRY;
+        } elseif (isset($_GET['delete'])) {
+            echo HEADING_TITLE_DELETE_ENTRY;
+        } else {
+            echo HEADING_TITLE_ADD_ENTRY;
+        }
+        ?></h1>
 </div>
 
 <?php
@@ -302,9 +323,9 @@ if ($messageStack->size('addressbook') > 0) {
 }
 ?>
 
-    <?php
-    if (isset($_GET['delete'])) {
-        ?>
+<?php
+if (isset($_GET['delete'])) {
+    ?>
 
     <div class="contentContainer">
 
@@ -317,22 +338,27 @@ if ($messageStack->size('addressbook') > 0) {
                     <div class="panel-heading"><?php echo DELETE_ADDRESS_TITLE; ?></div>
 
                     <div class="panel-body">
-        <?php echo tep_address_label($customer_id,
-            (int) $_GET['delete'], true, ' ', '<br />'); ?>
+                        <?php
+                        echo tep_address_label($customer_id,
+                            (int) $_GET['delete'], true, ' ', '<br />');
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="buttonSet">
-            <span class="buttonAction"><?php echo tep_draw_button(IMAGE_BUTTON_DELETE,
-        'fa fa-trash',
-        tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS,
-            'delete='.$_GET['delete'].'&action=deleteconfirm&formid='.md5($sessiontoken),
-            'SSL'), 'primary', NULL, 'btn-danger'); ?></span>
+            <span class="buttonAction"><?php
+                echo tep_draw_button(IMAGE_BUTTON_DELETE, 'fa fa-trash',
+                    tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS,
+                        'delete='.$_GET['delete'].'&action=deleteconfirm&formid='.md5($sessiontoken),
+                        'SSL'), 'primary', NULL, 'btn-danger');
+                ?></span>
 
-    <?php echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
-        tep_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL')); ?>
+            <?php
+            echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+                tep_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL'));
+            ?>
         </div>
 
     </div>
@@ -341,50 +367,60 @@ if ($messageStack->size('addressbook') > 0) {
 } else {
     ?>
 
-    <?php echo tep_draw_form('addressbook',
+    <?php
+    echo tep_draw_form('addressbook',
         tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS,
-            (isset($_GET['edit']) ? 'edit='.$_GET['edit'] : ''),
-            'SSL'), 'post', 'class="form-horizontal"', true); ?>
+            (isset($_GET['edit']) ? 'edit='.$_GET['edit'] : ''), 'SSL'), 'post',
+        'class="form-horizontal"', true);
+    ?>
 
     <div class="contentContainer">
 
-    <?php include(DIR_WS_MODULES.'address_book_details.php'); ?>
+        <?php include(DIR_WS_MODULES.'address_book_details.php'); ?>
 
-    <?php
-    if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
-        ?>
+        <?php
+        if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
+            ?>
 
             <div class="buttonSet">
-                <span class="buttonAction"><?php echo tep_draw_hidden_field('action',
-            'update').tep_draw_hidden_field('edit', $_GET['edit']).tep_draw_button(IMAGE_BUTTON_UPDATE,
-            'fa fa-refresh', null, 'primary'); ?></span>
+                <span class="buttonAction"><?php
+                    echo tep_draw_hidden_field('action', 'update').tep_draw_hidden_field('edit',
+                        $_GET['edit']).tep_draw_button(IMAGE_BUTTON_UPDATE,
+                        'fa fa-refresh', null, 'primary');
+                    ?></span>
 
-        <?php echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
-            tep_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL')); ?>
+                <?php
+                echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+                    tep_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL'));
+                ?>
             </div>
 
-        <?php
-    } else {
-        if (sizeof($navigation->snapshot) > 0) {
-            $back_link = tep_href_link($navigation->snapshot['page'],
-                tep_array_to_string($navigation->snapshot['get'],
-                    array(tep_session_name())), $navigation->snapshot['mode']);
+            <?php
         } else {
-            $back_link = tep_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL');
-        }
-        ?>
+            if (sizeof($navigation->snapshot) > 0) {
+                $back_link = tep_href_link($navigation->snapshot['page'],
+                    tep_array_to_string($navigation->snapshot['get'],
+                        array(tep_session_name())),
+                    $navigation->snapshot['mode']);
+            } else {
+                $back_link = tep_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL');
+            }
+            ?>
 
             <div class="buttonSet row">
-                <div class="col-xs-6"><?php echo tep_draw_button(IMAGE_BUTTON_BACK,
-            'fa fa-angle-left', $back_link); ?></div>
-                <div class="col-xs-6 text-right"><?php echo tep_draw_hidden_field('action',
-            'process').tep_draw_button(IMAGE_BUTTON_CONTINUE,
-            'fa fa-angle-right', null, 'primary'); ?></div>
+                <div class="col-xs-6"><?php
+                    echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+                        $back_link);
+                    ?></div>
+                <div class="col-xs-6 text-right"><?php
+                    echo tep_draw_hidden_field('action', 'process').tep_draw_button(IMAGE_BUTTON_CONTINUE,
+                        'fa fa-angle-right', null, 'primary');
+                    ?></div>
             </div>
 
-        <?php
-    }
-    ?>
+            <?php
+        }
+        ?>
 
     </div>
 

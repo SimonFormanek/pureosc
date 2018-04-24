@@ -122,16 +122,20 @@ if ($dir             = @dir($module_directory)) {
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-                        HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
-<?php
-if (isset($_GET['list'])) {
-    echo '            <td class="smallText" align="right">'.tep_draw_button(IMAGE_BACK,
-        'triangle-1-w', tep_href_link(FILENAME_MODULES, 'set='.$set)).'</td>';
-} else {
-    echo '            <td class="smallText" align="right">'.tep_draw_button(IMAGE_MODULE_INSTALL.' ('.$new_modules_counter.')',
-        'plus', tep_href_link(FILENAME_MODULES, 'set='.$set.'&list=new')).'</td>';
-}
-?>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
+                    <?php
+                    if (isset($_GET['list'])) {
+                        echo '            <td class="smallText" align="right">'.tep_draw_button(IMAGE_BACK,
+                            'triangle-1-w',
+                            tep_href_link(FILENAME_MODULES, 'set='.$set)).'</td>';
+                    } else {
+                        echo '            <td class="smallText" align="right">'.tep_draw_button(IMAGE_MODULE_INSTALL.' ('.$new_modules_counter.')',
+                            'plus',
+                            tep_href_link(FILENAME_MODULES,
+                                'set='.$set.'&list=new')).'</td>';
+                    }
+                    ?>
                 </tr>
             </table></td>
     </tr>
@@ -147,9 +151,11 @@ if (isset($_GET['list'])) {
                             <?php
                             $installed_modules = array();
                             for ($i = 0, $n = sizeof($directory_array); $i < $n; $i++) {
-                                $file = $directory_array[$i];
-
-                                include($module_language_directory.$language.'/modules/'.$module_type.'/'.$file);
+                                $file     = $directory_array[$i];
+                                $oldLocal = $module_language_directory.$language.'/modules/'.$module_type.'/'.$file;
+                                if (is_file($oldLocal)) {
+                                    include($oldLocal);
+                                }
                                 include($module_directory.$file);
 
                                 $class = substr($file, 0, strrpos($file, '.'));
@@ -165,8 +171,7 @@ if (isset($_GET['list'])) {
                                     }
 
                                     if ((!isset($_GET['module']) || (isset($_GET['module'])
-                                        && ($_GET['module'] == $class)))
-                                        && !isset($mInfo)) {
+                                        && ($_GET['module'] == $class))) && !isset($mInfo)) {
                                         $module_info = array('code' => $module->code,
                                             'title' => $module->title,
                                             'description' => $module->description,
@@ -211,59 +216,64 @@ if (isset($_GET['list'])) {
                                         }
                                     } else {
                                         echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_MODULES,
-                                            'set='.$set.(isset($_GET['list'])
-                                                    ? '&list=new' : '').'&module='.$class).'\'">'."\n";
+                                            'set='.$set.(isset($_GET['list']) ? '&list=new'
+                                                    : '').'&module='.$class).'\'">'."\n";
                                     }
                                     ?>
                                     <td class="dataTableContent"><?php echo $module->title; ?></td>
                                     <td class="dataTableContent" align="right"><?php if (in_array($module->code.$file_extension,
-                        $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
-                                    <td class="dataTableContent" align="right"><?php if (isset($mInfo)
-                    && is_object($mInfo) && ($class == $mInfo->code)) {
-                    echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
-                } else {
-                    echo '<a href="'.tep_href_link(FILENAME_MODULES,
-                        'set='.$set.(isset($_GET['list']) ? '&list=new'
-                                : '').'&module='.$class).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                        IMAGE_ICON_INFO).'</a>';
-                } ?>&nbsp;</td>
+                                        $modules_installed) && is_numeric($module->sort_order))
+                                        echo $module->sort_order;
+                                    ?></td>
+                                    <td class="dataTableContent" align="right"><?php
+                                        if (isset($mInfo) && is_object($mInfo) && ($class
+                                            == $mInfo->code)) {
+                                            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
+                                        } else {
+                                            echo '<a href="'.tep_href_link(FILENAME_MODULES,
+                                                'set='.$set.(isset($_GET['list'])
+                                                        ? '&list=new' : '').'&module='.$class).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                                IMAGE_ICON_INFO).'</a>';
+                                        }
+                                        ?>&nbsp;</td>
                         </tr>
-                <?php
-            }
-        }
-
-        if (!isset($_GET['list'])) {
-            ksort($installed_modules);
-            $check_query = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = '".$module_key."'");
-            if (tep_db_num_rows($check_query)) {
-                $check = tep_db_fetch_array($check_query);
-                if ($check['configuration_value'] != implode(';',
-                        $installed_modules)) {
-                    tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".implode(';',
-                            $installed_modules)."', last_modified = now() where configuration_key = '".$module_key."'");
-                }
-            } else {
-                tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Installed Modules', '".$module_key."', '".implode(';',
-                        $installed_modules)."', 'This is automatically updated. No need to edit.', '6', '0', now())");
-            }
-
-            if ($template_integration == true) {
-                $check_query = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'TEMPLATE_BLOCK_GROUPS'");
-                if (tep_db_num_rows($check_query)) {
-                    $check          = tep_db_fetch_array($check_query);
-                    $tbgroups_array = explode(';', $check['configuration_value']);
-                    if (!in_array($module_type, $tbgroups_array)) {
-                        $tbgroups_array[] = $module_type;
-                        sort($tbgroups_array);
-                        tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".implode(';',
-                                $tbgroups_array)."', last_modified = now() where configuration_key = 'TEMPLATE_BLOCK_GROUPS'");
+                        <?php
                     }
-                } else {
-                    tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Installed Template Block Groups', 'TEMPLATE_BLOCK_GROUPS', '".$module_type."', 'This is automatically updated. No need to edit.', '6', '0', now())");
                 }
-            }
-        }
-        ?>
+
+                if (!isset($_GET['list'])) {
+                    ksort($installed_modules);
+                    $check_query = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = '".$module_key."'");
+                    if (tep_db_num_rows($check_query)) {
+                        $check = tep_db_fetch_array($check_query);
+                        if ($check['configuration_value'] != implode(';',
+                                $installed_modules)) {
+                            tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".implode(';',
+                                    $installed_modules)."', last_modified = now() where configuration_key = '".$module_key."'");
+                        }
+                    } else {
+                        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Installed Modules', '".$module_key."', '".implode(';',
+                                $installed_modules)."', 'This is automatically updated. No need to edit.', '6', '0', now())");
+                    }
+
+                    if ($template_integration == true) {
+                        $check_query = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'TEMPLATE_BLOCK_GROUPS'");
+                        if (tep_db_num_rows($check_query)) {
+                            $check          = tep_db_fetch_array($check_query);
+                            $tbgroups_array = explode(';',
+                                $check['configuration_value']);
+                            if (!in_array($module_type, $tbgroups_array)) {
+                                $tbgroups_array[] = $module_type;
+                                sort($tbgroups_array);
+                                tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".implode(';',
+                                        $tbgroups_array)."', last_modified = now() where configuration_key = 'TEMPLATE_BLOCK_GROUPS'");
+                            }
+                        } else {
+                            tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Installed Template Block Groups', 'TEMPLATE_BLOCK_GROUPS', '".$module_type."', 'This is automatically updated. No need to edit.', '6', '0', now())");
+                        }
+                    }
+                }
+                ?>
                 <tr>
                     <td colspan="3" class="smallText"><?php echo TEXT_MODULE_DIRECTORY.' '.$module_directory; ?></td>
                 </tr>
@@ -368,8 +378,7 @@ if (isset($_GET['list'])) {
 
                     $contents[] = array('text' => '<br />'.$mInfo->description);
                     $contents[] = array('text' => '<br />'.$keys);
-                } elseif (isset($_GET['list']) && ($_GET['list']
-                    == 'new')) {
+                } elseif (isset($_GET['list']) && ($_GET['list'] == 'new')) {
                     if (isset($mInfo)) {
                         $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_MODULE_INSTALL,
                                 'plus',

@@ -26,3 +26,6 @@ Makefile
 !/tests/phinx.yml
 i18n/*/LC_MESSAGES/pureosc.mo
 admin_private_keys/
+/gpe.signing_test.cer
+/gpe.signing_test.pem
+/gpwebpay-pvk.key
