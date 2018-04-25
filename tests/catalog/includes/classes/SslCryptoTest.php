@@ -77,9 +77,9 @@ tep_db_connect() or die('Unable to connect to database server!');
    * @todo   Implement testGenerate_customer_keys().
    */
   public function testGenerate_customer_keys() {
-    $ustomer_id =5; //new customer
-    SslCrypto::generate_customer_keys($this->default_password, $ustomer_id);
-    $crypted = SslCrypto::encrypt($this->plaintext, $ustomer_id);
+    $customer_id =5; //new customer
+    SslCrypto::generate_customer_keys($this->default_password, $customer_id);
+    $crypted = SslCrypto::encrypt($this->plaintext, $customer_id);
 
     $crypted_password = SslCrypto::encrypt_session_password($this->default_password);
     $this->assertEquals($this->plaintext, SslCrypto::decrypt($crypted, $crypted_password, $ustomer_id));

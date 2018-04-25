@@ -259,7 +259,6 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
 if (tep_not_null($customer_id)) {
   tep_db_close();
   define('DB_SERVER_USERNAME_CUSTOMER', DB_SERVER_USERNAME_PREFIX . $customer_id);
-//  define('DB_SERVER_PASSWORD_CUSTOMER', file_get_contents(SHOP_KEYS_PATH . $customer_id . '/customer_db_pwd'));
   tep_db_connect_customer() or die('Unable to connect to database server!');
 }
 
