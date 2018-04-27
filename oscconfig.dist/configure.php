@@ -1,11 +1,10 @@
 <?php
   define('DIR_FS_MASTER_ROOT_DIR','/home/f/git/osc/osc/');
   define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . 'catalog/');
-  
-  define('DIR_FS_CATALOG', '/home/f/git/osc/osc/catalog/');
   define('DB_SERVER_USERNAME_PREFIX','pu'); //2 chars
 
-if (!defined(SERVER_INSTANCE)) define('SERVER_INSTANCE','admin'); //CONFIGURE: admin|shop <------ need to bee configured
+if (!defined('SERVER_INSTANCE')) {define('SERVER_INSTANCE','admin');} //CONFIGURE: admin|shop <------ need to bee configured
+echo constant('SERVER_INSTANCE');
 define('GENERATOR_INSTANCE','true'); // set to 'true'for generator dir set 'false' for shop or admin  <------ need to bee configured ! ! !
 if (GENERATOR_INSTANCE == 'true') {
 define('SESSION_FORCE_COOKIE_USE', 'True');
