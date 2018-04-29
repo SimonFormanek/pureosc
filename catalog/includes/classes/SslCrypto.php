@@ -56,6 +56,14 @@ class SslCrypto {
     return base64_encode($encrypted);
   }
 
+  /**
+   * common decrypt function
+   * 
+   * @param string $crypttext
+   * @param string $crypted_password
+   * @param int $customer_id
+   * @return string decrypted
+   */
   public static function decrypt($crypttext, $crypted_password, $customer_id) {
     $crypt_array = explode('|', $crypttext);
     $crypttext = $crypt_array['0'];
@@ -73,27 +81,39 @@ class SslCrypto {
     return $decrypted;
   }
 
+  /**
+   * Decrypt encrypted customer's session password with SERVER_SESSION_CUSTOMER_PRIVATE_KEY
+   * 
+   * @param string $crypttext
+   * 
+   * @return string decrypted
+   */
   public static function decrypt_session_password($crypttext) {
     if (file_exists(SERVER_SESSION_CUSTOMER_PRIVATE_KEY)) {
       $private_key_data = file_get_contents(constant('SERVER_SESSION_CUSTOMER_PRIVATE_KEY'));
       $privateKey = openssl_pkey_get_private($private_key_data);
       openssl_private_decrypt(base64_decode($crypttext), $decrypted, $privateKey);
+      if (empty($decrypted)) {
+        echo openssl_error_string();
+      }
       openssl_free_key($privateKey);
-    } else
+    } else {
       echo 'ERROR: Admin Private key not found (decrypt_session_password)';
+    }
     return $decrypted;
   }
-/**
- * change customers passphrase
- * 
- * @param type $password_current
- * @param type $password_new
- * @param type $customer_id
- * 
- * @return boolean
- * 
- * @throws \Exception
- */
+
+  /**
+   * change customers passphrase
+   * 
+   * @param string $password_current
+   * @param string $password_new
+   * @param int $customer_id
+   * 
+   * @return boolean
+   * 
+   * @throws \Exception
+   */
   public static function change_passphrase_customer($password_current, $password_new, $customer_id) {
     $result = false;
 

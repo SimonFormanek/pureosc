@@ -70,6 +70,13 @@ tep_db_connect() or die('Unable to connect to database server!');
     $password_new = 'newsecretpassword';
     $res = SslCrypto::change_passphrase_customer($password_current, $password_new, $this->customer_id);
     $this->assertTrue($res);
+    $this->setExpectedException('\Exception');
+    
+    $password_current = 'badpassword';
+    $password_new = 'newsecretpassword';
+    $res = SslCrypto::change_passphrase_customer($password_current, $password_new, $this->customer_id);
+    $this->assertFalse($res);
+ 
   }
 
   /**
@@ -82,7 +89,7 @@ tep_db_connect() or die('Unable to connect to database server!');
     $crypted = SslCrypto::encrypt($this->plaintext, $customer_id);
 
     $crypted_password = SslCrypto::encrypt_session_password($this->default_password);
-    $this->assertEquals($this->plaintext, SslCrypto::decrypt($crypted, $crypted_password, $ustomer_id));
+    $this->assertEquals($this->plaintext, SslCrypto::decrypt($crypted, $crypted_password, $customer_id));
 
     
     
