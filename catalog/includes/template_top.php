@@ -13,11 +13,11 @@
 $oscTemplate->buildBlocks();
 
 if (!$oscTemplate->hasBlocks('boxes_column_left')) {
-    $oscTemplate->setGridContentWidth($oscTemplate->getGridContentWidth() + $oscTemplate->getGridColumnWidth());
+  $oscTemplate->setGridContentWidth($oscTemplate->getGridContentWidth() + $oscTemplate->getGridColumnWidth());
 }
 
 if (!$oscTemplate->hasBlocks('boxes_column_right')) {
-    $oscTemplate->setGridContentWidth($oscTemplate->getGridContentWidth() + $oscTemplate->getGridColumnWidth());
+  $oscTemplate->setGridContentWidth($oscTemplate->getGridContentWidth() + $oscTemplate->getGridColumnWidth());
 }
 ?>
 <!DOCTYPE html>
@@ -27,9 +27,15 @@ if (!$oscTemplate->hasBlocks('boxes_column_right')) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?php echo tep_output_string_protected($oscTemplate->getTitle()); ?></title>
-        <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER : HTTP_SERVER).DIR_WS_CATALOG; ?>">
-
-        <link href="ext/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER : HTTP_SERVER) . DIR_WS_CATALOG; ?>">
+        <?php
+        if (file_exists(DIR_FS_MASTER_ROOT_DIR . BOOTSTRAP_LESS_DIR)) {
+          $bootstrap_extension = 'css';
+        } else {
+          $bootstrap_extension = 'min.css';
+        }
+        ?>
+        <link href="ext/bootstrap/css/bootstrap.<?php echo $bootstrap_extension; ?>" rel="stylesheet">
         <!-- font awesome -->
         <link rel="stylesheet" href="ext/font-awesome-4.4.0/css/font-awesome.min.css">
 
@@ -44,17 +50,17 @@ if (!$oscTemplate->hasBlocks('boxes_column_right')) {
 
         <script src="ext/jquery/jquery-1.11.1.min.js" ></script>
 
-        <?php echo $oscTemplate->getBlocks('header_tags'); ?>
+<?php echo $oscTemplate->getBlocks('header_tags'); ?>
     </head>
     <body>
 
-        <?php echo $oscTemplate->getContent('navigation'); ?>
+<?php echo $oscTemplate->getContent('navigation'); ?>
 
         <div id="bodyWrapper" class="<?php echo BOOTSTRAP_CONTAINER; ?>">
             <div class="row">
 
-                <?php require(DIR_WS_INCLUDES.'header.php'); ?>
+<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 
-                <div id="bodyContent" class="col-md-<?php echo $oscTemplate->getGridContentWidth(); ?> <?php echo ($oscTemplate->hasBlocks('boxes_column_left')
-                        ? 'col-md-push-'.$oscTemplate->getGridColumnWidth() : '');
-                ?>">
+                <div id="bodyContent" class="col-md-<?php echo $oscTemplate->getGridContentWidth(); ?> <?php
+                     echo ($oscTemplate->hasBlocks('boxes_column_left') ? 'col-md-push-' . $oscTemplate->getGridColumnWidth() : '');
+                     ?>">
