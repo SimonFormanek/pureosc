@@ -31,3 +31,6 @@ doc:
 
 test:
 	codecept run
+
+css:
+	yui-compressor catalog/ext/bootstrap/css/bootstrap.css > catalog/ext/bootstrap/css/bootstrap.min.css 
