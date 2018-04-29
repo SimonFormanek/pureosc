@@ -15,16 +15,19 @@
         "dompdf/dompdf": "dev-master",
         "adamstipak/webpay-php": "dev-master"
     },
+
     "autoload": {
-        "psr-4": {
-            "PureOSC\\": "catalog/includes/classes/",
-            "PureOSC\\flexibee\\": "catalog/ext/flexibee/",
-            "PureOSC\\Admin\\": "admin/includes/classes/",
-            "PureOSC\\Admin\\flexibee\\": "admin/ext/flexibee/"
-        }
+        "classmap": ["catalog/ext/modules/PHPMailer/class.phpmailer.php", "catalog/ext/modules/PHPMailer/class.pop3.php", "catalog/ext/modules/PHPMailer/class.smtp.php"],
+
+                "psr-4": {
+                "PureOSC\\": "catalog/includes/classes/",
+                "PureOSC\\flexibee\\": "catalog/ext/flexibee/",
+                "PureOSC\\Admin\\": "admin/includes/classes/",
+                "PureOSC\\Admin\\flexibee\\": "admin/ext/flexibee/"
+            }
     },
-    "require-dev": {
-        "phpunit/phpunit": "7.1.3",
-        "robmorgan/phinx": "dev-master"
+            "require-dev": {
+            "phpunit/phpunit": "7.1.3",
+                    "robmorgan/phinx": "dev-master"
+            }
     }
-}
