@@ -109,12 +109,12 @@ class cm_fp_manufacturers_overview
     private function getManufacturersData()
     {
         $banner_query_raw = "
-        select
-        *
-        from
-          ".TABLE_MANUFACTURERS."
+ SELECT products_images.image AS image, products.products_id AS products_id FROM manufacturers 
+LEFT JOIN products ON products.manufacturers_id = products.manufacturers_id 
+LEFT JOIN products_images ON products_images.products_id = products.products_id
+GROUP BY products.manufacturers_id
         order by 
-          manufacturers_id ".MODULE_CONTENT_FRONT_PAGE_MANUFACTURERS_BANNER_ORDER."
+          manufacturers.manufacturers_id ".MODULE_CONTENT_FRONT_PAGE_MANUFACTURERS_BANNER_ORDER."
         limit
           ".MODULE_CONTENT_FRONT_PAGE_MANUFACTURERS_MAX_DISPLAY;
 
@@ -124,9 +124,9 @@ class cm_fp_manufacturers_overview
             $manufacturers_data = array();
             while ($manufacturers      = tep_db_fetch_array($banner_query)) {
                 $manufacturers_data[] = array(
-                    'manufacturers_id' => $manufacturers['manufacturers_id'],
+                    'manufacturers_id' => $manufacturers['products_id'],
                     'manufacturers_url' => $manufacturers['manufacturers_url'],
-                    'manufacturers_image' => $manufacturers['manufacturers_image'],
+                    'manufacturers_image' => $manufacturers['image'],
                     'manufacturers_html_text' => $manufacturers['manufacturers_html_text']
                 );
             }
