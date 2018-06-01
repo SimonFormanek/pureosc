@@ -55,7 +55,7 @@ class gpwebpay
     // class methods
     function update_status()
     {
-        global $order;
+        global $order,$cart;
 
         if (($this->enabled == true) && ((int) MODULE_PAYMENT_GPWEBPAY_ZONE > 0)) {
             $check_flag  = false;
@@ -68,6 +68,25 @@ class gpwebpay
                     $check_flag = true;
                     break;
                 }
+            }
+
+            switch ($_REQUEST['PRCODE']) {
+                case 50: //Payment Canceled
+                    $cartID                      = $cart->cartID                = $cart->generate_cart_id();
+                    $order->info['order_status'] = 105;
+                    tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));
+                    exit();
+                    break;
+                case 14: //Paymen ID Duplicity
+                    $cartID                      = $cart->cartID                = $cart->generate_cart_id();
+
+                    if (!tep_session_is_registered('cartID')) {
+                        tep_session_register('cartID');
+                    }
+
+                    break;
+                default :
+                    break;
             }
 
             if ($check_flag == false) {
@@ -414,10 +433,11 @@ class gpwebpay
         $successUrl   = tep_href_link(FILENAME_CHECKOUT_SUCCESS, '', 'SSL');
 
 
-        $request = new PaymentRequest($varSym, intval($totalPrice), $gpwpcurrency, 1,
-            $successUrl, $orderCode);
+        $request = new PaymentRequest($varSym, intval($totalPrice),
+            $gpwpcurrency, 1, $successUrl, $orderCode);
 
-        $request->setDescription('DESCRIPTION',self::convertToAscii($products_info));
+        $request->setDescription('DESCRIPTION',
+            self::convertToAscii($products_info));
 
         $parameters = $api->createPaymentParam($request);
 
