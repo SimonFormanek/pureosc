@@ -19,3 +19,12 @@ Composer Support
 Gettext i18n support
 No PHP3 code
 
+/var/run/mysqld/mysqld.sock
+Docker
+------
+
+Deploy:
+
+    docker run -d -p 9998:9000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock 
+    
+    docker run -d -p 9998:9000 purehtml/pureosc
