@@ -29,5 +29,13 @@ lang:
 doc:
 	apigen generate --source catalog --destination docs --title "PureOSC" --charset UTF-8 --access-levels public --access-levels protected --php --tree
 
-test:
-	codecept run
+dtest:
+	docker-compose run --rm default install
+
+dimage:
+	docker build -t purehtml/pureosc .
+
+drun: dimage
+	docker run  -dit --name pureosc -p 9998:9000 purehtml/pureosc
+	nightly http://dpureosc
+
