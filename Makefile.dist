@@ -14,6 +14,9 @@ fresh:
 	git pull
 	composer update
 	phinx migrate
+	
+release:
+	composer install --no-dev
 
 lang:
 	find . -iname "*.php" | xargs xgettext --from-code=utf-8  -n  --language=PHP --add-comments=TRANSLATORS --add-comments=translators: --force-po -o i18n/pureosc.pot
