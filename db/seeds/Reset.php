@@ -2,7 +2,7 @@
 
 use Phinx\Seed\AbstractSeed;
 
-class Oscommerce extends AbstractSeed
+class Reset extends AbstractSeed
 {
 
     /**
@@ -16,7 +16,7 @@ class Oscommerce extends AbstractSeed
     public function run()
     {
         $options = $this->adapter->getOptions();
-        exec("mysql -u {$options['user']} -p{$options['pass']} -h{$options['host']}  {$options['name']} < ".str_replace(".php",
-                ".sql", __FILE__));
+        exec("echo drop database {$options['name']} | mysql -u {$options['user']} -p{$options['pass']} -h{$options['host']}  ");
+        exec("echo create database {$options['name']} | mysql -u {$options['user']} -p{$options['pass']} -h{$options['host']}  ");
     }
 }
