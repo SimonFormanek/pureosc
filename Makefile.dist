@@ -1,19 +1,17 @@
-all: 	clean reset
+all: 	clean dbreset
 
 clean:
-	echo drop database myDB | mysql -h localhost -u DBusername -ppassword
-	echo create database myDB | mysql -h localhost -u DBusername -ppassword
+	phinx seed:run -s Reset -c ./phinx-adapter.php
 
-reset:
-	cat install/oscommerce.sql | mysql myDB -h localhost -u DBusername -ppassword
-	echo drop table phinxlog | mysql myDB -h localhost -u DBusername -ppassword
-	phinx migrate
+dbreset:
+	phinx seed:run -s Oscommerce -c ./phinx-adapter.php
+	phinx migrate -c ./phinx-adapter.php
 
 fresh:
-	cat install/oscommerce.sql | mysql myDB -h localhost -u DBusername -ppassword
 	git pull
 	composer update
-	phinx migrate
+	phinx migrate -c ./phinx-adapter.php
+
 
 lang:
 	find . -iname "*.php" | xargs xgettext --from-code=utf-8  -n  --language=PHP --add-comments=TRANSLATORS --add-comments=translators: --force-po -o i18n/pureosc.pot
