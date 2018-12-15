@@ -210,6 +210,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
             $nazev = strlen($company) ? $company : $firstname.' '.$lastname;
 
             $adresar = new \PureOSC\flexibee\Adresar([
+                'kod' => strtoupper(trim(\Ease\Sand::rip($lastname.$firstname))),
                 'id' => 'ext:customers:'.$customer_id,
                 'poznam' => _('Created by admin'),
                 'nazev' => $nazev,
@@ -264,6 +265,21 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
 
         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+
+            $adresar = new \PureOSC\flexibee\Adresar([
+                'id' => 'ext:customers:'.$_SESSION['customer_id'],
+                'kod' => strtoupper(trim(\Ease\Sand::rip($lastname.$firstname))),
+                'nazev' => $firstname.' '.$lastname,
+                'email' => $email_address,
+                'ulice' => $street_address,
+                'mesto' => $city,
+                'psc' => $postcode,
+//            'stat' => $country,
+                'tel' => $telephone,
+                'fax' => $fax]);
+            $adresar->sync();
+
+
             $kontakter = new \PureOSC\flexibee\Kontakt([
                 'id' => 'ext:customers:'.$addres_id,
                 'firma' => $adresar,

@@ -37,7 +37,6 @@ class email {
         $this->email($headers);
     }
     
-
   function email($headers = '') {
     global $phpMail;
 

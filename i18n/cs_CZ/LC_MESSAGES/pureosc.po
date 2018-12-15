@@ -1,833 +1,232 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: PureOSC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 17:41+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2018-12-15 19:58+0100\n"
+"PO-Revision-Date: 2018-12-15 19:58+0100\n"
+"Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
+"Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
+"Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: ../../../catalog\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: admin/create_account.php:214 catalog/admin/create_account.php:214
-msgid "Created by admin"
-msgstr "Založeno administrátorem"
+#: account_edit.php:136
+msgid "Changed by customer"
+msgstr "Změněno zákazníkem"
 
-#: admin/create_account.php:368 catalog/admin/create_account.php:368
-msgid "New Customer"
-msgstr "Nový zákazník"
-
-#: admin/create_account.php:381 catalog/account_edit.php:151
-#: catalog/account_password.php:89 catalog/account_pwa.php:273
-#: catalog/admin/create_account.php:381 catalog/contact_us.php:96
-#: catalog/create_account.php:420
-#: catalog/ext/modules/content/account/set_password.php:80
-#: catalog/includes/modules/address_book_details.php:16
-#: catalog/tell_a_friend.php:166 catalog/account_edit.php:151
-#: catalog/account_password.php:89
-#: catalog/includes/modules/address_book_details.php:16
-#: catalog/account_pwa.php:273
-#: catalog/ext/modules/content/account/set_password.php:80
-#: catalog/contact_us.php:96 catalog/create_account.php:420
-#: catalog/tell_a_friend.php:166
+#: account_edit.php:194 account_password.php:89 account_pwa.php:273
+#: admin/create_account.php:381 contact_us.php:96 create_account.php:408
+#: ext/modules/content/account/set_password.php:80
+#: includes/modules/address_book_details.php:16 tell_a_friend.php:166
 msgid "Requied Information"
 msgstr "Vyžadovaná informace"
 
-#: admin/create_account.php:412 admin/create_account.php:425
-#: admin/create_account.php:437 admin/create_account.php:452
-#: admin/create_account.php:468 admin/create_account.php:529
-#: admin/create_account.php:559 admin/create_account.php:571
-#: admin/create_account.php:594 admin/create_account.php:598
-#: admin/create_account.php:603 admin/create_account.php:619
-#: admin/create_account.php:637 admin/create_account.php:682
-#: admin/create_account.php:695 catalog/account_edit.php:172
-#: catalog/account_edit.php:185 catalog/account_edit.php:194
-#: catalog/account_edit.php:208 catalog/account_edit.php:222
-#: catalog/account_edit.php:232 catalog/account_password.php:100
-#: catalog/account_password.php:112 catalog/account_password.php:124
-#: catalog/account_pwa.php:301 catalog/account_pwa.php:314
-#: catalog/account_pwa.php:326 catalog/account_pwa.php:341
-#: catalog/account_pwa.php:356 catalog/account_pwa.php:400
-#: catalog/account_pwa.php:430 catalog/account_pwa.php:442
-#: catalog/account_pwa.php:465 catalog/account_pwa.php:469
-#: catalog/account_pwa.php:474 catalog/account_pwa.php:490
-#: catalog/account_pwa.php:505 catalog/admin/create_account.php:412
-#: catalog/admin/create_account.php:425 catalog/admin/create_account.php:437
-#: catalog/admin/create_account.php:452 catalog/admin/create_account.php:468
-#: catalog/admin/create_account.php:529 catalog/admin/create_account.php:559
-#: catalog/admin/create_account.php:571 catalog/admin/create_account.php:594
-#: catalog/admin/create_account.php:598 catalog/admin/create_account.php:603
-#: catalog/admin/create_account.php:619 catalog/admin/create_account.php:637
-#: catalog/admin/create_account.php:682 catalog/admin/create_account.php:695
-#: catalog/advanced_search.php:132 catalog/contact_us.php:105
-#: catalog/contact_us.php:116 catalog/contact_us.php:127
-#: catalog/create_account.php:451 catalog/create_account.php:464
-#: catalog/create_account.php:476 catalog/create_account.php:491
-#: catalog/create_account.php:507 catalog/create_account.php:568
-#: catalog/create_account.php:598 catalog/create_account.php:610
-#: catalog/create_account.php:633 catalog/create_account.php:637
-#: catalog/create_account.php:642 catalog/create_account.php:658
-#: catalog/create_account.php:676 catalog/create_account.php:721
-#: catalog/create_account.php:734
-#: catalog/ext/modules/content/account/set_password.php:87
-#: catalog/ext/modules/content/account/set_password.php:95
-#: catalog/includes/modules/address_book_details.php:41
-#: catalog/includes/modules/address_book_details.php:54
-#: catalog/includes/modules/address_book_details.php:62
-#: catalog/includes/modules/address_book_details.php:107
-#: catalog/includes/modules/address_book_details.php:136
-#: catalog/includes/modules/address_book_details.php:146
-#: catalog/includes/modules/address_book_details.php:188
-#: catalog/password_forgotten.php:127 catalog/password_reset.php:128
-#: catalog/password_reset.php:139 catalog/product_reviews_write.php:169
-#: catalog/tell_a_friend.php:177 catalog/tell_a_friend.php:188
-#: catalog/tell_a_friend.php:203 catalog/tell_a_friend.php:214
-#: catalog/tell_a_friend.php:229 catalog/advanced_search.php:132
-#: catalog/account_edit.php:172 catalog/account_edit.php:185
-#: catalog/account_edit.php:194 catalog/account_edit.php:208
-#: catalog/account_edit.php:222 catalog/account_edit.php:232
-#: catalog/password_reset.php:128 catalog/password_reset.php:139
-#: catalog/account_password.php:100 catalog/account_password.php:112
-#: catalog/account_password.php:124 catalog/password_forgotten.php:127
-#: catalog/includes/modules/address_book_details.php:41
-#: catalog/includes/modules/address_book_details.php:54
-#: catalog/includes/modules/address_book_details.php:62
-#: catalog/includes/modules/address_book_details.php:107
-#: catalog/includes/modules/address_book_details.php:136
-#: catalog/includes/modules/address_book_details.php:146
-#: catalog/includes/modules/address_book_details.php:188
-#: catalog/account_pwa.php:301 catalog/account_pwa.php:314
-#: catalog/account_pwa.php:326 catalog/account_pwa.php:341
-#: catalog/account_pwa.php:356 catalog/account_pwa.php:400
-#: catalog/account_pwa.php:430 catalog/account_pwa.php:442
-#: catalog/account_pwa.php:465 catalog/account_pwa.php:469
-#: catalog/account_pwa.php:474 catalog/account_pwa.php:490
-#: catalog/account_pwa.php:505
-#: catalog/ext/modules/content/account/set_password.php:87
-#: catalog/ext/modules/content/account/set_password.php:95
-#: catalog/contact_us.php:105 catalog/contact_us.php:116
-#: catalog/contact_us.php:127 catalog/create_account.php:451
-#: catalog/create_account.php:464 catalog/create_account.php:476
-#: catalog/create_account.php:491 catalog/create_account.php:507
-#: catalog/create_account.php:568 catalog/create_account.php:598
-#: catalog/create_account.php:610 catalog/create_account.php:633
-#: catalog/create_account.php:637 catalog/create_account.php:642
-#: catalog/create_account.php:658 catalog/create_account.php:676
-#: catalog/create_account.php:721 catalog/create_account.php:734
-#: catalog/tell_a_friend.php:177 catalog/tell_a_friend.php:188
-#: catalog/tell_a_friend.php:203 catalog/tell_a_friend.php:214
-#: catalog/tell_a_friend.php:229 catalog/product_reviews_write.php:169
+#: account_edit.php:219 account_edit.php:234 account_edit.php:245
+#: account_edit.php:261 account_edit.php:277 account_edit.php:289
+#: account_password.php:100 account_password.php:112 account_password.php:124
+#: account_pwa.php:301 account_pwa.php:314 account_pwa.php:326
+#: account_pwa.php:341 account_pwa.php:356 account_pwa.php:400
+#: account_pwa.php:430 account_pwa.php:442 account_pwa.php:465
+#: account_pwa.php:469 account_pwa.php:474 account_pwa.php:490
+#: account_pwa.php:505 admin/create_account.php:412
+#: admin/create_account.php:425 admin/create_account.php:437
+#: admin/create_account.php:452 admin/create_account.php:468
+#: admin/create_account.php:529 admin/create_account.php:559
+#: admin/create_account.php:571 admin/create_account.php:594
+#: admin/create_account.php:598 admin/create_account.php:603
+#: admin/create_account.php:619 admin/create_account.php:637
+#: admin/create_account.php:682 admin/create_account.php:695
+#: advanced_search.php:132 contact_us.php:105 contact_us.php:116
+#: contact_us.php:127 create_account.php:439 create_account.php:452
+#: create_account.php:464 create_account.php:479 create_account.php:495
+#: create_account.php:556 create_account.php:586 create_account.php:598
+#: create_account.php:621 create_account.php:625 create_account.php:630
+#: create_account.php:646 create_account.php:664 create_account.php:709
+#: create_account.php:722 ext/modules/content/account/set_password.php:87
+#: ext/modules/content/account/set_password.php:95
+#: includes/modules/address_book_details.php:41
+#: includes/modules/address_book_details.php:54
+#: includes/modules/address_book_details.php:62
+#: includes/modules/address_book_details.php:107
+#: includes/modules/address_book_details.php:136
+#: includes/modules/address_book_details.php:146
+#: includes/modules/address_book_details.php:188 password_forgotten.php:127
+#: password_reset.php:128 password_reset.php:139 product_reviews_write.php:169
+#: tell_a_friend.php:177 tell_a_friend.php:188 tell_a_friend.php:203
+#: tell_a_friend.php:214 tell_a_friend.php:229
 msgid "Required"
-msgstr "VyÅ¾adovÃ¡no"
+msgstr "Vyžadováno"
 
-#: admin/create_account.php:483 admin/create_account.php:487
-#: admin/customers.php:552 admin/edit_orders.php:1089
-#: admin/edit_orders.php:1206 admin/edit_orders.php:1312
-#: admin/includes/modules/account_details.php:202
-#: admin/includes/modules/create_order_details.php:71
-#: catalog/account_pwa.php:367 catalog/account_pwa.php:371
-#: catalog/admin/create_account.php:483 catalog/admin/create_account.php:487
-#: catalog/admin/customers.php:552 catalog/admin/edit_orders.php:1089
-#: catalog/admin/edit_orders.php:1206 catalog/admin/edit_orders.php:1312
-#: catalog/admin/includes/modules/account_details.php:202
-#: catalog/admin/includes/modules/create_order_details.php:71
-#: catalog/create_account.php:522 catalog/create_account.php:526
-#: catalog/includes/modules/address_book_details.php:72
-#: catalog/includes/modules/address_book_details.php:75
-#: catalog/includes/modules/checkout_new_address.php:70
-#: catalog/includes/modules/checkout_new_address.php:73
-#: catalog/includes/modules/address_book_details.php:72
-#: catalog/includes/modules/address_book_details.php:75
-#: catalog/includes/modules/checkout_new_address.php:70
-#: catalog/includes/modules/checkout_new_address.php:73
-#: catalog/account_pwa.php:367 catalog/account_pwa.php:371
-#: catalog/create_account.php:522 catalog/create_account.php:526
+#: account_history.php:77 checkout_success.php:133
+msgid "PDF Invoice"
+msgstr "PDF Faktura"
+
+#: account_history.php:78 checkout_success.php:134
+msgid "ISDOC Invoice"
+msgstr "ISDOC Faktura"
+
+#: account_pwa.php:367 account_pwa.php:371 admin/create_account.php:483
+#: admin/create_account.php:487 admin/customers.php:552
+#: admin/edit_orders.php:1089 admin/edit_orders.php:1206
+#: admin/edit_orders.php:1312 admin/includes/modules/account_details.php:202
+#: admin/includes/modules/create_order_details.php:71 create_account.php:510
+#: create_account.php:514 includes/modules/address_book_details.php:72
+#: includes/modules/address_book_details.php:75
+#: includes/modules/checkout_new_address.php:70
+#: includes/modules/checkout_new_address.php:73
 msgid "Company Name"
 msgstr "Název firmy"
 
-#: admin/create_account.php:493 admin/create_account.php:497
-#: catalog/admin/create_account.php:493 catalog/admin/create_account.php:497
-msgid "Company Number"
-msgstr "Ičo"
-
-#: admin/create_account.php:503 admin/create_account.php:507
-#: admin/edit_orders.php:1094 admin/edit_orders.php:1211
-#: admin/edit_orders.php:1317 catalog/account_pwa.php:377
-#: catalog/account_pwa.php:381 catalog/admin/create_account.php:503
-#: catalog/admin/create_account.php:507 catalog/admin/edit_orders.php:1094
-#: catalog/admin/edit_orders.php:1211 catalog/admin/edit_orders.php:1317
-#: catalog/create_account.php:532 catalog/create_account.php:536
-#: catalog/includes/modules/address_book_details.php:80
-#: catalog/includes/modules/address_book_details.php:83
-#: catalog/includes/modules/checkout_new_address.php:78
-#: catalog/includes/modules/checkout_new_address.php:81
-#: catalog/includes/modules/address_book_details.php:80
-#: catalog/includes/modules/address_book_details.php:83
-#: catalog/includes/modules/checkout_new_address.php:78
-#: catalog/includes/modules/checkout_new_address.php:81
-#: catalog/account_pwa.php:377 catalog/account_pwa.php:381
-#: catalog/create_account.php:532 catalog/create_account.php:536
+#: account_pwa.php:377 account_pwa.php:381 admin/create_account.php:503
+#: admin/create_account.php:507 admin/edit_orders.php:1094
+#: admin/edit_orders.php:1211 admin/edit_orders.php:1317 create_account.php:520
+#: create_account.php:524 includes/modules/address_book_details.php:80
+#: includes/modules/address_book_details.php:83
+#: includes/modules/checkout_new_address.php:78
+#: includes/modules/checkout_new_address.php:81
 msgid "Vat Number"
 msgstr "DIČ"
 
+#: admin/categories.php:1569
+msgid "Open in FlexiBee"
+msgstr "Otevřít ve FlexiBee"
+
+#: admin/create_account.php:214
+msgid "Created by admin"
+msgstr "Založeno administrátorem"
+
+#: admin/create_account.php:368
+msgid "New Customer"
+msgstr "Nový zákazník"
+
+#: admin/create_account.php:493 admin/create_account.php:497
+msgid "Company Number"
+msgstr "Ičo"
+
 #: admin/create_account.php:672 admin/create_account.php:676
-#: admin/create_account.php:680 catalog/admin/create_account.php:672
-#: catalog/admin/create_account.php:676 catalog/admin/create_account.php:680
+#: admin/create_account.php:680
 msgid "Password"
 msgstr "Heslo"
 
 #: admin/create_account.php:689 admin/create_account.php:693
-#: catalog/admin/create_account.php:689 catalog/admin/create_account.php:693
 msgid "Password Confirmation"
 msgstr "Heslo znovu"
 
-#: admin/customers.php:566 catalog/admin/customers.php:566
+#: admin/customers.php:566
 msgid "Vat number"
 msgstr "Dič"
 
-#: admin/customers.php:580 catalog/admin/customers.php:580
-#: catalog/create_account.php:542 catalog/create_account.php:542
+#: admin/customers.php:580 create_account.php:530
 msgid "Company number"
 msgstr "Ičo"
 
-#: admin/flexibeesync.php:27 catalog/admin/flexibeesync.php:27
+#: admin/flexibeesync.php:27
 msgid "FlexiBee sync"
 msgstr "FlexiBee synchronizace"
 
-#: catalog/account_history.php:79 catalog/checkout_success.php:84
-#: catalog/checkout_success.php:84 catalog/account_history.php:79
-msgid "PDF Invoice"
-msgstr "PDF Faktura"
-
-#: catalog/account_history.php:82 catalog/checkout_success.php:86
-#: catalog/checkout_success.php:86 catalog/account_history.php:82
-msgid "ISDOC Invoice"
-msgstr "ISDOC Faktura"
-
-#: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Cenik.php:38
-#: catalog/ext/flexibee/FakturaVydana.php:42 catalog/ext/flexibee/Strom.php:44
-#: catalog/ext/flexibee/FakturaVydana.php:42
-#: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Strom.php:44
-#: catalog/ext/flexibee/Cenik.php:42
+#: ext/flexibee/Adresar.php:38 ext/flexibee/Cenik.php:65
+#: ext/flexibee/FakturaVydana.php:42 ext/flexibee/Strom.php:44
 msgid "FlexiBee import"
 msgstr "Import z FlexiBee "
 
-#: catalog/getisdoc.php:26 catalog/getpdf.php:31
-#: vendor/vitexsoftware/flexipeehp-bricks/src/getpdf.php:36
-#: vendor/vitexsoftware/flexipeehp-bricks/src/gethtml.php:53
-#: catalog/getpdf.php:31 catalog/getisdoc.php:26
+#: getisdoc.php:26 getpdf.php:31
 msgid "Wrong call"
 msgstr "Špatné volání"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:21
-#: catalog/includes/classes/NewsletterConsentMailer.php:21
+#: includes/classes/NewsletterConsentMailer.php:21
 msgid "Newsletter GDPR Consent"
 msgstr "GDPR Souhlas s odběrem novinek mailem"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:22
-#: catalog/includes/classes/NewsletterConsentMailer.php:22
+#: includes/classes/NewsletterConsentMailer.php:22
 msgid "Dear Customer"
 msgstr "Vážený zálazníku,"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:30
-#: catalog/includes/classes/NewsletterConsentMailer.php:30
+#: includes/classes/NewsletterConsentMailer.php:30
 #, php-format
 msgid "Would you like to subsribe to newsletter updates from %s ?"
 msgstr "Chcete se přihlásit k odběru emailových novinek z %s ?"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:36
-#: catalog/includes/classes/NewsletterConsentMailer.php:36
+#: includes/classes/NewsletterConsentMailer.php:36
 msgid "Click here to Agree"
 msgstr "Klikněte zde pro vyjádření souhlasu"
 
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
+#: includes/modules/payment/gpwebpay.php:32
+msgid "GP WebPay"
+msgstr "GP WebPay"
+
+#: includes/modules/payment/gpwebpay.php:33
+msgid "GP WebPay Payment"
+msgstr "GP WebPay Platba"
+
+#: includes/modules/payment/gpwebpay.php:34
+msgid "GP WebPay Payment description"
+msgstr "Popisek GP WebPay  platby"
+
+#: includes/modules/payment/gpwebpay.php:737
+msgid "Your secret key"
+msgstr "Váš tajný klíč"
+
+#: includes/modules/payment/gpwebpay.php:737
+msgid "Your secret key (supplied by gpwebpay)"
+msgstr "Váš tajný klíč (dodaný gpwebpay)"
+
+#: includes/modules/payment/gpwebpay.php:738
+msgid "Your secret key password (supplied by gpwebpay)"
+msgstr "heslo vašeho tajného klíče  (dodaný gpwebpay)"
+
+#: includes/modules/payment/gpwebpay.php:739
+msgid "Your public key (supplied by gpwebpay)"
+msgstr "váš veřejný klíč (dodaný gpwebpay)"
+
+#: includes/modules/social_bookmarks/sb_google_buzz.php:24
 msgid "Google Buzz"
 msgstr "Google Buzz"
 
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
+#: includes/modules/social_bookmarks/sb_google_buzz.php:25
 msgid "Share on Google Buzz"
 msgstr "Sdílet na Google Buzz"
 
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
+#: includes/modules/social_bookmarks/sb_google_buzz.php:26
 msgid "Share products on Google Buzz."
 msgstr "Sdílet produkty na Google Buzz."
 
-#: catalog/newsletterconfirm.php:31 catalog/newsletterconfirm.php:31
+#: newsletterconfirm.php:31
 msgid "Newsletter Consent"
 msgstr "Souhlas se zasíláním novinek"
 
-#: catalog/newsletterconfirm.php:37 catalog/newsletterconfirm.php:37
+#: newsletterconfirm.php:37
 msgid "Consent Recieved"
 msgstr "Souhlas byl přijat"
 
-#: catalog/newsletterconfirm.php:37 catalog/newsletterconfirm.php:37
+#: newsletterconfirm.php:37
 msgid "Consent not recieved"
 msgstr "Souhlas nebyl přijat"
 
-#: catalog/newsletterconfirm.php:44 catalog/newsletterconfirm.php:44
+#: newsletterconfirm.php:44
 msgid "Newsletter subscription consent was accepted"
 msgstr "Souhlas k odběru mailových novinek byl přijat"
 
-#: catalog/newsletterconfirm.php:44 catalog/newsletterconfirm.php:44
+#: newsletterconfirm.php:44
 msgid "Newsletter subscription consent was not accepted"
 msgstr "Souhlas k odběru mailových novinek nebyl přijat"
 
-#: catalog/tell_a_friend.php:148
-#, php-format
-msgid "Tell a friend about %s"
-msgstr "Dpopruč příteli %s"
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Mailer.php:316
-#, php-format
-msgid "Message %s was sent to %s"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Mailer.php:319
-#, php-format
-msgid "Message %s, for %s was not sent because of %s"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Page.php:233
-msgid "Sign in first please"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/SQL/PDO.php:163
-msgid "Unimplemented Database type"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/SQL/Orm.php:241
-msgid "UpdateToSQL: Missing data"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:282
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:285
-msgid " not an folder. Current directory:"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:292
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:295
-msgid " not an readable folder. Current directory:"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:302
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:305
-msgid " not an writeable folder. Current directory:"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Carousel.php:116
-msgid "Previous"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Carousel.php:127
-msgid "Next"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Modal.php:70
-msgid "Close"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Modal.php:73
-msgid "Save"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Navbar.php:70
-msgid "Switch navigation"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/StatusMessages.php:19
-msgid "Click to hide messages"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:222
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:209
-msgid "missing login"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:227
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:214
-msgid "missing password"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:247
-msgid "invalid password"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:254
-#, php-format
-msgid "user %s does not exist"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:272
-msgid "Sign in denied by administrator"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:290
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:250
-#, php-format
-msgid "Sign in %s all ok"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:473
-msgid "Odhlášení proběhlo uspěšně"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:56
-msgid "Status message add test"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:80
-msgid "Stavové zprávy jsou mazány"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:125
-msgid "Windows Files conversion"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:130
-msgid "Unix File Conversion"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:15
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:18
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:15
-msgid "debug"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:16
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:19
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:16
-msgid "info"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:17
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:20
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:17
-msgid "success"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:18
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:21
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:18
-msgid "warning"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:19
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:22
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:19
-msgid "error"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:21
-msgid "Example Web Page"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:23
-msgid "Status messages"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:16
-msgid "Ul One"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:17
-msgid "Ul Two"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:18
-msgid "Ul Three"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:21
-msgid "Ol One"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:22
-msgid "Ol Two"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:23
-msgid "Ol Three"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Modal.php:13
-msgid "Modal Example"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Modal.php:17
-msgid "caution"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:20
-msgid "Homepage"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:21
-msgid "LinkQuick"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:24
-msgid "System"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:26
-msgid "Settings"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:27
-msgid "Shutdown"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:32
-msgid "Informace"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:34
-msgid "System log"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:35
-msgid "Hosting"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:16
-msgid "Twitter Bootstrap"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:24
-msgid "Back to examples"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:20
-#, php-format
-msgid "You enter: %s as text."
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:23
-msgid "Please enter any text"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:28
-#, php-format
-msgid "You enter: %s as number."
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:31
-msgid "Please enter any number"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:36
-msgid "Text"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:37
-msgid "Default text"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:37
-msgid "Text hint"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:39
-msgid "Number"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:40
-msgid "Number hint"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/twbtabs.php:18
-msgid "Twitter bootrstrap Tabs Example"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/index.php:16
-#: vendor/vitexsoftware/ease-framework/Examples/index.php:18
-msgid "Ease Framework - Usage examples"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/src/zalozUcetniObdobiOdDo.php:23
-#, php-format
-msgid "%s already exists."
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/ui/StatusInfoBox.php:44
-#: vendor/spoje.net/flexipeehp/src/demo.php:34
-msgid "Chyba komunikace"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/ui/RecordTypeSelect.php:33
-msgid "Undefined"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/ui/DownloadInvoiceButton.php:26
-#, php-format
-msgid "Download Your %s"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:52
-msgid "Getting clients"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:56
-#, php-format
-msgid "%s Clients Found"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:57
-msgid "Getting debts"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:70
-#, php-format
-msgid "%s Debts Found"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:95
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:98
-#, php-format
-msgid "Clear %s Remind labels"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:114
-#, php-format
-msgid "%d clients to remind process"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:120
-#, php-format
-msgid "(%d / %d) #%s code: %s %s "
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:153
-msgid "Invoice locked: skipping process"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:206
-#, php-format
-msgid "Invoice %s remind %s date saved"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:209
-#, php-format
-msgid "Invoice %s remind %s date save failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:215
-msgid "Remind send disbled"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:218
-#, php-format
-msgid "Remind %d already sent"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:222
-msgid "No debts to remind"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:231
-#, php-format
-msgid "Invoice %s locked again"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:234
-#, php-format
-msgid "Invoice %s locking failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:312
-msgid "Remind was not sent"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:316
-#, php-format
-msgid "Set Label %s "
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:72
-#, php-format
-msgid "Change version %s already processed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:103
-#, php-format
-msgid "Handler Class %s does not exist"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:125
-msgid "Empty WebHook request"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:149
-msgid "Last Processed Change ID Saving Failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:153
-#, php-format
-msgid "Last Processed Change ID #%s Saved"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:172
-msgid "Last Processed Change ID Loading Failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:225
-#, php-format
-msgid "Multiplete ContactID"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:228
-msgid "Using the first one"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominka.php:83
-#, php-format
-msgid ""
-"%s \n"
-"\n"
-"-----------------------\n"
-" celkem za %s,-"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominka.php:93
-#, php-format
-msgid "Klient %s nema email %s !!!"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/PotvrzeniUhrady.php:26
-msgid "Dear customer,"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/PotvrzeniUhrady.php:27
-#, php-format
-msgid "we confirm receipt of payment %s %s on %s "
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/PotvrzeniUhrady.php:34
-msgid "Confirmation of receipt of invoice payment"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Hooks.php:44
-msgid "Url allready registered"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Status.php:75
-msgid "Status has no relations"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Changes.php:102
-msgid "Changes has no relations"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FakturaVydana.php:184
-msgid "Unsupported $income parameter type"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FlexiBeeRW.php:530
-#, php-format
-msgid "Unsupported action %s for evidence %s"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FlexiBeeRO.php:2008
-msgid "ID requied to get record relations "
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Company.php:213
-msgid "Company has no relations"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Priloha.php:129
-#, php-format
-msgid "Attagment %s does no exist"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:8
-msgid "FlexiBee Connection Test"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:20
-msgid "FlexiBee server info"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:52
-msgid "ChangesApi Povoleno"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:53
-msgid "ChangesAPI povoleno"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:55
-msgid "ChangesAPI zakázáno"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/testing/src/FlexiPeeHP/FakturaVydanaTest.php:64
-msgid "Invoice settle error"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/testing/src/FlexiPeeHP/FakturaVydanaTest.php:95
-msgid "Invoice match error"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/InvoiceLockUnlock.php:46
-#, php-format
-msgid "Invoice %s lock switched"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/InvoiceLockUnlock.php:49
-#, php-format
-msgid "Invoice %s lock switch failed"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/AttachmentSaveToFile.php:24
-#, php-format
-msgid "Attachment %s was saved"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/AttachmentSaveToFile.php:28
-msgid "Invoice without attachment"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/SendReminders.php:49
-#, php-format
-msgid "Overdue invoice: %s"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/SendReminders.php:50
-#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:72
-#, php-format
-msgid "Please pay %s,-"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:70
-#, php-format
-msgid "Overdue invoice: %s - %s days"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:81
-#, php-format
-msgid "Message sent: %s to %s"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/sendInvoiceByMail.php:34
-msgid "Invoice was sent"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/sendInvoiceByMail.php:36
-msgid "Mailer does not work"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/InvoiceCopy.php:55
-#, php-format
-msgid "Invoice copy from %s to id:%s done"
-msgstr ""
+#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+msgid "align"
+msgstr "zarovnání"
+
+#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+msgid "blockquote"
+msgstr "citace"
+
+#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+msgid "p"
+msgstr "p"
+
+#~ msgid "Tell a friend about %s"
+#~ msgstr "Dpopruč příteli %s"

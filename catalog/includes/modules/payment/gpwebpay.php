@@ -18,6 +18,12 @@ class gpwebpay
      */
     public $gpWebPayEndpoint = null;
 
+    /**
+     * 3dsecure.gpwebpay.com URL
+     * @var string 
+     */
+    public $form_action_url;
+
     public function __construct()
     {
         $this->gpwebpay();
@@ -45,8 +51,8 @@ class gpwebpay
 
         if (is_object($order)) $this->update_status();
 
-        if (MODULE_PAYMENT_GPWEBPAY_GATEWAY_SERVER == 'Production') {
-            $this->form_action_url = 'https://t3dsecure.gpwebpay.com/pgw/order.do';
+        if (MODULE_PAYMENT_GPWEBPAY_GATEWAY_SERVER == _('Production')) {
+            $this->form_action_url = 'https://3dsecure.gpwebpay.com/pgw/order.do';
         } else {
             $this->form_action_url = 'https://test.3dsecure.gpwebpay.com/pgw/order.do';
         }
@@ -55,7 +61,7 @@ class gpwebpay
     // class methods
     function update_status()
     {
-        global $order,$cart;
+        global $order, $cart;
 
         if (($this->enabled == true) && ((int) MODULE_PAYMENT_GPWEBPAY_ZONE > 0)) {
             $check_flag  = false;
@@ -342,7 +348,7 @@ class gpwebpay
         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
             $invoice = new PureOSC\flexibee\FakturaVydana();
             $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
-            $invoice->setDataValue("typDokl", 'code:FAKTURA');
+            $invoice->setDataValue("typDokl", 'code:OBJEDNÁVKA');
             $invoice->setDataValue("stavMailK", 'stavMail.neodesilat');
         }
 
@@ -434,10 +440,9 @@ class gpwebpay
 
 
         $request = new PaymentRequest($varSym, intval($totalPrice),
-            $gpwpcurrency, 1, $successUrl, $orderCode);
+            $gpwpcurrency, 1, $successUrl, $varSym);
 
-        $request->setDescription('DESCRIPTION',
-            self::convertToAscii($products_info));
+        $request->setDescription(self::convertToAscii($products_info));
 
         $parameters = $api->createPaymentParam($request);
 

@@ -13,6 +13,11 @@
   class shipping {
     var $modules;
 
+    public function __construct($module='')
+    {
+        $this->shipping($module);
+    }
+    
 // class constructor
     function shipping($module = '') {
       global $language, $PHP_SELF;

@@ -13,6 +13,11 @@
   class manualOrder {
     var $info, $totals, $products, $customer, $delivery;
 
+    public function __construct($order_id)
+    {
+        $this->manualOrder($order_id);
+    }
+    
     function manualOrder($order_id) {
       $this->info = array();
       $this->totals = array();

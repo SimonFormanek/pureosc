@@ -13,6 +13,11 @@
   class cfg_modules {
     var $_modules = array();
 
+    public function __construct()
+    {
+        $this->cfg_modules();
+    }
+
     function cfg_modules() {
       global $PHP_SELF, $language;
 

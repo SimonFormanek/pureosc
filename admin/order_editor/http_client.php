@@ -45,6 +45,11 @@
     var $useProxy = false;
     var $proxyHost, $proxyPort;
 
+    public function __construct($host = '', $port = '')
+    {
+        $this->httpClient($host, $port);
+    }
+    
 /**
  * httpClient constructor
  * Note: when host and port are defined, the connection is immediate

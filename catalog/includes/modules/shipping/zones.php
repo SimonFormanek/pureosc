@@ -118,6 +118,11 @@ May 03 2004 1:43 CST
   class zones {
     var $code, $title, $description, $enabled, $num_zones;
 
+    public function __construct()
+    {
+        $this->zones();
+    }
+    
 // class constructor
     function zones() {
       $this->code = 'zones';

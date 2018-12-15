@@ -259,7 +259,7 @@ echo tep_draw_form('checkout_confirmation', $form_action_url, 'post');
                             NULL, NULL, 'pull-right btn-info btn-xs');
                         ?></div>
                     <div class="panel-body">
-                <?php echo $order->info['shipping_method']; ?>
+                        <?php echo $order->info['shipping_method']; ?>
                     </div>
                 </div>
                 <?php
@@ -273,7 +273,7 @@ echo tep_draw_form('checkout_confirmation', $form_action_url, 'post');
                         NULL, NULL, 'pull-right btn-info btn-xs');
                     ?></div>
                 <div class="panel-body">
-<?php echo $order->info['payment_method']; ?>
+                    <?php echo $order->info['payment_method']; ?>
                 </div>
             </div>
         </div>
@@ -330,15 +330,15 @@ echo tep_draw_form('checkout_confirmation', $form_action_url, 'post');
             ?></h2>
 
         <blockquote>
-    <?php
-    echo nl2br(tep_output_string_protected($order->info['comments'])).tep_draw_hidden_field('comments',
-        $order->info['comments']);
-    ?>
+            <?php
+            echo nl2br(tep_output_string_protected($order->info['comments'])).tep_draw_hidden_field('comments',
+                $order->info['comments']);
+            ?>
         </blockquote>
 
-    <?php
-}
-?>
+        <?php
+    }
+    ?>
 
     <div class="buttonSet">
         <div class="text-right">
@@ -359,19 +359,18 @@ echo tep_draw_form('checkout_confirmation', $form_action_url, 'post');
             <div class="stepwizard-row">
                 <div class="stepwizard-step">
                     <a href="<?php
-                          echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '',
-                              'SSL');
-                          ?>"><button type="button" class="btn btn-default btn-circle">1</button></a>
+                    echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
+                    ?>"><button type="button" class="btn btn-default btn-circle">1</button></a>
                     <p><a href="<?php
                     echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
                     ?>"><?php echo CHECKOUT_BAR_DELIVERY; ?></a></p>
                 </div>
                 <div class="stepwizard-step">
                     <a href="<?php
-                       echo tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL');
+                        echo tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL');
                     ?>"><button type="button" class="btn btn-default btn-circle">2</button></a>
                     <p><a href="<?php
-                       echo tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL');
+                    echo tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL');
                     ?>"><?php echo CHECKOUT_BAR_PAYMENT; ?></a></p>
                 </div>
                 <div class="stepwizard-step">
