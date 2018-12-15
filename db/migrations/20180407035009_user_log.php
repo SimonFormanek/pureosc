@@ -56,6 +56,7 @@ class UserLog extends AbstractMigration
 DROP FUNCTION IF EXISTS `row_checksum`;
 CREATE FUNCTION row_checksum (rowno INTEGER) 
 RETURNS VARCHAR(255)
+DETERMINISTIC
 BEGIN
     DECLARE checksum VARCHAR(255);
     SELECT SHA2( CONCAT( ".implode(',', $columnsToChecksum)." ) , 224) INTO checksum 

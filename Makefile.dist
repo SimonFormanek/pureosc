@@ -1,11 +1,9 @@
-all: 	clean reset
+all: 	clean dbreset
 
 clean:
-	echo drop database myDB | mysql -h localhost -u DBusername -ppassword
-	echo create database myDB | mysql -h localhost -u DBusername -ppassword
+	phinx seed:run -s Reset -c ./phinx-adapter.php
 
 dbreset:
-	phinx seed:run -s Reset -c ./phinx-adapter.php
 	phinx seed:run -s Oscommerce -c ./phinx-adapter.php
 	phinx migrate -c ./phinx-adapter.php
 
