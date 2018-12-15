@@ -22,6 +22,12 @@
     var $_payment_method = 'MAE';
     var $_payment_method_image = 'maestro.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_mae();
+    }
+    
+    
 // class constructor
     function moneybookers_mae() {
       global $order;

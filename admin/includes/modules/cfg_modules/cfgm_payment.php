@@ -18,6 +18,11 @@
     var $title;
     var $template_integration = false;
 
+    public function __construct()
+    {
+        $this->cfgm_payment();
+    }
+    
     function cfgm_payment() {
       $this->directory = DIR_FS_CATALOG_MODULES . 'payment/';
       $this->title = MODULE_CFG_MODULE_PAYMENT_TITLE;

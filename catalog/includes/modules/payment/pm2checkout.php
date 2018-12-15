@@ -13,6 +13,11 @@
   class pm2checkout {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->pm2checkout();
+    }
+    
 // class constructor
     function pm2checkout() {
       global $order;

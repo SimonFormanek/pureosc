@@ -22,6 +22,12 @@
     var $_payment_method = 'IDL';
     var $_payment_method_image = 'ideal.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_idl();
+    }
+    
+    
 // class constructor
     function moneybookers_idl() {
       global $order;

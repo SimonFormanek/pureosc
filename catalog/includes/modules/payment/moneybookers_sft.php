@@ -22,6 +22,12 @@
     var $_payment_method = 'SFT';
     var $_payment_method_image = 'sofort.gif';
 
+    
+    public function __construct()
+    {
+        $this->moneybookers_sft();
+    }
+    
 // class constructor
     function moneybookers_sft() {
       global $order;

@@ -13,6 +13,11 @@
   class sage_pay_direct {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->sage_pay_direct();
+    }
+    
     function sage_pay_direct() {
       global $_GET, $PHP_SELF, $order;
 

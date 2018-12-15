@@ -13,6 +13,11 @@
   class ipayment_cc {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->ipayment_cc();
+    }
+    
 // class constructor
     function ipayment_cc() {
       global $order;

@@ -22,6 +22,11 @@
     var $_payment_method = 'CSI';
     var $_payment_method_image = 'cartasi.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_csi();
+    }
+    
 // class constructor
     function moneybookers_csi() {
       global $order;

@@ -22,6 +22,11 @@
     var $_payment_method = 'DID';
     var $_payment_method_image = 'ec.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_did();
+    }
+    
 // class constructor
     function moneybookers_did() {
       global $order;

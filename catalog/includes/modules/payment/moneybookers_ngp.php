@@ -22,6 +22,12 @@
     var $_payment_method = 'NGP';
     var $_payment_method_image = '';
 
+    public function __construct()
+    {
+        $this->moneybookers_ngp();
+    }
+    
+    
 // class constructor
     function moneybookers_ngp() {
       global $order;

@@ -22,6 +22,11 @@
     var $_payment_method = 'ACC';
     var $_payment_method_image = 'All_CCs_225x45.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers();
+    }
+    
 // class constructor
     function moneybookers_acc() {
       global $order;

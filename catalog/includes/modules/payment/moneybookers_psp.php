@@ -22,6 +22,11 @@
     var $_payment_method = 'PSP';
     var $_payment_method_image = 'postepay.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_psp();
+    }
+
 // class constructor
     function moneybookers_psp() {
       global $order;

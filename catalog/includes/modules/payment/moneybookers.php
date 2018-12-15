@@ -18,6 +18,11 @@
     var $_payment_method = '';
     var $_payment_method_image = 'by_ewallet_90x45.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers();
+    }
+    
 // class constructor
     function moneybookers() {
       global $order;

@@ -13,6 +13,10 @@
   class authorizenet_cc_dpm {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->authorizenet_cc_dpm();
+    }
     function authorizenet_cc_dpm() {
       global $order;
 

@@ -13,6 +13,11 @@
   class paypal_pro_dp {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->paypal_pro_dp();
+    }
+    
     function paypal_pro_dp() {
       global $_GET, $PHP_SELF, $order;
 

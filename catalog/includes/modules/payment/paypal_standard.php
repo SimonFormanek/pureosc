@@ -15,6 +15,11 @@
   class paypal_standard {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->paypal_standard();
+    }
+    
     function paypal_standard() {
       global $_GET, $PHP_SELF, $order;
 

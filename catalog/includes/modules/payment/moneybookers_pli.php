@@ -22,6 +22,12 @@
     var $_payment_method = 'PLI';
     var $_payment_method_image = 'poli.gif';
 
+    
+    public function __construct()
+    {
+        $this->moneybookers_pli();
+    }
+    
 // class constructor
     function moneybookers_pli() {
       global $order;

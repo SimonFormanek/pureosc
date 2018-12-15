@@ -22,6 +22,11 @@
     var $_payment_method = 'EBT';
     var $_payment_method_image = 'nordea.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_ebt();
+    }
+    
 // class constructor
     function moneybookers_ebt() {
       global $order;

@@ -18,6 +18,11 @@
     var $title;
     var $template_integration = true;
 
+    public function __construct()
+    {
+        $this->cfgm_header_tags();
+    }
+    
     function cfgm_header_tags() {
       $this->directory = DIR_FS_CATALOG_MODULES . 'header_tags/';
       $this->title = MODULE_CFG_MODULE_HEADER_TAGS_TITLE;

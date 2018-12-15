@@ -13,6 +13,11 @@
   class sage_pay_form {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->sage_pay_form();
+    }
+    
     function sage_pay_form() {
       global $order;
 

@@ -13,6 +13,11 @@
   class rbsworldpay_hosted {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->rbsworldpay_hosted();
+    }
+    
     function rbsworldpay_hosted() {
       global $order;
 

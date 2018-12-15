@@ -13,6 +13,11 @@
   class securityCheck_download_directory {
     var $type = 'warning';
 
+    public function __construct()
+    {
+        $this->securityCheck_download_directory();
+    }
+    
     function securityCheck_download_directory() {
       global $language;
 

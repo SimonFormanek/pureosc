@@ -22,6 +22,11 @@
     var $_payment_method = 'DNK';
     var $_payment_method_image = 'dankort.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_dnk();
+    }
+    
 // class constructor
     function moneybookers_dnk() {
       global $order;

@@ -22,6 +22,12 @@
     var $_payment_method = 'NPY';
     var $_payment_method_image = 'eps.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_npy();
+    }
+    
+    
 // class constructor
     function moneybookers_npy() {
       global $order;

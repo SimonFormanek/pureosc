@@ -13,6 +13,12 @@
   class nochex {
     var $code, $title, $description, $enabled;
 
+    
+    public function __construct()
+    {
+        $this->nochex();
+    }
+    
 // class constructor
     function nochex() {
       global $order;

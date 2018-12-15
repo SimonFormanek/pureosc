@@ -21,6 +21,10 @@
     var $_mbcartID = 'cart_MoneybookersGIR_ID';
     var $_payment_method = 'GIR';
     var $_payment_method_image = 'giropay.gif';
+    public function __construct()
+    {
+        $this->moneybookers_gir();
+    }
 
 // class constructor
     function moneybookers_gir() {

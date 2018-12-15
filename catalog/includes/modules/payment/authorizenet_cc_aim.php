@@ -13,6 +13,11 @@
   class authorizenet_cc_aim {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->authorizenet_cc_aim();
+    }
+    
     function authorizenet_cc_aim() {
       global $_GET, $PHP_SELF, $order;
 
