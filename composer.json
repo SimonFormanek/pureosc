@@ -13,7 +13,8 @@
         "vitexsoftware/flexipeehp-bricks": "dev-master",
         "league/commonmark": "dev-master",
         "dompdf/dompdf": "dev-master",
-        "adamstipak/webpay-php": "dev-master"
+        "adamstipak/webpay-php": "dev-master",
+        "phpmailer/phpmailer": "v6.0.5"
     },
     "autoload": {
         "psr-4": {

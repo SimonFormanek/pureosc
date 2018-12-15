@@ -125,68 +125,73 @@ function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '',
             return tep_image_legacy($src, $alt, $width, $height, $parameters,
             $responsive, $bootstrap_css);
 
-    // Create thumbs sub dirs and .htaccess.	
-    $thumbs_dir_path  = str_replace(DIR_WS_IMAGES,
-        DIR_WS_IMAGES.KISSIT_THUMBS_MAIN_DIR.$width.'_'.$height.'/',
-        dirname($src).'/');
-    $thumbs_dir       = '';
-    $thumbs_dir_paths = explode("/", $thumbs_dir_path);
-    for ($i = 0, $n = sizeof($thumbs_dir_paths); $i < $n; $i++) {
-        $thumbs_dir .= $thumbs_dir_paths[$i].'/';
-        if (!is_dir($thumbs_dir)) {
-            if(!mkdir($thumbs_dir, 0777)){
-                echo $thumbs_dir;
+    if (strstr($src, '.svg')) {
+        $image_assembled = '<img src="'.$src.'" class="img-responsive">';
+    } else {
+
+        // Create thumbs sub dirs and .htaccess.	
+        $thumbs_dir_path  = str_replace(DIR_WS_IMAGES,
+            DIR_WS_IMAGES.KISSIT_THUMBS_MAIN_DIR.$width.'_'.$height.'/',
+            dirname($src).'/');
+        $thumbs_dir       = '';
+        $thumbs_dir_paths = explode("/", $thumbs_dir_path);
+        for ($i = 0, $n = sizeof($thumbs_dir_paths); $i < $n; $i++) {
+            $thumbs_dir .= $thumbs_dir_paths[$i].'/';
+            if (!is_dir($thumbs_dir)) {
+                if (!mkdir($thumbs_dir, 0777)) {
+                    echo $thumbs_dir;
+                }
             }
-        }
-        // create .htacces protection like in main image dir
-        if (($i == $n - 1) && (!is_file($thumbs_dir.'.htaccess'))) {
-            $hpname  = $thumbs_dir.'.htaccess';
-            //define .htaccess content
-            $htacces = '
+            // create .htacces protection like in main image dir
+            if (($i == $n - 1) && (!is_file($thumbs_dir.'.htaccess'))) {
+                $hpname  = $thumbs_dir.'.htaccess';
+                //define .htaccess content
+                $htacces = '
 <FilesMatch "\.(php([0-9]|s)?|s?p?html|cgi|pl|exe)$">
    Order Deny,Allow
    Deny from all
 </FilesMatch>';
-            if ($hp      = fopen($hpname, 'w')) {
-                fwrite($hp, $htacces);
-                fclose($hp);
+                if ($hp      = fopen($hpname, 'w')) {
+                    fwrite($hp, $htacces);
+                    fclose($hp);
+                }
             }
+        } // end for
+        // End create subdirectory and .htaccess.	
+
+        require_once DIR_WS_MODULES.'kiss_image_thumbnailer/classes/Image_Helper.php';
+        $attributes = array('alt' => $alt, 'width' => $width, 'height' => $height);
+
+        if (tep_not_null($width) && tep_not_null($height)) {
+            $image .= ' width="'.tep_output_string($width).'" height="'.tep_output_string($height).'"';
         }
-    } // end for
-    // End create subdirectory and .htaccess.	
 
-    require_once DIR_WS_MODULES.'kiss_image_thumbnailer/classes/Image_Helper.php';
-    $attributes = array('alt' => $alt, 'width' => $width, 'height' => $height);
+        $bs_parameters = ' class="';
 
-    if (tep_not_null($width) && tep_not_null($height)) {
-        $image .= ' width="'.tep_output_string($width).'" height="'.tep_output_string($height).'"';
-    }
+        if (tep_not_null($responsive) && ($responsive === true)) {
+            $bs_parameters .= 'img-responsive';
+        }
 
-    $bs_parameters = ' class="';
+        if (tep_not_null($bootstrap_css)) $bs_parameters .= ' '.$bootstrap_css;
 
-    if (tep_not_null($responsive) && ($responsive === true)) {
-        $bs_parameters .= 'img-responsive';
-    }
+        $bs_parameters .= '"';
 
-    if (tep_not_null($bootstrap_css)) $bs_parameters .= ' '.$bootstrap_css;
+        if (tep_not_null($parameters)) $bs_parameters .= ' '.$parameters;
 
-    $bs_parameters .= '"';
-
-    if (tep_not_null($parameters)) $bs_parameters .= ' '.$parameters;
-
-    $image           = new Image_Helper(array('src' => $src,
-        'attributes' => $attributes,
-        'parameters' => $bs_parameters,
-        'default_missing_image' => DIR_WS_IMAGES.'no_image_available_150_150.gif',
-        'isXhtml' => true,
-        'thumbs_dir_path' => $thumbs_dir_path,
-        'thumb_quality' => 75,
-        'thumb_background_rgb' => array('red' => 255,
-            'green' => 255,
-            'blue' => 255)));
-    if (false === $image_assembled = $image->assemble()) {
-        return tep_image_legacy($src, $alt, $width, $height, $parameters,
-            $responsive, $bootstrap_css);
+        $image           = new Image_Helper(array('src' => $src,
+            'attributes' => $attributes,
+            'parameters' => $bs_parameters,
+            'default_missing_image' => DIR_WS_IMAGES.'no_image_available_150_150.gif',
+            'isXhtml' => true,
+            'thumbs_dir_path' => $thumbs_dir_path,
+            'thumb_quality' => 75,
+            'thumb_background_rgb' => array('red' => 255,
+                'green' => 255,
+                'blue' => 255)));
+        if (false === $image_assembled = $image->assemble()) {
+            return tep_image_legacy($src, $alt, $width, $height, $parameters,
+                $responsive, $bootstrap_css);
+        }
     }
 
 
@@ -363,8 +368,8 @@ function tep_draw_selection_field($name, $type, $value = '', $checked = false,
 
     if (($checked == true) || (isset($_GET[$name]) && is_string($_GET[$name]) && (($_GET[$name]
         == 'on') || (stripslashes($_GET[$name]) == $value))) || (isset($_POST[$name])
-        && is_string($_POST[$name]) && (($_POST[$name] == 'on')
-        || (stripslashes($_POST[$name]) == $value)))) {
+        && is_string($_POST[$name]) && (($_POST[$name] == 'on') || (stripslashes($_POST[$name])
+        == $value)))) {
         $selection .= ' checked="checked"';
     }
 

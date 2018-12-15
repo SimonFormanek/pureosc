@@ -21,8 +21,7 @@
   sendmail, SMTP and gmail compatibility
  */
 
-require_once DIR_FS_CATALOG . 'ext/modules/PHPMailer/class.phpmailer.php';
-$phpMail = new PHPMailer();
+$phpMail = new \PHPMailer\PHPMailer\PHPMailer();
 
 class email {
 

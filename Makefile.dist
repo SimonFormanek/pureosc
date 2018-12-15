@@ -14,9 +14,6 @@ fresh:
 	git pull
 	composer update
 	phinx migrate
-	
-release:
-	composer install --no-dev
 
 lang:
 	find . -iname "*.php" | xargs xgettext --from-code=utf-8  -n  --language=PHP --add-comments=TRANSLATORS --add-comments=translators: --force-po -o i18n/pureosc.pot
@@ -32,13 +29,8 @@ lang:
 doc:
 	apigen generate --source catalog --destination docs --title "PureOSC" --charset UTF-8 --access-levels public --access-levels protected --php --tree
 
-dtest:
-	docker-compose run --rm default install
+test:
+	codecept run
 
-dimage:
-	docker build -t purehtml/pureosc .
-
-drun: dimage
-	docker run  -dit --name pureosc -p 9998:9000 purehtml/pureosc
-	nightly http://dpureosc
-
+css:
+	yui-compressor catalog/ext/bootstrap/css/bootstrap.css > catalog/ext/bootstrap/css/bootstrap.min.css 
