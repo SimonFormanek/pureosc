@@ -13,6 +13,11 @@
   class paypoint_secpay {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->paypoint_secpay();
+    }
+    
 // class constructor
     function paypoint_secpay() {
       global $order;

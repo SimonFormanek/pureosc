@@ -22,6 +22,12 @@
     var $_payment_method = 'PWY';
     var $_payment_method_image = 'p24.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_pwy();
+    }
+    
+    
 // class constructor
     function moneybookers_pwy() {
       global $order;

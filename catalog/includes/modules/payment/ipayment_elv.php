@@ -13,6 +13,11 @@
   class ipayment_elv {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->ipayment_elv();
+    }
+    
 // class constructor
     function ipayment_elv() {
       global $order;

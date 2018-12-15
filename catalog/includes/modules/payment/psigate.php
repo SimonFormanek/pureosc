@@ -13,6 +13,11 @@
   class psigate {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->psigate();
+    }
+    
 // class constructor
     function psigate() {
       global $order;

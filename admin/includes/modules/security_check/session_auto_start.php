@@ -13,6 +13,11 @@
   class securityCheck_session_auto_start {
     var $type = 'warning';
 
+    public function __construct()
+    {
+        $this->securityCheck_session_auto_start();
+    }
+    
     function securityCheck_session_auto_start() {
       global $language;
 

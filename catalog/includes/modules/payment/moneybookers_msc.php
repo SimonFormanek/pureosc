@@ -22,6 +22,11 @@
     var $_payment_method = 'MSC';
     var $_payment_method_image = '4b.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_msc();
+    }
+    
 // class constructor
     function moneybookers_msc() {
       global $order;

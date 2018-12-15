@@ -13,6 +13,11 @@
   class chronopay {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->chronopay();
+    }
+    
 // class constructor
     function chronopay() {
       global $order;

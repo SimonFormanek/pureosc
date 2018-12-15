@@ -13,6 +13,11 @@
   class sage_pay_server {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->sage_pay_server();
+    }
+    
     function sage_pay_server() {
       global $_GET, $PHP_SELF, $order;
 

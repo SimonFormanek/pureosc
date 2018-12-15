@@ -18,6 +18,11 @@
     var $title;
     var $template_integration = false;
 
+    public function __construct()
+    {
+        $this->cfgm_dashboard();
+    }
+    
     function cfgm_dashboard() {
       $this->directory = DIR_FS_ADMIN . 'includes/modules/dashboard/';
       $this->language_directory = DIR_FS_ADMIN . 'includes/languages/';

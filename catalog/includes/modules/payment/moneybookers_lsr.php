@@ -22,6 +22,11 @@
     var $_payment_method = 'LSR';
     var $_payment_method_image = 'laser.gif';
 
+        public function __construct()
+    {
+        $this->moneybookers_lsr();
+    }
+
 // class constructor
     function moneybookers_lsr() {
       global $order;

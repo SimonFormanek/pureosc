@@ -27,3 +27,4 @@ Makefile
 /gpe.signing_test.cer
 /gpe.signing_test.pem
 /gpwebpay-pvk.key
+/docs/

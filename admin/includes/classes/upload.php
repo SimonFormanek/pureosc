@@ -13,6 +13,12 @@
   class upload {
     var $file, $filename, $destination, $permissions, $extensions, $tmp_filename, $message_location;
 
+    public function __construct($file = '', $destination = '', $permissions = '777', $extensions = '')
+    {
+        $this->upload($file, $destination, $permissions, $extensions);
+    }
+    
+    
     function upload($file = '', $destination = '', $permissions = '777', $extensions = '') {
       $this->set_file($file);
       $this->set_destination($destination);

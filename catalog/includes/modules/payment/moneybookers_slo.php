@@ -22,6 +22,12 @@
     var $_payment_method = 'SLO';
     var $_payment_method_image = 'solo.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_slo();
+    }
+    
+    
 // class constructor
     function moneybookers_slo() {
       global $order;

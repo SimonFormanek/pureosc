@@ -18,6 +18,11 @@
     var $title;
     var $template_integration = false;
 
+    public function __construct()
+    {
+        $this->cfgm_action_recorder();
+    }
+    
     function cfgm_action_recorder() {
       $this->directory = DIR_FS_CATALOG_MODULES . 'action_recorder/';
       $this->title = MODULE_CFG_MODULE_ACTION_RECORDER_TITLE;

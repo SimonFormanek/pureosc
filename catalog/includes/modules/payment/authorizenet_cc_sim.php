@@ -13,6 +13,11 @@
   class authorizenet_cc_sim {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->authorizenet_cc_sim();
+    }
+    
     function authorizenet_cc_sim() {
       global $order;
 

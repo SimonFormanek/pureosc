@@ -13,6 +13,11 @@
   class paypal_pro_payflow_ec {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->paypal_pro_payflow_ec();
+    }
+    
     function paypal_pro_payflow_ec() {
       global $_GET, $PHP_SELF, $order;
 

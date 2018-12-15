@@ -21,6 +21,10 @@
     var $_mbcartID = 'cart_MoneybookersENT_ID';
     var $_payment_method = 'ENT';
     var $_payment_method_image = 'enets.gif';
+    public function __construct()
+    {
+        $this->moneybookers_ent();
+    }
 
 // class constructor
     function moneybookers_ent() {

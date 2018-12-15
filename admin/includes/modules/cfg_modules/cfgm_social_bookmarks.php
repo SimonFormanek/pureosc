@@ -18,6 +18,11 @@
     var $title;
     var $template_integration = false;
 
+    public function __construct()
+    {
+        $this->cfgm_social_bookmarks();
+    }
+    
     function cfgm_social_bookmarks() {
       $this->directory = DIR_FS_CATALOG_MODULES . 'social_bookmarks/';
       $this->title = MODULE_CFG_MODULE_SOCIAL_BOOKMARKS_TITLE;

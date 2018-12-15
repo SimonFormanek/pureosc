@@ -22,6 +22,11 @@
     var $_payment_method = 'BWI';
     var $_payment_method_image = '';
 
+    public function __construct()
+    {
+        $this->moneybookers_bwi();
+    }
+    
 // class constructor
     function moneybookers_bwi() {
       global $order;

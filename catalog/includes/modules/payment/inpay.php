@@ -13,6 +13,11 @@ class inpay
 {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->inpay();
+    }
+    
     // class constructor
     function inpay()
     {

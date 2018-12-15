@@ -13,6 +13,11 @@
   class stripe {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->stripe();
+    }
+    
     function stripe() {
       global $_GET, $PHP_SELF, $order, $payment;
 

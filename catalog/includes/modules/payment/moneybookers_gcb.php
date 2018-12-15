@@ -22,6 +22,11 @@
     var $_payment_method = 'GCB';
     var $_payment_method_image = 'cartebleue.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_gcb();
+    }
+    
 // class constructor
     function moneybookers_gcb() {
       global $order;

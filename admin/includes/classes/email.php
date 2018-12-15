@@ -32,6 +32,12 @@ class email {
   var $debug = 0;
   var $debug_output = 'error_log';
 
+    public function __construct($headers = '')
+    {
+        $this->email($headers);
+    }
+    
+
   function email($headers = '') {
     global $phpMail;
 

@@ -8,13 +8,16 @@
         }
     ],
     "require": {
+        "ext-gettext": "*",
+        "ext-intl": "*",
         "spoje.net/flexipeehp": "dev-master",
         "vitexsoftware/ease-framework": "dev-master",
         "vitexsoftware/flexipeehp-bricks": "dev-master",
         "league/commonmark": "dev-master",
         "dompdf/dompdf": "dev-master",
         "adamstipak/webpay-php": "dev-master",
-        "phpmailer/phpmailer": "v6.0.5"
+        "phpmailer/phpmailer": "v6.0.5",
+        "robmorgan/phinx": "^0.10.6"
     },
     "autoload": {
         "psr-4": {

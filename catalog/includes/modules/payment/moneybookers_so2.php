@@ -22,6 +22,11 @@
     var $_payment_method = 'SO2';
     var $_payment_method_image = 'nordea.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_so2();
+    }
+    
 // class constructor
     function moneybookers_so2() {
       global $order;

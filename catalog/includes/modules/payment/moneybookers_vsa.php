@@ -22,6 +22,11 @@
     var $_payment_method = 'VSA';
     var $_payment_method_image = 'euro6000.gif';
 
+    public function __construct()
+    {
+        $this->moneybookers_vsa();
+    }
+    
 // class constructor
     function moneybookers_vsa() {
       global $order;

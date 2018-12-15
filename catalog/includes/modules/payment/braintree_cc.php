@@ -13,6 +13,11 @@
   class braintree_cc {
     var $code, $title, $description, $enabled;
 
+    public function __construct()
+    {
+        $this->braintree_cc();
+    }
+    
     function braintree_cc() {
       global $order;
 
