@@ -1,1 +1,1 @@
-/home/vitex/Projects/PureHTML/pureosc/install/oscommerce.sql
+../../install/oscommerce.sql
