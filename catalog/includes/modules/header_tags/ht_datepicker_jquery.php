@@ -18,6 +18,11 @@
     var $sort_order;
     var $enabled = false;
 
+    public function __construct()
+    {
+        $this->ht_datepicker_jquery();
+    }
+    
     function ht_datepicker_jquery() {
       $this->title = MODULE_HEADER_TAGS_DATEPICKER_JQUERY_TITLE;
       $this->description = MODULE_HEADER_TAGS_DATEPICKER_JQUERY_DESCRIPTION;

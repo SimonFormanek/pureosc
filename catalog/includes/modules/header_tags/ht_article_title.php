@@ -17,6 +17,11 @@
     var $sort_order;
     var $enabled = false;
 
+    public function __construct()
+    {
+        $this->ht_article_title();
+    }
+    
     function ht_article_title() {
       $this->title = MODULE_HEADER_TAGS_ARTICLE_TITLE_TITLE;
       $this->description = MODULE_HEADER_TAGS_ARTICLE_TITLE_DESCRIPTION;

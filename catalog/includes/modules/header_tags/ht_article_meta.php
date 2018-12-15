@@ -18,6 +18,12 @@
     var $sort_order;
     var $enabled = false;
 
+    function __construct()
+    {
+        $this->ht_article_meta();
+    }
+
+
     function ht_article_meta() {
       $this->title = MODULE_HEADER_TAGS_ARTICLE_META_TITLE;
       $this->description = MODULE_HEADER_TAGS_ARTICLE_META_DESCRIPTION;

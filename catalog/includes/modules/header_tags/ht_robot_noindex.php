@@ -18,6 +18,12 @@
     var $sort_order;
     var $enabled = false;
 
+    public function __construct()
+    {
+        $this->ht_robot_noindex();
+    }
+    
+    
     function ht_robot_noindex() {
       $this->title = MODULE_HEADER_TAGS_ROBOT_NOINDEX_TITLE;
       $this->description = MODULE_HEADER_TAGS_ROBOT_NOINDEX_DESCRIPTION;
