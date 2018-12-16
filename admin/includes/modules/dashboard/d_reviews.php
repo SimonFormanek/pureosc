@@ -17,6 +17,11 @@
     var $sort_order;
     var $enabled = false;
 
+    public function __construct()
+    {
+        $this->d_reviews();
+    }
+    
     function d_reviews() {
       $this->title = MODULE_ADMIN_DASHBOARD_REVIEWS_TITLE;
       $this->description = MODULE_ADMIN_DASHBOARD_REVIEWS_DESCRIPTION;

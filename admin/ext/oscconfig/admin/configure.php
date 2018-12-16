@@ -5,21 +5,21 @@
   define('ENABLE_SSL', false);
   define('SERVER_INSTANCE','admin'); // admin or empty for shop ???? TODO
 
-  define('HTTP_SERVER', 'http://' . $_SERVER['HTTP_HOST'].'/PureHTML/pureosc'); // <------ need to bee configured
-  define('HTTPS_SERVER', 'https://' . $_SERVER['HTTP_HOST'].'/PureHTML/pureosc'); // <------ need to bee configured
+  define('HTTP_SERVER', 'http://' . $_SERVER['HTTP_HOST']); // <------ need to bee configured
+  define('HTTPS_SERVER', 'https://' . $_SERVER['HTTP_HOST']); // <------ need to bee configured
   define('HTTP_COOKIE_DOMAIN', '');
   define('HTTPS_COOKIE_DOMAIN', '');
   define('HTTP_COOKIE_PATH', '/admin');
   define('HTTPS_COOKIE_PATH', '/admin');
-  define('HTTP_CATALOG_SERVER', 'http://' . CATALOG_DOMAIN.'/PureHTML/pureosc'); // <------ need to bee configured
-  define('HTTPS_CATALOG_SERVER', 'https://' . CATALOG_DOMAIN.'/PureHTML/pureosc'); // <------ need to bee configured
+  define('HTTP_CATALOG_SERVER', 'http://' . CATALOG_DOMAIN); // <------ need to bee configured
+  define('HTTPS_CATALOG_SERVER', 'https://' . CATALOG_DOMAIN); // <------ need to bee configured
   define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR); // <------ need to bee configured
   define('DIR_WS_ADMIN', '/admin/');
   define('DIR_WS_HTTPS_ADMIN', '/admin/');// <------ need to bee configured SECURITY: obfuscation
-  define('DIR_FS_ADMIN', DIR_FS_MASTER_ROOT_DIR . 'admin/'); //  <------ need to bee configured SECURITY: obfuscation
+  define('DIR_FS_ADMIN', DIR_FS_MASTER_ROOT_DIR . 'catalog/admin/'); //  <------ need to bee configured SECURITY: obfuscation
   define('DIR_WS_CATALOG', '/');
   define('DIR_WS_HTTPS_CATALOG', '/');
-  define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR); // <------ need to bee configured
+  define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR.'catalog/'); // <------ need to bee configured
   define('DIR_WS_IMAGES', 'images/');
   define('DIR_WS_ICONS', DIR_WS_IMAGES . 'icons/');
   define('DIR_WS_CATALOG_IMAGES', DIR_WS_CATALOG . 'images/');

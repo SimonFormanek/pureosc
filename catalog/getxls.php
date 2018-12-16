@@ -1,7 +1,7 @@
 <?php
 require_once('includes/application_top.php');
 
-$oPage = new \Ease\TWB\WebPage('ISDOCx');
+$oPage = new \Ease\TWB\WebPage('XLS');
 
 $embed    = $oPage->getRequestValue('embed');
 $id       = $oPage->getRequestValue('id');
@@ -21,9 +21,9 @@ $document = new \FlexiPeeHP\FlexiBeeRO(is_numeric($id) ? intval($id) : $id,
     ['evidence' => $evidence]);
 
 if (!is_null($document->getMyKey())) {
-    $documentBody = $document->getInFormat('isdocx');
+    $documentBody = $document->getInFormat('xls');
     header('Content-Description: File Transfer');
-    header('Content-Disposition: attachment; filename='.$document->getEvidence().'_'.$document.'.isdocx');
+    header('Content-Disposition: attachment; filename='.$document->getEvidence().'_'.$document.'.xls');
     header('Content-Type: application/octet-stream');
     header('Content-Transfer-Encoding: binary');
     header('Expires: 0');

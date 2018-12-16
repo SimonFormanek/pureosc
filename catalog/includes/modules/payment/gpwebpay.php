@@ -337,7 +337,7 @@ class gpwebpay
      * @global type $shipping
      * @global order_total $order_total_modules
      * 
-     * @return type
+     * @return string
      */
     function process_button()
     {
@@ -390,11 +390,12 @@ class gpwebpay
         }
 
         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
-            $invoice->setDataValue('id', 'ext:osc:'.$orderId);
+            $invoice->setDataValue('id', 'ext:orders:'.$orderId);
             if ($invoice->sync()) {
                 $varSym    = $invoice->getDataValue('varSym');
                 $orderCode = $invoice->getRecordID();
                 $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
+                \Ease\Shared::instanced()->addStatusMessage(_('New order saved').$invoice, 'success');
             } else {
                 echo 'FlexiBee Errorek';
             }
@@ -444,11 +445,22 @@ class gpwebpay
 
         $request->setDescription(self::convertToAscii($products_info));
 
-        $parameters = $api->createPaymentParam($request);
-
-        foreach ($parameters as $key => $value) {
-            $process_button_string .= tep_draw_hidden_field($key, $value);
+        try {
+            $parameters = $api->createPaymentParam($request);
+            foreach ($parameters as $key => $value) {
+                $process_button_string .= tep_draw_hidden_field($key, $value);
+            }
+        } catch (\AdamStipak\Webpay\SignerException $e) {
+            $process_button_string = _('Payment failed');
+            Ease\Shared::instanced()->addStatusMessage( 'GPWEBPAY: '. $e->getMessage() ,'error');
+//            $fakeResponseData               = $request->getParams();
+//            $fakeResponseData['PRCODE']     = 0;
+//            $fakeResponseData['OPERATION']  = 'CREATE_ORDER';
+//            $fakeResponseData['RESULTTEXT'] = 'OK';
+//            $process_button_string          .= '<a class="btn btn-danger" href="checkout_success.php?'.http_build_query($fakeResponseData).'"> ByPass '.$e->getMessage().' </a>';
         }
+
+
 
         return $process_button_string;
     }

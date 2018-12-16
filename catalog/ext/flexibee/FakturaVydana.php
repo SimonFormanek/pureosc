@@ -81,4 +81,15 @@ class FakturaVydana extends \FlexiPeeHP\FakturaVydana
 
         return $result;
     }
+    
+    public function performAction($action, $method = 'int')
+    {
+        if($action == 'storno'){
+            global $order_id;
+            $this->updateToSQL(['id'=>$order_id,'orders_status'=>3]);
+        }
+        return parent::performAction($action, $method = 'int');
+        
+    }
+    
 }

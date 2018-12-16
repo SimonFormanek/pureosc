@@ -17,6 +17,11 @@
     var $sort_order;
     var $enabled = false;
 
+    public function __construct()
+    {
+        $this->d_partner_news();
+    }
+    
     function d_partner_news() {
       $this->title = MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_TITLE;
       $this->description = MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_DESCRIPTION;

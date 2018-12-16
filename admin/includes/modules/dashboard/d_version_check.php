@@ -17,6 +17,11 @@
     var $sort_order;
     var $enabled = false;
 
+    public function __construct()
+    {
+        $this->d_version_check();
+    }
+    
     function d_version_check() {
       $this->title = MODULE_ADMIN_DASHBOARD_VERSION_CHECK_TITLE;
       $this->description = MODULE_ADMIN_DASHBOARD_VERSION_CHECK_DESCRIPTION;
