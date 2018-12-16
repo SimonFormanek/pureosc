@@ -1,4 +1,4 @@
-all: 	clean dbreset
+all: 	clean fresh
 
 clean:
 	phinx seed:run -s Reset -c ./phinx-adapter.php
@@ -8,7 +8,6 @@ dbreset:
 	phinx migrate -c ./phinx-adapter.php
 
 fresh:
-	git pull
 	composer update
 	phinx migrate -c ./phinx-adapter.php
 
