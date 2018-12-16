@@ -115,7 +115,6 @@ if ($oPage->getRequestValue('RESULTTEXT') == 'OK') {
                 break;
         }
 
-        //  https://oik19.purehtml.cz/checkout_success.php?OPERATION=CREATE_ORDER&ORDERNUMBER=200062018&MERORDERNUM=200062018&PRCODE=50&SRCODE=0&RESULTTEXT=Drzitel%20karty%20zrusil%20platbu&DIGEST=qSOHby%2BMGzdx6nMEZ%2B3CgOBOg8SnDh1kndekZx1FpWNDu4YQjptFYjGmcrlxzHaBlLL316EisINopE3EcxxHYNypCNlE6jXmH0Tyb2p1Yx8Psti0k7BWiUDjVqiOmTKrN%2F0vsoodZCOpWzfKDNMHtkYrynUaHV%2BYEuMmpA5ORhsVjORYpTlXMMw705V1jvCf7rlgWW8VLUHKEMUFWyuP7e9YTLX7uAKFSDKNKnoteqcVI9QSazFmCbQVM%2Fp7NmwnHUT%2FpVvRJyqwEU2YqIb%2BD5F9vH%2BmDpk7%2Btd7gPmwyOKPNHLCLDp6B6geQKidey2q29tWbhRDkzPt4ziNssOC0g%3D%3D&DIGEST1=128K4J7G%2Fj64VtIYpzCBhGFVvY0v%2FUrw9Cw6931c6D0JdJUKItv8EgN3DwpcMrkjaXgDc3e7AsOSReCGP5gRsOD8NZI2xHZnZZcG5DrLYiH%2B9eAP4iR7duNg78xEmcgrjX%2FdGmZURRDsxv%2Ba%2Br9LOiRXQquB3JJNvqmWbkZdzTfnFAwfNkQxeBWl%2FlBUlaxHLc7xdVSA54CswPf0UOZK5DN9LsSmf%2BK%2B6fVeiNm4vY%2BBdw8J8vWQxLLBw3Kq6hcM%2BqNlzvxAkNw5OiSK6p1CcMtVYPUV1%2F18nXtQ8DeeAW0fJVitQw3d8Pd7UJwvLA7p%2B%2BTe4xzIcJ3KK21JyVxpgQ%3D%3D        
 //        foreach ($order->products as $orderItem) {
 //            $banker->addArrayToBranch([
 //                'cenik' => 'ext:products:'.$orderItem['id'],
