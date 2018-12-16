@@ -12,7 +12,7 @@ include_once './vendor/autoload.php';
 
 //\Ease\Shared::instanced()->loadConfig('config.json', 'true');
 
-require_once './admin/ext/oscconfig/dbconfigure.php';
+require_once '../oscconfig/dbconfigure.php';
 
 return array('environments' =>
     array(
