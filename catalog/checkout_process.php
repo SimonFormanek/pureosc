@@ -80,6 +80,9 @@ if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
     $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
     $invoice->setDataValue("typDokl", 'code:FAKTURA');
     $invoice->setDataValue("stavMailK", 'stavMail.neodesilat');
+    if (isset($_REQUEST['comments'])) {
+        $invoice->setDataValue('poznam', $_REQUEST['comments']);
+    }
 }
 // Stock Check
 $any_out_of_stock = false;
@@ -160,6 +163,7 @@ $sql_data_array = array('customers_id' => $customer_id,
     'currency_value' => $order->info['currency_value']);
 tep_db_perform(TABLE_ORDERS, $sql_data_array);
 $insert_id      = tep_db_insert_id();
+$order_id = $insert_id;
 for ($i = 0, $n = sizeof($order_totals); $i < $n; $i++) {
     $sql_data_array = array('orders_id' => $insert_id,
         'title' => $order_totals[$i]['title'],
@@ -237,16 +241,6 @@ for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
     tep_db_perform(TABLE_ORDERS_PRODUCTS, $sql_data_array);
     $order_products_id = tep_db_insert_id();
 
-    if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
-        $invoice->addArrayToBranch([
-            'cenik' => 'ext:products:'.$order->products[$i]['id'],
-            'nazev' => $order->products[$i]['name'],
-            'mnozMj' => $order->products[$i]['qty'],
-            'cenaMj' => $order->products[$i]['price'],
-            'typPolozkyK' => 'typPolozky.obecny'
-            ], 'polozkyDokladu');
-    }
-
     /*     * * Altered for CCGV ** */
     $order_total_modules->update_credit_account($i); // CCGV
     /*     * *EOF alteration for CCGV ** */
@@ -317,7 +311,6 @@ $order_total_modules->apply_credit(); // CCGV
 if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
 
     foreach ($order_total_modules->process() as $orderTotalRow) {
-
         switch ($orderTotalRow['code']) {
             case 'ot_shipping':
                 if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
@@ -330,17 +323,37 @@ if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
                 }
 
                 break;
+            case 'ot_total';
+                $totalPrice = $orderTotalRow['value'];
+                break;
+
             default:
                 break;
         }
     }
 
+    $products_info = '';
+    foreach ($order->products as $orderItem) {
+        $products_info .= $orderItem['qty']."x".$orderItem['model'].' '.$orderItem['name'].";";
+        $invoice->addArrayToBranch([
+            'cenik' => 'ext:products:'.$orderItem['id'],
+            'nazev' => $orderItem['name'],
+            'mnozMj' => $orderItem['qty'],
+            'cenaMj' => $orderItem['price'],
+            'typPolozkyK' => 'typPolozky.katalog'
+            ], 'polozkyDokladu');
+    }
 
-
-    $invoice->setDataValue('id', 'ext:osc:'.$insert_id);
-    $invoice->sync();
-
-
+    $invoice->setDataValue('id', 'ext:orders:'.$order_id);
+    if ($invoice->sync()) {
+        $varSym    = $invoice->getDataValue('varSym');
+        $orderCode = $invoice->getRecordID();
+        $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
+        \Ease\Shared::instanced()->addStatusMessage(_('New order saved').$invoice,
+            'success');
+    } else {
+        echo 'FlexiBee Errorek';
+    }
     $varSym = $invoice->getDataValue('varSym');
 } else {
     $varSym = $insert_id;

@@ -669,3 +669,5 @@ $oPage = new Ease\Page();
 
 $userLog = new PureOSC\CustomerLog();
 
+$oUser = new Ease\Anonym();
+\Ease\Shared::instanced()->user($oUser);
