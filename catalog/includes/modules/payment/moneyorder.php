@@ -19,7 +19,6 @@ class moneyorder
         $this->moneyorder();
     }
 
-
 // class constructor
     function moneyorder()
     {
@@ -137,5 +136,3 @@ class moneyorder
             'MODULE_PAYMENT_MONEYORDER_PAYTO');
     }
 }
-
-

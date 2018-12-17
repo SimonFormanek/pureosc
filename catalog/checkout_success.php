@@ -36,22 +36,15 @@ $orders = tep_db_fetch_array($orders_query);
 
 $order_id = $orders['orders_id'];
 
-$invoice = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$order_id);
+
 
 if ($oPage->getRequestValue('RESULTTEXT') == 'OK') {
-////GPWEBPAY 
-//    &ORDERNUMBER=105542018&
-//    MERORDERNUM=6571&
-//    PRCODE=0&
-//    SRCODE=0&
-
     require(DIR_WS_CLASSES.'order.php');
     $order = new order($order_id);
 
-
-
-
     if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+
+        $invoice = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$order_id);
 
         switch ($_REQUEST['PRCODE']) {
             case 0:
@@ -91,14 +84,14 @@ if ($oPage->getRequestValue('RESULTTEXT') == 'OK') {
                         if ($invoice2->lastResponseCode == 201) {
                             $invoice2->reload();
                             $success = 2;
-                            $invoice->addStatusMessage(sprintf(_('Faktura #%s byla sparovana se zálohou #%s'),
+                            $invoice->addStatusMessage(sprintf(_('Invoice #%s was matched with proforma #%s'),
                                     $invoice2->getRecordIdent(),
                                     $invoice->getRecordIdent()), 'success');
                             $invoice2->insertToFlexiBee(['id' => (string) $invoice2,
                                 'stavMailK' => 'stavMail.odeslat']);
                         } else {
                             $success = -1;
-                            $invoice->addStatusMessage(sprintf(_('Faktura #%s nebyla sparovana se zalohou #%s '),
+                            $invoice->addStatusMessage(sprintf(_('Invoice #%s was not matched with proforma #%s '),
                                     $invoice2->getRecordIdent(),
                                     $invoice->getRecordIdent()), 'error');
                         }
@@ -111,48 +104,26 @@ if ($oPage->getRequestValue('RESULTTEXT') == 'OK') {
 
                 break;
 
+            case 50: // The cardholder canceled the payment
+                $invoice->insertToFlexiBee(['id' => $order->getRecordIdent(), 'poznam' => _('The cardholder canceled the payment')]);
+                $this->updateToSQL(['id' => $order_id, 'orders_status' => 4]);
+                $invoice->performAction('storno');
+
+                break;
+
             default:
                 break;
         }
 
-//        foreach ($order->products as $orderItem) {
-//            $banker->addArrayToBranch([
-//                'cenik' => 'ext:products:'.$orderItem['id'],
-//                'nazev' => $orderItem['name'],
-//                'mnozMj' => $orderItem['qty'],
-//                'cenaMj' => $orderItem['price'],
-//                'typPolozkyK' => 'typPolozky.katalog'
-//                ], 'polozkyDokladu');
-//        }
-//
-//        $banker->insertToFlexiBee();
-//        if ($banker->lastResponseCode == 201) {
-//            $faktura = new FlexiPeeHP\FakturaVydana('ext:osc:'.$order_id,
-//                ['detail' => 'id']);
-//            $faktura->sparujPlatbu($banker);
-//            if ($banker->lastResponseCode == 201) {
-//                tep_db_query("update  ".TABLE_ORDERS." SET orders_status=105 where orders_id = '".(int) $order_id."' limit 1");
-//            }
-//        }
-        //       $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
-    }
-    $cart->reset(true);
-} else {
-    switch ($_REQUEST['PRCODE']) {
-        case 50: // The cardholder canceled the payment
-            $invoice->insertToFlexiBee(['id' => $order->getRecordIdent(), 'poznam' => _('The cardholder canceled the payment')]);
-
-            $this->updateToSQL(['id' => $order_id, 'orders_status' => 4]);
-//            $invoice->performAction('storno');
-
-            break;
-
-        default:
-            break;
+        $cart->reset(true);
+    } else { // No FlexiBee
+        switch ($_REQUEST['PRCODE']) {
+            case 50: // The cardholder canceled the payment
+                $this->updateToSQL(['id' => $order_id, 'orders_status' => 4]);
+                break;
+        }
     }
 }
-
-
 
 
 
@@ -206,14 +177,17 @@ if (!isset($_REQUEST['PRCODE']) || ($_REQUEST['PRCODE'] == 0)) {
             }
             $invoiceNum = $invoice2->getRecordID();
         } else {
+            if (!isset($invoice)) {
+                $invoice = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$order_id);
+            }
+
+
             if (floatval($invoice->getDataValue('zbyvaUhradit'))) {
-                $qrImage = new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
+                $qrImage = _('QR Payment').' ' . new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
                     $invoice->getRecordIdent());
             }
             $invoiceNum = $invoice->getRecordID();
         }
-
-
 
 
         echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&id='.$invoiceNum.'&embed=true'.'">'._('PDF Invoice').'</a>';
@@ -236,9 +210,9 @@ if (!isset($_REQUEST['PRCODE']) || ($_REQUEST['PRCODE'] == 0)) {
 <div class="contentContainer">
     <div class="buttonSet">
         <div class="text-right"><?php
-            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
-                null, 'primary', null, 'btn-success');
-            ?></div>
+    echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right', null,
+        'primary', null, 'btn-success');
+    ?></div>
     </div>
 </div>
 

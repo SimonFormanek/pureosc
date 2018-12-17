@@ -197,7 +197,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     $paymentInfo->addItem(new Ease\TWB\LinkButton('getpdf.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
                             _('PDF Invoice'), 'success'));
                     $paymentInfo->addItem(new Ease\TWB\LinkButton('getisdoc.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
-                            _('XSDOC Invoice'), 'success'));
+                            _('ISDOC Invoice'), 'success'));
                     $paymentInfo->addItem(new Ease\TWB\LinkButton('getxls.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
                             _('XLS Invoice'), 'success'));
                 }

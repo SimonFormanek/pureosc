@@ -350,6 +350,9 @@ class gpwebpay
             $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
             $invoice->setDataValue("typDokl", 'code:OBJEDNÁVKA');
             $invoice->setDataValue("stavMailK", 'stavMail.neodesilat');
+            if(isset($_REQUEST['comments'])){
+                $invoice->setDataValue('poznam',$_REQUEST['comments']);
+            }
         }
 
         foreach ($order_total_modules->process() as $orderTotalRow) {
@@ -446,10 +449,10 @@ class gpwebpay
         $request->setDescription(self::convertToAscii($products_info));
 
         try {
-            $parameters = $api->createPaymentParam($request);
-            foreach ($parameters as $key => $value) {
-                $process_button_string .= tep_draw_hidden_field($key, $value);
-            }
+        $parameters = $api->createPaymentParam($request);
+        foreach ($parameters as $key => $value) {
+            $process_button_string .= tep_draw_hidden_field($key, $value);
+        }
         } catch (\AdamStipak\Webpay\SignerException $e) {
             $process_button_string = _('Payment failed');
             Ease\Shared::instanced()->addStatusMessage( 'GPWEBPAY: '. $e->getMessage() ,'error');

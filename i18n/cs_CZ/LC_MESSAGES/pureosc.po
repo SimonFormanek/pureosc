@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-16 23:39+0100\n"
-"PO-Revision-Date: 2018-12-17 00:02+0100\n"
+"POT-Creation-Date: 2018-12-17 01:29+0100\n"
+"PO-Revision-Date: 2018-12-17 01:29+0100\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -63,27 +63,27 @@ msgstr "Vyžadovaná informace"
 msgid "Required"
 msgstr "Vyžadováno"
 
-#: account_history.php:81 account_history_info.php:190 checkout_success.php:220
+#: account_history.php:81 account_history_info.php:198 checkout_success.php:190
 msgid "PDF Invoice"
 msgstr "PDF Faktura"
 
-#: account_history.php:82 checkout_success.php:221
+#: account_history.php:82 checkout_success.php:191
 msgid "ISDOC Invoice"
 msgstr "ISDOC Faktura"
 
-#: account_history_info.php:180
+#: account_history_info.php:187
 msgid "QR Payment"
 msgstr "QR Platba"
 
-#: account_history_info.php:187
+#: account_history_info.php:196
 msgid "Already settled"
 msgstr "Již uhrazeno"
 
-#: account_history_info.php:192
+#: account_history_info.php:200
 msgid "XSDOC Invoice"
 msgstr "XSDOC Invoice"
 
-#: account_history_info.php:194
+#: account_history_info.php:202
 msgid "XLS Invoice"
 msgstr "XLS Faktura"
 
@@ -146,21 +146,21 @@ msgstr "Ičo"
 msgid "FlexiBee sync"
 msgstr "FlexiBee synchronizace"
 
-#: checkout_success.php:94
+#: checkout_success.php:87
 #, php-format
 msgid "Faktura #%s byla sparovana se zálohou #%s"
 msgstr ""
 
-#: checkout_success.php:101
+#: checkout_success.php:94
 #, php-format
 msgid "Faktura #%s nebyla sparovana se zalohou #%s "
 msgstr ""
 
-#: checkout_success.php:144
+#: checkout_success.php:108
 msgid "The cardholder canceled the payment"
 msgstr "Držitel karty zrušil platbu"
 
-#: checkout_success.php:227
+#: checkout_success.php:197
 msgid "Payment cancelled by card holder"
 msgstr "Platba byla zrušena vlastníkem karty"
 
@@ -169,7 +169,7 @@ msgstr "Platba byla zrušena vlastníkem karty"
 msgid "FlexiBee import"
 msgstr "Import z FlexiBee "
 
-#: getisdoc.php:35 getpdf.php:38 getxls.php:35
+#: getisdoc.php:35 getpdf.php:38
 msgid "Wrong call"
 msgstr "Špatné volání"
 
@@ -210,19 +210,23 @@ msgstr "Produkční"
 msgid "New order saved"
 msgstr "Nová objednávka uložena"
 
-#: includes/modules/payment/gpwebpay.php:752
+#: includes/modules/payment/gpwebpay.php:454
+msgid "Payment failed"
+msgstr "Platba selhala"
+
+#: includes/modules/payment/gpwebpay.php:754
 msgid "Your secret key"
 msgstr "Váš tajný klíč"
 
-#: includes/modules/payment/gpwebpay.php:752
+#: includes/modules/payment/gpwebpay.php:754
 msgid "Your secret key (supplied by gpwebpay)"
 msgstr "Váš tajný klíč (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:753
+#: includes/modules/payment/gpwebpay.php:755
 msgid "Your secret key password (supplied by gpwebpay)"
 msgstr "heslo vašeho tajného klíče  (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:754
+#: includes/modules/payment/gpwebpay.php:756
 msgid "Your public key (supplied by gpwebpay)"
 msgstr "váš veřejný klíč (dodaný gpwebpay)"
 
