@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  require(DIR_FS_CATALOG . 'includes/classes/action_recorder.php');
+  require(constant('DIR_FS_CATALOG') . 'includes/classes/action_recorder.php');
 
   class actionRecorderAdmin extends actionRecorder {
      public function __construct($module, $user_id = null, $user_name = null) {

@@ -38,9 +38,14 @@ $breadcrumb->add(sprintf(NAVBAR_TITLE_3, $_GET['order_id']),
 
 require(DIR_WS_CLASSES.'order.php');
 $order = new order($_GET['order_id']);
+if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+    $invoice = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$_GET['order_id']);
 
-$invoice = new PureOSC\flexibee\FakturaVydana('ext:osc:'.$_GET['order_id']);
-
+    $invoiceNum = 'ext:src:faktura-vydana:'.$invoice->getRecordID();
+    if ($invoice->recordExists($invoiceNum)) {
+        $invoice->loadFromFlexiBee($invoiceNum);
+    }
+}
 require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 
@@ -53,9 +58,9 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <div class="contentText">
 
         <div class="panel panel-default">
-            <div class="panel-heading"><strong><?php echo sprintf(HEADING_ORDER_NUMBER,
-    $_GET['order_id']).' <span class="badge pull-right">'.$order->info['orders_status'].'</span>';
-?></strong></div>
+            <div class="panel-heading"><strong><?php
+                    echo sprintf(HEADING_ORDER_NUMBER, $_GET['order_id']).' <span class="badge pull-right">'.$order->info['orders_status'].'</span>';
+                    ?></strong></div>
             <div class="panel-body">
 
                 <table border="0" width="100%" cellspacing="0" cellpadding="2" class="table-hover order_confirmation">
@@ -134,7 +139,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <div class="panel panel-info">
                     <div class="panel-heading"><?php echo '<strong>'.HEADING_DELIVERY_ADDRESS.'</strong>'; ?></div>
                     <div class="panel-body">
-                        <?php echo tep_address_format($order->delivery['format_id'],
+                        <?php
+                        echo tep_address_format($order->delivery['format_id'],
                             $order->delivery, 1, ' ', '<br />');
                         ?>
                     </div>
@@ -147,38 +153,63 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <div class="panel panel-warning">
                 <div class="panel-heading"><?php echo '<strong>'.HEADING_BILLING_ADDRESS.'</strong>'; ?></div>
                 <div class="panel-body">
-<?php echo tep_address_format($order->billing['format_id'],
-    $order->billing, 1, ' ', '<br />');
-?>
+                    <?php
+                    echo tep_address_format($order->billing['format_id'],
+                        $order->billing, 1, ' ', '<br />');
+                    ?>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
-<?php
-if ($order->info['shipping_method']) {
-    ?>
+            <?php
+            if ($order->info['shipping_method']) {
+                ?>
                 <div class="panel panel-info">
                     <div class="panel-heading"><?php echo '<strong>'.HEADING_SHIPPING_METHOD.'</strong>'; ?></div>
                     <div class="panel-body">
-                <?php echo $order->info['shipping_method']; ?>
+                        <?php echo $order->info['shipping_method']; ?>
                     </div>
                 </div>
-    <?php
-}
-?>
-            <div class="panel panel-warning">
-                <div class="panel-heading"><?php echo '<strong>'.HEADING_PAYMENT_METHOD.'</strong>'; ?></div>
-                <div class="panel-body">
-                    <?php
-                    echo $order->info['payment_method'];
+                <?php
+            }
+
+            if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+
+                $oPage = new Ease\TWB\WebPage();
+                    
+                Ease\Shared::webPage($oPage);                    
+                
+                Ease\TWB\Part::twBootstrapize();
+                if (floatval($invoice->getDataValue('zbyvaUhradit'))) {
+                    $paymentInfo = new Ease\TWB\Panel(constant('HEADING_PAYMENT_METHOD'),
+                        'warning');
+                    $paymentInfo->addItem($order->info['payment_method']);
+                    $paymentInfo->addItem('<p>'._('QR Payment').':'.'</p>');
+                    $paymentInfo->addItem(new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
+                            $invoice->getRecordIdent()));
+                } else {
+                    $docId = 'ext:orders:'.$_GET['order_id'];
+
+                    $paymentInfo = new Ease\TWB\Panel(constant('HEADING_PAYMENT_METHOD'),
+                        'success');
+
+                    $paymentInfo->addItem(new Ease\Html\H3Tag(_('Already settled')));
+                    $paymentInfo->addItem(new Ease\TWB\LinkButton('getpdf.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
+                            _('PDF Invoice'), 'success'));
+                    $paymentInfo->addItem(new Ease\TWB\LinkButton('getisdoc.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
+                            _('XSDOC Invoice'), 'success'));
+                    $paymentInfo->addItem(new Ease\TWB\LinkButton('getxls.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
+                            _('XLS Invoice'), 'success'));
+                }
+            } else {
+                $paymentInfo = new Ease\TWB\Panel(constant('HEADING_PAYMENT_METHOD'),
+                    'warning', $order->info['payment_method']);
+            }
 
 
-                    $qrImage = new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
-                        $invoice->getRecordIdent());
-                    echo $qrImage;
-                    ?>
-                </div>
-            </div>
+            echo $paymentInfo;
+            ?>
+
         </div>
 
 
@@ -192,22 +223,22 @@ if ($order->info['shipping_method']) {
 
     <div class="contentText">
         <ul class="timeline">
-            <?php
-            $statuses_query = tep_db_query("select os.orders_status_name, osh.date_added, osh.comments from ".TABLE_ORDERS_STATUS." os, ".TABLE_ORDERS_STATUS_HISTORY." osh where osh.orders_id = '".(int) $_GET['order_id']."' and osh.orders_status_id = os.orders_status_id and os.language_id = '".(int) $languages_id."' and os.public_flag = '1' order by osh.date_added");
-            while ($statuses       = tep_db_fetch_array($statuses_query)) {
-                echo '<li>';
-                echo '  <div class="timeline-badge"><i class="fa fa-check-square-o"></i></div>';
-                echo '  <div class="timeline-panel">';
-                echo '    <div class="timeline-heading">';
-                echo '      <p class="pull-right"><small class="text-muted"><i class="fa fa-clock-o"></i> '.tep_date_short($statuses['date_added']).'</small></p><h2 class="timeline-title">'.$statuses['orders_status_name'].'</h2>';
-                echo '    </div>';
-                echo '    <div class="timeline-body">';
-                echo '      <p>'.(empty($statuses['comments']) ? '&nbsp;' : '<blockquote>'.nl2br(tep_output_string_protected($statuses['comments'])).'</blockquote>').'</p>';
-                echo '    </div>';
-                echo '  </div>';
-                echo '</li>';
-            }
-            ?>
+<?php
+$statuses_query = tep_db_query("select os.orders_status_name, osh.date_added, osh.comments from ".TABLE_ORDERS_STATUS." os, ".TABLE_ORDERS_STATUS_HISTORY." osh where osh.orders_id = '".(int) $_GET['order_id']."' and osh.orders_status_id = os.orders_status_id and os.language_id = '".(int) $languages_id."' and os.public_flag = '1' order by osh.date_added");
+while ($statuses       = tep_db_fetch_array($statuses_query)) {
+    echo '<li>';
+    echo '  <div class="timeline-badge"><i class="fa fa-check-square-o"></i></div>';
+    echo '  <div class="timeline-panel">';
+    echo '    <div class="timeline-heading">';
+    echo '      <p class="pull-right"><small class="text-muted"><i class="fa fa-clock-o"></i> '.tep_date_short($statuses['date_added']).'</small></p><h2 class="timeline-title">'.$statuses['orders_status_name'].'</h2>';
+    echo '    </div>';
+    echo '    <div class="timeline-body">';
+    echo '      <p>'.(empty($statuses['comments']) ? '&nbsp;' : '<blockquote>'.nl2br(tep_output_string_protected($statuses['comments'])).'</blockquote>').'</p>';
+    echo '    </div>';
+    echo '  </div>';
+    echo '</li>';
+}
+?>
         </ul>
     </div>
 

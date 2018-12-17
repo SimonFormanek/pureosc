@@ -17,6 +17,11 @@
     var $sort_order;
     var $enabled = false;
 
+    public function __construct()
+    {
+        $this->d_latest_addons();
+    }
+    
     function d_latest_addons() {
       $this->title = MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_TITLE;
       $this->description = MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_DESCRIPTION;

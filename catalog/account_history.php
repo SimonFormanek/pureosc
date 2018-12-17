@@ -74,22 +74,27 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 'SSL'), 'primary', NULL, 'btn-primary btn-xs');
                         ?>
                         <?php
-                        echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&id='.$history['orders_id'].'&embed=true'.'">'._('PDF Invoice').'</a>';
-                        echo '<a class="btn btn-success btn-xs" role="button" href="'.'getisdoc.php?evidence=faktura-vydana&id='.$history['orders_id'].'&embed=true'.'">'._('ISDOC Invoice').'</a>';
-                        ?>
+                        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE')
+                            == 'true')) {
+                            $docId = 'ext:orders:'.$history['orders_id'];
+
+                            echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&id='.$docId.'&embed=true'.'">'._('PDF Invoice').'</a>';
+                            echo '<a class="btn btn-success btn-xs" role="button" href="'.'getisdoc.php?evidence=faktura-vydana&id='.$docId.'&embed=true'.'">'._('ISDOC Invoice').'</a>';
+                            ?>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        <?php
-    }
-    ?>
+                <?php
+            }
+        }
+        ?>
         <div class="row">
             <div class="col-md-6 pagenumber"><?php echo $history_split->display_count(TEXT_DISPLAY_NUMBER_OF_ORDERS); ?></div>
             <div class="col-md-6"><span class="pull-right pagenav"><ul class="pagination"><?php
-    echo $history_split->display_links(MAX_DISPLAY_PAGE_LINKS,
-        tep_get_all_get_params(array('page', 'info', 'x', 'y')));
-    ?></ul></span><span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span></div>
+                        echo $history_split->display_links(MAX_DISPLAY_PAGE_LINKS,
+                            tep_get_all_get_params(array('page', 'info', 'x', 'y')));
+                        ?></ul></span><span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span></div>
         </div>
 
         <?php
