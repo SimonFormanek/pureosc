@@ -404,3 +404,5 @@ define('BOX_HEADER_TAGS_SILO', 'Silo Control',true);
 define('BOX_HEADER_TAGS_SOCIAL', 'Sociální sítě',true);
 define('BOX_HEADER_TAGS_TEST', 'Test',true);
 /*** End Header Tags SEO ***/
+
+define('ENTRY_COMPANY_NUMBER','IČO');
