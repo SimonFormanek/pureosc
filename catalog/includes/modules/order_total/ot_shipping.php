@@ -125,5 +125,3 @@ class ot_shipping
                 $this->keys())."')");
     }
 }
-
-

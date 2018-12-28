@@ -28,3 +28,5 @@ Makefile
 /gpe.signing_test.pem
 /gpwebpay-pvk.key
 /docs/
+/catalog/images/thumbs/
+/images/thumbs/

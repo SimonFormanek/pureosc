@@ -35,7 +35,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 </tr>
                 <tr>
                     <td><?php echo tep_draw_separator('pixel_trans.gif', '1',
-    '10'); ?></td>
+    '10');
+?></td>
                 </tr>
                 <!-- body_text //-->
                 <td width="100%" valign="top">
@@ -52,7 +53,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     $result_1    = tep_db_query($query_1);
                                     $num_of_rows = tep_db_num_rows($result_1);
                                     $a_to_pass   = array();
-                                    for ($i = 0; $i < $num_of_rows;  ++$i) {
+                                    for ($i = 0; $i < $num_of_rows; ++$i) {
                                         $fields        = mysqli_fetch_row($result_1);
                                         $a_to_pass[$i] = $fields[$y             = 0];
                                         $b_to_pass[$i] = $fields[++$y];
@@ -160,26 +161,33 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <tr>
                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '1', '10'); ?></td>
+                                        '1', '10');
+                                    ?></td>
                             </tr>
                             <tr>
-                                <td class="main"><?php echo sprintf(TEXT_LINK_SORT_PRODUCTS,
+                                <td class="main"><?php
+                                    echo sprintf(TEXT_LINK_SORT_PRODUCTS,
                                         tep_href_link(FILENAME_ARTICLES_XSELL,
                                             '&sort=1&add_related_article_ID='.(int) $_POST['add_related_article_ID'],
-                                            'NONSSL')); ?></td>
+                                            'NONSSL'));
+                                    ?></td>
                             </tr>
                             <tr>
                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '1', '10'); ?></td>
+                                        '1', '10');
+                                    ?></td>
                             </tr>
                             <tr>
-                                <td class="main"><?php echo sprintf(TEXT_LINK_MAIN_PAGE,
+                                <td class="main"><?php
+                                    echo sprintf(TEXT_LINK_MAIN_PAGE,
                                         tep_href_link(FILENAME_ARTICLES_XSELL,
-                                            '', 'NONSSL')); ?></td>
+                                            '', 'NONSSL'));
+                                    ?></td>
                             </tr>
                             <tr>
                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-                            '1', '10'); ?></td>
+                            '1', '10');
+                                    ?></td>
                             </tr>
                             <?php
 //    if ($_POST[xsell_id])
@@ -199,7 +207,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
                                 <table border="0" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
                                     <form action="<?php tep_href_link(FILENAME_ARTICLES_XSELL,
-                                    '', 'NONSSL'); ?>" method="post">
+                                    '', 'NONSSL');
+                                ?>" method="post">
                                         <tr class="dataTableHeadingRow">
                                             <td class="dataTableHeadingContent">&nbsp;</td>
                                             <td class="dataTableHeadingContent" nowrap>ID</td>
@@ -220,18 +229,18 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                         for ($i = 0; $i < $num_of_products; ++$i) {
                                             ?><tr bgcolor="#FFFFFF">
                                                 <td class="dataTableContent"><input
-                                                        <?php
-                                                        /* this is to see it it is in the DB */
-                                                        if ($xsell_id_pr) {
-                                                            foreach ($xsell_id_pr as $compare_checked) {
-                                                                if ($products_id[$i]
-                                                                    === $compare_checked) {
-                                                                    echo "checked";
-                                                                    $run_update = true;
-                                                                }
+                                                    <?php
+                                                    /* this is to see it it is in the DB */
+                                                    if ($xsell_id_pr) {
+                                                        foreach ($xsell_id_pr as $compare_checked) {
+                                                            if ($products_id[$i]
+                                                                === $compare_checked) {
+                                                                echo "checked";
+                                                                $run_update = true;
                                                             }
                                                         }
-                                                        ?> size="20"  size="20"  name="xsell_id[]" type="checkbox" value="<?php echo $products_id[$i]; ?>">
+                                                    }
+                                                    ?> size="20"  size="20"  name="xsell_id[]" type="checkbox" value="<?php echo $products_id[$i]; ?>">
                                                 </td>
 
                                                     <?php
@@ -244,25 +253,27 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
                                             <td bgcolor="#CCCCCC">
-                                                <?php
-                                                // list also those products not in current category
-                                                $myquery     = "SELECT ax.xsell_id AS nid FROM ".TABLE_ARTICLES_XSELL." ax, ".TABLE_PRODUCTS_TO_CATEGORIES." p2c WHERE ax.articles_id='".(int) $_POST['add_related_article_ID']."' AND ax.xsell_id=p2c.products_id AND categories_id!='".tep_db_input((int) $_GET['cPath'])."'";
-                                                $myids_query = tep_db_query($myquery);
-                                                ?> <div style="display:none"> <?php
-                                while ($tempid      = tep_db_fetch_array($myids_query)) {
-                                    echo '<input type="checkbox" name="xsell_id[]" value="'.$tempid['nid'].'" checked>';
-                                }
-                                ?></div>
+        <?php
+        // list also those products not in current category
+        $myquery     = "SELECT ax.xsell_id AS nid FROM ".TABLE_ARTICLES_XSELL." ax, ".TABLE_PRODUCTS_TO_CATEGORIES." p2c WHERE ax.articles_id='".(int) $_POST['add_related_article_ID']."' AND ax.xsell_id=p2c.products_id AND categories_id!='".tep_db_input((int) $_GET['cPath'])."'";
+        $myids_query = tep_db_query($myquery);
+        ?> <div style="display:none"> <?php
+                                        while ($tempid      = tep_db_fetch_array($myids_query)) {
+                                            echo '<input type="checkbox" name="xsell_id[]" value="'.$tempid['nid'].'" checked>';
+                                        }
+                                        ?></div>
                                                 <input type="hidden" name="run_update" value="<?php echo $run_update; ?>">
                                                 <input type="hidden" name="add_related_article_ID" value="<?php echo (int) $_GET['add_related_article_ID']; ?>">
-                                <?php echo tep_image_submit('button_save.gif',
+                                <?php
+                                echo tep_image_submit('button_save.gif',
                                     IMAGE_SAVE).'&nbsp;&nbsp;<a href="'.tep_href_link(FILENAME_ARTICLES_XSELL).'">'.tep_image_button('button_cancel.gif',
-                                    IMAGE_CANCEL).'</a>'; ?>
+                                    IMAGE_CANCEL).'</a>';
+                                ?>
                                             </td>
                                         </tr>
                                     </form>
                                 </table>
-                            <?php
+                                <?php
                             }
                         }
                         // sort routines
@@ -286,15 +297,18 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                             </tr>
                                             <tr>
                                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-                            '1', '10'); ?></td>
+                                                '1', '10');
+                                            ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="main"><?php echo sprintf(TEXT_LINK_MAIN_PAGE,
-                            tep_href_link(FILENAME_ARTICLES_XSELL, '', 'NONSSL')); ?></td>
+                            tep_href_link(FILENAME_ARTICLES_XSELL, '', 'NONSSL'));
+                        ?></td>
                                             </tr>
                                             <tr>
                                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-                            '1', '10'); ?></td>
+                            '1', '10');
+                        ?></td>
                                             </tr>
                                                     <?php
                                                     $run_once++;
@@ -302,9 +316,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                         }// end of foreach.
                                     }
                                     ?>
-                            <form method="post" action="<?php tep_href_link(FILENAME_ARTICLES_XSELL,
-                                    'sort=1&add_related_article_ID='.$_POST['add_related_article_ID'],
-                                    'NONSSL'); ?>">
+                            <form method="post" action="<?php
+                                    tep_href_link(FILENAME_ARTICLES_XSELL,
+                                        'sort=1&add_related_article_ID='.$_POST['add_related_article_ID'],
+                                        'NONSSL');
+                                    ?>">
                                 <table cellpadding="3" cellspacing="1" bgcolor="#CCCCCC" border="0">
                                     <tr class="dataTableHeadingRow">
                                         <td class="dataTableHeadingContent">ID</td>
@@ -316,7 +332,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                 list ($ID_PR, $products_id_pr, $xsell_id_pr, $order_PR)
                                                     = general_db_conct($query);
                                                 $ordering_size = sizeof($ID_PR);
-                                                for ($i = 0; $i < $ordering_size;  ++$i) {
+                                                for ($i = 0; $i < $ordering_size; ++$i) {
 
                                                     $query = "select p.products_id, pd.products_name, pd.products_description, pd.products_url from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd where pd.products_id = p.products_id and pd.language_id = '".(int) $languages_id."' and p.products_id = ".$xsell_id_pr[$i]."";
 
@@ -327,24 +343,26 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                             <td class="dataTableContent"><?php echo $products_id[0]; ?></td>
                                             <td class="dataTableContent"><?php echo $products_name[0]; ?></td>
                                             <td class="dataTableContent" align="center"><select name="<?php echo $products_id[0]; ?>">
-        <?php
-        for ($y = 1; $y <= $ordering_size;  ++$y) {
-            echo "<option value=\"$y\"";
-            if (!(strcmp($y, "$order_PR[$i]"))) {
-                echo "SELECTED";
-            }
-            echo ">$y</option>";
-        }
-        ?>
+                                                <?php
+                                                for ($y = 1; $y <= $ordering_size; ++$y) {
+                                                    echo "<option value=\"$y\"";
+                                                    if (!(strcmp($y,
+                                                            "$order_PR[$i]"))) {
+                                                        echo "SELECTED";
+                                                    }
+                                                    echo ">$y</option>";
+                                                }
+                                                ?>
                                                 </select></td>
                                         </tr>
     <?php } // the end of foreach
     ?>
                                     <tr>
                                         <td>&nbsp;</td>
-                                        <td bgcolor="#CCCCCC"><?php echo tep_image_submit('button_save.gif',
-        IMAGE_SAVE).'&nbsp;&nbsp;<a href="'.tep_href_link(FILENAME_ARTICLES_XSELL).'">'.tep_image_button('button_cancel.gif',
-        IMAGE_CANCEL).'</a>'; ?></td>
+                                        <td bgcolor="#CCCCCC"><?php
+    echo tep_image_submit('button_save.gif', IMAGE_SAVE).'&nbsp;&nbsp;<a href="'.tep_href_link(FILENAME_ARTICLES_XSELL).'">'.tep_image_button('button_cancel.gif',
+        IMAGE_CANCEL).'</a>';
+    ?></td>
                                         <td>&nbsp;</td>
                                     </tr>
                                 </table>

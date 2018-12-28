@@ -205,7 +205,8 @@ if ($error == true) {
     <table border="0" width="100%" cellspacing="2" cellpadding="2">
         <tr>
             <td width="100%" valign="top"><form name="account_edit" method="post" <?php echo 'action="'.tep_href_link(FILENAME_CREATE_ACCOUNT_PROCESS,
-        '', 'SSL').'"'; ?> onSubmit="return check_form();"><input type="hidden" name="action" value="process"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+        '', 'SSL').'"';
+    ?> onSubmit="return check_form();"><input type="hidden" name="action" value="process"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                         <tr>
                             <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                                     <tr>
@@ -217,30 +218,34 @@ if ($error == true) {
                         if (sizeof($navigation->snapshot) > 0) {
                             ?>
                             <tr>
-                                <td class="smallText"><br><?php echo sprintf(TEXT_ORIGIN_LOGIN,
-                        tep_href_link(FILENAME_LOGIN, tep_get_all_get_params(),
-                            'SSL')); ?></td>
+                                <td class="smallText"><br><?php
+                                    echo sprintf(TEXT_ORIGIN_LOGIN,
+                                        tep_href_link(FILENAME_LOGIN,
+                                            tep_get_all_get_params(), 'SSL'));
+                                    ?></td>
                             </tr>
-                                    <?php
-                                }
-                                ?>
+        <?php
+    }
+    ?>
                         <tr>
                             <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                '100%', '10'); ?></td>
+                                '100%', '10');
+                            ?></td>
                         </tr>
                         <tr>
                             <td>
-    <?php
-    //$email_address = tep_db_prepare_input($HTTP_GET_VARS['email_address']);
-    $account['entry_country_id'] = STORE_COUNTRY;
+                                <?php
+                                //$email_address = tep_db_prepare_input($HTTP_GET_VARS['email_address']);
+                                $account['entry_country_id'] = STORE_COUNTRY;
 
-    require(DIR_WS_MODULES.'account_details.php');
-    ?>
+                                require(DIR_WS_MODULES.'account_details.php');
+                                ?>
                             </td>
                         </tr>
                         <tr>
                             <td align="right" class="main"><br /><?php echo tep_draw_button(IMAGE_CONTINUE,
-        'person', null, 'primary'); ?>&nbsp;&nbsp;</td>
+                                    'person', null, 'primary');
+                                ?>&nbsp;&nbsp;</td>
                         </tr>
                     </table></form></td>
         </tr>

@@ -6,7 +6,7 @@
   Created By John Barounis, johnbarounis.com
   Website: http://www.alternative-administration-system.com
 
-*/
+ */
 
 defined('AAS') or die;
 ?>

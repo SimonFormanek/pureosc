@@ -8,10 +8,10 @@
   Copyright (c) 2002 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
-define('NAVBAR_TITLE', 'Ochrana osobních údajů',true);
-define('HEADING_TITLE', 'Ochrana osobních údajů',true);
+define('NAVBAR_TITLE', 'Ochrana osobních údajů', true);
+define('HEADING_TITLE', 'Ochrana osobních údajů', true);
 
-define('TEXT_INFORMATION', 'Vložte text.',true);
+define('TEXT_INFORMATION', 'Vložte text.', true);
 ?>

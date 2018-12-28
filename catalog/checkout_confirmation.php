@@ -362,16 +362,16 @@ echo tep_draw_form('checkout_confirmation', $form_action_url, 'post');
                     echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
                     ?>"><button type="button" class="btn btn-default btn-circle">1</button></a>
                     <p><a href="<?php
-                    echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
-                    ?>"><?php echo CHECKOUT_BAR_DELIVERY; ?></a></p>
+                        echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
+                        ?>"><?php echo CHECKOUT_BAR_DELIVERY; ?></a></p>
                 </div>
                 <div class="stepwizard-step">
                     <a href="<?php
-                        echo tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL');
+                    echo tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL');
                     ?>"><button type="button" class="btn btn-default btn-circle">2</button></a>
                     <p><a href="<?php
-                    echo tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL');
-                    ?>"><?php echo CHECKOUT_BAR_PAYMENT; ?></a></p>
+                        echo tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL');
+                        ?>"><?php echo CHECKOUT_BAR_PAYMENT; ?></a></p>
                 </div>
                 <div class="stepwizard-step">
                     <button type="button" class="btn btn-primary btn-circle">3</button>

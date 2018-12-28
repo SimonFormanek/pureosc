@@ -117,13 +117,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 </td>
                             </tr>
                         </table></td>
-                    <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_DELETE,
-                                        'trash',
-                                        tep_href_link(FILENAME_ACTION_RECORDER,
-                                            'action=expire'.(isset($_GET['module'])
-                                            && in_array($_GET['module'],
-                                                $modules_array) ? '&module='.$_GET['module']
-                                                    : '')), 'primary'); ?></td>
+                    <td class="smallText" align="right"><?php
+                        echo tep_draw_button(IMAGE_DELETE, 'trash',
+                            tep_href_link(FILENAME_ACTION_RECORDER,
+                                'action=expire'.(isset($_GET['module']) && in_array($_GET['module'],
+                                    $modules_array) ? '&module='.$_GET['module']
+                                        : '')), 'primary');
+                        ?></td>
                 </tr>
             </table></td>
     </tr>
@@ -165,8 +165,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 }
 
                                 if ((!isset($_GET['aID']) || (isset($_GET['aID'])
-                                    && ($_GET['aID'] == $actions['id'])))
-                                    && !isset($aInfo)) {
+                                    && ($_GET['aID'] == $actions['id']))) && !isset($aInfo)) {
                                     $actions_extra_query = tep_db_query("select identifier from ".TABLE_ACTION_RECORDER." where id = '".(int) $actions['id']."'");
                                     $actions_extra       = tep_db_fetch_array($actions_extra_query);
 
@@ -185,66 +184,76 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 }
                                 ?>
                                 <td class="dataTableContent" align="center"><?php echo tep_image(DIR_WS_IMAGES.'icons/'.(($actions['success']
-            == '1') ? 'tick.gif' : 'cross.gif')); ?></td>
+                                == '1') ? 'tick.gif' : 'cross.gif'));
+                            ?></td>
                                 <td class="dataTableContent"><?php echo $module_title; ?></td>
                                 <td class="dataTableContent"><?php echo tep_output_string_protected($actions['user_name']).' ['.(int) $actions['user_id'].']'; ?></td>
                                 <td class="dataTableContent" align="right"><?php echo tep_datetime_short($actions['date_added']); ?></td>
-                                <td class="dataTableContent" align="right"><?php if ((isset($aInfo)
-            && is_object($aInfo)) && ($actions['id'] == $aInfo->id)) {
-            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif', '');
-        } else {
-            echo '<a href="'.tep_href_link(FILENAME_ACTION_RECORDER,
-                tep_get_all_get_params(array('aID')).'aID='.$actions['id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                IMAGE_ICON_INFO).'</a>';
-        } ?>&nbsp;</td>
+                                <td class="dataTableContent" align="right"><?php
+                                    if ((isset($aInfo) && is_object($aInfo)) && ($actions['id']
+                                        == $aInfo->id)) {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                            '');
+                                    } else {
+                                        echo '<a href="'.tep_href_link(FILENAME_ACTION_RECORDER,
+                                            tep_get_all_get_params(array('aID')).'aID='.$actions['id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                            IMAGE_ICON_INFO).'</a>';
+                                    }
+                                    ?>&nbsp;</td>
                     </tr>
-            <?php
-        }
-        ?>
+    <?php
+}
+?>
                 <tr>
                     <td colspan="5"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-                                <td class="smallText" valign="top"><?php echo $actions_split->display_count($actions_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-            TEXT_DISPLAY_NUMBER_OF_ENTRIES); ?></td>
-                                <td class="smallText" align="right"><?php echo $actions_split->display_links($actions_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $_GET['page'],
-            (isset($_GET['module']) && in_array($_GET['module'],
-                $modules_array) && is_object(${$_GET['module']}) ? 'module='.$_GET['module']
-                    : null).'&'.(isset($_GET['search']) && !empty($_GET['search'])
-                    ? 'search='.$_GET['search'] : null)); ?></td>
+                                <td class="smallText" valign="top"><?php
+                                    echo $actions_split->display_count($actions_query_numrows,
+                                        MAX_DISPLAY_SEARCH_RESULTS,
+                                        $_GET['page'],
+                                        TEXT_DISPLAY_NUMBER_OF_ENTRIES);
+                                    ?></td>
+                                <td class="smallText" align="right"><?php
+                                    echo $actions_split->display_links($actions_query_numrows,
+                                        MAX_DISPLAY_SEARCH_RESULTS,
+                                        MAX_DISPLAY_PAGE_LINKS, $_GET['page'],
+                                        (isset($_GET['module']) && in_array($_GET['module'],
+                                            $modules_array) && is_object(${$_GET['module']})
+                                                ? 'module='.$_GET['module'] : null).'&'.(isset($_GET['search'])
+                                        && !empty($_GET['search']) ? 'search='.$_GET['search']
+                                                : null));
+                                    ?></td>
                             </tr>
                         </table></td>
                 </tr>
             </table></td>
-<?php
-$heading  = array();
-$contents = array();
+        <?php
+        $heading  = array();
+        $contents = array();
 
-switch ($action) {
-    default:
-        if (isset($aInfo) && is_object($aInfo)) {
-            $heading[] = array('text' => '<strong>'.$aInfo->module.'</strong>');
+        switch ($action) {
+            default:
+                if (isset($aInfo) && is_object($aInfo)) {
+                    $heading[] = array('text' => '<strong>'.$aInfo->module.'</strong>');
 
-            $contents[] = array('text' => TEXT_INFO_IDENTIFIER.'<br /><br />'.(!empty($aInfo->identifier)
-                    ? '<a href="'.tep_href_link(FILENAME_ACTION_RECORDER,
-                    'search='.$aInfo->identifier).'"><u>'.tep_output_string_protected($aInfo->identifier).'</u></a>'
-                    : '(empty)'));
-            $contents[] = array('text' => '<br />'.TEXT_INFO_DATE_ADDED.' '.tep_datetime_short($aInfo->date_added));
+                    $contents[] = array('text' => TEXT_INFO_IDENTIFIER.'<br /><br />'.(!empty($aInfo->identifier)
+                            ? '<a href="'.tep_href_link(FILENAME_ACTION_RECORDER,
+                            'search='.$aInfo->identifier).'"><u>'.tep_output_string_protected($aInfo->identifier).'</u></a>'
+                            : '(empty)'));
+                    $contents[] = array('text' => '<br />'.TEXT_INFO_DATE_ADDED.' '.tep_datetime_short($aInfo->date_added));
+                }
+                break;
         }
-        break;
-}
 
-if ((tep_not_null($heading)) && (tep_not_null($contents))) {
-    echo '            <td width="25%" valign="top">'."\n";
+        if ((tep_not_null($heading)) && (tep_not_null($contents))) {
+            echo '            <td width="25%" valign="top">'."\n";
 
-    $box = new box;
-    echo $box->infoBox($heading, $contents);
+            $box = new box;
+            echo $box->infoBox($heading, $contents);
 
-    echo '            </td>'."\n";
-}
-?>
+            echo '            </td>'."\n";
+        }
+        ?>
     </tr>
 </table></td>
 </tr>

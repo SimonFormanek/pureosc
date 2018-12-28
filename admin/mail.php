@@ -18,12 +18,12 @@ if (($action == 'send_email_to_user') && isset($_POST['customers_email_address']
     && !isset($_POST['back_x'])) {
     switch ($_POST['customers_email_address']) {
         case '***':
-            $mail_query              = tep_db_query("select customers_firstname, customers_lastname, customers_email_address from ".TABLE_CUSTOMERS);
-            $mail_sent_to            = TEXT_ALL_CUSTOMERS;
+            $mail_query   = tep_db_query("select customers_firstname, customers_lastname, customers_email_address from ".TABLE_CUSTOMERS);
+            $mail_sent_to = TEXT_ALL_CUSTOMERS;
             break;
         case '**D':
 //            $mail_query              = tep_db_query("select customers_firstname, customers_lastname, customers_email_address from ".TABLE_CUSTOMERS." where customers_newsletter = '1' and customers_newsletter_date_ccepted  is not null");
-            
+
             $mail_query              = tep_db_query("select customers_firstname, customers_lastname, customers_email_address from ".TABLE_CUSTOMERS." where customers_newsletter = '1'");
             $mail_sent_to            = TEXT_NEWSLETTER_CUSTOMERS;
             break;
@@ -65,8 +65,8 @@ if (($action == 'preview') && !isset($_POST['customers_email_address'])) {
 }
 
 if (isset($_GET['mail_sent_to'])) {
-    $messageStack->add(sprintf(NOTICE_EMAIL_SENT_TO,
-            $_GET['mail_sent_to']), 'success');
+    $messageStack->add(sprintf(NOTICE_EMAIL_SENT_TO, $_GET['mail_sent_to']),
+        'success');
 }
 
 require(DIR_WS_INCLUDES.'template_top.php');
@@ -78,7 +78,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -99,55 +100,63 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     }
                     ?>
                     <tr><?php echo tep_draw_form('mail', FILENAME_MAIL,
-                        'action=send_email_to_user'); ?>
+                        'action=send_email_to_user');
+                    ?>
                         <td><table border="0" width="100%" cellpadding="0" cellspacing="2">
                                 <tr>
                                     <td><?php echo tep_draw_separator('pixel_trans.gif',
-                        '1', '10'); ?></td>
+                        '1', '10');
+                    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="smallText"><strong><?php echo TEXT_CUSTOMER; ?></strong><br /><?php echo $mail_sent_to; ?></td>
                                 </tr>
                                 <tr>
                                     <td><?php echo tep_draw_separator('pixel_trans.gif',
-                        '1', '10'); ?></td>
+                        '1', '10');
+                    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="smallText"><strong><?php echo TEXT_FROM; ?></strong><br /><?php echo htmlspecialchars(stripslashes($_POST['from'])); ?></td>
                                 </tr>
                                 <tr>
                                     <td><?php echo tep_draw_separator('pixel_trans.gif',
-                        '1', '10'); ?></td>
+                                        '1', '10');
+                                    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="smallText"><strong><?php echo TEXT_SUBJECT; ?></strong><br /><?php echo htmlspecialchars(stripslashes($_POST['subject'])); ?></td>
                                 </tr>
                                 <tr>
                                     <td><?php echo tep_draw_separator('pixel_trans.gif',
-                        '1', '10'); ?></td>
+                                        '1', '10');
+                                    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="smallText"><strong><?php echo TEXT_MESSAGE; ?></strong><br /><?php echo nl2br(htmlspecialchars(stripslashes($_POST['message']))); ?></td>
                                 </tr>
                                 <tr>
                                     <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '1', '10'); ?></td>
+                                        '1', '10');
+                    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="smallText" align="right">
-    <?php
-    /* Re-Post all POST'ed variables */
-    reset($_POST);
-    while (list($key, $value) = each($_POST)) {
-        if (!is_array($_POST[$key])) {
-            echo tep_draw_hidden_field($key,
-                htmlspecialchars(stripslashes($value)));
-        }
-    }
+                                        <?php
+                                        /* Re-Post all POST'ed variables */
+                                        reset($_POST);
+                                        while (list($key, $value) = each($_POST)) {
+                                            if (!is_array($_POST[$key])) {
+                                                echo tep_draw_hidden_field($key,
+                                                    htmlspecialchars(stripslashes($value)));
+                                            }
+                                        }
 
-    echo tep_draw_button(IMAGE_SEND_EMAIL, 'mail-closed', null, 'primary').tep_draw_button(IMAGE_CANCEL,
-        'close', tep_href_link(FILENAME_MAIL));
-    ?>
+                                        echo tep_draw_button(IMAGE_SEND_EMAIL,
+                                            'mail-closed', null, 'primary').tep_draw_button(IMAGE_CANCEL,
+                                            'close',
+                                            tep_href_link(FILENAME_MAIL));
+                                        ?>
                                     </td>
                                 </tr>
                             </table></td>
@@ -156,11 +165,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             } else {
                                 ?>
                     <tr><?php echo tep_draw_form('mail', FILENAME_MAIL,
-                                'action=preview'); ?>
+                                'action=preview');
+                                ?>
                         <td><table border="0" cellpadding="0" cellspacing="2">
                                 <tr>
                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                '1', '10'); ?></td>
+                                '1', '10');
+                                ?></td>
                                 </tr>
     <?php
     $customers        = array();
@@ -175,22 +186,26 @@ require(DIR_WS_INCLUDES.'template_top.php');
     ?>
                                 <tr>
                                     <td class="main"><?php echo TEXT_CUSTOMER; ?></td>
-                                    <td><?php echo tep_draw_pull_down_menu('customers_email_address',
-        $customers,
-        (isset($_GET['customer']) ? $_GET['customer'] : '')); ?></td>
+                                    <td><?php
+    echo tep_draw_pull_down_menu('customers_email_address', $customers,
+        (isset($_GET['customer']) ? $_GET['customer'] : ''));
+    ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+        '1', '10');
+    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main"><?php echo TEXT_FROM; ?></td>
                                     <td><?php echo tep_draw_input_field('from',
-        EMAIL_FROM); ?></td>
+        EMAIL_FROM);
+    ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+        '1', '10');
+    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main"><?php echo TEXT_SUBJECT; ?></td>
@@ -198,20 +213,24 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 </tr>
                                 <tr>
                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                    '1', '10'); ?></td>
+        '1', '10');
+    ?></td>
                                 </tr>
                                 <tr>
                                     <td valign="top" class="main"><?php echo TEXT_MESSAGE; ?></td>
                                     <td><?php echo tep_draw_textarea_field('message',
-        'soft', '60', '15'); ?></td>
+                    'soft', '60', '15');
+                ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+                    '1', '10');
+    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="smallText" colspan="2" align="right"><?php echo tep_draw_button(IMAGE_PREVIEW,
-        'document', null, 'primary'); ?></td>
+        'document', null, 'primary');
+    ?></td>
                                 </tr>
                             </table></td>
                         </form></tr>

@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.html or http://ckeditor.com/license
  */
 
-CKEDITOR.editorConfig = function(config) {
+CKEDITOR.editorConfig = function (config) {
     // Define changes to default configuration here.
     // For the complete reference:
     // http://docs.ckeditor.com/#!/api/CKEDITOR.config
@@ -48,5 +48,5 @@ CKEDITOR.editorConfig = function(config) {
     config.filebrowserFlashUploadUrl = './ext/kcfinder/upload.php?opener=ckeditor&type=flash';
     //allow custom css
     config.allowedContent = true;
-config.format_tags = 'p;h1;h2;h3;pre;div';
+    config.format_tags = 'p;h1;h2;h3;pre;div';
 };

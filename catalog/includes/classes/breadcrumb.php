@@ -18,7 +18,7 @@ class breadcrumb
     {
         $this->breadcrumb();
     }
-    
+
     function breadcrumb()
     {
         $this->reset();
@@ -54,5 +54,3 @@ class breadcrumb
         return $trail_string;
     }
 }
-
-

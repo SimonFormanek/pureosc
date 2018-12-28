@@ -39,7 +39,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -92,14 +93,16 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)">
                                         <td class="dataTableContent"><?php echo $cache_blocks[$i]['title']; ?></td>
                                         <td class="dataTableContent" align="right"><?php echo $cache_mtime; ?></td>
-                                        <td class="dataTableContent" align="right"><?php echo '<a href="'.tep_href_link(FILENAME_CACHE,
-                                'action=reset&block='.$cache_blocks[$i]['code']).'">'.tep_image(DIR_WS_IMAGES.'icon_reset.gif',
-                                'Reset', 13, 13).'</a>'; ?>&nbsp;</td>
+                                        <td class="dataTableContent" align="right"><?php
+                                            echo '<a href="'.tep_href_link(FILENAME_CACHE,
+                                                'action=reset&block='.$cache_blocks[$i]['code']).'">'.tep_image(DIR_WS_IMAGES.'icon_reset.gif',
+                                                'Reset', 13, 13).'</a>';
+                                            ?>&nbsp;</td>
                                     </tr>
-        <?php
-    }
-}
-?>
+                                    <?php
+                                }
+                            }
+                            ?>
                             <tr>
                                 <td class="smallText" colspan="3"><?php echo TEXT_CACHE_DIRECTORY.' '.DIR_FS_CACHE; ?></td>
                             </tr>

@@ -108,5 +108,3 @@ class cm_account_braintree_cards
         return array('MODULE_CONTENT_ACCOUNT_BRAINTREE_CARDS_STATUS', 'MODULE_CONTENT_ACCOUNT_BRAINTREE_CARDS_SORT_ORDER');
     }
 }
-
-

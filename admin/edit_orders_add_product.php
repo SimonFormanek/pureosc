@@ -291,14 +291,14 @@ if ($products_attributes['total'] > 0) $has_attributes            = true;
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
         <title><?php echo TITLE; ?></title>
         <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<?php
-if ((isset($_GET['submitForm'])) && ($_GET['submitForm'] == 'yes')) {
-    echo '<script language="javascript" type="text/javascript"><!--'."\n".
-    '  window.opener.document.edit_order.subaction.value = "add_product";'."\n".
-    '  window.opener.document.edit_order.submit();'."\n".
-    '//--></script>';
-}
-?>
+        <?php
+        if ((isset($_GET['submitForm'])) && ($_GET['submitForm'] == 'yes')) {
+            echo '<script language="javascript" type="text/javascript"><!--'."\n".
+            '  window.opener.document.edit_order.subaction.value = "add_product";'."\n".
+            '  window.opener.document.edit_order.submit();'."\n".
+            '//--></script>';
+        }
+        ?>
     </head>
 
     <body>
@@ -308,16 +308,21 @@ if ((isset($_GET['submitForm'])) && ($_GET['submitForm'] == 'yes')) {
                 <td><table border="0" cellspacing="0" cellpadding="2" style="border: 1px solid #C9C9C9;" align="center">
                         <tr class="dataTableHeadingRow">
                             <td class="dataTableHeadingContent" colspan="3" align="center"><?php echo sprintf(ADDING_TITLE,
-    $oID); ?></td>
+            $oID);
+        ?></td>
                         </tr>
                         <tr class="dataTableRow">
                         <form action="<?php echo tep_href_link(FILENAME_ORDERS_EDIT_ADD_PRODUCT,
-    'oID='.$_GET['oID']); ?>" method="POST">
+                                    'oID='.$_GET['oID']);
+        ?>" method="POST">
                             <td class="dataTableContent" align="right"><?php echo TEXT_STEP_1; ?></td>
-                            <td class="dataTableContent" valign="top"><?php echo tep_draw_pull_down_menu('add_product_categories_id',
-    tep_get_category_tree('0', '', '0', $category_array),
-    $add_product_categories_id,
-    'style="width:300px;" onchange="this.form.submit();"'); ?></td>
+                            <td class="dataTableContent" valign="top"><?php
+                                echo tep_draw_pull_down_menu('add_product_categories_id',
+                                    tep_get_category_tree('0', '', '0',
+                                        $category_array),
+                                    $add_product_categories_id,
+                                    'style="width:300px;" onchange="this.form.submit();"');
+                                ?></td>
                             <td class="dataTableContent" align="center">
                                 <noscript>
                                     <input type="submit" value="<?php echo TEXT_BUTTON_SELECT_CATEGORY; ?>">
@@ -331,40 +336,45 @@ if ((isset($_GET['submitForm'])) && ($_GET['submitForm'] == 'yes')) {
             </tr>
             <tr class="dataTableRow">
             <form action="<?php echo tep_href_link(FILENAME_ORDERS_EDIT_ADD_PRODUCT,
-            'oID='.$_GET['oID']); ?>" method="POST">
+                                    'oID='.$_GET['oID']);
+                                ?>" method="POST">
                 <td>&nbsp;</td>
                 <td class="dataTableContent" valign="top">&nbsp;<input type="text" name="product_search" value="<?php if (isset($_POST['product_search'])) echo $_POST['product_search']; ?>" onchange="this.form.submit();">
                 </td>
                 <td class="dataTableContent" align="center"><noscript><input type="submit" value="Search for This Product"></noscript><input type="hidden" name="step" value="2"><input type="hidden" name="search" value="1"></td>
             </form>
         </tr>
-<?php if ($not_found) { ?>
+        <?php if ($not_found) { ?>
             <tr class="dataTableRow">
                 <td class="dataTableContent" colspan="3" align="center"><?php echo TEXT_PRODUCT_NOT_FOUND; ?></td>
             </tr>
-<?php } ?>
-                <?php
-                if (($step > 1) && (!$not_found)) {
-                    echo '          <tr class="dataTableRow">'."\n".
-                    '            <td colspan="3" style="border-bottom: 1px solid #C9C9C9;">'.tep_draw_separator('pixel_trans.gif',
-                        '1', '1').'</td>'."\n".
-                    '          </tr>'."\n".
-                    '          <tr class="dataTableRow">'."\n".
-                    '            <td colspan="3" style="background: #FFFFFF;">'.tep_draw_separator('pixel_trans.gif',
-                        '1', '10').'</td>'."\n".
-                    '          </tr>'."\n";
-                    ?>
+        <?php } ?>
+        <?php
+        if (($step > 1) && (!$not_found)) {
+            echo '          <tr class="dataTableRow">'."\n".
+            '            <td colspan="3" style="border-bottom: 1px solid #C9C9C9;">'.tep_draw_separator('pixel_trans.gif',
+                '1', '1').'</td>'."\n".
+            '          </tr>'."\n".
+            '          <tr class="dataTableRow">'."\n".
+            '            <td colspan="3" style="background: #FFFFFF;">'.tep_draw_separator('pixel_trans.gif',
+                '1', '10').'</td>'."\n".
+            '          </tr>'."\n";
+            ?>
             <tr class="dataTableRow"> 
                 <td colspan="3" style="border-top: 1px solid #C9C9C9;"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '1'); ?></td>
+                '1', '1');
+            ?></td>
             </tr>
             <tr class="dataTableRow">
             <form action="<?php echo tep_href_link(FILENAME_ORDERS_EDIT_ADD_PRODUCT,
-        'oID='.$_GET['oID']); ?>" method="POST">
+                'oID='.$_GET['oID']);
+            ?>" method="POST">
                 <td class="dataTableContent" align="right"><?php echo TEXT_STEP_2; ?></td>
-                <td class="dataTableContent" valign="top"><?php echo tep_draw_pull_down_menu('add_product_products_id',
-        $product_array, $add_product_products_id,
-        'style="width:300px;" onchange="this.form.submit();"'); ?></td>
+                <td class="dataTableContent" valign="top"><?php
+                echo tep_draw_pull_down_menu('add_product_products_id',
+                    $product_array, $add_product_products_id,
+                    'style="width:300px;" onchange="this.form.submit();"');
+                ?></td>
                 <td class="dataTableContent" align="center"><noscript><input type="submit" value="<?php echo TEXT_BUTTON_SELECT_PRODUCT; ?>"></noscript><input type="hidden" name="step" value="3">
                     <input type="hidden" name="add_product_categories_id" value="<?php echo $add_product_categories_id; ?>">
         <?php if (isset($_POST['search'])) { ?>

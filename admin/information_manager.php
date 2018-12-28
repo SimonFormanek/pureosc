@@ -240,7 +240,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 <!-- body_text //-->
 <table border="0" width="100%">
-    <tr><td align="right"><?php //echo $languages_id; ?></td></tr>
+    <tr><td align="right"><?php //echo $languages_id;  ?></td></tr>
     <?php
     switch ($action) {
 

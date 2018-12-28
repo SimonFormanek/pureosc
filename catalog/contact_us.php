@@ -74,8 +74,9 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
         </div>
 
         <div class="pull-right">
-            <?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-                'fa fa-angle-right', tep_href_link(FILENAME_DEFAULT));
+            <?php
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+                tep_href_link(FILENAME_DEFAULT));
             ?>
         </div>
     </div>
@@ -131,9 +132,10 @@ if (isset($_GET['action']) && ($_GET['action'] == 'success')) {
         </div>
 
         <div class="buttonSet">
-            <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-                        'fa fa-send', null, 'primary', null, 'btn-success');
-                    ?></div>
+            <div class="text-right"><?php
+                echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-send', null,
+                    'primary', null, 'btn-success');
+                ?></div>
         </div>
     </div>
 

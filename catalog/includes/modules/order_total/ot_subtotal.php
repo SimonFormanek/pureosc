@@ -14,12 +14,11 @@ class ot_subtotal
 {
     var $title, $output;
 
-    
     public function __construct()
     {
         $this->ot_subtotal();
     }
-    
+
     function ot_subtotal()
     {
         $this->code        = 'ot_subtotal';
@@ -69,5 +68,3 @@ class ot_subtotal
                 $this->keys())."')");
     }
 }
-
-

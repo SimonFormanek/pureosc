@@ -8,5 +8,5 @@
   Copyright (c) 2002 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 ?>

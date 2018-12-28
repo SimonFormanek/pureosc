@@ -23,7 +23,7 @@ class cm_cs_redirect_old_order
     {
         $this->cm_cs_redirect_old_order();
     }
-    
+
     function cm_cs_redirect_old_order()
     {
         $this->code  = get_class($this);
@@ -81,5 +81,3 @@ class cm_cs_redirect_old_order
             'MODULE_CONTENT_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_MINUTES', 'MODULE_CONTENT_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_SORT_ORDER');
     }
 }
-
-

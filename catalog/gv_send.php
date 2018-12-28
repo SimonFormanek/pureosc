@@ -107,9 +107,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
             </div>
 
             <div class="buttonSet">
-                <span class="buttonAction"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-            'triangle-1-e', tep_href_link(FILENAME_DEFAULT));
-            ?></span>
+                <span class="buttonAction"><?php
+                    echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'triangle-1-e',
+                        tep_href_link(FILENAME_DEFAULT));
+                    ?></span>
             </div>
 
             <?php
@@ -124,9 +125,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
             ?>
 
             <tr>
-                <td><form action="<?php echo tep_href_link(FILENAME_GV_SEND,
-                'action=process', 'NONSSL');
-            ?>" method="post"><table border="0" width="100%" cellspacing="0" cellpadding="2">
+                <td><form action="<?php
+                          echo tep_href_link(FILENAME_GV_SEND, 'action=process',
+                              'NONSSL');
+                          ?>" method="post"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
                                 <td class="main"><?php
                                     echo sprintf(MAIN_MESSAGE,
@@ -138,13 +140,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                         $send_name);
                                     ?></td>
                             </tr>
-    <?php
-    if ($_POST['message']) {
-        ?>
+                            <?php
+                            if ($_POST['message']) {
+                                ?>
                                 <tr>
-                                    <td class="main"><?php echo sprintf(PERSONAL_MESSAGE,
-            $gv_result['customers_firstname']);
-        ?></td>
+                                    <td class="main"><?php
+                                echo sprintf(PERSONAL_MESSAGE,
+                                    $gv_result['customers_firstname']);
+                                ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main"><?php echo stripslashes($_POST['message']); ?></td>
@@ -159,36 +162,40 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 stripslashes($_POST['message']));
                             ?>
                             <tr>
-                                <td class="main"><?php echo tep_image_submit('button_back.gif',
-                                IMAGE_BUTTON_BACK, 'name=back').'</a>';
-                            ?></td>
-                                <td align="right"><br><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-            'triangle-1-e', null, 'primary');
-        ?></td>
+                                <td class="main"><?php
+                                    echo tep_image_submit('button_back.gif',
+                                        IMAGE_BUTTON_BACK, 'name=back').'</a>';
+                                    ?></td>
+                                <td align="right"><br><?php
+                                    echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
+                                        'triangle-1-e', null, 'primary');
+                                    ?></td>
                             </tr>
                         </table></form></td>
             </tr>
-                                    <?php
-                                } elseif ($_GET['action'] == '' || $error) {
-                                    ?>
+    <?php
+} elseif ($_GET['action'] == '' || $error) {
+    ?>
             <tr>
                 <td class="main"><?php echo HEADING_TEXT; ?></td>
             </tr>
             <tr>
-                <td><form action="<?php echo tep_href_link(FILENAME_GV_SEND,
+                <td><form action="<?php
+                                    echo tep_href_link(FILENAME_GV_SEND,
                                         'action=send', 'NONSSL');
                                     ?>" method="post"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-                                <td class="main"><?php echo ENTRY_NAME; ?><br><?php echo tep_draw_input_field('to_name',
-                                    stripslashes($_POST['to_name']));
-                                ?></td>
+                                <td class="main"><?php echo ENTRY_NAME; ?><br><?php
+                                    echo tep_draw_input_field('to_name',
+                                        stripslashes($_POST['to_name']));
+                                    ?></td>
                             </tr>
                             <tr>
                                 <td class="main"><?php echo ENTRY_EMAIL; ?><br><?php
-                                echo tep_draw_input_field('email',
-                                    $_POST['email']);
-                                if ($error) echo $error_email;
-                                ?></td>
+                                    echo tep_draw_input_field('email',
+                                        $_POST['email']);
+                                    if ($error) echo $error_email;
+                                    ?></td>
                             </tr>
                             <tr>
                                 <td class="main"><?php echo ENTRY_AMOUNT; ?><br><?php
@@ -198,22 +205,25 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     ?></td>
                             </tr>
                             <tr>
-                                <td class="main"><?php echo ENTRY_MESSAGE; ?><br><?php echo tep_draw_textarea_field('message',
-            'soft', 50, 15, stripslashes($_POST['message']));
-                                    ?></td>
+                                <td class="main"><?php echo ENTRY_MESSAGE; ?><br><?php
+                                echo tep_draw_textarea_field('message', 'soft',
+                                    50, 15, stripslashes($_POST['message']));
+                                ?></td>
                             </tr>
                         </table>
                         <table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-    <?php
-    $back = sizeof($navigation->path) - 2;
-    ?>
-                                <td class="main"><?php echo tep_draw_button(IMAGE_BUTTON_BACK,
-        'triangle-1-w', tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
-    ?></td>
-                                <td class="main" align="right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-        'triangle-1-e', null, 'primary');
-    ?></td>
+                                    <?php
+                                    $back = sizeof($navigation->path) - 2;
+                                    ?>
+                                <td class="main"><?php
+            echo tep_draw_button(IMAGE_BUTTON_BACK, 'triangle-1-w',
+                tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+            ?></td>
+                                <td class="main" align="right"><?php
+        echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'triangle-1-e', null,
+            'primary');
+        ?></td>
                             </tr>
                         </table></form></td>
             </tr>

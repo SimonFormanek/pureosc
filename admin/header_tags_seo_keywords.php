@@ -330,10 +330,12 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 </table></td>  
                         </tr>
                         <tr><td><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '100%', '10'); ?></td></tr>
+    '100%', '10');
+?></td></tr>
                         <tr><td class="HTC_subHead"><?php echo TEXT_PAGE_HEADING_KEYWORDS; ?></td></tr>
                         <tr><td><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '100%', '10'); ?></td></tr>
+                                    '100%', '10');
+?></td></tr>
                         <tr><td><?php echo tep_black_line(); ?></td></tr>     
 
                         <!-- Begin of Header Tags -->   
@@ -342,9 +344,9 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
                                     <!-- BEGIN KEYWORDS SECTION -->   
 
-<?php if ($paginationType) { ?>
+                                    <?php if ($paginationType) { ?>
                                         <tr><td><table border="1" width="100%" cellpadding="0"><tr><td><div id="results"></div><?php echo $pagination; ?></td></tr></table></td></tr>       
-                                    <?php
+                                        <?php
                                     } else {
                                         $searches  = GetSearchCounts();
                                         $pageCount = count($pagesList);
@@ -354,15 +356,20 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                             <td class="main" style="padding:5px 0">
                                                 <div>
                                                     <div style="float:left"><?php echo TEXT_SHOWING_PAGE.'&nbsp;'.tep_draw_pull_down_menu('pagelist',
-                                            $pagesList, '', 'id="pagelist"'); ?></div>  
-                                                    <div class="main" style="float:left; padding-left:15px"><?php echo sprintf(TEXT_PAGE_TALLY,
-                                            $pageCount, $searches['ttl_words'],
-                                            $searches['found_words'],
-                                            $searches['notfound_words']); ?></div>
+                                            $pagesList, '', 'id="pagelist"');
+                                        ?></div>  
+                                                    <div class="main" style="float:left; padding-left:15px"><?php
+                                                    echo sprintf(TEXT_PAGE_TALLY,
+                                                        $pageCount,
+                                                        $searches['ttl_words'],
+                                                        $searches['found_words'],
+                                                        $searches['notfound_words']);
+                                                    ?></div>
                                                     <div class="main" style="float:left; padding-left:35px">
-    <?php echo tep_draw_form('delete_all',
-        'header_tags_seo_keywords.php', '', 'post').tep_hide_session_id().tep_draw_hidden_field('action',
-        'process'); ?> 
+    <?php
+    echo tep_draw_form('delete_all', 'header_tags_seo_keywords.php', '', 'post').tep_hide_session_id().tep_draw_hidden_field('action',
+        'process');
+    ?> 
                                                         <INPUT TYPE="radio" NAME="deleteall" VALUE="<?php echo TEXT_DELETE_KEYWORDS; ?>" onClick="confirmdelete(this.form)">
     <?php echo TEXT_DELETE_KEYWORDS; ?> 
                                                         </form> 
@@ -370,7 +377,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                 </div>
                                             </td>              
                                         </tr>
-                                                                            <?php } ?>
+<?php } ?>
 
                                     <tr>
                                         <td align="right" width="100%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff; border: ridge #CCFFCC 3px; padding-left: 2px;">
@@ -388,10 +395,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                                             <td class="main">
                                                                                 <div style="float:left">                      
                                                                                     <div style="float:left; font-weight:bold; width:50px;"><?php echo TEXT_SORT_DISPLAY_TYPE; ?></div>
-                                                                                    <div style="float:left; padding-left:10px"><?php echo tep_draw_pull_down_menu('display_type',
-                                                                                $display_types,
-                                                                                $selected_display_type,
-                                                                                'onChange="this.form.submit();"'); ?></div>
+                                                                                    <div style="float:left; padding-left:10px"><?php
+echo tep_draw_pull_down_menu('display_type', $display_types,
+    $selected_display_type, 'onChange="this.form.submit();"');
+?></div>
                                                                                     <div style="float:left; padding-left:15px; font-weight:bold;"><?php echo TEXT_SORT_BY; ?></div>
                                                                                     <div style="float:left; padding-left:10px"><INPUT TYPE="radio" NAME="sortgroup" VALUE="<?php echo TEXT_SORT_ON_KEYWORD; ?>" <?php echo $sortBy['keyword']; ?> onClick="this.form.submit();"><?php echo TEXT_SORT_ON_KEYWORD; ?>&nbsp;</div>
                                                                                     <div style="float:left; padding-left:10px"><INPUT TYPE="radio" NAME="sortgroup" VALUE="<?php echo TEXT_SORT_ON_DATE; ?>" <?php echo $sortBy['date']; ?> onClick="this.form.submit();"><?php echo TEXT_SORT_ON_DATE; ?>&nbsp;</div>
@@ -399,8 +406,9 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                                                     <div style="float:left; padding-left:10px"><INPUT TYPE="radio" NAME="sortgroup" VALUE="<?php echo TEXT_SORT_ON_GOOGLE; ?>" <?php echo $sortBy['google_last_position']; ?> onClick="this.form.submit();"><?php echo TEXT_SORT_ON_GOOGLE; ?>&nbsp;</div>
                                                                                 </div>
                                                                             </td>  
-<?php echo tep_draw_hidden_field('current_page',
-    $current_page, 'id="current_page"'); ?>
+<?php echo tep_draw_hidden_field('current_page', $current_page,
+    'id="current_page"');
+?>
                                                                         </form>
                                                             </tr>
                                                         </table></td>
@@ -409,13 +417,17 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                                 <td class="main">
                                                                     <div style="float:left; padding-bottom:6px">
                                                                         <div style="float:left; font-weight:bold; width:30px;"><?php echo TEXT_SEARCH_URL; ?></div>
-                                                                        <div style="float:left; padding-left:10px; font-weight:bold;"><?php echo tep_draw_input_field('search_url',
+                                                                        <div style="float:left; padding-left:10px; font-weight:bold;"><?php
+echo tep_draw_input_field('search_url',
     (defined('HEADER_TAGS_POSITION_DOMAIN') ? HEADER_TAGS_POSITION_DOMAIN : ''),
-    ' id="search_url" maxlength="255" size="35"', false); ?> </div>
+    ' id="search_url" maxlength="255" size="35"', false);
+?> </div>
                                                                         <div style="float:left; padding-left:10px; font-weight:bold; width:30px;"><?php echo TEXT_SEARCH_PAGE_COUNT; ?></div>
-                                                                        <div style="float:left; padding-left:10px"><?php echo tep_draw_input_field('page_count',
+                                                                        <div style="float:left; padding-left:10px"><?php
+echo tep_draw_input_field('page_count',
     (defined('HEADER_TAGS_POSITION_PAGE_COUNT') ? HEADER_TAGS_POSITION_PAGE_COUNT
-            : ''), ' id="page_count" maxlength="3" size="4"', false); ?> </div>
+            : ''), ' id="page_count" maxlength="3" size="4"', false);
+?> </div>
                                                                     </div>
                                                                 </td> 
                                                             </tr>

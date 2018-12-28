@@ -6,9 +6,7 @@
  *
  * @copyright  2014 Braintree, a division of PayPal, Inc.
  */
-
-
-set_include_path(get_include_path() . PATH_SEPARATOR . realpath(dirname(__FILE__)));
+set_include_path(get_include_path().PATH_SEPARATOR.realpath(dirname(__FILE__)));
 
 /**
  * Braintree PHP Library
@@ -19,6 +17,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . realpath(dirname(__FILE__
  */
 abstract class Braintree
 {
+
     /**
      * @ignore
      * don't permit an explicit call of the constructor!
@@ -26,13 +25,16 @@ abstract class Braintree
      */
     protected function __construct()
     {
+        
     }
+
     /**
      * @ignore
      *  don't permit cloning the instances (like $x = clone $v)
      */
     protected function __clone()
     {
+        
     }
 
     /**
@@ -46,9 +48,9 @@ abstract class Braintree
     {
         if (array_key_exists($name, $this->_attributes)) {
             return $this->_attributes[$name];
-        }
-        else {
-            trigger_error('Undefined property on ' . get_class($this) . ': ' . $name, E_USER_NOTICE);
+        } else {
+            trigger_error('Undefined property on '.get_class($this).': '.$name,
+                E_USER_NOTICE);
             return null;
         }
     }

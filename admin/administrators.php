@@ -70,8 +70,7 @@ if (tep_not_null($action)) {
                         }
                     }
 
-                    if (isset($_POST['htaccess']) && ($_POST['htaccess']
-                        == 'true')) {
+                    if (isset($_POST['htaccess']) && ($_POST['htaccess'] == 'true')) {
                         $htpasswd_array[] = $username.':'.tep_crypt_apr_md5($password);
                     }
 
@@ -143,15 +142,13 @@ if (tep_not_null($action)) {
                         }
                     }
 
-                    if (isset($_POST['htaccess']) && ($_POST['htaccess']
-                        == 'true')) {
+                    if (isset($_POST['htaccess']) && ($_POST['htaccess'] == 'true')) {
                         $htpasswd_array[] = $username.':'.tep_crypt_apr_md5($password);
                     }
                 }
 
                 tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".tep_db_input(tep_encrypt_password($password))."' where id = '".(int) $_GET['aID']."'");
-            } elseif (!isset($_POST['htaccess']) || ($_POST['htaccess']
-                != 'true')) {
+            } elseif (!isset($_POST['htaccess']) || ($_POST['htaccess'] != 'true')) {
                 if (is_array($htpasswd_array)) {
                     for ($i = 0, $n = sizeof($htpasswd_array); $i < $n; $i++) {
                         list($ht_username, $ht_password) = explode(':',
@@ -256,15 +253,16 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
     <tr>
         <td>
-                            <?php
-                            echo $secMessageStack->output();
-                            ?>
+<?php
+echo $secMessageStack->output();
+?>
         </td>
     </tr>
     <tr>
@@ -276,63 +274,64 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_HTPASSWD; ?></td>
                                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
                             </tr>
-                            <?php
-                            $admins_query = tep_db_query("select id, user_name from ".TABLE_ADMINISTRATORS." order by user_name");
-                            while ($admins       = tep_db_fetch_array($admins_query)) {
-                                if ((!isset($_GET['aID']) || (isset($_GET['aID'])
-                                    && ($_GET['aID'] == $admins['id'])))
-                                    && !isset($aInfo) && (substr($action, 0, 3) != 'new')) {
-                                    $aInfo = new objectInfo($admins);
-                                }
+<?php
+$admins_query = tep_db_query("select id, user_name from ".TABLE_ADMINISTRATORS." order by user_name");
+while ($admins       = tep_db_fetch_array($admins_query)) {
+    if ((!isset($_GET['aID']) || (isset($_GET['aID']) && ($_GET['aID'] == $admins['id'])))
+        && !isset($aInfo) && (substr($action, 0, 3) != 'new')) {
+        $aInfo = new objectInfo($admins);
+    }
 
 
-                                $htpasswd_secured = tep_image(DIR_WS_IMAGES.'icon_status_red.gif',
-                                    'Not Secured', 10, 10);
+    $htpasswd_secured = tep_image(DIR_WS_IMAGES.'icon_status_red.gif',
+        'Not Secured', 10, 10);
 
-                                if ($is_iis) {
-                                    $htpasswd_secured = 'N/A';
-                                }
+    if ($is_iis) {
+        $htpasswd_secured = 'N/A';
+    }
 
-                                if (is_array($htpasswd_array)) {
-                                    for ($i = 0, $n = sizeof($htpasswd_array); $i
-                                        < $n; $i++) {
-                                        list($ht_username, $ht_password) = explode(':',
-                                            $htpasswd_array[$i], 2);
+    if (is_array($htpasswd_array)) {
+        for ($i = 0, $n = sizeof($htpasswd_array); $i < $n; $i++) {
+            list($ht_username, $ht_password) = explode(':', $htpasswd_array[$i],
+                2);
 
-                                        if ($ht_username == $admins['user_name']) {
-                                            $htpasswd_secured = tep_image(DIR_WS_IMAGES.'icon_status_green.gif',
-                                                'Secured', 10, 10);
-                                            break;
-                                        }
-                                    }
-                                }
+            if ($ht_username == $admins['user_name']) {
+                $htpasswd_secured = tep_image(DIR_WS_IMAGES.'icon_status_green.gif',
+                    'Secured', 10, 10);
+                break;
+            }
+        }
+    }
 
-                                if ((isset($aInfo) && is_object($aInfo)) && ($admins['id']
-                                    == $aInfo->id)) {
-                                    echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_ADMINISTRATORS,
-                                        'aID='.$aInfo->id.'&action=edit').'\'">'."\n";
-                                } else {
-                                    echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_ADMINISTRATORS,
-                                        'aID='.$admins['id']).'\'">'."\n";
-                                }
-                                ?>
+    if ((isset($aInfo) && is_object($aInfo)) && ($admins['id'] == $aInfo->id)) {
+        echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_ADMINISTRATORS,
+            'aID='.$aInfo->id.'&action=edit').'\'">'."\n";
+    } else {
+        echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_ADMINISTRATORS,
+            'aID='.$admins['id']).'\'">'."\n";
+    }
+    ?>
                                 <td class="dataTableContent"><?php echo $admins['user_name']; ?></td>
                                 <td class="dataTableContent" align="center"><?php echo $htpasswd_secured; ?></td>
-                                <td class="dataTableContent" align="right"><?php if ((isset($aInfo)
-            && is_object($aInfo)) && ($admins['id'] == $aInfo->id)) {
-            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif', '');
-        } else {
-            echo '<a href="'.tep_href_link(FILENAME_ADMINISTRATORS,
-                'aID='.$admins['id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                IMAGE_ICON_INFO).'</a>';
-        } ?>&nbsp;</td>
+                                <td class="dataTableContent" align="right"><?php
+                                if ((isset($aInfo) && is_object($aInfo)) && ($admins['id']
+                                    == $aInfo->id)) {
+                                    echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                        '');
+                                } else {
+                                    echo '<a href="'.tep_href_link(FILENAME_ADMINISTRATORS,
+                                        'aID='.$admins['id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                        IMAGE_ICON_INFO).'</a>';
+                                }
+                                ?>&nbsp;</td>
                     </tr>
-            <?php
-        }
-        ?>
+                                    <?php
+                                }
+                                ?>
                 <tr>
                     <td class="smallText" colspan="3" align="right"><?php echo tep_draw_button(IMAGE_INSERT,
-            'plus', tep_href_link(FILENAME_ADMINISTRATORS, 'action=new')); ?></td>
+                    'plus', tep_href_link(FILENAME_ADMINISTRATORS, 'action=new'));
+                                ?></td>
                 </tr>
             </table></td>
         <?php
@@ -391,8 +390,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_SAVE,
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
-                        tep_href_link(FILENAME_ADMINISTRATORS,
-                            'aID='.$aInfo->id)));
+                        tep_href_link(FILENAME_ADMINISTRATORS, 'aID='.$aInfo->id)));
                 break;
             case 'delete':
                 $heading[]  = array('text' => '<strong>'.$aInfo->user_name.'</strong>');
@@ -405,8 +403,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_DELETE,
                         'trash', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
-                        tep_href_link(FILENAME_ADMINISTRATORS,
-                            'aID='.$aInfo->id)));
+                        tep_href_link(FILENAME_ADMINISTRATORS, 'aID='.$aInfo->id)));
                 break;
             default:
                 if (isset($aInfo) && is_object($aInfo)) {

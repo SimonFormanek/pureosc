@@ -42,7 +42,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     <div class="buttonSet">
         <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-                    'fa fa-angle-right', tep_href_link(FILENAME_LOGIN)); ?></div>
+                    'fa fa-angle-right', tep_href_link(FILENAME_LOGIN));
+                ?></div>
     </div>
 </div>
 

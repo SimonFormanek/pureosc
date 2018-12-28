@@ -28,10 +28,10 @@ class Adresar extends \FlexiPeeHP\Adresar
     {
         $adresarData['id'] = 'ext:customers:'.$customerData['customers_id'];
 
-        $adresarData['email']  = $customerData['customers_email_address'];
-        $adresarData['tel']    = $customerData['customers_telephone'];
-        $adresarData['nazev']  = $customerData['customers_firstname'].' '.$customerData['customers_lastname'];
-        if(empty(trim($adresarData['nazev']))){
+        $adresarData['email'] = $customerData['customers_email_address'];
+        $adresarData['tel']   = $customerData['customers_telephone'];
+        $adresarData['nazev'] = $customerData['customers_firstname'].' '.$customerData['customers_lastname'];
+        if (empty(trim($adresarData['nazev']))) {
             $adresarData['nazev'] = $adresarData['email'];
         }
         $kodSource             = $customerData['customers_lastname'].$customerData['customers_firstname'];
@@ -50,10 +50,10 @@ class Adresar extends \FlexiPeeHP\Adresar
         }
         $adresarData['kod'] = \FlexiPeeHP\FlexiBeeRO::uncode($this->getKod($kodSource));
 
-        if(empty(trim($adresarData['nazev']))){
+        if (empty(trim($adresarData['nazev']))) {
             $adresarData['nazev'] = $adresarData['kod'];
         }
-        
+
         return $adresarData;
     }
 

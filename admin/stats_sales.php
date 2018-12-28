@@ -99,7 +99,8 @@ if (!defined('COMISSION_PERCENTAGE')) {
                 </tr>
                 <tr>
                     <td><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+    '100%', '10');
+?></td>
                 </tr>
             </table></td></tr>
     <form action="stats_sales.php" method=get>
@@ -110,17 +111,21 @@ if (!defined('COMISSION_PERCENTAGE')) {
                         <td class="dataTableHeadingContent" valign="middle"><?php echo TEXT_MONTH; ?></td>
                         <td class="dataTableHeadingContent" width="10">&nbsp;</td>
                         <td class="dataTableHeadingContent" valign="middle"><?php echo tep_draw_pull_down_menu('month',
-    $months, $month, 'onchange=\'this.form.submit();\''); ?></td>
+                            $months, $month, 'onchange=\'this.form.submit();\'');
+?></td>
                         <td class="dataTableHeadingContent" width="10">&nbsp;</td>
                         <td class="dataTableHeadingContent" valign="middle"><?php echo TEXT_YEAR; ?></td>
                         <td class="dataTableHeadingContent" width="10">&nbsp;</td>
                         <td class="dataTableHeadingContent" valign="middle"><?php echo tep_draw_pull_down_menu('year',
-    $years, $year, 'onchange=\'this.form.submit();\''); ?></td>
+                            $years, $year, 'onchange=\'this.form.submit();\'');
+?></td>
                         <td class="dataTableHeadingContent" width="10">&nbsp;</td>
                         <td class="dataTableHeadingContent" valign="middle"><?php echo TEXT_STATUS; ?></td>
                         <td class="dataTableHeadingContent" width="10">&nbsp;</td>
                         <td class="dataTableHeadingContent" valign="middle"><?php echo tep_draw_pull_down_menu('status',
-    $statuses, $status, 'onchange=\'this.form.submit();\''); ?></td>
+                                $statuses, $status,
+                                'onchange=\'this.form.submit();\'');
+?></td>
                     </tr>
                 </table>
             </td>
@@ -137,16 +142,24 @@ if (!defined('COMISSION_PERCENTAGE')) {
                     <td class="dataTableHeadingContent"><?php echo TEXT_SORT_BY; ?></td>
                     <td class="dataTableHeadingContent" width="10">&nbsp;</td>
                     <td class="dataTableHeadingContent"><?php echo '<a href="'.tep_href_link(FILENAME_STATS_SALES,
-    tep_get_all_get_params(array('by')).'&by=date', 'NONSSL').'">'.TEXT_BY_DATE.'</a>'; ?></td>
+                                tep_get_all_get_params(array('by')).'&by=date',
+                                'NONSSL').'">'.TEXT_BY_DATE.'</a>';
+?></td>
                     <td class="dataTableHeadingContent" width="10" align="center">|</td>
                     <td class="dataTableHeadingContent"><?php echo '<a href="'.tep_href_link(FILENAME_STATS_SALES,
-    tep_get_all_get_params(array('by')).'&by=product', 'NONSSL').'">'.TEXT_BY_AMOUNT.'</a>'; ?></td>
+                            tep_get_all_get_params(array('by')).'&by=product',
+                            'NONSSL').'">'.TEXT_BY_AMOUNT.'</a>';
+?></td>
                     <td class="dataTableHeadingContent" width="10" align="center">|</td>
                     <td class="dataTableHeadingContent"><?php echo '<a href="'.tep_href_link(FILENAME_STATS_SALES,
-    tep_get_all_get_params(array('by')).'&by=units', 'NONSSL').'">'.TEXT_BY_UNITS_SOLD.'</a>'; ?></td>
+                            tep_get_all_get_params(array('by')).'&by=units',
+                            'NONSSL').'">'.TEXT_BY_UNITS_SOLD.'</a>';
+?></td>
                     <td class="dataTableHeadingContent" width="10" align="center">|</td>
                     <td class="dataTableHeadingContent"><?php echo '<a href="'.tep_href_link(FILENAME_STATS_SALES,
-    tep_get_all_get_params(array('by')).'&by=name', 'NONSSL').'">'.TEXT_BY_NAME.'</a>'; ?></td>
+                            tep_get_all_get_params(array('by')).'&by=name',
+                            'NONSSL').'">'.TEXT_BY_NAME.'</a>';
+?></td>
                 </tr>
             </table>
         </td>
@@ -160,8 +173,8 @@ if (!defined('COMISSION_PERCENTAGE')) {
         $total          = 0;
         $total_wtax     = 0;
         while ($sales_products = tep_db_fetch_array($sales_products_query)) {
-            if ($_GET['by'] == 'product' || $_GET['by'] == 'units'
-                || $_GET['by'] == 'name') {
+            if ($_GET['by'] == 'product' || $_GET['by'] == 'units' || $_GET['by']
+                == 'name') {
                 $ddp         = 'Product';
                 $table_title = '';
             } else {
@@ -178,9 +191,9 @@ if (!defined('COMISSION_PERCENTAGE')) {
                 <tr>
                     <td><br></td>
                 </tr>
-                <?php
-            }
-            ?>
+                                                <?php
+                                                                                           }
+                                                                                           ?>
             <tr>
                 <td class=main><b><?php echo $table_title; ?></b></td>
             </tr>
@@ -190,15 +203,21 @@ if (!defined('COMISSION_PERCENTAGE')) {
                             <td valign="top"><table border="0" width="100%" cellspacing="1" cellpadding="2">
                                     <tr class="dataTableHeadingRow">
                                         <td class="dataTableHeadingContent" width="15%"><?php echo TABLE_HEADING_MODEL; ?></td>
-                                        <td class="dataTableHeadingContent" width="40%"><a href=<?php echo tep_href_link(FILENAME_STATS_SALES,
+                                        <td class="dataTableHeadingContent" width="40%"><a href=<?php
+                        echo tep_href_link(FILENAME_STATS_SALES,
                             tep_get_all_get_params(array('by')).'&by=name',
-                            'NONSSL') ?>><?php echo TABLE_HEADING_NAME; ?></a></td>
-                                        <td class="dataTableHeadingContent" align="center" width="15%"><a href=<?php echo tep_href_link(FILENAME_STATS_SALES,
-                            tep_get_all_get_params(array('by')).'&by=units',
-                            'NONSSL') ?>><?php echo TABLE_HEADING_QUANTITY; ?></a></td>
-                                        <td class="dataTableHeadingContent" align="right" width="15%"><a href=<?php echo tep_href_link(FILENAME_STATS_SALES,
-                            tep_get_all_get_params(array('by')).'&by=product',
-                            'NONSSL') ?>><?php echo TABLE_HEADING_TOTAL; ?></a></td>
+                            'NONSSL')
+                        ?>><?php echo TABLE_HEADING_NAME; ?></a></td>
+                                        <td class="dataTableHeadingContent" align="center" width="15%"><a href=<?php
+                                            echo tep_href_link(FILENAME_STATS_SALES,
+                                                tep_get_all_get_params(array('by')).'&by=units',
+                                                'NONSSL')
+                                            ?>><?php echo TABLE_HEADING_QUANTITY; ?></a></td>
+                                        <td class="dataTableHeadingContent" align="right" width="15%"><a href=<?php
+                                    echo tep_href_link(FILENAME_STATS_SALES,
+                                        tep_get_all_get_params(array('by')).'&by=product',
+                                        'NONSSL')
+                                    ?>><?php echo TABLE_HEADING_TOTAL; ?></a></td>
                                         <td class="dataTableHeadingContent" align="right" width="15%"><?php echo TABLE_HEADING_TOTAL_TAX; ?>&nbsp;</td>
                                     </tr>
                                     <?php
@@ -209,41 +228,43 @@ if (!defined('COMISSION_PERCENTAGE')) {
                                     <td class="dataTableContent" width="40%"><?php echo $sales_products ['products_name']; ?></td>
                                     <td class="dataTableContent" align="center" width="15%"><?php echo $sales_products ['qty']; ?></td>
                                     <td class="dataTableContent" align="right" width="15%"><?php echo $currencies->display_price($sales_products ['daily_prod'],
-                            0); ?>&nbsp;</td>
+                            0);
+                                ?>&nbsp;</td>
                                     <td class="dataTableContent" align="right" width="15%"><?php echo $currencies->display_price($sales_products ['withtax'],
-                            0); ?>&nbsp;</td>
+                            0);
+                                ?>&nbsp;</td>
                                 </tr>
-        <?php
-        $total              += $sales_products ['daily_prod'];
-        $total_wtax         += $sales_products ['withtax'];
-        $commission         = ($total * $commission_percentage);
-        $commission_display = $commission_percentage * 100;
-        $dp                 = $ddp;
-    }
+                                <?php
+                                $total              += $sales_products ['daily_prod'];
+                                $total_wtax         += $sales_products ['withtax'];
+                                $commission         = ($total * $commission_percentage);
+                                $commission_display = $commission_percentage * 100;
+                                $dp                 = $ddp;
+                            }
 
-    echo '<tr><td colspan="5">'.tep_draw_separator('pixel_trans.gif', '100%',
-        '10').'</td></tr>';
-    if ($status == 0) {
-        echo '<tr><td colspan="5" class="main">'.TEXT_MONTHLY_TOTAL_SALES.'&nbsp;<b>'.$currencies->display_price($total,
-            0).'</b></td></tr>';
-    } else {
-        echo '<tr><td colspan="5" class="main">'.TEXT_MONTHLY_SALES.'&nbsp;<b>'.$currencies->display_price($total,
-            0).'</b></td></tr>';
-    }
-    if ($status == 0) {
-        echo '<tr><td colspan="5" class="main">'.TEXT_MONTHLY_TOTAL_SALES_TAX.'&nbsp;<b>'.$currencies->display_price($total_wtax,
-            0).'</b></td></tr>';
-    } else {
-        echo '<tr><td colspan="5" class="main">'.TEXT_MONTHLY_SALES_TAX.'&nbsp;<b>'.$currencies->display_price($total_wtax,
-            0).'</b></td></tr>';
-    }
-    if (($commission_percentage != 0) && ($status == 0)) {
-        echo '<tr><td colspan="5" class="main">'.sprintf(TEXT_MONTHLY_COMMISSION,
-            $commission_display).'&nbsp;<b>'.$currencies->display_price($commission,
-            0).'</b></td></tr>';
-    }
-} else {
-    ?>
+                            echo '<tr><td colspan="5">'.tep_draw_separator('pixel_trans.gif',
+                                '100%', '10').'</td></tr>';
+                            if ($status == 0) {
+                                echo '<tr><td colspan="5" class="main">'.TEXT_MONTHLY_TOTAL_SALES.'&nbsp;<b>'.$currencies->display_price($total,
+                                    0).'</b></td></tr>';
+                            } else {
+                                echo '<tr><td colspan="5" class="main">'.TEXT_MONTHLY_SALES.'&nbsp;<b>'.$currencies->display_price($total,
+                                    0).'</b></td></tr>';
+                            }
+                            if ($status == 0) {
+                                echo '<tr><td colspan="5" class="main">'.TEXT_MONTHLY_TOTAL_SALES_TAX.'&nbsp;<b>'.$currencies->display_price($total_wtax,
+                                    0).'</b></td></tr>';
+                            } else {
+                                echo '<tr><td colspan="5" class="main">'.TEXT_MONTHLY_SALES_TAX.'&nbsp;<b>'.$currencies->display_price($total_wtax,
+                                    0).'</b></td></tr>';
+                            }
+                            if (($commission_percentage != 0) && ($status == 0)) {
+                                echo '<tr><td colspan="5" class="main">'.sprintf(TEXT_MONTHLY_COMMISSION,
+                                    $commission_display).'&nbsp;<b>'.$currencies->display_price($commission,
+                                    0).'</b></td></tr>';
+                            }
+                        } else {
+                            ?>
                             <tr>
                                 <td class=main><?php echo '<b>'.TEXT_NO_RECORDS.'</b>'; ?></td>
                             </tr>

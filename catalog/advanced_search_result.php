@@ -24,10 +24,10 @@ require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ADVANCED_SEARCH);
 $error = false;
 
 if ((isset($_GET['keywords']) && empty($_GET['keywords'])) &&
-    (isset($_GET['dfrom']) && (empty($_GET['dfrom']) || ($_GET['dfrom']
-    == DOB_FORMAT_STRING))) &&
-    (isset($_GET['dto']) && (empty($_GET['dto']) || ($_GET['dto']
-    == DOB_FORMAT_STRING))) &&
+    (isset($_GET['dfrom']) && (empty($_GET['dfrom']) || ($_GET['dfrom'] == DOB_FORMAT_STRING)))
+    &&
+    (isset($_GET['dto']) && (empty($_GET['dto']) || ($_GET['dto'] == DOB_FORMAT_STRING)))
+    &&
     (isset($_GET['pfrom']) && !is_numeric($_GET['pfrom'])) &&
     (isset($_GET['pto']) && !is_numeric($_GET['pto']))) {
     $error = true;
@@ -213,11 +213,9 @@ require(DIR_WS_INCLUDES.'template_top.php');
     $where_str = " where p.products_status = '1' and p.products_id = pd.products_id and pd.language_id = '".(int) $languages_id."' and p.products_id = p2c.products_id and p2c.categories_id = c.categories_id ";
 
     if (isset($_GET['categories_id']) && tep_not_null($_GET['categories_id'])) {
-        if (isset($_GET['inc_subcat']) && ($_GET['inc_subcat']
-            == '1')) {
+        if (isset($_GET['inc_subcat']) && ($_GET['inc_subcat'] == '1')) {
             $subcategories_array = array();
-            tep_get_subcategories($subcategories_array,
-                $_GET['categories_id']);
+            tep_get_subcategories($subcategories_array, $_GET['categories_id']);
 
             $where_str .= " and p2c.products_id = p.products_id and p2c.products_id = pd.products_id and (p2c.categories_id = '".(int) $_GET['categories_id']."'";
 
@@ -305,12 +303,12 @@ require(DIR_WS_INCLUDES.'template_top.php');
         $where_str .= " group by p.products_id, tr.tax_priority";
     }
 
-    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/',
-            $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > sizeof($column_list))) {
+    if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort']))
+        || (substr($_GET['sort'], 0, 1) > sizeof($column_list))) {
         for ($i = 0, $n = sizeof($column_list); $i < $n; $i++) {
             if ($column_list[$i] == 'PRODUCT_LIST_NAME') {
                 $_GET['sort'] = ($i + 1).'a';
-                $order_str             = " order by pd.products_name";
+                $order_str    = " order by pd.products_name";
                 break;
             }
         }
@@ -357,10 +355,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <br />
 
     <div class="buttonSet">
-<?php echo tep_draw_button(IMAGE_BUTTON_BACK_ADVANCED_SEARCH,
-    'fa fa-angle-left',
+<?php
+echo tep_draw_button(IMAGE_BUTTON_BACK_ADVANCED_SEARCH, 'fa fa-angle-left',
     tep_href_link(FILENAME_ADVANCED_SEARCH,
-        tep_get_all_get_params(array('sort', 'page')), 'NONSSL', true, false)); ?>
+        tep_get_all_get_params(array('sort', 'page')), 'NONSSL', true, false));
+?>
     </div>
 </div>
 

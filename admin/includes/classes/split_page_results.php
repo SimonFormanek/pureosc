@@ -126,5 +126,3 @@ class splitPageResults
         return sprintf($text_output, $from_num, $to_num, $query_numrows);
     }
 }
-
-

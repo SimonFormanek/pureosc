@@ -47,7 +47,8 @@ if ($messageStack->size('addressbook') > 0) {
                 <div class="panel-heading"><?php echo PRIMARY_ADDRESS_TITLE; ?></div>
 
                 <div class="panel-body">
-                    <?php echo tep_address_label($customer_id,
+                    <?php
+                    echo tep_address_label($customer_id,
                         $customer_default_address_id, true, ' ', '<br />');
                     ?>
                 </div>
@@ -59,9 +60,9 @@ if ($messageStack->size('addressbook') > 0) {
 
     <h2><?php echo ADDRESS_BOOK_TITLE; ?></h2>
 
-    <div class="alert alert-warning"><?php echo sprintf(TEXT_MAXIMUM_ENTRIES,
-                        MAX_ADDRESS_BOOK_ENTRIES);
-                    ?></div>
+    <div class="alert alert-warning"><?php
+        echo sprintf(TEXT_MAXIMUM_ENTRIES, MAX_ADDRESS_BOOK_ENTRIES);
+        ?></div>
 
     <div class="contentText row">
         <?php
@@ -70,26 +71,29 @@ if ($messageStack->size('addressbook') > 0) {
             $format_id = tep_get_address_format_id($addresses['country_id']);
             ?>
             <div class="col-sm-4">
-                <div class="panel panel-<?php echo ($addresses['address_book_id'] == $customer_default_address_id)
-                    ? 'primary' : 'default';
-            ?>">
-                    <div class="panel-heading"><?php echo tep_output_string_protected($addresses['firstname'].' '.$addresses['lastname']); ?></strong><?php if ($addresses['address_book_id']
-                        == $customer_default_address_id)
-                            echo '&nbsp;<small><i>'.PRIMARY_ADDRESS.'</i></small>';
-                    ?></div>
+                <div class="panel panel-<?php
+                     echo ($addresses['address_book_id'] == $customer_default_address_id)
+                             ? 'primary' : 'default';
+                     ?>">
+                    <div class="panel-heading"><?php echo tep_output_string_protected($addresses['firstname'].' '.$addresses['lastname']); ?></strong><?php
+                        if ($addresses['address_book_id'] == $customer_default_address_id)
+                                echo '&nbsp;<small><i>'.PRIMARY_ADDRESS.'</i></small>';
+                        ?></div>
                     <div class="panel-body">
-                        <?php echo tep_address_format($format_id,
-                            $addresses, true, ' ', '<br />');
+                        <?php
+                        echo tep_address_format($format_id, $addresses, true,
+                            ' ', '<br />');
                         ?>
                     </div>
                     <div class="panel-footer text-center"><?php
-                    echo tep_draw_button(SMALL_IMAGE_BUTTON_EDIT, 'fa fa-file',
-                        tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS,
-                            'edit='.$addresses['address_book_id'], 'SSL')).' '.tep_draw_button(SMALL_IMAGE_BUTTON_DELETE,
-                        'fa fa-trash',
-                        tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS,
-                            'delete='.$addresses['address_book_id'], 'SSL'));
-                    ?></div>
+                        echo tep_draw_button(SMALL_IMAGE_BUTTON_EDIT,
+                            'fa fa-file',
+                            tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS,
+                                'edit='.$addresses['address_book_id'], 'SSL')).' '.tep_draw_button(SMALL_IMAGE_BUTTON_DELETE,
+                            'fa fa-trash',
+                            tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS,
+                                'delete='.$addresses['address_book_id'], 'SSL'));
+                        ?></div>
                 </div>
             </div>
     <?php
@@ -100,16 +104,18 @@ if ($messageStack->size('addressbook') > 0) {
     <div class="clearfix"></div>
 
     <div class="buttonSet row">
-        <div class="col-xs-6"><?php echo tep_draw_button(IMAGE_BUTTON_BACK,
-                'fa fa-angle-left', tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
-?></div>
-        <?php
-        if (tep_count_customer_address_book_entries() < MAX_ADDRESS_BOOK_ENTRIES) {
-            ?>
+        <div class="col-xs-6"><?php
+        echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+            tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+        ?></div>
+            <?php
+            if (tep_count_customer_address_book_entries() < MAX_ADDRESS_BOOK_ENTRIES) {
+                ?>
             <div class="col-xs-6 text-right"><?php
-    echo tep_draw_button(IMAGE_BUTTON_ADD_ADDRESS, 'fa fa-home',
-        tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS, '', 'SSL'), 'primary');
-    ?></div>
+            echo tep_draw_button(IMAGE_BUTTON_ADD_ADDRESS, 'fa fa-home',
+                tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS, '', 'SSL'),
+                'primary');
+            ?></div>
     <?php
 }
 ?>

@@ -30,13 +30,13 @@ class Strom extends \FlexiPeeHP\Strom
         if (isset($categoryData['parent_id'])) {
             $stromData['otec'] = 'ext:categories:'.$categoryData['parent_id'];
         }
-        
-        if(isset($categoryData['sort_order'])){
+
+        if (isset($categoryData['sort_order'])) {
             $stromData['poradi'] = $categoryData['sort_order'];
         } else {
             $stromData['poradi'] = 1;
         }
-        
+
         switch ($langCode) {
             case 'cs':
                 $stromData['nazev']  = $categoryData['categories_name'];

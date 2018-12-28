@@ -161,8 +161,9 @@ echo tep_draw_form('checkout_payment',
             <div class="panel panel-primary">
                 <div class="panel-heading"><?php echo TITLE_BILLING_ADDRESS; ?></div>
                 <div class="panel-body">
-<?php echo tep_address_label($customer_id, $billto, true, ' ', '<br />');
-?>
+                    <?php echo tep_address_label($customer_id, $billto, true,
+                        ' ', '<br />');
+                    ?>
                 </div>
             </div>
         </div>
@@ -182,7 +183,7 @@ echo tep_draw_form('checkout_payment',
             <div class="alert alert-warning">
                 <div class="row">
                     <div class="col-xs-8">
-                        <?php echo TEXT_SELECT_PAYMENT_METHOD; ?>
+    <?php echo TEXT_SELECT_PAYMENT_METHOD; ?>
                     </div>
                     <div class="col-xs-4 text-right">
     <?php echo '<strong>'.TITLE_PLEASE_SELECT.'</strong>'; ?>
@@ -192,17 +193,17 @@ echo tep_draw_form('checkout_payment',
         </div>
 
 
-    <?php
-} else {
-    ?>
+        <?php
+    } else {
+        ?>
 
         <div class="contentText">
             <div class="alert alert-info"><?php echo TEXT_ENTER_PAYMENT_INFORMATION; ?></div>
         </div>
 
-    <?php
-}
-?>
+        <?php
+    }
+    ?>
 
     <div class="contentText">
 
@@ -231,40 +232,41 @@ echo tep_draw_form('checkout_payment',
                         </td>
                     </tr>
 
-    <?php
-    if (isset($selection[$i]['error'])) {
-        ?>
+                    <?php
+                    if (isset($selection[$i]['error'])) {
+                        ?>
 
                         <tr>
                             <td colspan="2"><?php echo $selection[$i]['error']; ?></td>
                         </tr>
 
-        <?php
-    } elseif (isset($selection[$i]['fields']) && is_array($selection[$i]['fields'])) {
-        ?>
+                        <?php
+                    } elseif (isset($selection[$i]['fields']) && is_array($selection[$i]['fields'])) {
+                        ?>
 
                         <tr>
                             <td colspan="2"><table border="0" cellspacing="0" cellpadding="2">
 
-        <?php
-        for ($j = 0, $n2 = sizeof($selection[$i]['fields']); $j < $n2; $j++) {
-            ?>
+                                    <?php
+                                    for ($j = 0, $n2 = sizeof($selection[$i]['fields']); $j
+                                        < $n2; $j++) {
+                                        ?>
 
                                         <tr>
                                             <td><?php echo $selection[$i]['fields'][$j]['title']; ?></td>
                                             <td><?php echo $selection[$i]['fields'][$j]['field']; ?></td>
                                         </tr>
 
-            <?php
-        }
-        ?>
+                                        <?php
+                                    }
+                                    ?>
 
                                 </table></td>
                         </tr>
 
-        <?php
-    }
-    ?>
+                        <?php
+                    }
+                    ?>
 
 
 
@@ -275,8 +277,8 @@ echo tep_draw_form('checkout_payment',
             </tbody>
         </table>
 
-<?php /* * * Altered for CCGV ** */ ?>
-<?php echo $order_total_modules->credit_selection(); // CCGV   ?>
+        <?php /*         * * Altered for CCGV ** */ ?>
+<?php echo $order_total_modules->credit_selection(); // CCGV    ?>
 <?php /* * * EOF alterations for CCGV ** */ ?>
     </div>
 
@@ -297,9 +299,9 @@ echo tep_draw_form('checkout_payment',
 
     <div class="buttonSet">
         <div class="text-right"><?php
-                echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
-                    null, 'primary', null, 'btn-success');
-                ?></div>
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+                null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 
     <div class="clearfix"></div>
@@ -309,11 +311,11 @@ echo tep_draw_form('checkout_payment',
             <div class="stepwizard-row">
                 <div class="stepwizard-step">
                     <a href="<?php
-                echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
-                ?>"><button type="button" class="btn btn-default btn-circle">1</button></a>
+            echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
+            ?>"><button type="button" class="btn btn-default btn-circle">1</button></a>
                     <p><a href="<?php
-                echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
-                ?>"><?php echo CHECKOUT_BAR_DELIVERY; ?></a></p>
+                        echo tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
+            ?>"><?php echo CHECKOUT_BAR_DELIVERY; ?></a></p>
                 </div>
                 <div class="stepwizard-step">
                     <button type="button" class="btn btn-primary btn-circle">2</button>

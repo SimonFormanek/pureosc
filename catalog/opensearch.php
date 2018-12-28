@@ -50,7 +50,8 @@ echo '<?xml version="1.0"?>'."\n";
     }
     ?>
     <InputEncoding>UTF-8</InputEncoding>
-    <Url type="text/html" method="get" template="<?php echo tep_href_link(FILENAME_ADVANCED_SEARCH_RESULT,
+    <Url type="text/html" method="get" template="<?php
+    echo tep_href_link(FILENAME_ADVANCED_SEARCH_RESULT,
         'keywords={searchTerms}', 'NONSSL', false);
     ?>" />
 </OpenSearchDescription>

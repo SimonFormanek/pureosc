@@ -26,8 +26,9 @@ function tep_get_version()
     static $v;
 
     if (!isset($v) && file_exists(constant('DIR_FS_CATALOG').'includes/version.php')) {
-        
-        $v = trim(implode('', file(constant('DIR_FS_CATALOG').'includes/version.php')));
+
+        $v = trim(implode('',
+                file(constant('DIR_FS_CATALOG').'includes/version.php')));
     }
 
     return $v;

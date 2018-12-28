@@ -88,7 +88,7 @@ if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || 
     for ($i = 0, $n = sizeof($column_list); $i < $n; $i++) {
         if ($column_list[$i] == 'PRODUCT_LIST_ID') {
             $HTTP_GET_VARS['sort'] = $i + '1d';
-            $listing_sql .= " ORDER BY ".NEW_PRODUCTS_SORT_ORDER;
+            $listing_sql           .= " ORDER BY ".NEW_PRODUCTS_SORT_ORDER;
             break;
         }
     }

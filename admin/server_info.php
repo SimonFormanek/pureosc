@@ -31,8 +31,7 @@ switch ($action) {
             $data = array('info' => $encoded);
 
             $ch       = curl_init();
-            curl_setopt($ch, CURLOPT_URL,
-                'http://'.$target_host.$target_path);
+            curl_setopt($ch, CURLOPT_URL, 'http://'.$target_host.$target_path);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -95,13 +94,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
-<?php
-if ($action == 'export') {
-    ?>
+    <?php
+    if ($action == 'export') {
+        ?>
         <tr>
             <td><table border="0" cellspacing="0" cellpadding="2">
                     <tr>
@@ -109,15 +109,19 @@ if ($action == 'export') {
                     </tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+        '1', '10');
+        ?></td>
                     </tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_textarea_field('server configuration',
-        'soft', '100', '15', tep_format_system_info_array($info)); ?></td>
+                            'soft', '100', '15',
+                            tep_format_system_info_array($info));
+                        ?></td>
                     </tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+                            '1', '10');
+                        ?></td>
                     </tr>
                 </table></td>
         </tr>
@@ -125,10 +129,12 @@ if ($action == 'export') {
             <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
         </tr>
         <tr>
-            <td align="right" class="smallText"><?php echo tep_draw_button(IMAGE_SEND,
-        'arrowreturnthick-1-n',
-        tep_href_link(FILENAME_SERVER_INFO, 'action=submit'), 'primary').tep_draw_button(IMAGE_SAVE,
-        'disk', tep_href_link(FILENAME_SERVER_INFO, 'action=save'), 'primary'); ?>
+            <td align="right" class="smallText"><?php
+        echo tep_draw_button(IMAGE_SEND, 'arrowreturnthick-1-n',
+            tep_href_link(FILENAME_SERVER_INFO, 'action=submit'), 'primary').tep_draw_button(IMAGE_SAVE,
+            'disk', tep_href_link(FILENAME_SERVER_INFO, 'action=save'),
+            'primary');
+        ?>
         </tr>
     <?php
 } else {
@@ -162,7 +168,8 @@ if ($action == 'export') {
                                 </tr>
                                 <tr>
                                     <td colspan="4"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '5'); ?></td>
+        '1', '5');
+    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="smallText"><strong><?php echo TITLE_HTTP_SERVER; ?></strong></td>
@@ -176,11 +183,14 @@ if ($action == 'export') {
                     </tr>
                     <tr>
                         <td><?php echo tep_draw_separator('pixel_trans.gif', '1',
-        '10'); ?></td>
+                            '10');
+                        ?></td>
                     </tr>
                     <tr>
                         <td class="smallText"><?php echo tep_draw_button(IMAGE_EXPORT,
-        'triangle-1-nw', tep_href_link(FILENAME_SERVER_INFO, 'action=export')); ?></td>
+                            'triangle-1-nw',
+                            tep_href_link(FILENAME_SERVER_INFO, 'action=export'));
+    ?></td>
                     </tr>
                 </table></td>
         </tr>
@@ -189,13 +199,12 @@ if ($action == 'export') {
         </tr>
         <tr>
             <td>
-                <?php
-                
-                echo new \Ease\Html\DivTag( new FlexiPeeHP\ui\StatusInfoBox());
+    <?php
+    echo new \Ease\Html\DivTag(new FlexiPeeHP\ui\StatusInfoBox());
 
-                
-                if (function_exists('ob_start')) {
-                    ?>
+
+    if (function_exists('ob_start')) {
+        ?>
                     <style type="text/css">
                         body, td, th {font-family: sans-serif; font-size: 10px;}
                         .p {text-align: left;}

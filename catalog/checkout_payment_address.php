@@ -247,8 +247,9 @@ echo tep_draw_form('checkout_address',
                     <div class="panel-heading"><?php echo TITLE_PAYMENT_ADDRESS; ?></div>
 
                     <div class="panel-body">
-                        <?php echo tep_address_label($customer_id, $billto,
-                            true, ' ', '<br />');
+                        <?php
+                        echo tep_address_label($customer_id, $billto, true, ' ',
+                            '<br />');
                         ?>
                     </div>
                 </div>
@@ -276,52 +277,54 @@ echo tep_draw_form('checkout_address',
                     $format_id = tep_get_address_format_id($addresses['country_id']);
                     ?>
                     <div class="col-sm-4">
-                        <div class="panel panel-<?php echo ($addresses['address_book_id'] == $billto)
-                            ? 'primary' : 'default';
-                    ?>">
+                        <div class="panel panel-<?php
+                             echo ($addresses['address_book_id'] == $billto) ? 'primary'
+                                     : 'default';
+                             ?>">
                             <div class="panel-heading"><?php echo tep_output_string_protected($addresses['firstname'].' '.$addresses['lastname']); ?></strong></div>
                             <div class="panel-body">
-                                <?php echo tep_address_format($format_id,
-                                    $addresses, true, ' ', '<br />');
+                                <?php
+                                echo tep_address_format($format_id, $addresses,
+                                    true, ' ', '<br />');
                                 ?>
                             </div>
                             <div class="panel-footer text-center"><?php
-                    echo tep_draw_radio_field('address',
-                        $addresses['address_book_id'],
-                        ($addresses['address_book_id'] == $billto));
+                                echo tep_draw_radio_field('address',
+                                    $addresses['address_book_id'],
+                                    ($addresses['address_book_id'] == $billto));
                                 ?></div>
                         </div>
                     </div>
 
-                <?php
-                $radio_buttons++;
-            }
-            ?>
+                    <?php
+                    $radio_buttons++;
+                }
+                ?>
 
             </div>
 
-        <?php
+            <?php
+        }
     }
-}
 
-if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
-    ?>
+    if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
+        ?>
 
         <h2><?php echo TABLE_HEADING_NEW_PAYMENT_ADDRESS; ?></h2>
 
         <div class="alert alert-info"><?php echo TEXT_CREATE_NEW_PAYMENT_ADDRESS; ?></div>
 
-    <?php require(DIR_WS_MODULES.'checkout_new_address.php'); ?>
+        <?php require(DIR_WS_MODULES.'checkout_new_address.php'); ?>
 
-                <?php
-            }
-            ?>
+    <?php
+}
+?>
 
     <div class="buttonSet">
         <div class="text-right"><?php
-            echo tep_draw_hidden_field('action', 'submit').tep_draw_button(IMAGE_BUTTON_CONTINUE,
-                'fa fa-angle-right', null, 'primary', null, 'btn-success');
-            ?></div>
+echo tep_draw_hidden_field('action', 'submit').tep_draw_button(IMAGE_BUTTON_CONTINUE,
+    'fa fa-angle-right', null, 'primary', null, 'btn-success');
+?></div>
     </div>
 
     <div class="clearfix"></div>
@@ -351,7 +354,8 @@ if ($process == true) {
     ?>
 
         <div class="buttonSet">
-    <?php echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+    <?php
+    echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
         tep_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL'));
     ?>
         </div>

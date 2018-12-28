@@ -12,7 +12,7 @@ require('admin/ext/oscconfig/dbconfigure.php');
 $lngSql = "SELECT languages_id FROM languages WHERE code='cs'";
 
 
-$cenik = new PureOSC\flexibee\Cenik();
+$cenik    = new PureOSC\flexibee\Cenik();
 $products = $cenik->dblink->queryToArray("select * FROM products p, products_description pd WHERE p.products_id=pd.products_id AND pd.language_id=(".$lngSql.")");
 $cenik->addStatusMessage(count($products).' products to import');
 foreach ($products as $progress => $productData) {

@@ -8,127 +8,147 @@
   Copyright (c) 2014 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
-  class bm_card_acceptance {
-    var $code = 'bm_card_acceptance';
-    var $group = 'boxes';
+class bm_card_acceptance
+{
+    var $code    = 'bm_card_acceptance';
+    var $group   = 'boxes';
     var $title;
     var $description;
     var $sort_order;
     var $enabled = false;
 
-    function bm_card_acceptance() {
-      $this->title = MODULE_BOXES_CARD_ACCEPTANCE_TITLE;
-      $this->description = MODULE_BOXES_CARD_ACCEPTANCE_DESCRIPTION;
+    function bm_card_acceptance()
+    {
+        $this->title       = MODULE_BOXES_CARD_ACCEPTANCE_TITLE;
+        $this->description = MODULE_BOXES_CARD_ACCEPTANCE_DESCRIPTION;
 
-      if ( defined('MODULE_BOXES_CARD_ACCEPTANCE_STATUS') ) {
-        $this->sort_order = MODULE_BOXES_CARD_ACCEPTANCE_SORT_ORDER;
-        $this->enabled = (MODULE_BOXES_CARD_ACCEPTANCE_STATUS == 'True');
+        if (defined('MODULE_BOXES_CARD_ACCEPTANCE_STATUS')) {
+            $this->sort_order = MODULE_BOXES_CARD_ACCEPTANCE_SORT_ORDER;
+            $this->enabled    = (MODULE_BOXES_CARD_ACCEPTANCE_STATUS == 'True');
 
-        $this->group = ((MODULE_BOXES_CARD_ACCEPTANCE_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');
-      }
-    }
-
-    function execute() {
-      global $PHP_SELF, $oscTemplate;
-
-      if ( (substr(basename($PHP_SELF), 0, 8) != 'checkout') && tep_not_null(MODULE_BOXES_CARD_ACCEPTANCE_LOGOS) ) {
-        $output = NULL;
-
-        foreach ( explode(';', MODULE_BOXES_CARD_ACCEPTANCE_LOGOS) as $logo ) {
-          $output .= tep_image(DIR_WS_IMAGES . 'card_acceptance/' . basename($logo), null, null, null, null, false);
+            $this->group = ((MODULE_BOXES_CARD_ACCEPTANCE_CONTENT_PLACEMENT == 'Left Column')
+                    ? 'boxes_column_left' : 'boxes_column_right');
         }
-                   
-        ob_start();
-        include(DIR_WS_MODULES . 'boxes/templates/card_acceptance.php');
-        $data = ob_get_clean();
-
-        $oscTemplate->addBlock($data, $this->group);
-      }
     }
 
-    function isEnabled() {
-      return $this->enabled;
+    function execute()
+    {
+        global $PHP_SELF, $oscTemplate;
+
+        if ((substr(basename($PHP_SELF), 0, 8) != 'checkout') && tep_not_null(MODULE_BOXES_CARD_ACCEPTANCE_LOGOS)) {
+            $output = NULL;
+
+            foreach (explode(';', MODULE_BOXES_CARD_ACCEPTANCE_LOGOS) as $logo) {
+                $output .= tep_image(DIR_WS_IMAGES.'card_acceptance/'.basename($logo),
+                    null, null, null, null, false);
+            }
+
+            ob_start();
+            include(DIR_WS_MODULES.'boxes/templates/card_acceptance.php');
+            $data = ob_get_clean();
+
+            $oscTemplate->addBlock($data, $this->group);
+        }
     }
 
-    function check() {
-      return defined('MODULE_BOXES_CARD_ACCEPTANCE_STATUS');
+    function isEnabled()
+    {
+        return $this->enabled;
     }
 
-    function install() {
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Card Acceptance Module', 'MODULE_BOXES_CARD_ACCEPTANCE_STATUS', 'True', 'Do you want to add the module to your shop?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Logos', 'MODULE_BOXES_CARD_ACCEPTANCE_LOGOS', 'paypal_horizontal_large.png;visa.png;mastercard_transparent.png;american_express.png;maestro_transparent.png', 'The card acceptance logos to show. Usage: Drag and drop logo image between Shown Cards and New Cards to activate or remove.', '6', '0', 'bm_card_acceptance_show_logos', 'bm_card_acceptance_edit_logos(', now())");
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Content Placement', 'MODULE_BOXES_CARD_ACCEPTANCE_CONTENT_PLACEMENT', 'Left Column', 'Should the module be loaded in the left or right column?', '6', '1', 'tep_cfg_select_option(array(\'Left Column\', \'Right Column\'), ', now())");
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_BOXES_CARD_ACCEPTANCE_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
+    function check()
+    {
+        return defined('MODULE_BOXES_CARD_ACCEPTANCE_STATUS');
     }
 
-    function remove() {
-      tep_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+    function install()
+    {
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Card Acceptance Module', 'MODULE_BOXES_CARD_ACCEPTANCE_STATUS', 'True', 'Do you want to add the module to your shop?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Logos', 'MODULE_BOXES_CARD_ACCEPTANCE_LOGOS', 'paypal_horizontal_large.png;visa.png;mastercard_transparent.png;american_express.png;maestro_transparent.png', 'The card acceptance logos to show. Usage: Drag and drop logo image between Shown Cards and New Cards to activate or remove.', '6', '0', 'bm_card_acceptance_show_logos', 'bm_card_acceptance_edit_logos(', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Content Placement', 'MODULE_BOXES_CARD_ACCEPTANCE_CONTENT_PLACEMENT', 'Left Column', 'Should the module be loaded in the left or right column?', '6', '1', 'tep_cfg_select_option(array(\'Left Column\', \'Right Column\'), ', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_BOXES_CARD_ACCEPTANCE_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
     }
 
-    function keys() {
-      return array('MODULE_BOXES_CARD_ACCEPTANCE_STATUS', 'MODULE_BOXES_CARD_ACCEPTANCE_LOGOS', 'MODULE_BOXES_CARD_ACCEPTANCE_CONTENT_PLACEMENT', 'MODULE_BOXES_CARD_ACCEPTANCE_SORT_ORDER');
+    function remove()
+    {
+        tep_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key in ('".implode("', '",
+                $this->keys())."')");
     }
-  }
 
-  function bm_card_acceptance_show_logos($text) {
+    function keys()
+    {
+        return array('MODULE_BOXES_CARD_ACCEPTANCE_STATUS', 'MODULE_BOXES_CARD_ACCEPTANCE_LOGOS',
+            'MODULE_BOXES_CARD_ACCEPTANCE_CONTENT_PLACEMENT', 'MODULE_BOXES_CARD_ACCEPTANCE_SORT_ORDER');
+    }
+}
+
+function bm_card_acceptance_show_logos($text)
+{
     $output = '';
 
-    if ( !empty($text) ) {
-      $output = '<ul style="list-style-type: none; margin: 0; padding: 5px; margin-bottom: 10px;">';
+    if (!empty($text)) {
+        $output = '<ul style="list-style-type: none; margin: 0; padding: 5px; margin-bottom: 10px;">';
 
-      foreach (explode(';', $text) as $card) {
-        $output .= '<li style="padding: 2px;">' . tep_image(DIR_WS_CATALOG_IMAGES . 'card_acceptance/' . basename($card), basename($card)) . '</li>';
-      }
+        foreach (explode(';', $text) as $card) {
+            $output .= '<li style="padding: 2px;">'.tep_image(DIR_WS_CATALOG_IMAGES.'card_acceptance/'.basename($card),
+                    basename($card)).'</li>';
+        }
 
-      $output .= '</ul>';
+        $output .= '</ul>';
     }
 
     return $output;
-  }
+}
 
-  function bm_card_acceptance_edit_logos($values, $key) {
+function bm_card_acceptance_edit_logos($values, $key)
+{
     $files_array = array();
 
-    if ( $dir = @dir(DIR_FS_CATALOG . DIR_WS_IMAGES . 'card_acceptance') ) {
-      while ( $file = $dir->read() ) {
-        if ( !is_dir(DIR_FS_CATALOG . DIR_WS_IMAGES . 'card_acceptance/' . $file) ) {
-          if ( in_array(substr($file, strrpos($file, '.')+1), array('gif', 'jpg', 'png')) ) {
-            $files_array[] = $file;
-          }
+    if ($dir = @dir(DIR_FS_CATALOG.DIR_WS_IMAGES.'card_acceptance')) {
+        while ($file = $dir->read()) {
+            if (!is_dir(DIR_FS_CATALOG.DIR_WS_IMAGES.'card_acceptance/'.$file)) {
+                if (in_array(substr($file, strrpos($file, '.') + 1),
+                        array('gif', 'jpg', 'png'))) {
+                    $files_array[] = $file;
+                }
+            }
         }
-      }
 
-      sort($files_array);
+        sort($files_array);
 
-      $dir->close();
+        $dir->close();
     }
 
     $values_array = !empty($values) ? explode(';', $values) : array();
 
-    $output = '<h3>' . MODULE_BOXES_CARD_ACCEPTANCE_SHOWN_CARDS . '</h3>' .
-              '<ul id="ca_logos" style="list-style-type: none; margin: 0; padding: 5px; margin-bottom: 10px;">';
+    $output = '<h3>'.MODULE_BOXES_CARD_ACCEPTANCE_SHOWN_CARDS.'</h3>'.
+        '<ul id="ca_logos" style="list-style-type: none; margin: 0; padding: 5px; margin-bottom: 10px;">';
 
     foreach ($values_array as $file) {
-      $output .= '<li style="padding: 2px;">' . tep_image(DIR_WS_CATALOG_IMAGES . 'card_acceptance/' . $file, $file) . tep_draw_hidden_field('bm_card_acceptance_logos[]', $file) . '</li>';
+        $output .= '<li style="padding: 2px;">'.tep_image(DIR_WS_CATALOG_IMAGES.'card_acceptance/'.$file,
+                $file).tep_draw_hidden_field('bm_card_acceptance_logos[]', $file).'</li>';
     }
 
     $output .= '</ul>';
 
-    $output .= '<h3>' . MODULE_BOXES_CARD_ACCEPTANCE_NEW_CARDS . '</h3><ul id="new_ca_logos" style="list-style-type: none; margin: 0; padding: 5px; margin-bottom: 10px;">';
+    $output .= '<h3>'.MODULE_BOXES_CARD_ACCEPTANCE_NEW_CARDS.'</h3><ul id="new_ca_logos" style="list-style-type: none; margin: 0; padding: 5px; margin-bottom: 10px;">';
 
     foreach ($files_array as $file) {
-      if ( !in_array($file, $values_array) ) {
-        $output .= '<li style="padding: 2px;">' . tep_image(DIR_WS_CATALOG_IMAGES . 'card_acceptance/' . $file, $file) . tep_draw_hidden_field('bm_card_acceptance_logos[]', $file) . '</li>';
-      }
+        if (!in_array($file, $values_array)) {
+            $output .= '<li style="padding: 2px;">'.tep_image(DIR_WS_CATALOG_IMAGES.'card_acceptance/'.$file,
+                    $file).tep_draw_hidden_field('bm_card_acceptance_logos[]',
+                    $file).'</li>';
+        }
     }
 
     $output .= '</ul>';
 
-    $output .= tep_draw_hidden_field('configuration[' . $key . ']', '', 'id="ca_logo_cards"');
+    $output .= tep_draw_hidden_field('configuration['.$key.']', '',
+        'id="ca_logo_cards"');
 
-    $drag_here_li = '<li id="caLogoEmpty" style="background-color: #fcf8e3; border: 1px #faedd0 solid; color: #a67d57; padding: 5px;">' . addslashes(MODULE_BOXES_CARD_ACCEPTANCE_DRAG_HERE) . '</li>';
+    $drag_here_li = '<li id="caLogoEmpty" style="background-color: #fcf8e3; border: 1px #faedd0 solid; color: #a67d57; padding: 5px;">'.addslashes(MODULE_BOXES_CARD_ACCEPTANCE_DRAG_HERE).'</li>';
 
     $output .= <<<EOD
 <script>
@@ -184,5 +204,5 @@ $(function() {
 EOD;
 
     return $output;
-  }
+}
 ?>

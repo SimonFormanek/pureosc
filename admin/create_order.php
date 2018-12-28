@@ -78,7 +78,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 require('includes/form_check.js.php');
 ?>
 
-        <script language="javascript" type="text/javascript"><!--
+<script language="javascript" type="text/javascript"><!--
 function selectExisting() {
         document.create_order.customers_create_type.value = 'existing';
         selectorsStatus(false);
@@ -137,7 +137,8 @@ function selectExisting() {
                                             <table border="0" cellpadding="3" cellspacing="0">
                                                 <tr>
                                                     <td class="main" valign="top"><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+    '100%', '10');
+?></td>
                                                     <td class="main" valign="top"></td>
                                                 </tr>
                                                 <?php
@@ -191,19 +192,21 @@ function selectExisting() {
                                                     </tr>
                                                     <tr>
                                                         <td class="main" valign="top"><?php echo tep_draw_separator('pixel_trans.gif',
-                                                    '100%', '10'); ?></td>
+                                                                '100%', '10');
+                                                            ?></td>
                                                         <td class="main" valign="top"></td>
                                                     </tr>
-    <?php
-}
-?> 
+                                                    <?php
+                                                }
+                                                ?> 
                                                 <tr>
                                                     <td class="main" valign="top"><input name="handle_customer" id="new_customer" value="new" type="radio" onClick="selectNew();"></td>
                                                     <td class="main" valign="top"><label for="new_customer" style="cursor:pointer;"><?php echo CREATE_ORDER_TEXT_NEW_CUST; ?></label></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="main" valign="top"><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+                                                    '100%', '10');
+                                                ?></td>
                                                     <td class="main" valign="top"></td>
                                                 </tr>
                                                 <tr>
@@ -212,7 +215,8 @@ function selectExisting() {
                                                 </tr>
                                                 <tr>
                                                     <td class="main" valign="top"><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+                                                    '100%', '10');
+                                                ?></td>
                                                     <td class="main" valign="top"></td>
                                                 </tr>
                                             </table>
@@ -224,9 +228,9 @@ function selectExisting() {
                             </td>
                         </tr>
                     </table>
-                    <?php
-                    if (!empty($_GET['message'])) {
-                        ?>
+<?php
+if (!empty($_GET['message'])) {
+    ?>
                         <br />
                         <table border="0" width="100%" style=" background-color:#FF0000; height:40px;">
                             <tr>
@@ -243,9 +247,11 @@ function selectExisting() {
                         </tr>
                     </table>
 
-<?php echo tep_draw_form('create_order', FILENAME_CREATE_ORDER_PROCESS, '',
-    'post', 'onsubmit="return check_form(this);" id="create_order"').tep_draw_hidden_field('customers_create_type',
-    'existing', 'id="customers_create_type"').tep_hide_session_id(); ?>
+<?php
+echo tep_draw_form('create_order', FILENAME_CREATE_ORDER_PROCESS, '', 'post',
+    'onsubmit="return check_form(this);" id="create_order"').tep_draw_hidden_field('customers_create_type',
+    'existing', 'id="customers_create_type"').tep_hide_session_id();
+?>
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr>
                             <td>
@@ -257,15 +263,20 @@ require(DIR_WS_MODULES.'create_order_details.php');
                         </tr>
                         <tr>
                             <td><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+    '100%', '10');
+?></td>
                         </tr>
                         <tr>
                             <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
                                     <tr>
                                         <td class="main"><?php echo tep_draw_button(IMAGE_BACK,
-    'triangle-1-w', tep_href_link(FILENAME_DEFAULT, '', 'SSL'), 'primary'); ?></td>
+                                                'triangle-1-w',
+                                                tep_href_link(FILENAME_DEFAULT,
+                                                    '', 'SSL'), 'primary');
+?></td>
                                         <td class="main" align="right"><?php echo tep_draw_button(IMAGE_SAVE,
-            'disk', null, 'primary').'&nbsp;&nbsp;'; ?></td>
+                                                'disk', null, 'primary').'&nbsp;&nbsp;';
+?></td>
                                     </tr>
                                 </table></td>
                         </tr>
@@ -275,7 +286,7 @@ require(DIR_WS_MODULES.'create_order_details.php');
 
         <script language="javascript" type="text/javascript"><!--
         selectorsExtras(true);
-        //--></script>
+            //--></script>
 
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');

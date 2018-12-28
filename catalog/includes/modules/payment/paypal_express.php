@@ -18,7 +18,7 @@ class paypal_express
     {
         $this->paypal_express();
     }
-    
+
     function paypal_express()
     {
         global $_GET, $PHP_SELF, $order, $payment;
@@ -844,5 +844,3 @@ EOD;
         return -1;
     }
 }
-
-

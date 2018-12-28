@@ -89,29 +89,29 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     <script><!--
 function checkForm() {
-        var error = 0;
-        var error_message = "<?php echo JS_ERROR; ?>";
+            var error = 0;
+            var error_message = "<?php echo JS_ERROR; ?>";
 
-        var review = document.product_reviews_write.review.value;
+            var review = document.product_reviews_write.review.value;
 
-        if (review.length < <?php echo REVIEW_TEXT_MIN_LENGTH; ?>) {
-            error_message = error_message + "<?php echo JS_REVIEW_TEXT; ?>";
-            error = 1;
+            if (review.length < <?php echo REVIEW_TEXT_MIN_LENGTH; ?>) {
+                error_message = error_message + "<?php echo JS_REVIEW_TEXT; ?>";
+                error = 1;
+            }
+
+            if ((document.product_reviews_write.rating[0].checked) || (document.product_reviews_write.rating[1].checked) || (document.product_reviews_write.rating[2].checked) || (document.product_reviews_write.rating[3].checked) || (document.product_reviews_write.rating[4].checked)) {
+            } else {
+                error_message = error_message + "<?php echo JS_REVIEW_RATING; ?>";
+                error = 1;
+            }
+
+            if (error == 1) {
+                alert(error_message);
+                return false;
+            } else {
+                return true;
+            }
         }
-
-        if ((document.product_reviews_write.rating[0].checked) || (document.product_reviews_write.rating[1].checked) || (document.product_reviews_write.rating[2].checked) || (document.product_reviews_write.rating[3].checked) || (document.product_reviews_write.rating[4].checked)) {
-        } else {
-            error_message = error_message + "<?php echo JS_REVIEW_RATING; ?>";
-            error = 1;
-        }
-
-        if (error == 1) {
-            alert(error_message);
-            return false;
-        } else {
-            return true;
-        }
-    }
 //--></script>
 
 <div class="page-header">
@@ -119,17 +119,18 @@ function checkForm() {
 <h1><?php echo $products_name; ?></h1>
 </div>
 
-    <?php
-    if ($messageStack->size('review') > 0) {
-        echo $messageStack->output('review');
-    }
-    ?>
+<?php
+if ($messageStack->size('review') > 0) {
+    echo $messageStack->output('review');
+}
+?>
 
-        <?php echo tep_draw_form('product_reviews_write',
-            tep_href_link(FILENAME_PRODUCT_REVIEWS_WRITE,
-                'action=process&products_id='.$_GET['products_id']),
-            'post', 'class="form-horizontal" onsubmit="return checkForm();"',
-            true); ?>
+<?php
+echo tep_draw_form('product_reviews_write',
+    tep_href_link(FILENAME_PRODUCT_REVIEWS_WRITE,
+        'action=process&products_id='.$_GET['products_id']), 'post',
+    'class="form-horizontal" onsubmit="return checkForm();"', true);
+?>
 
 <div class="contentContainer">
 
@@ -138,15 +139,18 @@ function checkForm() {
         ?>
 
         <div class="pull-right text-center">
-    <?php echo '<a href="'.tep_href_link(FILENAME_PRODUCT_INFO,
-        'products_id='.$product_info['products_id']).'">'.tep_image(DIR_WS_IMAGES.$product_info['products_image'],
-        addslashes($product_info['products_name']), SMALL_IMAGE_WIDTH,
-        SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"').'</a>'; ?>
+            <?php
+            echo '<a href="'.tep_href_link(FILENAME_PRODUCT_INFO,
+                'products_id='.$product_info['products_id']).'">'.tep_image(DIR_WS_IMAGES.$product_info['products_image'],
+                addslashes($product_info['products_name']), SMALL_IMAGE_WIDTH,
+                SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"').'</a>';
+            ?>
 
-            <p><?php echo tep_draw_button(IMAGE_BUTTON_IN_CART,
-        'fa fa-shopping-cart',
-        tep_href_link(basename($PHP_SELF),
-            tep_get_all_get_params(array('action')).'action=buy_now')); ?></p>
+            <p><?php
+            echo tep_draw_button(IMAGE_BUTTON_IN_CART, 'fa fa-shopping-cart',
+                tep_href_link(basename($PHP_SELF),
+                    tep_get_all_get_params(array('action')).'action=buy_now'));
+            ?></p>
         </div>
 
         <div class="clearfix"></div>
@@ -163,11 +167,11 @@ function checkForm() {
         <div class="form-group has-feedback">
             <label for="inputReview" class="control-label col-sm-3"><?php echo SUB_TITLE_REVIEW; ?></label>
             <div class="col-sm-9">
-                    <?php
-                    echo tep_draw_textarea_field('review', 'soft', 60, 15, NULL,
-                        'required aria-required="true" id="inputReview" placeholder="'.SUB_TITLE_REVIEW.'"');
-                    echo _('Required');
-                    ?>
+                <?php
+                echo tep_draw_textarea_field('review', 'soft', 60, 15, NULL,
+                    'required aria-required="true" id="inputReview" placeholder="'.SUB_TITLE_REVIEW.'"');
+                echo _('Required');
+                ?>
             </div>
         </div>
         <div class="form-group">
@@ -183,7 +187,7 @@ function checkForm() {
 <?php echo tep_draw_radio_field('rating', '3'); ?>
                 </label>
                 <label class="radio-inline">
-<?php echo tep_draw_radio_field('rating', '4'); ?>
+                <?php echo tep_draw_radio_field('rating', '4'); ?>
                 </label>
                 <label class="radio-inline">
 <?php echo tep_draw_radio_field('rating', '5', 1); ?>
@@ -195,12 +199,14 @@ function checkForm() {
     </div>
 
     <div class="buttonSet row">
-        <div class="col-xs-6"><?php echo tep_draw_button(IMAGE_BUTTON_BACK,
-    'fa fa-angle-left',
-    tep_href_link(FILENAME_PRODUCT_REVIEWS,
-        tep_get_all_get_params(array('reviews_id', 'action')))); ?></div>
+        <div class="col-xs-6"><?php
+            echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+                tep_href_link(FILENAME_PRODUCT_REVIEWS,
+                    tep_get_all_get_params(array('reviews_id', 'action'))));
+            ?></div>
         <div class="col-xs-6 text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-angle-right', null, 'primary', null, 'btn-success'); ?></div>
+                'fa fa-angle-right', null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 </div>
 

@@ -284,27 +284,28 @@ echo tep_draw_form('create_account',
 <div class="contentContainer">
     <div class="contentText">
 
-<?php
-if (ACCOUNT_GENDER == 'true') {
-    ?>
+        <?php
+        if (ACCOUNT_GENDER == 'true') {
+            ?>
             <div class="form-group has-feedback">
                 <label class="control-label col-sm-3"><?php echo ENTRY_GENDER; ?></label>
                 <div class="col-sm-9">
                     <label class="radio-inline">
-                        <?php echo tep_draw_radio_field('gender', 'm',
-                            NULL, 'required aria-required="true"').' '.MALE;
+                        <?php
+                        echo tep_draw_radio_field('gender', 'm', NULL,
+                            'required aria-required="true"').' '.MALE;
                         ?>
                     </label>
                     <label class="radio-inline">
-    <?php echo tep_draw_radio_field('gender', 'f').' '.FEMALE; ?>
+                    <?php echo tep_draw_radio_field('gender', 'f').' '.FEMALE; ?>
                     </label>
-            <?php echo _('Required'); ?>
-            <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
+                    <?php echo _('Required'); ?>
+    <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputFirstName" class="control-label col-xs-3"><?php echo ENTRY_FIRST_NAME; ?></label>
             <div class="col-xs-9">
@@ -329,9 +330,9 @@ if (ACCOUNT_GENDER == 'true') {
                 ?>
             </div>
         </div>
-<?php
-if (ACCOUNT_DOB == 'true') {
-    ?>
+        <?php
+        if (ACCOUNT_DOB == 'true') {
+            ?>
             <div class="form-group has-feedback">
                 <label for="dob" class="control-label col-xs-3"><?php echo ENTRY_DATE_OF_BIRTH; ?></label>
                 <div class="col-xs-9">
@@ -344,9 +345,9 @@ if (ACCOUNT_DOB == 'true') {
                     ?>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputEmail" class="control-label col-xs-3"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
             <div class="col-xs-9">
@@ -359,9 +360,9 @@ if (ACCOUNT_DOB == 'true') {
                 ?>
             </div>
         </div>
-<?php
-if (ACCOUNT_COMPANY == 'true') {
-    ?>
+        <?php
+        if (ACCOUNT_COMPANY == 'true') {
+            ?>
 
             <div class="form-group">
                 <label for="inputCompany" class="control-label col-xs-3"><?php echo _('Company Name'); ?></label>
@@ -387,9 +388,9 @@ if (ACCOUNT_COMPANY == 'true') {
 
             </div>
 
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
 
         <div class="form-group has-feedback">
             <label for="inputStreet" class="control-label col-xs-3"><?php echo ENTRY_STREET_ADDRESS; ?></label>
@@ -404,9 +405,9 @@ if (ACCOUNT_COMPANY == 'true') {
             </div>
         </div>
 
-<?php
-if (ACCOUNT_SUBURB == 'true') {
-    ?>
+        <?php
+        if (ACCOUNT_SUBURB == 'true') {
+            ?>
             <div class="form-group">
                 <label for="inputSuburb" class="control-label col-xs-3"><?php echo ENTRY_SUBURB; ?></label>
                 <div class="col-xs-9">
@@ -418,9 +419,9 @@ if (ACCOUNT_SUBURB == 'true') {
                     ?>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputCity" class="control-label col-xs-3"><?php echo ENTRY_CITY; ?></label>
             <div class="col-xs-9">
@@ -445,9 +446,9 @@ if (ACCOUNT_SUBURB == 'true') {
                 ?>
             </div>
         </div>
-<?php
-if (ACCOUNT_STATE == 'true') {
-    ?>
+        <?php
+        if (ACCOUNT_STATE == 'true') {
+            ?>
             <div class="form-group has-feedback">
                 <label for="inputState" class="control-label col-xs-3"><?php echo ENTRY_STATE; ?></label>
                 <div class="col-xs-9">
@@ -478,9 +479,9 @@ if (ACCOUNT_STATE == 'true') {
                     ?>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <label for="inputCountry" class="control-label col-xs-3"><?php echo ENTRY_COUNTRY; ?></label>
             <div class="col-xs-9">
@@ -495,7 +496,7 @@ if (ACCOUNT_STATE == 'true') {
         </div>
     </div>
 
-            <?php if (GUEST_CHECKOUT_TELEPHONE == 'true') { ?>
+<?php if (GUEST_CHECKOUT_TELEPHONE == 'true') { ?>
         <div class="form-group has-feedback">
             <label for="inputTelephone" class="control-label col-xs-3"><?php echo ENTRY_TELEPHONE_NUMBER; ?></label>
             <div class="col-xs-9">
@@ -508,11 +509,12 @@ if (ACCOUNT_STATE == 'true') {
                 ?>
             </div>
         </div>
-            <?php } ?>
+<?php } ?>
 
 
     <div class="buttonSet">
-        <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
+        <div class="text-right"><?php
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
                 'glyphicon glyphicon-user', null, 'primary', null, 'btn-default');
             ?></div>
     </div>

@@ -183,8 +183,8 @@ if (!isset($_REQUEST['PRCODE']) || ($_REQUEST['PRCODE'] == 0)) {
 
 
             if (floatval($invoice->getDataValue('zbyvaUhradit'))) {
-                $qrImage = _('QR Payment').' ' . new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
-                    $invoice->getRecordIdent());
+                $qrImage = _('QR Payment').' '.new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
+                        $invoice->getRecordIdent());
             }
             $invoiceNum = $invoice->getRecordID();
         }
@@ -210,9 +210,9 @@ if (!isset($_REQUEST['PRCODE']) || ($_REQUEST['PRCODE'] == 0)) {
 <div class="contentContainer">
     <div class="buttonSet">
         <div class="text-right"><?php
-    echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right', null,
-        'primary', null, 'btn-success');
-    ?></div>
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+                null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 </div>
 

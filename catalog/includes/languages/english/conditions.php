@@ -8,10 +8,10 @@
   Copyright (c) 2002 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
-define('NAVBAR_TITLE', 'Conditions of Use',true);
-define('HEADING_TITLE', 'Conditions of Use',true);
+define('NAVBAR_TITLE', 'Conditions of Use', true);
+define('HEADING_TITLE', 'Conditions of Use', true);
 
-define('TEXT_INFORMATION', 'Put here your Conditions of Use information.',true);
+define('TEXT_INFORMATION', 'Put here your Conditions of Use information.', true);
 ?>

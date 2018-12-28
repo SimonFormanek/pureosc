@@ -501,62 +501,62 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     <script type="text/javascript"> <!--
 $(document).ready(function () {
-        var show = <?php echo $bottomOfPage; ?>;
-        if (show) {
-            $('html, body').animate({
-                scrollTop: $("#errors").offset().top
-            }, 2000);
+            var show = <?php echo $bottomOfPage; ?>;
+            if (show) {
+                $('html, body').animate({
+                    scrollTop: $("#errors").offset().top
+                }, 2000);
+            }
+        });
+        function EnableGenericCheckBoxes() { //enable all of the checkboxes
+            if (document.header_tags.generic_enabled.checked == true) {
+                document.header_tags.add_generic_cat_title.disabled = '';
+                document.header_tags.add_generic_cat_meta_desc.disabled = '';
+                document.header_tags.add_generic_cat_keywords.disabled = '';
+                document.header_tags.add_generic_cat_description.disabled = '';
+                document.header_tags.add_generic_cat_filterlist.disabled = '';
+                document.header_tags.add_generic_man_title.disabled = '';
+                document.header_tags.add_generic_man_meta_desc.disabled = '';
+                document.header_tags.add_generic_man_keywords.disabled = '';
+                document.header_tags.add_generic_man_description.disabled = '';
+                document.header_tags.add_generic_prod_title.disabled = '';
+                document.header_tags.add_generic_prod_meta_desc.disabled = '';
+                document.header_tags.add_generic_prod_keywords.disabled = '';
+            } else {
+                document.header_tags.add_generic_cat_title.disabled = 'disabled';
+                document.header_tags.add_generic_cat_meta_desc.disabled = 'disabled';
+                document.header_tags.add_generic_cat_keywords.disabled = 'disabled';
+                document.header_tags.add_generic_cat_description.disabled = 'disabled';
+                document.header_tags.add_generic_cat_filterlist.disabled = 'disabled';
+                document.header_tags.add_generic_man_title.disabled = 'disabled';
+                document.header_tags.add_generic_man_meta_desc.disabled = 'disabled';
+                document.header_tags.add_generic_man_keywords.disabled = 'disabled';
+                document.header_tags.add_generic_man_description.disabled = 'disabled';
+                document.header_tags.add_generic_prod_title.disabled = 'disabled';
+                document.header_tags.add_generic_prod_meta_desc.disabled = 'disabled';
+                document.header_tags.add_generic_prod_keywords.disabled = 'disabled';
+            }
         }
-    });
-    function EnableGenericCheckBoxes() { //enable all of the checkboxes
-        if (document.header_tags.generic_enabled.checked == true) {
-            document.header_tags.add_generic_cat_title.disabled = '';
-            document.header_tags.add_generic_cat_meta_desc.disabled = '';
-            document.header_tags.add_generic_cat_keywords.disabled = '';
-            document.header_tags.add_generic_cat_description.disabled = '';
-            document.header_tags.add_generic_cat_filterlist.disabled = '';
-            document.header_tags.add_generic_man_title.disabled = '';
-            document.header_tags.add_generic_man_meta_desc.disabled = '';
-            document.header_tags.add_generic_man_keywords.disabled = '';
-            document.header_tags.add_generic_man_description.disabled = '';
-            document.header_tags.add_generic_prod_title.disabled = '';
-            document.header_tags.add_generic_prod_meta_desc.disabled = '';
-            document.header_tags.add_generic_prod_keywords.disabled = '';
-        } else {
-            document.header_tags.add_generic_cat_title.disabled = 'disabled';
-            document.header_tags.add_generic_cat_meta_desc.disabled = 'disabled';
-            document.header_tags.add_generic_cat_keywords.disabled = 'disabled';
-            document.header_tags.add_generic_cat_description.disabled = 'disabled';
-            document.header_tags.add_generic_cat_filterlist.disabled = 'disabled';
-            document.header_tags.add_generic_man_title.disabled = 'disabled';
-            document.header_tags.add_generic_man_meta_desc.disabled = 'disabled';
-            document.header_tags.add_generic_man_keywords.disabled = 'disabled';
-            document.header_tags.add_generic_man_description.disabled = 'disabled';
-            document.header_tags.add_generic_prod_title.disabled = 'disabled';
-            document.header_tags.add_generic_prod_meta_desc.disabled = 'disabled';
-            document.header_tags.add_generic_prod_keywords.disabled = 'disabled';
+        function EnableGeneric(box, ctrl) { //enable the input for each checkbox
+            if (box.checked == false)
+                ctrl.disabled = 'disabled';
+            else
+                ctrl.disabled = '';
         }
-    }
-    function EnableGeneric(box, ctrl) { //enable the input for each checkbox
-        if (box.checked == false)
-            ctrl.disabled = 'disabled';
-        else
-            ctrl.disabled = '';
-    }
-    
-    function popupWindow(url) {
-        window.open(url, 'popupWindow', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=800,height=800,screenX=150,screenY=150,top=15,left=15'    )
-    }
-        
-    function ChangeIntervalState() {
-        var state = document.header_tags.enable_sleep.checked;
 
-        if (state == true) {
-            document.header_tags.enable_sleep_interval.disabled = '';
-        } else {
-            document.header_tags.enable_sleep_interval.disabled = 'disabled';
+        function popupWindow(url) {
+            window.open(url, 'popupWindow', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=800,height=800,screenX=150,screenY=150,top=15,left=15')
         }
-    }        
+
+        function ChangeIntervalState() {
+            var state = document.header_tags.enable_sleep.checked;
+
+            if (state == true) {
+                document.header_tags.enable_sleep_interval.disabled = '';
+            } else {
+                document.header_tags.enable_sleep_interval.disabled = 'disabled';
+            }
+        }
 //--></script>
         <table border="0" width="100%" cellspacing="2" cellpadding="2">
                 <tr>
@@ -566,28 +566,33 @@ $(document).ready(function () {
                                         <td class="HTC_Head"><?php echo HEADING_TITLE_FILL_TAGS; ?></td>
                                     </tr>
                                     <tr>
-                                        <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                                                                '100%',
-                                                                                '10'); ?></td>
+                                        <td><?php
+                                            echo tep_draw_separator('pixel_trans.gif',
+                                                '100%', '10');
+                                            ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="HTC_subHead"><?php echo sprintf(TEXT_FILL_TAGS,
-                                                                                sprintf(TEXT_SHOW_POPUP,
-                                                                                    'TEXT_EXPLAIN_SLEEP')); ?></td>
+                                        <td class="HTC_subHead"><?php
+                                            echo sprintf(TEXT_FILL_TAGS,
+                                                sprintf(TEXT_SHOW_POPUP,
+                                                    'TEXT_EXPLAIN_SLEEP'));
+                                            ?></td>
                                     </tr>
 
                                     <!-- Begin of Header Tags -->      
 
                                     <tr>
-                                        <td align="right"><?php echo tep_draw_form('header_tags',
-                                                                                FILENAME_HEADER_TAGS_FILL_TAGS,
-                                                                                '',
-                                                                                'post').tep_draw_hidden_field('action',
-                                                                                'process'); ?></td>
+                                        <td align="right"><?php
+                                            echo tep_draw_form('header_tags',
+                                                FILENAME_HEADER_TAGS_FILL_TAGS,
+                                                '', 'post').tep_draw_hidden_field('action',
+                                                'process');
+                                            ?></td>
                                     <tr>
-                                        <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                                                                '100%',
-                                                                                '10'); ?></td>
+                                        <td><?php
+                                            echo tep_draw_separator('pixel_trans.gif',
+                                                '100%', '10');
+                                            ?></td>
                                     </tr>
 
                                     <tr>
@@ -604,7 +609,8 @@ $(document).ready(function () {
                                                                             <td valign="top"><table border="0" width="100%" cellpadding="0">
                                                                                     <tr style="background-color:#FAF8CC">
                                                                                         <td class="main" align="center" style="font-weight:bold;"><?php echo TEXT_OVERRIDE_DESCRIPTION.sprintf(TEXT_SHOW_POPUP,
-                                                                                'TEXT_OVERRIDE_DESCRIPTION'); ?></td>     
+                                                'TEXT_OVERRIDE_DESCRIPTION');
+                                            ?></td>     
                                                                                     </tr> 
                                                                                     <tr class="main"> 
                                                                                         <td colspan="3"><?php echo TEXT_FILL_WITH_DESCIPTION; ?></td>
@@ -614,10 +620,11 @@ $(document).ready(function () {
                                                                                                 <tr class="main">
                                                                                                     <td align=left title="<?php echo $filltagsPopup['filldesc_yes']; ?>" class="popup"><INPUT TYPE="radio" NAME="group4" VALUE="fillMetaDesc_yes"<?php echo $checkedMetaDesc['yes']; ?>> <?php echo TEXT_YES; ?>&nbsp;</td>
                                                                                                     <td align=left title="<?php echo $filltagsPopup['filldesc_no']; ?>" class="popup"><INPUT TYPE="radio" NAME="group4" VALUE="fillmetaDesc_no"<?php echo $checkedMetaDesc['no']; ?>>&nbsp;<?php echo TEXT_NO; ?></td>
-                                                                                                    <td align="right" class="main" title="<?php echo $filltagsPopup['filldesc_size']; ?>" class="popup"><?php echo TEXT_LIMIT_TO.'&nbsp;'.tep_draw_input_field('fillMetaDescrlength',
-                                                                                '',
-                                                                                'maxlength="255", size="5"',
-                                                                                false).'&nbsp;'.TEXT_CHARACTERS; ?> </td>
+                                                                                                    <td align="right" class="main" title="<?php echo $filltagsPopup['filldesc_size']; ?>" class="popup"><?php
+                                            echo TEXT_LIMIT_TO.'&nbsp;'.tep_draw_input_field('fillMetaDescrlength',
+                                                '', 'maxlength="255", size="5"',
+                                                false).'&nbsp;'.TEXT_CHARACTERS;
+                                            ?> </td>
                                                                                                 </tr>
                                                                                             </table></td> 
                                                                                     </tr>
@@ -626,7 +633,8 @@ $(document).ready(function () {
                                                                             <td width="50%" valign="top"><table border="0" width="100%" >
                                                                                     <tr style="background-color:#FAF8CC">
                                                                                         <td class="main" align="center" style="font-weight:bold;"><?php echo TEXT_OVERRIDE_KEYWORDS.sprintf(TEXT_SHOW_POPUP,
-                                                                                'TEXT_OVERRIDE_KEYWORDS'); ?></td>
+                                                'TEXT_OVERRIDE_KEYWORDS');
+                                            ?></td>
                                                                                     </tr>               
 
                                                                                     <tr class="main"> 
@@ -647,7 +655,8 @@ $(document).ready(function () {
                                                             <tr><td colspan="3" width="100%" height="5"><?php echo tep_black_line(); ?></td></tr>
 
                                                             <tr><td class="main" align="center" style="font-weight: bold; background-color: #FAF8CC"><?php echo TEXT_OVERRIDE_GENERIC.sprintf(TEXT_SHOW_POPUP,
-                                                                                'TEXT_OVERRIDE_GENERIC'); ?></td></tr>               
+                                                'TEXT_OVERRIDE_GENERIC');
+                                            ?></td></tr>               
                                                             <tr class="main"> 
                                                                 <td><input type="checkbox" name="generic_enabled" onClick="return EnableGenericCheckBoxes()" ><?php echo TEXT_FILL_KEYWORDS_WITH_GENERIC; ?></td>
                                                             </tr> 
@@ -655,53 +664,89 @@ $(document).ready(function () {
                                                                 <td width="100%"><table border="0" width="24%" class="HTC_Box"> 
                                                                         <tr><th class="main" align="center" colspan="3"><?php echo TEXT_FILL_GENERIC_SECTION_CATEGORIES; ?></th><tr>
 
-<?php
-$categoryFiles   = array();
-$categoryFiles[] = array('id' => TEXT_FILTER_LIST_SELECT_ALL, 'text' => TEXT_FILTER_LIST_SELECT_ALL);
-$categoryFiles   = tep_get_category_tree('', '', '', $categoryFiles);
+                                                                            <?php
+                                                                            $categoryFiles
+                                                                                = array();
+                                                                            $categoryFiles[]
+                                                                                = array(
+                                                                                'id' => TEXT_FILTER_LIST_SELECT_ALL,
+                                                                                'text' => TEXT_FILTER_LIST_SELECT_ALL);
+                                                                            $categoryFiles
+                                                                                = tep_get_category_tree('',
+                                                                                '',
+                                                                                '',
+                                                                                $categoryFiles);
 
-$selectedCats = array();
-if (isset($_POST['catfiles']) && $_POST['catfiles'][0] !== TEXT_FILTER_LIST_SELECT_ALL) { //at least one category was selected
-    $pos = 0;
-    for ($c = 0; $c < count($categoryFiles); ++$c) {
-        if (in_array($categoryFiles[$c]['id'], $_POST['catfiles'])) {
-            $selectedCats[$pos] = array('id' => $categoryFiles[$c]['id'], 'text' => $categoryFiles[$c]['text']);
-            $pos++;
-        }
-    }
-}
-?>
+                                                                            $selectedCats
+                                                                                = array();
+                                                                            if (isset($_POST['catfiles'])
+                                                                                && $_POST['catfiles'][0]
+                                                                                !== TEXT_FILTER_LIST_SELECT_ALL) { //at least one category was selected
+                                                                                $pos
+                                                                                    = 0;
+                                                                                for ($c
+                                                                                = 0; $c
+                                                                                    < count($categoryFiles); ++$c) {
+                                                                                    if (in_array($categoryFiles[$c]['id'],
+                                                                                            $_POST['catfiles'])) {
+                                                                                        $selectedCats[$pos]
+                                                                                            = array(
+                                                                                            'id' => $categoryFiles[$c]['id'],
+                                                                                            'text' => $categoryFiles[$c]['text']);
+                                                                                        $pos++;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ?>
                                                                         <tr class="main"> 
                                                                             <td valign="top"><?php echo TEXT_FILTER_LIST_CATEGORY; ?><br><span class="smallText"><?php echo TEXT_FILTER_LIST_MULTI; ?></span></td>
                                                                             <td>&nbsp;</td>
-                                                                            <td class="smallText"><?php echo SMMultiSelectMenu('catfiles[]',
-    $categoryFiles, $selectedCats,
-    ' disabled style="width: 345;" size='.$listLength.' id="add_generic_cat_filterlist"'); ?></td>
+                                                                            <td class="smallText"><?php
+                                                                            echo SMMultiSelectMenu('catfiles[]',
+                                                                                $categoryFiles,
+                                                                                $selectedCats,
+                                                                                ' disabled style="width: 345;" size='.$listLength.' id="add_generic_cat_filterlist"');
+                                                                            ?></td>
                                                                         </tr> 
 
                                                                         <tr class="main"> 
                                                                             <td><?php echo TEXT_FILL_GENERIC_TITLE; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_cat_title" disabled onClick="return EnableGeneric(this, this.form.generic_cat_title)"></td>
                                                                             <td class="main"><?php echo tep_draw_input_field('generic_cat_title',
-    TEXT_GENERIC_TITLE, 'maxlength="255" size="61" disabled', false); ?> </td>
+                                                                                TEXT_GENERIC_TITLE,
+                                                                                'maxlength="255" size="61" disabled',
+                                                                                false);
+                                                                            ?> </td>
                                                                         </tr>
                                                                         <tr class="main"> 
                                                                             <td><?php echo TEXT_FILL_GENERIC_META_DESC; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_cat_meta_desc" disabled onClick="return EnableGeneric(this, this.form.generic_cat_meta_desc)"></td>
                                                                             <td class="main"><?php echo tep_draw_input_field('generic_cat_meta_desc',
-    TEXT_GENERIC_DESC, 'maxlength="255" size="61" disabled', false); ?> </td>
+                                                                                    TEXT_GENERIC_DESC,
+                                                                                    'maxlength="255" size="61" disabled',
+                                                                                    false);
+                                                                            ?> </td>
                                                                         </tr>       
                                                                         <tr class="main"> 
                                                                             <td><?php echo TEXT_FILL_GENERIC_KEYWORDS; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_cat_keywords" disabled onClick="return EnableGeneric(this, this.form.generic_cat_keywords)"></td>
                                                                             <td class="main"><?php echo tep_draw_input_field('generic_cat_keywords',
-    TEXT_GENERIC_KEYWORDS, 'maxlength="255" size="61" disabled', false); ?> </td>
+                                                                                    TEXT_GENERIC_KEYWORDS,
+                                                                                    'maxlength="255" size="61" disabled',
+                                                                                    false);
+                                                                            ?> </td>
                                                                         </tr>   
                                                                         <tr class="main"> 
                                                                             <td valign="top"><?php echo TEXT_FILL_GENERIC_DESCRIPTION; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_cat_description" disabled onClick="return EnableGeneric(this, this.form.generic_cat_description)"></td>
                                                                             <td class="main"><?php echo tep_draw_textarea_field('generic_cat_description',
-    'hard', 57, 8, TEXT_GENERIC_DESCRIPTION, 'disabled', false); ?></td>
+                                                                                    'hard',
+                                                                                    57,
+                                                                                    8,
+                                                                                    TEXT_GENERIC_DESCRIPTION,
+                                                                                    'disabled',
+                                                                                    false);
+                                                                            ?></td>
                                                                         </tr>   
                                                                     </table></td> 
                                                             </tr> 
@@ -712,37 +757,45 @@ if (isset($_POST['catfiles']) && $_POST['catfiles'][0] !== TEXT_FILTER_LIST_SELE
                                                                         <tr class="main"> 
                                                                             <td><?php echo TEXT_FILL_GENERIC_TITLE; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_man_title" disabled onClick="return EnableGeneric(this, this.form.generic_man_title)"></td>
-                                                                            <td class="main"><?php echo tep_draw_input_field('generic_man_title',
-                                                                TEXT_GENERIC_TITLE,
-                                                                'maxlength="255" size="61" disabled',
-                                                                false); ?> </td>
+                                                                            <td class="main"><?php
+                                                                                echo tep_draw_input_field('generic_man_title',
+                                                                                    TEXT_GENERIC_TITLE,
+                                                                                    'maxlength="255" size="61" disabled',
+                                                                                    false);
+                                                                            ?> </td>
                                                                         </tr>
                                                                         <tr class="main"> 
                                                                             <td><?php echo TEXT_FILL_GENERIC_META_DESC; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_man_meta_desc" disabled onClick="return EnableGeneric(this, this.form.generic_man_meta_desc)"></td>
-                                                                            <td class="main"><?php echo tep_draw_input_field('generic_man_meta_desc',
-                                                                                TEXT_GENERIC_DESC,
-                                                                                'maxlength="255" size="61" disabled',
-                                                                                false); ?> </td>
+                                                                            <td class="main"><?php
+                                                                                echo tep_draw_input_field('generic_man_meta_desc',
+                                                                                    TEXT_GENERIC_DESC,
+                                                                                    'maxlength="255" size="61" disabled',
+                                                                                    false);
+                                                                            ?> </td>
                                                                         </tr>       
                                                                         <tr class="main"> 
                                                                             <td><?php echo TEXT_FILL_GENERIC_KEYWORDS; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_man_keywords" disabled onClick="return EnableGeneric(this, this.form.generic_man_keywords)"></td>
-                                                                            <td class="main"><?php echo tep_draw_input_field('generic_man_keywords',
-                                                                                TEXT_GENERIC_KEYWORDS,
-                                                                                'maxlength="255" size="61" disabled',
-                                                                                false); ?> </td>
+                                                                            <td class="main"><?php
+                                                                                echo tep_draw_input_field('generic_man_keywords',
+                                                                                    TEXT_GENERIC_KEYWORDS,
+                                                                                    'maxlength="255" size="61" disabled',
+                                                                                    false);
+                                                                            ?> </td>
                                                                         </tr>   
                                                                         <tr class="main"> 
                                                                             <td valign="top"><?php echo TEXT_FILL_GENERIC_DESCRIPTION; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_man_description" disabled onClick="return EnableGeneric(this, this.form.generic_man_description)"></td>
-                                                                            <td class="main"><?php echo tep_draw_textarea_field('generic_man_description',
-                                                                                'hard',
-                                                                                57,
-                                                                                8,
-                                                                                TEXT_GENERIC_DESCRIPTION,
-                                                                                'disabled',
-                                                                                false); ?></td>
+                                                                            <td class="main"><?php
+                                                                                echo tep_draw_textarea_field('generic_man_description',
+                                                                                    'hard',
+                                                                                    57,
+                                                                                    8,
+                                                                                    TEXT_GENERIC_DESCRIPTION,
+                                                                                    'disabled',
+                                                                                    false);
+                                                                            ?></td>
                                                                         </tr>               
                                                                     </table></td> 
                                                             </tr> 
@@ -753,26 +806,32 @@ if (isset($_POST['catfiles']) && $_POST['catfiles'][0] !== TEXT_FILTER_LIST_SELE
                                                                         <tr class="main"> 
                                                                             <td><?php echo TEXT_FILL_GENERIC_TITLE; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_prod_title" disabled onClick="return EnableGeneric(this, this.form.generic_prod_title)"></td>
-                                                                            <td class="main"><?php echo tep_draw_input_field('generic_prod_title',
-                                                                            TEXT_GENERIC_TITLE,
-                                                                            'maxlength="255" size="61" disabled',
-                                                                            false); ?> </td>
+                                                                            <td class="main"><?php
+                                                                                echo tep_draw_input_field('generic_prod_title',
+                                                                                    TEXT_GENERIC_TITLE,
+                                                                                    'maxlength="255" size="61" disabled',
+                                                                                    false);
+                                                                            ?> </td>
                                                                         </tr>
                                                                         <tr class="main"> 
                                                                             <td><?php echo TEXT_FILL_GENERIC_META_DESC; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_prod_meta_desc" disabled onClick="return EnableGeneric(this, this.form.generic_prod_meta_desc)"></td>
-                                                                            <td class="main"><?php echo tep_draw_input_field('generic_prod_meta_desc',
-                                                                            TEXT_GENERIC_DESC,
-                                                                            'maxlength="255" size="61" disabled',
-                                                                            false); ?> </td>
+                                                                            <td class="main"><?php
+                                                                                                                                      echo tep_draw_input_field('generic_prod_meta_desc',
+                                                                                                                                          TEXT_GENERIC_DESC,
+                                                                                                                                          'maxlength="255" size="61" disabled',
+                                                                                                                                          false);
+                                                                                                                                      ?> </td>
                                                                         </tr>       
                                                                         <tr class="main"> 
                                                                             <td><?php echo TEXT_FILL_GENERIC_KEYWORDS; ?></td>
                                                                             <td><input type="checkbox" name="add_generic_prod_keywords" disabled onClick="return EnableGeneric(this, this.form.generic_prod_keywords)"></td>
-                                                                            <td class="main"><?php echo tep_draw_input_field('generic_prod_keywords',
-                                                                            TEXT_GENERIC_KEYWORDS,
-                                                                            'maxlength="255" size="61" disabled',
-                                                                            false); ?> </td>
+                                                                            <td class="main"><?php
+                                                                                                                                      echo tep_draw_input_field('generic_prod_keywords',
+                                                                                                                                          TEXT_GENERIC_KEYWORDS,
+                                                                                                                                          'maxlength="255" size="61" disabled',
+                                                                                                                                          false);
+                                                                                                                                      ?> </td>
                                                                         </tr>   
                                                                     </table></td> 
                                                             </tr>                       
@@ -786,7 +845,8 @@ if (isset($_POST['catfiles']) && $_POST['catfiles'][0] !== TEXT_FILTER_LIST_SELE
                                         <td><table border="1" width="100%" class="HTC_Box">
                                                 <tr> 
                                                     <td colspan="3" class="HTC_title"><?php echo HEADING_TITLE_FILL_TAGS_OPTIONS.sprintf(TEXT_SHOW_POPUP,
-                                                                            'TEXT_EXPLAIN_FILLTAGS'); ?></td>
+                                                                                                                                          'TEXT_EXPLAIN_FILLTAGS');
+                                                                                                                                      ?></td>
                                                 </tr> 
                                                 <tr>
                                                     <td width="55%"><table border="2" width="100%">
@@ -798,42 +858,66 @@ if (isset($_POST['catfiles']) && $_POST['catfiles'][0] !== TEXT_FILTER_LIST_SELE
                                                                             <th><?php echo HEADING_TITLE_SEO_PRODUCTS; ?></th>
                                                                         </tr> 
                                                                         <tr class="smallText">          
-                                                                            <td title="<?php echo $filltagsPopup['skipall']; ?>" class="popup"><INPUT TYPE="radio" NAME="group1" VALUE="none" <?php echo (isset($checkedCats['none'])
-                                                                                ? $checkedCats['none']
-                                                                                : ''); ?> id="rad01" ><label for="rad01"><?php echo HEADING_TITLE_SEO_SKIPALL; ?></label></td>
-                                                                            <td title="<?php echo $filltagsPopup['skipall']; ?>" class="popup"><INPUT TYPE="radio" NAME="group2" VALUE="none" <?php echo (isset($checkedManuf['none'])
-                                                                                ? $checkedManuf['none']
-                                                                                : ''); ?> id="rad02" ><label for="rad02"><?php echo HEADING_TITLE_SEO_SKIPALL; ?></label></td>
-                                                                            <td title="<?php echo $filltagsPopup['skipall']; ?>" class="popup"><INPUT TYPE="radio" NAME="group3" VALUE="none" <?php echo (isset($checkedProds['none'])
-                                                                                ? $checkedProds['none']
-                                                                                : ''); ?> id="rad03" ><label for="rad03"><?php echo HEADING_TITLE_SEO_SKIPALL; ?></label></td>
+                                                                            <td title="<?php echo $filltagsPopup['skipall']; ?>" class="popup"><INPUT TYPE="radio" NAME="group1" VALUE="none" <?php
+                                                            echo (isset($checkedCats['none'])
+                                                                    ? $checkedCats['none']
+                                                                    : '');
+                                                                                                                                      ?> id="rad01" ><label for="rad01"><?php echo HEADING_TITLE_SEO_SKIPALL; ?></label></td>
+                                                                            <td title="<?php echo $filltagsPopup['skipall']; ?>" class="popup"><INPUT TYPE="radio" NAME="group2" VALUE="none" <?php
+                                                                            echo (isset($checkedManuf['none'])
+                                                                                    ? $checkedManuf['none']
+                                                                                    : '');
+                                                                                                                                      ?> id="rad02" ><label for="rad02"><?php echo HEADING_TITLE_SEO_SKIPALL; ?></label></td>
+                                                                            <td title="<?php echo $filltagsPopup['skipall']; ?>" class="popup"><INPUT TYPE="radio" NAME="group3" VALUE="none" <?php
+                                                                                echo (isset($checkedProds['none'])
+                                                                                        ? $checkedProds['none']
+                                                                                        : '');
+                                                                                ?> id="rad03" ><label for="rad03"><?php echo HEADING_TITLE_SEO_SKIPALL; ?></label></td>
                                                                         </tr>
                                                                         <tr class="smallText"> 
-                                                                            <td title="<?php echo $filltagsPopup['empty']; ?>"><INPUT TYPE="radio" NAME="group1" VALUE="empty" <?php echo (isset($checkedCats['empty'])
-                                                                                ? $checkedCats['empty']
-                                                                                : ''); ?> id="rad11" ><label for="rad11"><?php echo HEADING_TITLE_SEO_FILLONLY; ?></label></td>
-                                                                            <td title="<?php echo $filltagsPopup['empty']; ?>"><INPUT TYPE="radio" NAME="group2" VALUE="empty" <?php echo (isset($checkedManuf['empty'])
-                                                                                ? $checkedManuf['empty']
-                                                                                : ''); ?> id="rad12" ><label for="rad12"><?php echo HEADING_TITLE_SEO_FILLONLY; ?></label></td>
-                                                                            <td title="<?php echo $filltagsPopup['empty']; ?>"><INPUT TYPE="radio" NAME="group3" VALUE="empty" <?php echo (isset($checkedProds['empty'])
-                                                                                ? $checkedProds['empty']
-                                                                                : ''); ?> id="rad13" ><label for="rad13"><?php echo HEADING_TITLE_SEO_FILLONLY; ?></label></td>
+                                                                            <td title="<?php echo $filltagsPopup['empty']; ?>"><INPUT TYPE="radio" NAME="group1" VALUE="empty" <?php
+                                                                                                    echo (isset($checkedCats['empty'])
+                                                                                                            ? $checkedCats['empty']
+                                                                                                            : '');
+                                                                                ?> id="rad11" ><label for="rad11"><?php echo HEADING_TITLE_SEO_FILLONLY; ?></label></td>
+                                                                            <td title="<?php echo $filltagsPopup['empty']; ?>"><INPUT TYPE="radio" NAME="group2" VALUE="empty" <?php
+                                                                                                    echo (isset($checkedManuf['empty'])
+                                                                                                            ? $checkedManuf['empty']
+                                                                                                            : '');
+                                                                                ?> id="rad12" ><label for="rad12"><?php echo HEADING_TITLE_SEO_FILLONLY; ?></label></td>
+                                                                            <td title="<?php echo $filltagsPopup['empty']; ?>"><INPUT TYPE="radio" NAME="group3" VALUE="empty" <?php
+                                                                                echo (isset($checkedProds['empty'])
+                                                                                        ? $checkedProds['empty']
+                                                                                        : '');
+                                                                                ?> id="rad13" ><label for="rad13"><?php echo HEADING_TITLE_SEO_FILLONLY; ?></label></td>
                                                                         </tr>
                                                                         <tr class="smallText"> 
                                                                             <td title="<?php echo $filltagsPopup['full']; ?>"><INPUT TYPE="radio" NAME="group1" VALUE="full" <?php echo (isset($checkedCats['full'])
-        ? $checkedCats['full'] : ''); ?> id="rad21" ><label for="rad21"><?php echo HEADING_TITLE_SEO_FILLALL; ?></label></td>
+                                                                                ? $checkedCats['full']
+                                                                                : '');
+                                                                                ?> id="rad21" ><label for="rad21"><?php echo HEADING_TITLE_SEO_FILLALL; ?></label></td>
                                                                             <td title="<?php echo $filltagsPopup['full']; ?>"><INPUT TYPE="radio" NAME="group2" VALUE="full" <?php echo (isset($checkedManuf['full'])
-        ? $checkedManuf['full'] : ''); ?> id="rad22" ><label for="rad22"><?php echo HEADING_TITLE_SEO_FILLALL; ?></label></td>
+                                                                                        ? $checkedManuf['full']
+                                                                                        : '');
+                                                                                ?> id="rad22" ><label for="rad22"><?php echo HEADING_TITLE_SEO_FILLALL; ?></label></td>
                                                                             <td title="<?php echo $filltagsPopup['full']; ?>"><INPUT TYPE="radio" NAME="group3" VALUE="full" <?php echo (isset($checkedProds['full'])
-        ? $checkedProds['full'] : ''); ?> id="rad23" ><label for="rad23"><?php echo HEADING_TITLE_SEO_FILLALL; ?></label></td>
+                                                                                ? $checkedProds['full']
+                                                                                : '');
+                                                                                ?> id="rad23" ><label for="rad23"><?php echo HEADING_TITLE_SEO_FILLALL; ?></label></td>
                                                                         </tr>
                                                                         <tr class="smallText"> 
                                                                             <td title="<?php echo $filltagsPopup['clear']; ?>"><INPUT TYPE="radio" NAME="group1" VALUE="clear" <?php echo (isset($checkedCats['clear'])
-        ? $checkedCats['clear'] : ''); ?> id="rad31" ><label for="rad31"><?php echo HEADING_TITLE_SEO_CLEARALL; ?></label></td>
+                                                                                ? $checkedCats['clear']
+                                                                                : '');
+                                                                                ?> id="rad31" ><label for="rad31"><?php echo HEADING_TITLE_SEO_CLEARALL; ?></label></td>
                                                                             <td title="<?php echo $filltagsPopup['clear']; ?>"><INPUT TYPE="radio" NAME="group2" VALUE="clear" <?php echo (isset($checkedManuf['clear'])
-        ? $checkedManuf['clear'] : ''); ?> id="rad32" ><label for="rad32"><?php echo HEADING_TITLE_SEO_CLEARALL; ?></label></td>
+                                                                                ? $checkedManuf['clear']
+                                                                                : '');
+                                                                                ?> id="rad32" ><label for="rad32"><?php echo HEADING_TITLE_SEO_CLEARALL; ?></label></td>
                                                                             <td title="<?php echo $filltagsPopup['clear']; ?>"><INPUT TYPE="radio" NAME="group3" VALUE="clear" <?php echo (isset($checkedProds['clear'])
-        ? $checkedProds['clear'] : ''); ?> id="rad33" ><label for="rad33"><?php echo HEADING_TITLE_SEO_CLEARALL; ?></label></td>
+                                                                                ? $checkedProds['clear']
+                                                                                : '');
+                                                                                ?> id="rad33" ><label for="rad33"><?php echo HEADING_TITLE_SEO_CLEARALL; ?></label></td>
                                                                         </tr>
                                                                     </table></td>         
                                                             </tr> 
@@ -843,36 +927,56 @@ if (isset($_POST['catfiles']) && $_POST['catfiles'][0] !== TEXT_FILTER_LIST_SELE
                                                                             <td title="<?php echo $filltagsPopup['show_missing_tags']; ?>"><INPUT TYPE="checkbox" NAME="show_missing_tags" ><?php echo HEADING_TITLE_SEO_SHOW_MISSING_TAGS; ?></td>
                                                                             <td title="<?php echo $filltagsPopup['include_missing_description']; ?>"><INPUT TYPE="checkbox" NAME="include_missing_description" ><?php echo HEADING_TITLE_SEO_INCLUDE_MISSING_DESCRIPTION; ?></td>
                                                                             <td title="<?php echo $filltagsPopup['enable_sleep']; ?>"><INPUT TYPE="checkbox" NAME="enable_sleep" <?php echo ($sleep
-        ? 'checked=true' : ''); ?> id="enable_sleep" onchange="ChangeIntervalState();"><?php echo HEADING_TITLE_SEO_ENABLE_SLEEP; ?></td>
+                                                                                        ? 'checked=true'
+                                                                                        : '');
+                                                                                ?> id="enable_sleep" onchange="ChangeIntervalState();"><?php echo HEADING_TITLE_SEO_ENABLE_SLEEP; ?></td>
                                                                             <td title="<?php echo $filltagsPopup['enable_sleep_interval']; ?>"><INPUT TYPE="text" NAME="enable_sleep_interval" value="<?php echo ($sleep
-&& $sleep_interval ? $sleep_interval : ''); ?>" size="2" <?php echo ($sleep && $sleep_interval
-        ? '' : 'disabled'); ?> id="enable_sleep_interval">&nbsp;<?php echo HEADING_TITLE_SEO_ENABLE_SLEEP_INTERVAL; ?></td>
-<?php echo tep_draw_hidden_field('sleep_start_ctr',
-    $sleep_start_ctr).tep_draw_hidden_field('sleep_total', $sleep_total); ?>
+                                                                        && $sleep_interval
+                                                                                ? $sleep_interval
+                                                                                : '');
+                                                                                ?>" size="2" <?php echo ($sleep
+                                                                        && $sleep_interval
+                                                                                ? ''
+                                                                                : 'disabled');
+                                                                                ?> id="enable_sleep_interval">&nbsp;<?php echo HEADING_TITLE_SEO_ENABLE_SLEEP_INTERVAL; ?></td>
+                                                                        <?php echo tep_draw_hidden_field('sleep_start_ctr',
+                                                                            $sleep_start_ctr).tep_draw_hidden_field('sleep_total',
+                                                                            $sleep_total);
+                                                                        ?>
                                                                         </tr>
                                                                     </table></td>
                                                             </tr>  
 
-<?php
-$langCnt    = count($languages);
-if ($langCnt == 1) $languageID = $languages[0]['id'];
-?>
+                                                                        <?php
+                                                                        $langCnt
+                                                                            = count($languages);
+                                                                        if ($langCnt
+                                                                            == 1)
+                                                                                $languageID
+                                                                                = $languages[0]['id'];
+                                                                        ?>
                                                             <tr> 
                                                                 <td width="55%"><table border="0" width="95%" cellspacing="0" cellpadding="2">
                                                                         <tr class="smallText">             
                                                                             <td width="20%">&nbsp;<b><?php echo HEADING_TITLE_SEO_LANGUAGE; ?></b></td>
-<?php //add an all languages button
-if ($langCnt > 1) {
-    ?>
+                                                                        <?php
+                                                                        //add an all languages button
+                                                                        if ($langCnt
+                                                                            > 1) {
+                                                                            ?>
                                                                                 <td align=left><INPUT TYPE="radio" NAME="language_group" VALUE="language_99" <?php echo ($languageID
-    == 99 ? 'checked' : ''); ?> ><?php echo TEXT_FILL_ALL_LANGUAGES; ?></td>
+                                                                            == 99
+                                                                                    ? 'checked'
+                                                                                    : '');
+                                                                            ?> ><?php echo TEXT_FILL_ALL_LANGUAGES; ?></td>
     <?php
 }
 
 for ($i = 0, $n = $langCnt; $i < $n; ++$i) {
     ?>   
                                                                                 <td align="left"><INPUT TYPE="radio" NAME="language_group" VALUE="language_<?php echo $languages[$i]['id']; ?>" <?php echo (($languageID
-    - 1) == $i ? 'checked' : ''); ?> ><?php echo $languages[$i]['name']; ?></td>
+    - 1) == $i ? 'checked' : '');
+    ?> ><?php echo $languages[$i]['name']; ?></td>
 <?php } ?>
                                                                         </tr>
                                                                     </table></td>   
@@ -884,18 +988,21 @@ for ($i = 0, $n = $langCnt; $i < $n; ++$i) {
                                                                 <td><table border="0" width="100%">
                                                                         <tr>
                                                                             <td><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+    '100%', '10');
+?></td>
                                                                         </tr>
                                                                         <tr> 
                                                                             <td align="center"><?php echo (tep_image_submit('button_update.gif',
-    IMAGE_UPDATE) ); ?></td>
+    IMAGE_UPDATE) );
+?></td>
                                                                         </tr>
 
-<?php if (tep_not_null($updateTextCat) || tep_not_null($updateTextManuf)
-    || tep_not_null($updateTextProd)) { ?>
+<?php if (tep_not_null($updateTextCat) || tep_not_null($updateTextManuf) || tep_not_null($updateTextProd)) {
+    ?>
                                                                             <tr>
                                                                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-        '100%', '10'); ?></td>
+        '100%', '10');
+    ?></td>
                                                                             </tr> 
 <?php } ?> 
 
@@ -908,7 +1015,8 @@ if ($bottomOfPage) {
 <?php if (tep_not_null($updateTextCat)) { ?>
                                                                             <tr>
                                                                                 <td class="HTC_subHead"><?php echo sprintf($updateTextCat,
-        ($sleep ? $sleep_total : $fillTagsCtr['categories'])); ?></td>
+        ($sleep ? $sleep_total : $fillTagsCtr['categories']));
+    ?></td>
                                                                             </tr> 
     <?php
     if (isset($fillTagsErrors['categories']) && count($fillTagsErrors['categories'])
@@ -919,14 +1027,17 @@ if ($bottomOfPage) {
                                                                                         <td class="HTC_subHead"><?php echo $fillTagsErrors['categories'][$i]; ?></td>
                                                                                     </tr>       
         <?php }
-    } ?>
+    }
+    ?>
 
-<?php }
+<?php
+}
 if (tep_not_null($updateTextManuf)) {
     ?>
                                                                             <tr>
                                                                                 <td class="HTC_subHead"><?php echo sprintf($updateTextManuf,
-        ($sleep ? $sleep_total : $fillTagsCtr['manufacturers'])); ?></td>
+        ($sleep ? $sleep_total : $fillTagsCtr['manufacturers']));
+    ?></td>
                                                                             </tr>
 
     <?php
@@ -938,14 +1049,17 @@ if (tep_not_null($updateTextManuf)) {
                                                                                         <td class="HTC_subHead"><?php echo $fillTagsErrors['manufacturers'][$i]; ?></td>
                                                                                     </tr>       
         <?php }
-    } ?>
+    }
+    ?>
 
-<?php }
+<?php
+}
 if (tep_not_null($updateTextProd)) {
     ?>
                                                                             <tr>
                                                                                 <td class="HTC_subHead"><?php echo sprintf($updateTextProd,
-        ($sleep ? $sleep_total : $fillTagsCtr['products'])); ?></td>
+        ($sleep ? $sleep_total : $fillTagsCtr['products']));
+    ?></td>
                                                                             </tr>
 
     <?php
@@ -957,14 +1071,17 @@ if (tep_not_null($updateTextProd)) {
                                                                                         <td class="HTC_subHead"><?php echo $fillTagsErrors['products'][$i]; ?></td>
                                                                                     </tr>       
         <?php }
-    } ?>
+    }
+    ?>
 
-<?php }
+<?php
+}
 if (tep_not_null($missingTags)) {
     ?>
                                                                             <tr>
                                                                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-        '100%', '10'); ?></td>
+        '100%', '10');
+    ?></td>
                                                                             </tr>                
                                                                             <tr>
                                                                                 <td class="HTC_subHead" style="font-weight: bold;"><?php echo TEXT_MISSING_TAGS; ?></td>

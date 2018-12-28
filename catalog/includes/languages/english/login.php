@@ -8,7 +8,7 @@
   Copyright (c) 2014 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
-define('NAVBAR_TITLE', 'Login',true);
-define('HEADING_TITLE', 'Welcome, Please Sign In',true);
+define('NAVBAR_TITLE', 'Login', true);
+define('HEADING_TITLE', 'Welcome, Please Sign In', true);

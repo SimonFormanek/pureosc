@@ -29,8 +29,8 @@ if (tep_not_null($action)) {
                 $sql_data_array = array('orders_status_name' => tep_db_prepare_input($orders_status_name_array[$language_id]),
                     'public_flag' => ((isset($_POST['public_flag']) && ($_POST['public_flag']
                     == '1')) ? '1' : '0'),
-                    'downloads_flag' => ((isset($_POST['downloads_flag'])
-                    && ($_POST['downloads_flag'] == '1')) ? '1' : '0'));
+                    'downloads_flag' => ((isset($_POST['downloads_flag']) && ($_POST['downloads_flag']
+                    == '1')) ? '1' : '0'));
 
                 if ($action == 'insert') {
                     if (empty($orders_status_id)) {
@@ -53,8 +53,7 @@ if (tep_not_null($action)) {
                 }
             }
 
-            if (isset($_POST['default']) && ($_POST['default']
-                == 'on')) {
+            if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
                 tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".tep_db_input($orders_status_id)."' where configuration_key = 'DEFAULT_ORDERS_STATUS_ID'");
             }
 
@@ -110,7 +109,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -154,41 +154,50 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 }
                                 ?>
                                 <td class="dataTableContent" align="center"><?php echo tep_image(DIR_WS_IMAGES.'icons/'.(($orders_status['public_flag']
-                                    == '1') ? 'tick.gif' : 'cross.gif')); ?></td>
+                                == '1') ? 'tick.gif' : 'cross.gif'));
+                                ?></td>
                                 <td class="dataTableContent" align="center"><?php echo tep_image(DIR_WS_IMAGES.'icons/'.(($orders_status['downloads_flag']
-                                == '1') ? 'tick.gif' : 'cross.gif')); ?></td>
-                                <td class="dataTableContent" align="right"><?php if (isset($oInfo)
-                                && is_object($oInfo) && ($orders_status['orders_status_id']
-                                == $oInfo->orders_status_id)) {
-                                echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
-                                    '');
-                            } else {
-                                echo '<a href="'.tep_href_link(FILENAME_ORDERS_STATUS,
-                                    'page='.$_GET['page'].'&oID='.$orders_status['orders_status_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                                    IMAGE_ICON_INFO).'</a>';
-                            } ?>&nbsp;</td>
+                                    == '1') ? 'tick.gif' : 'cross.gif'));
+                                ?></td>
+                                <td class="dataTableContent" align="right"><?php
+                                    if (isset($oInfo) && is_object($oInfo) && ($orders_status['orders_status_id']
+                                        == $oInfo->orders_status_id)) {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                            '');
+                                    } else {
+                                        echo '<a href="'.tep_href_link(FILENAME_ORDERS_STATUS,
+                                            'page='.$_GET['page'].'&oID='.$orders_status['orders_status_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                            IMAGE_ICON_INFO).'</a>';
+                                    }
+                                    ?>&nbsp;</td>
                     </tr>
-            <?php
-        }
-        ?>
+    <?php
+}
+?>
                 <tr>
                     <td colspan="4"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-                                <td class="smallText" valign="top"><?php echo $orders_status_split->display_count($orders_status_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-            TEXT_DISPLAY_NUMBER_OF_ORDERS_STATUS); ?></td>
-                                <td class="smallText" align="right"><?php echo $orders_status_split->display_links($orders_status_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $_GET['page']); ?></td>
+                                <td class="smallText" valign="top"><?php
+                                    echo $orders_status_split->display_count($orders_status_query_numrows,
+                                        MAX_DISPLAY_SEARCH_RESULTS,
+                                        $_GET['page'],
+                                        TEXT_DISPLAY_NUMBER_OF_ORDERS_STATUS);
+                                    ?></td>
+                                <td class="smallText" align="right"><?php
+                            echo $orders_status_split->display_links($orders_status_query_numrows,
+                                MAX_DISPLAY_SEARCH_RESULTS,
+                                MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+                                    ?></td>
                             </tr>
-        <?php
-        if (empty($action)) {
-            ?>
+                            <?php
+                            if (empty($action)) {
+                                ?>
                                 <tr>
-                                    <td class="smallText" colspan="2" align="right"><?php echo tep_draw_button(IMAGE_INSERT,
-            'plus',
-            tep_href_link(FILENAME_ORDERS_STATUS,
-                'page='.$_GET['page'].'&action=new')); ?></td>
+                                    <td class="smallText" colspan="2" align="right"><?php
+                            echo tep_draw_button(IMAGE_INSERT, 'plus',
+                                tep_href_link(FILENAME_ORDERS_STATUS,
+                                    'page='.$_GET['page'].'&action=new'));
+                                ?></td>
                                 </tr>
             <?php
         }

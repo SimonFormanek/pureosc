@@ -23,7 +23,7 @@ class cm_cs_thank_you
     {
         $this->cm_cs_thank_you();
     }
-    
+
     function cm_cs_thank_you()
     {
         $this->code  = get_class($this);

@@ -18,8 +18,7 @@ if (tep_not_null($action)) {
     switch ($action) {
         case 'insert':
             $name       = tep_db_prepare_input($_POST['name']);
-            $code       = tep_db_prepare_input(substr($_POST['code'],
-                    0, 2));
+            $code       = tep_db_prepare_input(substr($_POST['code'], 0, 2));
             $image      = tep_db_prepare_input($_POST['image']);
             $directory  = tep_db_prepare_input($_POST['directory']);
             $sort_order = (int) tep_db_prepare_input($_POST['sort_order']);
@@ -63,20 +62,17 @@ if (tep_not_null($action)) {
                 tep_db_query("insert into ".TABLE_ORDERS_STATUS." (orders_status_id, language_id, orders_status_name) values ('".(int) $orders_status['orders_status_id']."', '".(int) $insert_id."', '".tep_db_input($orders_status['orders_status_name'])."')");
             }
 
-            if (isset($_POST['default']) && ($_POST['default']
-                == 'on')) {
+            if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
                 tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".tep_db_input($code)."' where configuration_key = 'DEFAULT_LANGUAGE'");
             }
 
             tep_redirect(tep_href_link(FILENAME_LANGUAGES,
-                    (isset($_GET['page']) ? 'page='.$_GET['page'].'&'
-                            : '').'lID='.$insert_id));
+                    (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').'lID='.$insert_id));
             break;
         case 'save':
             $lID        = tep_db_prepare_input($_GET['lID']);
             $name       = tep_db_prepare_input($_POST['name']);
-            $code       = tep_db_prepare_input(substr($_POST['code'],
-                    0, 2));
+            $code       = tep_db_prepare_input(substr($_POST['code'], 0, 2));
             $image      = tep_db_prepare_input($_POST['image']);
             $directory  = tep_db_prepare_input($_POST['directory']);
             $sort_order = (int) tep_db_prepare_input($_POST['sort_order']);
@@ -107,8 +103,7 @@ if (tep_not_null($action)) {
             tep_db_query("delete from ".TABLE_ORDERS_STATUS." where language_id = '".(int) $lID."'");
             tep_db_query("delete from ".TABLE_LANGUAGES." where languages_id = '".(int) $lID."'");
 
-            tep_redirect(tep_href_link(FILENAME_LANGUAGES,
-                    'page='.$_GET['page']));
+            tep_redirect(tep_href_link(FILENAME_LANGUAGES, 'page='.$_GET['page']));
             break;
         case 'delete':
             $lID = tep_db_prepare_input($_GET['lID']);
@@ -134,7 +129,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -147,71 +143,74 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_LANGUAGE_CODE; ?></td>
                                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
                             </tr>
-                            <?php
-                            $languages_query_raw = "select languages_id, name, code, image, directory, sort_order from ".TABLE_LANGUAGES." order by sort_order";
-                            $languages_split     = new splitPageResults($_GET['page'],
-                                MAX_DISPLAY_SEARCH_RESULTS,
-                                $languages_query_raw, $languages_query_numrows);
-                            $languages_query     = tep_db_query($languages_query_raw);
+<?php
+$languages_query_raw = "select languages_id, name, code, image, directory, sort_order from ".TABLE_LANGUAGES." order by sort_order";
+$languages_split     = new splitPageResults($_GET['page'],
+    MAX_DISPLAY_SEARCH_RESULTS, $languages_query_raw, $languages_query_numrows);
+$languages_query     = tep_db_query($languages_query_raw);
 
-                            while ($languages = tep_db_fetch_array($languages_query)) {
-                                if ((!isset($_GET['lID']) || (isset($_GET['lID'])
-                                    && ($_GET['lID'] == $languages['languages_id'])))
-                                    && !isset($lInfo) && (substr($action, 0, 3) != 'new')) {
-                                    $lInfo = new objectInfo($languages);
-                                }
+while ($languages = tep_db_fetch_array($languages_query)) {
+    if ((!isset($_GET['lID']) || (isset($_GET['lID']) && ($_GET['lID'] == $languages['languages_id'])))
+        && !isset($lInfo) && (substr($action, 0, 3) != 'new')) {
+        $lInfo = new objectInfo($languages);
+    }
 
+    if (isset($lInfo) && is_object($lInfo) && ($languages['languages_id'] == $lInfo->languages_id)) {
+        echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_LANGUAGES,
+            'page='.$_GET['page'].'&lID='.$lInfo->languages_id.'&action=edit').'\'">'."\n";
+    } else {
+        echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_LANGUAGES,
+            'page='.$_GET['page'].'&lID='.$languages['languages_id']).'\'">'."\n";
+    }
+
+    if (DEFAULT_LANGUAGE == $languages['code']) {
+        echo '                <td class="dataTableContent"><strong>'.$languages['name'].' ('.TEXT_DEFAULT.')</strong></td>'."\n";
+    } else {
+        echo '                <td class="dataTableContent">'.$languages['name'].'</td>'."\n";
+    }
+    ?>
+                                <td class="dataTableContent"><?php echo $languages['code']; ?></td>
+                                <td class="dataTableContent" align="right"><?php
                                 if (isset($lInfo) && is_object($lInfo) && ($languages['languages_id']
                                     == $lInfo->languages_id)) {
-                                    echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_LANGUAGES,
-                                        'page='.$_GET['page'].'&lID='.$lInfo->languages_id.'&action=edit').'\'">'."\n";
+                                    echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
                                 } else {
-                                    echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_LANGUAGES,
-                                        'page='.$_GET['page'].'&lID='.$languages['languages_id']).'\'">'."\n";
+                                    echo '<a href="'.tep_href_link(FILENAME_LANGUAGES,
+                                        'page='.$_GET['page'].'&lID='.$languages['languages_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                        IMAGE_ICON_INFO).'</a>';
                                 }
-
-                                if (DEFAULT_LANGUAGE == $languages['code']) {
-                                    echo '                <td class="dataTableContent"><strong>'.$languages['name'].' ('.TEXT_DEFAULT.')</strong></td>'."\n";
-                                } else {
-                                    echo '                <td class="dataTableContent">'.$languages['name'].'</td>'."\n";
+                                ?>&nbsp;</td>
+                    </tr>
+                                    <?php
                                 }
                                 ?>
-                                <td class="dataTableContent"><?php echo $languages['code']; ?></td>
-                                <td class="dataTableContent" align="right"><?php if (isset($lInfo)
-                                && is_object($lInfo) && ($languages['languages_id']
-                                == $lInfo->languages_id)) {
-                                echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
-                            } else {
-                                echo '<a href="'.tep_href_link(FILENAME_LANGUAGES,
-                                    'page='.$_GET['page'].'&lID='.$languages['languages_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                                    IMAGE_ICON_INFO).'</a>';
-                            } ?>&nbsp;</td>
-                    </tr>
-            <?php
-        }
-        ?>
                 <tr>
                     <td colspan="3"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-                                <td class="smallText" valign="top"><?php echo $languages_split->display_count($languages_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-            TEXT_DISPLAY_NUMBER_OF_LANGUAGES); ?></td>
-                                <td class="smallText" align="right"><?php echo $languages_split->display_links($languages_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $_GET['page']); ?></td>
+                                <td class="smallText" valign="top"><?php
+                echo $languages_split->display_count($languages_query_numrows,
+                    MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
+                    TEXT_DISPLAY_NUMBER_OF_LANGUAGES);
+                ?></td>
+                                <td class="smallText" align="right"><?php
+                echo $languages_split->display_links($languages_query_numrows,
+                    MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
+                    $_GET['page']);
+                ?></td>
                             </tr>
-        <?php
-        if (empty($action)) {
-            ?>
+                                    <?php
+                                    if (empty($action)) {
+                                        ?>
                                 <tr>
-                                    <td class="smallText" align="right" colspan="2"><?php echo tep_draw_button(IMAGE_NEW_LANGUAGE,
-            'plus',
-            tep_href_link(FILENAME_LANGUAGES,
-                'page='.$_GET['page'].'&lID='.$lInfo->languages_id.'&action=new')); ?></td>
+                                    <td class="smallText" align="right" colspan="2"><?php
+                            echo tep_draw_button(IMAGE_NEW_LANGUAGE, 'plus',
+                                tep_href_link(FILENAME_LANGUAGES,
+                                    'page='.$_GET['page'].'&lID='.$lInfo->languages_id.'&action=new'));
+                                        ?></td>
                                 </tr>
-            <?php
-        }
-        ?>
+                                <?php
+                            }
+                            ?>
                         </table></td>
                 </tr>
             </table></td>

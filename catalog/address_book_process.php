@@ -222,10 +222,10 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
 
 
         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
-            
+
             $adresar = new \PureOSC\flexibee\Adresar([
                 'id' => 'ext:customers:'.$_SESSION['customer_id'],
-                'kod' => strtoupper(trim(\Ease\Sand::rip($lastname.$firstname) )),
+                'kod' => strtoupper(trim(\Ease\Sand::rip($lastname.$firstname))),
                 'nazev' => $firstname.' '.$lastname,
                 'email' => $email_address,
                 'ulice' => $street_address,
@@ -235,7 +235,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
                 'tel' => $telephone,
                 'fax' => $fax]);
             $adresar->sync();
-            
+
             $kontakter = new \PureOSC\flexibee\Kontakt([
                 'id' => 'ext:contact:'.(int) $_GET['edit'],
                 'firma' => $adresar,

@@ -71,10 +71,12 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <div class="page-header">
         <div style="float:left"><h1><?php echo $articles_name; ?></h1></div>
         <?php if (tep_not_null($article_info['articles_image']) && file_exists(DIR_WS_IMAGES.'article_manager_uploads/'.$article_info['articles_image'])) { ?>
-            <div style="float:right"><?php echo tep_image(DIR_WS_IMAGES.'article_manager_uploads/'.$article_info['articles_image'],
-                $article_info['articles_name'], ARTICLES_IMAGE_WIDTH,
-                ARTICLES_IMAGE_HEIGHT); ?></div>
-        <?php } ?>
+            <div style="float:right"><?php
+                echo tep_image(DIR_WS_IMAGES.'article_manager_uploads/'.$article_info['articles_image'],
+                    $article_info['articles_name'], ARTICLES_IMAGE_WIDTH,
+                    ARTICLES_IMAGE_HEIGHT);
+                ?></div>
+    <?php } ?>
     </div>
     <div class="smallText" style="clear:both; margin:5px 0">
 
@@ -99,58 +101,66 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <?php echo stripslashes($article_info['articles_description']); ?>
         </div>
 
-        <?php if (tep_not_null($article_info['articles_url'])) { ?>
+            <?php if (tep_not_null($article_info['articles_url'])) { ?>
             <div class="articlePadding"><?php echo sprintf(TEXT_MORE_INFORMATION,
-                "http://".urlencode($article_info['articles_url'])); ?></div>
+            "http://".urlencode($article_info['articles_url']));
+                ?></div>
             <?php
         }
         if (DISPLAY_DATE_ADDED_ARTICLE_LISTING == 'true') {
             if ($article_info['articles_date_available'] > date('Y-m-d H:i:s')) {
                 ?>
                 <div class="articlePadding"><?php echo sprintf(TEXT_DATE_AVAILABLE,
-                tep_date_long($article_info['articles_date_available'])); ?></div>
+                tep_date_long($article_info['articles_date_available']));
+            ?></div>
             <?php } else {
-            ?>
+                ?>
                 <div class="articlePadding"><?php echo sprintf(TEXT_DATE_ADDED,
-                tep_date_long($article_info['articles_date_added'])); ?></div>
-                <?php
-            }
+                tep_date_long($article_info['articles_date_added']));
+                ?></div>
+            <?php
         }
-        ?> 
+    }
+    ?> 
 
 
         <!-- BEGIN SHOWING THE COMMENTS //-->
         <div class="smallText"><?php echo TEXT_COMMENT; ?></div>
-    <?php
-    $comments_query = tep_db_query("SELECT * from ".TABLE_ARTICLES_BLOG." where articles_id = ".(int) $_GET['articles_id']." and comments_status = 1 and language_id = ".(int) $languages_id);
-    while ($comments       = tep_db_fetch_array($comments_query)) {
-        ?>
+                <?php
+                $comments_query = tep_db_query("SELECT * from ".TABLE_ARTICLES_BLOG." where articles_id = ".(int) $_GET['articles_id']." and comments_status = 1 and language_id = ".(int) $languages_id);
+                while ($comments       = tep_db_fetch_array($comments_query)) {
+                    ?>
             <div class="articlePadding fa fa-asterisk">
-                <span class="smallText articleBlogEntry"><?php echo sprintf(TEXT_WHO_SAID,
-            $comments['commenters_name'],
-            date("F d, Y \a\\t h:i A",
-                strtotime($comments['comment_date_added']))); ?></span>
+                <span class="smallText articleBlogEntry"><?php
+            echo sprintf(TEXT_WHO_SAID, $comments['commenters_name'],
+                date("F d, Y \a\\t h:i A",
+                    strtotime($comments['comment_date_added'])));
+            ?></span>
             </div>
             <div class="smallText"><?php echo $comments['comment']; ?></div>
-    <?php } ?>
+        <?php } ?>
         <!-- END SHOWING THE COMMENTS //-->
 
 
         <!-- BEGIN POST A COMMENT SECTION //-->
-        <?php echo tep_draw_form('new_comment',
-            tep_href_link(FILENAME_ARTICLE_BLOG, tep_get_all_get_params()),
-            'post').tep_hide_session_id().tep_draw_hidden_field('action',
-            'process_comment'); ?>
+                <?php
+                echo tep_draw_form('new_comment',
+                    tep_href_link(FILENAME_ARTICLE_BLOG,
+                        tep_get_all_get_params()), 'post').tep_hide_session_id().tep_draw_hidden_field('action',
+                    'process_comment');
+                ?>
         <div class="articlePadding">
             <div class="smallText"><?php echo TEXT_POST_A_COMMENT; ?></div>
             <div class="smallText"><?php echo tep_draw_textarea_field('blog_comment',
-        'soft', 40, 5, '', '', false); ?></div>
+                'soft', 40, 5, '', '', false);
+            ?></div>
             <div class="smallText"><?php echo tep_db_num_rows($comments_query).' '.(tep_db_num_rows($comments_query)
-    > 1 ? TEXT_TOTAL_COMMENTS : TEXT_TOTAL_COMMENT); ?></div>
-            <div class="smallText" align="right"><?php echo tep_draw_hidden_field('article_name',
-        $articles_name).
-    tep_draw_button(IMAGE_BUTTON_SUBMIT, 'arrowreturnthick-1-n', null,
-        'primary', null, 'btn-success'); //pure:bugfix:articles tep_draw_button 
+            > 1 ? TEXT_TOTAL_COMMENTS : TEXT_TOTAL_COMMENT);
+            ?></div>
+            <div class="smallText" align="right"><?php
+        echo tep_draw_hidden_field('article_name', $articles_name).
+        tep_draw_button(IMAGE_BUTTON_SUBMIT, 'arrowreturnthick-1-n', null,
+            'primary', null, 'btn-success'); //pure:bugfix:articles tep_draw_button 
         ?></div>
         </div>
     </form>
@@ -169,17 +179,18 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     <!--- BEGIN Header Tags SEO Social Bookmarks -->
     <div class="articlePadding" style="padding-bottom:40px;">
-    <?php
-    if (HEADER_TAGS_DISPLAY_SOCIAL_BOOKMARKS == 'true') {
-        include(DIR_WS_MODULES.'header_tags_social_bookmarks.php');
-    }
-    ?>
+            <?php
+            if (HEADER_TAGS_DISPLAY_SOCIAL_BOOKMARKS == 'true') {
+                include(DIR_WS_MODULES.'header_tags_social_bookmarks.php');
+            }
+            ?>
     </div>
     <!--- END Header Tags SEO Social Bookmarks -->   
 
     <div class="buttonSet">
         <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-        'glyphicon glyphicon-chevron-right', tep_href_link(FILENAME_DEFAULT)); ?></div>
+        'glyphicon glyphicon-chevron-right', tep_href_link(FILENAME_DEFAULT));
+    ?></div>
     </div>
     </div>
 

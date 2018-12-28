@@ -7,11 +7,9 @@
   Released under the GNU General Public License
  */
 
-
 class cash
 {
     var $code, $title, $description, $enabled;
-
 
     public function __construct()
     {
@@ -27,9 +25,10 @@ class cash
         $this->title        = _('Cash');
         $this->public_title = _('Cash desk payment');
         $this->description  = _('Cash on table');
-        $this->sort_order   = defined('MODULE_PAYMENT_CASH_SORT_ORDER') ? constant('MODULE_PAYMENT_CASH_SORT_ORDER') : '';
-        $this->enabled      = ((defined('MODULE_PAYMENT_CASH_STATUS') &&  constant('MODULE_PAYMENT_CASH_STATUS') == 'True') ? true
-                : false);
+        $this->sort_order   = defined('MODULE_PAYMENT_CASH_SORT_ORDER') ? constant('MODULE_PAYMENT_CASH_SORT_ORDER')
+                : '';
+        $this->enabled      = ((defined('MODULE_PAYMENT_CASH_STATUS') && constant('MODULE_PAYMENT_CASH_STATUS')
+            == 'True') ? true : false);
 
 
 
@@ -39,7 +38,6 @@ class cash
         //        }
 
         if (is_object($order)) $this->update_status();
-
     }
 
     // class methods
@@ -297,8 +295,8 @@ class cash
             $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
             $invoice->setDataValue("typDokl", 'code:FAKTURA');
             $invoice->setDataValue("stavMailK", 'stavMail.neodesilat');
-            if(isset($_REQUEST['comments'])){
-                $invoice->setDataValue('poznam',$_REQUEST['comments']);
+            if (isset($_REQUEST['comments'])) {
+                $invoice->setDataValue('poznam', $_REQUEST['comments']);
             }
         }
 
@@ -345,7 +343,8 @@ class cash
                 $varSym    = $invoice->getDataValue('varSym');
                 $orderCode = $invoice->getRecordID();
                 $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
-                \Ease\Shared::instanced()->addStatusMessage(_('New order saved').$invoice, 'success');
+                \Ease\Shared::instanced()->addStatusMessage(_('New order saved').$invoice,
+                    'success');
             } else {
                 echo 'FlexiBee Errorek';
             }
@@ -378,8 +377,8 @@ class cash
             $o_stat            = tep_db_fetch_array($my_status_query);
             $current_status_id = (int) $o_stat['orders_status'];
         }
-        if (($current_status_id == MODULE_PAYMENT_CASH_COMP_ORDER_STATUS_ID)
-            || ($current_status_id == $delivered_status)) {
+        if (($current_status_id == MODULE_PAYMENT_CASH_COMP_ORDER_STATUS_ID) || ($current_status_id
+            == $delivered_status)) {
             $update_status = false;
         }
         if ($update_status) {
@@ -655,5 +654,4 @@ class cash
                 $currencies->currencies[$currency_code]['decimal_places']),
             $currencies->currencies[$currency_code]['decimal_places'], '.', '');
     }
-
 }

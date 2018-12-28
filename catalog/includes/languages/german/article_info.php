@@ -8,16 +8,19 @@
   Copyright (c) 2003 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 define('NAVBAR_TITLE', 'Article Details');
 define('HEADING_ARTICLE_NOT_FOUND', 'Article Not Found');
-define('TEXT_ARTICLE_NOT_FOUND', 'Sorry, but the article you requested is not available in this site.');
-define('TEXT_MORE_INFORMATION', 'For more information, please visit this articles <a href="%s" target="_blank"><u>web page</u></a>.');
+define('TEXT_ARTICLE_NOT_FOUND',
+    'Sorry, but the article you requested is not available in this site.');
+define('TEXT_MORE_INFORMATION',
+    'For more information, please visit this articles <a href="%s" target="_blank"><u>web page</u></a>.');
 define('TEXT_DATE_ADDED', 'This article was published on %s.');
-define('TEXT_DATE_AVAILABLE', '<font color="#FF0000">This article will be published on %s.</font>');
+define('TEXT_DATE_AVAILABLE',
+    '<font color="#FF0000">This article will be published on %s.</font>');
 define('TEXT_BY', 'by ');
 define('TEXT_CLOSE_POPUP', 'Close Window');
-define('TEXT_COURTESY_OF', 'Printed with permission from ' . STORE_NAME);
+define('TEXT_COURTESY_OF', 'Printed with permission from '.STORE_NAME);
 define('TEXT_CURRENT_REVIEWS', 'Current Reviews:');
 define('BOX_TEXT_TELL_A_FRIEND', 'Tell a friend');
 define('TEXT_TELL_A_FRIEND', 'Tell a friend about this article:');

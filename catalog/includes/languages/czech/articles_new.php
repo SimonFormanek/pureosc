@@ -8,14 +8,16 @@
   Copyright (c) 2003 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
 define('NAVBAR_TITLE', 'Nové články');
 define('HEADING_TITLE', 'Nové články');
 
-define('TEXT_NEW_ARTICLES', 'Následující články byly přidány v posledních %s dnech.');
+define('TEXT_NEW_ARTICLES',
+    'Následující články byly přidány v posledních %s dnech.');
 define('TEXT_ARTICLES', sprintf(TEXT_NEW_ARTICLES, NEW_ARTICLES_DAYS_DISPLAY));
-define('TEXT_NO_NEW_ARTICLES', 'V posledních dnech %s nebyly přidány žádné nové články.');
+define('TEXT_NO_NEW_ARTICLES',
+    'V posledních dnech %s nebyly přidány žádné nové články.');
 define('TEXT_DATE_ADDED', 'Publikováno:');
 define('TEXT_AUTHOR', 'Autor:');
 define('TEXT_TOPIC', 'Kategorie:');

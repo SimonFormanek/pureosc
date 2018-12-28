@@ -8,7 +8,7 @@
   Copyright (c) 2003 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
 define('NAVBAR_TITLE', 'Recenze');
 define('HEADING_TITLE', 'Recenze ');

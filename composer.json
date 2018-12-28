@@ -16,7 +16,7 @@
         "league/commonmark": "dev-master",
         "dompdf/dompdf": "dev-master",
         "adamstipak/webpay-php": "dev-master",
-        "phpmailer/phpmailer": "v6.0.5",
+        "phpmailer/phpmailer": "^6.0",
         "robmorgan/phinx": "^0.10.6"
     },
     "autoload": {
@@ -25,6 +25,10 @@
             "PureOSC\\flexibee\\": "catalog/ext/flexibee/",
             "PureOSC\\Admin\\": "admin/includes/classes/",
             "PureOSC\\Admin\\flexibee\\": "admin/ext/flexibee/"
-        }
+        },
+        "classmap": ["catalog/includes/classes/", "catalog/includes/modules/", "catalog/admin/includes/classes/", "catalog/admin/includes/modules/"]
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.10.7"
     }
 }

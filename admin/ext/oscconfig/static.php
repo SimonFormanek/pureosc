@@ -2,15 +2,15 @@
 //TODO:presun do databaze - seo URLS config
 //presun define('SESSION_FORCE_COOKIE_USE','True'); //bacha vyresit TODO
 
-define('PRODUCTS_CANONICAL_TYPE','path'); //config: path / manufacturer
-define('RSYNCLOGGING','false');
+define('PRODUCTS_CANONICAL_TYPE', 'path'); //config: path / manufacturer
+define('RSYNCLOGGING', 'false');
 
 //rsync
-define('WGET_USER','osc');
-define('WGET_PASSWORD','osc');
-define('OSC_DIR','osc');
-define('RSYNC_LOCAL_SRC_PATH','/home/f/git/osc/'); //trailing slash at the end (/); Without including OSC_DIR!
-define('DIR_FS_CONFIG','/home/f/git/osc/oscconfig/'); //trailing slash! '/'
+define('WGET_USER', 'osc');
+define('WGET_PASSWORD', 'osc');
+define('OSC_DIR', 'osc');
+define('RSYNC_LOCAL_SRC_PATH', '/home/f/git/osc/'); //trailing slash at the end (/); Without including OSC_DIR!
+define('DIR_FS_CONFIG', '/home/f/git/osc/oscconfig/'); //trailing slash! '/'
 
 
 //old DEPRECATED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

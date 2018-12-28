@@ -8,8 +8,7 @@
   Copyright (c) 2003 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 define('NEWS_TITLE', 'RSS Articles Feed');
 define('NEWS_DESCRIPTION', 'Articles for '.STORE_NAME);
-
 ?>

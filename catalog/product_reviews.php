@@ -73,20 +73,25 @@ if ($messageStack->size('product_reviews') > 0) {
                 true)).'</div>';
         ?>
 
-<?php
-if (tep_not_null($product_info['products_image'])) {
-    ?>
+        <?php
+        if (tep_not_null($product_info['products_image'])) {
+            ?>
 
             <div class="col-sm-4 text-center">
-    <?php echo '<a href="'.tep_href_link(FILENAME_PRODUCT_INFO,
-        'products_id='.$product_info['products_id']).'">'.tep_image(DIR_WS_IMAGES.$product_info['products_image'],
-        addslashes($product_info['products_name']), SMALL_IMAGE_WIDTH,
-        SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"').'</a>'; ?>
+                <?php
+                echo '<a href="'.tep_href_link(FILENAME_PRODUCT_INFO,
+                    'products_id='.$product_info['products_id']).'">'.tep_image(DIR_WS_IMAGES.$product_info['products_image'],
+                    addslashes($product_info['products_name']),
+                    SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT,
+                    'hspace="5" vspace="5"').'</a>';
+                ?>
 
-                <p><?php echo tep_draw_button(IMAGE_BUTTON_IN_CART,
-        'fa fa-shopping-cart',
-        tep_href_link($PHP_SELF,
-            tep_get_all_get_params(array('action')).'action=buy_now')); ?></p>
+                <p><?php
+                echo tep_draw_button(IMAGE_BUTTON_IN_CART,
+                    'fa fa-shopping-cart',
+                    tep_href_link($PHP_SELF,
+                        tep_get_all_get_params(array('action')).'action=buy_now'));
+                ?></p>
             </div>
 
             <div class="clearfix"></div>
@@ -95,23 +100,24 @@ if (tep_not_null($product_info['products_image'])) {
 
             <div class="clearfix"></div>
 
-    <?php
-}
+            <?php
+        }
 
-$reviews_query_raw = "select r.reviews_id, rd.reviews_text, r.reviews_rating, date(r.date_added) as date_added, r.customers_name from ".TABLE_REVIEWS." r, ".TABLE_REVIEWS_DESCRIPTION." rd where r.products_id = '".(int) $product_info['products_id']."' and r.reviews_id = rd.reviews_id and rd.languages_id = '".(int) $languages_id."' and r.reviews_status = 1 order by r.reviews_rating desc";
-$reviews_split     = new splitPageResults($reviews_query_raw,
-    MAX_DISPLAY_NEW_REVIEWS);
+        $reviews_query_raw = "select r.reviews_id, rd.reviews_text, r.reviews_rating, date(r.date_added) as date_added, r.customers_name from ".TABLE_REVIEWS." r, ".TABLE_REVIEWS_DESCRIPTION." rd where r.products_id = '".(int) $product_info['products_id']."' and r.reviews_id = rd.reviews_id and rd.languages_id = '".(int) $languages_id."' and r.reviews_status = 1 order by r.reviews_rating desc";
+        $reviews_split     = new splitPageResults($reviews_query_raw,
+            MAX_DISPLAY_NEW_REVIEWS);
 
-if ($reviews_split->number_of_rows > 0) {
-    if ((PREV_NEXT_BAR_LOCATION == '1') || (PREV_NEXT_BAR_LOCATION == '3')) {
-        ?>
+        if ($reviews_split->number_of_rows > 0) {
+            if ((PREV_NEXT_BAR_LOCATION == '1') || (PREV_NEXT_BAR_LOCATION == '3')) {
+                ?>
                 <div class="row">
                     <div class="col-sm-6 pagenumber hidden-xs">
-                    <?php echo $reviews_split->display_count(TEXT_DISPLAY_NUMBER_OF_REVIEWS); ?>
+        <?php echo $reviews_split->display_count(TEXT_DISPLAY_NUMBER_OF_REVIEWS); ?>
                     </div>
                     <div class="col-sm-6">
                         <span class="pull-right pagenav"><ul class="pagination"><?php echo $reviews_split->display_links(MAX_DISPLAY_PAGE_LINKS,
-                tep_get_all_get_params(array('page', 'info'))); ?></ul></span>
+            tep_get_all_get_params(array('page', 'info')));
+        ?></ul></span>
                         <span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span>
                     </div>
                 </div>
@@ -120,51 +126,54 @@ if ($reviews_split->number_of_rows > 0) {
                 ?>
 
             <div class="reviews">
-            <?php
-            $reviews_query = tep_db_query($reviews_split->sql_query);
-            while ($reviews       = tep_db_fetch_array($reviews_query)) {
-                $review_name = tep_output_string_protected($reviews['customers_name']);
-                ?>
+    <?php
+    $reviews_query = tep_db_query($reviews_split->sql_query);
+    while ($reviews       = tep_db_fetch_array($reviews_query)) {
+        $review_name = tep_output_string_protected($reviews['customers_name']);
+        ?>
                     <blockquote class="col-sm-6" itemscope itemtype="http://data-vocabulary.org/Review">
                         <p itemprop="description"><?php echo tep_output_string_protected($reviews['reviews_text']); ?></p>
                         <div class="hidden" itemprop="dtreviewed" datetime="<?php echo $reviews['date_added']; ?>"><?php echo $reviews['date_added']; ?></div>
                         <div class="hidden" itemprop="itemreviewed"><?php echo $product_info['products_name']; ?></div>
-                        <footer><?php echo sprintf(REVIEWS_TEXT_RATED,
+                        <footer><?php
+            echo sprintf(REVIEWS_TEXT_RATED,
                 tep_draw_stars($reviews['reviews_rating'], true), $review_name,
-                $review_name); ?></footer>
+                $review_name);
+        ?></footer>
                     </blockquote>
-                <?php
-            }
-            ?>
+        <?php
+    }
+    ?>
             </div>
             <div class="clearfix"></div>
-    <?php
-} else {
-    ?>
+            <?php
+        } else {
+            ?>
 
             <div class="alert alert-info">
             <?php echo TEXT_NO_REVIEWS; ?>
             </div>
 
-    <?php
-}
+                    <?php
+                }
 
-if (($reviews_split->number_of_rows > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION
-    == '3'))) {
-    ?>
+                if (($reviews_split->number_of_rows > 0) && ((PREV_NEXT_BAR_LOCATION
+                    == '2') || (PREV_NEXT_BAR_LOCATION == '3'))) {
+                    ?>
             <div class="row">
                 <div class="col-sm-6 pagenumber hidden-xs">
-                    <?php echo $reviews_split->display_count(TEXT_DISPLAY_NUMBER_OF_REVIEWS); ?>
+            <?php echo $reviews_split->display_count(TEXT_DISPLAY_NUMBER_OF_REVIEWS); ?>
                 </div>
                 <div class="col-sm-6">
                     <span class="pull-right pagenav"><ul class="pagination"><?php echo $reviews_split->display_links(MAX_DISPLAY_PAGE_LINKS,
-                    tep_get_all_get_params(array('page', 'info'))); ?></ul></span>
+            tep_get_all_get_params(array('page', 'info')));
+        ?></ul></span>
                     <span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span>
                 </div>
             </div>
-    <?php
-}
-?>
+                    <?php
+                }
+                ?>
 
         <br />
 
@@ -180,10 +189,11 @@ if (isset($navigation->path[$back])) {
 }
 ?>&nbsp;
             </div>
-            <div class="col-xs-6 text-right"><?php echo tep_draw_button(IMAGE_BUTTON_WRITE_REVIEW,
-    'fa fa-commenting',
+            <div class="col-xs-6 text-right"><?php
+echo tep_draw_button(IMAGE_BUTTON_WRITE_REVIEW, 'fa fa-commenting',
     tep_href_link(FILENAME_PRODUCT_REVIEWS_WRITE, tep_get_all_get_params()),
-    'primary', NULL, 'btn-success'); ?></div>
+    'primary', NULL, 'btn-success');
+?></div>
         </div>
     </div>
 
