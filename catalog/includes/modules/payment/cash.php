@@ -1,104 +1,51 @@
 <?php
 /*
-  $Id: gpwebpay.php VER: 1.0.3443 $
+  $Id: cash.php VER: 1.0.3443 $
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
   Copyright (c) 2008 osCommerce
   Released under the GNU General Public License
  */
 
-use \AdamStipak\Webpay\PaymentRequest;
 
-class gpwebpay
+class cash
 {
     var $code, $title, $description, $enabled;
 
-    /**
-     * @var string URL
-     */
-    public $gpWebPayEndpoint = null;
-
-    /**
-     * 3dsecure.gpwebpay.com URL
-     * @var string 
-     */
-    public $form_action_url;
 
     public function __construct()
     {
-        $this->gpwebpay();
+        $this->cash();
     }
 
     // class constructor
-    function gpwebpay()
+    function cash()
     {
         global $order;
-        $this->signature    = 'gpwebpay|gpwebpay|1.0|2.2';
-        $this->code         = 'gpwebpay';
-        $this->title        = _('GP WebPay');
-        $this->public_title = _('Card Payment');
-        $this->description  = _('GP WebPay Payment');
-        $this->sort_order   = MODULE_PAYMENT_GPWEBPAY_SORT_ORDER;
-        $this->enabled      = ((MODULE_PAYMENT_GPWEBPAY_STATUS == 'True') ? true
+        $this->signature    = 'cash|cash|1.0|2.2';
+        $this->code         = 'cash';
+        $this->title        = _('Cash');
+        $this->public_title = _('Cash desk payment');
+        $this->description  = _('Cash on table');
+        $this->sort_order   = defined('MODULE_PAYMENT_CASH_SORT_ORDER') ? constant('MODULE_PAYMENT_CASH_SORT_ORDER') : '';
+        $this->enabled      = ((defined('MODULE_PAYMENT_CASH_STATUS') &&  constant('MODULE_PAYMENT_CASH_STATUS') == 'True') ? true
                 : false);
 
 
 
-        //        if ((int)MODULE_PAYMENT_GPWEBPAY_PREPARE_ORDER_STATUS_ID > 0)
+        //        if ((int)MODULE_PAYMENT_CASH_PREPARE_ORDER_STATUS_ID > 0)
         //        {
-        //            $this->order_status = MODULE_PAYMENT_GPWEBPAY_PREPARE_ORDER_STATUS_ID;
+        //            $this->order_status = MODULE_PAYMENT_CASH_PREPARE_ORDER_STATUS_ID;
         //        }
 
         if (is_object($order)) $this->update_status();
 
-        if (constant('MODULE_PAYMENT_GPWEBPAY_GATEWAY_SERVER') == 'Production') {
-            $this->form_action_url = 'https://3dsecure.gpwebpay.com/pgw/order.do';
-        } else {
-            $this->form_action_url = 'https://test.3dsecure.gpwebpay.com/pgw/order.do';
-        }
     }
 
     // class methods
     function update_status()
     {
-        global $order, $cart;
-
-        if (($this->enabled == true) && ((int) MODULE_PAYMENT_GPWEBPAY_ZONE > 0)) {
-            $check_flag  = false;
-            $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_GPWEBPAY_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
-            while ($check       = tep_db_fetch_array($check_query)) {
-                if ($check['zone_id'] < 1) {
-                    $check_flag = true;
-                    break;
-                } elseif ($check['zone_id'] == $order->billing['zone_id']) {
-                    $check_flag = true;
-                    break;
-                }
-            }
-
-            switch ($_REQUEST['PRCODE']) {
-                case 50: //Payment Canceled
-                    $cartID                      = $cart->cartID                = $cart->generate_cart_id();
-                    $order->info['order_status'] = 105;
-                    tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));
-                    exit();
-                    break;
-                case 14: //Paymen ID Duplicity
-                    $cartID                      = $cart->cartID                = $cart->generate_cart_id();
-
-                    if (!tep_session_is_registered('cartID')) {
-                        tep_session_register('cartID');
-                    }
-
-                    break;
-                default :
-                    break;
-            }
-
-            if ($check_flag == false) {
-                $this->enabled = false;
-            }
-        }
+        return true;
     }
 
     function javascript_validation()
@@ -108,11 +55,11 @@ class gpwebpay
 
     function selection()
     {
-        global $cart_gpwebpay_Standard_ID;
+        global $cart_cash_Standard_ID;
 
-        if (tep_session_is_registered('cart_gpwebpay_Standard_ID')) {
-            $order_id = substr($cart_gpwebpay_Standard_ID,
-                strpos($cart_gpwebpay_Standard_ID, '-') + 1);
+        if (tep_session_is_registered('cart_cash_Standard_ID')) {
+            $order_id = substr($cart_cash_Standard_ID,
+                strpos($cart_cash_Standard_ID, '-') + 1);
 
             $check_query = tep_db_query('select orders_id from '.TABLE_ORDERS_STATUS_HISTORY.' where orders_id = "'.(int) $order_id.'" limit 1');
 
@@ -124,13 +71,13 @@ class gpwebpay
                 tep_db_query('delete from '.TABLE_ORDERS_PRODUCTS_ATTRIBUTES.' where orders_id = "'.(int) $order_id.'"');
                 tep_db_query('delete from '.TABLE_ORDERS_PRODUCTS_DOWNLOAD.' where orders_id = "'.(int) $order_id.'"');
 
-                tep_session_unregister('cart_gpwebpay_Standard_ID');
+                tep_session_unregister('cart_cash_Standard_ID');
             }
         }
 
         return array('id' => $this->code,
             'module' => $this->public_title, 'fields' => array(array('title' => '',
-                    'field' => '<a href="http://www.gpwebpay.cz/"><img src="images/gpwebpay.png"></a>')));
+                    'field' => '')));
     }
 
     function pre_confirmation_check()
@@ -148,19 +95,19 @@ class gpwebpay
 
     function confirmation()
     {
-        global $cartID, $cart_gpwebpay_Standard_ID, $customer_id, $languages_id, $order, $order_total_modules;
+        global $cartID, $cart_cash_Standard_ID, $customer_id, $languages_id, $order, $order_total_modules;
 
         if (tep_session_is_registered('cartID')) {
             $insert_order = false;
 
-            if (tep_session_is_registered('cart_gpwebpay_Standard_ID')) {
-                $order_id = substr($cart_gpwebpay_Standard_ID,
-                    strpos($cart_gpwebpay_Standard_ID, '-') + 1);
+            if (tep_session_is_registered('cart_cash_Standard_ID')) {
+                $order_id = substr($cart_cash_Standard_ID,
+                    strpos($cart_cash_Standard_ID, '-') + 1);
 
                 $curr_check = tep_db_query("select currency from ".TABLE_ORDERS." where orders_id = '".(int) $order_id."'");
                 $curr       = tep_db_fetch_array($curr_check);
 
-                if (($curr['currency'] != $order->info['currency']) || ($cartID != substr($cart_gpwebpay_Standard_ID,
+                if (($curr['currency'] != $order->info['currency']) || ($cartID != substr($cart_cash_Standard_ID,
                         0, strlen($cartID)))) {
                     $check_query = tep_db_query('select orders_id from '.TABLE_ORDERS_STATUS_HISTORY.' where orders_id = "'.(int) $order_id.'" limit 1');
 
@@ -318,8 +265,8 @@ class gpwebpay
                     }
                 }
 
-                $cart_gpwebpay_Standard_ID = $cartID.'-'.$insert_id;
-                tep_session_register('cart_gpwebpay_Standard_ID');
+                $cart_cash_Standard_ID = $cartID.'-'.$insert_id;
+                tep_session_register('cart_cash_Standard_ID');
             }
         }
 
@@ -333,7 +280,7 @@ class gpwebpay
      * @global order $order
      * @global int   $sendto
      * @global string $currency
-     * @global type $cart_gpwebpay_Standard_ID
+     * @global type $cart_cash_Standard_ID
      * @global type $shipping
      * @global order_total $order_total_modules
      * 
@@ -341,14 +288,14 @@ class gpwebpay
      */
     function process_button()
     {
-        global $customer_id, $order, $sendto, $currency, $cart_gpwebpay_Standard_ID, $shipping, $order_total_modules;
+        global $customer_id, $order, $sendto, $currency, $cart_cash_Standard_ID, $shipping, $order_total_modules;
 
-        list( $cartId, $orderId ) = explode('-', $cart_gpwebpay_Standard_ID);
+        list( $cartId, $orderId ) = explode('-', $cart_cash_Standard_ID);
 
         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
             $invoice = new PureOSC\flexibee\FakturaVydana();
             $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
-            $invoice->setDataValue("typDokl", 'code:OBJEDNÁVKA');
+            $invoice->setDataValue("typDokl", 'code:FAKTURA');
             $invoice->setDataValue("stavMailK", 'stavMail.neodesilat');
             if(isset($_REQUEST['comments'])){
                 $invoice->setDataValue('poznam',$_REQUEST['comments']);
@@ -404,7 +351,7 @@ class gpwebpay
             }
         } else {
             $orderCode = null;
-            $varSym    = $cart_gpwebpay_Standard_ID;
+            $varSym    = $cart_cash_Standard_ID;
         }
 
 
@@ -413,67 +360,16 @@ class gpwebpay
         /*         * *EOF alteration for CCGV ** */
 
 
-
         $process_button_string = '';
-
-        $signer = new \AdamStipak\Webpay\Signer(
-            constant('MODULE_PAYMENT_GPWEBPAY_SECRET_KEY'),
-            constant('MODULE_PAYMENT_GPWEBPAY_SECRET_KEY_PASSWORD'),
-            constant('MODULE_PAYMENT_GPWEBPAY_PUBLIC_KEY')      // Path of public key.
-        );
-
-        $api = new \AdamStipak\Webpay\Api(
-            constant('MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID'), // Merchant number.
-            $this->form_action_url, // URL of webpay.
-            $signer            // instance of \AdamStipak\Webpay\Signer.
-        );
-
-
-        $currconvert = [
-            'CZK' => PaymentRequest::CZK,
-            'EUR' => PaymentRequest::EUR,
-            'GBP' => PaymentRequest::GBP,
-            'HUF' => PaymentRequest::HUF,
-            'PLN' => PaymentRequest::PLN,
-            'RUB' => PaymentRequest::RUB,
-            'USD' => PaymentRequest::USD
-        ];
-
-        $gpwpcurrency = $currconvert[$currency];
-        $successUrl   = tep_href_link(FILENAME_CHECKOUT_SUCCESS, '', 'SSL');
-
-
-        $request = new PaymentRequest($varSym, intval($totalPrice),
-            $gpwpcurrency, 1, $successUrl, $varSym);
-
-        $request->setDescription(self::convertToAscii($products_info));
-
-        try {
-        $parameters = $api->createPaymentParam($request);
-        foreach ($parameters as $key => $value) {
-            $process_button_string .= tep_draw_hidden_field($key, $value);
-        }
-        } catch (\AdamStipak\Webpay\SignerException $e) {
-            $process_button_string = _('Payment failed');
-            Ease\Shared::instanced()->addStatusMessage( 'GPWEBPAY: '. $e->getMessage() ,'error');
-//            $fakeResponseData               = $request->getParams();
-//            $fakeResponseData['PRCODE']     = 0;
-//            $fakeResponseData['OPERATION']  = 'CREATE_ORDER';
-//            $fakeResponseData['RESULTTEXT'] = 'OK';
-//            $process_button_string          .= '<a class="btn btn-danger" href="checkout_success.php?'.http_build_query($fakeResponseData).'"> ByPass '.$e->getMessage().' </a>';
-        }
-
-
-
         return $process_button_string;
     }
 
     function before_process()
     {
-        global $customer_id, $order, $order_totals, $sendto, $billto, $languages_id, $payment, $currencies, $cart, $cart_gpwebpay_Standard_ID;
+        global $customer_id, $order, $order_totals, $sendto, $billto, $languages_id, $payment, $currencies, $cart, $cart_cash_Standard_ID;
         global $$payment;
-        $order_id          = substr($cart_gpwebpay_Standard_ID,
-            strpos($cart_gpwebpay_Standard_ID, '-') + 1);
+        $order_id          = substr($cart_cash_Standard_ID,
+            strpos($cart_cash_Standard_ID, '-') + 1);
         $my_status_query   = tep_db_query("select orders_status from ".TABLE_ORDERS." where orders_id = '".$order_id."'"); // TODO: fix PB to add all params"' and customers_id = '" . (int)$HTTP_POST_VARS['custom'] . "'");
         $current_status_id = 0;
         $delivered_status  = 3;
@@ -482,7 +378,7 @@ class gpwebpay
             $o_stat            = tep_db_fetch_array($my_status_query);
             $current_status_id = (int) $o_stat['orders_status'];
         }
-        if (($current_status_id == MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID)
+        if (($current_status_id == MODULE_PAYMENT_CASH_COMP_ORDER_STATUS_ID)
             || ($current_status_id == $delivered_status)) {
             $update_status = false;
         }
@@ -505,7 +401,7 @@ class gpwebpay
 
         for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
             // Stock Update - Joao Correia
-            if ((MODULE_PAYMENT_GPWEBPAY_DECREASE_STOCK_ON_CREATION == 'True') && (STOCK_LIMITED
+            if ((MODULE_PAYMENT_CASH_DECREASE_STOCK_ON_CREATION == 'True') && (STOCK_LIMITED
                 == 'true')) {
                 if (DOWNLOAD_ENABLED == 'true') {
                     $stock_query_raw     = "SELECT products_quantity, pad.products_attributes_filename
@@ -644,55 +540,9 @@ class gpwebpay
         tep_session_unregister('payment');
         tep_session_unregister('comments');
 
-        tep_session_unregister('cart_gpwebpay_Standard_ID');
+        tep_session_unregister('cart_cash_Standard_ID');
 
         tep_redirect(tep_href_link(FILENAME_CHECKOUT_SUCCESS, '', 'SSL'));
-    }
-
-    /**
-     * Remove any non-ASCII characters and convert known non-ASCII characters 
-     * to their ASCII equivalents, if possible.
-     *
-     * @param string $string 
-     * @return string $string
-     * @author Jay Williams <myd3.com>
-     * 
-     * @license MIT License
-     * 
-     * @link http://gist.github.com/119517
-     */
-    static function convertToAscii($string)
-    {
-        // Replace Single Curly Quotes
-        $search[]  = chr(226).chr(128).chr(152);
-        $replace[] = "'";
-        $search[]  = chr(226).chr(128).chr(153);
-        $replace[] = "'";
-        // Replace Smart Double Curly Quotes
-        $search[]  = chr(226).chr(128).chr(156);
-        $replace[] = '"';
-        $search[]  = chr(226).chr(128).chr(157);
-        $replace[] = '"';
-        // Replace En Dash
-        $search[]  = chr(226).chr(128).chr(147);
-        $replace[] = '--';
-        // Replace Em Dash
-        $search[]  = chr(226).chr(128).chr(148);
-        $replace[] = '---';
-        // Replace Bullet
-        $search[]  = chr(226).chr(128).chr(162);
-        $replace[] = '*';
-        // Replace Middle Dot
-        $search[]  = chr(194).chr(183);
-        $replace[] = '*';
-        // Replace Ellipsis with three consecutive dots
-        $search[]  = chr(226).chr(128).chr(166);
-        $replace[] = '...';
-        // Apply Replacements
-        $string    = str_replace($search, $replace, $string);
-        // Remove any non-ASCII Characters
-        $string    = preg_replace("/[^\x01-\x7F]/", "", $string);
-        return $string;
     }
 
     function after_process()
@@ -708,7 +558,7 @@ class gpwebpay
     function check()
     {
         if (!isset($this->_check)) {
-            $check_query  = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_GPWEBPAY_STATUS'");
+            $check_query  = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_CASH_STATUS'");
             $this->_check = tep_db_num_rows($check_query);
         }
         return $this->_check;
@@ -742,61 +592,50 @@ class gpwebpay
 
     function install()
     {
-        $created_status_id     = $this->set_order_status('Processing [gpwebpay]',
+        $created_status_id     = $this->set_order_status('Processing [cash]',
             true);
-        $sum_too_low_status_id = $this->set_order_status('Sum too low [gpwebpay]',
+        $sum_too_low_status_id = $this->set_order_status('Sum too low [cash]',
             true);
-        $completed_status_id   = $this->set_order_status('Completed [gpwebpay]',
+        $completed_status_id   = $this->set_order_status(_('Completed [cash]'),
             true);
 
         $sort_order = 0;
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable gpwebpay on your webshop?', 'MODULE_PAYMENT_GPWEBPAY_STATUS', 'False', '', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Gateway Server', 'MODULE_PAYMENT_GPWEBPAY_GATEWAY_SERVER', 'Production', 'Use the testing or production gateway server for transactions', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'Production\', \'Test\'), ', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Your merchant id', 'MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID', '', 'Your merchant unique identifier (supplied by gpwebpay)', '6', '".$sort_order++."', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable cash on your webshop?', 'MODULE_PAYMENT_CASH_STATUS', 'False', '', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Flow Layout', 'MODULE_PAYMENT_CASH_FLOW_LAYOUT', 'multi_page', 'Layout for the buyer flow', '6', '".$sort_order++."', now())");
 
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('"._('Your secret key')."', 'MODULE_PAYMENT_GPWEBPAY_SECRET_KEY', '', '"._('Your secret key (supplied by gpwebpay)')."', '6', '".$sort_order++."', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Your secret key password', 'MODULE_PAYMENT_GPWEBPAY_SECRET_KEY_PASSWORD', '', '"._('Your secret key password (supplied by gpwebpay)')."', '6', '".$sort_order++."', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Your public key', 'MODULE_PAYMENT_GPWEBPAY_PUBLIC_KEY', '', '"._('Your public key (supplied by gpwebpay)')."', '6', '".$sort_order++."', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Decrease stock on payment creation', 'MODULE_PAYMENT_CASH_DECREASE_STOCK_ON_CREATION', 'False', 'Do you want to decrease stock upon payment creation?', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Debug E-Mail Address', 'MODULE_PAYMENT_CASH_DEBUG_EMAIL', '', 'All parameters of an Invalid IPN notification will be sent to this email address if one is entered.', '6', '".$sort_order++."', now())");
 
 
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Flow Layout', 'MODULE_PAYMENT_GPWEBPAY_FLOW_LAYOUT', 'multi_page', 'Layout for the buyer flow', '6', '".$sort_order++."', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_CASH_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '".$sort_order++."', now())");
 
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Decrease stock on payment creation', 'MODULE_PAYMENT_GPWEBPAY_DECREASE_STOCK_ON_CREATION', 'False', 'Do you want to decrease stock upon payment creation?', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Debug E-Mail Address', 'MODULE_PAYMENT_GPWEBPAY_DEBUG_EMAIL', '', 'All parameters of an Invalid IPN notification will be sent to this email address if one is entered.', '6', '".$sort_order++."', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set cash Acknowledged Order Status', 'MODULE_PAYMENT_CASH_CREATE_ORDER_STATUS_ID', '".$created_status_id."', 'Set the status of orders made with this payment module to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set cash sum too low Order Status', 'MODULE_PAYMENT_CASH_SUM_TOO_LOW_ORDER_STATUS_ID', '".$sum_too_low_status_id."', 'Set the status of orders which are paid with insufficient fund (sum too low) to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set cash Completed Order Status', 'MODULE_PAYMENT_CASH_COMP_ORDER_STATUS_ID', '".$completed_status_id."', 'Set the status of orders which are confirmed as paid (approved) to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
 
-
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_GPWEBPAY_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '".$sort_order++."', 'tep_get_zone_class_title', 'tep_cfg_pull_down_zone_classes(', now())");
-
-        //tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('E-Mail Address', 'MODULE_PAYMENT_GPWEBPAY_ID', '', 'The gpwebpay seller e-mail address to accept payments for', '6', '4', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_GPWEBPAY_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '".$sort_order++."', now())");
-
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay Acknowledged Order Status', 'MODULE_PAYMENT_GPWEBPAY_CREATE_ORDER_STATUS_ID', '".$created_status_id."', 'Set the status of orders made with this payment module to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay sum too low Order Status', 'MODULE_PAYMENT_GPWEBPAY_SUM_TOO_LOW_ORDER_STATUS_ID', '".$sum_too_low_status_id."', 'Set the status of orders which are paid with insufficient fund (sum too low) to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay Completed Order Status', 'MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID', '".$completed_status_id."', 'Set the status of orders which are confirmed as paid (approved) to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
-
-        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Transaction Method', 'MODULE_PAYMENT_GPWEBPAY_TRANSACTION_METHOD', 'Sale', 'The processing method to use for each transaction.', '6', '0', 'tep_cfg_select_option(array(\'Authorization\', \'Sale\'), ', now())");
-        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Encrypted Web Payments', 'MODULE_PAYMENT_GPWEBPAY_EWP_STATUS', 'False', 'Do you want to enable Encrypted Web Payments?', '6', '3', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Working Directory', 'MODULE_PAYMENT_GPWEBPAY_EWP_WORKING_DIRECTORY', '', 'The working directory to use for temporary files. (trailing slash needed)', '6', '4', now())");
-        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('OpenSSL Location', 'MODULE_PAYMENT_GPWEBPAY_EWP_OPENSSL', '/usr/bin/openssl', 'The location of the openssl binary file.', '6', '4', now())");
+        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Transaction Method', 'MODULE_PAYMENT_CASH_TRANSACTION_METHOD', 'Sale', 'The processing method to use for each transaction.', '6', '0', 'tep_cfg_select_option(array(\'Authorization\', \'Sale\'), ', now())");
+        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Encrypted Web Payments', 'MODULE_PAYMENT_CASH_EWP_STATUS', 'False', 'Do you want to enable Encrypted Web Payments?', '6', '3', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Working Directory', 'MODULE_PAYMENT_CASH_EWP_WORKING_DIRECTORY', '', 'The working directory to use for temporary files. (trailing slash needed)', '6', '4', now())");
+        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('OpenSSL Location', 'MODULE_PAYMENT_CASH_EWP_OPENSSL', '/usr/bin/openssl', 'The location of the openssl binary file.', '6', '4', now())");
     }
 
     function remove()
     {
         tep_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key in ('".implode("', '",
                 $this->keys())."')");
-        tep_db_query("delete from ".TABLE_ORDERS_STATUS." where orders_status_name like '%[gpwebpay]%'");
+        tep_db_query("delete from ".TABLE_ORDERS_STATUS." where orders_status_name like '%[cash]%'");
     }
 
     function keys()
     {
-        //'MODULE_PAYMENT_GPWEBPAY_ID', 
-        return array('MODULE_PAYMENT_GPWEBPAY_STATUS', 'MODULE_PAYMENT_GPWEBPAY_GATEWAY_SERVER',
-            'MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID', 'MODULE_PAYMENT_GPWEBPAY_SECRET_KEY',
-            'MODULE_PAYMENT_GPWEBPAY_SECRET_KEY_PASSWORD', 'MODULE_PAYMENT_GPWEBPAY_PUBLIC_KEY',
-            'MODULE_PAYMENT_GPWEBPAY_FLOW_LAYOUT', 'MODULE_PAYMENT_GPWEBPAY_DECREASE_STOCK_ON_CREATION',
-            'MODULE_PAYMENT_GPWEBPAY_DEBUG_EMAIL', 'MODULE_PAYMENT_GPWEBPAY_ZONE',
-            'MODULE_PAYMENT_GPWEBPAY_SORT_ORDER', 'MODULE_PAYMENT_GPWEBPAY_CREATE_ORDER_STATUS_ID',
-            'MODULE_PAYMENT_GPWEBPAY_SUM_TOO_LOW_ORDER_STATUS_ID', 'MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID');
+        //'MODULE_PAYMENT_CASH_ID', 
+        return array('MODULE_PAYMENT_CASH_STATUS', 'MODULE_PAYMENT_CASH_GATEWAY_SERVER',
+            'MODULE_PAYMENT_CASH_MERCHANT_ID', 'MODULE_PAYMENT_CASH_SECRET_KEY',
+            'MODULE_PAYMENT_CASH_SECRET_KEY_PASSWORD', 'MODULE_PAYMENT_CASH_PUBLIC_KEY',
+            'MODULE_PAYMENT_CASH_FLOW_LAYOUT', 'MODULE_PAYMENT_CASH_DECREASE_STOCK_ON_CREATION',
+            'MODULE_PAYMENT_CASH_DEBUG_EMAIL', 'MODULE_PAYMENT_CASH_ZONE',
+            'MODULE_PAYMENT_CASH_SORT_ORDER', 'MODULE_PAYMENT_CASH_CREATE_ORDER_STATUS_ID',
+            'MODULE_PAYMENT_CASH_SUM_TOO_LOW_ORDER_STATUS_ID', 'MODULE_PAYMENT_CASH_COMP_ORDER_STATUS_ID');
     }
 
     // format prices without currency formatting
@@ -817,21 +656,4 @@ class gpwebpay
             $currencies->currencies[$currency_code]['decimal_places'], '.', '');
     }
 
-    //
-    // calculate gpwebpay MD5 for invoice creation
-    //
-    function calcGpwebpayMd5Key($order)
-    {
-
-        $sk   = MODULE_PAYMENT_GPWEBPAY_SECRET_KEY;
-        $q    = http_build_query(array("merchant_id" => $order['merchant_id'],
-            "order_id" => $order['order_id'],
-            "amount" => $order['amount'],
-            "currency" => $order['currency'],
-            "order_text" => $order['order_text'],
-            "flow_layout" => $order['flow_layout'],
-            "secret_key" => $sk), "", "&");
-        $md5v = md5($q);
-        return $md5v;
-    }
 }
