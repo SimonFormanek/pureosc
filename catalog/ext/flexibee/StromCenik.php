@@ -22,9 +22,9 @@ class StromCenik extends \FlexiPeeHP\StromCenik
         parent::__construct($init, $options);
         $this->takemyTable('products-to-categories');
     }
-
-    public function convertOscData($productData)
-    {
+    
+    
+    public function convertOscData($productData){
         
     }
 }

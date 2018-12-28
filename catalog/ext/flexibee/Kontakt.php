@@ -17,8 +17,9 @@ class Kontakt extends \FlexiPeeHP\Kontakt
 
     public function convertOscData($contactData)
     {
+        if (array_key_exists('address_book_id', $contactData)) {
         $kontaktData['id'] = 'ext:contact:'.$contactData['address_book_id'];
-
+        }
         if (empty($contactData['entry_company'])) {
             $kodSource = $contactData['entry_firstname'].' '.$contactData['entry_lastname'];
         } else {
@@ -35,4 +36,16 @@ class Kontakt extends \FlexiPeeHP\Kontakt
         $kontaktData['kod']   = \FlexiPeeHP\FlexiBeeRO::uncode($this->getKod($kodSource));
         return $kontaktData;
     }
+
+    /**
+     * Take SQL Data and prepare for use with FlexiBee
+     * 
+     * @param array $sqlDataArray
+     * 
+     * @return int
+     */
+    public function takeSQLData($sqlDataArray)
+    {
+        return $this->takeData($this->convertOscData($sqlDataArray));
+}
 }

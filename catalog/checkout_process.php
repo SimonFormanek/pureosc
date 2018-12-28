@@ -75,15 +75,6 @@ $order_totals        = $order_total_modules->process();
 $payment_modules->before_process();
 /* * * EOF alterations for CCGV ** */
 
-if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
-    $invoice = new PureOSC\flexibee\FakturaVydana();
-    $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
-    $invoice->setDataValue("typDokl", 'code:FAKTURA');
-    $invoice->setDataValue("stavMailK", 'stavMail.neodesilat');
-    if (isset($_REQUEST['comments'])) {
-        $invoice->setDataValue('poznam', $_REQUEST['comments']);
-    }
-}
 // Stock Check
 $any_out_of_stock = false;
 if (STOCK_CHECK == 'true') {
@@ -163,7 +154,7 @@ $sql_data_array = array('customers_id' => $customer_id,
     'currency_value' => $order->info['currency_value']);
 tep_db_perform(TABLE_ORDERS, $sql_data_array);
 $insert_id      = tep_db_insert_id();
-$order_id = $insert_id;
+$order_id       = $insert_id;
 for ($i = 0, $n = sizeof($order_totals); $i < $n; $i++) {
     $sql_data_array = array('orders_id' => $insert_id,
         'title' => $order_totals[$i]['title'],

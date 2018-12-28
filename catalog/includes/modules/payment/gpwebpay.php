@@ -401,7 +401,7 @@ class gpwebpay
                 \Ease\Shared::instanced()->addStatusMessage(_('New order saved').$invoice,
                     'success');
             } else {
-                echo 'FlexiBee Errorek';
+                echo 'FlexiBee Errorek!!! Objednávka se neuložila';
             }
         } else {
             $orderCode = null;
@@ -441,13 +441,14 @@ class gpwebpay
         ];
 
         $gpwpcurrency = $currconvert[$currency];
-        $successUrl   = tep_href_link(FILENAME_CHECKOUT_SUCCESS, '', 'SSL');
+        $successUrl   = tep_href_link(constant('FILENAME_CHECKOUT_PROCESS'), '',
+            'SSL');
 
 
         $request = new PaymentRequest($varSym, intval($totalPrice),
             $gpwpcurrency, 1, $successUrl, $varSym);
 
-        $request->setDescription(self::convertToAscii($products_info));
+        $request->setDescription(self::convertToAscii(\Ease\Sand::rip($products_info)));
 
         try {
             $parameters = $api->createPaymentParam($request);
