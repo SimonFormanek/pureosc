@@ -421,4 +421,4 @@ if ($dir             = @dir($module_directory)) {
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+

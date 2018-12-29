@@ -7,7 +7,10 @@
   Released under the GNU General Public License
  */
 
-require_once(DIR_FS_CATALOG.'ext/modules/payment/inpay/inpay_functions.php');
+
+if (file_exists(constant('DIR_FS_CATALOG').'ext/modules/payment/inpay/inpay_functions.php')) {
+    require_once( constant('DIR_FS_CATALOG').'ext/modules/payment/inpay/inpay_functions.php');
+}
 
 class inpay
 {
@@ -675,5 +678,3 @@ class inpay
         return $md5v;
     }
 }
-
-?>

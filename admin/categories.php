@@ -1183,12 +1183,11 @@ if ($action == 'new_product') {
                                                                 ?>
                                                                 <script>
                                                                     function count_title_<?php echo $languages[$i]['id']; ?>() {
-                                                                    document.getElementById('counter_title_<?php echo $languages[$i]['id']; ?>').innerHTML = (<?php echo META_TITLE_LENGHT
-                                                    - mb_strlen(STORE_NAME); ?>) - document.getElementById('seotitle_<?php echo $languages[$i]['id']; ?>').value.length;
+                                                                    document.getElementById('counter_title_<?php echo $languages[$i]['id']; ?>').innerHTML = (<?php echo constant('META_TITLE_LENGHT') - mb_strlen( constant('STORE_NAME')); ?>) - document.getElementById('seotitle_<?php echo $languages[$i]['id']; ?>').value.length;
                                                                     }
-                                                                    count_title_<?php echo $ languages[$i]['id']; ?>();
-                                                                    </s                                        cript>
-                                                                            </                                    td>
+                                                                    count_title_<?php echo $languages[$i]['id']; ?>();
+                                                                    </script>
+                                                                            </td>
                                                                             </tr>
                                                                             </table>
                                                                             </td>
@@ -1196,7 +1195,7 @@ if ($action == 'new_product') {
                                                                 <?php
                                                             }
                                                             ?>
-                                            < tr >
+                                            <tr>
                                                 <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
                                                         '1', '10'); ?></td>
                                                             </tr>
@@ -1208,7 +1207,7 @@ if ($action == 'new_product') {
                                                             for ($i = 0, $n = sizeof($languages); $i
                                                                 < $n; $i++) {
                                                                 ?>
-                                                < tr bgcolor = "#eeeeee" >
+                                                <tr bgcolor="#eeeeee">
                                                     <td class="main" valign="top"><?php if ($i
                                                                     == 0) echo TEXT_PRODUCTS_SEO_DESCRIPTION; ?></td>
                                                     <td><table border="0" cellspacing="0" cellpadding="0">

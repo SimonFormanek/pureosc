@@ -10,7 +10,6 @@
   Released under the GNU General Public License
  */
 
-require(constant('DIR_FS_CATALOG').'includes/classes/action_recorder.php');
 
 class actionRecorderAdmin extends actionRecorder
 {
@@ -62,5 +61,3 @@ class actionRecorderAdmin extends actionRecorder
         $GLOBALS[$this->_module]->setIdentifier();
     }
 }
-
-?>

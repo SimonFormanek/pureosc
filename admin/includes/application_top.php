@@ -20,9 +20,6 @@
 // Start the clock for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
-// Set the level of error reporting
-error_reporting(E_ALL & ~E_NOTICE);
-
 // check support for register_globals
 if (function_exists('ini_get') && (ini_get('register_globals') == false) && (PHP_VERSION
     < 4.3)) {

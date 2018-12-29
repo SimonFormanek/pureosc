@@ -333,7 +333,7 @@ class cash
                     'mnozMj' => $orderItem['qty'],
                     'cenaMj' => $orderItem['price'],
                     'typPolozkyK' => 'typPolozky.katalog'
-                    ], 'polozkyDokladu');
+                    ], 'polozkyDokladu',true);
             }
         }
 
