@@ -148,25 +148,33 @@ require(DIR_WS_INCLUDES.'template_top.php');
                           old version:
                           <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_EDIT, 'document', tep_href_link(FILENAME_ORDERS_EDIT, tep_get_all_get_params(array('oID', 'action')) . 'oID=' . $HTTP_GET_VARS['oID'] . '&action=edit')) . tep_draw_button(IMAGE_ORDERS_INVOICE, 'document', tep_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $HTTP_GET_VARS['oID'])) . tep_draw_button(IMAGE_ORDERS_PACKINGSLIP, 'document', tep_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $HTTP_GET_VARS['oID']), null, array('newwindow' => true)) . tep_draw_button(IMAGE_BACK, 'triangle-1-w', tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('action')))); ?></td>
                          */ ?>
-                        <td class="smallText" align="right">A<?php
-                            echo tep_draw_button(IMAGE_CREATE_ORDER, 'plus',
-                                tep_href_link(FILENAME_CREATE_ORDER)).tep_draw_button(IMAGE_EDIT,
+                        <td class="smallText" align="right"><?php
+                            if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE')
+                                == 'true')) {
+
+                                $invoice    = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$oID);
+                                $invoiceNum = $invoice->getRecordID();
+
+                                echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&report-name=slozenkaA$$SUM&id='.$invoiceNum.'&embed=true'.'">'._('print cheque').'</a>';
+                                echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&id='.$invoiceNum.'&embed=true'.'">'._('PDF Invoice').'</a>';
+                                echo '<a class="btn btn-success btn-xs" role="button" href="'.'getisdoc.php?evidence=faktura-vydana&id='.$invoiceNum.'&embed=true'.'">'._('ISDOC Invoice').'</a>';
+                            }
+
+
+
+                        echo tep_draw_button(IMAGE_CREATE_ORDER,
+        'plus', tep_href_link(FILENAME_CREATE_ORDER)).tep_draw_button(IMAGE_EDIT,
                                 'pencil',
-                                tep_href_link(FILENAME_ORDERS_EDIT,
-                                    'oID='.$_GET['oID']), null,
+        tep_href_link(FILENAME_ORDERS_EDIT, 'oID='.$_GET['oID']), null,
                                 array('newwindow' => true)).tep_draw_button(IMAGE_ORDERS_INVOICE,
                                 'document',
-                                tep_href_link(FILENAME_ORDERS_INVOICE,
-                                    'oID='.$_GET['oID']), null,
-                                array('newwindow' => true)).tep_draw_button(IMAGE_ORDERS_PACKINGSLIP,
+        tep_href_link(FILENAME_ORDERS_INVOICE, 'oID='.$_GET['oID']),
+        null, array('newwindow' => true)).tep_draw_button(IMAGE_ORDERS_PACKINGSLIP,
                                 'document',
                                 tep_href_link(FILENAME_ORDERS_PACKINGSLIP,
-                                    'oID='.$_GET['oID']), null,
-                                array('newwindow' => true)).tep_draw_button(IMAGE_BACK,
+            'oID='.$_GET['oID']), null, array('newwindow' => true)).tep_draw_button(IMAGE_BACK,
                                 'triangle-1-w',
-                                tep_href_link(FILENAME_ORDERS,
-                                    tep_get_all_get_params(array('action'))));
-                            ?></td>
+        tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('action')))); ?></td>
     <?php /*     * * EOF alteration for Order Editor ** */ ?>
                     </tr>
                 </table></td>
@@ -181,13 +189,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <tr>
                                     <td class="main" valign="top"><strong><?php echo ENTRY_CUSTOMER; ?></strong></td>
                                     <td class="main"><?php echo tep_address_format($order->customer['format_id'],
-        $order->customer, 1, '', '<br />');
-    ?></td>
+        $order->customer, 1, '', '<br />'); ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '5');
-    ?></td>
+        '1', '5'); ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main"><strong><?php echo ENTRY_TELEPHONE_NUMBER; ?></strong></td>
@@ -202,16 +208,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <tr>
                                     <td class="main" valign="top"><strong><?php echo ENTRY_SHIPPING_ADDRESS; ?></strong></td>
                                     <td class="main"><?php echo tep_address_format($order->delivery['format_id'],
-                                        $order->delivery, 1, '', '<br />');
-    ?></td>
+                    $order->delivery, 1, '', '<br />'); ?></td>
                                 </tr>
                             </table></td>
                         <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="2">
                                 <tr>
                                     <td class="main" valign="top"><strong><?php echo ENTRY_BILLING_ADDRESS; ?></strong></td>
                                     <td class="main"><?php echo tep_address_format($order->billing['format_id'],
-                                        $order->billing, 1, '', '<br />');
-                                    ?></td>
+                    $order->billing, 1, '', '<br />'); ?></td>
                                 </tr>
                             </table></td>
                     </tr>
@@ -232,8 +236,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
         ?>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-            '1', '10');
-        ?></td>
+            '1', '10'); ?></td>
                         </tr>
                         <tr>
                             <td class="main"><?php echo ENTRY_CREDIT_CARD_TYPE; ?></td>
@@ -276,7 +279,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         '            <td class="dataTableContent" valign="top" align="right">'.$order->products[$i]['qty'].'&nbsp;x</td>'."\n".
                         '            <td class="dataTableContent" valign="top">'.$order->products[$i]['name'];
 
-                        if (isset($order->products[$i]['attributes']) && (sizeof($order->products[$i]['attributes'])
+                                    if (isset($order->products[$i]['attributes'])
+                                        && (sizeof($order->products[$i]['attributes'])
                             > 0)) {
                             for ($j = 0, $k = sizeof($order->products[$i]['attributes']); $j
                                 < $k; $j++) {
@@ -284,7 +288,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 if ($order->products[$i]['attributes'][$j]['price']
                                     != '0')
                                         echo ' ('.$order->products[$i]['attributes'][$j]['prefix'].$currencies->format($order->products[$i]['attributes'][$j]['price']
-                                        * $order->products[$i]['qty'], true,
+                                                    * $order->products[$i]['qty'],
+                                                    true,
                                         $order->info['currency'],
                                         $order->info['currency_value']).')';
                                 echo '</i></small></nobr>';
@@ -298,8 +303,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             true, $order->info['currency'],
                             $order->info['currency_value']).'</strong></td>'."\n".
                         '            <td class="dataTableContent" align="right" valign="top"><strong>'.$currencies->format(tep_add_tax($order->products[$i]['final_price'],
-                                $order->products[$i]['tax'], true), true,
-                            $order->info['currency'],
+                                            $order->products[$i]['tax'], true),
+                                        true, $order->info['currency'],
                             $order->info['currency_value']).'</strong></td>'."\n".
                         '            <td class="dataTableContent" align="right" valign="top"><strong>'.$currencies->format($order->products[$i]['final_price']
                             * $order->products[$i]['qty'], true,
@@ -607,15 +612,19 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 array('newwindow' => true)));
                         $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_CREATE_ORDER,
                                 'document', tep_href_link(FILENAME_CREATE_ORDER)));
-                        $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_POST_MONEY_ORDER,
-                                'document', tep_href_link(FILENAME_CREATE_ORDER)));
 
-                        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE')
-                            == 'true')) {
-                            if ($oInfo->orders_status_id != 9) { // TODO: Variable
+                
+                $invoiceNum = 'ext:orders:'.$oInfo->orders_id;
+                $contents[] = array('align' => 'center', 'text' => tep_draw_button('<img title="'._('Cash Desk payment').'" width="100" src="images/icons/poukazka_c.jpg">','document', tep_href_link('getpdf.php?evidence=faktura-vydana&report-name=slozenkaA$$SUM&id='.$invoiceNum.'&embed=true',_('print cheque'))));
+                        
+                
+                /*                 * * EOF alteration for Order Editor ** */
+
+    
+                if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+                    if($oInfo->orders_status_id != 9){ // TODO: Variable
                                 $contents[] = array('align' => 'center', 'text' => tep_draw_button('<img title="'._('Cash Desk payment').'" width="100" src="images/icons/cash.svg">',
-                                        'document',
-                                        tep_href_link('flexibeecash.php?id=ext:orders:'.$oInfo->orders_id)));
+                            'document', tep_href_link('flexibeecash.php?id=ext:orders:' . $oInfo->orders_id )));
                             }
                         }
 
