@@ -11,7 +11,7 @@ RUN curl -ssL -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/ap
 RUN sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 RUN apt-get update
 RUN apt-get -y upgrade
-RUN apt-get -y install bash php7.1-fpm php7.1-mysqli php7.1-mbstring php7.1-curl php7.1-intl php7.1-xml locales-all 
+RUN apt-get -y install bash php7.1-fpm php7.1-mysqli php7.1-mbstring php7.1-curl php7.1-intl php7.1-xml locales-all ssmtp
 
 #EXPOSE 9000
 RUN sed -i '/listen =/c\listen = 9000' /etc/php/7.1/fpm/pool.d/www.conf

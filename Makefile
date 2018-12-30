@@ -38,5 +38,6 @@ drun:
 
 dimage:
 	composer --no-dev --optimize-autoloader update
-	docker build -t purehtml/pureosc .
+	docker build -t purehtml/pureosc -t purehtml/pureosc:`git rev-parse --short HEAD` .
+	
 	
