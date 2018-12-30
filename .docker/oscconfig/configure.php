@@ -1,5 +1,5 @@
 <?php
-define('DIR_FS_CATALOG', '/var/www/html/catalog');
+define('DIR_FS_CATALOG', '/var/www/html/catalog/');
 
 if (!defined(SERVER_INSTANCE))
         define('SERVER_INSTANCE', 'admin'); //CONFIGURE: admin|shop <------ need to bee configured
