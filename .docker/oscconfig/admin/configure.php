@@ -1,7 +1,6 @@
 <?php
-define('CATALOG_DOMAIN', 'pureosc'); //eg www.my-shop.com
-define('DIR_FS_MASTER_ROOT_DIR', $_SERVER["DOCUMENT_ROOT"].'/');
-
+define('CATALOG_DOMAIN', $_SERVER['SERVER_NAME'].'.purehtml.com'); //eg www.my-shop.com
+define('DIR_FS_MASTER_ROOT_DIR', '/var/www/html/catalog/');
 define('ENABLE_SSL_CATALOG', false);
 define('ENABLE_SSL', false);
 define('SERVER_INSTANCE', 'admin'); // admin or empty for shop ???? TODO
