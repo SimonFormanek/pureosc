@@ -34,7 +34,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
     include('../../oscconfig/dbconfigure.php');
 }
 
-require_once DIR_FS_ADMIN.'/../vendor/autoload.php';
+require_once DIR_FS_CATALOG.'../vendor/autoload.php';
 \Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
 
 // some code to solve compatibility issues
