@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-28 18:19+0100\n"
-"PO-Revision-Date: 2018-12-28 18:21+0100\n"
+"POT-Creation-Date: 2018-12-29 22:19+0100\n"
+"PO-Revision-Date: 2018-12-29 22:19+0100\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -63,11 +63,13 @@ msgstr "Vyžadovaná informace"
 msgid "Required"
 msgstr "Vyžadováno"
 
-#: account_history.php:81 account_history_info.php:198 checkout_success.php:91
+#: account_history.php:81 account_history_info.php:198 admin/orders.php:159
+#: checkout_success.php:91
 msgid "PDF Invoice"
 msgstr "PDF Faktura"
 
-#: account_history.php:82 account_history_info.php:200 checkout_success.php:92
+#: account_history.php:82 account_history_info.php:200 admin/orders.php:160
+#: checkout_success.php:92
 msgid "ISDOC Invoice"
 msgstr "ISDOC Faktura"
 
@@ -105,7 +107,7 @@ msgstr "Název firmy"
 msgid "Vat Number"
 msgstr "DIČ"
 
-#: admin/categories.php:2015
+#: admin/categories.php:2014
 msgid "Open in FlexiBee"
 msgstr "Otevřít ve FlexiBee"
 
@@ -154,20 +156,20 @@ msgstr "FlexiBee synchronizace"
 msgid "Wrong call"
 msgstr "Špatné volání"
 
-#: admin/orders.php:616
+#: admin/orders.php:158 admin/orders.php:618 checkout_success.php:90
+msgid "print cheque"
+msgstr "print cheque"
+
+#: admin/orders.php:618 admin/orders.php:626
 msgid "Cash Desk payment"
 msgstr "Platba na pokladně"
 
 #: checkout_process.php:343 includes/modules/payment/cash.php:346
-#: includes/modules/payment/gpwebpay.php:401
+#: includes/modules/payment/gpwebpay.php:411
 msgid "New order saved"
 msgstr "Nová objednávka uložena"
 
-#: checkout_success.php:90
-msgid "print cheque"
-msgstr "print cheque"
-
-#: ext/flexibee/Cenik.php:65 ext/flexibee/FakturaVydana.php:42
+#: ext/flexibee/Cenik.php:89 ext/flexibee/FakturaVydana.php:42
 #: ext/flexibee/Strom.php:44
 msgid "FlexiBee import"
 msgstr "Import z FlexiBee "
@@ -209,37 +211,41 @@ msgstr "Platba na dřevo"
 msgid "Completed [cash]"
 msgstr "Hotovo [hotově]"
 
-#: includes/modules/payment/gpwebpay.php:38
+#: includes/modules/payment/gpwebpay.php:44
 msgid "GP WebPay"
 msgstr "GP WebPay"
 
-#: includes/modules/payment/gpwebpay.php:39
+#: includes/modules/payment/gpwebpay.php:45
 msgid "Card Payment"
 msgstr "Platba Kartou"
 
-#: includes/modules/payment/gpwebpay.php:40
+#: includes/modules/payment/gpwebpay.php:46
 msgid "GP WebPay Payment"
 msgstr "GP WebPay Platba"
 
-#: includes/modules/payment/gpwebpay.php:459
+#: includes/modules/payment/gpwebpay.php:469
 msgid "Payment failed"
 msgstr "Platba selhala"
 
-#: includes/modules/payment/gpwebpay.php:760
+#: includes/modules/payment/gpwebpay.php:790
 msgid "Your secret key"
 msgstr "Váš tajný klíč"
 
-#: includes/modules/payment/gpwebpay.php:760
+#: includes/modules/payment/gpwebpay.php:790
 msgid "Your secret key (supplied by gpwebpay)"
 msgstr "Váš tajný klíč (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:761
+#: includes/modules/payment/gpwebpay.php:791
 msgid "Your secret key password (supplied by gpwebpay)"
 msgstr "heslo vašeho tajného klíče  (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:762
+#: includes/modules/payment/gpwebpay.php:792
 msgid "Your public key (supplied by gpwebpay)"
 msgstr "váš veřejný klíč (dodaný gpwebpay)"
+
+#: includes/modules/payment/gpwebpay.php:897
+msgid "Testing payment"
+msgstr "Testovací platba"
 
 #: includes/modules/social_bookmarks/sb_google_buzz.php:24
 msgid "Google Buzz"

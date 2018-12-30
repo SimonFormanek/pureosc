@@ -21,7 +21,7 @@
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
-require_once dirname( __DIR__ ).'/../vendor/autoload.php' ;
+require_once dirname(__DIR__).'/../vendor/autoload.php';
 
 // check support for register_globals
 if (function_exists('ini_get') && (ini_get('register_globals') == false) && (PHP_VERSION
@@ -37,7 +37,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
     include('../../oscconfig/dbconfigure.php');
 }
 
-if (DB_SERVER == '') {
+if (empty(constant('DB_SERVER'))) {
     if (is_dir('install')) {
         header('Location: install/index.php');
         exit;
