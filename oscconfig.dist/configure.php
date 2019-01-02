@@ -1,5 +1,5 @@
 <?php
-  define('DIR_FS_CATALOG', '/home/f/git/osc/osc/catalog/');
+  define('DIR_FS_CATALOG', '/home/user/WWW/osc/catalog/');
 
 if (!defined(SERVER_INSTANCE)) define('SERVER_INSTANCE','admin'); //CONFIGURE: admin|shop <------ need to bee configured
 define('GENERATOR_INSTANCE','true'); // set to 'true'for generator dir set 'false' for shop or admin  <------ need to bee configured ! ! !
@@ -15,7 +15,7 @@ define('USE_SEO_REDIRECT','true'); //TODO: experimental: test all possible urls 
 //  define('SHOP_KEYS_PATH','/home/printondemand/shop_keys/'); //SECURITY WARNING: need to bee obfuscated 
 
   define('HTTP_SERVER', 'http://' . $_SERVER['HTTP_HOST']);
-  define('HTTPS_SERVER', 'https://' . $_SERVER['HTTP_HOST']);
+  define('HTTPS_SERVER', HTTP_SERVER);
   define('HTTP_COOKIE_DOMAIN', $_SERVER['HTTP_HOST']);
   define('HTTPS_COOKIE_DOMAIN', $_SERVER['HTTP_HOST']);
   define('ENABLE_SSL', false); // <------ need to bee configured
