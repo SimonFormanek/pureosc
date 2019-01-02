@@ -14,6 +14,7 @@ fi
 /usr/bin/mysqldump --opt ${DUMPSET} ${DBNAME} \
 address_book \
 address_format \
+customers \
 customers_info \
 orders \
 orders_products \
