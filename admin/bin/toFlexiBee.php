@@ -6,8 +6,8 @@ require_once 'vendor/autoload.php';
 \Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
 \Ease\Shared::instanced()->webPage(new \Ease\Page());
 
-require('admin/ext/oscconfig/flexibee.php');
-require('admin/ext/oscconfig/dbconfigure.php');
+require('../oscconfig/flexibee.php');
+require('../oscconfig/dbconfigure.php');
 
 $lngSql = "SELECT languages_id FROM languages WHERE code='cs'";
 

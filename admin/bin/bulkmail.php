@@ -11,7 +11,7 @@ define('HTTPS_SERVER', 'https://pureosc');
 define('DIR_WS_CATALOG', 'https://pureosc');
 define('EMAIL_CONTACT','demo@pureosc.cz') ;
 
-require('admin/ext/oscconfig/dbconfigure.php');
+require('../oscconfig/dbconfigure.php');
 
 $dbHelper = new Ease\SQL\PDO();
 
