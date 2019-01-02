@@ -31,3 +31,13 @@ test:
 
 css:
 	yui-compressor catalog/ext/bootstrap/css/bootstrap.css > catalog/ext/bootstrap/css/bootstrap.min.css 
+
+drun:
+	docker volume create pureosc_config
+	docker run -d -p 9999:9000 -v /var/run/docker.sock:/var/run/docker.sock -v pureosc_config:/var/www/oscconfig purehtml/pureosc
+
+dimage:
+	composer --no-dev --optimize-autoloader update
+	docker build -t purehtml/pureosc -t purehtml/pureosc:`git rev-parse --short HEAD` .
+	
+	

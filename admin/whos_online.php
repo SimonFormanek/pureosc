@@ -29,7 +29,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -64,27 +65,34 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 }
                                 ?>
                                 <td class="dataTableContent"><?php echo gmdate('H:i:s',
-                                    $time_online); ?></td>
+                                    $time_online);
+                                ?></td>
                                 <td class="dataTableContent" align="center"><?php echo $whos_online['customer_id']; ?></td>
                                 <td class="dataTableContent"><?php echo $whos_online['full_name']; ?></td>
                                 <td class="dataTableContent" align="center"><?php echo $whos_online['ip_address']; ?></td>
                                 <td class="dataTableContent"><?php echo date('H:i:s',
-                    $whos_online['time_entry']); ?></td>
+                                    $whos_online['time_entry']);
+                                ?></td>
                                 <td class="dataTableContent" align="center"><?php echo date('H:i:s',
-                    $whos_online['time_last_click']); ?></td>
-                                <td class="dataTableContent"><?php if (preg_match('/^(.*)osCsid=[A-Z0-9,-]+[&]*(.*)/i',
-                        $whos_online['last_page_url'], $array)) {
-                    echo $array[1].$array[2];
-                } else {
-                    echo $whos_online['last_page_url'];
-                } ?>&nbsp;</td>
+                                    $whos_online['time_last_click']);
+                                ?></td>
+                                <td class="dataTableContent"><?php
+                                    if (preg_match('/^(.*)osCsid=[A-Z0-9,-]+[&]*(.*)/i',
+                                            $whos_online['last_page_url'],
+                                            $array)) {
+                                        echo $array[1].$array[2];
+                                    } else {
+                                        echo $whos_online['last_page_url'];
+                                    }
+                                    ?>&nbsp;</td>
                     </tr>
             <?php
         }
         ?>
                 <tr>
                     <td class="smallText" colspan="7"><?php echo sprintf(TEXT_NUMBER_OF_CUSTOMERS,
-            tep_db_num_rows($whos_online_query)); ?></td>
+            tep_db_num_rows($whos_online_query));
+        ?></td>
                 </tr>
             </table></td>
         <?php

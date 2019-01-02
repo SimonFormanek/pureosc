@@ -21,8 +21,7 @@
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
-// set the level of error reporting
-error_reporting(E_ALL & ~E_NOTICE);
+require_once dirname(__DIR__).'/../vendor/autoload.php';
 
 // check support for register_globals
 if (function_exists('ini_get') && (ini_get('register_globals') == false) && (PHP_VERSION
@@ -38,7 +37,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
     include('../../oscconfig/dbconfigure.php');
 }
 
-if (DB_SERVER == '') {
+if (empty(constant('DB_SERVER'))) {
     if (is_dir('install')) {
         header('Location: install/index.php');
         exit;
@@ -269,12 +268,9 @@ if (!tep_session_is_registered('cart') || !is_object($cart)) {
 }
 
 // include currencies class and create an instance
-require(DIR_WS_CLASSES.'currencies.php');
 $currencies = new currencies();
 
 // include the mail classes
-require(DIR_WS_CLASSES.'mime.php');
-require(DIR_WS_CLASSES.'email.php');
 //pure:modified
 // set the language
 if (!tep_session_is_registered('language')) {
@@ -282,7 +278,6 @@ if (!tep_session_is_registered('language')) {
     tep_session_register('languages_id');
 }
 
-include(DIR_WS_CLASSES.'language.php');
 $lng = new language();
 if (!defined('DEFAULT_LANGUAGE')) {
     $lng->set_language('cs');
@@ -293,7 +288,6 @@ if (!defined('DEFAULT_LANGUAGE')) {
 $language     = $lng->language['directory'];
 $languages_id = $lng->language['id'];
 
-require_once dirname(__DIR__).'/../vendor/autoload.php';
 \Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
 //original version:
 // set the language
@@ -391,8 +385,7 @@ if (isset($_GET['action'])) {
                             tep_get_products_name($_POST['products_id'][$i])),
                         'warning');
                 } else {
-                    $attributes = ($_POST['id'][$_POST['products_id'][$i]])
-                            ? $_POST['id'][$_POST['products_id'][$i]]
+                    $attributes = ($_POST['id'][$_POST['products_id'][$i]]) ? $_POST['id'][$_POST['products_id'][$i]]
                             : '';
                     $cart->add_cart($_POST['products_id'][$i],
                         $_POST['cart_quantity'][$i], $attributes, false);
@@ -403,8 +396,7 @@ if (isset($_GET['action'])) {
             break;
         // customer adds a product from the products page
         case 'add_product' : if (isset($_POST['products_id']) && is_numeric($_POST['products_id'])) {
-                $attributes = isset($_POST['id']) ? $_POST['id']
-                        : '';
+                $attributes = isset($_POST['id']) ? $_POST['id'] : '';
                 $cart->add_cart($_POST['products_id'],
                     $cart->get_quantity(tep_get_uprid($_POST['products_id'],
                             $attributes)) + 1, $attributes);
@@ -421,8 +413,7 @@ if (isset($_GET['action'])) {
                 $cart->remove($_GET['products_id']);
                 $messageStack->add_session('product_action',
                     sprintf(PRODUCT_REMOVED,
-                        tep_get_products_name($_GET['products_id'])),
-                    'warning');
+                        tep_get_products_name($_GET['products_id'])), 'warning');
             }
             tep_redirect(tep_href_link($goto,
                     tep_get_all_get_params($parameters)));
@@ -661,7 +652,7 @@ if (isset($_GET['articles_id'])) {
 require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
-define('EASE_APPNAME', constant('STORE_NAME') );
+define('EASE_APPNAME', constant('STORE_NAME'));
 
 $oPage = new Ease\Page();
 

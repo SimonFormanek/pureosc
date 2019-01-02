@@ -153,9 +153,9 @@ switch (ARTICLE_ENABLE_HTML_EDITOR) {
     <tr>
         <td width="<?php echo BOX_WIDTH; ?>" valign="top"><table border="0" width="<?php echo BOX_WIDTH; ?>" cellspacing="1" cellpadding="1" class="columnLeft">
                 <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-<?php
-if ($action == 'new') {
-    ?>
+                        <?php
+                        if ($action == 'new') {
+                            ?>
                             <tr>
                                 <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2" class="BorderedBoxWhite">
                                         <tr>
@@ -163,34 +163,42 @@ if ($action == 'new') {
                                         </tr>
                                         <tr>
                                             <td><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+                            '1', '10');
+                            ?></td>
                                         </tr>
                                         <tr>
                                             <td class="main"><?php echo TEXT_NEW_INTRO; ?></td>
                                         </tr>
                                         <tr>
                                             <td><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+                                                '1', '10');
+                                            ?></td>
                                         </tr>
                                     </table></td>
                             </tr>
                             <tr>
                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+                                                '1', '10');
+                                            ?></td>
                             </tr>
-                            <tr><?php echo tep_draw_form('authors',
-        FILENAME_AUTHORS, 'action=insert', 'post',
-        'enctype="multipart/form-data"').tep_hide_session_id(); ?>
+                            <tr><?php
+                                            echo tep_draw_form('authors',
+                                                FILENAME_AUTHORS,
+                                                'action=insert', 'post',
+                                                'enctype="multipart/form-data"').tep_hide_session_id();
+                                            ?>
 
                                 <td><table border="0" cellspacing="0" cellpadding="2">
                                         <tr>
                                             <td class="smallText"><?php echo TEXT_AUTHORS_NAME; ?></td>
                                             <td class="smallText"><?php echo tep_draw_input_field('authors_name',
-        '', 'size="20"'); ?></td>
+                                                '', 'size="20"');
+                                            ?></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+                                                '1', '10');
+                                            ?></td>
                                         </tr>
                                         <tr>
                                             <td class="smallText"><?php echo TEXT_AUTHORS_IMAGE; ?></td>
@@ -198,7 +206,8 @@ if ($action == 'new') {
                                         </tr>
                                         <tr>
                                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '1', '10'); ?></td>
+                                        '1', '10');
+                                    ?></td>
                                         </tr>
     <?php
     $languages = tep_get_languages();
@@ -212,7 +221,8 @@ if ($action == 'new') {
                                             </tr>
                                             <tr>
                                                 <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                                            '1', '2'); ?></td>
+                                                '1', '2');
+        ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="smallText" valign="top" width="140"><?php echo TEXT_AUTHORS_DESCRIPTION; ?></td>
@@ -220,27 +230,41 @@ if ($action == 'new') {
                                                     <table border="0" cellspacing="0" cellpadding="0">
                                                         <tr>
                                                             <td class="smallText">
-        <?php
-        if (ARTICLE_ENABLE_HTML_EDITOR == 'No Editor')
-                echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
-                'soft', '70', '15',
-                (($authors_description[$languages[$i]['id']]) ? stripslashes($authors_description[$languages[$i]['id']])
-                        : tep_get_author_description($aInfo->articles_id,
-                        $languages[$i]['id'])));
-        else {
-            if (ARTICLE_ENABLE_HTML_EDITOR == 'FCKEditor') {
-                echo tep_draw_fckeditor('authors_description['.$languages[$i]['id'].']',
-                    '700', '300', '');
-            } else if (ARTICLE_ENABLE_HTML_EDITOR == 'CKEditor') {
-                echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
-                    'soft', '70', '15', '',
-                    'id = "authors_description['.$languages[$i]['id'].']" class="ckeditor"');
-            } else {
-                echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
-                    'soft', '70', '15', '');
-            }
-        }
-        ?>
+                                                                <?php
+                                                                if (ARTICLE_ENABLE_HTML_EDITOR
+                                                                    == 'No Editor')
+                                                                        echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
+                                                                        'soft',
+                                                                        '70',
+                                                                        '15',
+                                                                        (($authors_description[$languages[$i]['id']])
+                                                                                ? stripslashes($authors_description[$languages[$i]['id']])
+                                                                                : tep_get_author_description($aInfo->articles_id,
+                                                                                $languages[$i]['id'])));
+                                                                else {
+                                                                    if (ARTICLE_ENABLE_HTML_EDITOR
+                                                                        == 'FCKEditor') {
+                                                                        echo tep_draw_fckeditor('authors_description['.$languages[$i]['id'].']',
+                                                                            '700',
+                                                                            '300',
+                                                                            '');
+                                                                    } else if (ARTICLE_ENABLE_HTML_EDITOR
+                                                                        == 'CKEditor') {
+                                                                        echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
+                                                                            'soft',
+                                                                            '70',
+                                                                            '15',
+                                                                            '',
+                                                                            'id = "authors_description['.$languages[$i]['id'].']" class="ckeditor"');
+                                                                    } else {
+                                                                        echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
+                                                                            'soft',
+                                                                            '70',
+                                                                            '15',
+                                                                            '');
+                                                                    }
+                                                                }
+                                                                ?>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -248,88 +272,108 @@ if ($action == 'new') {
                                             <tr>
                                             <tr>
                                                 <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-            '1', '10'); ?></td>
+                                                '1', '10');
+                                                                ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="smallText" valign="top"><?php echo TEXT_AUTHORS_URL; ?></td>
                                                 <td class="smallText" valign="top"><?php echo tep_draw_input_field('authors_url['.$languages[$i]['id'].']',
-                            '', 'size="30"'); ?></td>
+                            '', 'size="30"');
+                        ?></td>
                                             <tr>
                                             <tr>
                                                 <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                            '1', '10'); ?></td>
+                            '1', '10');
+                        ?></td>
                                             </tr>
-        <?php
-    }
-    ?>
+                                                    <?php
+                                                }
+                                                ?>
                                         <tr>
-                                            <td colspan="3" class="smallText" align="center"><?php echo tep_draw_separator('pixel_trans.gif',
-        '24', '15').'&nbsp;'.tep_image_submit('button_save.gif', IMAGE_SAVE).' <a href="'.tep_href_link(FILENAME_AUTHORS,
-        'page='.$_GET['page'].'&auID='.$_GET['auID']).'">'.tep_image_button('button_cancel.gif',
-        IMAGE_CANCEL).'</a>'; ?></td>
+                                            <td colspan="3" class="smallText" align="center"><?php
+                                                echo tep_draw_separator('pixel_trans.gif',
+                                                    '24', '15').'&nbsp;'.tep_image_submit('button_save.gif',
+                                                    IMAGE_SAVE).' <a href="'.tep_href_link(FILENAME_AUTHORS,
+                                                    'page='.$_GET['page'].'&auID='.$_GET['auID']).'">'.tep_image_button('button_cancel.gif',
+                                                    IMAGE_CANCEL).'</a>';
+                                                ?></td>
                                         </tr>
                                     </table></td>
                                 </form>
                             </tr>
-    <?php
-} elseif ($action == 'edit') {
+                                <?php
+                            } elseif ($action == 'edit') {
 
-    $authors_query = tep_db_query("select authors_id, authors_name, authors_image from ".TABLE_AUTHORS." where authors_id = '".$_GET['auID']."'");
-    $authors       = tep_db_fetch_array($authors_query);
-    ?>
+                                $authors_query = tep_db_query("select authors_id, authors_name, authors_image from ".TABLE_AUTHORS." where authors_id = '".$_GET['auID']."'");
+                                $authors       = tep_db_fetch_array($authors_query);
+                                ?>
                             <tr>
                                 <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2" class="BorderedBoxWhite">
                                         <tr>
                                             <td class="pageHeading"><?php echo TEXT_HEADING_EDIT_AUTHOR; ?></td>
                                             <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-        1, 10); ?></td>
+                                                1, 10);
+                                            ?></td>
                                         </tr>
                                         <tr>
                                             <td><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+                                                '1', '10');
+                                            ?></td>
                                         </tr>
                                         <tr>
                                             <td class="main"><?php echo TEXT_EDIT_INTRO; ?></td>
                                         </tr>
                                         <tr>
                                             <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '1', '10'); ?></td>
+                                                '1', '10');
+                                            ?></td>
                                         </tr>
                                     </table></td>
                             </tr>
                             <tr>
                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '1', '10'); ?></td>
+                                                '1', '10');
+                                            ?></td>
                             </tr>
-                            <tr><?php echo tep_draw_form('authors',
-                                        FILENAME_AUTHORS,
-                                        'page='.$_GET['page'].'&auID='.$authors['authors_id'].'&action=save',
-                                        'post', 'enctype="multipart/form-data"'); ?>
+                            <tr><?php
+                                            echo tep_draw_form('authors',
+                                                FILENAME_AUTHORS,
+                                                'page='.$_GET['page'].'&auID='.$authors['authors_id'].'&action=save',
+                                                'post',
+                                                'enctype="multipart/form-data"');
+                                            ?>
                                 <td><table border="0" cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="smallText"><?php echo TEXT_AUTHORS_NAME; ?></td>
-                                            <td class="smallText"><?php echo tep_draw_input_field('authors_name',
-                                                            $authors['authors_name'],
-                                                            'size="20"'); ?></td>
+                                            <td class="smallText"><?php
+                                                            echo tep_draw_input_field('authors_name',
+                                                                $authors['authors_name'],
+                                                                'size="20"');
+                                                            ?></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                                            '1', '10'); ?></td>
+                                                            '1', '10');
+                                                            ?></td>
                                         </tr>
                                         <tr>
                                             <td class="smallText"><?php echo TEXT_AUTHORS_IMAGE; ?></td>
-                                            <td><?php echo tep_draw_input_field('authors_image_name',
-                                                            $authors['authors_image'],
-                                                            'disabled size="20"').'&nbsp;&nbsp;'.tep_draw_file_field('authors_image'); ?></td>
+                                            <td><?php
+                                                            echo tep_draw_input_field('authors_image_name',
+                                                                $authors['authors_image'],
+                                                                'disabled size="20"').'&nbsp;&nbsp;'.tep_draw_file_field('authors_image');
+                                                            ?></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                                            '1', '10'); ?></td>
+                                                            '1', '10');
+                                                            ?></td>
                                         </tr>
-    <?php
-    $languages     = tep_get_languages();
-    for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-        ?>
+                                                            <?php
+                                                            $languages     = tep_get_languages();
+                                                            for ($i = 0, $n = sizeof($languages); $i
+                                                                < $n; $i++) {
+                                                                ?>
                                             <tr>
                                                 <th class="smallText" align="left"><?php echo $languages[$i]['name']; ?></th>
                                             </tr>
@@ -338,7 +382,8 @@ if ($action == 'new') {
                                             </tr>
                                             <tr>
                                                 <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '1', '2'); ?></td>
+                                                            '1', '2');
+                                                        ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="smallText" valign="top" width="140"><?php echo TEXT_AUTHORS_DESCRIPTION; ?></td>
@@ -346,40 +391,45 @@ if ($action == 'new') {
                                                     <table border="0" cellspacing="0" cellpadding="0">
                                                         <tr>
                                                             <td class="smallText">
-                                <?php
-                                if (ARTICLE_ENABLE_HTML_EDITOR == 'No Editor')
-                                        echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
-                                        'soft', '70', '15',
-                                        (($authors_description[$languages[$i]['id']])
-                                                ? stripslashes($authors_description[$languages[$i]['id']])
-                                                : tep_get_author_description($authors['authors_id'],
-                                                $languages[$i]['id'])));
-                                else {
-                                    if (ARTICLE_ENABLE_HTML_EDITOR == 'FCKEditor') {
-                                        echo tep_draw_fckeditor('authors_description['.$languages[$i]['id'].']',
-                                            '700', '300',
-                                            (isset($authors_description[$languages[$i]['id']])
-                                                    ? stripslashes($authors_description[$languages[$i]['id']])
-                                                    : tep_get_author_description($authors['authors_id'],
-                                                    $languages[$i]['id'])));
-                                    } else if (ARTICLE_ENABLE_HTML_EDITOR == 'CKEditor') {
-                                        echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
-                                            'soft', '70', '15',
-                                            (($authors_description[$languages[$i]['id']])
-                                                    ? stripslashes($authors_description[$languages[$i]['id']])
-                                                    : tep_get_author_description($authors['authors_id'],
-                                                    $languages[$i]['id'])),
-                                            'id = "authors_description['.$languages[$i]['id'].']" class="ckeditor"');
-                                    } else {
-                                        echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
-                                            'soft', '70', '15',
-                                            (($authors_description[$languages[$i]['id']])
-                                                    ? stripslashes($authors_description[$languages[$i]['id']])
-                                                    : tep_get_author_description($authors['authors_id'],
-                                                    $languages[$i]['id'])));
-                                    }
-                                }
-                                ?>
+                                                    <?php
+                                                    if (ARTICLE_ENABLE_HTML_EDITOR
+                                                        == 'No Editor')
+                                                            echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
+                                                            'soft', '70', '15',
+                                                            (($authors_description[$languages[$i]['id']])
+                                                                    ? stripslashes($authors_description[$languages[$i]['id']])
+                                                                    : tep_get_author_description($authors['authors_id'],
+                                                                    $languages[$i]['id'])));
+                                                    else {
+                                                        if (ARTICLE_ENABLE_HTML_EDITOR
+                                                            == 'FCKEditor') {
+                                                            echo tep_draw_fckeditor('authors_description['.$languages[$i]['id'].']',
+                                                                '700', '300',
+                                                                (isset($authors_description[$languages[$i]['id']])
+                                                                        ? stripslashes($authors_description[$languages[$i]['id']])
+                                                                        : tep_get_author_description($authors['authors_id'],
+                                                                        $languages[$i]['id'])));
+                                                        } else if (ARTICLE_ENABLE_HTML_EDITOR
+                                                            == 'CKEditor') {
+                                                            echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
+                                                                'soft', '70',
+                                                                '15',
+                                                                (($authors_description[$languages[$i]['id']])
+                                                                        ? stripslashes($authors_description[$languages[$i]['id']])
+                                                                        : tep_get_author_description($authors['authors_id'],
+                                                                        $languages[$i]['id'])),
+                                                                'id = "authors_description['.$languages[$i]['id'].']" class="ckeditor"');
+                                                        } else {
+                                                            echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
+                                                                'soft', '70',
+                                                                '15',
+                                                                (($authors_description[$languages[$i]['id']])
+                                                                        ? stripslashes($authors_description[$languages[$i]['id']])
+                                                                        : tep_get_author_description($authors['authors_id'],
+                                                                        $languages[$i]['id'])));
+                                                        }
+                                                    }
+                                                    ?>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -387,102 +437,123 @@ if ($action == 'new') {
                                             <tr>
                                             <tr>
                                                 <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                    '1', '10'); ?></td>
+                                    '1', '10');
+                                ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="smallText" valign="top"><?php echo TEXT_AUTHORS_URL; ?></td>
-                                                <td class="smallText" valign="top"><?php echo tep_draw_input_field('authors_url['.$languages[$i]['id'].']',
-                                        tep_get_author_url($authors['authors_id'],
-                                            $languages[$i]['id']), 'size="30"'); ?></td>
+                                                <td class="smallText" valign="top"><?php
+                                echo tep_draw_input_field('authors_url['.$languages[$i]['id'].']',
+                                    tep_get_author_url($authors['authors_id'],
+                                        $languages[$i]['id']), 'size="30"');
+                                ?></td>
                                             <tr>
                                             <tr>
                                                 <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '1', '10'); ?></td>
+                                    '1', '10');
+                                                    ?></td>
                                             </tr>
-        <?php
-    }
-    ?>
+                                            <?php
+                                        }
+                                        ?>
                                         <tr>
-                                            <td colspan="3" class="smallText" align="center"><?php echo tep_draw_separator('pixel_trans.gif',
-        '24', '15').'&nbsp;'.tep_image_submit('button_save.gif', IMAGE_SAVE).' <a href="'.tep_href_link(FILENAME_AUTHORS,
-        'page='.$_GET['page'].'&auID='.$authors['authors_id']).'">'.tep_image_button('button_cancel.gif',
-        IMAGE_CANCEL).'</a>'; ?></td>
+                                            <td colspan="3" class="smallText" align="center"><?php
+                                        echo tep_draw_separator('pixel_trans.gif',
+                                            '24', '15').'&nbsp;'.tep_image_submit('button_save.gif',
+                                            IMAGE_SAVE).' <a href="'.tep_href_link(FILENAME_AUTHORS,
+                                            'page='.$_GET['page'].'&auID='.$authors['authors_id']).'">'.tep_image_button('button_cancel.gif',
+                                            IMAGE_CANCEL).'</a>';
+                                        ?></td>
                                         </tr>
                                     </table></td>
                                 </form>
                             </tr>
-    <?php
-} elseif ($action == 'preview') {
+                                                <?php
+                                            } elseif ($action == 'preview') {
 
-    $authors_query = tep_db_query("select authors_id, authors_name, authors_image from ".TABLE_AUTHORS." where authors_id = '".$_GET['auID']."' limit 1");
-    $authors       = tep_db_fetch_array($authors_query)
-    ?>
+                                                $authors_query = tep_db_query("select authors_id, authors_name, authors_image from ".TABLE_AUTHORS." where authors_id = '".$_GET['auID']."' limit 1");
+                                                $authors       = tep_db_fetch_array($authors_query)
+                                                ?>
                             <tr>
                                 <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="pageHeading"><?php echo TEXT_ARTICLE_BY.$authors['authors_name']; ?></td>
-                                            <td align="right"><?php echo tep_image(DIR_WS_CATALOG_IMAGES.'article_manager_uploads/'.$authors['authors_image'],
-                                HEADING_TITLE, HEADING_IMAGE_WIDTH,
-                                HEADING_IMAGE_HEIGHT); ?></td>
+                                            <td align="right"><?php
+                                                echo tep_image(DIR_WS_CATALOG_IMAGES.'article_manager_uploads/'.$authors['authors_image'],
+                                                    HEADING_TITLE,
+                                                    HEADING_IMAGE_WIDTH,
+                                                    HEADING_IMAGE_HEIGHT);
+                                                ?></td>
                                         </tr>
                                     </table></td>
                             </tr>
                             <tr>
                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                '1', '10'); ?></td>
+                            '1', '10');
+                        ?></td>
                             </tr>
                             <tr>
                                 <td><table border="0" cellspacing="0" cellpadding="2">
-    <?php
-    $languages     = tep_get_languages();
-    for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-        ?>
+                                <?php
+                                $languages     = tep_get_languages();
+                                for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+                                    ?>
                                             <tr>
                                                 <th class="smallText" colspan="2" valign="top" align="left"><?php echo TEXT_AUTHORS_DESCRIPTION.' - '.$languages[$i]['name']; ?></th>
                                             <tr>
                                             <tr>
                                                 <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                    '1', '10'); ?></td>
+                                '1', '10');
+                                    ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="smallText" valign="top"><?php echo tep_get_author_description($authors['authors_id'],
-                    $languages[$i]['id']); ?></td>
+                                $languages[$i]['id']);
+                                    ?></td>
                                             <tr>
                                             <tr>
                                                 <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                    '1', '10'); ?></td>
+                                '1', '10');
+                                    ?></td>
                                             </tr>
-                        <?php if (tep_not_null(tep_get_author_url($authors['authors_id'],
-                                    $languages[$i]['id']))) { ?>
+                                    <?php if (tep_not_null(tep_get_author_url($authors['authors_id'],
+                                                $languages[$i]['id']))) {
+                                        ?>
                                                 <tr>
-                                                    <td class="smallText" valign="top"><?php echo sprintf(TEXT_MORE_INFORMATION,
-                    tep_get_author_url($authors['authors_id'],
-                        $languages[$i]['id'])); ?></td>
+                                                    <td class="smallText" valign="top"><?php
+                            echo sprintf(TEXT_MORE_INFORMATION,
+                                tep_get_author_url($authors['authors_id'],
+                                    $languages[$i]['id']));
+                                        ?></td>
                                                 <tr>
                                                 <tr>
                                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                '1', '10'); ?></td>
+                                    '1', '10');
+                                        ?></td>
                                                 </tr>
-                <?php } ?>
-                <?php
-            }
-            ?>
+                        <?php } ?>
+                        <?php
+                    }
+                    ?>
                                         <tr>
-                                            <td class="smallText" colspan="2" align="right"><?php echo '<a href="'.tep_href_link(FILENAME_AUTHORS,
-            'page='.$_GET['page'].'&auID='.$authors['authors_id']).'">'.tep_image_button('button_back.gif',
-            IMAGE_BACK).'</a>'; ?></td>
+                                            <td class="smallText" colspan="2" align="right"><?php
+                                        echo '<a href="'.tep_href_link(FILENAME_AUTHORS,
+                                            'page='.$_GET['page'].'&auID='.$authors['authors_id']).'">'.tep_image_button('button_back.gif',
+                                            IMAGE_BACK).'</a>';
+                                        ?></td>
                                             </form>
                                         </tr>
                             </tr>
                         </table></td>
         </tr>
-        <?php } else { ?>
+                <?php } else { ?>
         <tr>
             <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                     <tr>
                         <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                         <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-            '100%', 5); ?></td>
+                            '100%', 5);
+                    ?></td>
                     </tr>
                 </table></td>
         </tr>
@@ -521,26 +592,31 @@ if ($action == 'new') {
                 }
                 ?>
                                     <td class="dataTableContent"><?php echo $authors['authors_name']; ?></td>
-                                    <td class="dataTableContent" align="right"><?php if (isset($auInfo)
-                    && is_object($auInfo) && ($authors['authors_id'] == $auInfo->authors_id)) {
+                                    <td class="dataTableContent" align="right"><?php
+                if (isset($auInfo) && is_object($auInfo) && ($authors['authors_id']
+                    == $auInfo->authors_id)) {
                     echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
                 } else {
                     echo '<a href="'.tep_href_link(FILENAME_AUTHORS,
                         'page='.$_GET['page'].'&auID='.$authors['authors_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
                         IMAGE_ICON_INFO).'</a>';
-                } ?>&nbsp;</td>
+                }
+                ?>&nbsp;</td>
                         </tr>
-        <?php
-    }
-    ?>
+                <?php
+            }
+            ?>
                     <tr>
                         <td colspan="2"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                                 <tr>
-                                    <td class="smallText" valign="top"><?php echo $authors_split->display_count($authors_query_numrows,
-        MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-        TEXT_DISPLAY_NUMBER_OF_AUTHORS); ?></td>
+                                    <td class="smallText" valign="top"><?php
+        echo $authors_split->display_count($authors_query_numrows,
+            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
+            TEXT_DISPLAY_NUMBER_OF_AUTHORS);
+            ?></td>
                                     <td class="smallText" align="right"><?php echo $authors_split->display_links($authors_query_numrows,
-        MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>
+        MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+    ?></td>
                                 </tr>
                             </table></td>
                     </tr>
@@ -548,9 +624,11 @@ if ($action == 'new') {
     if (empty($action)) {
         ?>
                         <tr>
-                            <td align="right" colspan="2" class="smallText"><?php echo '<a href="'.tep_href_link(FILENAME_AUTHORS,
+                            <td align="right" colspan="2" class="smallText"><?php
+        echo '<a href="'.tep_href_link(FILENAME_AUTHORS,
             'page='.$_GET['page'].'&auID='.$auInfo->authors_id.'&action=new').'">'.tep_image_button('button_insert.gif',
-            IMAGE_INSERT).'</a>'; ?></td>
+            IMAGE_INSERT).'</a>';
+        ?></td>
                         </tr>
         <?php
     }

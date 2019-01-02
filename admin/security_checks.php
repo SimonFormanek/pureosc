@@ -65,7 +65,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 
 <div style="float: right;"><?php echo tep_draw_button('Reload',
-    'arrowrefresh-1-e', tep_href_link('security_checks.php')); ?></div>
+    'arrowrefresh-1-e', tep_href_link('security_checks.php'));
+?></div>
 
 <h1 class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
 

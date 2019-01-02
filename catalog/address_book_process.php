@@ -29,6 +29,11 @@ if (isset($_GET['action']) && ($_GET['action'] == 'deleteconfirm') && isset($_GE
     } else {
         tep_db_query("delete from ".TABLE_ADDRESS_BOOK." where address_book_id = '".(int) $_GET['delete']."' and customers_id = '".(int) $customer_id."'");
 
+        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            $kontakter = new \PureOSC\flexibee\Kontakt();
+            $kontakter->deleteFromFlexiBee('ext:contact:'.(int) $_GET['delete']);
+        }
+
         $messageStack->add_session('addressbook',
             SUCCESS_ADDRESS_BOOK_ENTRY_DELETED, 'success');
     }
@@ -164,6 +169,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
                 tep_db_perform(TABLE_ADDRESS_BOOK, $sql_data_array, 'update',
                     "address_book_id = '".(int) $_GET['edit']."' and customers_id ='".(int) $customer_id."'");
 
+                $addressBookData = $sql_data_array;
 // reregister session variables
                 if ((isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit']
                     == $customer_default_address_id)) {
@@ -182,6 +188,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
 
                     tep_db_perform(TABLE_CUSTOMERS, $sql_data_array, 'update',
                         "customers_id = '".(int) $customer_id."'");
+                    $customersData = $sql_data_array;
                 }
 
                 $messageStack->add_session('addressbook',
@@ -191,8 +198,8 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
             if (tep_count_customer_address_book_entries() < MAX_ADDRESS_BOOK_ENTRIES) {
                 $sql_data_array['customers_id'] = (int) $customer_id;
                 tep_db_perform(TABLE_ADDRESS_BOOK, $sql_data_array);
-
-                $new_address_book_id = tep_db_insert_id();
+                $addressBookData                = $sql_data_array;
+                $new_address_book_id            = tep_db_insert_id();
 
 // reregister session variables
                 if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) {
@@ -214,6 +221,8 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
                     tep_db_perform(TABLE_CUSTOMERS, $sql_data_array, 'update',
                         "customers_id = '".(int) $customer_id."'");
 
+                    $customersData = $sql_data_array;
+
                     $messageStack->add_session('addressbook',
                         SUCCESS_ADDRESS_BOOK_ENTRY_UPDATED, 'success');
                 }
@@ -222,36 +231,27 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
 
 
         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
-            
-            $adresar = new \PureOSC\flexibee\Adresar([
-                'id' => 'ext:customers:'.$_SESSION['customer_id'],
-                'kod' => strtoupper(trim(\Ease\Sand::rip($lastname.$firstname) )),
-                'nazev' => $firstname.' '.$lastname,
-                'email' => $email_address,
-                'ulice' => $street_address,
-                'mesto' => $city,
-                'psc' => $postcode,
-//            'stat' => $country,
-                'tel' => $telephone,
-                'fax' => $fax]);
+
+            $adresar = new \PureOSC\flexibee\Adresar();
+            $adresar->setDataValue('id',
+                'ext:customers:'.$_SESSION['customer_id']);
+
+            if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) {
+                $adresar->takeSQLData($addressBookData);
+//                $adresar->takeSQLData($customersData);
             $adresar->sync();
-            
-            $kontakter = new \PureOSC\flexibee\Kontakt([
-                'id' => 'ext:contact:'.(int) $_GET['edit'],
-                'firma' => $adresar,
-                'jmeno' => $firstname,
-                'prijmeni' => $lastname,
-                'email' => $email_address,
-                'ulice' => $street_address,
-                'mesto' => $city,
-                'psc' => $postcode,
-//            'stat' => $country,
-                'tel' => $telephone,
-                'fax' => $fax]);
+            }
 
-            $kontakter->insertToFlexiBee();
+            $kontakter = new \PureOSC\flexibee\Kontakt();
 
-            if ($kontakter->lastResponseCode == 201) {
+            $kontakter->takeSQLData($addressBookData);
+            $kontakter->setDataValue('id', 'ext:contact:'.(int) $_GET['edit']);
+
+            if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) {
+                $kontakter->setDataValue('primarni', true);
+            }
+            $kontakter->setDataValue('firma', $adresar );
+            if ($kontakter->sync()) {
                 $userLog->logFlexiBeeEvent($kontakter,
                     ['jmeno', 'prijmeni', 'email']);
             }

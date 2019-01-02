@@ -148,7 +148,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table>
         </td>
@@ -305,11 +306,11 @@ switch ($action) {
                     </tr>
                 </table>
                 <!-- End default menu //-->
-        <?php
-        break;
+                <?php
+                break;
 // End default case
-}
+        }
 
-require(DIR_WS_INCLUDES.'template_bottom.php');
-require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+        require(DIR_WS_INCLUDES.'template_bottom.php');
+        require(DIR_WS_INCLUDES.'application_bottom.php');
+        ?>

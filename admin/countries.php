@@ -43,8 +43,7 @@ if (tep_not_null($action)) {
 
             tep_db_query("delete from ".TABLE_COUNTRIES." where countries_id = '".(int) $countries_id."'");
 
-            tep_redirect(tep_href_link(FILENAME_COUNTRIES,
-                    'page='.$_GET['page']));
+            tep_redirect(tep_href_link(FILENAME_COUNTRIES, 'page='.$_GET['page']));
             break;
     }
 }
@@ -58,7 +57,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -96,38 +96,45 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableContent"><?php echo $countries['countries_name']; ?></td>
                                 <td class="dataTableContent" align="center" width="40"><?php echo $countries['countries_iso_code_2']; ?></td>
                                 <td class="dataTableContent" align="center" width="40"><?php echo $countries['countries_iso_code_3']; ?></td>
-                                <td class="dataTableContent" align="right"><?php if (isset($cInfo)
-                                    && is_object($cInfo) && ($countries['countries_id']
-                                    == $cInfo->countries_id)) {
-                                    echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
-                                        '');
-                                } else {
-                                    echo '<a href="'.tep_href_link(FILENAME_COUNTRIES,
-                                        'page='.$_GET['page'].'&cID='.$countries['countries_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                                        IMAGE_ICON_INFO).'</a>';
-                                } ?>&nbsp;</td>
+                                <td class="dataTableContent" align="right"><?php
+                                    if (isset($cInfo) && is_object($cInfo) && ($countries['countries_id']
+                                        == $cInfo->countries_id)) {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                            '');
+                                    } else {
+                                        echo '<a href="'.tep_href_link(FILENAME_COUNTRIES,
+                                            'page='.$_GET['page'].'&cID='.$countries['countries_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                            IMAGE_ICON_INFO).'</a>';
+                                    }
+                                    ?>&nbsp;</td>
                     </tr>
-    <?php
-}
-?>
+                    <?php
+                }
+                ?>
                 <tr>
                     <td colspan="4"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-                                <td class="smallText" valign="top"><?php echo $countries_split->display_count($countries_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-            TEXT_DISPLAY_NUMBER_OF_COUNTRIES); ?></td>
-                                <td class="smallText" align="right"><?php echo $countries_split->display_links($countries_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $_GET['page']); ?></td>
+                                <td class="smallText" valign="top"><?php
+                                    echo $countries_split->display_count($countries_query_numrows,
+                                        MAX_DISPLAY_SEARCH_RESULTS,
+                                        $_GET['page'],
+                                        TEXT_DISPLAY_NUMBER_OF_COUNTRIES);
+                                    ?></td>
+                                <td class="smallText" align="right"><?php
+                            echo $countries_split->display_links($countries_query_numrows,
+                                MAX_DISPLAY_SEARCH_RESULTS,
+                                MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+                            ?></td>
                             </tr>
-        <?php
-        if (empty($action)) {
-            ?>
+                                    <?php
+                                    if (empty($action)) {
+                                        ?>
                                 <tr>
-                                    <td class="smallText" colspan="2" align="right"><?php echo tep_draw_button(IMAGE_NEW_COUNTRY,
-            'plus',
-            tep_href_link(FILENAME_COUNTRIES,
-                'page='.$_GET['page'].'&action=new')); ?></td>
+                                    <td class="smallText" colspan="2" align="right"><?php
+                                echo tep_draw_button(IMAGE_NEW_COUNTRY, 'plus',
+                                    tep_href_link(FILENAME_COUNTRIES,
+                                        'page='.$_GET['page'].'&action=new'));
+                                ?></td>
                                 </tr>
             <?php
         }
@@ -155,8 +162,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_SAVE,
                         'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                         'close',
-                        tep_href_link(FILENAME_COUNTRIES,
-                            'page='.$_GET['page'])));
+                        tep_href_link(FILENAME_COUNTRIES, 'page='.$_GET['page'])));
                 break;
             case 'edit':
                 $heading[]  = array('text' => '<strong>'.TEXT_INFO_HEADING_EDIT_COUNTRY.'</strong>');

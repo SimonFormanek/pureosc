@@ -729,9 +729,9 @@ echo tep_draw_form('create_account',
 
     <div class="buttonSet">
         <div class="text-right"><?php
-                echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-user', null,
-                    'primary', null, 'btn-success');
-                ?></div>
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-user', null,
+                'primary', null, 'btn-success');
+            ?></div>
     </div>
 
 </div>

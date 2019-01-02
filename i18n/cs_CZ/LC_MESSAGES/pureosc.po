@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 01:29+0100\n"
-"PO-Revision-Date: 2018-12-17 01:29+0100\n"
+"POT-Creation-Date: 2018-12-29 22:19+0100\n"
+"PO-Revision-Date: 2018-12-29 22:19+0100\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -21,7 +21,7 @@ msgid "Changed by customer"
 msgstr "Změněno zákazníkem"
 
 #: account_edit.php:194 account_password.php:89 account_pwa.php:273
-#: admin/create_account.php:397 contact_us.php:96 create_account.php:408
+#: admin/create_account.php:397 contact_us.php:97 create_account.php:408
 #: ext/modules/content/account/set_password.php:80
 #: includes/modules/address_book_details.php:16 tell_a_friend.php:166
 msgid "Requied Information"
@@ -30,11 +30,11 @@ msgstr "Vyžadovaná informace"
 #: account_edit.php:219 account_edit.php:234 account_edit.php:245
 #: account_edit.php:261 account_edit.php:277 account_edit.php:289
 #: account_password.php:100 account_password.php:112 account_password.php:124
-#: account_pwa.php:301 account_pwa.php:314 account_pwa.php:326
-#: account_pwa.php:341 account_pwa.php:356 account_pwa.php:400
-#: account_pwa.php:430 account_pwa.php:442 account_pwa.php:465
-#: account_pwa.php:469 account_pwa.php:474 account_pwa.php:490
-#: account_pwa.php:505 admin/create_account.php:428
+#: account_pwa.php:302 account_pwa.php:315 account_pwa.php:327
+#: account_pwa.php:342 account_pwa.php:357 account_pwa.php:401
+#: account_pwa.php:431 account_pwa.php:443 account_pwa.php:466
+#: account_pwa.php:470 account_pwa.php:475 account_pwa.php:491
+#: account_pwa.php:506 admin/create_account.php:428
 #: admin/create_account.php:441 admin/create_account.php:453
 #: admin/create_account.php:468 admin/create_account.php:484
 #: admin/create_account.php:545 admin/create_account.php:575
@@ -42,36 +42,38 @@ msgstr "Vyžadovaná informace"
 #: admin/create_account.php:614 admin/create_account.php:619
 #: admin/create_account.php:635 admin/create_account.php:653
 #: admin/create_account.php:698 admin/create_account.php:711
-#: advanced_search.php:132 contact_us.php:105 contact_us.php:116
-#: contact_us.php:127 create_account.php:439 create_account.php:452
+#: advanced_search.php:132 contact_us.php:106 contact_us.php:117
+#: contact_us.php:128 create_account.php:439 create_account.php:452
 #: create_account.php:464 create_account.php:479 create_account.php:495
 #: create_account.php:556 create_account.php:586 create_account.php:598
 #: create_account.php:621 create_account.php:625 create_account.php:630
 #: create_account.php:646 create_account.php:664 create_account.php:709
 #: create_account.php:722 ext/modules/content/account/set_password.php:87
 #: ext/modules/content/account/set_password.php:95
-#: includes/modules/address_book_details.php:41
-#: includes/modules/address_book_details.php:54
-#: includes/modules/address_book_details.php:62
-#: includes/modules/address_book_details.php:107
-#: includes/modules/address_book_details.php:136
-#: includes/modules/address_book_details.php:146
-#: includes/modules/address_book_details.php:188 password_forgotten.php:127
-#: password_reset.php:128 password_reset.php:139 product_reviews_write.php:169
+#: includes/modules/address_book_details.php:44
+#: includes/modules/address_book_details.php:59
+#: includes/modules/address_book_details.php:69
+#: includes/modules/address_book_details.php:127
+#: includes/modules/address_book_details.php:162
+#: includes/modules/address_book_details.php:175
+#: includes/modules/address_book_details.php:228 password_forgotten.php:127
+#: password_reset.php:128 password_reset.php:139 product_reviews_write.php:173
 #: tell_a_friend.php:177 tell_a_friend.php:188 tell_a_friend.php:203
 #: tell_a_friend.php:214 tell_a_friend.php:229
 msgid "Required"
 msgstr "Vyžadováno"
 
-#: account_history.php:81 account_history_info.php:198 checkout_success.php:190
+#: account_history.php:81 account_history_info.php:198 admin/orders.php:159
+#: checkout_success.php:91
 msgid "PDF Invoice"
 msgstr "PDF Faktura"
 
-#: account_history.php:82 checkout_success.php:191
+#: account_history.php:82 account_history_info.php:200 admin/orders.php:160
+#: checkout_success.php:92
 msgid "ISDOC Invoice"
 msgstr "ISDOC Faktura"
 
-#: account_history_info.php:187
+#: account_history_info.php:187 checkout_success.php:84
 msgid "QR Payment"
 msgstr "QR Platba"
 
@@ -79,37 +81,33 @@ msgstr "QR Platba"
 msgid "Already settled"
 msgstr "Již uhrazeno"
 
-#: account_history_info.php:200
-msgid "XSDOC Invoice"
-msgstr "XSDOC Invoice"
-
 #: account_history_info.php:202
 msgid "XLS Invoice"
 msgstr "XLS Faktura"
 
-#: account_pwa.php:367 account_pwa.php:371 admin/create_account.php:499
-#: admin/create_account.php:503 admin/customers.php:552
-#: admin/edit_orders.php:1089 admin/edit_orders.php:1206
-#: admin/edit_orders.php:1312 admin/includes/modules/account_details.php:202
-#: admin/includes/modules/create_order_details.php:71 create_account.php:510
-#: create_account.php:514 includes/modules/address_book_details.php:72
-#: includes/modules/address_book_details.php:75
-#: includes/modules/checkout_new_address.php:70
-#: includes/modules/checkout_new_address.php:73
+#: account_pwa.php:368 account_pwa.php:372 admin/create_account.php:499
+#: admin/create_account.php:503 admin/customers.php:554
+#: admin/edit_orders.php:1112 admin/edit_orders.php:1244
+#: admin/edit_orders.php:1355 admin/includes/modules/account_details.php:216
+#: admin/includes/modules/create_order_details.php:80 create_account.php:510
+#: create_account.php:514 includes/modules/address_book_details.php:79
+#: includes/modules/address_book_details.php:84
+#: includes/modules/checkout_new_address.php:77
+#: includes/modules/checkout_new_address.php:81
 msgid "Company Name"
 msgstr "Název firmy"
 
-#: account_pwa.php:377 account_pwa.php:381 admin/create_account.php:519
-#: admin/create_account.php:523 admin/edit_orders.php:1094
-#: admin/edit_orders.php:1211 admin/edit_orders.php:1317 create_account.php:520
-#: create_account.php:524 includes/modules/address_book_details.php:80
-#: includes/modules/address_book_details.php:83
-#: includes/modules/checkout_new_address.php:78
-#: includes/modules/checkout_new_address.php:81
+#: account_pwa.php:378 account_pwa.php:382 admin/create_account.php:519
+#: admin/create_account.php:523 admin/edit_orders.php:1118
+#: admin/edit_orders.php:1250 admin/edit_orders.php:1361 create_account.php:520
+#: create_account.php:524 includes/modules/address_book_details.php:90
+#: includes/modules/address_book_details.php:96
+#: includes/modules/checkout_new_address.php:87
+#: includes/modules/checkout_new_address.php:91
 msgid "Vat Number"
 msgstr "DIČ"
 
-#: admin/categories.php:1569
+#: admin/categories.php:2014
 msgid "Open in FlexiBee"
 msgstr "Otevřít ve FlexiBee"
 
@@ -134,44 +132,51 @@ msgstr "Heslo"
 msgid "Password Confirmation"
 msgstr "Heslo znovu"
 
-#: admin/customers.php:566
-msgid "Vat number"
-msgstr "Dič"
-
-#: admin/customers.php:580 create_account.php:530
+#: admin/customers.php:582 create_account.php:530
 msgid "Company number"
 msgstr "Ičo"
+
+#: admin/flexibeecash.php:26
+msgid "Cash payment"
+msgstr "Platba hotově"
+
+#: admin/flexibeecash.php:56
+msgid "Payment"
+msgstr "Platba"
+
+#: admin/flexibeecash.php:61
+msgid "Invoice"
+msgstr "Faktura"
 
 #: admin/flexibeesync.php:27
 msgid "FlexiBee sync"
 msgstr "FlexiBee synchronizace"
 
-#: checkout_success.php:87
-#, php-format
-msgid "Faktura #%s byla sparovana se zálohou #%s"
-msgstr ""
+#: admin/getpdf.php:39 getisdoc.php:35 getpdf.php:39 getxls.php:35
+msgid "Wrong call"
+msgstr "Špatné volání"
 
-#: checkout_success.php:94
-#, php-format
-msgid "Faktura #%s nebyla sparovana se zalohou #%s "
-msgstr ""
+#: admin/orders.php:158 admin/orders.php:618 checkout_success.php:90
+msgid "print cheque"
+msgstr "print cheque"
 
-#: checkout_success.php:108
-msgid "The cardholder canceled the payment"
-msgstr "Držitel karty zrušil platbu"
+#: admin/orders.php:618 admin/orders.php:626
+msgid "Cash Desk payment"
+msgstr "Platba na pokladně"
 
-#: checkout_success.php:197
-msgid "Payment cancelled by card holder"
-msgstr "Platba byla zrušena vlastníkem karty"
+#: checkout_process.php:343 includes/modules/payment/cash.php:346
+#: includes/modules/payment/gpwebpay.php:411
+msgid "New order saved"
+msgstr "Nová objednávka uložena"
 
-#: ext/flexibee/Adresar.php:38 ext/flexibee/Cenik.php:65
-#: ext/flexibee/FakturaVydana.php:42 ext/flexibee/Strom.php:44
+#: ext/flexibee/Cenik.php:89 ext/flexibee/FakturaVydana.php:42
+#: ext/flexibee/Strom.php:44
 msgid "FlexiBee import"
 msgstr "Import z FlexiBee "
 
-#: getisdoc.php:35 getpdf.php:38
-msgid "Wrong call"
-msgstr "Špatné volání"
+#: ext/flexibee/FakturaVydana.php:96
+msgid "The Card holder canceled the payment"
+msgstr "The Card holder canceled the payment"
 
 #: includes/classes/NewsletterConsentMailer.php:21
 msgid "Newsletter GDPR Consent"
@@ -190,45 +195,57 @@ msgstr "Chcete se přihlásit k odběru emailových novinek z %s ?"
 msgid "Click here to Agree"
 msgstr "Klikněte zde pro vyjádření souhlasu"
 
-#: includes/modules/payment/gpwebpay.php:38
+#: includes/modules/payment/cash.php:25
+msgid "Cash"
+msgstr "Hotovost"
+
+#: includes/modules/payment/cash.php:26
+msgid "Cash desk payment"
+msgstr "Platba na pokladně"
+
+#: includes/modules/payment/cash.php:27
+msgid "Cash on table"
+msgstr "Platba na dřevo"
+
+#: includes/modules/payment/cash.php:598
+msgid "Completed [cash]"
+msgstr "Hotovo [hotově]"
+
+#: includes/modules/payment/gpwebpay.php:44
 msgid "GP WebPay"
 msgstr "GP WebPay"
 
-#: includes/modules/payment/gpwebpay.php:39
+#: includes/modules/payment/gpwebpay.php:45
+msgid "Card Payment"
+msgstr "Platba Kartou"
+
+#: includes/modules/payment/gpwebpay.php:46
 msgid "GP WebPay Payment"
 msgstr "GP WebPay Platba"
 
-#: includes/modules/payment/gpwebpay.php:40
-msgid "GP WebPay Payment description"
-msgstr "Popisek GP WebPay  platby"
-
-#: includes/modules/payment/gpwebpay.php:54
-msgid "Production"
-msgstr "Produkční"
-
-#: includes/modules/payment/gpwebpay.php:398
-msgid "New order saved"
-msgstr "Nová objednávka uložena"
-
-#: includes/modules/payment/gpwebpay.php:454
+#: includes/modules/payment/gpwebpay.php:469
 msgid "Payment failed"
 msgstr "Platba selhala"
 
-#: includes/modules/payment/gpwebpay.php:754
+#: includes/modules/payment/gpwebpay.php:790
 msgid "Your secret key"
 msgstr "Váš tajný klíč"
 
-#: includes/modules/payment/gpwebpay.php:754
+#: includes/modules/payment/gpwebpay.php:790
 msgid "Your secret key (supplied by gpwebpay)"
 msgstr "Váš tajný klíč (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:755
+#: includes/modules/payment/gpwebpay.php:791
 msgid "Your secret key password (supplied by gpwebpay)"
 msgstr "heslo vašeho tajného klíče  (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:756
+#: includes/modules/payment/gpwebpay.php:792
 msgid "Your public key (supplied by gpwebpay)"
 msgstr "váš veřejný klíč (dodaný gpwebpay)"
+
+#: includes/modules/payment/gpwebpay.php:897
+msgid "Testing payment"
+msgstr "Testovací platba"
 
 #: includes/modules/social_bookmarks/sb_google_buzz.php:24
 msgid "Google Buzz"
@@ -254,11 +271,11 @@ msgstr "Souhlas byl přijat"
 msgid "Consent not recieved"
 msgstr "Souhlas nebyl přijat"
 
-#: newsletterconfirm.php:44
+#: newsletterconfirm.php:42
 msgid "Newsletter subscription consent was accepted"
 msgstr "Souhlas k odběru mailových novinek byl přijat"
 
-#: newsletterconfirm.php:44
+#: newsletterconfirm.php:43
 msgid "Newsletter subscription consent was not accepted"
 msgstr "Souhlas k odběru mailových novinek nebyl přijat"
 
@@ -273,6 +290,42 @@ msgstr "citace"
 #: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
 msgid "p"
 msgstr "p"
+
+#~ msgid "Vat number"
+#~ msgstr "Dič"
+
+#~ msgid "MODULE_PAYMENT_POSTAL_ORDER_TEXT_TITLE"
+#~ msgstr "MODULE_PAYMENT_POSTAL_ORDER_TEXT_TITLE"
+
+#~ msgid "MODULE_PAYMENT_POSTAL_ORDER_TEXT_DESCRIPTION"
+#~ msgstr "MODULE_PAYMENT_POSTAL_ORDER_TEXT_DESCRIPTION"
+
+#~ msgid "MODULE_PAYMENT_POSTAL_ORDER_SORT_ORDER"
+#~ msgstr "MODULE_PAYMENT_POSTAL_ORDER_SORT_ORDER"
+
+#~ msgid "MODULE_PAYMENT_POSTAL_ORDER_TEXT_EMAIL_FOOTER"
+#~ msgstr "MODULE_PAYMENT_POSTAL_ORDER_TEXT_EMAIL_FOOTER"
+
+#~ msgid "Production"
+#~ msgstr "Produkční"
+
+#~ msgid "Invoice #%s was matched with proforma #%s"
+#~ msgstr "Faktura #%s byla spárována se zálohou #%s"
+
+#~ msgid "Invoice #%s was not matched with proforma #%s "
+#~ msgstr "Fakrura #%s nebyla spárována se  zálohou #%s "
+
+#~ msgid "The cardholder canceled the payment"
+#~ msgstr "Držitel karty zrušil platbu"
+
+#~ msgid "Payment cancelled by card holder"
+#~ msgstr "Platba byla zrušena vlastníkem karty"
+
+#~ msgid "XSDOC Invoice"
+#~ msgstr "XSDOC Invoice"
+
+#~ msgid "GP WebPay Payment description"
+#~ msgstr "Popisek GP WebPay  platby"
 
 #~ msgid "Tell a friend about %s"
 #~ msgstr "Dpopruč příteli %s"

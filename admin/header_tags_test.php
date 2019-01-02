@@ -755,7 +755,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         </tr>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+    '100%', '10');
+?></td>
                         </tr>
                         <tr>
                             <td colspan="2"><?php echo tep_black_line(); ?></td>
@@ -767,8 +768,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <!-- begin left column new page -->
                                     <tr>
                                         <td align="right" width="60%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-<?php echo tep_draw_form('header_tags', FILENAME_HEADER_TAGS_TEST, '',
-    'post').tep_draw_hidden_field('action', 'test'); ?></td>
+                                                <?php echo tep_draw_form('header_tags',
+                                                    FILENAME_HEADER_TAGS_TEST,
+                                                    '', 'post').tep_draw_hidden_field('action',
+                                                    'test');
+                                                ?></td>
 
                                     <tr>
                                         <td><table border="0" style="border:ridge gray 3px;" cellpadding="2">
@@ -787,33 +791,41 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                             <tr>
                                                                 <td class="smallText" width="110"><?php echo TEXT_SHOW_LIMIT_MESSAGES; ?></td>
                                                                 <td><?php echo tep_draw_checkbox_field('show_limit_messages',
-    '', false); ?> </td>
+                                                    '', false);
+                                                ?> </td>
                                                             </tr>
                                                         </table></td>  
                                                 </tr>
                                                 <tr>
                                                     <td><table border="0" width="70%" class="smallText">
                                                             <tr>
-<?php
-$files = GetFileList($languages_id);
-unset($files[3]); //remove add missing, etc.
-unset($files[2]);
-unset($files[1]);
-$files = array_values($files);
+                                                                <?php
+                                                                $files = GetFileList($languages_id);
+                                                                unset($files[3]); //remove add missing, etc.
+                                                                unset($files[2]);
+                                                                unset($files[1]);
+                                                                $files = array_values($files);
 
-$idsArray = array(array('id' => TEXT_NO_URL_TYPE, 'text' => TEXT_NO_URL_TYPE),
-    array('id' => 'cPath', 'text' => 'cPath'),
-    array('id' => 'products_id', 'text' => 'products_id')
-);
-?>
+                                                                $idsArray = array(
+                                                                    array('id' => TEXT_NO_URL_TYPE,
+                                                                        'text' => TEXT_NO_URL_TYPE),
+                                                                    array('id' => 'cPath',
+                                                                        'text' => 'cPath'),
+                                                                    array('id' => 'products_id',
+                                                                        'text' => 'products_id')
+                                                                );
+                                                                ?>
                                                                 <td width="110"><?php echo TEXT_CHECK_URL; ?></td>
-                                                                <td><?php echo tep_draw_pull_down_menu('check_url_page',
+                                                                <td><?php
+                                                                echo tep_draw_pull_down_menu('check_url_page',
                                                                     $files, '',
-                                                                    '', false); ?></td>
-                                                                <td><?php echo tep_draw_pull_down_menu('check_url_id',
-                                                                    $idsArray,
-                                                                    '', '',
-                                                                    false); ?></td>
+                                                                    '', false);
+                                                                ?></td>
+                                                                <td><?php
+                                                        echo tep_draw_pull_down_menu('check_url_id',
+                                                            $idsArray, '', '',
+                                                            false);
+                                                        ?></td>
                                                                 <td width="140" align="right"><?php echo TEXT_CHECK_URL_TAGS; ?></td>
                                                                 <td><input type="text" name="check_url_tags" size="5"></td>
                                                             </tr>
@@ -821,9 +833,10 @@ $idsArray = array(array('id' => TEXT_NO_URL_TYPE, 'text' => TEXT_NO_URL_TYPE),
                                                 </tr>   
                                                 <tr><td height="10"></td></tr>         
                                                 <tr> 
-                                                    <td align="center"><?php echo (tep_image_submit('button_test.gif',
-                                                                    'Test') ).' <a href="'.tep_href_link(FILENAME_HEADER_TAGS_SEO,
-                                                                    '').'">'.'</a>'; ?></td>
+                                                    <td align="center"><?php
+                        echo (tep_image_submit('button_test.gif', 'Test') ).' <a href="'.tep_href_link(FILENAME_HEADER_TAGS_SEO,
+                            '').'">'.'</a>';
+                        ?></td>
                                                 </tr>
                                             </table></td>
                                     </tr> 
@@ -834,28 +847,30 @@ $idsArray = array(array('id' => TEXT_NO_URL_TYPE, 'text' => TEXT_NO_URL_TYPE),
                         <!-- end Header Tags Test -->    
 
                         <!-- Begin Header Tags Test Results -->           
-<?php if (count($results) > 0) { ?>  
+                        <?php if (count($results) > 0) { ?>  
                             <tr><td height="10"></td></tr>     
                             <tr><td><?php echo tep_black_line(); ?></td></tr>          
                             <tr>
                                 <td class="HTC_Head"><?php echo TEST_RESULTS_HEADING; ?></td>
                             </tr>
-                            <?php for ($i = 0; $i < count($results) - 1; ++$i) {  //skip the last line, which will be a black line  
-                                if (strpos($results[$i], "<b") !== FALSE) {
-                                    ?>
+    <?php
+    for ($i = 0; $i < count($results) - 1; ++$i) {  //skip the last line, which will be a black line  
+        if (strpos($results[$i], "<b") !== FALSE) {
+            ?>
                                     <tr><td height="10"></td></tr>
-                                <?php } ?>
+        <?php } ?>
                                 <tr>
                                     <td class="smallText"><?php echo $results[$i]; ?></td>
                                 </tr> 
     <?php }
-} else if (isset($_POST['action']) && $_POST['action'] == 'test') { ?>
+} else if (isset($_POST['action']) && $_POST['action'] == 'test') {
+    ?>
                             <tr><td height="10"></td></tr>     
                             <tr><td><?php echo tep_black_line(); ?></td></tr>          
                             <tr>
                                 <td class="HTC_Head"><?php echo TEST_RESULTS_HEADING_NONE; ?></td>
                             </tr>
-<?php } ?>      
+    <?php } ?>      
                     </table></td> 
     </tr>
     <!-- End Header Tags Test Results -->           
@@ -864,9 +879,11 @@ $idsArray = array(array('id' => TEXT_NO_URL_TYPE, 'text' => TEXT_NO_URL_TYPE),
 
     <!-- Begin of Header Tags Common Problems -->
     <tr><td><?php echo tep_image(DIR_WS_IMAGES.'pixel_trans.gif', '', '100%',
-    '4'); ?></td></tr>
+        '4');
+    ?></td></tr>
     <tr><td><?php echo tep_image(DIR_WS_IMAGES.'pixel_black.gif', '', '100%',
-        '4'); ?></td></tr>
+        '4');
+    ?></td></tr>
     <tr>
         <td class="main" style="font-weight: bold;"><?php echo TEXT_COMMON_PROBLEMS_HEADING; ?></td>
     </tr>    

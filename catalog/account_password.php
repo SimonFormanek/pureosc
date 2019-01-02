@@ -97,8 +97,8 @@ echo tep_draw_form('account_password',
                     'required aria-required="true" aria-describedby="atPassword" autofocus="autofocus" id="inputCurrent" placeholder="'.ENTRY_PASSWORD_CURRENT.'"',
                     'password');
                 ?>
-<?php echo _('Required'); ?>
-<?php if (tep_not_null(ENTRY_PASSWORD_CURRENT_TEXT)) echo '<span id="atPassword" class="help-block">'.ENTRY_PASSWORD_CURRENT_TEXT.'</span>'; ?>
+                <?php echo _('Required'); ?>
+                <?php if (tep_not_null(ENTRY_PASSWORD_CURRENT_TEXT)) echo '<span id="atPassword" class="help-block">'.ENTRY_PASSWORD_CURRENT_TEXT.'</span>'; ?>
             </div>
         </div>
         <div class="form-group has-feedback">
@@ -109,30 +109,32 @@ echo tep_draw_form('account_password',
                     'required aria-required="true" aria-describedby="atNewPassword" id="inputNew" placeholder="'.ENTRY_PASSWORD_NEW.'"',
                     'password');
                 ?>
-<?php echo _('Required'); ?>
+                <?php echo _('Required'); ?>
                 <?php if (tep_not_null(ENTRY_PASSWORD_NEW_TEXT)) echo '<span id="atNewPassword" class="help-block">'.ENTRY_PASSWORD_NEW_TEXT.'</span>'; ?>
             </div>
         </div>
         <div class="form-group has-feedback">
             <label for="inputConfirmation" class="control-label col-sm-3"><?php echo ENTRY_PASSWORD_CONFIRMATION; ?></label>
             <div class="col-sm-9">
-<?php
-echo tep_draw_input_field('password_confirmation', NULL,
-    'required aria-required="true"  aria-describedby="atNewPasswordConfirmation" id="inputConfirmation" placeholder="'.ENTRY_PASSWORD_CONFIRMATION.'"',
-    'password');
-?>
-            <?php echo _('Required'); ?>
-            <?php if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT)) echo '<span id="atNewPasswordConfirmation" class="help-block">'.ENTRY_PASSWORD_CONFIRMATION_TEXT.'</span>'; ?>
+                <?php
+                echo tep_draw_input_field('password_confirmation', NULL,
+                    'required aria-required="true"  aria-describedby="atNewPasswordConfirmation" id="inputConfirmation" placeholder="'.ENTRY_PASSWORD_CONFIRMATION.'"',
+                    'password');
+                ?>
+                <?php echo _('Required'); ?>
+                <?php if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT)) echo '<span id="atNewPasswordConfirmation" class="help-block">'.ENTRY_PASSWORD_CONFIRMATION_TEXT.'</span>'; ?>
             </div>
         </div>
     </div>
 
     <div class="buttonSet row">
-        <div class="col-xs-6"><?php echo tep_draw_button(IMAGE_BUTTON_BACK,
-                'fa fa-angle-left', tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+        <div class="col-xs-6"><?php
+            echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+                tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
             ?></div>
-        <div class="col-xs-6 text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-                'fa fa-angle-right', null, 'primary', null, 'btn-success');
+        <div class="col-xs-6 text-right"><?php
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+                null, 'primary', null, 'btn-success');
             ?></div>
     </div>
 </div>

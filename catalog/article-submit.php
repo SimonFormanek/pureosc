@@ -211,56 +211,67 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <div class="pageHeading"><?php echo TEXT_ARTICLE_SUBMITTED; ?></div>
             <div class="buttonSet">
                 <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-            'glyphicon glyphicon-chevron-right', tep_href_link(FILENAME_DEFAULT)); ?></div>
+            'glyphicon glyphicon-chevron-right', tep_href_link(FILENAME_DEFAULT));
+            ?></div>
             </div>    
-<?php } else { ?>
+        <?php } else { ?>
             <div><class="main"><?php echo TEXT_ARTICLE_SUBMIT; ?></div>
-    <?php
-    if ($messageStack->size('article_submit') > 0) {
-        ?>
+            <?php
+            if ($messageStack->size('article_submit') > 0) {
+                ?>
                 <div><?php echo $messageStack->output('article_submit'); ?></div>
-        <?php
-    }
-    ?>
-    <?php echo tep_draw_form('article_submit',
-        tep_href_link(FILENAME_ARTICLE_SUBMIT, '', 'NONSSL'), 'post',
-        'enctype="multipart/form-data" onSubmit="return true;" onReset="return true"').tep_draw_hidden_field('action',
-        'process'); ?>
+                <?php
+            }
+            ?>
+            <?php
+            echo tep_draw_form('article_submit',
+                tep_href_link(FILENAME_ARTICLE_SUBMIT, '', 'NONSSL'), 'post',
+                'enctype="multipart/form-data" onSubmit="return true;" onReset="return true"').tep_draw_hidden_field('action',
+                'process');
+            ?>
             <div class="textSmall" align="left" width="90"><?php echo TEXT_AUTHORS_NAME; ?></div>
             <div class="textSmall articlePaddingSubmit"><?php echo tep_draw_input_field('authors_name',
-        $authorInfo['authors_name'], 'maxlength="60" size="40"', false); ?> </div>
+                $authorInfo['authors_name'], 'maxlength="60" size="40"', false);
+            ?> </div>
 
             <div class="textSmall" align="left" width="90"><?php echo TEXT_AUTHORS_IMAGE; ?></div>
             <div class="textSmall articlePaddingSubmit"><input type="hidden" name="authors_image_size" value="100000"><input name="authors_image" type="file"></div>
             <div class="textSmall" align="left" width="110" valign="top"><?php echo TEXT_AUTHORS_INFO; ?></div>
             <div class="textSmall articlePaddingSubmit"><?php echo tep_draw_textarea_field('authors_description',
-        'soft', '5', '2', $authorInfo['authors_description'], '', false); ?></div>
+                'soft', '5', '2', $authorInfo['authors_description'], '', false);
+            ?></div>
 
             <div class="textSmall" align="left" width="110"><?php echo TEXT_ARTICLE_NAME; ?></div>
             <div class="textSmall articlePaddingSubmit"><?php echo tep_draw_input_field('article_name',
-        $article['name'], 'maxlength="60" size="40"', false); ?> </div>
+                $article['name'], 'maxlength="60" size="40"', false);
+            ?> </div>
             <div class="textSmall" align="left"><?php echo TEXT_SHORT_DESCRIPTION; ?></div>
             <div class="textSmall articlePaddingSubmit"><?php echo tep_draw_input_field('article_short_desc',
-            $article['meta_desc'], 'maxlength="60" size="40"', false); ?></div>
+                $article['meta_desc'], 'maxlength="60" size="40"', false);
+            ?></div>
 
             <div class="textSmall" align="left"><?php echo TEXT_ARTICLE_PLACEMENT; ?></div>
             <div class="textSmall articlePaddingSubmit"><?php echo tep_draw_pull_down_menu('topics_list',
-        $topicsList); ?></div>
+                $topicsList);
+            ?></div>
 
             <div class="textSmall" align="left"><?php echo TEXT_ARTICLE_UPLOAD_IMAGE; ?></div>
             <div class="textSmall articlePaddingSubmit"><input type="hidden" name="MAX_FILE_SIZE" value="100000"><input name="uploadedfile" type="file"></div>
 
             <div class="textSmall" align="left"><?php echo TEXT_ARTICLE_TEXT; ?></div>
             <div class="textSmall"><?php echo tep_draw_textarea_field('article_long_desc',
-        'soft', '40', '15', $article['text'], '', false); ?></div>
+                'soft', '40', '15', $article['text'], '', false);
+            ?></div>
 
             <div class="buttonSet">
-                <div align="right"><?php echo tep_draw_button(IMAGE_BUTTON_SUBMIT,
+                <div align="right"><?php
+    echo tep_draw_button(IMAGE_BUTTON_SUBMIT,
         'glyphicon glyphicon-chevron-right', null, 'primary', null,
-        'btn-success'); ?></div>
+        'btn-success');
+    ?></div>
             </div>
             </form>
-<?php } //end of wasSubmitted  ?>
+<?php } //end of wasSubmitted   ?>
     </div>
 </div>
 

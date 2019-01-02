@@ -15,7 +15,7 @@ class actionRecorder
     var $_module;
     var $_user_id;
     var $_user_name;
-    
+
     public function __construct($module, $user_id = null, $user_name = null)
     {
         $this->actionRecorder($module, $user_id, $user_name);

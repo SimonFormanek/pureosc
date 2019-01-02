@@ -92,14 +92,16 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         </tr>
                         <tr>
                             <td><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+    '100%', '10');
+?></td>
                         </tr>
                         <tr>
                             <td class="HTC_subHead"><?php echo TEXT_PAGE_HEADING; ?></td>
                         </tr>
                         <tr>
                             <td><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+                                    '100%', '10');
+?></td>
                         </tr>
                         <tr>
                             <td><?php echo tep_black_line(); ?></td>
@@ -119,22 +121,28 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
                                                 <tr>
                                                     <td align="right" width="60%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-<?php echo tep_draw_form('header_tags_silo',
-    FILENAME_HEADER_TAGS_SILO, '', 'post').tep_draw_hidden_field('action',
-    'process'); ?>
+                                                            <?php
+                                                            echo tep_draw_form('header_tags_silo',
+                                                                FILENAME_HEADER_TAGS_SILO,
+                                                                '', 'post').tep_draw_hidden_field('action',
+                                                                'process');
+                                                            ?>
 
                                                             <tr>
                                                                 <td valign="top"><table border="0">
                                                                         <tr>           
                                                                             <td valign="top"><?php echo TEXT_FILTER_LIST_CATEGORY; ?></td>
                                                                             <td class="smallText"><?php echo tep_draw_pull_down_menu('category',
-    $categories, '', 'onChange="this.form.submit();"'); ?></td>
+                                                                $categories, '',
+                                                                'onChange="this.form.submit();"');
+                                                            ?></td>
                                                                         </tr>       
                                                                     </table></td>    
                                                             </tr>
 
-                                                            <?php for ($i
-                                                            = 0; $i < count($languages); ++$i) { ?>        
+<?php for ($i = 0; $i
+    < count($languages); ++$i) {
+    ?>        
                                                                 <tr>
                                                                     <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="line-height: 20px; background-color: #fff; border: ridge #CCFFCC 3px; padding-left: 2px;">
                                                                             <tr bgcolor="#f0f1f1">
@@ -149,57 +157,80 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                                                 <td valign="top"><table border="0" cellpadding="0">           
                                                                                         <tr>
                                                                                             <td class="main" width="140" valign="top"><?php echo ENTRY_SILO_BOX_TITLE; ?></td>
-                                                                                            <td><?php echo tep_draw_input_field('silo_box_heading_'.$languages[$i]['id'],
-                                                                    $siloArray[$languages[$i]['id']]['box_heading'],
-                                                                    'maxlength="60" size=20"',
-                                                                    false, '',
-                                                                    false); ?> </td>
+                                                                                            <td><?php
+                                                                                                echo tep_draw_input_field('silo_box_heading_'.$languages[$i]['id'],
+                                                                                                    $siloArray[$languages[$i]['id']]['box_heading'],
+                                                                                                    'maxlength="60" size=20"',
+                                                                                                    false,
+                                                                                                    '',
+                                                                                                    false);
+                                                                                                ?> </td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td class="main" width="140" valign="top"><?php echo ENTRY_SILO_NUMBER_LINKS; ?></td>
-                                                                                            <td><?php echo tep_draw_input_field('silo_max_links_'.$languages[$i]['id'],
-                                                                    $siloArray[$languages[$i]['id']]['max_links'],
-                                                                    'maxlength="60" size=20"',
-                                                                    false, '',
-                                                                    false); ?> </td>
+                                                                                            <td><?php
+                                                                                                                                           echo tep_draw_input_field('silo_max_links_'.$languages[$i]['id'],
+                                                                                                                                               $siloArray[$languages[$i]['id']]['max_links'],
+                                                                                                                                               'maxlength="60" size=20"',
+                                                                                                                                               false,
+                                                                                                                                               '',
+                                                                                                                                               false);
+                                                                                                                                           ?> </td>
                                                                                         </tr>            
                                                                                         <tr>
                                                                                             <td class="main" valign="top"><?php echo ENTRY_SILO_SORT_BY; ?></td>
                                                                                             <td><table width="280" border="0" cellspacing="0" cellpadding="0">
                                                                                                     <tr>
-                                                                                                        <td class="main" align=left><INPUT TYPE="radio" NAME="<?php echo 'sort_group_'.$languages[$i]['id']; ?>" VALUE="0" <?php echo ($siloArray[$languages[$i]['id']]['sorton']
-                                                                == 0 ? 'checked'
-                                                                        : ''); ?> onClick="return EnableGenericCheckBoxes(0);" ><?php echo ENTRY_SILO_SORT_DATE; ?></td>
-                                                                                                        <td class="main" align=left><INPUT TYPE="radio" NAME="<?php echo 'sort_group_'.$languages[$i]['id']; ?>" VALUE="1" <?php echo ($siloArray[$languages[$i]['id']]['sorton']
-                                                                == 1 ? 'checked'
-                                                                        : ''); ?> onClick="return EnableGenericCheckBoxes(0);" ><?php echo ENTRY_SILO_SORT_NAME; ?></td>
-                                                                                                        <td class="main" align=left><INPUT TYPE="radio" NAME="<?php echo 'sort_group_'.$languages[$i]['id']; ?>" VALUE="2" <?php echo ($siloArray[$languages[$i]['id']]['sorton']
-                                                                == 2 ? 'checked'
-                                                                        : ''); ?> onClick="return EnableGenericCheckBoxes(0);" ><?php echo ENTRY_SILO_SORT_BEST; ?></td>
+                                                                                                        <td class="main" align=left><INPUT TYPE="radio" NAME="<?php echo 'sort_group_'.$languages[$i]['id']; ?>" VALUE="0" <?php
+                                                                                                        echo ($siloArray[$languages[$i]['id']]['sorton']
+                                                                                                        == 0
+                                                                                                                ? 'checked'
+                                                                                                                : '');
+                                                                                                        ?> onClick="return EnableGenericCheckBoxes(0);" ><?php echo ENTRY_SILO_SORT_DATE; ?></td>
+                                                                                                        <td class="main" align=left><INPUT TYPE="radio" NAME="<?php echo 'sort_group_'.$languages[$i]['id']; ?>" VALUE="1" <?php
+                                                                                    echo ($siloArray[$languages[$i]['id']]['sorton']
+                                                                                    == 1
+                                                                                            ? 'checked'
+                                                                                            : '');
+                                                                                    ?> onClick="return EnableGenericCheckBoxes(0);" ><?php echo ENTRY_SILO_SORT_NAME; ?></td>
+                                                                                                        <td class="main" align=left><INPUT TYPE="radio" NAME="<?php echo 'sort_group_'.$languages[$i]['id']; ?>" VALUE="2" <?php
+                                                                                    echo ($siloArray[$languages[$i]['id']]['sorton']
+                                                                                    == 2
+                                                                                            ? 'checked'
+                                                                                            : '');
+                                                                                    ?> onClick="return EnableGenericCheckBoxes(0);" ><?php echo ENTRY_SILO_SORT_BEST; ?></td>
                                                                                                         <td class="main" align=left><INPUT TYPE="radio" NAME="<?php echo 'sort_group_'.$languages[$i]['id']; ?>" VALUE="3" <?php echo ($siloArray[$languages[$i]['id']]['sorton']
-                                                            == 2 ? 'checked' : ''); ?> onClick="return EnableGenericCheckBoxes(1);" ><?php echo ENTRY_SILO_SORT_CUSTOM; ?></td>
+                                                                    == 2 ? 'checked'
+                                                                            : '');
+                                                                    ?> onClick="return EnableGenericCheckBoxes(1);" ><?php echo ENTRY_SILO_SORT_CUSTOM; ?></td>
                                                                                                     </tr>
                                                                                                 </table></td>  
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td class="main" valign="top"><?php echo ENTRY_SILO_DISABLE; ?></td>
                                                                                             <td><input type="checkbox" name="<?php echo 'disable_'.$languages[$i]['id']; ?>" <?php echo ($siloArray[$languages[$i]['id']]['is_disabled']
-                                                            == 1 ? 'checked' : ''); ?> ></td>
+                                                                    == 1 ? 'checked'
+                                                                            : '');
+                                                                    ?> ></td>
                                                                                         </tr>
                                                                                     </table></td>              
-                                                                                <td class="smallText" valign="top"><?php echo SMMultiSelectMenu('catfiles[]',
-                                                                $categoryFiles,
-                                                                $selectedCats,
-                                                                ' disabled style="width: 255;" size=12 id="add_generic_cat_filterlist"'); ?></td>
+                                                                                <td class="smallText" valign="top"><?php
+                                                                    echo SMMultiSelectMenu('catfiles[]',
+                                                                        $categoryFiles,
+                                                                        $selectedCats,
+                                                                        ' disabled style="width: 255;" size=12 id="add_generic_cat_filterlist"');
+                                                                    ?></td>
                                                                             </tr>            
                                                                         </table></td>
                                                                 </tr>        
                                                                 <tr><td height="10"></td></tr>	 
-<?php } ?>
+                                                            <?php } ?>
 
                                                             <tr> 
                                                                 <td align="center"><?php echo (tep_image_submit('button_update.gif',
-    IMAGE_UPDATE, 'name="update_silo"') ); ?></td>
+                                                                IMAGE_UPDATE,
+                                                                'name="update_silo"') );
+                                                            ?></td>
                                                             </tr> 
 
                                                             </form> 
@@ -220,11 +251,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                 <tr><td height="8"></td></tr>	       
                                                 <tr> 
                                                     <td align="right" width="60%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                                                    <?php echo tep_draw_form('header_tags_silo_links',
-                                                                                        FILENAME_HEADER_TAGS_SILO,
-                                                                                        '',
-                                                                                        'post').tep_draw_hidden_field('action',
-                                                                                        'process_links'); ?>
+                                                                                            <?php
+                                                                                            echo tep_draw_form('header_tags_silo_links',
+                                                                                                FILENAME_HEADER_TAGS_SILO,
+                                                                                                '',
+                                                                                                'post').tep_draw_hidden_field('action',
+                                                                                                'process_links');
+                                                                                            ?>
 
 <?php for ($i = 0; $i < count($languages); ++$i) { ?>        
                                                                 <tr>
@@ -251,7 +284,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
         ?>
                                                                                             <tr>
                                                                                                 <td class="main" width="30%"><?php echo tep_get_category_name($silo['category_id'],
-            $languages[$i]['id']); ?></td>
+            $languages[$i]['id']);
+        ?></td>
                                                                                                 <td class="main" width="30%"><?php echo $silo['box_heading']; ?></td>
                                                                                                 <td class="main" width="15%"><?php echo $silo['max_links']; ?></td>
                                                                                                 <td class="main"><?php echo $silo['sorton']; ?></td>
@@ -266,7 +300,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
                                                             <tr> 
                                                                 <td align="center"><?php echo (tep_image_submit('button_update.gif',
-    IMAGE_UPDATE, 'name="update_silo_links"') ); ?></td>
+    IMAGE_UPDATE, 'name="update_silo_links"') );
+?></td>
                                                             </tr> 
 
                                                             </form> 

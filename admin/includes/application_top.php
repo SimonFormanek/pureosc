@@ -20,9 +20,6 @@
 // Start the clock for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
-// Set the level of error reporting
-error_reporting(E_ALL & ~E_NOTICE);
-
 // check support for register_globals
 if (function_exists('ini_get') && (ini_get('register_globals') == false) && (PHP_VERSION
     < 4.3)) {
@@ -37,7 +34,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
     include('../../oscconfig/dbconfigure.php');
 }
 
-require_once DIR_FS_ADMIN . '/../vendor/autoload.php';
+require_once DIR_FS_CATALOG.'../vendor/autoload.php';
 \Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
 
 // some code to solve compatibility issues
@@ -150,8 +147,8 @@ if (!tep_session_is_registered('admin')) {
 // if the first page request is to the login page, set the current page to the index page
 // so the redirection on a successful login is not made to the login page again
     if (($current_page == FILENAME_LOGIN) && !tep_session_is_registered('redirect_origin')) {
-        $current_page  = FILENAME_DEFAULT;
-        $_GET = array();
+        $current_page = FILENAME_DEFAULT;
+        $_GET         = array();
     }
 
     if (basename($current_page) != FILENAME_LOGIN) {
@@ -233,9 +230,6 @@ require(DIR_WS_CLASSES.'email.php');
 // file uploading class
 require(DIR_WS_CLASSES.'upload.php');
 
-// action recorder
-require(DIR_WS_CLASSES.'action_recorder.php');
-
 // calculate category path
 if (isset($_GET['cPath'])) {
     $cPath = $_GET['cPath'];
@@ -296,6 +290,6 @@ require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');
 $breadcrumb = new breadcrumb;
 
 $messageStack = new messageStack;
-$adminLog = new PureOSC\CustomerLog();
+$adminLog     = new PureOSC\CustomerLog();
 $adminLog->setAdministratorID($_SESSION['admin']['id']);
 

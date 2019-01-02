@@ -488,4 +488,3 @@ class httpClient
         return $requesturi;
     }
 }
-

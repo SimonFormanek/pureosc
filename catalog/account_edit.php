@@ -212,12 +212,12 @@ echo tep_draw_form('account_edit',
                     ?>
                 </label>
                 <label class="radio-inline">
-                    <?php echo tep_draw_radio_field('gender',
-                        'f', $female).' '.FEMALE;
+                    <?php
+                    echo tep_draw_radio_field('gender', 'f', $female).' '.FEMALE;
                     ?>
                 </label>
                 <?php echo _('Required'); ?>
-    <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
+                <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
             </div>
         </div>
         <?php
@@ -231,7 +231,7 @@ echo tep_draw_form('account_edit',
                 $account['customers_firstname'],
                 'required aria-required="true" id="inputFirstName" placeholder="'.ENTRY_FIRST_NAME.'"');
             ?>
-<?php echo _('Required'); ?>
+            <?php echo _('Required'); ?>
         </div>
     </div>
     <div class="form-group has-feedback">
@@ -242,7 +242,7 @@ echo tep_draw_form('account_edit',
                 $account['customers_lastname'],
                 'required aria-required="true" id="inputLastName" placeholder="'.ENTRY_LAST_NAME.'"');
             ?>
-<?php echo _('Required'); ?>
+            <?php echo _('Required'); ?>
         </div>
     </div>
 
@@ -258,7 +258,7 @@ echo tep_draw_form('account_edit',
                     'required aria-required="true" aria-describedby="atDob" id="dob" placeholder="'.ENTRY_DATE_OF_BIRTH_TEXT.'"');
                 ?>
                 <?php if (tep_not_null(ENTRY_DATE_OF_BIRTH_TEXT)) echo '<span id="atDob" class="help-block">'.ENTRY_DATE_OF_BIRTH_TEXT.'</span>'; ?>
-    <?php echo _('Required'); ?>
+                <?php echo _('Required'); ?>
             </div>
         </div>
         <?php
@@ -274,7 +274,7 @@ echo tep_draw_form('account_edit',
                 'required aria-required="true" id="inputEmail" placeholder="'.ENTRY_EMAIL_ADDRESS.'"',
                 'email');
             ?>
-<?php echo _('Required'); ?>
+            <?php echo _('Required'); ?>
         </div>
     </div>
     <div class="form-group has-feedback">
@@ -286,7 +286,7 @@ echo tep_draw_form('account_edit',
                 'required aria-required="true" id="inputTelephone" placeholder="'.ENTRY_TELEPHONE_NUMBER.'"',
                 'tel');
             ?>
-<?php echo _('Required'); ?>
+            <?php echo _('Required'); ?>
         </div>
     </div>
     <div class="form-group">

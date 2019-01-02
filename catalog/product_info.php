@@ -40,8 +40,9 @@ if ($product_check['total'] < 1) {
         </div>
 
         <div class="pull-right">
-            <?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-                'fa fa-angle-right', tep_href_link(FILENAME_DEFAULT));
+            <?php
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+                tep_href_link(FILENAME_DEFAULT));
             ?>
         </div>
     </div>
@@ -96,7 +97,7 @@ if ($product_check['total'] < 1) {
     <div itemscope itemtype="http://schema.org/Product">
 
         <div class="page-header">
-    <?php if ($product_info['product_template'] == 1) { ?>
+            <?php if ($product_info['product_template'] == 1) { ?>
                 <h1 class="pull-right" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><?php echo $products_price; ?></h1>
     <?php } ?>
             <h1><?php echo $products_name; ?></h1>
@@ -246,14 +247,14 @@ if ($product_check['total'] < 1) {
                         </script>
 
                         <div itemprop="description">
-                        <?php echo stripslashes($product_info['products_description']); ?>
+    <?php echo stripslashes($product_info['products_description']); ?>
                         </div>
 
-    <?php
-    $products_attributes_query = tep_db_query("select count(*) as total from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_ATTRIBUTES." patrib where patrib.products_id='".(int) $_GET['products_id']."' and patrib.options_id = popt.products_options_id and popt.language_id = '".(int) $languages_id."'");
-    $products_attributes       = tep_db_fetch_array($products_attributes_query);
-    if ($products_attributes['total'] > 0) {
-        ?>
+                        <?php
+                        $products_attributes_query = tep_db_query("select count(*) as total from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_ATTRIBUTES." patrib where patrib.products_id='".(int) $_GET['products_id']."' and patrib.options_id = popt.products_options_id and popt.language_id = '".(int) $languages_id."'");
+                        $products_attributes       = tep_db_fetch_array($products_attributes_query);
+                        if ($products_attributes['total'] > 0) {
+                            ?>
 
                             <h4><?php echo TEXT_PRODUCT_OPTIONS; ?></h4>
 
@@ -285,18 +286,19 @@ if ($product_check['total'] < 1) {
                                     }
                                     ?>
                                     <strong><?php echo $products_options_name['products_options_name'].':'; ?></strong><br /><?php
-                                echo tep_draw_pull_down_menu('id['.$products_options_name['products_options_id'].']',
-                                    $products_options_array,
-                                    $selected_attribute, 'style="width: 200px;"');
-                                ?><br />
-            <?php
-        }
-        ?>
+                                    echo tep_draw_pull_down_menu('id['.$products_options_name['products_options_id'].']',
+                                        $products_options_array,
+                                        $selected_attribute,
+                                        'style="width: 200px;"');
+                                    ?><br />
+                                    <?php
+                                }
+                                ?>
                             </p>
 
-        <?php
-    }
-    ?>
+                            <?php
+                        }
+                        ?>
 
                         <div class="clearfix"></div>
 
@@ -304,24 +306,25 @@ if ($product_check['total'] < 1) {
                         if ($product_info['products_date_available'] > date('Y-m-d H:i:s')) {
                             ?>
 
-                            <div class="alert alert-info"><?php echo sprintf(TEXT_DATE_AVAILABLE,
+                            <div class="alert alert-info"><?php
+                            echo sprintf(TEXT_DATE_AVAILABLE,
                                 tep_date_long($product_info['products_date_available']));
                             ?></div>
 
-                        <?php
-                    }
-                    ?>
+        <?php
+    }
+    ?>
 
                     </div>
 
-                            <?php
-                            $reviews_query = tep_db_query("select count(*) as count, avg(reviews_rating) as avgrating from ".TABLE_REVIEWS." r, ".TABLE_REVIEWS_DESCRIPTION." rd where r.products_id = '".(int) $_GET['products_id']."' and r.reviews_id = rd.reviews_id and rd.languages_id = '".(int) $languages_id."' and reviews_status = 1");
-                            $reviews       = tep_db_fetch_array($reviews_query);
+                    <?php
+                    $reviews_query = tep_db_query("select count(*) as count, avg(reviews_rating) as avgrating from ".TABLE_REVIEWS." r, ".TABLE_REVIEWS_DESCRIPTION." rd where r.products_id = '".(int) $_GET['products_id']."' and r.reviews_id = rd.reviews_id and rd.languages_id = '".(int) $languages_id."' and reviews_status = 1");
+                    $reviews       = tep_db_fetch_array($reviews_query);
 
-                            if ($reviews['count'] > 0) {
-                                echo '<span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><meta itemprop="ratingValue" content="'.$reviews['avgrating'].'" /><meta itemprop="ratingCount" content="'.$reviews['count'].'" /></span>';
-                            }
-                            ?>
+                    if ($reviews['count'] > 0) {
+                        echo '<span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><meta itemprop="ratingValue" content="'.$reviews['avgrating'].'" /><meta itemprop="ratingCount" content="'.$reviews['count'].'" /></span>';
+                    }
+                    ?>
 
                     <div class="buttonSet row">
                         <div class="col-xs-6"><?php
@@ -336,35 +339,35 @@ if ($product_check['total'] < 1) {
                             }
                             ?></div>
                         <div class="col-xs-6 text-right"><?php
-                    /* pure:new if product cart TRUE */ if ($product_info['product_template']
-                        == 1) {
-                        echo tep_draw_hidden_field('products_id',
-                            $product_info['products_id']).tep_draw_button(IMAGE_BUTTON_IN_CART,
-                            'fa fa-shopping-cart', null, 'primary', null,
-                            'btn-success');
-                    }
-                    ?></div>
+                            /* pure:new if product cart TRUE */ if ($product_info['product_template']
+                                == 1) {
+                                echo tep_draw_hidden_field('products_id',
+                                    $product_info['products_id']).tep_draw_button(IMAGE_BUTTON_IN_CART,
+                                    'fa fa-shopping-cart', null, 'primary',
+                                    null, 'btn-success');
+                            }
+                            ?></div>
                     </div>
 
                     <div class="row">
                     <?php echo $oscTemplate->getContent('product_info'); ?>
                     </div>
 
-    <?php
-    if ((USE_CACHE == 'true') && empty($SID)) {
-        echo tep_cache_also_purchased(3600);
-    } else {
-        include(DIR_WS_MODULES.FILENAME_ALSO_PURCHASED_PRODUCTS);
-    }
+                    <?php
+                    if ((USE_CACHE == 'true') && empty($SID)) {
+                        echo tep_cache_also_purchased(3600);
+                    } else {
+                        include(DIR_WS_MODULES.FILENAME_ALSO_PURCHASED_PRODUCTS);
+                    }
 
-    if ($product_info['manufacturers_id'] > 0) {
-        $manufacturer_query = tep_db_query("select manufacturers_name from ".TABLE_MANUFACTURERS." where manufacturers_id = '".(int) $product_info['manufacturers_id']."'");
-        if (tep_db_num_rows($manufacturer_query)) {
-            $manufacturer = tep_db_fetch_array($manufacturer_query);
-            echo '<span itemprop="manufacturer" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="'.tep_output_string($manufacturer['manufacturers_name']).'" /></span>';
-        }
-    }
-    ?>
+                    if ($product_info['manufacturers_id'] > 0) {
+                        $manufacturer_query = tep_db_query("select manufacturers_name from ".TABLE_MANUFACTURERS." where manufacturers_id = '".(int) $product_info['manufacturers_id']."'");
+                        if (tep_db_num_rows($manufacturer_query)) {
+                            $manufacturer = tep_db_fetch_array($manufacturer_query);
+                            echo '<span itemprop="manufacturer" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="'.tep_output_string($manufacturer['manufacturers_name']).'" /></span>';
+                        }
+                    }
+                    ?>
 
                 </div>
 
@@ -372,8 +375,8 @@ if ($product_check['total'] < 1) {
 
             </form>
 
-    <?php
-}
-require(DIR_WS_INCLUDES.'template_bottom.php');
-require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+            <?php
+        }
+        require(DIR_WS_INCLUDES.'template_bottom.php');
+        require(DIR_WS_INCLUDES.'application_bottom.php');
+        ?>

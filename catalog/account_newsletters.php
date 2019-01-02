@@ -67,12 +67,12 @@ echo tep_draw_form('account_newsletter',
             <div class="col-sm-8">
                 <div class="checkbox">
                     <label>
-                        <?php echo tep_draw_checkbox_field('newsletter_general',
-                            '1',
+                        <?php
+                        echo tep_draw_checkbox_field('newsletter_general', '1',
                             (($newsletter['customers_newsletter'] == '1') ? true
                                     : false));
                         ?>
-<?php if (tep_not_null(MY_NEWSLETTERS_GENERAL_NEWSLETTER_DESCRIPTION)) echo MY_NEWSLETTERS_GENERAL_NEWSLETTER_DESCRIPTION; ?>
+                        <?php if (tep_not_null(MY_NEWSLETTERS_GENERAL_NEWSLETTER_DESCRIPTION)) echo MY_NEWSLETTERS_GENERAL_NEWSLETTER_DESCRIPTION; ?>
                     </label>
                 </div>
             </div>
@@ -80,12 +80,14 @@ echo tep_draw_form('account_newsletter',
     </div>
 
     <div class="buttonSet row">
-        <div class="col-xs-6"><?php echo tep_draw_button(IMAGE_BUTTON_BACK,
-    'fa fa-angle-left', tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
-?></div>
-        <div class="col-xs-6 text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-angle-right', null, 'primary', null, 'btn-success');
-?></div>
+        <div class="col-xs-6"><?php
+            echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+                tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+            ?></div>
+        <div class="col-xs-6 text-right"><?php
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+                null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 </div>
 

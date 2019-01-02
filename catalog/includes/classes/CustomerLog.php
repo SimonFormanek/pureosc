@@ -122,7 +122,7 @@ class CustomerLog extends \Ease\Brick
                                   $columnValue)
     {
         return $this->logEvent($columnName, $columnValue, null,
-                self::sqlUri($tableName,$recordID, $columnName));
+                self::sqlUri($tableName, $recordID, $columnName));
     }
 
     /**

@@ -42,7 +42,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo $cfg_group['configuration_group_title']; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -99,21 +100,24 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 }
                                 ?>
                                 <td class="dataTableContent"><?php
-                if (defined($configuration['configuration_title'])) {
-                    echo constant($configuration['configuration_title']);
-                } else {
-                    echo $configuration['configuration_title'];
-                }
-                                ?></td>
+                                    if (defined($configuration['configuration_title'])) {
+                                        echo constant($configuration['configuration_title']);
+                                    } else {
+                                        echo $configuration['configuration_title'];
+                                    }
+                                    ?></td>
                                 <td class="dataTableContent"><?php echo htmlspecialchars($cfgValue); ?></td>
-                                <td class="dataTableContent" align="right"><?php if ((isset($cInfo)
-            && is_object($cInfo)) && ($configuration['configuration_id'] == $cInfo->configuration_id)) {
-            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif', '');
-        } else {
-            echo '<a href="'.tep_href_link(FILENAME_CONFIGURATION,
-                'gID='.$_GET['gID'].'&cID='.$configuration['configuration_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                IMAGE_ICON_INFO).'</a>';
-        } ?>&nbsp;</td>
+                                <td class="dataTableContent" align="right"><?php
+                                    if ((isset($cInfo) && is_object($cInfo)) && ($configuration['configuration_id']
+                                        == $cInfo->configuration_id)) {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                            '');
+                                    } else {
+                                        echo '<a href="'.tep_href_link(FILENAME_CONFIGURATION,
+                                            'gID='.$_GET['gID'].'&cID='.$configuration['configuration_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                            IMAGE_ICON_INFO).'</a>';
+                                    }
+                                    ?>&nbsp;</td>
                     </tr>
             <?php
         }

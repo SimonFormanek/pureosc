@@ -238,8 +238,9 @@ echo tep_draw_form('email_friend',
                 tep_href_link(FILENAME_PRODUCT_INFO,
                     'products_id='.(int) $_GET['products_id']));
             ?></div>
-        <div class="col-xs-6 text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-                'fa fa-send', null, 'primary', null, 'btn-success');
+        <div class="col-xs-6 text-right"><?php
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-send', null,
+                'primary', null, 'btn-success');
             ?></div>
     </div>
 </div>

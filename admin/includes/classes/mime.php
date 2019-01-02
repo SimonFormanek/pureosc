@@ -28,7 +28,6 @@ class mime
         $this->mime($body, $params);
     }
 
-
     /**
      * Constructor.
      * 

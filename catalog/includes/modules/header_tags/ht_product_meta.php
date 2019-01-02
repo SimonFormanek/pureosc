@@ -88,5 +88,3 @@ class ht_product_meta
             'MODULE_HEADER_TAGS_PRODUCT_META_SORT_ORDER');
     }
 }
-
-

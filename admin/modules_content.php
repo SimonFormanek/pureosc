@@ -180,16 +180,19 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-                        HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
-<?php
-if ($action == 'list_new') {
-    echo '            <td class="smallText" align="right">'.tep_draw_button(IMAGE_BACK,
-        'triangle-1-w', tep_href_link('modules_content.php')).'</td>';
-} else {
-    echo '            <td class="smallText" align="right">'.tep_draw_button(IMAGE_MODULE_INSTALL.' ('.count($modules['new']).')',
-        'plus', tep_href_link('modules_content.php', 'action=list_new')).'</td>';
-}
-?>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
+                    <?php
+                    if ($action == 'list_new') {
+                        echo '            <td class="smallText" align="right">'.tep_draw_button(IMAGE_BACK,
+                            'triangle-1-w', tep_href_link('modules_content.php')).'</td>';
+                    } else {
+                        echo '            <td class="smallText" align="right">'.tep_draw_button(IMAGE_MODULE_INSTALL.' ('.count($modules['new']).')',
+                            'plus',
+                            tep_href_link('modules_content.php',
+                                'action=list_new')).'</td>';
+                    }
+                    ?>
                 </tr>
             </table></td>
     </tr>
@@ -197,9 +200,9 @@ if ($action == 'list_new') {
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td valign="top">
-                            <?php
-                            if ($action == 'list_new') {
-                                ?>
+<?php
+if ($action == 'list_new') {
+    ?>
                             <table border="0" width="100%" cellspacing="0" cellpadding="2">
                                 <tr class="dataTableHeadingRow">
                                     <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_MODULES; ?></td>
@@ -211,8 +214,7 @@ if ($action == 'list_new') {
                                     $module = new $m['code']();
 
                                     if ((!isset($_GET['module']) || (isset($_GET['module'])
-                                        && ($_GET['module'] == $module->code)))
-                                        && !isset($mInfo)) {
+                                        && ($_GET['module'] == $module->code))) && !isset($mInfo)) {
                                         $module_info = array('code' => $module->code,
                                             'title' => $module->title,
                                             'description' => $module->description,
@@ -234,22 +236,24 @@ if ($action == 'list_new') {
                                     ?>
                                     <td class="dataTableContent"><?php echo $module->title; ?></td>
                                     <td class="dataTableContent"><?php echo $module->group; ?></td>
-                                    <td class="dataTableContent" align="right"><?php if (isset($mInfo)
-                    && is_object($mInfo) && ($module->code == $mInfo->code)) {
-                    echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
-                } else {
-                    echo '<a href="'.tep_href_link('modules_content.php',
-                        'action=list_new&module='.$module->code).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                        IMAGE_ICON_INFO).'</a>';
-                } ?>&nbsp;</td>
+                                    <td class="dataTableContent" align="right"><?php
+                                        if (isset($mInfo) && is_object($mInfo) && ($module->code
+                                            == $mInfo->code)) {
+                                            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
+                                        } else {
+                                            echo '<a href="'.tep_href_link('modules_content.php',
+                                                'action=list_new&module='.$module->code).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                                IMAGE_ICON_INFO).'</a>';
+                                        }
+                                        ?>&nbsp;</td>
                         </tr>
-                        <?php
-                    }
-                    ?>
-                </table>
                     <?php
-                } else {
-                    ?>
+                }
+                ?>
+                </table>
+    <?php
+} else {
+    ?>
                 <table border="0" width="100%" cellspacing="0" cellpadding="2">
                     <tr class="dataTableHeadingRow">
                         <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_MODULES; ?></td>
@@ -261,8 +265,8 @@ if ($action == 'list_new') {
                     foreach ($modules['installed'] as $m) {
                         $module = new $m['code']();
 
-                        if ((!isset($_GET['module']) || (isset($_GET['module'])
-                            && ($_GET['module'] == $module->code))) && !isset($mInfo)) {
+                        if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module']
+                            == $module->code))) && !isset($mInfo)) {
                             $module_info = array('code' => $module->code,
                                 'title' => $module->title,
                                 'description' => $module->description,
@@ -300,14 +304,16 @@ if ($action == 'list_new') {
                         <td class="dataTableContent"><?php echo $module->title; ?></td>
                         <td class="dataTableContent"><?php echo $module->group; ?></td>
                         <td class="dataTableContent"><?php echo $module->sort_order; ?></td>
-                        <td class="dataTableContent" align="right"><?php if (isset($mInfo)
-            && is_object($mInfo) && ($module->code == $mInfo->code)) {
-            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
-        } else {
-            echo '<a href="'.tep_href_link('modules_content.php',
-                'module='.$module->code).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                IMAGE_ICON_INFO).'</a>';
-        } ?>&nbsp;</td>
+                        <td class="dataTableContent" align="right"><?php
+                            if (isset($mInfo) && is_object($mInfo) && ($module->code
+                                == $mInfo->code)) {
+                                echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
+                            } else {
+                                echo '<a href="'.tep_href_link('modules_content.php',
+                                    'module='.$module->code).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                    IMAGE_ICON_INFO).'</a>';
+                            }
+                            ?>&nbsp;</td>
             </tr>
         <?php
     }

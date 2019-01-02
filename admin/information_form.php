@@ -22,9 +22,11 @@
                 ?>
                 <tr>
                     <td class="main"><?php echo ENTRY_STATUS; ?></td>
-                    <td class="main"><?php echo tep_draw_radio_field('visible',
-                '1', true, $edit['visible']).'&nbsp;&nbsp;'.STATUS_ACTIVE.'&nbsp;&nbsp;'.tep_draw_radio_field('visible',
-                '0', false, $edit['visible']).'&nbsp;&nbsp;'.STATUS_INACTIVE; ?></td>
+                    <td class="main"><?php
+                        echo tep_draw_radio_field('visible', '1', true,
+                            $edit['visible']).'&nbsp;&nbsp;'.STATUS_ACTIVE.'&nbsp;&nbsp;'.tep_draw_radio_field('visible',
+                            '0', false, $edit['visible']).'&nbsp;&nbsp;'.STATUS_INACTIVE;
+                        ?></td>
                 </tr>
                 <tr>
                     <td colspan="2" height="10">&nbsp;</td>
@@ -81,72 +83,78 @@
                     ?>
                     <tr>
                         <td class="main"><?php if ($i == 0) echo ENTRY_TITLE; ?><br /></td>
-                        <td><?php echo tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
-                        $languages[$i]['name']).'&nbsp;'.tep_draw_input_field('information_title['.$languages[$i]['id'].']',
-                        (($languages[$i]['id'] == $languages_id) ? stripslashes($edit[information_title])
-                                : tep_get_information_entry($information_id,
-                                $languages[$i]['id'], 'information_title')),
-                        'maxlength=255'); ?></td>
+                        <td><?php
+                            echo tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
+                                $languages[$i]['name']).'&nbsp;'.tep_draw_input_field('information_title['.$languages[$i]['id'].']',
+                                (($languages[$i]['id'] == $languages_id) ? stripslashes($edit[information_title])
+                                        : tep_get_information_entry($information_id,
+                                        $languages[$i]['id'],
+                                        'information_title')), 'maxlength=255');
+                            ?></td>
                     </tr>
                     <tr>
                         <td colspan="2" height="10">&nbsp;</td>
                     </tr>
-        <?php
-    }
-}
+                    <?php
+                }
+            }
 
-if (!strstr($info_group['locked'], 'information_description')) {
-    for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-        ?>
+            if (!strstr($info_group['locked'], 'information_description')) {
+                for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+                    ?>
                     <tr>
                         <td valign="top" class="main" width="100" colspan="2"><?php if ($i
-                                    == 0) echo ENTRY_DESCRIPTION; ?><br />
+                        == 0) echo ENTRY_DESCRIPTION;
+                    ?><br />
                             <table border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td class="main" valign="top"><?php echo tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
-                                    $languages[$i]['name']); ?>&nbsp;</td>
+                                    $languages[$i]['name']);
+                    ?>&nbsp;</td>
                                     <td class="main" width="100%"><?php
-                                //PURE:new use editor?
-                                $format_query = tep_db_query("SELECT format FROM ".TABLE_INFORMATION_GROUP." WHERE information_group_id = ".$_GET['gID']);
-                                $format       = tep_db_fetch_array($format_query);
+                                        //PURE:new use editor?
+                                        $format_query = tep_db_query("SELECT format FROM ".TABLE_INFORMATION_GROUP." WHERE information_group_id = ".$_GET['gID']);
+                                        $format       = tep_db_fetch_array($format_query);
 //                if (($_GET['gID'] == 2 && $_GET['information_id'] < 9) || ($_GET['gID'] == 1)) {
-                                if ($format['format'] == 'html') {
-                                    echo tep_draw_textarea_field_ckeditor('information_description['.$languages[$i]['id'].']',
-                                        '', '100', '20',
-                                        (($languages[$i]['id'] == $languages_id)
-                                                ? stripslashes($edit[information_description])
-                                                : tep_get_information_entry($information_id,
-                                                $languages[$i]['id'],
-                                                'information_description')));
-                                } else {
-                                    echo tep_draw_textarea_field('information_description['.$languages[$i]['id'].']',
-                                        '', '100', '20',
-                                        (($languages[$i]['id'] == $languages_id)
-                                                ? stripslashes($edit[information_description])
-                                                : tep_get_information_entry($information_id,
-                                                $languages[$i]['id'],
-                                                'information_description')));
-                                }
-                                ?></td>
+                                        if ($format['format'] == 'html') {
+                                            echo tep_draw_textarea_field_ckeditor('information_description['.$languages[$i]['id'].']',
+                                                '', '100', '20',
+                                                (($languages[$i]['id'] == $languages_id)
+                                                        ? stripslashes($edit[information_description])
+                                                        : tep_get_information_entry($information_id,
+                                                        $languages[$i]['id'],
+                                                        'information_description')));
+                                        } else {
+                                            echo tep_draw_textarea_field('information_description['.$languages[$i]['id'].']',
+                                                '', '100', '20',
+                                                (($languages[$i]['id'] == $languages_id)
+                                                        ? stripslashes($edit[information_description])
+                                                        : tep_get_information_entry($information_id,
+                                                        $languages[$i]['id'],
+                                                        'information_description')));
+                                        }
+                                        ?></td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
-        <?php
-    }
-}
-?>
+                            <?php
+                        }
+                    }
+                    ?>
             <tr>
                 <td colspan="2" align="left"><br /><?php
 // Decide when to show the buttons (Determine or 'locked' is active)
-if ((empty($info_group['locked'])) || ($_GET['information_action'] == 'Edit')) {
-    echo tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary');
-} else {
-    echo tep_draw_button(IMAGE_INSERT, 'plus', null, 'primary');
-}
-echo tep_draw_button(IMAGE_CANCEL, 'close',
-    tep_href_link(FILENAME_INFORMATION_MANAGER, 'gID='.$gID));
-?></td>
+                    if ((empty($info_group['locked'])) || ($_GET['information_action']
+                        == 'Edit')) {
+                        echo tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary');
+                    } else {
+                        echo tep_draw_button(IMAGE_INSERT, 'plus', null,
+                            'primary');
+                    }
+                    echo tep_draw_button(IMAGE_CANCEL, 'close',
+                        tep_href_link(FILENAME_INFORMATION_MANAGER, 'gID='.$gID));
+                    ?></td>
             </tr>
         </table></td>
 </tr>

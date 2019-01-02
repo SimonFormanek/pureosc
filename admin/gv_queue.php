@@ -98,26 +98,32 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableContent" align="center"><?php echo $gv_list['order_id']; ?></td>
                                 <td class="dataTableContent" align="right"><?php echo $currencies->format($gv_list['amount']); ?></td>
                                 <td class="dataTableContent" align="right"><?php echo tep_datetime_short($gv_list['date_created']); ?></td>
-                                <td class="dataTableContent" align="right"><?php if ((is_object($gInfo))
-                    && ($gv_list['unique_id'] == $gInfo->unique_id)) {
-                    echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
-                } else {
-                    echo '<a href="'.tep_href_link(FILENAME_GV_QUEUE,
-                        'page='.$_GET['page'].'&gid='.$gv_list['unique_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                        IMAGE_ICON_INFO).'</a>';
-                } ?>&nbsp;</td>
+                                <td class="dataTableContent" align="right"><?php
+                                    if ((is_object($gInfo)) && ($gv_list['unique_id']
+                                        == $gInfo->unique_id)) {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
+                                    } else {
+                                        echo '<a href="'.tep_href_link(FILENAME_GV_QUEUE,
+                                            'page='.$_GET['page'].'&gid='.$gv_list['unique_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                            IMAGE_ICON_INFO).'</a>';
+                                    }
+                                    ?>&nbsp;</td>
                     </tr>
-            <?php
-        }
-        ?>
+                    <?php
+                }
+                ?>
                 <tr>
                     <td colspan="5"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-                                <td class="smallText" valign="top"><?php echo $gv_split->display_count($gv_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-            TEXT_DISPLAY_NUMBER_OF_GIFT_VOUCHERS); ?></td>
+                                <td class="smallText" valign="top"><?php
+                echo $gv_split->display_count($gv_query_numrows,
+                    MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
+                    TEXT_DISPLAY_NUMBER_OF_GIFT_VOUCHERS);
+                ?></td>
                                 <td class="smallText" align="right"><?php echo $gv_split->display_links($gv_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>
+                    MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
+                    $_GET['page']);
+                ?></td>
                             </tr>
                         </table></td>
                 </tr>

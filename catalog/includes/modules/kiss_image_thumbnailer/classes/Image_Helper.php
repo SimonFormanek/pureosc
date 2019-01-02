@@ -15,7 +15,7 @@
  * @version $Rev:: 19 BS                                    $:  Revision of last commit
  * @Id $Id:: Image_Helper.php 10 BS 2015-01-28 @raiwa       $:  Full Details
  */
-require_once DIR_WS_MODULES.'kiss_image_thumbnailer/classes/Image.php';
+
 
 /**
  * Helper class to create valid thumbnails on the fly within the tep_image() wrapper

@@ -167,7 +167,7 @@ class Image
     {
         switch ($this->_mime_type) {
             case self::IMAGETYPE_SVG :
-                return file_get_contents( $this->_filename);
+                return file_get_contents($this->_filename);
                 break;
             case self::IMAGETYPE_GIF :
                 return imagegif($this->_image, $save_in);
@@ -220,8 +220,8 @@ class Image
     protected function _setInfo()
     {
         if (strstr($this->_filename, '.svg')) {
-            $this->_width  = 200;
-            $this->_height = 200;
+            $this->_width     = 200;
+            $this->_height    = 200;
             $this->_mime_type = 'image/svg';
         } else {
 
@@ -231,8 +231,8 @@ class Image
             } elseif ($img_size[0] == 0 || $img_size[1] == 0) {
                 trigger_error('Image has dimension of zero.', E_USER_NOTICE);
             }
-            $this->_width  = $img_size[0];
-            $this->_height = $img_size[1];
+            $this->_width     = $img_size[0];
+            $this->_height    = $img_size[1];
             $this->_mime_type = $img_size['mime'];
         }
     }
@@ -341,11 +341,11 @@ class Image
             < $max_height)) {
             $new_image = $this->_image;
         } else {
-            if($this->_mime_type == 'image/svg'){
+            if ($this->_mime_type == 'image/svg') {
                 
-            }else {
+            } else {
                 imagecopyresampled($new_image, $this->_image, 0, 0, 0, 0,
-                $max_width, $max_height, $this->_width, $this->_height);
+                    $max_width, $max_height, $this->_width, $this->_height);
             }
         }
         // BOF added for watermark support

@@ -32,6 +32,30 @@ class Cenik extends \FlexiPeeHP\Cenik
         if (!empty($productData['products_price'])) {
             $cenikData['cenaZakl'] = $productData['products_price'];
         }
+
+        if (array_key_exists('products_tax_class_id', $productData)) {
+            switch ($productData['products_tax_class_id']) {
+                 case 0:
+                    $cenikData['typSzbDphK'] = 'typSzbDph.dphOsv';
+                    break;
+
+                 case 1:
+                    $cenikData['typSzbDphK'] = 'typSzbDph.dphSniz';
+                    break;
+
+                 case 2:
+                    $cenikData['typSzbDphK'] = 'typSzbDph.dphZakl';
+                    break;
+
+                case 3:
+                    $cenikData['typSzbDphK'] = 'typSzbDph.dphSniz2';
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         switch ($lang) {
             case 'en':
                 if (isset($productData['products_name'])) {

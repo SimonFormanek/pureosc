@@ -13,7 +13,7 @@
 class cod
 {
     var $code, $title, $description, $enabled;
-    
+
     public function __construct()
     {
         $this->cod();
@@ -140,5 +140,3 @@ class cod
             'MODULE_PAYMENT_COD_SORT_ORDER');
     }
 }
-
-

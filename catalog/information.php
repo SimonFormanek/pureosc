@@ -46,12 +46,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
 <div class="contentContainer">
     <div class="contentText">
-<?php echo $page_description; ?>
+        <?php echo $page_description; ?>
     </div>
 
     <div class="buttonSet">
         <span class="buttonAction"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'triangle-1-e', tep_href_link(FILENAME_DEFAULT)); ?></span>
+            'triangle-1-e', tep_href_link(FILENAME_DEFAULT));
+        ?></span>
     </div>
 </div>
 

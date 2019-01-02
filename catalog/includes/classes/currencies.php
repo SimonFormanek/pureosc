@@ -69,8 +69,7 @@ class currencies
     {
         global $currency;
 
-        return tep_round(tep_add_tax($products_price, $products_tax),
-                $this->currencies[$currency]['decimal_places']) * $quantity;
+        return tep_add_tax($products_price, $products_tax) * $quantity;
     }
 
     function is_set($code)
@@ -98,5 +97,3 @@ class currencies
                     $products_tax, $quantity));
     }
 }
-
-

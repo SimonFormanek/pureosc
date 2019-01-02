@@ -63,8 +63,7 @@ if (tep_not_null($action)) {
                 }
 
                 tep_redirect(tep_href_link(FILENAME_NEWSLETTERS,
-                        (isset($_GET['page']) ? 'page='.$_GET['page'].'&'
-                                : '').'nID='.$newsletter_id));
+                        (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').'nID='.$newsletter_id));
             } else {
                 $action = 'new';
             }
@@ -116,7 +115,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-        HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -166,33 +166,40 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <tr>
             <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
         </tr>
-        <tr><?php echo tep_draw_form('newsletter', FILENAME_NEWSLETTERS,
-            (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').'action='.$form_action);
-        if ($form_action == 'update') echo tep_draw_hidden_field('newsletter_id',
-                $nID); ?>
+        <tr><?php
+            echo tep_draw_form('newsletter', FILENAME_NEWSLETTERS,
+                (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').'action='.$form_action);
+            if ($form_action == 'update')
+                    echo tep_draw_hidden_field('newsletter_id', $nID);
+            ?>
             <td><table border="0" cellspacing="0" cellpadding="2">
                     <tr>
                         <td class="main"><?php echo TEXT_NEWSLETTER_MODULE; ?></td>
                         <td class="main"><?php echo tep_draw_pull_down_menu('module',
-            $modules_array, $nInfo->module); ?></td>
+                            $modules_array, $nInfo->module);
+                        ?></td>
                     </tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-            '1', '10'); ?></td>
+                            '1', '10');
+                        ?></td>
                     </tr>
                     <tr>
                         <td class="main"><?php echo TEXT_NEWSLETTER_TITLE; ?></td>
                         <td class="main"><?php echo tep_draw_input_field('title',
-            $nInfo->title, '', true); ?></td>
+                            $nInfo->title, '', true);
+            ?></td>
                     </tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-            '1', '10'); ?></td>
+                            '1', '10');
+            ?></td>
                     </tr>
                     <tr>
                         <td class="main" valign="top"><?php echo TEXT_NEWSLETTER_CONTENT; ?></td>
                         <td class="main"><?php echo tep_draw_textarea_field('content',
-        'soft', '100%', '20', $nInfo->content); ?></td>
+                            'soft', '100%', '20', $nInfo->content);
+                        ?></td>
                     </tr>
                 </table></td>
         </tr>
@@ -202,11 +209,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <tr>
             <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
                     <tr>
-                        <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_SAVE,
-        'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL, 'close',
-        tep_href_link(FILENAME_NEWSLETTERS,
-            (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').(isset($_GET['nID'])
-                    ? 'nID='.$_GET['nID'] : ''))); ?></td>
+                        <td class="smallText" align="right"><?php
+        echo tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
+            'close',
+            tep_href_link(FILENAME_NEWSLETTERS,
+                (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').(isset($_GET['nID'])
+                        ? 'nID='.$_GET['nID'] : '')));
+        ?></td>
                     </tr>
                 </table></td>
             </form></tr>
@@ -220,19 +229,21 @@ require(DIR_WS_INCLUDES.'template_top.php');
     $nInfo = new objectInfo($newsletter);
     ?>
         <tr>
-            <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_BACK,
-        'triangle-1-w',
-        tep_href_link(FILENAME_NEWSLETTERS,
-            'page='.$_GET['page'].'&nID='.$_GET['nID'])); ?></td>
+            <td class="smallText" align="right"><?php
+            echo tep_draw_button(IMAGE_BACK, 'triangle-1-w',
+                tep_href_link(FILENAME_NEWSLETTERS,
+                    'page='.$_GET['page'].'&nID='.$_GET['nID']));
+            ?></td>
         </tr>
         <tr>
             <td><tt><?php echo nl2br($nInfo->content); ?></tt></td>
     </tr>
     <tr>
-        <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_BACK,
-        'triangle-1-w',
+        <td class="smallText" align="right"><?php
+    echo tep_draw_button(IMAGE_BACK, 'triangle-1-w',
         tep_href_link(FILENAME_NEWSLETTERS,
-            'page='.$_GET['page'].'&nID='.$_GET['nID'])); ?></td>
+            'page='.$_GET['page'].'&nID='.$_GET['nID']));
+    ?></td>
     </tr>
     <?php
 } elseif ($action == 'send') {
@@ -251,11 +262,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
     $module      = new $module_name($nInfo->title, $nInfo->content);
     ?>
     <tr>
-        <td><?php if ($module->show_choose_audience) {
+        <td><?php
+    if ($module->show_choose_audience) {
         echo $module->choose_audience();
     } else {
         echo $module->confirm();
-    } ?></td>
+    }
+    ?></td>
     </tr>
     <?php
 } elseif ($action == 'confirm') {
@@ -296,16 +309,17 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <td><table border="0" cellspacing="0" cellpadding="2">
                 <tr>
                     <td class="main" valign="middle"><?php echo tep_image(DIR_WS_IMAGES.'ani_send_email.gif',
-                            IMAGE_ANI_SEND_EMAIL); ?></td>
+        IMAGE_ANI_SEND_EMAIL);
+    ?></td>
                     <td class="main" valign="middle"><strong><?php echo TEXT_PLEASE_WAIT; ?></strong></td>
                 </tr>
             </table></td>
     </tr>
-                            <?php
-                            tep_set_time_limit(0);
-                            flush();
-                            $module->send($nInfo->newsletters_id);
-                            ?>
+    <?php
+    tep_set_time_limit(0);
+    flush();
+    $module->send($nInfo->newsletters_id);
+    ?>
     <tr>
         <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
     </tr>
@@ -316,14 +330,15 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
     </tr>
     <tr>
-        <td class="smallText"><?php echo tep_draw_button(IMAGE_BACK,
-                'triangle-1-w',
-                tep_href_link(FILENAME_NEWSLETTERS,
-                    'page='.$_GET['page'].'&nID='.$_GET['nID'])); ?></td>
+        <td class="smallText"><?php
+    echo tep_draw_button(IMAGE_BACK, 'triangle-1-w',
+        tep_href_link(FILENAME_NEWSLETTERS,
+            'page='.$_GET['page'].'&nID='.$_GET['nID']));
+    ?></td>
     </tr>
-    <?php
-} else {
-    ?>
+                            <?php
+                        } else {
+                            ?>
     <tr>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
@@ -336,139 +351,155 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_STATUS; ?></td>
                                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
                             </tr>
-        <?php
-        $newsletters_query_raw = "select newsletters_id, title, length(content) as content_length, module, date_added, date_sent, status, locked from ".TABLE_NEWSLETTERS." order by date_added desc";
-        $newsletters_split     = new splitPageResults($_GET['page'],
-            MAX_DISPLAY_SEARCH_RESULTS, $newsletters_query_raw,
-            $newsletters_query_numrows);
-        $newsletters_query     = tep_db_query($newsletters_query_raw);
-        while ($newsletters           = tep_db_fetch_array($newsletters_query)) {
-            if ((!isset($_GET['nID']) || (isset($_GET['nID']) && ($_GET['nID']
-                == $newsletters['newsletters_id']))) && !isset($nInfo) && (substr($action,
-                    0, 3) != 'new')) {
-                $nInfo = new objectInfo($newsletters);
-            }
+                            <?php
+                            $newsletters_query_raw = "select newsletters_id, title, length(content) as content_length, module, date_added, date_sent, status, locked from ".TABLE_NEWSLETTERS." order by date_added desc";
+                            $newsletters_split     = new splitPageResults($_GET['page'],
+                                MAX_DISPLAY_SEARCH_RESULTS,
+                                $newsletters_query_raw,
+                                $newsletters_query_numrows);
+                            $newsletters_query     = tep_db_query($newsletters_query_raw);
+                            while ($newsletters           = tep_db_fetch_array($newsletters_query)) {
+                                if ((!isset($_GET['nID']) || (isset($_GET['nID'])
+                                    && ($_GET['nID'] == $newsletters['newsletters_id'])))
+                                    && !isset($nInfo) && (substr($action, 0, 3) != 'new')) {
+                                    $nInfo = new objectInfo($newsletters);
+                                }
 
-            if (isset($nInfo) && is_object($nInfo) && ($newsletters['newsletters_id']
-                == $nInfo->newsletters_id)) {
-                echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_NEWSLETTERS,
-                    'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=preview').'\'">'."\n";
-            } else {
-                echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_NEWSLETTERS,
-                    'page='.$_GET['page'].'&nID='.$newsletters['newsletters_id']).'\'">'."\n";
-            }
-            ?>
-                                <td class="dataTableContent"><?php echo '<a href="'.tep_href_link(FILENAME_NEWSLETTERS,
-            'page='.$_GET['page'].'&nID='.$newsletters['newsletters_id'].'&action=preview').'">'.tep_image(DIR_WS_ICONS.'preview.gif',
-            ICON_PREVIEW).'</a>&nbsp;'.$newsletters['title']; ?></td>
+                                if (isset($nInfo) && is_object($nInfo) && ($newsletters['newsletters_id']
+                                    == $nInfo->newsletters_id)) {
+                                    echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_NEWSLETTERS,
+                                        'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=preview').'\'">'."\n";
+                                } else {
+                                    echo '                  <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_NEWSLETTERS,
+                                        'page='.$_GET['page'].'&nID='.$newsletters['newsletters_id']).'\'">'."\n";
+                                }
+                                ?>
+                                <td class="dataTableContent"><?php
+                            echo '<a href="'.tep_href_link(FILENAME_NEWSLETTERS,
+                                'page='.$_GET['page'].'&nID='.$newsletters['newsletters_id'].'&action=preview').'">'.tep_image(DIR_WS_ICONS.'preview.gif',
+                                ICON_PREVIEW).'</a>&nbsp;'.$newsletters['title'];
+                                ?></td>
                                 <td class="dataTableContent" align="right"><?php echo number_format($newsletters['content_length']).' bytes'; ?></td>
                                 <td class="dataTableContent" align="right"><?php echo $newsletters['module']; ?></td>
-                                <td class="dataTableContent" align="center"><?php if ($newsletters['status']
-            == '1') {
-            echo tep_image(DIR_WS_ICONS.'tick.gif', ICON_TICK);
-        } else {
-            echo tep_image(DIR_WS_ICONS.'cross.gif', ICON_CROSS);
-        } ?></td>
-                                <td class="dataTableContent" align="center"><?php if ($newsletters['locked']
-            > 0) {
-            echo tep_image(DIR_WS_ICONS.'locked.gif', ICON_LOCKED);
-        } else {
-            echo tep_image(DIR_WS_ICONS.'unlocked.gif', ICON_UNLOCKED);
-        } ?></td>
-                                <td class="dataTableContent" align="right"><?php if (isset($nInfo)
-            && is_object($nInfo) && ($newsletters['newsletters_id'] == $nInfo->newsletters_id)) {
-            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif', '');
-        } else {
-            echo '<a href="'.tep_href_link(FILENAME_NEWSLETTERS,
-                'page='.$_GET['page'].'&nID='.$newsletters['newsletters_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                IMAGE_ICON_INFO).'</a>';
-        } ?>&nbsp;</td>
+                                <td class="dataTableContent" align="center"><?php
+                                    if ($newsletters['status'] == '1') {
+                                        echo tep_image(DIR_WS_ICONS.'tick.gif',
+                                            ICON_TICK);
+                                    } else {
+                                        echo tep_image(DIR_WS_ICONS.'cross.gif',
+                                            ICON_CROSS);
+                                    }
+                                    ?></td>
+                                <td class="dataTableContent" align="center"><?php
+                                        if ($newsletters['locked'] > 0) {
+                                            echo tep_image(DIR_WS_ICONS.'locked.gif',
+                                                ICON_LOCKED);
+                                        } else {
+                                            echo tep_image(DIR_WS_ICONS.'unlocked.gif',
+                                                ICON_UNLOCKED);
+                                        }
+                                        ?></td>
+                                <td class="dataTableContent" align="right"><?php
+                                        if (isset($nInfo) && is_object($nInfo) && ($newsletters['newsletters_id']
+                                            == $nInfo->newsletters_id)) {
+                                            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                                '');
+                                        } else {
+                                            echo '<a href="'.tep_href_link(FILENAME_NEWSLETTERS,
+                                                'page='.$_GET['page'].'&nID='.$newsletters['newsletters_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                                IMAGE_ICON_INFO).'</a>';
+                                        }
+                                        ?>&nbsp;</td>
                     </tr>
-        <?php
-    }
-    ?>
+            <?php
+        }
+        ?>
                 <tr>
                     <td colspan="6"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-                                <td class="smallText" valign="top"><?php echo $newsletters_split->display_count($newsletters_query_numrows,
-        MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-        TEXT_DISPLAY_NUMBER_OF_NEWSLETTERS); ?></td>
-                                <td class="smallText" align="right"><?php echo $newsletters_split->display_links($newsletters_query_numrows,
-        MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-        $_GET['page']); ?></td>
+                                <td class="smallText" valign="top"><?php
+        echo $newsletters_split->display_count($newsletters_query_numrows,
+            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
+            TEXT_DISPLAY_NUMBER_OF_NEWSLETTERS);
+        ?></td>
+                                <td class="smallText" align="right"><?php
+        echo $newsletters_split->display_links($newsletters_query_numrows,
+            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+        ?></td>
                             </tr>
                             <tr>
                                 <td class="smallText" align="right" colspan="2"><?php echo tep_draw_button(IMAGE_NEW_NEWSLETTER,
-        'plus', tep_href_link(FILENAME_NEWSLETTERS, 'action=new')); ?></td>
+        'plus', tep_href_link(FILENAME_NEWSLETTERS, 'action=new'));
+        ?></td>
                             </tr>
                         </table></td>
                 </tr>
             </table></td>
-    <?php
-    $heading  = array();
-    $contents = array();
+        <?php
+        $heading  = array();
+        $contents = array();
 
-    switch ($action) {
-        case 'delete':
-            $heading[] = array('text' => '<strong>'.$nInfo->title.'</strong>');
-
-            $contents   = array('form' => tep_draw_form('newsletters',
-                    FILENAME_NEWSLETTERS,
-                    'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=deleteconfirm'));
-            $contents[] = array('text' => TEXT_INFO_DELETE_INTRO);
-            $contents[] = array('text' => '<br /><strong>'.$nInfo->title.'</strong>');
-            $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_DELETE,
-                    'trash', null, 'primary').tep_draw_button(IMAGE_CANCEL,
-                    'close',
-                    tep_href_link(FILENAME_NEWSLETTERS,
-                        'page='.$_GET['page'].'&nID='.$_GET['nID'])));
-            break;
-        default:
-            if (isset($nInfo) && is_object($nInfo)) {
+        switch ($action) {
+            case 'delete':
                 $heading[] = array('text' => '<strong>'.$nInfo->title.'</strong>');
 
-                if ($nInfo->locked > 0) {
-                    $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT,
-                            'document',
-                            tep_href_link(FILENAME_NEWSLETTERS,
-                                'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=new')).tep_draw_button(IMAGE_DELETE,
-                            'trash',
-                            tep_href_link(FILENAME_NEWSLETTERS,
-                                'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=delete')).tep_draw_button(IMAGE_PREVIEW,
-                            'document',
-                            tep_href_link(FILENAME_NEWSLETTERS,
-                                'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=preview')).tep_draw_button(IMAGE_SEND,
-                            'mail-closed',
-                            tep_href_link(FILENAME_NEWSLETTERS,
-                                'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=send')).tep_draw_button(IMAGE_UNLOCK,
-                            'unlocked',
-                            tep_href_link(FILENAME_NEWSLETTERS,
-                                'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=unlock')));
-                } else {
-                    $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_PREVIEW,
-                            'document',
-                            tep_href_link(FILENAME_NEWSLETTERS,
-                                'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=preview')).tep_draw_button(IMAGE_LOCK,
-                            'locked',
-                            tep_href_link(FILENAME_NEWSLETTERS,
-                                'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=lock')));
+                $contents   = array('form' => tep_draw_form('newsletters',
+                        FILENAME_NEWSLETTERS,
+                        'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=deleteconfirm'));
+                $contents[] = array('text' => TEXT_INFO_DELETE_INTRO);
+                $contents[] = array('text' => '<br /><strong>'.$nInfo->title.'</strong>');
+                $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(IMAGE_DELETE,
+                        'trash', null, 'primary').tep_draw_button(IMAGE_CANCEL,
+                        'close',
+                        tep_href_link(FILENAME_NEWSLETTERS,
+                            'page='.$_GET['page'].'&nID='.$_GET['nID'])));
+                break;
+            default:
+                if (isset($nInfo) && is_object($nInfo)) {
+                    $heading[] = array('text' => '<strong>'.$nInfo->title.'</strong>');
+
+                    if ($nInfo->locked > 0) {
+                        $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT,
+                                'document',
+                                tep_href_link(FILENAME_NEWSLETTERS,
+                                    'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=new')).tep_draw_button(IMAGE_DELETE,
+                                'trash',
+                                tep_href_link(FILENAME_NEWSLETTERS,
+                                    'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=delete')).tep_draw_button(IMAGE_PREVIEW,
+                                'document',
+                                tep_href_link(FILENAME_NEWSLETTERS,
+                                    'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=preview')).tep_draw_button(IMAGE_SEND,
+                                'mail-closed',
+                                tep_href_link(FILENAME_NEWSLETTERS,
+                                    'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=send')).tep_draw_button(IMAGE_UNLOCK,
+                                'unlocked',
+                                tep_href_link(FILENAME_NEWSLETTERS,
+                                    'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=unlock')));
+                    } else {
+                        $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_PREVIEW,
+                                'document',
+                                tep_href_link(FILENAME_NEWSLETTERS,
+                                    'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=preview')).tep_draw_button(IMAGE_LOCK,
+                                'locked',
+                                tep_href_link(FILENAME_NEWSLETTERS,
+                                    'page='.$_GET['page'].'&nID='.$nInfo->newsletters_id.'&action=lock')));
+                    }
+                    $contents[] = array('text' => '<br />'.TEXT_NEWSLETTER_DATE_ADDED.' '.tep_date_short($nInfo->date_added));
+                    if ($nInfo->status == '1')
+                            $contents[] = array('text' => TEXT_NEWSLETTER_DATE_SENT.' '.tep_date_short($nInfo->date_sent));
                 }
-                $contents[] = array('text' => '<br />'.TEXT_NEWSLETTER_DATE_ADDED.' '.tep_date_short($nInfo->date_added));
-                if ($nInfo->status == '1')
-                        $contents[] = array('text' => TEXT_NEWSLETTER_DATE_SENT.' '.tep_date_short($nInfo->date_sent));
-            }
-            break;
-    }
+                break;
+        }
 
-    if ((tep_not_null($heading)) && (tep_not_null($contents))) {
-        echo '            <td width="25%" valign="top">'."\n";
+        if ((tep_not_null($heading)) && (tep_not_null($contents))) {
+            echo '            <td width="25%" valign="top">'."\n";
 
-        $box = new box;
-        echo $box->infoBox($heading, $contents);
+            $box = new box;
+            echo $box->infoBox($heading, $contents);
 
-        echo '            </td>'."\n";
-    }
-    ?>
+            echo '            </td>'."\n";
+        }
+        ?>
     </tr>
     </table></td>
     </tr>

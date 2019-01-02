@@ -15,6 +15,12 @@ class UserLog extends AbstractMigration
      */
     public function change()
     {
+        
+        $exists = $this->hasTable($this->tableName);
+        if ($exists) {
+            return;
+        }        
+        
         $table = $this->table($this->tableName, ['comment' => 'gdpr protocol']);
 
         $table->addColumn('timestamp', 'datetime',

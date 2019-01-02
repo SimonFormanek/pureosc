@@ -93,223 +93,264 @@ require(DIR_WS_INCLUDES.'template_top.php');
 <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <tr>
         <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-<?php
-if ($action == 'new') {
-    ?>
+                <?php
+                if ($action == 'new') {
+                    ?>
                     <tr>
                         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0" class="BorderedBoxWhite">
                                 <tr>
                                     <td class="pageHeading"><?php echo TEXT_HEADING_NEW_AUTHOR; ?></td>
                                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-        '100%', 5); ?></td>
+                    '100%', 5);
+                    ?></td>
                                 </tr>
                             </table></td>
                     </tr>
                     <tr>
                         <td><?php echo tep_draw_separator('pixel_trans.gif', '1',
-        '10'); ?></td>
+                                        '10');
+                                    ?></td>
                     </tr>
-                    <tr><?php echo tep_draw_form('authors',
-        FILENAME_ARTICLES_BLOG_COMMENTS, 'action=insert', 'post',
-        'enctype="multipart/form-data"'); ?>
+                    <tr><?php
+                                    echo tep_draw_form('authors',
+                                        FILENAME_ARTICLES_BLOG_COMMENTS,
+                                        'action=insert', 'post',
+                                        'enctype="multipart/form-data"');
+                                    ?>
                         <td><table border="0" cellspacing="0" cellpadding="2">
                                 <tr>
                                     <td class="main" colspan="2"><?php echo TEXT_NEW_INTRO; ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+                                        '1', '10');
+                    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main"><?php echo TEXT_AUTHORS_NAME; ?></td>
-                                    <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
-        '24', '15').'&nbsp;'.tep_draw_input_field('authors_name', '',
-        'size="20"'); ?></td>
+                                    <td class="main"><?php
+                                    echo tep_draw_separator('pixel_trans.gif',
+                                        '24', '15').'&nbsp;'.tep_draw_input_field('authors_name',
+                                        '', 'size="20"');
+                                    ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+                                        '1', '10');
+                                    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main"><?php echo TEXT_AUTHORS_IMAGE; ?></td>
-                                    <td class="main"><?php echo tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
-                                $languages[$i]['name']).'&nbsp;'.tep_draw_input_field('authors_image['.$languages[$i]['id'].']',
-                                ''); ?></td>
+                                    <td class="main"><?php
+                                echo tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
+                                    $languages[$i]['name']).'&nbsp;'.tep_draw_input_field('authors_image['.$languages[$i]['id'].']',
+                                    '');
+                                ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                '1', '10'); ?></td>
+                                    '1', '10');
+                                ?></td>
                                 </tr>
-    <?php
-    $languages = tep_get_languages();
-    for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-        ?>
+                                                    <?php
+                                                    $languages = tep_get_languages();
+                                                    for ($i = 0, $n = sizeof($languages); $i
+                                                        < $n; $i++) {
+                                                        ?>
                                     <tr>
                                         <td class="main" valign="top"><?php echo TEXT_AUTHORS_DESCRIPTION; ?></td>
                                         <td>
                                             <table border="0" cellspacing="0" cellpadding="0">
                                                 <tr>
                                                     <td class="main" valign="top"><?php echo tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
-            $languages[$i]['name']).'&nbsp;'; ?></td>
+                                                    $languages[$i]['name']).'&nbsp;';
+                                                ?></td>
         <?php if (FCK_EDITOR == 'true') { ?>
                                                         <td class="main"><?php echo tep_draw_fckeditor('authors_description['.$languages[$i]['id'].']',
-                '700', '300', ''); ?></td>
-                                    <?php } else { ?>
+                '700', '300', '');
+            ?></td>
+                                            <?php } else { ?>
                                                         <td class="main" valign="top"><?php echo tep_draw_textarea_field('authors_description['.$languages[$i]['id'].']',
-                                'soft', '70', '15', ''); ?></td>
-        <?php } ?>
+                                        'soft', '70', '15', '');
+                                    ?></td>
+                                            <?php } ?>
                                                 </tr>
                                             </table>
                                         </td>
                                     <tr>
                                     <tr>
                                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-            '1', '10'); ?></td>
+                                                '1', '10');
+                                            ?></td>
                                     </tr>
                                     <tr>
                                         <td class="main" valign="top"><?php echo TEXT_AUTHORS_URL; ?></td>
-                                        <td class="main" valign="top"><?php echo tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
-                    $languages[$i]['name']).'&nbsp;'.tep_draw_input_field('authors_url['.$languages[$i]['id'].']',
-                    '', 'size="30"'); ?></td>
+                                        <td class="main" valign="top"><?php
+                                            echo tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
+                                                $languages[$i]['name']).'&nbsp;'.tep_draw_input_field('authors_url['.$languages[$i]['id'].']',
+                                                '', 'size="30"');
+                                            ?></td>
                                     <tr>
                                     <tr>
                                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                    '1', '10'); ?></td>
+                    '1', '10');
+                                            ?></td>
                                     </tr>
         <?php
     }
     ?>
                                 <tr>
-                                    <td colspan="3" class="main" align="center"><?php echo tep_draw_separator('pixel_trans.gif',
-        '24', '15').'&nbsp;'.tep_image_submit('button_save.gif', IMAGE_SAVE).' <a href="'.tep_href_link(FILENAME_ARTICLES_BLOG_COMMENTS,
+                                    <td colspan="3" class="main" align="center"><?php
+    echo tep_draw_separator('pixel_trans.gif', '24', '15').'&nbsp;'.tep_image_submit('button_save.gif',
+        IMAGE_SAVE).' <a href="'.tep_href_link(FILENAME_ARTICLES_BLOG_COMMENTS,
         'page='.$_GET['page'].'&auID='.$_GET['auID']).'">'.tep_image_button('button_cancel.gif',
-        IMAGE_CANCEL).'</a>'; ?></td>
+        IMAGE_CANCEL).'</a>';
+    ?></td>
                                 </tr>
                             </table></td>
                         </form>
                     </tr>
-    <?php
-} elseif ($action == 'edit') {
+                                        <?php
+                                    } elseif ($action == 'edit') {
 
-    $comments_query = tep_db_query("select * from ".TABLE_ARTICLES_DESCRIPTION." ad inner join ".TABLE_ARTICLES_BLOG." ab on ad.articles_id = ab.articles_id and ab.articles_id = ".(int) $_GET['comID']." order by ab.comment_date_added");
-    $comments       = tep_db_fetch_array($comments_query);
-    ?>
+                                        $comments_query = tep_db_query("select * from ".TABLE_ARTICLES_DESCRIPTION." ad inner join ".TABLE_ARTICLES_BLOG." ab on ad.articles_id = ab.articles_id and ab.articles_id = ".(int) $_GET['comID']." order by ab.comment_date_added");
+                                        $comments       = tep_db_fetch_array($comments_query);
+                                        ?>
                     <tr>
                         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0" class="BorderedBoxWhite">
                                 <tr>
                                     <td class="pageHeading"><?php echo TEXT_HEADING_EDIT_COMMENTS; ?></td>
                                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-        5, 5); ?></td>
+                        5, 5);
+                                        ?></td>
                                 </tr>
                                 <tr>
                                     <td><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10'); ?></td>
+                        '1', '10');
+                    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main" colspan="2"><?php echo TEXT_EDIT_INTRO; ?></td>
                                 </tr>
                                 <tr>
                                     <td><?php echo tep_draw_separator('pixel_trans.gif',
-                    '1', '10'); ?></td>
+                        '1', '10');
+                                        ?></td>
                                 </tr>
                             </table></td>
                     </tr>
                     <tr>
                         <td><?php echo tep_draw_separator('pixel_trans.gif', '1',
-                    '10'); ?></td>
+                            '10');
+                                        ?></td>
                     </tr>
-                    <tr><?php echo tep_draw_form('comments',
-                    FILENAME_ARTICLES_BLOG_COMMENTS,
+                    <tr><?php
+                echo tep_draw_form('comments', FILENAME_ARTICLES_BLOG_COMMENTS,
                     'page='.$_GET['page'].'&comID='.$comments['articles_id'].'&action=save',
-                    'post', 'enctype="multipart/form-data"'); ?>
+                    'post', 'enctype="multipart/form-data"');
+                ?>
                         <td><table border="0" cellspacing="0" cellpadding="2">
                                 <tr>
                                 <table border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td class="main"><?php echo TEXT_ARTICLES_NAME; ?></td>
                                         <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
-                                    '24', '15').'&nbsp;'.$comments['articles_name']; ?></td>
+                                        '24', '15').'&nbsp;'.$comments['articles_name'];
+                                    ?></td>
                                     </tr>
                                 </table></td>
                     </tr>
                     <tr>
                         <td><?php echo tep_draw_separator('pixel_trans.gif', '1',
-                                    '10'); ?></td>
+                                        '10');
+                                        ?></td>
                     </tr>
-                    <?php
-                    $languages      = tep_get_languages();
-                    for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-                        $comments_query = tep_db_query("select * from ".TABLE_ARTICLES_DESCRIPTION." ad inner join ".TABLE_ARTICLES_BLOG." ab on ad.articles_id = ab.articles_id and ab.articles_id = ".(int) $_GET['comID']." and ab.language_id = ".(int) $languages[$i]['id']." order by ab.comment_date_added");
-                        $comIdx         = 0;       //count the comments for saving
-                        while ($comments       = tep_db_fetch_array($comments_query)) {
-                            ?>
+                                    <?php
+                                    $languages      = tep_get_languages();
+                                    for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+                                        $comments_query = tep_db_query("select * from ".TABLE_ARTICLES_DESCRIPTION." ad inner join ".TABLE_ARTICLES_BLOG." ab on ad.articles_id = ab.articles_id and ab.articles_id = ".(int) $_GET['comID']." and ab.language_id = ".(int) $languages[$i]['id']." order by ab.comment_date_added");
+                                        $comIdx         = 0;       //count the comments for saving
+                                        while ($comments       = tep_db_fetch_array($comments_query)) {
+                                            ?>
                             <tr>
                                 <td>
                                     <table border="0" cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="main"><?php echo TEXT_ARTICLES_COMMENTER; ?></td>
-                                            <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
-                    '24', '15').'&nbsp;'.tep_draw_input_field('commenters_name',
-                    $comments['commenters_name'], 'size="20"'); ?></td>
+                                            <td class="main"><?php
+                                    echo tep_draw_separator('pixel_trans.gif',
+                                        '24', '15').'&nbsp;'.tep_draw_input_field('commenters_name',
+                                        $comments['commenters_name'],
+                                        'size="20"');
+                                    ?></td>
                                             <td class="main" align="right"><?php echo TEXT_DELETE_COMMENT; ?></td>
                                             <td><?php echo tep_draw_checkbox_field('delete_comment['.$languages[$i]['id'].']'.'['.$comIdx.']',
-                $comments['unique_id'], false); ?> </td>
+                    $comments['unique_id'], false);
+                                    ?> </td>
                                         </tr>
                                         <tr>
                                             <td colspan="4"><?php echo tep_draw_separator('pixel_trans.gif',
-                '1', '10'); ?></td>
+                    '1', '10');
+                                    ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="main" valign="top"><?php echo tep_draw_separator('pixel_trans.gif',
-                '24', '15').'&nbsp;'.tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
-                $languages[$i]['name']).'&nbsp;'; ?></td>
+                                            <td class="main" valign="top"><?php
+            echo tep_draw_separator('pixel_trans.gif', '24', '15').'&nbsp;'.tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
+                $languages[$i]['name']).'&nbsp;';
+            ?></td>
             <?php echo tep_draw_hidden_field('unique_id['.$languages[$i]['id'].']'.'['.$comIdx.']',
-                $comments['unique_id']); ?>
+                $comments['unique_id']);
+            ?>
             <?php if (FCK_EDITOR == 'true') { ?>
                                                 <td colspan="3" class="main"><?php echo tep_draw_fckeditor('comments['.$languages[$i]['id'].']'.'['.$comIdx.']',
-                    '700', '300', $comments['comment']); ?></td>
+                    '700', '300', $comments['comment']);
+                ?></td>
             <?php } else { ?>
                                                 <td colspan="3" class="main" valign="top"><?php echo tep_draw_textarea_field('comments['.$languages[$i]['id'].']'.'['.$comIdx.']',
-                    'soft', '120', '10', $comments['comment']); ?></td>
-                        <?php } ?>
+                    'soft', '120', '10', $comments['comment']);
+                ?></td>
+                                <?php } ?>
                                         </tr>
                                     </table>
                                 </td>
                             <tr>
                             <tr>
                                 <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                '1', '10'); ?></td>
+                        '1', '10');
+                    ?></td>
                             </tr>
-            <?php
-            $comIdx++;
-        }
-        ?>
-        <?php
-    }
-    ?>
+                        <?php
+                        $comIdx++;
+                    }
+                    ?>
+                            <?php
+                        }
+                        ?>
         </tr>
         <tr>
-            <td colspan="3" class="main" align="center"><?php echo tep_draw_separator('pixel_trans.gif',
-                '24', '15').'&nbsp;'.tep_image_submit('button_save.gif',
-                IMAGE_SAVE).' <a href="'.tep_href_link(FILENAME_ARTICLES_BLOG_COMMENTS,
-                'page='.$_GET['page'].'&auID='.$authors['authors_id']).'">'.tep_image_button('button_cancel.gif',
-                IMAGE_CANCEL).'</a>'; ?></td>
+            <td colspan="3" class="main" align="center"><?php
+                        echo tep_draw_separator('pixel_trans.gif', '24', '15').'&nbsp;'.tep_image_submit('button_save.gif',
+                            IMAGE_SAVE).' <a href="'.tep_href_link(FILENAME_ARTICLES_BLOG_COMMENTS,
+                            'page='.$_GET['page'].'&auID='.$authors['authors_id']).'">'.tep_image_button('button_cancel.gif',
+                            IMAGE_CANCEL).'</a>';
+                        ?></td>
         </tr>
     </table></td>
     </form>
     </tr>
-    <?php
-} elseif ($action == 'preview') {
+                <?php
+            } elseif ($action == 'preview') {
 
-    $authors_query = tep_db_query("select authors_id, authors_name from ".TABLE_AUTHORS." where authors_id = '".$_GET['auID']."'");
-    $authors       = tep_db_fetch_array($authors_query)
-    ?>
+                $authors_query = tep_db_query("select authors_id, authors_name from ".TABLE_AUTHORS." where authors_id = '".$_GET['auID']."'");
+                $authors       = tep_db_fetch_array($authors_query)
+                ?>
     <tr>
         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td class="pageHeading"><?php echo TEXT_ARTICLE_BY.$authors['authors_name']; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-        HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+                        HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+                ?></td>
                 </tr>
             </table></td>
     </tr>
@@ -319,56 +360,67 @@ if ($action == 'new') {
     <tr>
         <td><table border="0" cellspacing="0" cellpadding="2">
     <?php
-    $languages = tep_get_languages();
+    $languages     = tep_get_languages();
     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
         ?>
                     <tr>
                         <td class="main" colspan="2" valign="top"><?php echo tep_image(DIR_WS_CATALOG_LANGUAGES.$languages[$i]['directory'].'/images/'.$languages[$i]['image'],
-            $languages[$i]['name']); ?></td>
+            $languages[$i]['name']);
+        ?></td>
                     <tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                            '1', '10'); ?></td>
+            '1', '10');
+        ?></td>
                     </tr>
                     <tr>
                         <td class="main" valign="top"><?php echo tep_get_author_description($authors['authors_id'],
-                            $languages[$i]['id']); ?></td>
+            $languages[$i]['id']);
+        ?></td>
                     <tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                            '1', '10'); ?></td>
+            '1', '10');
+        ?></td>
                     </tr>
                                 <?php if (tep_not_null(tep_get_author_url($authors['authors_id'],
-                                            $languages[$i]['id']))) { ?>
+                                            $languages[$i]['id']))) {
+                                    ?>
                         <tr>
-                            <td class="main" valign="top"><?php echo sprintf(TEXT_MORE_INFORMATION,
-                            tep_get_author_url($authors['authors_id'],
-                                $languages[$i]['id'])); ?></td>
+                            <td class="main" valign="top"><?php
+                                    echo sprintf(TEXT_MORE_INFORMATION,
+                                        tep_get_author_url($authors['authors_id'],
+                                            $languages[$i]['id']));
+                                    ?></td>
                         <tr>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                            '1', '10'); ?></td>
+                            '1', '10');
+                                    ?></td>
                         </tr>
-        <?php } ?>
-        <?php
-    }
-    ?>
+                                <?php } ?>
+                                <?php
+                            }
+                            ?>
                 <tr>
-                    <td class="main" colspan="2" align="right"><?php echo '<a href="'.tep_href_link(FILENAME_ARTICLES_BLOG_COMMENTS,
-        'page='.$_GET['page'].'&auID='.$authors['authors_id']).'">'.tep_image_button('button_back.gif',
-        IMAGE_BACK).'</a>'; ?></td>
+                    <td class="main" colspan="2" align="right"><?php
+                            echo '<a href="'.tep_href_link(FILENAME_ARTICLES_BLOG_COMMENTS,
+                                'page='.$_GET['page'].'&auID='.$authors['authors_id']).'">'.tep_image_button('button_back.gif',
+                                IMAGE_BACK).'</a>';
+                            ?></td>
                     </form>
                 </tr>
     </tr>
     </table></td>
     </tr>
-    <?php } else { ?>
+                            <?php } else { ?>
     <tr>
         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-        5, 25); ?></td>
+                                5, 25);
+                                ?></td>
                 </tr>
             </table></td>
     </tr>
@@ -410,24 +462,27 @@ if ($action == 'new') {
             ?>
                                 <td class="dataTableContent"><?php echo $comments['articles_name']; ?></td>
                                 <td class="dataTableContent"><?php echo $comments['comments_status']; ?></td>
-                                <td class="dataTableContent" align="right"><?php if (isset($comInfo)
-                && is_object($comInfo) && ($comments['articles_id'] == $comInfo->articles_id)) {
+                                <td class="dataTableContent" align="right"><?php
+            if (isset($comInfo) && is_object($comInfo) && ($comments['articles_id']
+                == $comInfo->articles_id)) {
                 echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
             } else {
                 echo '<a href="'.tep_href_link(FILENAME_ARTICLES_BLOG_COMMENTS,
                     'page='.$_GET['page'].'&auID='.$comments['articles_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
                     IMAGE_ICON_INFO).'</a>';
-            } ?>&nbsp;</td>
+            }
+            ?>&nbsp;</td>
                     </tr>
-        <?php
-    }
-    ?>
+            <?php
+        }
+        ?>
                 <tr>
                     <td colspan="2"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
                                 <td class="smallText" valign="top"><?php echo TEXT_DISPLAY_NUMBER_OF_COMMENTS.$ttlComments; ?></td>
                                 <td class="smallText" align="right"><?php echo $comments_split->display_links($comments_query_numrows,
-        MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>
+        MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+    ?></td>
                             </tr>
                         </table></td>
                 </tr>

@@ -81,15 +81,20 @@ class FakturaVydana extends \FlexiPeeHP\FakturaVydana
 
         return $result;
     }
-    
+
     public function performAction($action, $method = 'int')
     {
-        if($action == 'storno'){
+        if ($action == 'storno') {
             global $order_id;
-            $this->updateToSQL(['id'=>$order_id,'orders_status'=>3]);
+            $this->updateToSQL(['id' => $order_id, 'orders_status' => 3]);
         }
         return parent::performAction($action, $method = 'int');
-        
     }
-    
+
+    public function holderCancel()
+    {
+        $this->setDataValue('poznam', _('The Card holder canceled the payment'));
+        $this->performAction('storno');
+        $this->updateToSQL(['id' => $order_id, 'orders_status' => 4]); //FIXME: Variable needed
+}
 }

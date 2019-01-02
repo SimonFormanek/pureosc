@@ -301,8 +301,7 @@ exit;
 //orig			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/index.php?cPath=' . $categories['categories_id']);
         curl_setopt($curl_handle, CURLOPT_URL,
             HTTP_SERVER.'/index.php?cPath='.tep_get_category_path($categories['categories_id']));
-        curl_setopt($curl_handle, CURLOPT_USERPWD,
-            WGET_USER.":".WGET_PASSWORD);
+        curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
@@ -385,8 +384,7 @@ exit;
         $curl_handle = curl_init();
         curl_setopt($curl_handle, CURLOPT_URL,
             HTTP_SERVER.'/'.FILENAME_ARTICLES.'?tPath='.$topics['topics_id']);
-        curl_setopt($curl_handle, CURLOPT_USERPWD,
-            WGET_USER.":".WGET_PASSWORD);
+        curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
@@ -431,8 +429,7 @@ exit;
         $curl_handle = curl_init();
         curl_setopt($curl_handle, CURLOPT_URL,
             HTTP_SERVER.'/'.FILENAME_ARTICLE_INFO.'/?articles_id='.$articles['articles_id']);
-        curl_setopt($curl_handle, CURLOPT_USERPWD,
-            WGET_USER.":".WGET_PASSWORD);
+        curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
@@ -473,8 +470,7 @@ exit;
         $curl_handle = curl_init();
         curl_setopt($curl_handle, CURLOPT_URL,
             HTTP_SERVER.'/'.FILENAME_INFORMATION.'?info_id='.$information['information_id']);
-        curl_setopt($curl_handle, CURLOPT_USERPWD,
-            WGET_USER.":".WGET_PASSWORD);
+        curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);

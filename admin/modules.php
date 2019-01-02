@@ -121,9 +121,10 @@ if ($dir             = @dir($module_directory)) {
         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-                    <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
-?></td>
+                    <td class="pageHeading" align="right"><?php
+                        echo tep_draw_separator('pixel_trans.gif',
+                            HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+                        ?></td>
                     <?php
                     if (isset($_GET['list'])) {
                         echo '            <td class="smallText" align="right">'.tep_draw_button(IMAGE_BACK,
@@ -221,10 +222,11 @@ if ($dir             = @dir($module_directory)) {
                                     }
                                     ?>
                                     <td class="dataTableContent"><?php echo $module->title; ?></td>
-                                    <td class="dataTableContent" align="right"><?php if (in_array($module->code.$file_extension,
-                                        $modules_installed) && is_numeric($module->sort_order))
-                                        echo $module->sort_order;
-                                    ?></td>
+                                    <td class="dataTableContent" align="right"><?php
+                                        if (in_array($module->code.$file_extension,
+                                                $modules_installed) && is_numeric($module->sort_order))
+                                                echo $module->sort_order;
+                                        ?></td>
                                     <td class="dataTableContent" align="right"><?php
                                         if (isset($mInfo) && is_object($mInfo) && ($class
                                             == $mInfo->code)) {
@@ -419,4 +421,4 @@ if ($dir             = @dir($module_directory)) {
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+

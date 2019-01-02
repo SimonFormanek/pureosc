@@ -36,97 +36,6 @@ $orders = tep_db_fetch_array($orders_query);
 
 $order_id = $orders['orders_id'];
 
-
-
-if ($oPage->getRequestValue('RESULTTEXT') == 'OK') {
-    require(DIR_WS_CLASSES.'order.php');
-    $order = new order($order_id);
-
-    if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
-
-        $invoice = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$order_id);
-
-        switch ($_REQUEST['PRCODE']) {
-            case 0:
-                $banker = new \FlexiPeeHP\Banka([
-                    'id' => 'ext:gp:'.$order_id,
-                    'kod' => $order_id,
-                    'typDokl' => 'code:STANDARD',
-                    'banka' => 'code:GPWEBPAY',
-                    'source' => 'duzpUcto',
-                    'bezPolozek' => true,
-                    'ucetni' => false,
-                    'typPohybuK' => 'typPohybu.prijem',
-                    'varSym' => $invoice->getDataValue('varSym'),
-                    'firma' => 'ext:customers:'.$customer_id,
-                    'sumOsv' => $invoice->getDataValue('sumCelkem'),
-                    'sumZklCelkem' => $invoice->getDataValue('sumCelkem'),
-                    'sumCelkem' => $invoice->getDataValue('sumCelkem'),
-                ]);
-
-
-                if ($banker->sync() && $invoice->sparujPlatbu($banker)) {
-                    $invoice->updateToSQL(['id' => $order_id, 'orders_status' => 105]);
-
-                    $invoice2 = new PureOSC\flexibee\FakturaVydana();
-
-                    $convertor = new \FlexiPeeHP\Bricks\Convertor($invoice,
-                        $invoice2);
-                    $invoice2  = $convertor->conversion();
-                    $invoice2->setDataValue('typDokl', 'code:FAKTURA');
-
-                    $invoice2->setDataValue('duzpPuv', new DateTime());
-                    $invoice2->setDataValue('duzpUcto', new DateTime());
-                    $invoice2->setDataValue('datUcto', new DateTime());
-
-                    if ($invoice2->sync()) {
-                        $result = $invoice2->odpocetZalohy($invoice);
-                        if ($invoice2->lastResponseCode == 201) {
-                            $invoice2->reload();
-                            $success = 2;
-                            $invoice->addStatusMessage(sprintf(_('Invoice #%s was matched with proforma #%s'),
-                                    $invoice2->getRecordIdent(),
-                                    $invoice->getRecordIdent()), 'success');
-                            $invoice2->insertToFlexiBee(['id' => (string) $invoice2,
-                                'stavMailK' => 'stavMail.odeslat']);
-                        } else {
-                            $success = -1;
-                            $invoice->addStatusMessage(sprintf(_('Invoice #%s was not matched with proforma #%s '),
-                                    $invoice2->getRecordIdent(),
-                                    $invoice->getRecordIdent()), 'error');
-                        }
-                    } else {
-                        //Danovy doklad se nevytvoril
-                        $invoice2->addStatusMessage('Invoice create failed',
-                            'error');
-                    }
-                }
-
-                break;
-
-            case 50: // The cardholder canceled the payment
-                $invoice->insertToFlexiBee(['id' => $order->getRecordIdent(), 'poznam' => _('The cardholder canceled the payment')]);
-                $this->updateToSQL(['id' => $order_id, 'orders_status' => 4]);
-                $invoice->performAction('storno');
-
-                break;
-
-            default:
-                break;
-        }
-
-        $cart->reset(true);
-    } else { // No FlexiBee
-        switch ($_REQUEST['PRCODE']) {
-            case 50: // The cardholder canceled the payment
-                $this->updateToSQL(['id' => $order_id, 'orders_status' => 4]);
-                break;
-        }
-    }
-}
-
-
-
 $page_content = $oscTemplate->getContent('checkout_success');
 
 if (isset($_GET['action']) && ($_GET['action'] == 'update')) {
@@ -169,36 +78,24 @@ if (!isset($_REQUEST['PRCODE']) || ($_REQUEST['PRCODE'] == 0)) {
                 <?php
             }
         }
-
-        if (isset($invoice2) && is_object($invoice2)) {
-            if (floatval($invoice2->getDataValue('zbyvaUhradit'))) {
-                $qrImage = new \Ease\Html\ImgTag($invoice2->getQrCodeBase64(),
-                    $invoice2->getRecordIdent());
-            }
-            $invoiceNum = $invoice2->getRecordID();
-        } else {
-            if (!isset($invoice)) {
-                $invoice = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$order_id);
-            }
-
-
+        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            $invoice = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$order_id);
             if (floatval($invoice->getDataValue('zbyvaUhradit'))) {
-                $qrImage = _('QR Payment').' ' . new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
-                    $invoice->getRecordIdent());
+                $qrImage = _('QR Payment').' '.new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
+                        $invoice->getRecordIdent());
             }
             $invoiceNum = $invoice->getRecordID();
+            
+            
+            echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&report-name=slozenkaA$$SUM&id='.$invoiceNum.'&embed=true'.'">'._('print cheque').'</a>';
+            echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&id='.$invoiceNum.'&embed=true'.'">'._('PDF Invoice').'</a>';
+            echo '<a class="btn btn-success btn-xs" role="button" href="'.'getisdoc.php?evidence=faktura-vydana&id='.$invoiceNum.'&embed=true'.'">'._('ISDOC Invoice').'</a>';
+            
+        } else {
+            
         }
-
-
-        echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&id='.$invoiceNum.'&embed=true'.'">'._('PDF Invoice').'</a>';
-        echo '<a class="btn btn-success btn-xs" role="button" href="'.'getisdoc.php?evidence=faktura-vydana&id='.$invoiceNum.'&embed=true'.'">'._('ISDOC Invoice').'</a>';
-
-        echo $qrImage.$button.$button2;
-    } else {
-
-
-        echo '<h1>'._('Payment cancelled by card holder').'</h1>';
     }
+    echo $qrImage.$button.$button2;
     ?>
 
 
@@ -210,9 +107,9 @@ if (!isset($_REQUEST['PRCODE']) || ($_REQUEST['PRCODE'] == 0)) {
 <div class="contentContainer">
     <div class="buttonSet">
         <div class="text-right"><?php
-    echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right', null,
-        'primary', null, 'btn-success');
-    ?></div>
+            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+                null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 </div>
 

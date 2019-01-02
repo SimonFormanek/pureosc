@@ -54,9 +54,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-                    <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
-?></td>
+                    <td class="pageHeading" align="right"><?php
+                        echo tep_draw_separator('pixel_trans.gif',
+                            HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+                        ?></td>
                 </tr>
             </table></td>
     </tr>
@@ -114,29 +115,31 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <td colspan="4"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
                                 <td class="smallText" valign="top"><?php
-                echo $zones_split->display_count($zones_query_numrows,
-                    MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-                    TEXT_DISPLAY_NUMBER_OF_ZONES);
-                ?></td>
+                                    echo $zones_split->display_count($zones_query_numrows,
+                                        MAX_DISPLAY_SEARCH_RESULTS,
+                                        $_GET['page'],
+                                        TEXT_DISPLAY_NUMBER_OF_ZONES);
+                                    ?></td>
                                 <td class="smallText" align="right"><?php
-                            echo $zones_split->display_links($zones_query_numrows,
-                                MAX_DISPLAY_SEARCH_RESULTS,
-                                MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
-                            ?></td>
+                                    echo $zones_split->display_links($zones_query_numrows,
+                                        MAX_DISPLAY_SEARCH_RESULTS,
+                                        MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+                                    ?></td>
                             </tr>
-                                    <?php
-                                    if (empty($action)) {
-                                        ?>
+                            <?php
+                            if (empty($action)) {
+                                ?>
                                 <tr>
                                     <td class="smallText" colspan="2" align="right"><?php
-                                echo tep_draw_button(IMAGE_NEW_ZONE, 'plus',
-                                    tep_href_link(FILENAME_ZONES,
-                                        'page='.$_GET['page'].'&action=new'));
-                                ?></td>
+                                        echo tep_draw_button(IMAGE_NEW_ZONE,
+                                            'plus',
+                                            tep_href_link(FILENAME_ZONES,
+                                                'page='.$_GET['page'].'&action=new'));
+                                        ?></td>
                                 </tr>
-            <?php
-        }
-        ?>
+    <?php
+}
+?>
                         </table></td>
                 </tr>
             </table></td>

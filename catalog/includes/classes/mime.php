@@ -272,5 +272,3 @@ class mime
         return $output;
     }
 }
-
-

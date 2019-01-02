@@ -20,9 +20,6 @@
   sendmail, SMTP and gmail compatibility
  */
 
-require_once 'ext/modules/PHPMailer/class.phpmailer.php';
-$phpMail = new PHPMailer();
-
 class email
 {
     var $html;
@@ -36,10 +33,14 @@ class email
     {
         $this->email($headers);
     }
-    
+
     function email($headers = '')
     {
         global $phpMail;
+
+        if (empty($phpMail)) {
+            $phpMail = new PHPMailer\PHPMailer\PHPMailer();
+        }
 
         $phpMail->XMailer     = 'osCommerce '.tep_get_version();
         $phpMail->SMTPDebug   = $this->debug;

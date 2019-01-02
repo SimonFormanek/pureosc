@@ -132,8 +132,7 @@ if (tep_not_null($action)) {
 
             fclose($fp);
 
-            if (isset($_POST['download']) && ($_POST['download']
-                == 'yes')) {
+            if (isset($_POST['download']) && ($_POST['download'] == 'yes')) {
                 switch ($_POST['compress']) {
                     case 'gzip':
                         exec(LOCAL_EXE_GZIP.' '.DIR_FS_BACKUP.$backup_file);
@@ -302,8 +301,7 @@ if (tep_not_null($action)) {
 
             if (($extension == 'zip') || ($extension == '.gz') || ($extension == 'sql')) {
                 if ($fp = fopen(DIR_FS_BACKUP.$_GET['file'], 'rb')) {
-                    $buffer = fread($fp,
-                        filesize(DIR_FS_BACKUP.$_GET['file']));
+                    $buffer = fread($fp, filesize(DIR_FS_BACKUP.$_GET['file']));
                     fclose($fp);
 
                     header('Content-type: application/x-octet-stream');
@@ -353,7 +351,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-                                HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -415,42 +414,55 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     }
                                     ?>
                                     <td class="dataTableContent" onclick="document.location.href = '<?php echo tep_href_link(FILENAME_BACKUP,
-            $onclick_link); ?>'"><?php echo '<a href="'.tep_href_link(FILENAME_BACKUP,
-            'action=download&file='.$entry).'">'.tep_image(DIR_WS_ICONS.'file_download.gif',
-            ICON_FILE_DOWNLOAD).'</a>&nbsp;'.$entry; ?></td>
+                                $onclick_link);
+                            ?>'"><?php
+                                            echo '<a href="'.tep_href_link(FILENAME_BACKUP,
+                                                'action=download&file='.$entry).'">'.tep_image(DIR_WS_ICONS.'file_download.gif',
+                                                ICON_FILE_DOWNLOAD).'</a>&nbsp;'.$entry;
+                                            ?></td>
                                     <td class="dataTableContent" align="center" onclick="document.location.href = '<?php echo tep_href_link(FILENAME_BACKUP,
-            $onclick_link); ?>'"><?php echo date(PHP_DATE_TIME_FORMAT,
-            filemtime(DIR_FS_BACKUP.$entry)); ?></td>
+                                                $onclick_link);
+                                            ?>'"><?php echo date(PHP_DATE_TIME_FORMAT,
+                                                filemtime(DIR_FS_BACKUP.$entry));
+                                            ?></td>
                                     <td class="dataTableContent" align="right" onclick="document.location.href = '<?php echo tep_href_link(FILENAME_BACKUP,
-            $onclick_link); ?>'"><?php echo number_format(filesize(DIR_FS_BACKUP.$entry)); ?> bytes</td>
-                                    <td class="dataTableContent" align="right"><?php if (isset($buInfo)
-            && is_object($buInfo) && ($entry == $buInfo->file)) {
-            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif', '');
-        } else {
-            echo '<a href="'.tep_href_link(FILENAME_BACKUP, 'file='.$entry).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                IMAGE_ICON_INFO).'</a>';
-        } ?>&nbsp;</td>
+                                                $onclick_link);
+                                            ?>'"><?php echo number_format(filesize(DIR_FS_BACKUP.$entry)); ?> bytes</td>
+                                    <td class="dataTableContent" align="right"><?php
+                                        if (isset($buInfo) && is_object($buInfo)
+                                            && ($entry == $buInfo->file)) {
+                                            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                                '');
+                                        } else {
+                                            echo '<a href="'.tep_href_link(FILENAME_BACKUP,
+                                                'file='.$entry).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                                IMAGE_ICON_INFO).'</a>';
+                                        }
+                                        ?>&nbsp;</td>
                         </tr>
-                <?php
-            }
-            $dir->close();
-        }
-        ?>
+                                <?php
+                            }
+                            $dir->close();
+                        }
+                        ?>
                 <tr>
                     <td class="smallText" colspan="3"><?php echo TEXT_BACKUP_DIRECTORY.' '.DIR_FS_BACKUP; ?></td>
-                    <td align="right" class="smallText"><?php if (($action != 'backup')
-            && (isset($dir))) echo tep_draw_button(IMAGE_BACKUP, 'copy',
-                tep_href_link(FILENAME_BACKUP, 'action=backup'));
-        if (($action != 'restorelocal') && isset($dir)) echo tep_draw_button(IMAGE_RESTORE,
-                'arrowrefresh-1-w',
-                tep_href_link(FILENAME_BACKUP, 'action=restorelocal')); ?></td>
+                    <td align="right" class="smallText"><?php
+                if (($action != 'backup') && (isset($dir)))
+                        echo tep_draw_button(IMAGE_BACKUP, 'copy',
+                        tep_href_link(FILENAME_BACKUP, 'action=backup'));
+                if (($action != 'restorelocal') && isset($dir))
+                        echo tep_draw_button(IMAGE_RESTORE, 'arrowrefresh-1-w',
+                        tep_href_link(FILENAME_BACKUP, 'action=restorelocal'));
+                        ?></td>
                 </tr>
         <?php
         if (defined('DB_LAST_RESTORE')) {
             ?>
                     <tr>
                         <td class="smallText" colspan="4"><?php echo TEXT_LAST_RESTORATION.' '.DB_LAST_RESTORE.' <a href="'.tep_href_link(FILENAME_BACKUP,
-            'action=forget').'">'.TEXT_FORGET.'</a>'; ?></td>
+            'action=forget').'">'.TEXT_FORGET.'</a>';
+            ?></td>
                     </tr>
             <?php
         }

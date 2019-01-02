@@ -335,7 +335,7 @@ class shoppingCart
                 /*                 * * EOF alterations for CCGV ** */
                 $prid            = $product['products_id'];
                 $products_tax    = tep_get_tax_rate($product['products_tax_class_id']);
-                $products_price  = $product['products_price'];
+                $products_price  = floatval($product['products_price']);
                 $products_weight = $product['products_weight'];
 
                 $specials_query = tep_db_query("select specials_new_products_price from ".TABLE_SPECIALS." where products_id = '".(int) $prid."' and status = '1'");

@@ -87,8 +87,7 @@ switch ($action) {
                     tep_output_string_protected($sql['Msg_text']),
                     ($table != $current_table) ? tep_draw_checkbox_field('id[]',
                         $table,
-                        isset($_POST['id']) && in_array($table,
-                            $_POST['id'])) : '');
+                        isset($_POST['id']) && in_array($table, $_POST['id'])) : '');
 
                 $current_table = $table;
             }
@@ -212,18 +211,18 @@ if (isset($action)) {
 
 <h1 class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
 
-        <?php
-        echo tep_draw_form('sql', 'database_tables.php');
-        ?>
+<?php
+echo tep_draw_form('sql', 'database_tables.php');
+?>
 
 <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <tr class="dataTableHeadingRow">
 
-    <?php
-    foreach ($table_headers as $th) {
-        echo '    <td class="dataTableHeadingContent">'.$th.'</td>'."\n";
-    }
-    ?>
+        <?php
+        foreach ($table_headers as $th) {
+            echo '    <td class="dataTableHeadingContent">'.$th.'</td>'."\n";
+        }
+        ?>
     </tr>
 
     <?php
@@ -245,10 +244,12 @@ if (!isset($_POST['dryrun'])) {
     ?>
 
     <div class="main" style="text-align: right;">
-    <?php echo '<span class="runUtf8" style="display: none;">'.sprintf(ACTION_UTF8_DRY_RUN,
-        tep_draw_checkbox_field('dryrun')).'</span>'.tep_draw_pull_down_menu('action',
-        $actions, '', 'id="sqlActionsMenu"').'<span class="runUtf8" style="display: none;">&nbsp;'.tep_draw_pull_down_menu('from_charset',
-        $mysql_charsets).'</span>&nbsp;'.tep_draw_button(BUTTON_ACTION_GO); ?>
+        <?php
+        echo '<span class="runUtf8" style="display: none;">'.sprintf(ACTION_UTF8_DRY_RUN,
+            tep_draw_checkbox_field('dryrun')).'</span>'.tep_draw_pull_down_menu('action',
+            $actions, '', 'id="sqlActionsMenu"').'<span class="runUtf8" style="display: none;">&nbsp;'.tep_draw_pull_down_menu('from_charset',
+            $mysql_charsets).'</span>&nbsp;'.tep_draw_button(BUTTON_ACTION_GO);
+        ?>
     </div>
 
     <?php

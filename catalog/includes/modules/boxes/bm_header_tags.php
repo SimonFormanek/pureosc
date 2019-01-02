@@ -9,74 +9,90 @@
   Portions Copyright 2011 oscommerce-solution.com
 
   Released under the GNU General Public License
-*/
+ */
 
-  class bm_header_tags {
-    var $code = 'bm_header_tags';
-    var $group = 'boxes';
+class bm_header_tags
+{
+    var $code    = 'bm_header_tags';
+    var $group   = 'boxes';
     var $title;
     var $description;
     var $sort_order;
     var $enabled = false;
 
-    function bm_header_tags() {
-      $this->title = MODULE_BOXES_HEADER_TAGS_TITLE;
-      $this->description = MODULE_BOXES_HEADER_TAGS_DESCRIPTION;
+    function bm_header_tags()
+    {
+        $this->title       = MODULE_BOXES_HEADER_TAGS_TITLE;
+        $this->description = MODULE_BOXES_HEADER_TAGS_DESCRIPTION;
 
-      if ( defined('MODULE_BOXES_HEADER_TAGS_STATUS') ) {
-        $this->sort_order = MODULE_BOXES_HEADER_TAGS_SORT_ORDER;
-        $this->enabled = (MODULE_BOXES_HEADER_TAGS_STATUS == 'True' && HEADER_TAGS_DISPLAY_COLUMN_BOX == 'true' && basename($_SERVER['SCRIPT_FILENAME']) == FILENAME_PRODUCT_INFO);
+        if (defined('MODULE_BOXES_HEADER_TAGS_STATUS')) {
+            $this->sort_order = MODULE_BOXES_HEADER_TAGS_SORT_ORDER;
+            $this->enabled    = (MODULE_BOXES_HEADER_TAGS_STATUS == 'True' && HEADER_TAGS_DISPLAY_COLUMN_BOX
+                == 'true' && basename($_SERVER['SCRIPT_FILENAME']) == FILENAME_PRODUCT_INFO);
 
-        $this->group = ((MODULE_BOXES_HEADER_TAGS_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');
-      }
+            $this->group = ((MODULE_BOXES_HEADER_TAGS_CONTENT_PLACEMENT == 'Left Column')
+                    ? 'boxes_column_left' : 'boxes_column_right');
+        }
     }
 
-    function execute() {
-      global $oscTemplate, $languages_id;
+    function execute()
+    {
+        global $oscTemplate, $languages_id;
 
-      $product_info_query = tep_db_query("select pd.products_name, pd.products_description from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_status = '1' and p.products_id = '" . (int)$_GET['products_id'] . "' and pd.products_id = p.products_id and pd.language_id = '" . (int)$languages_id . "'");
-      $product_info = tep_db_fetch_array($product_info_query);
+        $product_info_query = tep_db_query("select pd.products_name, pd.products_description from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd where p.products_status = '1' and p.products_id = '".(int) $_GET['products_id']."' and pd.products_id = p.products_id and pd.language_id = '".(int) $languages_id."'");
+        $product_info       = tep_db_fetch_array($product_info_query);
 
-      if (tep_not_null($header_tags_array['title_alt'])) {
-          $header_title = $header_tags_array['title_alt'];
-      } else if (tep_not_null($header_tags_array['title'])) {
-          $header_title = $header_tags_array['title'];
-      } else {
-          $header_title = $product_info['products_name'];
-      }
-      $header_title = substr(trim(strip_tags($header_title)), 0, 20);
-      
-      $data = '<div class="ui-widget infoBoxContainer">' .
-              '  <div class="ui-widget-header infoBoxHeading">' . '<a style="text-decoration:none;" href="' . tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . (int)$_GET['products_id']).'"  >' . $header_title . '</a>' . '</div>' .
-              '  <div class="ui-widget-content infoBoxContents">' .
-                   strip_tags(substr($product_info['products_description'], 0, 100)) . 
-              '    <a style="color: red;" href="' . tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . (int)$_GET['products_id']).'"  >  (...' . sprintf(TEXT_SEE_MORE, $header_title) . ')</a>' .
-              '  </div>' .
-              '</div>';
+        if (tep_not_null($header_tags_array['title_alt'])) {
+            $header_title = $header_tags_array['title_alt'];
+        } else if (tep_not_null($header_tags_array['title'])) {
+            $header_title = $header_tags_array['title'];
+        } else {
+            $header_title = $product_info['products_name'];
+        }
+        $header_title = substr(trim(strip_tags($header_title)), 0, 20);
 
-      $oscTemplate->addBlock($data, $this->group);
+        $data = '<div class="ui-widget infoBoxContainer">'.
+            '  <div class="ui-widget-header infoBoxHeading">'.'<a style="text-decoration:none;" href="'.tep_href_link(FILENAME_PRODUCT_INFO,
+                'products_id='.(int) $_GET['products_id']).'"  >'.$header_title.'</a>'.'</div>'.
+            '  <div class="ui-widget-content infoBoxContents">'.
+            strip_tags(substr($product_info['products_description'], 0, 100)).
+            '    <a style="color: red;" href="'.tep_href_link(FILENAME_PRODUCT_INFO,
+                'products_id='.(int) $_GET['products_id']).'"  >  (...'.sprintf(TEXT_SEE_MORE,
+                $header_title).')</a>'.
+            '  </div>'.
+            '</div>';
+
+        $oscTemplate->addBlock($data, $this->group);
     }
 
-    function isEnabled() {
-      return $this->enabled;
+    function isEnabled()
+    {
+        return $this->enabled;
     }
 
-    function check() {
-      return defined('MODULE_BOXES_HEADER_TAGS_STATUS');
+    function check()
+    {
+        return defined('MODULE_BOXES_HEADER_TAGS_STATUS');
     }
 
-    function install() {
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Information Module', 'MODULE_BOXES_HEADER_TAGS_STATUS', 'True', 'Do you want to add the module to your shop?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Content Placement', 'MODULE_BOXES_HEADER_TAGS_CONTENT_PLACEMENT', 'Left Column', 'Should the module be loaded in the left or right column?', '6', '1', 'tep_cfg_select_option(array(\'Left Column\', \'Right Column\'), ', now())");
-      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_BOXES_HEADER_TAGS_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
+    function install()
+    {
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Information Module', 'MODULE_BOXES_HEADER_TAGS_STATUS', 'True', 'Do you want to add the module to your shop?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Content Placement', 'MODULE_BOXES_HEADER_TAGS_CONTENT_PLACEMENT', 'Left Column', 'Should the module be loaded in the left or right column?', '6', '1', 'tep_cfg_select_option(array(\'Left Column\', \'Right Column\'), ', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_BOXES_HEADER_TAGS_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
     }
 
-    function remove() {
-      tep_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+    function remove()
+    {
+        tep_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key in ('".implode("', '",
+                $this->keys())."')");
     }
 
-    function keys() {
-      return array('MODULE_BOXES_HEADER_TAGS_STATUS', 'MODULE_BOXES_HEADER_TAGS_CONTENT_PLACEMENT', 'MODULE_BOXES_HEADER_TAGS_SORT_ORDER');
+    function keys()
+    {
+        return array('MODULE_BOXES_HEADER_TAGS_STATUS', 'MODULE_BOXES_HEADER_TAGS_CONTENT_PLACEMENT',
+            'MODULE_BOXES_HEADER_TAGS_SORT_ORDER');
     }
-  }
+}
+
 ?>

@@ -36,13 +36,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
 <div class="contentContainer">
     <div class="contentText">
         <div class="alert alert-success">
-<?php echo TEXT_ACCOUNT_CREATED; ?>
+            <?php echo TEXT_ACCOUNT_CREATED; ?>
         </div>
     </div>
 
     <div class="buttonSet">
         <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-    'fa fa-angle-right', $origin_href, null, null, 'btn-success'); ?></div>
+                'fa fa-angle-right', $origin_href, null, null, 'btn-success');
+            ?></div>
     </div>
 </div>
 

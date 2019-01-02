@@ -17,12 +17,10 @@ class currencies
 {
     var $currencies;
 
-    
     public function __construct()
     {
         $this->currencies();
     }
-
 
 // class constructor
     function currencies()
@@ -83,5 +81,3 @@ class currencies
                     $this->currencies[$currency_type]['decimal_places']) * $quantity);
     }
 }
-
-

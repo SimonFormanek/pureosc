@@ -41,17 +41,17 @@ $navigation->remove_current_page();
                 <td class="smallText"><?php echo TEXT_COURTESY_OF; ?></td>
             </tr>
             <tr>
-                <td><?php echo tep_draw_separator('pixel_trans.gif', '100%',
-    '10');
-?></td>
+                <td><?php
+                    echo tep_draw_separator('pixel_trans.gif', '100%', '10');
+                    ?></td>
             </tr>
             <tr>
                 <td class="main"><?php echo $article_info['articles_description']; ?></td>
             </tr>
             <tr>
-                <td><?php echo tep_draw_separator('pixel_trans.gif', '100%',
-                        '10');
-?></td>
+                <td><?php
+                    echo tep_draw_separator('pixel_trans.gif', '100%', '10');
+                    ?></td>
             </tr>
             <tr>
                 <td class="main" align="right"><a href="javascript: self.close ()"><?php echo TEXT_CLOSE_POPUP; ?></a></td>

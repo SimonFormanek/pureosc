@@ -18,7 +18,7 @@ class ot_total
     {
         $this->ot_total();
     }
-    
+
     function ot_total()
     {
         $this->code        = 'ot_total';
@@ -68,5 +68,3 @@ class ot_total
                 $this->keys())."')");
     }
 }
-
-

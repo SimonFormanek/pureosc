@@ -14,6 +14,12 @@ class gpwebpay
     var $code, $title, $description, $enabled;
 
     /**
+     *
+     * @var boolean module check state
+     */
+    public $_check = null;
+
+    /**
      * @var string URL
      */
     public $gpWebPayEndpoint = null;
@@ -36,8 +42,8 @@ class gpwebpay
         $this->signature    = 'gpwebpay|gpwebpay|1.0|2.2';
         $this->code         = 'gpwebpay';
         $this->title        = _('GP WebPay');
-        $this->public_title = _('GP WebPay Payment');
-        $this->description  = _('GP WebPay Payment description');
+        $this->public_title = _('Card Payment');
+        $this->description  = _('GP WebPay Payment');
         $this->sort_order   = MODULE_PAYMENT_GPWEBPAY_SORT_ORDER;
         $this->enabled      = ((MODULE_PAYMENT_GPWEBPAY_STATUS == 'True') ? true
                 : false);
@@ -51,54 +57,58 @@ class gpwebpay
 
         if (is_object($order)) $this->update_status();
 
-        if (MODULE_PAYMENT_GPWEBPAY_GATEWAY_SERVER == _('Production')) {
-            $this->form_action_url = 'https://3dsecure.gpwebpay.com/pgw/order.do';
-        } else {
-            $this->form_action_url = 'https://test.3dsecure.gpwebpay.com/pgw/order.do';
-        }
+
+        $this->form_action_url = self::getServerURL();
+    }
+
+    public static function getServerURL()
+    {
+        return constant('MODULE_PAYMENT_GPWEBPAY_GATEWAY_SERVER') == 'Production'
+                ? 'https://3dsecure.gpwebpay.com/pgw/order.do' : 'https://test.3dsecure.gpwebpay.com/pgw/order.do';
     }
 
     // class methods
     function update_status()
     {
-        global $order, $cart;
+        return false;
+    }
 
-        if (($this->enabled == true) && ((int) MODULE_PAYMENT_GPWEBPAY_ZONE > 0)) {
-            $check_flag  = false;
-            $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_GPWEBPAY_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
-            while ($check       = tep_db_fetch_array($check_query)) {
-                if ($check['zone_id'] < 1) {
-                    $check_flag = true;
-                    break;
-                } elseif ($check['zone_id'] == $order->billing['zone_id']) {
-                    $check_flag = true;
-                    break;
+    /**
+     * Process GPWEBPAY response
+     * 
+     * @global order $order
+     * @global cart $cart
+     * 
+     * @param array $response usually $_REQUEST
+     * @param int $order_id Order NO
+     * 
+     * @return 
+     */
+    public static function processGpWebPayResponse($response, $order_id = null)
+    {
+        global $order, $cart, $cartID;
+        $result = $response['PRCODE'];
+        switch ($result) {
+            case 50: //Payment Canceled
+                $order->info['order_status'] = 105;
+                tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order->info['order_status']."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                break;
+            case 14: //Payment ID Duplicity
+//                if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+//                    $invoice = new PureOSC\flexibee\FakturaVydana();
+//                    $invoice->deleteFromFlexiBee('ext:orders:'.$order_id);
+//                }
+                $cartID       = $cart->cartID = $cart->generate_cart_id();
+                if (!tep_session_is_registered('cartID')) {
+                    tep_session_register('cartID');
                 }
-            }
-
-            switch ($_REQUEST['PRCODE']) {
-                case 50: //Payment Canceled
-                    $cartID                      = $cart->cartID                = $cart->generate_cart_id();
-                    $order->info['order_status'] = 105;
-                    tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));
-                    exit();
-                    break;
-                case 14: //Paymen ID Duplicity
-                    $cartID                      = $cart->cartID                = $cart->generate_cart_id();
-
-                    if (!tep_session_is_registered('cartID')) {
-                        tep_session_register('cartID');
-                    }
-
-                    break;
-                default :
-                    break;
-            }
-
-            if ($check_flag == false) {
-                $this->enabled = false;
-            }
+                break;
+            default :
+                $result = 0;
+                break;
         }
+
+        return $result;
     }
 
     function javascript_validation()
@@ -350,8 +360,8 @@ class gpwebpay
             $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
             $invoice->setDataValue("typDokl", 'code:OBJEDNÁVKA');
             $invoice->setDataValue("stavMailK", 'stavMail.neodesilat');
-            if(isset($_REQUEST['comments'])){
-                $invoice->setDataValue('poznam',$_REQUEST['comments']);
+            if (isset($_REQUEST['comments'])) {
+                $invoice->setDataValue('poznam', $_REQUEST['comments']);
             }
         }
 
@@ -388,7 +398,7 @@ class gpwebpay
                     'mnozMj' => $orderItem['qty'],
                     'cenaMj' => $orderItem['price'],
                     'typPolozkyK' => 'typPolozky.katalog'
-                    ], 'polozkyDokladu');
+                    ], 'polozkyDokladu',true);
             }
         }
 
@@ -398,9 +408,10 @@ class gpwebpay
                 $varSym    = $invoice->getDataValue('varSym');
                 $orderCode = $invoice->getRecordID();
                 $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
-                \Ease\Shared::instanced()->addStatusMessage(_('New order saved').$invoice, 'success');
+                \Ease\Shared::instanced()->addStatusMessage(_('New order saved').$invoice,
+                    'success');
             } else {
-                echo 'FlexiBee Errorek';
+                echo 'FlexiBee Errorek!!! Objednávka se neuložila';
             }
         } else {
             $orderCode = null;
@@ -440,22 +451,24 @@ class gpwebpay
         ];
 
         $gpwpcurrency = $currconvert[$currency];
-        $successUrl   = tep_href_link(FILENAME_CHECKOUT_SUCCESS, '', 'SSL');
+        $successUrl   = tep_href_link(constant('FILENAME_CHECKOUT_PROCESS'), '',
+            'SSL');
 
 
         $request = new PaymentRequest($varSym, intval($totalPrice),
             $gpwpcurrency, 1, $successUrl, $varSym);
 
-        $request->setDescription(self::convertToAscii($products_info));
+        $request->setDescription(self::convertToAscii(\Ease\Sand::rip($products_info)));
 
         try {
-        $parameters = $api->createPaymentParam($request);
-        foreach ($parameters as $key => $value) {
-            $process_button_string .= tep_draw_hidden_field($key, $value);
-        }
+            $parameters = $api->createPaymentParam($request);
+            foreach ($parameters as $key => $value) {
+                $process_button_string .= tep_draw_hidden_field($key, $value);
+            }
         } catch (\AdamStipak\Webpay\SignerException $e) {
             $process_button_string = _('Payment failed');
-            Ease\Shared::instanced()->addStatusMessage( 'GPWEBPAY: '. $e->getMessage() ,'error');
+            Ease\Shared::instanced()->addStatusMessage('GPWEBPAY: '.$e->getMessage(),
+                'error');
 //            $fakeResponseData               = $request->getParams();
 //            $fakeResponseData['PRCODE']     = 0;
 //            $fakeResponseData['OPERATION']  = 'CREATE_ORDER';
@@ -487,14 +500,34 @@ class gpwebpay
             $update_status = false;
         }
         if ($update_status) {
-            $order_status_id = (int) DEFAULT_ORDERS_STATUS_ID;
-            tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+
+
+            switch (self::processGpWebPayResponse($_REQUEST, $order_id)) {
+                case 50:
+                case 14:
+                tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));
+                exit();
+                    //Duplicate payment
+                    break;
+                case 0:
+                default:
+                    
+                    $order_status_id = (int) DEFAULT_ORDERS_STATUS_ID;
+                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                    
+                    break;
+            }
+
+
 
             $sql_data_array = array('orders_id' => $order_id,
                 'orders_status_id' => $order_status_id,
                 'date_added' => 'now()',
                 'customer_notified' => (SEND_EMAILS == 'true') ? '1' : '0',
                 'comments' => $order->info['comments']);
+
+
+
 
             tep_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
         }
@@ -774,10 +807,7 @@ class gpwebpay
         tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay sum too low Order Status', 'MODULE_PAYMENT_GPWEBPAY_SUM_TOO_LOW_ORDER_STATUS_ID', '".$sum_too_low_status_id."', 'Set the status of orders which are paid with insufficient fund (sum too low) to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
         tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay Completed Order Status', 'MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID', '".$completed_status_id."', 'Set the status of orders which are confirmed as paid (approved) to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
 
-        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Transaction Method', 'MODULE_PAYMENT_GPWEBPAY_TRANSACTION_METHOD', 'Sale', 'The processing method to use for each transaction.', '6', '0', 'tep_cfg_select_option(array(\'Authorization\', \'Sale\'), ', now())");
-        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Encrypted Web Payments', 'MODULE_PAYMENT_GPWEBPAY_EWP_STATUS', 'False', 'Do you want to enable Encrypted Web Payments?', '6', '3', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Working Directory', 'MODULE_PAYMENT_GPWEBPAY_EWP_WORKING_DIRECTORY', '', 'The working directory to use for temporary files. (trailing slash needed)', '6', '4', now())");
-        //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('OpenSSL Location', 'MODULE_PAYMENT_GPWEBPAY_EWP_OPENSSL', '/usr/bin/openssl', 'The location of the openssl binary file.', '6', '4', now())");
+//        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('"._('Signing Check error message')."', 'MODULE_PAYMENT_GPWEBPAY_SIGNING_STATUS', 'False', '', '6', '".$sort_order++."', 'gpwebpay::getSigningErrorMessage' , ','gpwebpay::getSigningErrorMessage('");
     }
 
     function remove()
@@ -796,7 +826,9 @@ class gpwebpay
             'MODULE_PAYMENT_GPWEBPAY_FLOW_LAYOUT', 'MODULE_PAYMENT_GPWEBPAY_DECREASE_STOCK_ON_CREATION',
             'MODULE_PAYMENT_GPWEBPAY_DEBUG_EMAIL', 'MODULE_PAYMENT_GPWEBPAY_ZONE',
             'MODULE_PAYMENT_GPWEBPAY_SORT_ORDER', 'MODULE_PAYMENT_GPWEBPAY_CREATE_ORDER_STATUS_ID',
-            'MODULE_PAYMENT_GPWEBPAY_SUM_TOO_LOW_ORDER_STATUS_ID', 'MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID');
+            'MODULE_PAYMENT_GPWEBPAY_SUM_TOO_LOW_ORDER_STATUS_ID', 'MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID',
+            //'MODULE_PAYMENT_GPWEBPAY_SIGNING_STATUS'
+        );
     }
 
     // format prices without currency formatting
@@ -833,5 +865,44 @@ class gpwebpay
             "secret_key" => $sk), "", "&");
         $md5v = md5($q);
         return $md5v;
+    }
+
+    /**
+     * Try to create sign test request
+     * 
+     * @return string
+     */
+    public static function getSigningErrorMessage()
+    {
+        $success = 'OK';
+        $signer  = new \AdamStipak\Webpay\Signer(
+            constant('MODULE_PAYMENT_GPWEBPAY_SECRET_KEY'),
+            constant('MODULE_PAYMENT_GPWEBPAY_SECRET_KEY_PASSWORD'),
+            constant('MODULE_PAYMENT_GPWEBPAY_PUBLIC_KEY')      // Path of public key.
+        );
+
+        $api = new \AdamStipak\Webpay\Api(
+            constant('MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID'), // Merchant number.
+            self::getServerURL(), // URL of webpay.
+            $signer            // instance of \AdamStipak\Webpay\Signer.
+        );
+
+        $successUrl = \Ease\WebPage::phpSelf();
+
+        $varSym = time();
+
+        $request = new PaymentRequest($varSym, $varSym, PaymentRequest::CZK, 1,
+            $successUrl, $varSym);
+
+        $request->setDescription(self::convertToAscii(\Ease\Sand::rip(_('Testing payment'))));
+
+        try {
+            $parameters = $api->createPaymentParam($request);
+        } catch (\AdamStipak\Webpay\SignerException $e) {
+            $success = $e->getMessage();
+            Ease\Shared::instanced()->addStatusMessage('GPWEBPAY: '.$success,
+                'error');
+        }
+        return $success;
     }
 }

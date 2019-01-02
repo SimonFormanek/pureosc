@@ -49,8 +49,7 @@ if (tep_not_null($action)) {
                     "currencies_id = '".(int) $currency_id."'");
             }
 
-            if (isset($_POST['default']) && ($_POST['default']
-                == 'on')) {
+            if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
                 tep_db_query("update ".TABLE_CONFIGURATION." set configuration_value = '".tep_db_input($code)."' where configuration_key = 'DEFAULT_CURRENCY'");
             }
 
@@ -193,13 +192,13 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
 <script type="text/javascript">
     var currency_select = new Array();
-                            <?php
-                            foreach ($currency_select_array as $cs) {
-                                if (!empty($cs['id'])) {
-                                    echo 'currency_select["'.$cs['id'].'"] = new Array("'.$currency_select[$cs['id']]['title'].'", "'.$currency_select[$cs['id']]['symbol_left'].'", "'.$currency_select[$cs['id']]['symbol_right'].'", "'.$currency_select[$cs['id']]['decimal_point'].'", "'.$currency_select[$cs['id']]['thousands_point'].'", "'.$currency_select[$cs['id']]['decimal_places'].'");'."\n";
-                                }
-                            }
-                            ?>
+<?php
+foreach ($currency_select_array as $cs) {
+    if (!empty($cs['id'])) {
+        echo 'currency_select["'.$cs['id'].'"] = new Array("'.$currency_select[$cs['id']]['title'].'", "'.$currency_select[$cs['id']]['symbol_left'].'", "'.$currency_select[$cs['id']]['symbol_right'].'", "'.$currency_select[$cs['id']]['decimal_point'].'", "'.$currency_select[$cs['id']]['thousands_point'].'", "'.$currency_select[$cs['id']]['decimal_places'].'");'."\n";
+    }
+}
+?>
 
     function updateForm() {
         var cs = document.forms["currencies"].cs[document.forms["currencies"].cs.selectedIndex].value;
@@ -221,7 +220,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-                                HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -235,72 +235,84 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_CURRENCY_VALUE; ?></td>
                                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
                             </tr>
-        <?php
-        $currency_query_raw = "select currencies_id, title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, last_updated, value from ".TABLE_CURRENCIES." order by title";
-        $currency_split     = new splitPageResults($_GET['page'],
-            MAX_DISPLAY_SEARCH_RESULTS, $currency_query_raw,
-            $currency_query_numrows);
-        $currency_query     = tep_db_query($currency_query_raw);
-        while ($currency           = tep_db_fetch_array($currency_query)) {
-            if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ($_GET['cID']
-                == $currency['currencies_id']))) && !isset($cInfo) && (substr($action,
-                    0, 3) != 'new')) {
-                $cInfo = new objectInfo($currency);
-            }
+                            <?php
+                            $currency_query_raw = "select currencies_id, title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, last_updated, value from ".TABLE_CURRENCIES." order by title";
+                            $currency_split     = new splitPageResults($_GET['page'],
+                                MAX_DISPLAY_SEARCH_RESULTS, $currency_query_raw,
+                                $currency_query_numrows);
+                            $currency_query     = tep_db_query($currency_query_raw);
+                            while ($currency           = tep_db_fetch_array($currency_query)) {
+                                if ((!isset($_GET['cID']) || (isset($_GET['cID'])
+                                    && ($_GET['cID'] == $currency['currencies_id'])))
+                                    && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
+                                    $cInfo = new objectInfo($currency);
+                                }
 
-            if (isset($cInfo) && is_object($cInfo) && ($currency['currencies_id']
-                == $cInfo->currencies_id)) {
-                echo '              <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_CURRENCIES,
-                    'page='.$_GET['page'].'&cID='.$cInfo->currencies_id.'&action=edit').'\'">'."\n";
-            } else {
-                echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_CURRENCIES,
-                    'page='.$_GET['page'].'&cID='.$currency['currencies_id']).'\'">'."\n";
-            }
+                                if (isset($cInfo) && is_object($cInfo) && ($currency['currencies_id']
+                                    == $cInfo->currencies_id)) {
+                                    echo '              <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_CURRENCIES,
+                                        'page='.$_GET['page'].'&cID='.$cInfo->currencies_id.'&action=edit').'\'">'."\n";
+                                } else {
+                                    echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_CURRENCIES,
+                                        'page='.$_GET['page'].'&cID='.$currency['currencies_id']).'\'">'."\n";
+                                }
 
-            if (DEFAULT_CURRENCY == $currency['code']) {
-                echo '                <td class="dataTableContent"><strong>'.$currency['title'].' ('.TEXT_DEFAULT.')</strong></td>'."\n";
-            } else {
-                echo '                <td class="dataTableContent">'.$currency['title'].'</td>'."\n";
-            }
-            ?>
+                                if (DEFAULT_CURRENCY == $currency['code']) {
+                                    echo '                <td class="dataTableContent"><strong>'.$currency['title'].' ('.TEXT_DEFAULT.')</strong></td>'."\n";
+                                } else {
+                                    echo '                <td class="dataTableContent">'.$currency['title'].'</td>'."\n";
+                                }
+                                ?>
                                 <td class="dataTableContent"><?php echo $currency['code']; ?></td>
                                 <td class="dataTableContent" align="right"><?php echo number_format($currency['value'],
-            8); ?></td>
-                                <td class="dataTableContent" align="right"><?php if (isset($cInfo)
-            && is_object($cInfo) && ($currency['currencies_id'] == $cInfo->currencies_id)) {
-            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
-        } else {
-            echo '<a href="'.tep_href_link(FILENAME_CURRENCIES,
-                'page='.$_GET['page'].'&cID='.$currency['currencies_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                IMAGE_ICON_INFO).'</a>';
-        } ?>&nbsp;</td>
+                                8);
+                                ?></td>
+                                <td class="dataTableContent" align="right"><?php
+                                    if (isset($cInfo) && is_object($cInfo) && ($currency['currencies_id']
+                                        == $cInfo->currencies_id)) {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
+                                    } else {
+                                        echo '<a href="'.tep_href_link(FILENAME_CURRENCIES,
+                                            'page='.$_GET['page'].'&cID='.$currency['currencies_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                            IMAGE_ICON_INFO).'</a>';
+                                    }
+                                    ?>&nbsp;</td>
                     </tr>
-            <?php
-        }
-        ?>
+    <?php
+}
+?>
                 <tr>
                     <td colspan="4"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-                                <td class="smallText" valign="top"><?php echo $currency_split->display_count($currency_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-            TEXT_DISPLAY_NUMBER_OF_CURRENCIES); ?></td>
-                                <td class="smallText" align="right"><?php echo $currency_split->display_links($currency_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $_GET['page']); ?></td>
+                                <td class="smallText" valign="top"><?php
+                                    echo $currency_split->display_count($currency_query_numrows,
+                                        MAX_DISPLAY_SEARCH_RESULTS,
+                                        $_GET['page'],
+                                        TEXT_DISPLAY_NUMBER_OF_CURRENCIES);
+                                    ?></td>
+                                <td class="smallText" align="right"><?php
+                            echo $currency_split->display_links($currency_query_numrows,
+                                MAX_DISPLAY_SEARCH_RESULTS,
+                                MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+                                    ?></td>
                             </tr>
-        <?php
-        if (empty($action)) {
-            ?>
+                                    <?php
+                                    if (empty($action)) {
+                                        ?>
                                 <tr>
-                                    <td class="smallText"><?php if (CURRENCY_SERVER_PRIMARY) {
-            echo tep_draw_button(IMAGE_UPDATE_CURRENCIES, 'refresh',
+                                    <td class="smallText"><?php
+                                    if (CURRENCY_SERVER_PRIMARY) {
+                                        echo tep_draw_button(IMAGE_UPDATE_CURRENCIES,
+                                            'refresh',
+                                            tep_href_link(FILENAME_CURRENCIES,
+                                                'page='.$_GET['page'].'&cID='.$cInfo->currencies_id.'&action=update'));
+                                    }
+                                    ?></td>
+                                    <td class="smallText" align="right"><?php
+            echo tep_draw_button(IMAGE_NEW_CURRENCY, 'plus',
                 tep_href_link(FILENAME_CURRENCIES,
-                    'page='.$_GET['page'].'&cID='.$cInfo->currencies_id.'&action=update'));
-        } ?></td>
-                                    <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_NEW_CURRENCY,
-            'plus',
-            tep_href_link(FILENAME_CURRENCIES,
-                'page='.$_GET['page'].'&cID='.$cInfo->currencies_id.'&action=new')); ?></td>
+                    'page='.$_GET['page'].'&cID='.$cInfo->currencies_id.'&action=new'));
+            ?></td>
                                 </tr>
             <?php
         }

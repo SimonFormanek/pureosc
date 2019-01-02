@@ -45,8 +45,7 @@ $process = false;
 if (isset($_POST['action']) && ($_POST['action'] == 'submit') && isset($_POST['formid'])
     && ($_POST['formid'] == $sessiontoken)) {
 // process a new shipping address
-    if (tep_not_null($_POST['firstname']) && tep_not_null($_POST['lastname'])
-        && tep_not_null($_POST['street_address'])) {
+    if (tep_not_null($_POST['firstname']) && tep_not_null($_POST['lastname']) && tep_not_null($_POST['street_address'])) {
         $process = true;
 
         if (ACCOUNT_GENDER == 'true')
@@ -238,15 +237,17 @@ if ($messageStack->size('checkout_address') > 0) {
 }
 ?>
 
-<?php echo tep_draw_form('checkout_address',
+<?php
+echo tep_draw_form('checkout_address',
     tep_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'), 'post',
-    'class="form-horizontal"', true); ?>
+    'class="form-horizontal"', true);
+?>
 
 <div class="contentContainer">
 
-<?php
-if ($process == false) {
-    ?>
+    <?php
+    if ($process == false) {
+        ?>
 
         <h2><?php echo TABLE_HEADING_SHIPPING_ADDRESS; ?></h2>
 
@@ -259,8 +260,9 @@ if ($process == false) {
                     <div class="panel-heading"><?php echo TITLE_SHIPPING_ADDRESS; ?></div>
 
                     <div class="panel-body">
-            <?php echo tep_address_label($customer_id, $sendto, true,
-                ' ', '<br />'); ?>
+                        <?php echo tep_address_label($customer_id,
+                            $sendto, true, ' ', '<br />');
+                        ?>
                     </div>
                 </div>
             </div>
@@ -268,9 +270,9 @@ if ($process == false) {
 
         <div class="clearfix"></div>
 
-    <?php
-    if ($addresses_count > 1) {
-        ?>
+        <?php
+        if ($addresses_count > 1) {
+            ?>
 
             <h2><?php echo TABLE_HEADING_ADDRESS_BOOK_ENTRIES; ?></h2>
 
@@ -287,22 +289,26 @@ if ($process == false) {
                     ?>
                     <div class="col-sm-4">
                         <div class="panel panel-<?php echo ($addresses['address_book_id'] == $sendto)
-                    ? 'primary' : 'default'; ?>">
+                            ? 'primary' : 'default';
+                    ?>">
                             <div class="panel-heading"><?php echo tep_output_string_protected($addresses['firstname'].' '.$addresses['lastname']); ?></strong></div>
                             <div class="panel-body">
-            <?php echo tep_address_format($format_id, $addresses,
-                true, ' ', '<br />'); ?>
+                                <?php echo tep_address_format($format_id,
+                                    $addresses, true, ' ', '<br />');
+                                ?>
                             </div>
-                            <div class="panel-footer text-center"><?php echo tep_draw_radio_field('address',
-                $addresses['address_book_id'],
-                ($addresses['address_book_id'] == $sendto)); ?></div>
+                            <div class="panel-footer text-center"><?php
+                    echo tep_draw_radio_field('address',
+                        $addresses['address_book_id'],
+                        ($addresses['address_book_id'] == $sendto));
+                                ?></div>
                         </div>
                     </div>
 
-            <?php
-            $radio_buttons++;
-        }
-        ?>
+                <?php
+                $radio_buttons++;
+            }
+            ?>
             </div>
         <?php
     }
@@ -317,14 +323,15 @@ if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
 
     <?php require(DIR_WS_MODULES.'checkout_new_address.php'); ?>
 
-    <?php
-}
-?>
+                <?php
+            }
+            ?>
 
     <div class="buttonSet">
-        <div class="text-right"><?php echo tep_draw_hidden_field('action',
-    'submit').tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right', null,
-    'primary', null, 'btn-success'); ?></div>
+        <div class="text-right"><?php
+            echo tep_draw_hidden_field('action', 'submit').tep_draw_button(IMAGE_BUTTON_CONTINUE,
+                'fa fa-angle-right', null, 'primary', null, 'btn-success');
+            ?></div>
     </div>
 
     <div class="clearfix"></div>
@@ -355,7 +362,8 @@ if ($process == true) {
 
         <div class="buttonSet">
     <?php echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
-        tep_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL')); ?>
+        tep_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'));
+    ?>
         </div>
 
     <?php

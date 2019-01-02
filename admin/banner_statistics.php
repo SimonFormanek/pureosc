@@ -60,42 +60,44 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <tr>
         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr><?php echo tep_draw_form('year',
-    FILENAME_BANNER_STATISTICS, '', 'get'); ?>
+    FILENAME_BANNER_STATISTICS, '', 'get');
+?>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    '1', HEADING_IMAGE_HEIGHT); ?></td>
-                    <td class="main" align="right"><?php echo TITLE_TYPE.' '.tep_draw_pull_down_menu('type',
+                        '1', HEADING_IMAGE_HEIGHT);
+?></td>
+                    <td class="main" align="right"><?php
+                        echo TITLE_TYPE.' '.tep_draw_pull_down_menu('type',
                             $type_array,
                             (tep_not_null($type) ? $type : 'daily'),
-                            'onchange="this.form.submit();"'); ?><noscript><input type="submit" value="GO"></noscript><br />
+                            'onchange="this.form.submit();"');
+                        ?><noscript><input type="submit" value="GO"></noscript><br />
                         <?php
                         switch ($type) {
                             case 'yearly': break;
                             case 'monthly':
                                 echo TITLE_YEAR.' '.tep_draw_pull_down_menu('year',
                                     $years_array,
-                                    (isset($_GET['year']) ? $_GET['year']
-                                            : date('Y')),
+                                    (isset($_GET['year']) ? $_GET['year'] : date('Y')),
                                     'onchange="this.form.submit();"').'<noscript><input type="submit" value="GO"></noscript>';
                                 break;
                             default:
                             case 'daily':
                                 echo TITLE_MONTH.' '.tep_draw_pull_down_menu('month',
                                     $months_array,
-                                    (isset($_GET['month']) ? $_GET['month']
-                                            : date('n')),
+                                    (isset($_GET['month']) ? $_GET['month'] : date('n')),
                                     'onchange="this.form.submit();"').'<noscript><input type="submit" value="GO"></noscript><br />'.TITLE_YEAR.' '.tep_draw_pull_down_menu('year',
                                     $years_array,
-                                    (isset($_GET['year']) ? $_GET['year']
-                                            : date('Y')),
+                                    (isset($_GET['year']) ? $_GET['year'] : date('Y')),
                                     'onchange="this.form.submit();"').'<noscript><input type="submit" value="GO"></noscript>';
                                 break;
                         }
                         ?>
                     </td>
-            <?php echo tep_draw_hidden_field('page',
-                $_GET['page']).tep_draw_hidden_field('bID',
-                $_GET['bID']).tep_hide_session_id(); ?></form></tr>
+                    <?php
+                    echo tep_draw_hidden_field('page', $_GET['page']).tep_draw_hidden_field('bID',
+                        $_GET['bID']).tep_hide_session_id();
+                    ?></form></tr>
             </table></td>
     </tr>
     <tr>
@@ -129,44 +131,45 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_VIEWS; ?></td>
                         <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_CLICKS; ?></td>
                     </tr>
-                <?php
-                for ($i = 0, $n = sizeof($stats); $i < $n; $i++) {
-                    echo '            <tr class="dataTableRow">'."\n".
-                    '              <td class="dataTableContent">'.$stats[$i][0].'</td>'."\n".
-                    '              <td class="dataTableContent" align="right">'.number_format($stats[$i][1]).'</td>'."\n".
-                    '              <td class="dataTableContent" align="right">'.number_format($stats[$i][2]).'</td>'."\n".
-                    '            </tr>'."\n";
-                }
-                ?>
+                    <?php
+                    for ($i = 0, $n = sizeof($stats); $i < $n; $i++) {
+                        echo '            <tr class="dataTableRow">'."\n".
+                        '              <td class="dataTableContent">'.$stats[$i][0].'</td>'."\n".
+                        '              <td class="dataTableContent" align="right">'.number_format($stats[$i][1]).'</td>'."\n".
+                        '              <td class="dataTableContent" align="right">'.number_format($stats[$i][2]).'</td>'."\n".
+                        '            </tr>'."\n";
+                    }
+                    ?>
                 </table>
-    <?php
-} else {
-    include(DIR_WS_FUNCTIONS.'html_graphs.php');
+                <?php
+            } else {
+                include(DIR_WS_FUNCTIONS.'html_graphs.php');
 
-    switch ($type) {
-        case 'yearly':
-            echo tep_banner_graph_yearly($_GET['bID']);
-            break;
-        case 'monthly':
-            echo tep_banner_graph_monthly($_GET['bID']);
-            break;
-        default:
-        case 'daily':
-            echo tep_banner_graph_daily($_GET['bID']);
-            break;
-    }
-}
-?>
+                switch ($type) {
+                    case 'yearly':
+                        echo tep_banner_graph_yearly($_GET['bID']);
+                        break;
+                    case 'monthly':
+                        echo tep_banner_graph_monthly($_GET['bID']);
+                        break;
+                    default:
+                    case 'daily':
+                        echo tep_banner_graph_daily($_GET['bID']);
+                        break;
+                }
+            }
+            ?>
         </td>
     </tr>
     <tr>
         <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
     </tr>
     <tr>
-        <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_BACK,
-    'arrow-1-w',
-    tep_href_link(FILENAME_BANNER_MANAGER,
-        'page='.$_GET['page'].'&bID='.$_GET['bID'])); ?></td>
+        <td class="smallText" align="right"><?php
+            echo tep_draw_button(IMAGE_BACK, 'arrow-1-w',
+                tep_href_link(FILENAME_BANNER_MANAGER,
+                    'page='.$_GET['page'].'&bID='.$_GET['bID']));
+            ?></td>
     </tr>
 </table>
 

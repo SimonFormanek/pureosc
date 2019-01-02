@@ -60,11 +60,13 @@ $order = new order($oID);
                                     </tr>
                                     <tr>
                                         <td class="main"><?php echo tep_address_format($order->customer['format_id'],
-                                    $order->billing, 1, '', '<br />'); ?></td>
+                                    $order->billing, 1, '', '<br />');
+                                ?></td>
                                     </tr>
                                     <tr>
                                         <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                    '1', '5'); ?></td>
+                                                '1', '5');
+                                ?></td>
                                     </tr>
                                     <tr>
                                         <td class="main"><?php echo $order->customer['telephone']; ?></td>
@@ -79,7 +81,9 @@ $order = new order($oID);
                                     </tr>
                                     <tr>
                                         <td class="main"><?php echo tep_address_format($order->delivery['format_id'],
-                                    $order->delivery, 1, '', '<br />'); ?></td>
+                                                $order->delivery, 1, '',
+                                                '<br />');
+                                ?></td>
                                     </tr>
                                 </table></td>
                         </tr>
@@ -153,14 +157,15 @@ $order = new order($oID);
                         ?>
                         <tr>
                             <td align="right" colspan="8"><table border="0" cellspacing="0" cellpadding="2">
-<?php
-for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) {
-    echo '          <tr>'."\n".
-    '            <td align="right" class="smallText">'.$order->totals[$i]['title'].'</td>'."\n".
-    '            <td align="right" class="smallText">'.$order->totals[$i]['text'].'</td>'."\n".
-    '          </tr>'."\n";
-}
-?>
+                                    <?php
+                                    for ($i = 0, $n = sizeof($order->totals); $i
+                                        < $n; $i++) {
+                                        echo '          <tr>'."\n".
+                                        '            <td align="right" class="smallText">'.$order->totals[$i]['title'].'</td>'."\n".
+                                        '            <td align="right" class="smallText">'.$order->totals[$i]['text'].'</td>'."\n".
+                                        '          </tr>'."\n";
+                                    }
+                                    ?>
                                 </table></td>
                         </tr>
                     </table></td>

@@ -33,8 +33,7 @@ function tep_opendir($path)
                 $result[] = $file;
 
                 if ($file['is_dir'] == true) {
-                    $result = array_merge($result,
-                        tep_opendir($path.$filename));
+                    $result = array_merge($result, tep_opendir($path.$filename));
                 }
             }
         }
@@ -50,8 +49,7 @@ $languages_array = array();
 $languages       = tep_get_languages();
 $lng_exists      = false;
 for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-    if ($languages[$i]['directory'] == $_GET['lngdir'])
-            $lng_exists = true;
+    if ($languages[$i]['directory'] == $_GET['lngdir']) $lng_exists = true;
 
     $languages_array[] = array('id' => $languages[$i]['directory'],
         'text' => $languages[$i]['name']);
@@ -97,14 +95,17 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <tr>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr><?php echo tep_draw_form('lng', FILENAME_DEFINE_LANGUAGE,
-    '', 'get'); ?>
+    '', 'get');
+?>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    '1', HEADING_IMAGE_HEIGHT); ?></td>
-                    <td class="pageHeading" align="right"><?php echo tep_draw_pull_down_menu('lngdir',
-                    $languages_array, $_GET['lngdir'],
-                    'onchange="this.form.submit();"'); ?></td>
-                <?php echo tep_hide_session_id(); ?></form></tr>
+                        '1', HEADING_IMAGE_HEIGHT);
+?></td>
+                    <td class="pageHeading" align="right"><?php
+                        echo tep_draw_pull_down_menu('lngdir', $languages_array,
+                            $_GET['lngdir'], 'onchange="this.form.submit();"');
+                        ?></td>
+<?php echo tep_hide_session_id(); ?></form></tr>
             </table></td>
     </tr>
     <tr>
@@ -126,40 +127,49 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             echo $messageStack->output();
                         }
                         ?>
-                        <tr><?php echo tep_draw_form('language',
-                            FILENAME_DEFINE_LANGUAGE,
-                            'lngdir='.$_GET['lngdir'].'&filename='.$_GET['filename'].'&action=save'); ?>
+                        <tr><?php
+                            echo tep_draw_form('language',
+                                FILENAME_DEFINE_LANGUAGE,
+                                'lngdir='.$_GET['lngdir'].'&filename='.$_GET['filename'].'&action=save');
+                            ?>
                             <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
                                     <tr>
                                         <td class="main"><strong><?php echo $_GET['filename']; ?></strong></td>
                                     </tr>
                                     <tr>
-                                        <td class="main"><?php echo tep_draw_textarea_field('file_contents',
-                            'soft', '80', '25', $contents,
-                            (($file_writeable) ? '' : 'readonly').' style="width: 100%;"'); ?></td>
+                                        <td class="main"><?php
+                            echo tep_draw_textarea_field('file_contents',
+                                'soft', '80', '25', $contents,
+                                (($file_writeable) ? '' : 'readonly').' style="width: 100%;"');
+                            ?></td>
                                     </tr>
                                     <tr>
                                         <td><?php echo tep_draw_separator('pixel_trans.gif',
-                            '1', '10'); ?></td>
+                                        '1', '10');
+                            ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="smallText" align="right"><?php if ($file_writeable
-                    == true) {
-                    echo tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
-                        'close',
-                        tep_href_link(FILENAME_DEFINE_LANGUAGE,
-                            'lngdir='.$_GET['lngdir']));
-                } else {
-                    echo tep_draw_button(IMAGE_BACK, 'arrow-1-w',
-                        tep_href_link(FILENAME_DEFINE_LANGUAGE,
-                            'lngdir='.$_GET['lngdir']));
-                } ?></td>
+                                        <td class="smallText" align="right"><?php
+                                            if ($file_writeable == true) {
+                                                echo tep_draw_button(IMAGE_SAVE,
+                                                    'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
+                                                    'close',
+                                                    tep_href_link(FILENAME_DEFINE_LANGUAGE,
+                                                        'lngdir='.$_GET['lngdir']));
+                                            } else {
+                                                echo tep_draw_button(IMAGE_BACK,
+                                                    'arrow-1-w',
+                                                    tep_href_link(FILENAME_DEFINE_LANGUAGE,
+                                                        'lngdir='.$_GET['lngdir']));
+                                            }
+                                            ?></td>
                                     </tr>
                                 </table></td>
                             </form></tr>
                         <tr>
                             <td><?php echo tep_draw_separator('pixel_trans.gif', '1',
-                    '10'); ?></td>
+                                                '10');
+                                            ?></td>
                         </tr>
                         <tr>
                             <td class="main"><?php echo TEXT_EDIT_NOTE; ?></td>
@@ -172,20 +182,22 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         </tr>
                         <tr>
                             <td><?php echo tep_draw_separator('pixel_trans.gif', '1',
-            '10'); ?></td>
+                            '10');
+        ?></td>
                         </tr>
                         <tr>
-                            <td><?php echo tep_draw_button(IMAGE_BACK, 'arrow-1-w',
-                                tep_href_link(FILENAME_DEFINE_LANGUAGE,
-                                    'lngdir='.$_GET['lngdir'])); ?></td>
+                            <td><?php
+                echo tep_draw_button(IMAGE_BACK, 'arrow-1-w',
+                    tep_href_link(FILENAME_DEFINE_LANGUAGE,
+                        'lngdir='.$_GET['lngdir']));
+                ?></td>
                         </tr>
-                                    <?php
-                                }
-                            } else {
-                                $filename       = $_GET['lngdir'].'.php';
-                                $file_extension = substr($PHP_SELF,
-                                    strrpos($PHP_SELF, '.'));
-                                ?>
+        <?php
+    }
+} else {
+    $filename       = $_GET['lngdir'].'.php';
+    $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+    ?>
                     <tr>
                         <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
                                 <tr class="dataTableHeadingRow">
@@ -195,28 +207,33 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 </tr>
                                 <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)">
                                     <td class="dataTableContent"><a href="<?php echo tep_href_link(FILENAME_DEFINE_LANGUAGE,
-        'lngdir='.$_GET['lngdir'].'&filename='.$filename); ?>"><strong><?php echo $filename; ?></strong></a></td>
+                                'lngdir='.$_GET['lngdir'].'&filename='.$filename);
+    ?>"><strong><?php echo $filename; ?></strong></a></td>
                                     <td class="dataTableContent" align="center"><?php echo tep_image(DIR_WS_IMAGES.'icons/'.((tep_is_writable(DIR_FS_CATALOG_LANGUAGES.$filename)
-        == true) ? 'tick.gif' : 'cross.gif')); ?></td>
+                                == true) ? 'tick.gif' : 'cross.gif'));
+    ?></td>
                                     <td class="dataTableContent" align="right"><?php echo strftime(DATE_TIME_FORMAT,
-        filemtime(DIR_FS_CATALOG_LANGUAGES.$filename)); ?></td>
+                                filemtime(DIR_FS_CATALOG_LANGUAGES.$filename));
+    ?></td>
                                 </tr>
-    <?php
-    foreach (tep_opendir(DIR_FS_CATALOG_LANGUAGES.$_GET['lngdir']) as $file) {
-        if (substr($file['name'], strrpos($file['name'], '.')) == $file_extension) {
-            $filename = substr($file['name'], strlen(DIR_FS_CATALOG_LANGUAGES));
+                                <?php
+                                foreach (tep_opendir(DIR_FS_CATALOG_LANGUAGES.$_GET['lngdir']) as $file) {
+                                    if (substr($file['name'],
+                                            strrpos($file['name'], '.')) == $file_extension) {
+                                        $filename = substr($file['name'],
+                                            strlen(DIR_FS_CATALOG_LANGUAGES));
 
-            echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)">'.
-            '                <td class="dataTableContent"><a href="'.tep_href_link(FILENAME_DEFINE_LANGUAGE,
-                'lngdir='.$_GET['lngdir'].'&filename='.$filename).'">'.substr($filename,
-                strlen($_GET['lngdir'].'/')).'</a></td>'.
-            '                <td class="dataTableContent" align="center">'.tep_image(DIR_WS_IMAGES.'icons/'.(($file['writable']
-                == true) ? 'tick.gif' : 'cross.gif')).'</td>'.
-            '                <td class="dataTableContent" align="right">'.$file['last_modified'].'</td>'.
-            '              </tr>';
-        }
-    }
-    ?>
+                                        echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)">'.
+                                        '                <td class="dataTableContent"><a href="'.tep_href_link(FILENAME_DEFINE_LANGUAGE,
+                                            'lngdir='.$_GET['lngdir'].'&filename='.$filename).'">'.substr($filename,
+                                            strlen($_GET['lngdir'].'/')).'</a></td>'.
+                                        '                <td class="dataTableContent" align="center">'.tep_image(DIR_WS_IMAGES.'icons/'.(($file['writable']
+                                            == true) ? 'tick.gif' : 'cross.gif')).'</td>'.
+                                        '                <td class="dataTableContent" align="right">'.$file['last_modified'].'</td>'.
+                                        '              </tr>';
+                                    }
+                                }
+                                ?>
                     </tr>
                 </table></td>
         </tr>

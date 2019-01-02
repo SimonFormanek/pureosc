@@ -38,9 +38,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <div class="page-header">
         <div style="float:left"><h1><?php echo $articles_name; ?></h1></div>
         <?php if (tep_not_null($article_info['articles_image']) && file_exists(DIR_WS_IMAGES.'article_manager_uploads/'.$article_info['articles_image'])) { ?>
-            <div style="float:right"><?php echo tep_image(DIR_WS_IMAGES.'article_manager_uploads/'.$article_info['articles_image'],
-                $article_info['articles_name'], ARTICLES_IMAGE_WIDTH,
-                ARTICLES_IMAGE_HEIGHT); ?></div>
+            <div style="float:right"><?php
+                echo tep_image(DIR_WS_IMAGES.'article_manager_uploads/'.$article_info['articles_image'],
+                    $article_info['articles_name'], ARTICLES_IMAGE_WIDTH,
+                    ARTICLES_IMAGE_HEIGHT);
+                ?></div>
     <?php } ?>
     </div>
     <div class="smallText" style="clear:both; margin:5px 0">
@@ -66,34 +68,37 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <?php echo stripslashes($article_info['articles_description']); ?>
         </div>
 
-        <?php if (tep_not_null($article_info['articles_url'])) { ?>
+            <?php if (tep_not_null($article_info['articles_url'])) { ?>
             <div class="articlePadding"><?php echo sprintf(TEXT_MORE_INFORMATION,
-            "http://".urlencode($article_info['articles_url'])); ?></div>
+            "http://".urlencode($article_info['articles_url']));
+                ?></div>
             <?php
         }
         if (DISPLAY_DATE_ADDED_ARTICLE_LISTING == 'true') {
             if ($article_info['articles_date_available'] > date('Y-m-d H:i:s')) {
                 ?>
                 <div class="articlePadding"><?php echo sprintf(TEXT_DATE_AVAILABLE,
-                tep_date_long($article_info['articles_date_available'])); ?></div>
+                tep_date_long($article_info['articles_date_available']));
+            ?></div>
             <?php } else {
-            ?>
+                ?>
                 <div class="articlePadding"><?php echo sprintf(TEXT_DATE_ADDED,
-                tep_date_long($article_info['articles_date_added'])); ?></div>
+                tep_date_long($article_info['articles_date_added']));
+                ?></div>
                     <?php
                 }
             }
             ?>       
 
         <div class="articlePadding">
-    <?php
-    //added for cross-sell
-    if ((USE_CACHE == 'true') && !SID) {
-        include(DIR_WS_MODULES.FILENAME_ARTICLES_XSELL);
-    } else {
-        include(DIR_WS_MODULES.FILENAME_ARTICLES_XSELL);
-    }
-    ?>
+            <?php
+            //added for cross-sell
+            if ((USE_CACHE == 'true') && !SID) {
+                include(DIR_WS_MODULES.FILENAME_ARTICLES_XSELL);
+            } else {
+                include(DIR_WS_MODULES.FILENAME_ARTICLES_XSELL);
+            }
+            ?>
         </div>
 
         <!--- BEGIN Header Tags SEO Social Bookmarks -->
@@ -108,7 +113,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
         <div class="buttonSet">
             <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,
-        'glyphicon glyphicon-chevron-right', tep_href_link(FILENAME_DEFAULT)); ?></div>
+        'glyphicon glyphicon-chevron-right', tep_href_link(FILENAME_DEFAULT));
+    ?></div>
         </div>
     </div>
 <?php } ?>

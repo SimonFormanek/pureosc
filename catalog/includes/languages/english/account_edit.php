@@ -8,12 +8,13 @@
   Copyright (c) 2003 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
-define('NAVBAR_TITLE_1', 'My Account',true);
-define('NAVBAR_TITLE_2', 'Edit Account',true);
+define('NAVBAR_TITLE_1', 'My Account', true);
+define('NAVBAR_TITLE_2', 'Edit Account', true);
 
-define('HEADING_TITLE', 'My Account Information',true);
+define('HEADING_TITLE', 'My Account Information', true);
 
-define('SUCCESS_ACCOUNT_UPDATED', 'Your account has been successfully updated.',true);
+define('SUCCESS_ACCOUNT_UPDATED', 'Your account has been successfully updated.',
+    true);
 

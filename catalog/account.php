@@ -54,14 +54,14 @@ if ($messageStack->size('account') > 0) {
                 }
             }
             ?>    <ul class="accountLinkList">
-                <li><span class="ui-icon ui-icon-mail-closed accountLinkListEntry"></span><?php echo '<a href="'.tep_href_link(FILENAME_GV_SEND,
-                '', 'SSL').'">'.CCGV_SENDVOUCHER.'</a>';
-            ?></li>
-                <li><span class="ui-icon ui-icon-heart accountLinkListEntry"></span><?php echo '<a href="'.tep_href_link(FILENAME_GV_FAQ,
-                        '', 'SSL').'">'.CCGV_FAQ.'</a>';
-            ?></li>  
+                <li><span class="ui-icon ui-icon-mail-closed accountLinkListEntry"></span><?php
+                    echo '<a href="'.tep_href_link(FILENAME_GV_SEND, '', 'SSL').'">'.CCGV_SENDVOUCHER.'</a>';
+                    ?></li>
+                <li><span class="ui-icon ui-icon-heart accountLinkListEntry"></span><?php
+                    echo '<a href="'.tep_href_link(FILENAME_GV_FAQ, '', 'SSL').'">'.CCGV_FAQ.'</a>';
+                    ?></li>  
             </ul>
-<?php /* * * EOF alteration for CCGV ** */ ?>
+            <?php /*             * * EOF alteration for CCGV ** */ ?>
         </div>
     </div>
 </div>

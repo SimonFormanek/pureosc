@@ -8,8 +8,8 @@
   Copyright (c) 2013 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 
-define('NAVBAR_TITLE', 'Ofertas',true);
-define('HEADING_TITLE', '¡Adquierelas mientras están calientes!',true);
+define('NAVBAR_TITLE', 'Ofertas', true);
+define('HEADING_TITLE', '¡Adquierelas mientras están calientes!', true);
 ?>

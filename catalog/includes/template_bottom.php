@@ -8,38 +8,38 @@
   Copyright (c) 2010 osCommerce
 
   Released under the GNU General Public License
-*/
+ */
 ?>
 
-      </div> <!-- bodyContent //-->
+</div> <!-- bodyContent //-->
 
 <?php
-  if ($oscTemplate->hasBlocks('boxes_column_left')) {
-?>
+if ($oscTemplate->hasBlocks('boxes_column_left')) {
+    ?>
 
-      <div id="columnLeft" class="col-md-<?php echo $oscTemplate->getGridColumnWidth(); ?>  col-md-pull-<?php echo $oscTemplate->getGridContentWidth(); ?>">
+    <div id="columnLeft" class="col-md-<?php echo $oscTemplate->getGridColumnWidth(); ?>  col-md-pull-<?php echo $oscTemplate->getGridContentWidth(); ?>">
         <?php echo $oscTemplate->getBlocks('boxes_column_left'); ?>
-      </div>
+    </div>
 
-<?php
-  }
+    <?php
+}
 
-  if ($oscTemplate->hasBlocks('boxes_column_right')) {
-?>
+if ($oscTemplate->hasBlocks('boxes_column_right')) {
+    ?>
 
-      <div id="columnRight" class="col-md-<?php echo $oscTemplate->getGridColumnWidth(); ?>">
+    <div id="columnRight" class="col-md-<?php echo $oscTemplate->getGridColumnWidth(); ?>">
         <?php echo $oscTemplate->getBlocks('boxes_column_right'); ?>
-      </div>
+    </div>
 
-<?php
-  }
+    <?php
+}
 ?>
 
-    </div> <!-- row -->
+</div> <!-- row -->
 
-  </div> <!-- bodyWrapper //-->
+</div> <!-- bodyWrapper //-->
 
-  <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
+<?php require(DIR_WS_INCLUDES.'footer.php'); ?>
 
 <script src="ext/bootstrap/js/bootstrap.min.js"></script>
 <?php echo $oscTemplate->getBlocks('footer_scripts'); ?>

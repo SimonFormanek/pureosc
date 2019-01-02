@@ -30,8 +30,7 @@ function tep_opendir($path)
                 $result[] = $file;
 
                 if ($file['is_dir'] == true) {
-                    $result = array_merge($result,
-                        tep_opendir($path.$filename));
+                    $result = array_merge($result, tep_opendir($path.$filename));
                 }
             }
         }
@@ -67,7 +66,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -86,12 +86,16 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     ?>
                                     <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)">
                                         <td class="dataTableContent"><?php echo substr($file['name'],
-                                        strlen(DIR_FS_CATALOG)); ?></td>
+                                strlen(DIR_FS_CATALOG));
+                                    ?></td>
                                         <td class="dataTableContent" align="center"><?php echo tep_image(DIR_WS_IMAGES.'icons/'.(($file['writable']
-                                        == true) ? 'tick.gif' : 'cross.gif')); ?></td>
-                                        <td class="dataTableContent" align="center"><?php echo tep_image(DIR_WS_IMAGES.'icons/'.(in_array(substr($file['name'],
-                                        strlen(DIR_FS_CATALOG)),
-                                    $whitelist_array) ? 'tick.gif' : 'cross.gif')); ?></td>
+                                        == true) ? 'tick.gif' : 'cross.gif'));
+                                    ?></td>
+                                        <td class="dataTableContent" align="center"><?php
+                                    echo tep_image(DIR_WS_IMAGES.'icons/'.(in_array(substr($file['name'],
+                                                strlen(DIR_FS_CATALOG)),
+                                            $whitelist_array) ? 'tick.gif' : 'cross.gif'));
+                                    ?></td>
                                     </tr>
         <?php
     }

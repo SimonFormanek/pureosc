@@ -55,7 +55,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -67,13 +68,16 @@ require(DIR_WS_INCLUDES.'template_top.php');
     </tr>
     <tr>
         <td><?php echo tep_draw_form('logo', FILENAME_STORE_LOGO,
-    'action=save', 'post', 'enctype="multipart/form-data"'); ?>
+                            'action=save', 'post',
+                            'enctype="multipart/form-data"');
+?>
             <table border="0" cellspacing="0" cellpadding="2">
                 <tr>
                     <td class="main" valign="top"><?php echo TEXT_LOGO_IMAGE; ?></td>
                     <td class="main"><?php echo tep_draw_file_field('store_logo'); ?></td>
                     <td class="smallText"><?php echo tep_draw_button(IMAGE_SAVE,
-    'disk', null, 'primary'); ?></td>
+                            'disk', null, 'primary');
+?></td>
                 </tr>
             </table>
             </form></td>

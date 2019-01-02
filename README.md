@@ -12,6 +12,14 @@ Features
  * FlexiBee - accunting Software support
  * Static Catalog (no zero point of failure)
 
+FlexiBee support
+----------------
+
+ * Bank Payment
+ * CashDesk Paymet
+ * Card Payment by GPWebPay
+ * Post Money Order Payment
+
 Whats new
 ---------
 

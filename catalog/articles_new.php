@@ -30,7 +30,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 </tr>
                 <tr>
                     <td><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+    '100%', '10');
+?></td>
                 </tr>
                 <?php
                 $articles_new_array = array();

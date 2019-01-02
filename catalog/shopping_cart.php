@@ -38,7 +38,8 @@ if ($messageStack->size('product_action') > 0) {
 if ($cart->count_contents() > 0) {
     ?>
 
-    <?php echo tep_draw_form('cart_quantity',
+    <?php
+    echo tep_draw_form('cart_quantity',
         tep_href_link(FILENAME_SHOPPING_CART, 'action=update_product'));
     ?>
 
@@ -193,9 +194,9 @@ if ($cart->count_contents() > 0) {
     </div>
 
     <p class="text-right"><?php
-    echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
-        tep_href_link(FILENAME_DEFAULT), 'primary', NULL, 'btn-danger');
-    ?></p>
+        echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
+            tep_href_link(FILENAME_DEFAULT), 'primary', NULL, 'btn-danger');
+        ?></p>
 
     <?php
 }

@@ -44,8 +44,7 @@ if (tep_not_null($action)) {
 
 
                 tep_redirect(tep_href_link(FILENAME_MM_TEMPLATES,
-                        (isset($_GET['page']) ? 'page='.$_GET['page'].'&'
-                                : '').'nID='.$template_id));
+                        (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').'nID='.$template_id));
             } else {
                 $action = 'new';
             }
@@ -72,7 +71,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-        HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -103,56 +103,68 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <tr>
             <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
         </tr>
-        <tr><?php echo tep_draw_form('newsletter', FILENAME_MM_TEMPLATES,
-            (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').'action='.$form_action);
-        if ($form_action == 'update') echo tep_draw_hidden_field('template_id',
-                $nID); ?>
+        <tr><?php
+            echo tep_draw_form('newsletter', FILENAME_MM_TEMPLATES,
+                (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').'action='.$form_action);
+            if ($form_action == 'update')
+                    echo tep_draw_hidden_field('template_id', $nID);
+            ?>
             <td><table border="0" cellspacing="0" cellpadding="2">
 
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-            '1', '10'); ?></td>
+                '1', '10');
+            ?></td>
                     </tr>
                     <tr>
                         <td class="main"><?php echo TEXT_TEMPLATE_TITLE; ?></td>
                         <td class="main"><?php echo tep_draw_input_field('title',
-            $nInfo->title, '', true); ?></td>
+                $nInfo->title, '', true);
+            ?></td>
                     </tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-            '1', '10'); ?></td>
+                '1', '10');
+            ?></td>
                     </tr>
                     <tr>
                         <td class="main" valign="top"><?php echo TEXT_TEMPLATE_HTMLHEADER; ?></td>
                         <td class="main"><?php echo tep_draw_textarea_field('htmlheader',
-            'soft', '100%', '20', $nInfo->htmlheader); ?></td>
+                'soft', '100%', '20', $nInfo->htmlheader);
+            ?></td>
                     </tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-            '1', '10'); ?></td>
+                '1', '10');
+            ?></td>
                     </tr>
                     <tr>
                         <td class="main" valign="top"><?php echo TEXT_TEMPLATE_HTMLFOOTER; ?></td>
                         <td class="main"><?php echo tep_draw_textarea_field('htmlfooter',
-            'soft', '100%', '20', $nInfo->htmlfooter); ?></td>
+                'soft', '100%', '20', $nInfo->htmlfooter);
+            ?></td>
                     </tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-            '1', '10'); ?></td>
+                '1', '10');
+            ?></td>
                     </tr>
                     <tr>
                         <td class="main" valign="top"><?php echo TEXT_TEMPLATE_TXTHEADER; ?></td>
                         <td class="main"><?php echo tep_draw_textarea_field('txtheader',
-            'soft', '100%', '20', $nInfo->txtheader); ?></td>
+                'soft', '100%', '20', $nInfo->txtheader);
+            ?></td>
                     </tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-            '20', '20'); ?></td>
+                            '20', '20');
+                        ?></td>
                     </tr>
                     <tr>
                         <td class="main" valign="top"><?php echo TEXT_TEMPLATE_TXTFOOTER; ?></td>
                         <td class="main"><?php echo tep_draw_textarea_field('txtfooter',
-            'soft', '100%', '20', $nInfo->txtfooter); ?></td>
+                            'soft', '100%', '20', $nInfo->txtfooter);
+                        ?></td>
                     </tr>
                 </table></td>
         </tr>
@@ -163,49 +175,53 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <td>
                 <table border="0" width="100%" cellspacing="0" cellpadding="2">
                     <tr>
-                        <td class="main" align="right"><?php echo (($form_action == 'insert')
-            ? tep_image_submit('button_save.gif', IMAGE_SAVE) : tep_image_submit('button_update.gif',
-            IMAGE_UPDATE)).tep_draw_button(IMAGE_CANCEL, 'cancel',
-        tep_href_link(FILENAME_MM_TEMPLATES,
-            'page='.$_GET['page'].'&nID='.$_GET['nID'])); ?></td>
+                        <td class="main" align="right"><?php
+        echo (($form_action == 'insert') ? tep_image_submit('button_save.gif',
+                IMAGE_SAVE) : tep_image_submit('button_update.gif', IMAGE_UPDATE)).tep_draw_button(IMAGE_CANCEL,
+            'cancel',
+            tep_href_link(FILENAME_MM_TEMPLATES,
+                'page='.$_GET['page'].'&nID='.$_GET['nID']));
+        ?></td>
                     </tr>
                 </table>
             </td>
             </form>
         </tr>
-        <?php
-    } elseif ($action == 'preview') {
-        $nID = tep_db_prepare_input($_GET['nID']);
+                <?php
+            } elseif ($action == 'preview') {
+                $nID = tep_db_prepare_input($_GET['nID']);
 
-        $newsletter_query = tep_db_query("select title, htmlheader, htmlfooter, txtheader, txtfooter from ".TABLE_MM_TEMPLATES." where template_id = '".(int) $nID."'");
-        $newsletter       = tep_db_fetch_array($newsletter_query);
+                $newsletter_query = tep_db_query("select title, htmlheader, htmlfooter, txtheader, txtfooter from ".TABLE_MM_TEMPLATES." where template_id = '".(int) $nID."'");
+                $newsletter       = tep_db_fetch_array($newsletter_query);
 
-        // compile preview mailpiece
-        $output_content_html = $newsletter['htmlheader'].'
+                // compile preview mailpiece
+                $output_content_html = $newsletter['htmlheader'].'
 			<table cellpadding="10" cellspacing="10"><tr><td class="main"><br /><h1>Preview Content</h1> Go to admin/mm_templates.php line about 183 to edit this text.<br />
 			This is just demonstation text for the template preview, and serves to show how this template will incorporate your real content. It appears only in the admin 
 			preview, and does not appear in the email sent.<br /><br /></td></tr></table>'
-            .$newsletter['htmlfooter'];
-        ?>
-        <tr><td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_BACK,
-            'triangle-1-w',
+                    .$newsletter['htmlfooter'];
+                ?>
+        <tr><td class="smallText" align="right"><?php
+        echo tep_draw_button(IMAGE_BACK, 'triangle-1-w',
             tep_href_link(FILENAME_MM_TEMPLATES,
-                'page='.$_GET['page'].'&nID='.$_GET['nID'])); ?></td></tr>	
+                'page='.$_GET['page'].'&nID='.$_GET['nID']));
+        ?></td></tr>	
         <tr><td><?php echo $output_content_html; ?></td></tr>
-        <tr><td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_BACK,
-            'triangle-1-w',
-            tep_href_link(FILENAME_MM_TEMPLATES,
-                'page='.$_GET['page'].'&nID='.$_GET['nID'])); ?></td></tr>	  
-                                <?php
-                            } elseif ($action == 'confirm') {
-                                $nID = tep_db_prepare_input($_GET['nID']);
+        <tr><td class="smallText" align="right"><?php
+    echo tep_draw_button(IMAGE_BACK, 'triangle-1-w',
+        tep_href_link(FILENAME_MM_TEMPLATES,
+            'page='.$_GET['page'].'&nID='.$_GET['nID']));
+    ?></td></tr>	  
+    <?php
+} elseif ($action == 'confirm') {
+    $nID = tep_db_prepare_input($_GET['nID']);
 
-                                $newsletter_query = tep_db_query("select title, htmlheader, htmlfooter, txtheader, txtfooter from ".TABLE_MM_TEMPLATES." where template_id = '".(int) $nID."'");
-                                $newsletter       = tep_db_fetch_array($newsletter_query);
+    $newsletter_query = tep_db_query("select title, htmlheader, htmlfooter, txtheader, txtfooter from ".TABLE_MM_TEMPLATES." where template_id = '".(int) $nID."'");
+    $newsletter       = tep_db_fetch_array($newsletter_query);
 
-                                $nInfo = new objectInfo($newsletter);
-                            } else {
-                                ?>
+    $nInfo = new objectInfo($newsletter);
+} else {
+    ?>
         <tr><td colspan="2" align="right"></td></tr>
         <tr>
             <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
@@ -217,115 +233,130 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
                                     <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
                                 </tr>
-    <?php
-    $templates_query_raw = "select template_id, title, htmlfooter, txtheader, txtfooter, length(htmlheader) as content_length from ".TABLE_MM_TEMPLATES." order by template_id desc";
-    $templates_split     = new splitPageResults($_GET['page'],
-        MAX_DISPLAY_SEARCH_RESULTS, $templates_query_raw,
-        $templates_query_numrows);
-    $templates_query     = tep_db_query($templates_query_raw);
-    while ($template            = tep_db_fetch_array($templates_query)) {
-        if ((!isset($_GET['nID']) || (isset($_GET['nID']) && ($_GET['nID']
-            == $template['template_id']))) && !isset($nInfo) && (substr($action,
-                0, 3) != 'new')) {
-            $nInfo = new objectInfo($template);
-        }
+                                <?php
+                                $templates_query_raw = "select template_id, title, htmlfooter, txtheader, txtfooter, length(htmlheader) as content_length from ".TABLE_MM_TEMPLATES." order by template_id desc";
+                                $templates_split     = new splitPageResults($_GET['page'],
+                                    MAX_DISPLAY_SEARCH_RESULTS,
+                                    $templates_query_raw,
+                                    $templates_query_numrows);
+                                $templates_query     = tep_db_query($templates_query_raw);
+                                while ($template            = tep_db_fetch_array($templates_query)) {
+                                    if ((!isset($_GET['nID']) || (isset($_GET['nID'])
+                                        && ($_GET['nID'] == $template['template_id'])))
+                                        && !isset($nInfo) && (substr($action, 0,
+                                            3) != 'new')) {
+                                        $nInfo = new objectInfo($template);
+                                    }
 
-        if (isset($nInfo) && is_object($nInfo) && ($template['template_id'] == $nInfo->template_id)) {
-            echo '<tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_MM_TEMPLATES,
-                'page='.$_GET['page'].'&nID='.$nInfo->template_id.'&action=preview').'\'">'."\n";
-        } else {
-            echo '<tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_MM_TEMPLATES,
-                'page='.$_GET['page'].'&nID='.$template['template_id']).'\'">'."\n";
-        }
-        ?>
+                                    if (isset($nInfo) && is_object($nInfo) && ($template['template_id']
+                                        == $nInfo->template_id)) {
+                                        echo '<tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_MM_TEMPLATES,
+                                            'page='.$_GET['page'].'&nID='.$nInfo->template_id.'&action=preview').'\'">'."\n";
+                                    } else {
+                                        echo '<tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\''.tep_href_link(FILENAME_MM_TEMPLATES,
+                                            'page='.$_GET['page'].'&nID='.$template['template_id']).'\'">'."\n";
+                                    }
+                                    ?>
 
-                                    <td class="dataTableContent"><?php echo '<a href="'.tep_href_link(FILENAME_MM_TEMPLATES,
-            'page='.$_GET['page'].'&nID='.$template['template_id'].'&action=preview').'">'.tep_image(DIR_WS_ICONS.'preview.gif',
-            ICON_PREVIEW).'</a>&nbsp;'.$template['title']; ?></td>
+                                    <td class="dataTableContent"><?php
+                                    echo '<a href="'.tep_href_link(FILENAME_MM_TEMPLATES,
+                                        'page='.$_GET['page'].'&nID='.$template['template_id'].'&action=preview').'">'.tep_image(DIR_WS_ICONS.'preview.gif',
+                                        ICON_PREVIEW).'</a>&nbsp;'.$template['title'];
+                                    ?></td>
                                     <td class="dataTableContent" align="right"><?php echo number_format($template['content_length']).' bytes'; ?></td>
-                                    <td class="dataTableContent" align="right"><?php if (isset($nInfo)
-            && is_object($nInfo) && ($template['template_id'] == $nInfo->template_id)) {
-            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif', '');
-        } else {
-            echo '<a href="'.tep_href_link(FILENAME_MM_TEMPLATES,
-                'page='.$_GET['page'].'&nID='.$template['template_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                IMAGE_ICON_INFO).'</a>';
-        } ?>&nbsp;</td>
+                                    <td class="dataTableContent" align="right"><?php
+                                    if (isset($nInfo) && is_object($nInfo) && ($template['template_id']
+                                        == $nInfo->template_id)) {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                            '');
+                                    } else {
+                                        echo '<a href="'.tep_href_link(FILENAME_MM_TEMPLATES,
+                                            'page='.$_GET['page'].'&nID='.$template['template_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                            IMAGE_ICON_INFO).'</a>';
+                                    }
+                                    ?>&nbsp;</td>
                         </tr>
-                <?php
-            }
-            ?>
+        <?php
+    }
+    ?>
                     <tr>
                         <td colspan="3">
                             <table border="0" width="100%" cellspacing="0" cellpadding="2">
                                 <tr>
-                                    <td class="smallText" valign="top"><?php echo $templates_split->display_count($templates_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-            TEXT_DISPLAY_NUMBER_OF_NEWSLETTERS); ?></td>
-                                    <td class="smallText" align="right"><?php echo $templates_split->display_links($templates_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $_GET['page']); ?></td>
+                                    <td class="smallText" valign="top"><?php
+            echo $templates_split->display_count($templates_query_numrows,
+                MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
+                TEXT_DISPLAY_NUMBER_OF_NEWSLETTERS);
+            ?></td>
+                                    <td class="smallText" align="right"><?php
+            echo $templates_split->display_links($templates_query_numrows,
+                MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
+                $_GET['page']);
+            ?></td>
                                 </tr>
                                 <tr>
                                     <td>						
-    <?php echo tep_draw_button(IMAGE_BACK, 'triangle-1-w',
-        tep_href_link(FILENAME_MM_MAIL_MANAGER,
-            'page='.$_GET['page'].'&nID='.$_GET['nID'])); ?>
+            <?php
+            echo tep_draw_button(IMAGE_BACK, 'triangle-1-w',
+                tep_href_link(FILENAME_MM_MAIL_MANAGER,
+                    'page='.$_GET['page'].'&nID='.$_GET['nID']));
+            ?>
                                     </td>
                                     <td align="right">						
-    <?php echo tep_draw_button(IMAGE_NEW_TEMPLATE, 'plusthick',
-        tep_href_link(FILENAME_MM_TEMPLATES, 'action=new')); ?>
+            <?php echo tep_draw_button(IMAGE_NEW_TEMPLATE, 'plusthick',
+                tep_href_link(FILENAME_MM_TEMPLATES, 'action=new'));
+            ?>
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
                 </table></td>
-    <?php
-    $heading  = array();
-    $contents = array();
+            <?php
+            $heading  = array();
+            $contents = array();
 
-    switch ($action) {
-        case 'delete':
-            $heading[] = array('text' => '<b>'.$nInfo->title.'</b>');
+            switch ($action) {
+                case 'delete':
+                    $heading[] = array('text' => '<b>'.$nInfo->title.'</b>');
 
-            $contents   = array('form' => tep_draw_form('newsletters',
-                    FILENAME_MM_TEMPLATES,
-                    'page='.$_GET['page'].'&nID='.$nInfo->template_id.'&action=deleteconfirm'));
-            $contents[] = array('text' => TEXT_INFO_DELETE_INTROO);
-            $contents[] = array('text' => '<br><b>'.$nInfo->title.'</b>');
-            $contents[] = array('align' => 'center', 'text' => '<br>'.tep_image_submit('button_delete.gif',
-                    IMAGE_DELETE).' <a href="'.tep_href_link(FILENAME_MM_TEMPLATES,
-                    'page='.$_GET['page'].'&nID='.$_GET['nID']).'">'.tep_image_button('button_cancel.gif',
-                    IMAGE_CANCEL).'</a>');
-            break;
-        default:
-            if (is_object($nInfo)) {
-                $heading[] = array('text' => '<b>'.$nInfo->title.'</b>');
+                    $contents   = array('form' => tep_draw_form('newsletters',
+                            FILENAME_MM_TEMPLATES,
+                            'page='.$_GET['page'].'&nID='.$nInfo->template_id.'&action=deleteconfirm'));
+                    $contents[] = array('text' => TEXT_INFO_DELETE_INTROO);
+                    $contents[] = array('text' => '<br><b>'.$nInfo->title.'</b>');
+                    $contents[] = array('align' => 'center', 'text' => '<br>'.tep_image_submit('button_delete.gif',
+                            IMAGE_DELETE).' <a href="'.tep_href_link(FILENAME_MM_TEMPLATES,
+                            'page='.$_GET['page'].'&nID='.$_GET['nID']).'">'.tep_image_button('button_cancel.gif',
+                            IMAGE_CANCEL).'</a>');
+                    break;
+                default:
+                    if (is_object($nInfo)) {
+                        $heading[] = array('text' => '<b>'.$nInfo->title.'</b>');
 
-                $contents[] = array('align' => 'center', 'text' =>
-                    tep_draw_button(IMAGE_EDIT, 'document',
-                        tep_href_link(FILENAME_MM_TEMPLATES,
-                            'page='.$_GET['page'].'&nID='.$nInfo->template_id.'&action=new')).
-                    tep_draw_button(IMAGE_DELETE, 'trash',
-                        tep_href_link(FILENAME_MM_TEMPLATES,
-                            'page='.$_GET['page'].'&nID='.$nInfo->template_id.'&action=delete')).
-                    tep_draw_button(IMAGE_PREVIEW, 'circle-zoomout',
-                        tep_href_link(FILENAME_MM_TEMPLATES,
-                            'page='.$_GET['page'].'&nID='.$nInfo->template_id.'&action=preview')));
+                        $contents[] = array('align' => 'center', 'text' =>
+                            tep_draw_button(IMAGE_EDIT, 'document',
+                                tep_href_link(FILENAME_MM_TEMPLATES,
+                                    'page='.$_GET['page'].'&nID='.$nInfo->template_id.'&action=new')).
+                            tep_draw_button(IMAGE_DELETE, 'trash',
+                                tep_href_link(FILENAME_MM_TEMPLATES,
+                                    'page='.$_GET['page'].'&nID='.$nInfo->template_id.'&action=delete')).
+                            tep_draw_button(IMAGE_PREVIEW, 'circle-zoomout',
+                                tep_href_link(FILENAME_MM_TEMPLATES,
+                                    'page='.$_GET['page'].'&nID='.$nInfo->template_id.'&action=preview')));
+                    }
+                    break;
             }
-            break;
-    }
 
-    if ((tep_not_null($heading)) && (tep_not_null($contents))) {
-        echo '            <td width="25%" valign="top">'."\n";
+            if ((tep_not_null($heading)) && (tep_not_null($contents))) {
+                echo '            <td width="25%" valign="top">'."\n";
 
-        $box = new box;
-        echo $box->infoBox($heading, $contents);
+                $box = new box;
+                echo $box->infoBox($heading, $contents);
 
-        echo '            </td>'."\n";
-    }
-    ?>
+                echo '            </td>'."\n";
+            }
+            ?>
         </tr>
     </table></td>
     </tr>

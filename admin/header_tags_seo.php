@@ -628,13 +628,15 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                 ?>
                                                 <tr>
                                                     <td style="float:right"><table border="0" cellpadding="0"><tr>
-                                                                <td class="smallText" align="right" style="font-weight: bold; color: red;"><?php echo AnnounceVersion($contribPath,
-                                                    $currentVersion,
-                                                    $contribName); ?></td>
+                                                                <td class="smallText" align="right" style="font-weight: bold; color: red;"><?php
+                                                                    echo AnnounceVersion($contribPath,
+                                                                        $currentVersion,
+                                                                        $contribName);
+                                                                    ?></td>
                                                                 <td class="smallText" align="right" style="font-weight: bold; color: red;"><INPUT TYPE="radio" NAME="version_check_unreleased" onClick="window.open('http://www.oscommerce-solution.com/check_unreleased_updates.php?id=<?php echo $id; ?>&name=<?php echo $name; ?>')"><span style="vertical-align:top"><?php echo TEXT_VERSION_CHECK_UPDATES_UNRELEASED; ?></span></td>
                                                             </tr></table></td>                  
                                                 </tr>
-                                            <?php
+                                                <?php
                                             } else if (tep_not_null($versionStatus)) {
                                                 echo '<tr><td class="smallText" align="right" style="font-weight: bold; color: red;">'.$versionStatus.'</td></tr>';
                                             } else {
@@ -651,24 +653,31 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                 </tr>
                                                 </form>
     <?php }
-} else { ?>
+} else {
+    ?>
                                             <tr>
                                                 <td class="smallText" align="right" style="font-weight: bold; color: red;"><?php echo TEXT_MISSING_VERSION_CHECKER; ?></td>
                                             </tr>
-<?php } ?>
+                            <?php } ?>
                                     </table></td>
                             </tr>
-<?php $stats = GetQuickStats($missingArray); ?>
+                                    <?php $stats = GetQuickStats($missingArray); ?>
                             <tr>
                                 <td class="HTC_subHead" colspan="2" style="height:100px; vertical-align:top">
-<?php echo sprintf(TEXT_PAGE_TAGS, $stats['cat_desc'],
-    $stats['missing_c'], $stats['manu_desc'], $stats['missing_m'],
-    $stats['keywords_searched'], $stats['keywords_not_found'],
-    $stats['missing_p']); ?>
+                                    <?php
+                                    echo sprintf(TEXT_PAGE_TAGS,
+                                        $stats['cat_desc'], $stats['missing_c'],
+                                        $stats['manu_desc'],
+                                        $stats['missing_m'],
+                                        $stats['keywords_searched'],
+                                        $stats['keywords_not_found'],
+                                        $stats['missing_p']);
+                                    ?>
                                 </td>
                             </tr>
                             <tr><td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td></tr>       
+                                        '100%', '10');
+                                    ?></td></tr>       
                         </table></td>
                 </tr>
 
@@ -678,10 +687,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             <tr>
                                 <!-- begin left column new page -->
                                 <td align="right" width="60%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                                <?php echo tep_draw_form('header_tags',
-                                                                    FILENAME_HEADER_TAGS_SEO,
-                                                                    '', 'post').tep_draw_hidden_field('action',
-                                                                    'update'); ?>
+<?php
+echo tep_draw_form('header_tags', FILENAME_HEADER_TAGS_SEO, '', 'post').tep_draw_hidden_field('action',
+    'update');
+?>
                                         <tr>
                                             <td class="smallText" height="40" valign="top"><?php echo TEXT_INFORMATION_PAGES; ?></td>
                                         </tr>
@@ -694,41 +703,63 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                                     <td><table border="0" width="100%">
                                                                             <tr>
                                                                                 <td class="smallText" width="25%" style="font-weight: bold;"><?php echo HEADING_TITLE_SEO_PAGENAME; ?></td>
-                                                                                <td align="left"><?php echo tep_draw_pull_down_menu('new_files',
+                                                                                <td align="left"><?php
+                                                                echo tep_draw_pull_down_menu('new_files',
                                                                     $newfiles,
                                                                     '',
                                                                     'onChange="this.form.submit();"',
-                                                                    false); ?></td>
+                                                                    false);
+                                                                ?></td>
                                                                             <tr>             
                                                                         </table></td>
                                                                 </tr>          
-<?php
-if ($currentFile == SELECT_A_FILE || $currentFile == ADD_MISSING_PAGES) {  //don't display any boxes
-    $start = 0;
-    $stop  = 0;
-    $title = '';
-} else if ($currentFile == SHOW_ALL_FILES) { //display all boxes
-    $start = FIRST_PAGE_ENTRY;
-    $stop  = count($newfiles);
-} else {                                     //display the selected file
-    $start = $currentFile;
-    $stop  = $currentFile + 1;
-}
+                                                                <?php
+                                                                if ($currentFile
+                                                                    == SELECT_A_FILE
+                                                                    || $currentFile
+                                                                    == ADD_MISSING_PAGES) {  //don't display any boxes
+                                                                    $start = 0;
+                                                                    $stop  = 0;
+                                                                    $title = '';
+                                                                } else if ($currentFile
+                                                                    == SHOW_ALL_FILES) { //display all boxes
+                                                                    $start = FIRST_PAGE_ENTRY;
+                                                                    $stop  = count($newfiles);
+                                                                } else {                                     //display the selected file
+                                                                    $start = $currentFile;
+                                                                    $stop  = $currentFile
+                                                                        + 1;
+                                                                }
 
-$numbLanguages = count($languages);
-for ($x = $start; $x < $stop; ++$x) {    //show the correct boxes
-    for ($i = 0; $i < $numbLanguages; ++$i) { //show one for each language
-        $pageTags_query = tep_db_query("select page_title, page_description, page_keywords, page_logo, page_logo_1 as alt_1, append_category as opt_0, append_manufacturer as opt_1, append_model as opt_2, append_product as opt_3, append_root as opt_4, append_default_title as opt_5, append_default_description as opt_6, append_default_keywords as opt_7, append_default_logo as opt_8, sortorder_category as opt_9, sortorder_manufacturer as opt_10, sortorder_model as opt_11, sortorder_product as opt_12, sortorder_root as opt_13, sortorder_title as opt_14, sortorder_description as opt_15, sortorder_keywords as opt_16, sortorder_logo as opt_17 from ".TABLE_HEADERTAGS." where page_name like '".$newfiles[$x]['text']."' and language_id = '".(int) $languages[$i]['id']."' LIMIT 1");
-        $pageTags       = tep_db_fetch_array($pageTags_query);
+                                                                $numbLanguages = count($languages);
+                                                                for ($x = $start; $x
+                                                                    < $stop; ++$x) {    //show the correct boxes
+                                                                    for ($i = 0; $i
+                                                                        < $numbLanguages; ++$i) { //show one for each language
+                                                                        $pageTags_query
+                                                                            = tep_db_query("select page_title, page_description, page_keywords, page_logo, page_logo_1 as alt_1, append_category as opt_0, append_manufacturer as opt_1, append_model as opt_2, append_product as opt_3, append_root as opt_4, append_default_title as opt_5, append_default_description as opt_6, append_default_keywords as opt_7, append_default_logo as opt_8, sortorder_category as opt_9, sortorder_manufacturer as opt_10, sortorder_model as opt_11, sortorder_product as opt_12, sortorder_root as opt_13, sortorder_title as opt_14, sortorder_description as opt_15, sortorder_keywords as opt_16, sortorder_logo as opt_17 from ".TABLE_HEADERTAGS." where page_name like '".$newfiles[$x]['text']."' and language_id = '".(int) $languages[$i]['id']."' LIMIT 1");
+                                                                        $pageTags
+                                                                            = tep_db_fetch_array($pageTags_query);
 
-        if ($checkedKeywordLive[$i] == 'checked') {
-            $pageTags['page_keywords'] = $keywordStr;
-        }
+                                                                        if ($checkedKeywordLive[$i]
+                                                                            == 'checked') {
+                                                                            $pageTags['page_keywords']
+                                                                                = $keywordStr;
+                                                                        }
 
-        $id            = sprintf("%d_%d", $x, $languages[$i]['id']);  //build unique id
-        $id_toggle     = sprintf("%d%d", $x, $languages[$i]['id']);  //build unique id
-        $checked       = ($viewResult == $id_toggle) ? 'checked disabled' : '';
-        ?>            
+                                                                        $id            = sprintf("%d_%d",
+                                                                            $x,
+                                                                            $languages[$i]['id']);  //build unique id
+                                                                        $id_toggle
+                                                                            = sprintf("%d%d",
+                                                                            $x,
+                                                                            $languages[$i]['id']);  //build unique id
+                                                                        $checked
+                                                                            = ($viewResult
+                                                                            == $id_toggle)
+                                                                                ? 'checked disabled'
+                                                                                : '';
+                                                                        ?>            
                                                                         <tr>
                                                                             <td><table border="2" width="100%">
                                                                                     <tr>
@@ -755,7 +786,9 @@ for ($x = $start; $x < $stop; ++$x) {    //show the correct boxes
                                                                                                         <div style="float:left; width:100%;">
                                                                                                             <div style="float:left">
                                                                                                                 <input type="text" name="title_<?php echo $id; ?>" value="<?php echo ($pageTags['page_title'])
-                ? $pageTags['page_title'] : ''; ?>" maxlength="255" size="55" id="pagetitle_<?php echo $id_toggle; ?>"                             
+                                                                                                                       ? $pageTags['page_title']
+                                                                                                                       : '';
+                                                                        ?>" maxlength="255" size="55" id="pagetitle_<?php echo $id_toggle; ?>"                             
                                                                                                                        onkeyup="javascript:return ShowCharacterCount('<?php echo 'pagetitle_'.$id_toggle; ?>')">
                                                                                                             </div> 
                                                                                                             <div style="float:right;"><input type="text" disabled name="title_<?php echo $id.'_cnt'; ?>" id="pagetitle_<?php echo $id_toggle.'_cnt'; ?>" value="0" size="2" style=""></div>
@@ -767,9 +800,11 @@ for ($x = $start; $x < $stop; ++$x) {    //show the correct boxes
                                                                                                     <td class="smallText" title="<?php echo $commonPopup['desc']; ?>" class="popup" >
                                                                                                         <div style="float:left; width:100%;">
                                                                                                             <div style="float:left;">                        
-                                                                                                                <input type="text" name="desc_<?php echo $id; ?>" value="<?php echo ($pageTags['page_description'])
-                                                                                                            ? $pageTags['page_description']
-                                                                                                            : ''; ?>" maxlength="255" size="55" id="pagedesc_<?php echo $id_toggle; ?>" onkeyup="javascript:return ShowCharacterCount('<?php echo 'pagedesc_'.$id_toggle; ?>')">  
+                                                                                                                <input type="text" name="desc_<?php echo $id; ?>" value="<?php
+                                                                                                            echo ($pageTags['page_description'])
+                                                                                                                    ? $pageTags['page_description']
+                                                                                                                    : '';
+                                                                                                            ?>" maxlength="255" size="55" id="pagedesc_<?php echo $id_toggle; ?>" onkeyup="javascript:return ShowCharacterCount('<?php echo 'pagedesc_'.$id_toggle; ?>')">  
                                                                                                             </div> 
                                                                                                             <div style="float:right;"><input type="text" disabled name="desc_<?php echo $id.'_cnt'; ?>" id="pagedesc_<?php echo $id_toggle.'_cnt'; ?>" value=0 size="2" ></div>
                                                                                                         </div>                          
@@ -778,21 +813,27 @@ for ($x = $start; $x < $stop; ++$x) {    //show the correct boxes
                                                                                                 <tr>
                                                                                                     <td class="smallText" style="font-weight: bold;"><?php echo HEADING_TITLE_SEO_KEYWORDS; ?></td>
                                                                                                     <td class="smallText" title="<?php echo $commonPopup['keywords']; ?>" class="popup" >
-                                                                                                        <input type="text" name="keyword_<?php echo $id; ?>" value="<?php echo ($pageTags['page_keywords'])
-                                                                                                            ? $pageTags['page_keywords']
-                                                                                                            : ''; ?>" maxlength="255" size="60" id="keyword_<?php echo $id_toggle; ?>">
+                                                                                                        <input type="text" name="keyword_<?php echo $id; ?>" value="<?php
+                                                                                                            echo ($pageTags['page_keywords'])
+                                                                                                                    ? $pageTags['page_keywords']
+                                                                                                                    : '';
+                                                                                                            ?>" maxlength="255" size="60" id="keyword_<?php echo $id_toggle; ?>">
                                                                                                         <span title="<?php echo $commonPopup['keywords_live']; ?>" class="popup" ><input type="radio" name="keyword_live_<?php echo $id; ?>" <?php echo $checkedKeywordLive[$i]; ?> onClick="this.form.submit();"></span>
                                                                                                         <input type="hidden" name="keyword_live" value="clicked">
                                                                                                         <input type="hidden" name="keyword_live_status_<?php echo $id; ?>" value="<?php echo $checkedKeywordLive[$i]; ?>">
                                                                                                     </td>
                                                                                                 </tr>
-                                                                                                <tr style="background: <?php echo (tep_not_null($pageTags['alt_1'])
-                                                                                                                ? "#99ffff"
-                                                                                                                : white) ?>;">
+                                                                                                <tr style="background: <?php
+                                                                                                            echo (tep_not_null($pageTags['alt_1'])
+                                                                                                                    ? "#99ffff"
+                                                                                                                    : white)
+                                                                                                            ?>;">
                                                                                                     <td class="smallText" style="font-weight: bold;"><?php echo HEADING_TITLE_SEO_LOGO; ?></td>
-                                                                                                    <td class="smallText" title="<?php echo $commonPopup['logo']; ?>" class="popup" ><input type="text" name="logo_<?php echo $id; ?>" value="<?php echo ($pageTags['page_logo'])
-                                                                                                                ? $pageTags['page_logo']
-                                                                                                                : ''; ?>" maxlength="255" size="60" id="logo_<?php echo $id_toggle; ?>">
+                                                                                                    <td class="smallText" title="<?php echo $commonPopup['logo']; ?>" class="popup" ><input type="text" name="logo_<?php echo $id; ?>" value="<?php
+                                                                                                            echo ($pageTags['page_logo'])
+                                                                                                                    ? $pageTags['page_logo']
+                                                                                                                    : '';
+                                                                                                            ?>" maxlength="255" size="60" id="logo_<?php echo $id_toggle; ?>">
                                                                                                         <span title="<?php echo $commonPopup['logo_extra']; ?>" class="popup" ><input type="radio" name="logo_extra_<?php echo $id; ?>" <?php echo $addextraLogoText[$i]; ?> onClick="AddExtraLogoText('<?php echo $newfiles[$x]['text']; ?>', '<?php echo $languages[$i]['id']; ?>');"></span>
                                                                                                         <input type="hidden" name="logo_extra_text" value="clicked">
                                                                                                         <input type="hidden" name="logo_extra_status_<?php echo $id; ?>" value="<?php echo $logoExtraText[$i]; ?>">
@@ -801,86 +842,90 @@ for ($x = $start; $x < $stop; ++$x) {    //show the correct boxes
                                                                                                 <tr>
                                                                                                     <td class="smallText" style="font-weight: bold;"><?php echo HEADING_TITLE_SEO_OPTIONS; ?></td>
                                                                                                     <td class="smallText"><table border="2" width="100%">
-                                                                                                                <?php
-                                                                                                                $incrCheckNumb
-                                                                                                                    = count($optionPopup)
-                                                                                                                    / 3;
-                                                                                                                $incrSortNumb
-                                                                                                                    = count($optionPopup)
-                                                                                                                    - $incrCheckNumb;
-                                                                                                                $rows
-                                                                                                                    = floor(count($options)
-                                                                                                                        / 2)
-                                                                                                                    + 1;
-                                                                                                                for ($y
-                                                                                                                = 0; $y
-                                                                                                                    < $rows; ++$y) {
-                                                                                                                    $optTag
-                                                                                                                        = sprintf("opt_%d",
-                                                                                                                        $y);
-                                                                                                                    $sortoptTag
-                                                                                                                        = sprintf("opt_%d",
-                                                                                                                        $y
-                                                                                                                        + $incrCheckNumb);
-                                                                                                                    $checked
-                                                                                                                        = ($pageTags[$optTag]
-                                                                                                                        > 0)
-                                                                                                                            ? 'checked'
-                                                                                                                            : '';
-                                                                                                                    $disabled
-                                                                                                                        = ($pageTags[$sortoptTag]
-                                                                                                                        > 0)
-                                                                                                                            ? ''
-                                                                                                                            : 'disabled';
-                                                                                                                    $sortNumb
-                                                                                                                        = (tep_not_null($pageTags[$sortoptTag])
-                                                                                                                        && $pageTags[$sortoptTag]
-                                                                                                                        !== '0')
-                                                                                                                            ? $pageTags[$sortoptTag]
-                                                                                                                            : '';
-                                                                                                                    ?> 
+        <?php
+        $incrCheckNumb = count($optionPopup) / 3;
+        $incrSortNumb  = count($optionPopup) - $incrCheckNumb;
+        $rows          = floor(count($options) / 2) + 1;
+        for ($y = 0; $y < $rows; ++$y) {
+            $optTag     = sprintf("opt_%d", $y);
+            $sortoptTag = sprintf("opt_%d",
+                $y + $incrCheckNumb);
+            $checked    = ($pageTags[$optTag] > 0) ? 'checked' : '';
+            $disabled   = ($pageTags[$sortoptTag] > 0) ? '' : 'disabled';
+            $sortNumb   = (tep_not_null($pageTags[$sortoptTag]) && $pageTags[$sortoptTag]
+                !== '0') ? $pageTags[$sortoptTag] : '';
+            ?> 
                                                                                                                 <tr onMouseOver="this.style.backgroundColor = '#F0F0F0'" onMouseOut="this.style.backgroundColor = '#FFFFFF'" bgcolor="#FFFFFF">
                                                                                                                     <td><table border="0" style="border: ridge 1 px; width: 100%">
                                                                                                                             <tr>
                                                                                                                                 <td class="smallText" width="80%" title="<?php echo $optionPopup[$y]; ?>" class="popup"><?php echo $options[$y]; ?></td>
                                                                                                                                 <td align="left" width="10" align="right" title="<?php echo $optionPopup[$y
-                                                                                                                    + $incrCheckNumb]; ?>" class="popup"><input type="checkbox" name="option_<?php echo $y.'_'.$id; ?>" id="option_<?php echo $y.'_'.$id; ?>" <?php echo $checked; ?> onClick="UpdateSortOrder('<?php echo $y.'_'.$id; ?>');"></td>
+                                                                                                        + $incrCheckNumb];
+            ?>" class="popup"><input type="checkbox" name="option_<?php echo $y.'_'.$id; ?>" id="option_<?php echo $y.'_'.$id; ?>" <?php echo $checked; ?> onClick="UpdateSortOrder('<?php echo $y.'_'.$id; ?>');"></td>
                                                                                                                                 <td class="smallText" align="right" title="<?php echo $optionPopup[$y
-                                                                                                                    + $incrSortNumb]; ?>" class="popup"><?php echo tep_draw_input_field('sortoption_'.$y.'_'.$id,
-                                                                                                                        $sortNumb,
-                                                                                                                        'maxlength="2" size="1" '.$disabled.' id="'.$y.'_'.$id.'"'); ?> </td>
+                                                                                                        + $incrSortNumb];
+                                                                                                        ?>" class="popup"><?php
+                                                                                                                                    echo tep_draw_input_field('sortoption_'.$y.'_'.$id,
+                                                                                                                                        $sortNumb,
+                                                                                                                                        'maxlength="2" size="1" '.$disabled.' id="'.$y.'_'.$id.'"');
+                                                                                                                                    ?> </td>
                                                                                                                             </tr>
                                                                                                                         </table></td> 
-            <?php
-            if ($y < ($rows - 1)) {
-                $z          = $y + 5;
-                $optTag     = sprintf("opt_%d", $z);
-                $sortoptTag = sprintf("opt_%d", $z + $incrCheckNumb);
-                $checked    = ($pageTags[$optTag] > 0) ? 'checked' : '';
-                $disabled   = ($pageTags[$sortoptTag] > 0) ? '' : 'disabled';
-                $sortNumb   = (tep_not_null($pageTags[$sortoptTag]) && $pageTags[$sortoptTag]
-                    !== '0') ? $pageTags[$sortoptTag] : '';
-                ?>
+                                                                                                                    <?php
+                                                                                                                    if ($y
+                                                                                                                        < ($rows
+                                                                                                                        - 1)) {
+                                                                                                                        $z
+                                                                                                                            = $y
+                                                                                                                            + 5;
+                                                                                                                        $optTag
+                                                                                                                            = sprintf("opt_%d",
+                                                                                                                            $z);
+                                                                                                                        $sortoptTag
+                                                                                                                            = sprintf("opt_%d",
+                                                                                                                            $z
+                                                                                                                            + $incrCheckNumb);
+                                                                                                                        $checked
+                                                                                                                            = ($pageTags[$optTag]
+                                                                                                                            > 0)
+                                                                                                                                ? 'checked'
+                                                                                                                                : '';
+                                                                                                                        $disabled
+                                                                                                                            = ($pageTags[$sortoptTag]
+                                                                                                                            > 0)
+                                                                                                                                ? ''
+                                                                                                                                : 'disabled';
+                                                                                                                        $sortNumb
+                                                                                                                            = (tep_not_null($pageTags[$sortoptTag])
+                                                                                                                            && $pageTags[$sortoptTag]
+                                                                                                                            !== '0')
+                                                                                                                                ? $pageTags[$sortoptTag]
+                                                                                                                                : '';
+                                                                                                                        ?>
                                                                                                                         <td><table border="0" style="border: ridge 1 px; width: 100%">
                                                                                                                                 <tr>
                                                                                                                                     <td class="smallText" width="80%" title="<?php echo $optionPopup[$z]; ?>" class="popup"><?php echo $options[$z]; ?></td>
                                                                                                                                     <td align="left" width="10" align="right" title="<?php echo $optionPopup[$z
-                + $incrCheckNumb]; ?>" class="popup"><input type="checkbox" name="option_<?php echo $z.'_'.$id; ?>" id="option_<?php echo $z.'_'.$id; ?>" <?php echo $checked; ?> onClick="UpdateSortOrder('<?php echo $z.'_'.$id; ?>');"></td>
+                                                                                            + $incrCheckNumb];
+                                                                                            ?>" class="popup"><input type="checkbox" name="option_<?php echo $z.'_'.$id; ?>" id="option_<?php echo $z.'_'.$id; ?>" <?php echo $checked; ?> onClick="UpdateSortOrder('<?php echo $z.'_'.$id; ?>');"></td>
                                                                                                                                     <td class="smallText" align="right" title="<?php echo $optionPopup[$z
-                                                                            + $incrSortNumb]; ?>" class="popup"><?php echo tep_draw_input_field('sortoption_'.$z.'_'.$id,
-                                                                                $sortNumb,
-                                                                                'maxlength="2" size="1" '.$disabled.' id="'.$z.'_'.$id.'"'); ?> </td>
+                                                                                            + $incrSortNumb];
+                                                                                            ?>" class="popup"><?php
+                                                                                        echo tep_draw_input_field('sortoption_'.$z.'_'.$id,
+                                                                                            $sortNumb,
+                                                                                            'maxlength="2" size="1" '.$disabled.' id="'.$z.'_'.$id.'"');
+                                                                                        ?> </td>
                                                                                                                                 </tr>
                                                                                                                             </table></td> 
-            <?php } else { ?>
+                                                                            <?php } else { ?>
                                                                                                                         <td><table border="0" style="border: ridge 1 px; width: 70%">
                                                                                                                                 <tr>
                                                                                                                                     <td>&nbsp;</td>
                                                                                                                                 </tr>
                                                                                                                             </table></td> 
-            <?php } ?>
+                                                                            <?php } ?>
                                                                                                                 </tr>
-            <?php }
+        <?php }
         ?>
                                                                                                         </table></td>                        
                                                                                                 <tr>                                          
@@ -889,19 +934,23 @@ for ($x = $start; $x < $stop; ++$x) {    //show the correct boxes
                                                                                     <!-- View Result -->  
                                                                                     <tr>            
                                                                                         <td><table border="0" width="100%" id="<?php echo $id_toggle; ?>" style="display: <?php echo (($id_toggle
-        == $showMetaInfoItem) ? 'inline' : 'none'); ?>">
+        == $showMetaInfoItem) ? 'inline' : 'none');
+        ?>">
                                                                                                 <tr class="smallText" style="background: <?php echo (tep_not_null($shopsMetaInfo['title'])
-                ? yellow : red) ?>;">
+                ? yellow : red)
+        ?>;">
                                                                                                     <td  title="<?php echo $commonPopup['view_title_A']; ?>" class="popup" width="10%" style="color:#000; font-weight: bold;"><?php echo HEADING_TITLE_SEO_TITLE; ?></td>
                                                                                                     <td  title="<?php echo $commonPopup['view_title_B']; ?>" class="popup"><input type="text" name="title_viewed" value="<?php echo $shopsMetaInfo['title']; ?>" size="65" id="title_<?php echo $id_toggle; ?>_viewed"> </td>
                                                                                                 </tr> 
                                                                                                 <tr class="smallText" style="background: <?php echo (tep_not_null($shopsMetaInfo['description'][1])
-                ? yellow : red) ?>;">
+                ? yellow : red)
+        ?>;">
                                                                                                     <td title="<?php echo $commonPopup['view_desc_A']; ?>" class="popup" style="color:#000; font-weight: bold;"><?php echo HEADING_TITLE_SEO_DESCRIPTION; ?></td>
                                                                                                     <td title="<?php echo $commonPopup['view_desc_B']; ?>" class="popup"><input type="text" name="desc_viewed" value="<?php echo $shopsMetaInfo['description']; ?>" size="65" id="desc_<?php echo $id_toggle; ?>_viewed"> </td>
                                                                                                 </tr> 
                                                                                                 <tr class="smallText" style="background: <?php echo (tep_not_null($shopsMetaInfo['keywords'][1])
-                ? yellow : red) ?>;">
+                                                            ? yellow : red)
+                                                    ?>;">
                                                                                                     <td title="<?php echo $commonPopup['view_keywords_A']; ?>" class="popup" style="color:#000; font-weight: bold;"><?php echo HEADING_TITLE_SEO_KEYWORDS; ?></td>
                                                                                                     <td title="<?php echo $commonPopup['view_keywords_B']; ?>" class="popup"><input type="text" name="keyword_viewed" value="<?php echo $shopsMetaInfo['keywords']; ?>" size="65" id="keyword_<?php echo $id_toggle; ?>_viewed"> </td>
                                                                                                 <tr>
@@ -910,20 +959,25 @@ for ($x = $start; $x < $stop; ++$x) {    //show the correct boxes
                                                                                 </table></td>
                                                                         </tr>         
                                                                         <tr>
-                                                                            <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                                                                                                '100%',
-                                                                                                                '10'); ?></td>
+                                                                            <td><?php
+                                                                            echo tep_draw_separator('pixel_trans.gif',
+                                                                                '100%',
+                                                                                '10');
+                                                                            ?></td>
                                                                         </tr>
     <?php }
-} ?>     
+}
+?>     
 
-<?php if ($currentFile != SELECT_A_FILE && $currentFile != ADD_MISSING_PAGES
-    && count($newfiles) > FIRST_PAGE_ENTRY) { ?>
+<?php if ($currentFile != SELECT_A_FILE && $currentFile != ADD_MISSING_PAGES && count($newfiles)
+    > FIRST_PAGE_ENTRY) {
+    ?>
                                                                     <tr> 
                                                                         <td align="center"><?php echo (tep_image_submit('button_update.gif',
-        IMAGE_UPDATE) ).' <a href="'.tep_href_link(FILENAME_HEADER_TAGS_SEO, '').'">'.'</a>'; ?></td>
+        IMAGE_UPDATE) ).' <a href="'.tep_href_link(FILENAME_HEADER_TAGS_SEO, '').'">'.'</a>';
+    ?></td>
                                                                     </tr>
-                                                                                                                                            <?php } ?>  
+<?php } ?>  
                                                                 <tr>
                                                                     <td><?php echo tep_black_line(); ?></td>
                                                                 </tr>
@@ -941,9 +995,10 @@ for ($x = $start; $x < $stop; ++$x) {    //show the correct boxes
                                 <td align="right" width="40%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td align="right" width="40%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-<?php echo tep_draw_form('header_tags_default',
-    FILENAME_HEADER_TAGS_SEO, '', 'post').tep_draw_hidden_field('action',
-    'default'); ?>
+<?php
+echo tep_draw_form('header_tags_default', FILENAME_HEADER_TAGS_SEO, '', 'post').tep_draw_hidden_field('action',
+    'default');
+?>
                                                     <tr>
                                                         <td class="smallText" height="40" valign="top"><?php echo TEXT_INFORMATION_DEFAULT; ?></td>
                                                     </tr>          
@@ -952,13 +1007,19 @@ for ($x = $start; $x < $stop; ++$x) {    //show the correct boxes
                                                                 <tr>
                                                                     <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                                                                             <!-- BEGIN DEFAULT TAGS -->      
-<?php
-$numbLanguages = count($languages);
-for ($i = 0; $i < $numbLanguages; ++$i) { //show one for each language
-    $defaultTags_query = tep_db_query("select default_title, default_description, default_keywords, default_logo_text, home_page_text, default_logo_append_group as def_option_0, default_logo_append_category as def_option_1, default_logo_append_manufacturer as def_option_2, default_logo_append_product as def_option_3, meta_google as meta_0, meta_language as meta_1, meta_noodp as meta_2, meta_noydir as meta_3, meta_replyto as meta_4, meta_revisit as meta_5, meta_robots as meta_6, meta_unspam as meta_7, meta_canonical as meta_8, meta_og as meta_9 from ".TABLE_HEADERTAGS_DEFAULT." where language_id = '".(int) $languages[$i]['id']."' LIMIT 1");
-    $defaultTags       = tep_db_fetch_array($defaultTags_query);
-    $id                = $languages[$i]['id'];  //build unique id
-    ?>                   
+                                                                                                            <?php
+                                                                                                            $numbLanguages
+                                                                                                                = count($languages);
+                                                                                                            for ($i
+                                                                                                            = 0; $i
+                                                                                                                < $numbLanguages; ++$i) { //show one for each language
+                                                                                                                $defaultTags_query
+                                                                                                                    = tep_db_query("select default_title, default_description, default_keywords, default_logo_text, home_page_text, default_logo_append_group as def_option_0, default_logo_append_category as def_option_1, default_logo_append_manufacturer as def_option_2, default_logo_append_product as def_option_3, meta_google as meta_0, meta_language as meta_1, meta_noodp as meta_2, meta_noydir as meta_3, meta_replyto as meta_4, meta_revisit as meta_5, meta_robots as meta_6, meta_unspam as meta_7, meta_canonical as meta_8, meta_og as meta_9 from ".TABLE_HEADERTAGS_DEFAULT." where language_id = '".(int) $languages[$i]['id']."' LIMIT 1");
+                                                                                                                $defaultTags
+                                                                                                                    = tep_db_fetch_array($defaultTags_query);
+                                                                                                                $id
+                                                                                                                    = $languages[$i]['id'];  //build unique id
+                                                                                                                ?>                   
                                                                                 <tr>
                                                                                     <td><table border="1" width="100%" >
                                                                                             <tr>
@@ -972,43 +1033,61 @@ for ($i = 0; $i < $numbLanguages; ++$i) { //show one for each language
                                                                                                 <td><table border="1" width="100%">
                                                                                                         <tr>
                                                                                                             <td class="smallText" width="25%" style="font-weight: bold;"><?php echo HEADING_TITLE_SEO_TITLE; ?></td>
-                                                                                                            <td class="smallText" title="<?php echo $commonPopup['def_title']; ?>" class="popup" ><input type="text" name="default_title_<?php echo $id; ?>" value="<?php echo (tep_not_null($defaultTags['default_title'])
-                                                                                                                            ? $defaultTags['default_title']
-                                                                                                                            : ''); ?>" maxlength="255" size="36"> </td>
+                                                                                                            <td class="smallText" title="<?php echo $commonPopup['def_title']; ?>" class="popup" ><input type="text" name="default_title_<?php echo $id; ?>" value="<?php
+                                                                                                                                                echo (tep_not_null($defaultTags['default_title'])
+                                                                                                                                                        ? $defaultTags['default_title']
+                                                                                                                                                        : '');
+                                                                                                                                                ?>" maxlength="255" size="36"> </td>
                                                                                                         </tr> 
                                                                                                         <tr>
                                                                                                             <td class="smallText" style="font-weight: bold;"><?php echo HEADING_TITLE_SEO_DESCRIPTION; ?></td>
-                                                                                                            <td class="smallText" title="<?php echo $commonPopup['def_desc']; ?>" class="popup" ><input type="text" name="default_desc_<?php echo $id; ?>" value="<?php echo (tep_not_null($defaultTags['default_description'])
-                                                                                                                            ? $defaultTags['default_description']
-                                                                                                                            : ''); ?>" maxlength="255" size="36"> </td>
+                                                                                                            <td class="smallText" title="<?php echo $commonPopup['def_desc']; ?>" class="popup" ><input type="text" name="default_desc_<?php echo $id; ?>" value="<?php
+                                                                                                                                            echo (tep_not_null($defaultTags['default_description'])
+                                                                                                                                                    ? $defaultTags['default_description']
+                                                                                                                                                    : '');
+                                                                                                                                            ?>" maxlength="255" size="36"> </td>
                                                                                                         </tr> 
                                                                                                         <tr>
                                                                                                             <td class="smallText" style="font-weight: bold;"><?php echo HEADING_TITLE_SEO_KEYWORDS; ?></td>
-                                                                                                            <td class="smallText" title="<?php echo $commonPopup['def_keywords']; ?>" class="popup" ><input type="text" name="default_keyword_<?php echo $id; ?>" value="<?php echo (tep_not_null($defaultTags['default_keywords'])
-                                                                                                                            ? $defaultTags['default_keywords']
-                                                                                                                            : ''); ?>" maxlength="255" size="36"> </td>
+                                                                                                            <td class="smallText" title="<?php echo $commonPopup['def_keywords']; ?>" class="popup" ><input type="text" name="default_keyword_<?php echo $id; ?>" value="<?php
+                                                                            echo (tep_not_null($defaultTags['default_keywords'])
+                                                                                    ? $defaultTags['default_keywords']
+                                                                                    : '');
+                                                                            ?>" maxlength="255" size="36"> </td>
                                                                                                         </tr>
                                                                                                         <tr>
                                                                                                             <td class="smallText" style="font-weight: bold;"><?php echo HEADING_TITLE_SEO_LOGO; ?></td>
-                                                                                                            <td class="smallText" title="<?php echo $commonPopup['def_logo']; ?>" class="popup" ><input type="text" name="default_logo_text_<?php echo $id; ?>" value="<?php echo (tep_not_null($defaultTags['default_logo_text'])
-                                                                                                                            ? $defaultTags['default_logo_text']
-                                                                                                                            : ''); ?>" maxlength="255" size="36"> </td>
+                                                                                                            <td class="smallText" title="<?php echo $commonPopup['def_logo']; ?>" class="popup" ><input type="text" name="default_logo_text_<?php echo $id; ?>" value="<?php
+                                                                            echo (tep_not_null($defaultTags['default_logo_text'])
+                                                                                    ? $defaultTags['default_logo_text']
+                                                                                    : '');
+                                                                            ?>" maxlength="255" size="36"> </td>
                                                                                                         </tr>
                                                                                                         <tr>
                                                                                                             <td class="smallText" style="font-weight: bold; vertical-align:top"><?php echo HEADING_TITLE_SEO_HOME_PAGE; ?></td>
                                                                                                             <td class="smallText" title="<?php echo $commonPopup['def_home_text']; ?>" class="popup" >
 
-    <?php
-    if (HEADER_TAGS_ENABLE_HTML_EDITOR == 'CKEditor') {
-        echo tep_draw_textarea_field('home_page_text_'.$id, 'soft', 37, 8,
-            (tep_not_null($defaultTags['home_page_text']) ? $defaultTags['home_page_text']
-                    : ''), 'id = "home_page_text_'.$id.'" class="ckeditor"');
-    } else {
-        echo tep_draw_textarea_field('home_page_text_'.$id, 'soft', 36, 8,
-            (tep_not_null($defaultTags['home_page_text']) ? $defaultTags['home_page_text']
-                    : ''));
-    }
-    ?>
+                                                                                                                        <?php
+                                                                                                                        if (HEADER_TAGS_ENABLE_HTML_EDITOR
+                                                                                                                            == 'CKEditor') {
+                                                                                                                            echo tep_draw_textarea_field('home_page_text_'.$id,
+                                                                                                                                'soft',
+                                                                                                                                37,
+                                                                                                                                8,
+                                                                                                                                (tep_not_null($defaultTags['home_page_text'])
+                                                                                                                                        ? $defaultTags['home_page_text']
+                                                                                                                                        : ''),
+                                                                                                                                'id = "home_page_text_'.$id.'" class="ckeditor"');
+                                                                                                                        } else {
+                                                                                                                            echo tep_draw_textarea_field('home_page_text_'.$id,
+                                                                                                                                'soft',
+                                                                                                                                36,
+                                                                                                                                8,
+                                                                                                                                (tep_not_null($defaultTags['home_page_text'])
+                                                                                                                                        ? $defaultTags['home_page_text']
+                                                                                                                                        : ''));
+                                                                                                                        }
+                                                                                                                        ?>
                                                                                                             </td>
                                                                                                         </tr>                                               
                                                                                                         <tr>
@@ -1026,7 +1105,8 @@ for ($i = 0; $i < $numbLanguages; ++$i) { //show one for each language
         $checked  = ($defaultTags[$checkTag]) ? 'checked' : '';
         ?>
                                                                                                                                                     <td align="left" width="10" title="<?php echo $defaultPopup[$y]; ?>" class="popup"><?php echo tep_draw_checkbox_field($optTag,
-            '', $checked, ''); ?> </td>
+            '', $checked, '');
+        ?> </td>
                                                                                                                                                     <td class="smallText" width="90" title="<?php echo $defaultPopup[$y]; ?>" class="popup"><?php echo $def_options[$y]; ?></td>
         <?php
         if ($y < 2) {
@@ -1072,7 +1152,8 @@ for ($y = 0; $y < count($metaTags); ++$y) {
     $checked = ($defaultTags[$optTag]) ? 'checked' : '';
     ?>
                                                                                                                         <td align="left" title="<?php echo $metatagsPopup[$y]; ?>" class="popup"><?php echo tep_draw_checkbox_field('metatags_'.$y,
-        '', $checked, ''); ?> </td>
+        '', $checked, '');
+    ?> </td>
                                                                                                                         <td class="smallText" width="90" title="<?php echo $metatagsPopup[$y]; ?>" class="popup"><?php echo $metaTags[$y]; ?></td>
     <?php
     if ($y < 3) {
@@ -1093,7 +1174,8 @@ for ($y = 0; $y < count($metaTags); ++$y) {
                                                                             </tr>                       
                                                                             <tr>
                                                                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+    '100%', '10');
+?></td>
                                                                             </tr>
                                                                             <tr> 
                                                                                 <td class="smallText" align="center"><INPUT type="image" src="<?php echo DIR_WS_LANGUAGES.$language.'/images/buttons/button_update.gif'; ?>" NAME="update_default_section"></td>
@@ -1111,9 +1193,10 @@ for ($y = 0; $y < count($metaTags); ++$y) {
 
                                         <tr>
                                             <td align="right" width="40%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-<?php echo tep_draw_form('header_tags_pseudo',
-    FILENAME_HEADER_TAGS_SEO, '', 'post').tep_draw_hidden_field('action',
-    'default'); ?>
+<?php
+echo tep_draw_form('header_tags_pseudo', FILENAME_HEADER_TAGS_SEO, '', 'post').tep_draw_hidden_field('action',
+    'default');
+?>
                                                     <tr>
                                                         <td valign="top" width="100%"><table width="100%" border="2">             
                                                                 <tr>
@@ -1147,7 +1230,8 @@ for ($y = 0; $y < count($metaTags); ++$y) {
                                                                             </tr>                       
                                                                             <tr>
                                                                                 <td><?php echo tep_draw_separator('pixel_trans.gif',
-    '100%', '10'); ?></td>
+    '100%', '10');
+?></td>
                                                                             </tr>
                                                                             <tr> 
                                                                                 <td class="smallText" align="center"><INPUT type="image" src="<?php echo DIR_WS_LANGUAGES.$language.'/images/buttons/button_update.gif'; ?>" NAME="add_pseudo_page"></td>

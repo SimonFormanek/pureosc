@@ -37,21 +37,22 @@ while (list($key, ) = each($_GET)) {
 <html <?php echo HTML_PARAMS; ?>>
     <head>
         <title><?php echo $page_title; ?></title>
-        <script type="text/javas        cript"><!--
-            var i = 0;
+            <script type="text/javas        cript"><!--
+                vari = 0;
 
-    function                resize() {
-        if (navigator.appName ==                     'Netscape')
+                function                resize() {
+                    if (navigator.appName == 'Netscape')
                         i = 40;
-        window.resizeTo(document.images[0].width + 30, document.images[0].height            + 60         - i);
-    }
-//-        -></scrip        t>
-</head>
+                    window.resizeTo(document.images[0].width + 30, document.images[0].height + 60 - i);
+                }
+                //-        -></scrip        t>
+                </head>
 
-<body onload="resize();">
+      
+                    <body onload="resize();">
+            
+                <?php echo $image_source; ?>
+            
+            </body>
 
-<?php echo $image_source; ?>
-
-    </body>
-
-</html>
+                        </html>

@@ -38,9 +38,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <?php echo $reviews_split->display_count(TEXT_DISPLAY_NUMBER_OF_REVIEWS); ?>
                 </div>
                 <div class="col-sm-6">
-                    <span class="pull-right pagenav"><ul class="pagination"><?php echo $reviews_split->display_links(MAX_DISPLAY_PAGE_LINKS,
-                tep_get_all_get_params(array('page', 'info')));
-                    ?></ul></span>
+                    <span class="pull-right pagenav"><ul class="pagination"><?php
+                            echo $reviews_split->display_links(MAX_DISPLAY_PAGE_LINKS,
+                                tep_get_all_get_params(array('page', 'info')));
+                            ?></ul></span>
                     <span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span>
                 </div>
             </div>
@@ -86,9 +87,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <?php echo $reviews_split->display_count(TEXT_DISPLAY_NUMBER_OF_REVIEWS); ?>
             </div>
             <div class="col-sm-6">
-                <span class="pull-right pagenav"><ul class="pagination"><?php echo $reviews_split->display_links(MAX_DISPLAY_PAGE_LINKS,
-        tep_get_all_get_params(array('page', 'info')));
-    ?></ul></span>
+                <span class="pull-right pagenav"><ul class="pagination"><?php
+                        echo $reviews_split->display_links(MAX_DISPLAY_PAGE_LINKS,
+                            tep_get_all_get_params(array('page', 'info')));
+                        ?></ul></span>
                 <span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span>
             </div>
         </div>

@@ -54,7 +54,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                     <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+?></td>
                 </tr>
             </table></td>
     </tr>
@@ -90,38 +91,45 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 }
                                 ?>
                                 <td class="dataTableContent"><?php echo $classes['tax_class_title']; ?></td>
-                                <td class="dataTableContent" align="right"><?php if (isset($tcInfo)
-                                    && is_object($tcInfo) && ($classes['tax_class_id']
-                                    == $tcInfo->tax_class_id)) {
-                                    echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
-                                        '');
-                                } else {
-                                    echo '<a href="'.tep_href_link(FILENAME_TAX_CLASSES,
-                                        'page='.$_GET['page'].'&tID='.$classes['tax_class_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                                        IMAGE_ICON_INFO).'</a>';
-                                } ?>&nbsp;</td>
+                                <td class="dataTableContent" align="right"><?php
+                                    if (isset($tcInfo) && is_object($tcInfo) && ($classes['tax_class_id']
+                                        == $tcInfo->tax_class_id)) {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                            '');
+                                    } else {
+                                        echo '<a href="'.tep_href_link(FILENAME_TAX_CLASSES,
+                                            'page='.$_GET['page'].'&tID='.$classes['tax_class_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                            IMAGE_ICON_INFO).'</a>';
+                                    }
+                                    ?>&nbsp;</td>
                     </tr>
-            <?php
-        }
-        ?>
+                    <?php
+                }
+                ?>
                 <tr>
                     <td colspan="2"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
-                                <td class="smallText" valign="top"><?php echo $classes_split->display_count($classes_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-            TEXT_DISPLAY_NUMBER_OF_TAX_CLASSES); ?></td>
-                                <td class="smallText" align="right"><?php echo $classes_split->display_links($classes_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS,
-            $_GET['page']); ?></td>
+                                <td class="smallText" valign="top"><?php
+                echo $classes_split->display_count($classes_query_numrows,
+                    MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
+                    TEXT_DISPLAY_NUMBER_OF_TAX_CLASSES);
+                ?></td>
+                                <td class="smallText" align="right"><?php
+                            echo $classes_split->display_links($classes_query_numrows,
+                                MAX_DISPLAY_SEARCH_RESULTS,
+                                MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+                            ?></td>
                             </tr>
-        <?php
-        if (empty($action)) {
-            ?>
+                                    <?php
+                                    if (empty($action)) {
+                                        ?>
                                 <tr>
-                                    <td class="smallText" colspan="2" align="right"><?php echo tep_draw_button(IMAGE_NEW_TAX_CLASS,
-            'plus',
-            tep_href_link(FILENAME_TAX_CLASSES,
-                'page='.$_GET['page'].'&action=new')); ?></td>
+                                    <td class="smallText" colspan="2" align="right"><?php
+                                echo tep_draw_button(IMAGE_NEW_TAX_CLASS,
+                                    'plus',
+                                    tep_href_link(FILENAME_TAX_CLASSES,
+                                        'page='.$_GET['page'].'&action=new'));
+                                ?></td>
                                 </tr>
             <?php
         }

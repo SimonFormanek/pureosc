@@ -50,9 +50,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
             </div>
             <div class="panel-body">
                 <p><?php echo TEXT_SUCCESS; ?></p>
-                <p><?php echo sprintf(TEXT_CONTACT_STORE_OWNER,
-                    tep_href_link(FILENAME_CONTACT_US));
-                ?></p>
+                <p><?php
+                    echo sprintf(TEXT_CONTACT_STORE_OWNER,
+                        tep_href_link(FILENAME_CONTACT_US));
+                    ?></p>
             </div>
         </div>
 
