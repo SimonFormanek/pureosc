@@ -1,6 +1,6 @@
 <?php
-	define('CATALOG_DOMAIN','osc.local'); //eg www.my-shop.com
-  define('DIR_FS_MASTER_ROOT_DIR','/home/f/git/osc/osc/');
+	define('CATALOG_DOMAIN',''); //<----- eg www.my-shop.com NOT EMPTY HERE!
+  define('DIR_FS_MASTER_ROOT_DIR','/home/f/git/oik19/osc'); // <----- without trailing slash and catalog subdir (!)
   define('ENABLE_SSL_CATALOG', false);
   define('ENABLE_SSL', false);
   define('SERVER_INSTANCE','admin'); // admin or empty for shop ???? TODO
@@ -13,7 +13,7 @@
   define('HTTPS_COOKIE_PATH', '/admin');
   define('HTTP_CATALOG_SERVER', 'http://' . CATALOG_DOMAIN); // <------ need to bee configured
   define('HTTPS_CATALOG_SERVER', 'https://' . CATALOG_DOMAIN); // <------ need to bee configured
-  define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR); // <------ need to bee configured
+  define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR . '/catalog/'); // <------ need to bee configured
   define('DIR_WS_ADMIN', '/admin/');
   define('DIR_WS_HTTPS_ADMIN', '/admin/');// <------ need to bee configured SECURITY: obfuscation
   define('DIR_FS_ADMIN', DIR_FS_MASTER_ROOT_DIR . 'admin/'); //  <------ need to bee configured SECURITY: obfuscation

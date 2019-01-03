@@ -1,7 +1,9 @@
 <?php
-  define('DIR_FS_CATALOG', '/home/user/WWW/osc/catalog/');
+  define('DIR_FS_MASTER_ROOT_DIR','/home/user/WWW/osc'); //without trailing slash and catalog subdir (!)
+	define('BOOTSTRAP_LESS_DIR','nonexistent-dir'); // <------ need to bee configured
+  define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . '/catalog/'); 
 
-if (!defined(SERVER_INSTANCE)) define('SERVER_INSTANCE','admin'); //CONFIGURE: admin|shop <------ need to bee configured
+define('SERVER_INSTANCE','admin'); //CONFIGURE: admin|shop <------ need to bee configured
 define('GENERATOR_INSTANCE','true'); // set to 'true'for generator dir set 'false' for shop or admin  <------ need to bee configured ! ! !
 if (GENERATOR_INSTANCE == 'true') {
 define('SESSION_FORCE_COOKIE_USE', 'True');
@@ -10,6 +12,7 @@ define('USE_SEO_REDIRECT','false');
 define('SESSION_FORCE_COOKIE_USE', 'False');
 define('USE_SEO_REDIRECT','true'); //TODO: experimental: test all possible urls for 'true' othervise set to 'false'
 }
+  
   define('MYSQL_DEBUG','on'); //on|off=default 'on' set only for DEVEL debug !!!
 //  define('CSS_DEVEL_MODE','1');// empty =  NO
 //  define('SHOP_KEYS_PATH','/home/printondemand/shop_keys/'); //SECURITY WARNING: need to bee obfuscated 
