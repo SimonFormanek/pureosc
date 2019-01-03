@@ -1,7 +1,7 @@
 <?php
-  define('DIR_FS_MASTER_ROOT_DIR','/home/user/WWW/osc'); //without trailing slash and catalog subdir (!)
+  define('DIR_FS_MASTER_ROOT_DIR','/var/WWW/'); //trailing slash YES /catalog subdir NO (!)
 	define('BOOTSTRAP_LESS_DIR','nonexistent-dir'); // <------ need to bee configured
-  define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . '/catalog/'); 
+  define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . 'catalog/'); 
 
 define('SERVER_INSTANCE','admin'); //CONFIGURE: admin|shop <------ need to bee configured
 define('GENERATOR_INSTANCE','true'); // set to 'true'for generator dir set 'false' for shop or admin  <------ need to bee configured ! ! !
