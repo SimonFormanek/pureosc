@@ -1,10 +1,9 @@
-#for MAIN GIT REPO or ADMIN SERVER INSTANCE
-#images NOT ignored
-!images
-#images/*
-!images/thumbs
-#images/thumbs/*
-!images/thumbs/.htaccess
+#uncommnet next line to IGNORE images:
+#images
+#images NOT ignored uncomment:
+#!images
+#!images/thumbs
+#!images/thumbs/.htaccess
 
 includes/configure.php
 admin/includes/configure.php
@@ -22,12 +21,10 @@ mailhive/cloudbeez/cloudloader/install.log
 /vendor/
 /composer.lock
 phinx.yml
-Makefile
 !/tests/phinx.yml
 /gpe.signing_test.cer
 /gpe.signing_test.pem
 /gpwebpay-pvk.key
 /docs/
 /catalog/images/thumbs/
-/images/thumbs/
 /admin/ext/oscconfig/
