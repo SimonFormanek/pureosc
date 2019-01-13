@@ -15,7 +15,9 @@
 
 // BOF: Added to work with session handling of osCommerce:
 $oldPath = getcwd();
-chdir('../../../');
+//working: 
+//    chdir('/home/f/git/pureosc.redmine/osc/admin');
+chdir('../../');
 require('includes/application_top.php');
 chdir($oldPath);
 //set_include_path('../../../');

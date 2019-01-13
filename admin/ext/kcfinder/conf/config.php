@@ -27,8 +27,8 @@ return array(
     'disabled' => true, 
     'disabled' => $_SESSION['KCFINDER']['disabled'], //pure:new added for cookies auth
 
-    'uploadURL' => DIR_WS_CATALOG_IMAGES,
-    'uploadDir' => "",
+    'uploadURL' => '',
+    'uploadDir' => DIR_FS_MASTER_ROOT_DIR,
     'theme' => "default",
 
     'types' => array(
@@ -49,7 +49,7 @@ return array(
 
     'imageDriversPriority' => "imagick gmagick gd",
     'jpegQuality' => 90,
-    'thumbsDir' => ".thumbs",
+    'thumbsDir' => "images/.thumbs",
 
     'maxImageWidth' => 0,
     'maxImageHeight' => 0,

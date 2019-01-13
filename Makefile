@@ -11,6 +11,21 @@ fresh:
 	composer update
 	phinx migrate -c ./phinx-adapter.php
 
+upgrade:
+#	composer update
+##ckeditor#####################
+		rm -rf admin/ext/ckeditor
+		mkdir admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/adapters admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/assets admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/lang admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/plugins admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/skins admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/ckeditor.js admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/config.js admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/contents.css admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/styles.js admin/ext/ckeditor
+		cp admin/ext/ckeditor.config/config.js admin/ext/ckeditor/config.js
 
 lang:
 	find . -iname "*.php" | xargs xgettext --from-code=utf-8  -n  --language=PHP --add-comments=TRANSLATORS --add-comments=translators: --force-po -o i18n/pureosc.pot
