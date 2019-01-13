@@ -2,8 +2,9 @@
 #images
 #images NOT ignored uncomment:
 #!images
-#!images/thumbs
-#!images/thumbs/.htaccess
+images/thumbs
+images/thumbs/.htaccess
+images/paps
 
 includes/configure.php
 admin/includes/configure.php

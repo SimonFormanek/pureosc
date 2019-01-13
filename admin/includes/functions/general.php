@@ -1972,7 +1972,7 @@ function tep_mm_sendmail($mail, $email_address, $sender_name, $sender,
                          $output_subject, $output_content_html,
                          $output_content_txt)
 {
-    $mimemessage = new emailMailManager(array('X-Mailer: cat/mail_manager.com'));
+    $mimemessage = new admin_emailMailManageranager(array('X-Mailer: cat/mail_manager.com'));
     // add html and alternative text version 
     $mimemessage->add_html($output_content_html, $output_content_txt);
     $mimemessage->build_message(); // encoding -> 76 character linebreak, replacements must be done before
