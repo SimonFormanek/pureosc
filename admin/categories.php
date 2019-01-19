@@ -2059,8 +2059,11 @@ if ($action == 'new_product') {
                                     } elseif (isset($pInfo) && is_object($pInfo)) { // product info box contents
                                         $heading[] = ['text' => '<strong>' . tep_get_products_name($pInfo->products_id,
                                                 $languages_id) . '</strong>'];
-
-                                        $buttons = tep_draw_button(IMAGE_EDIT, 'document',
+//TODO: cPathSearchErrorHACK    
+                                                $canonical_cPath_query = tep_db_query("SELECT categories_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE products_id = " . $pInfo->products_id . " AND canonical = 1");
+                                                $canonical_cPath = tep_db_fetch_array($canonical_cPath_query);
+                                                $cPath = $canonical_cPath['categories_id'];
+                                                $buttons = tep_draw_button(IMAGE_EDIT, 'document',
                                                 tep_href_link(FILENAME_CATEGORIES,
                                                     'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product')) . tep_draw_button(IMAGE_DELETE,
                                                 'trash',
