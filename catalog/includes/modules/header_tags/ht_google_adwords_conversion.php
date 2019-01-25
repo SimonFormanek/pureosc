@@ -19,12 +19,12 @@ class ht_google_adwords_conversion
     var $sort_order;
     var $enabled = false;
 
-    function ht_google_adwords_conversion()
-    {
-        $this->title       = MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_TITLE;
-        $this->description = MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_DESCRIPTION;
+    public function __construct() {
+       
+      $this->title = _('Google AdWords Conversion Tracking');
+      $this->description = _('Add Google AdWords Conversion Tracking to the Checkout Success page');
 
-        if (defined('MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_STATUS')) {
+      if ( defined('MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_STATUS') ) {
             $this->sort_order = MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_SORT_ORDER;
             $this->enabled    = (MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_STATUS
                 == 'True');
@@ -39,8 +39,8 @@ class ht_google_adwords_conversion
             $this->group = 'header_tags';
         }
 
-        if (($PHP_SELF == FILENAME_CHECKOUT_SUCCESS) && tep_session_is_registered('customer_id')) {
-            $order_query = tep_db_query("select orders_id, currency, currency_value from ".TABLE_ORDERS." where customers_id = '".(int) $customer_id."' order by date_purchased desc limit 1");
+      if ( ($_SERVER['PHP_SELF'] == FILENAME_CHECKOUT_SUCCESS) && tep_session_is_registered('customer_id') ) {
+        $order_query = tep_db_query("select orders_id, currency, currency_value from " . TABLE_ORDERS . " where customers_id = '" . (int)$customer_id . "' order by date_purchased desc limit 1");
 
             if (tep_db_num_rows($order_query) == 1) {
                 $order = tep_db_fetch_array($order_query);

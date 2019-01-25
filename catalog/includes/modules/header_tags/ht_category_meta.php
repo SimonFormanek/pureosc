@@ -21,13 +21,8 @@ class ht_category_meta
 
     public function __construct()
     {
-        $this->ht_category_meta();
-    }
-
-    function ht_category_meta()
-    {
-        $this->title       = MODULE_HEADER_TAGS_CATEGORY_META_TITLE;
-        $this->description = MODULE_HEADER_TAGS_CATEGORY_META_DESCRIPTION;
+        $this->title = _('Category Meta');
+        $this->description = _('Add the META elements defined when setting up the category, to the underlying code of the category page.  Good for SEO.');
 
         if (defined('MODULE_HEADER_TAGS_CATEGORY_META_STATUS')) {
             $this->sort_order = MODULE_HEADER_TAGS_CATEGORY_META_SORT_ORDER;

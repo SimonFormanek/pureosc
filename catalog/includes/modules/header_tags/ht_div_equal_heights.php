@@ -19,14 +19,14 @@ class ht_div_equal_heights
     var $sort_order;
     var $enabled = false;
 
-    function ht_div_equal_heights()
-    {
-        $this->title       = MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_TITLE;
-        $this->description = MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_DESCRIPTION;
+    public function __construct() {
+    
+      $this->title = _('Equal Height Divs (jQuery)');
+      $this->description = _('Add Equal Heights javascript to specified pages, which solves a potential problem in grid layouts');
 
         if (defined('MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_STATUS')) {
-            $this->sort_order = MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_SORT_ORDER;
-            $this->enabled    = (MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_STATUS == 'True');
+            $this->sort_order = constant('MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_SORT_ORDER');
+            $this->enabled = (constant('MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_STATUS') == 'True');
         }
     }
 
@@ -64,7 +64,7 @@ EOD;
 
 
 
-            if (in_array(basename($PHP_SELF), $pages_array)) {
+            if (in_array(basename($_SERVER['PHP_SELF']), $pages_array)) {
                 $oscTemplate->addBlock($output, $this->group);
             }
         }

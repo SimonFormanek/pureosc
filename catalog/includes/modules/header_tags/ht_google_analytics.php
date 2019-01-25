@@ -21,13 +21,9 @@ class ht_google_analytics
 
     public function __construct()
     {
-        $this->ht_google_analytics();
-    }
 
-    function ht_google_analytics()
-    {
-        $this->title       = MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_TITLE;
-        $this->description = MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_DESCRIPTION;
+        $this->title = _('Google Analytics');
+        $this->description = _('Add Google Analytics to the shop');
 
         if (defined('MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_STATUS')) {
             $this->sort_order = MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_SORT_ORDER;

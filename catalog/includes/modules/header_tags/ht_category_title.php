@@ -21,13 +21,8 @@ class ht_category_title
 
     public function __construct()
     {
-        $this->ht_category_title();
-    }
-
-    function ht_category_title()
-    {
-        $this->title       = MODULE_HEADER_TAGS_CATEGORY_TITLE_TITLE;
-        $this->description = MODULE_HEADER_TAGS_CATEGORY_TITLE_DESCRIPTION;
+      $this->title = _('Category title');
+        $this->description = _('Add the title of the current category to the page title');
 
         if (defined('MODULE_HEADER_TAGS_CATEGORY_TITLE_STATUS')) {
             $this->sort_order = MODULE_HEADER_TAGS_CATEGORY_TITLE_SORT_ORDER;
@@ -35,11 +30,10 @@ class ht_category_title
         }
     }
 
-    function execute()
-    {
-        global $PHP_SELF, $oscTemplate, $categories, $current_category_id, $languages_id;
+    function execute() {
+        global $oscTemplate, $categories, $current_category_id, $languages_id;
 
-        if (basename($PHP_SELF) == FILENAME_DEFAULT) {
+        if (basename($_SERVER['PHP_SELF']) == FILENAME_DEFAULT) {
             if ($current_category_id > 0) {
                 $categories_query = tep_db_query("select categories_name, categories_seo_title from ".TABLE_CATEGORIES_DESCRIPTION." where categories_id = '".(int) $current_category_id."' and language_id = '".(int) $languages_id."' limit 1");
                 if (tep_db_num_rows($categories_query) > 0) {
