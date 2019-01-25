@@ -649,7 +649,6 @@ if (isset($_GET['articles_id'])) {
 require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
-define('EASE_APPNAME', constant('STORE_NAME'));
 
 $oPage = new Ease\Page();
 
