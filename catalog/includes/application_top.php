@@ -17,17 +17,10 @@
 
   Released under the GNU General Public License
  */
-
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
-require_once dirname(__DIR__).'/../vendor/autoload.php';
-
-// check support for register_globals
-if (function_exists('ini_get') && (ini_get('register_globals') === false) && (PHP_VERSION
-    < 4.3)) {
-    exit('Server Requirement Error: register_globals is disabled in your PHP configuration. This can be enabled in your php.ini configuration file or in the .htaccess file in your catalog directory. Please use PHP 4.3+ if register_globals cannot be enabled on the server.');
-}
+require_once dirname( __DIR__ ).'/../vendor/autoload.php' ;
 
 // load server configuration parameters
 if (file_exists('includes/local/configure.php')) { // for developers
@@ -54,20 +47,20 @@ date_default_timezone_set(defined('CFG_TIME_ZONE') ? CFG_TIME_ZONE : date_defaul
 $request_type = (getenv('HTTPS') == 'on') ? 'SSL' : 'NONSSL';
 
 // set php_self in the local scope
-$req      = parse_url($HTTP_SERVER_VARS['SCRIPT_NAME']);
-//PURE:NEW:PURE_SEO_URLS only if $PHP_SELF is empty...
-if (!($PHP_SELF))
-        $PHP_SELF = substr($req['path'],
+$req      = parse_url($_SERVER['SCRIPT_NAME']);
+//PURE:NEW:PURE_SEO_URLS only if $_SERVER['PHP_SELF'] is empty...
+if (!($_SERVER['PHP_SELF']))
+        $_SERVER['PHP_SELF'] = substr($req['path'],
         ($request_type == 'NONSSL') ? strlen(DIR_WS_HTTP_CATALOG) : strlen(DIR_WS_HTTPS_CATALOG));
 
 /* * * Altered for Security Pro r11 ** */
-include_once DIR_WS_MODULES.'fwr_media_security_pro.php';
-$security_pro = new Fwr_Media_Security_Pro;
+
+$security_pro = new Fwr_Media_Security_Pro();
 // If you need to exclude a file from cleansing then you can add it like below
 //$security_pro->addExclusion( 'some_file.php' );
 $security_pro->addExclusion('advanced_search_result.php');
 $security_pro->addExclusion('advanced_search.php');
-$security_pro->cleanse($PHP_SELF);
+$security_pro->cleanse($_SERVER['PHP_SELF']);
 /* * * EOF alteration for Security Pro 11 ** */
 
 if ($request_type == 'NONSSL') {
@@ -91,7 +84,11 @@ tep_db_connect() or die('Unable to connect to database server!');
 // set the application parameters
 $configuration_query = tep_db_query('select configuration_key as cfgKey, configuration_value as cfgValue from '.TABLE_CONFIGURATION);
 while ($configuration       = tep_db_fetch_array($configuration_query)) {
-    define($configuration['cfgKey'], $configuration['cfgValue']);
+    if(defined($configuration['cfgKey'])){
+//        echo sprintf( _('Configuration %s key alreay defined!'),$configuration['cfgKey']);
+    } else {
+        define($configuration['cfgKey'], $configuration['cfgValue']);
+    }
 }
 
 
@@ -99,7 +96,7 @@ while ($configuration       = tep_db_fetch_array($configuration_query)) {
 if (SEARCH_ENGINE_FRIENDLY_URLS == 'true') {
     if (strlen(getenv('PATH_INFO')) > 1) {
         $GET_array = array();
-        $PHP_SELF  = str_replace(getenv('PATH_INFO'), '', $PHP_SELF);
+        $_SERVER['PHP_SELF']  = str_replace(getenv('PATH_INFO'), '', $_SERVER['PHP_SELF']);
         $vars      = explode('/', substr(getenv('PATH_INFO'), 1));
         do_magic_quotes_gpc($vars);
         $n         = sizeof($vars);
@@ -158,11 +155,11 @@ if (function_exists('session_set_cookie_params')) {
 
 // set the session ID if it exists
 if (SESSION_FORCE_COOKIE_USE == 'False') {
-    if (isset($_GET[tep_session_name()]) && (!isset($HTTP_COOKIE_VARS[tep_session_name()])
-        || ($HTTP_COOKIE_VARS[tep_session_name()] != $_GET[tep_session_name()]))) {
+    if (isset($_GET[tep_session_name()]) && (!isset($_COOKIE[tep_session_name()])
+        || ($_COOKIE[tep_session_name()] != $_GET[tep_session_name()]))) {
         tep_session_id($_GET[tep_session_name()]);
-    } elseif (isset($_POST[tep_session_name()]) && (!isset($HTTP_COOKIE_VARS[tep_session_name()])
-        || ($HTTP_COOKIE_VARS[tep_session_name()] != $_POST[tep_session_name()]))) {
+    } elseif (isset($_POST[tep_session_name()]) && (!isset($_COOKIE[tep_session_name()])
+        || ($_COOKIE[tep_session_name()] != $_POST[tep_session_name()]))) {
         tep_session_id($_POST[tep_session_name()]);
     }
 }
@@ -173,7 +170,7 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
     tep_setcookie('cookie_test', 'please_accept_for_session', 0, $cookie_path,
         $cookie_domain); //PURE:BUGFIX privacy - session expires: 0 = only session cookies 
 
-    if (isset($HTTP_COOKIE_VARS['cookie_test'])) {
+    if (isset($_COOKIE['cookie_test'])) {
         tep_session_start();
         $session_started = true;
     }
@@ -205,7 +202,7 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
 }
 
 if (($session_started == true) && (PHP_VERSION >= 4.3) && function_exists('ini_get')
-    && (ini_get('register_globals') === false)) {
+    && (ini_get('register_globals') == false)) {
     extract($_SESSION, EXTR_OVERWRITE + EXTR_REFS);
 }
 
@@ -314,7 +311,7 @@ setlocale(LC_NUMERIC, $_system_locale_numeric); // Prevent LC_ALL from setting L
 // Ultimate SEO URLs v2.2d
 if ((!defined(SEO_ENABLED)) || (SEO_ENABLED == 'true')) {
     include_once('includes/classes/seo.class.php');
-    if (!is_object($seo_urls)) {
+    if (!isset($seo_urls) || !is_object($seo_urls)) {
         $seo_urls = new SEO_URL($languages_id);
     }
 }
@@ -357,7 +354,7 @@ if (isset($_GET['action'])) {
         $goto       = FILENAME_SHOPPING_CART;
         $parameters = array('action', 'cPath', 'products_id', 'pid');
     } else {
-        $goto = $PHP_SELF;
+        $goto = $_SERVER['PHP_SELF'];
         if ($_GET['action'] == 'buy_now') {
             $parameters = array('action', 'pid', 'products_id');
         } else {
@@ -443,7 +440,7 @@ if (isset($_GET['action'])) {
                 } elseif (isset($_POST['notify'])) {
                     $notify = $_POST['notify'];
                 } else {
-                    tep_redirect(tep_href_link($PHP_SELF,
+                    tep_redirect(tep_href_link($_SERVER['PHP_SELF'],
                             tep_get_all_get_params(array('action', 'notify'))));
                 }
                 if (!is_array($notify)) $notify = array($notify);
@@ -459,7 +456,7 @@ if (isset($_GET['action'])) {
                     sprintf(PRODUCT_SUBSCRIBED,
                         tep_get_products_name((int) $_GET['products_id'])),
                     'success');
-                tep_redirect(tep_href_link($PHP_SELF,
+                tep_redirect(tep_href_link($_SERVER['PHP_SELF'],
                         tep_get_all_get_params(array('action', 'notify'))));
             } else {
                 $navigation->set_snapshot();
@@ -476,7 +473,7 @@ if (isset($_GET['action'])) {
                     sprintf(PRODUCT_UNSUBSCRIBED,
                         tep_get_products_name((int) $_GET['products_id'])),
                     'warning');
-                tep_redirect(tep_href_link($PHP_SELF,
+                tep_redirect(tep_href_link($_SERVER['PHP_SELF'],
                         tep_get_all_get_params(array('action'))));
             } else {
                 $navigation->set_snapshot();
