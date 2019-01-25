@@ -15,12 +15,11 @@
 
 class language
 {
-    var $languages, $catalog_languages, $browser_languages, $language;
+    public $languages, $catalog_languages, $browser_languages, $language;
 
-    public function __construct($klng = '')
+    public function __construct($lng = '')
     {
         $this->language($lng);
-        ;
     }
 
     function language($lng = '')
