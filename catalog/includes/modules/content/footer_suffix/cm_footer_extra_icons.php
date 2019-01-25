@@ -21,17 +21,14 @@ class cm_footer_extra_icons
 
     public function __construct()
     {
-        $this->cm_footer_extra_icons();
-    }
-
-    function cm_footer_extra_icons()
-    {
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_FOOTER_EXTRA_ICONS_TITLE;
-        $this->description = MODULE_CONTENT_FOOTER_EXTRA_ICONS_DESCRIPTION;
-        $this->description .= '<div class="secWarning">'.MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION.'</div>';
+        $this->title = _('Payment Icons');
+        $this->description = _('Adds a Payment Icons Block to the Extra Footer Area of your site');
+        $this->description .= '<div class="secWarning">' . '<p>' . _('Content Width can be 12 or less per column per row') . '</p>' .
+                '<p>' . _('12/12 = 100% width, 6/12 = 50% width, 4/12 = 33% width.') . '</p>' .
+                '<p>' . _('Total of all columns in any one row must equal 12 (eg:  3 boxes of 4 columns each, 1 box of 12 columns and so on)') . '</p>' . '</div>';
 
         if (defined('MODULE_CONTENT_FOOTER_EXTRA_ICONS_STATUS')) {
             $this->sort_order = MODULE_CONTENT_FOOTER_EXTRA_ICONS_SORT_ORDER;

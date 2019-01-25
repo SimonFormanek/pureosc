@@ -21,11 +21,6 @@ class cm_footer_text
 
     public function __construct()
     {
-        $this->cm_footer_text();
-    }
-
-    function cm_footer_text()
-    {
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 

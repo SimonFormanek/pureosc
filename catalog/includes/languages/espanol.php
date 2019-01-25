@@ -324,9 +324,6 @@ define('TEXT_CCVAL_ERROR_INVALID_NUMBER',
 define('TEXT_CCVAL_ERROR_UNKNOWN_CARD',
     'Los primeros cuatro d&iacute;gitos del n&uacute;mero de introducir son: %s. Si ese n&uacute;mero es correcto, no aceptamos este tipo de tarjetas de cr&eacute;dito. Si es incorrecto, por favor, int&eacute;ntelo de nuevo.',
     true);
-define('FOOTER_TEXT_BODY',
-    'Copyright &copy; '.date('Y').' <a href="'.tep_href_link(FILENAME_DEFAULT).'">'.STORE_NAME.'</a><br />Powered by <a href="http://www.oscommerce.com" target="_blank">osCommerce</a>',
-    true);
 
 define('TABLE_HEADING_DATE_AVAILABLE', 'Latest Products', true);
 define('TABLE_HEADING_CUSTOM_DATE', 'Evet\'s Date', true);

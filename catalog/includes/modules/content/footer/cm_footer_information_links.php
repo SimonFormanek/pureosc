@@ -21,11 +21,7 @@ class cm_footer_information_links
 
     public function __construct()
     {
-        $this->cm_footer_information_links();
-    }
 
-    function cm_footer_information_links()
-    {
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 

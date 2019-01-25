@@ -21,11 +21,6 @@ class cm_footer_contact_us
 
     public function __construct()
     {
-        $this->cm_footer_contact_us();
-    }
-
-    function cm_footer_contact_us()
-    {
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 

@@ -317,9 +317,7 @@ define('TEXT_CCVAL_ERROR_UNKNOWN_CARD',
     'Die ersten 4 Ziffern Ihrer Kreditkarte sind: %s. Wenn diese Angaben stimmen, wird dieser Kartentyp leider nicht akzeptiert. Bitte korrigieren Sie Ihre Angaben gegebenfalls.',
     true);
 
-define('FOOTER_TEXT_BODY',
-    'Copyright &copy; '.date('Y').' <a href="'.tep_href_link(FILENAME_DEFAULT).'">'.STORE_NAME.'</a><br>Powered by <a href="http://www.oscommerce.com" target="_blank">osCommerce</a>',
-    true);
+
 //pure:new link to advanced search
 define('IMAGE_BUTTON_ADVANCED_SEARCH_LINK', 'podrobné', true);
 
