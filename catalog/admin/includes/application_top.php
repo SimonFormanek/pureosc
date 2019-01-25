@@ -225,7 +225,7 @@ require(DIR_WS_CLASSES.'object_info.php');
 
 // email classes
 require(DIR_WS_CLASSES.'mime.php');
-require(DIR_WS_CLASSES.'email.php');
+require(DIR_WS_CLASSES.'admin_email.php');
 
 // file uploading class
 require(DIR_WS_CLASSES.'upload.php');
