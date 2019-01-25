@@ -21,13 +21,8 @@ class ht_datepicker_jquery
 
     public function __construct()
     {
-        $this->ht_datepicker_jquery();
-    }
-
-    function ht_datepicker_jquery()
-    {
-        $this->title       = MODULE_HEADER_TAGS_DATEPICKER_JQUERY_TITLE;
-        $this->description = MODULE_HEADER_TAGS_DATEPICKER_JQUERY_DESCRIPTION;
+        $this->title       = _('JQuery Datepicker');
+        $this->description = _('Add JQuery Datepicker to Header');
 
         if (defined('MODULE_HEADER_TAGS_DATEPICKER_JQUERY_STATUS')) {
             $this->sort_order = MODULE_HEADER_TAGS_DATEPICKER_JQUERY_SORT_ORDER;
@@ -37,7 +32,7 @@ class ht_datepicker_jquery
 
     function execute()
     {
-        global $PHP_SELF, $oscTemplate;
+        global $oscTemplate;
 
         if (tep_not_null(MODULE_HEADER_TAGS_DATEPICKER_JQUERY_PAGES)) {
             $pages_array = array();
@@ -113,9 +108,8 @@ function ht_datepicker_jquery_show_pages($text)
 
 function ht_datepicker_jquery_edit_pages($values, $key)
 {
-    global $PHP_SELF;
-
-    $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+    $file_extension = substr($_SERVER['PHP_SELF'],
+        strrpos($_SERVER['PHP_SELF'], '.'));
     $files_array    = array();
     if ($dir            = @dir(DIR_FS_CATALOG)) {
         while ($file = $dir->read()) {
@@ -174,4 +168,4 @@ function ht_datepicker_jquery_edit_pages($values, $key)
 
     return $output;
 }
-?>
+

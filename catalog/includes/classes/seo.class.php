@@ -879,7 +879,9 @@ class SEO_URL
         if (!$this->not_null($page)) {
             die('</td></tr></table></td></tr></table><br><br><font color="#ff0000"><b>Error!</b></font><br><br><b>Unable to determine the page link!<br><br>');
         }
-        if ($page == '/') $page = '';
+        if ($page == '/') {
+            $page = '';
+        }
         if ($connection == 'NONSSL') {
             $link = HTTP_SERVER.DIR_WS_HTTP_CATALOG;
         } elseif ($connection == 'SSL') {
