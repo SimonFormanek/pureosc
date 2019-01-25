@@ -16,14 +16,13 @@
  * @subpackage Utility
  *
  *  */
-
 class Braintree_Configuration extends Braintree
 {
     /**
      * Braintree API version to use
      * @access public
      */
-     const API_VERSION =  3;
+    const API_VERSION = 3;
 
     /**
      * @var array array of config properties
@@ -31,11 +30,12 @@ class Braintree_Configuration extends Braintree
      * @static
      */
     private static $_cache = array(
-                    'environment'   => '',
-                    'merchantId'    => '',
-                    'publicKey'     => '',
-                    'privateKey'    => '',
-                   );
+        'environment' => '',
+        'merchantId' => '',
+        'publicKey' => '',
+        'privateKey' => '',
+    );
+
     /**
      *
      * @access protected
@@ -43,11 +43,11 @@ class Braintree_Configuration extends Braintree
      * @var array valid environments, used for validation
      */
     private static $_validEnvironments = array(
-                    'development',
-                    'sandbox',
-                    'production',
-                    'qa',
-                    );
+        'development',
+        'sandbox',
+        'production',
+        'qa',
+    );
 
     /**
      * resets configuration to default
@@ -56,9 +56,9 @@ class Braintree_Configuration extends Braintree
      */
     public static function reset()
     {
-        self::$_cache = array (
+        self::$_cache = array(
             'environment' => '',
-            'merchantId'  => '',
+            'merchantId' => '',
             'publicKey' => '',
             'privateKey' => '',
         );
@@ -76,25 +76,25 @@ class Braintree_Configuration extends Braintree
      * @static
      * @return boolean
      */
-    private static function validate($key=null, $value=null)
+    private static function validate($key = null, $value = null)
     {
         if (empty($key) && empty($value)) {
-             throw new InvalidArgumentException('nothing to validate');
+            throw new InvalidArgumentException('nothing to validate');
         }
 
         if ($key === 'environment' &&
-           !in_array($value, self::$_validEnvironments) ) {
-            throw new Braintree_Exception_Configuration('"' .
-                                    $value . '" is not a valid environment.');
+            !in_array($value, self::$_validEnvironments)) {
+            throw new Braintree_Exception_Configuration('"'.
+                $value.'" is not a valid environment.');
         }
 
         if (!isset(self::$_cache[$key])) {
-             throw new Braintree_Exception_Configuration($key .
-                                    ' is not a valid configuration setting.');
+            throw new Braintree_Exception_Configuration($key.
+                ' is not a valid configuration setting.');
         }
 
         if (empty($value)) {
-             throw new InvalidArgumentException($key . ' cannot be empty.');
+            throw new InvalidArgumentException($key.' cannot be empty.');
         }
 
         return true;
@@ -106,17 +106,16 @@ class Braintree_Configuration extends Braintree
         self::validate($key, $value);
         // set the value in the cache
         self::$_cache[$key] = $value;
-
     }
 
     private static function get($key)
     {
         // throw an exception if the value hasn't been set
         if (isset(self::$_cache[$key]) &&
-           (empty(self::$_cache[$key]))) {
+            (empty(self::$_cache[$key]))) {
             throw new Braintree_Exception_Configuration(
-                      $key.' needs to be set.'
-                      );
+                $key.' needs to be set.'
+            );
         }
 
         if (array_key_exists($key, self::$_cache)) {
@@ -126,7 +125,6 @@ class Braintree_Configuration extends Braintree
         // return null by default to prevent __set from overloading
         return null;
     }
-
 
     private static function setOrGet($name, $value = null)
     {
@@ -140,13 +138,14 @@ class Braintree_Configuration extends Braintree
         }
         return true;
     }
-    /**#@+
+    /*     * #@+
      * sets or returns the property after validation
      * @access public
      * @static
      * @param string $value pass a string to set, empty to get
      * @return mixed returns true on set
      */
+
     public static function environment($value = null)
     {
         return self::setOrGet(__FUNCTION__, $value);
@@ -166,7 +165,7 @@ class Braintree_Configuration extends Braintree
     {
         return self::setOrGet(__FUNCTION__, $value);
     }
-    /**#@-*/
+    /*     * #@- */
 
     /**
      * returns the full merchant URL based on config values
@@ -178,8 +177,8 @@ class Braintree_Configuration extends Braintree
      */
     public static function merchantUrl()
     {
-        return self::baseUrl() .
-               self::merchantPath();
+        return self::baseUrl().
+            self::merchantPath();
     }
 
     /**
@@ -192,9 +191,9 @@ class Braintree_Configuration extends Braintree
      */
     public static function baseUrl()
     {
-        return self::protocol() . '://' .
-                  self::serverName() . ':' .
-                  self::portNumber();
+        return self::protocol().'://'.
+            self::serverName().':'.
+            self::portNumber();
     }
 
     /**
@@ -220,16 +219,15 @@ class Braintree_Configuration extends Braintree
      */
     public static function caFile($sslPath = NULL)
     {
-        $sslPath = $sslPath ? $sslPath : DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .
-                   'ssl' . DIRECTORY_SEPARATOR;
+        $sslPath = $sslPath ? $sslPath : DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.
+            'ssl'.DIRECTORY_SEPARATOR;
 
         $caPath = realpath(
-            dirname(__FILE__) .
-            $sslPath .  'api_braintreegateway_com.ca.crt'
+            dirname(__FILE__).
+            $sslPath.'api_braintreegateway_com.ca.crt'
         );
 
-        if (!file_exists($caPath))
-        {
+        if (!file_exists($caPath)) {
             throw new Braintree_Exception_SSLCaFileNotFound();
         }
 
@@ -275,20 +273,20 @@ class Braintree_Configuration extends Braintree
      */
     public static function serverName()
     {
-        switch(self::environment()) {
-         case 'production':
-             $serverName = 'api.braintreegateway.com';
-             break;
-         case 'qa':
-             $serverName = 'qa.braintreegateway.com';
-             break;
-         case 'sandbox':
-             $serverName = 'api.sandbox.braintreegateway.com';
-             break;
-         case 'development':
-         default:
-             $serverName = 'localhost';
-             break;
+        switch (self::environment()) {
+            case 'production':
+                $serverName = 'api.braintreegateway.com';
+                break;
+            case 'qa':
+                $serverName = 'qa.braintreegateway.com';
+                break;
+            case 'sandbox':
+                $serverName = 'api.sandbox.braintreegateway.com';
+                break;
+            case 'development':
+            default:
+                $serverName = 'localhost';
+                break;
         }
 
         return $serverName;
@@ -296,20 +294,20 @@ class Braintree_Configuration extends Braintree
 
     public static function authUrl()
     {
-        switch(self::environment()) {
-         case 'production':
-             $serverName = 'https://auth.venmo.com';
-             break;
-         case 'qa':
-             $serverName = 'https://auth.qa.venmo.com';
-             break;
-         case 'sandbox':
-             $serverName = 'https://auth.sandbox.venmo.com';
-             break;
-         case 'development':
-         default:
-             $serverName = 'http://auth.venmo.dev:9292';
-             break;
+        switch (self::environment()) {
+            case 'production':
+                $serverName = 'https://auth.venmo.com';
+                break;
+            case 'qa':
+                $serverName = 'https://auth.qa.venmo.com';
+                break;
+            case 'sandbox':
+                $serverName = 'https://auth.sandbox.venmo.com';
+                break;
+            case 'development':
+            default:
+                $serverName = 'http://auth.venmo.dev:9292';
+                break;
         }
 
         return $serverName;
@@ -326,19 +324,19 @@ class Braintree_Configuration extends Braintree
      */
     public static function sslOn()
     {
-        switch(self::environment()) {
-         case 'development':
-             $ssl = false;
-             break;
-         case 'production':
-         case 'qa':
-         case 'sandbox':
-         default:
-             $ssl = true;
-             break;
+        switch (self::environment()) {
+            case 'development':
+                $ssl = false;
+                break;
+            case 'production':
+            case 'qa':
+            case 'sandbox':
+            default:
+                $ssl = true;
+                break;
         }
 
-       return $ssl;
+        return $ssl;
     }
 
     /**
@@ -349,7 +347,6 @@ class Braintree_Configuration extends Braintree
      */
     public static function logMessage($message)
     {
-        error_log('[Braintree] ' . $message);
+        error_log('[Braintree] '.$message);
     }
-
 }

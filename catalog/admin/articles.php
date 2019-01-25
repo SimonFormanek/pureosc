@@ -1890,7 +1890,7 @@ switch (ARTICLE_ENABLE_HTML_EDITOR) {
                                     IMAGE_DELETE).'</a> <a href="'.tep_href_link(FILENAME_ARTICLES,
                                     'tPath='.$tPath.'&tID='.$tInfo->topics_id.'&action=move_topic').'">'.tep_image_button('button_move.gif',
                                     IMAGE_MOVE).'</a>');
-                            $contents[] = array('text' => '<br>'.TEXT_DATE_ADDED.' '.tep_date_short($tInfo->date_added));
+                            $contents[] = array('text' => '<br>'._('DATE ADDED').' '.tep_date_short($tInfo->date_added));
                             if (tep_not_null($tInfo->last_modified))
                                     $contents[] = array('text' => TEXT_LAST_MODIFIED.' '.tep_date_short($tInfo->last_modified));
                             $contents[] = array('text' => '<br>'.TEXT_SUBTOPICS.' '.$tInfo->childs_count.'<br>'.TEXT_ARTICLES.' '.$tInfo->articles_count);
@@ -1907,7 +1907,7 @@ switch (ARTICLE_ENABLE_HTML_EDITOR) {
                                     IMAGE_MOVE).'</a> <a href="'.tep_href_link(FILENAME_ARTICLES,
                                     'tPath='.$tPath.'&aID='.$aInfo->articles_id.'&action=copy_to').'">'.tep_image_button('button_copy_to.gif',
                                     IMAGE_COPY_TO).'</a>');
-                            $contents[] = array('text' => '<br>'.TEXT_DATE_ADDED.' '.tep_date_short($aInfo->articles_date_added));
+                            $contents[] = array('text' => '<br>'._('DATE ADDED').' '.tep_date_short($aInfo->articles_date_added));
                             if (tep_not_null($aInfo->articles_last_modified))
                                     $contents[] = array('text' => TEXT_LAST_MODIFIED.' '.tep_date_short($aInfo->articles_last_modified));
                             if (date('Y-m-d') < $aInfo->articles_date_available)

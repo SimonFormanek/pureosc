@@ -2,7 +2,8 @@
 
 class Braintree_ClientToken
 {
-    public static function generate($params=array())
+
+    public static function generate($params = array())
     {
         $generateParams = null;
         if ($params) {
@@ -31,15 +32,18 @@ class Braintree_ClientToken
     public static function conditionallyVerifyKeys($params)
     {
         if (array_key_exists("customerId", $params)) {
-            Braintree_Util::verifyKeys(self::generateWithCustomerIdSignature(), $params);
+            Braintree_Util::verifyKeys(self::generateWithCustomerIdSignature(),
+                $params);
         } else {
-            Braintree_Util::verifyKeys(self::generateWithoutCustomerIdSignature(), $params);
+            Braintree_Util::verifyKeys(self::generateWithoutCustomerIdSignature(),
+                $params);
         }
     }
 
     public static function generateWithCustomerIdSignature()
     {
-        return array("customerId", "proxyMerchantId", array("options" => array("makeDefault", "verifyCard", "failOnDuplicatePaymentMethod")));
+        return array("customerId", "proxyMerchantId", array("options" => array("makeDefault",
+                    "verifyCard", "failOnDuplicatePaymentMethod")));
     }
 
     public static function generateWithoutCustomerIdSignature()
@@ -73,5 +77,4 @@ class Braintree_ClientToken
             );
         }
     }
-
 }

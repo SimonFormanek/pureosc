@@ -168,7 +168,6 @@
  * @property-read object $disputes populated when transaction is disputed
  *
  */
-
 final class Braintree_Transaction extends Braintree
 {
     // Transaction Status
@@ -183,38 +182,34 @@ final class Braintree_Transaction extends Braintree
     const SUBMITTED_FOR_SETTLEMENT = 'submitted_for_settlement';
     const VOIDED                   = 'voided';
     const UNRECOGNIZED             = 'unrecognized';
-
     // Transaction Escrow Status
-    const ESCROW_HOLD_PENDING    = 'hold_pending';
-    const ESCROW_HELD            = 'held';
-    const ESCROW_RELEASE_PENDING = 'release_pending';
-    const ESCROW_RELEASED        = 'released';
-    const ESCROW_REFUNDED        = 'refunded';
-
+    const ESCROW_HOLD_PENDING      = 'hold_pending';
+    const ESCROW_HELD              = 'held';
+    const ESCROW_RELEASE_PENDING   = 'release_pending';
+    const ESCROW_RELEASED          = 'released';
+    const ESCROW_REFUNDED          = 'refunded';
     // Transaction Types
-    const SALE   = 'sale';
-    const CREDIT = 'credit';
-
+    const SALE                     = 'sale';
+    const CREDIT                   = 'credit';
     // Transaction Created Using
-    const FULL_INFORMATION = 'full_information';
-    const TOKEN            = 'token';
-
+    const FULL_INFORMATION         = 'full_information';
+    const TOKEN                    = 'token';
     // Transaction Sources
-    const API           = 'api';
-    const CONTROL_PANEL = 'control_panel';
-    const RECURRING     = 'recurring';
-
+    const API                      = 'api';
+    const CONTROL_PANEL            = 'control_panel';
+    const RECURRING                = 'recurring';
     // Gateway Rejection Reason
-    const AVS          = 'avs';
-    const AVS_AND_CVV  = 'avs_and_cvv';
-    const CVV          = 'cvv';
-    const DUPLICATE    = 'duplicate';
-    const FRAUD        = 'fraud';
+    const AVS                      = 'avs';
+    const AVS_AND_CVV              = 'avs_and_cvv';
+    const CVV                      = 'cvv';
+    const DUPLICATE                = 'duplicate';
+    const FRAUD                    = 'fraud';
 
     public static function cloneTransaction($transactionId, $attribs)
     {
         Braintree_Util::verifyKeys(self::cloneSignature(), $attribs);
-        return self::_doCreate('/transactions/' . $transactionId . '/clone', array('transactionClone' => $attribs));
+        return self::_doCreate('/transactions/'.$transactionId.'/clone',
+                array('transactionClone' => $attribs));
     }
 
     /**
@@ -242,6 +237,7 @@ final class Braintree_Transaction extends Braintree
         $result = self::create($attribs);
         return self::returnObjectOrThrowException(__CLASS__, $result);
     }
+
     /**
      *
      * @access public
@@ -250,7 +246,8 @@ final class Braintree_Transaction extends Braintree
      */
     public static function createFromTransparentRedirect($queryString)
     {
-        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::confirm", E_USER_NOTICE);
+        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::confirm",
+            E_USER_NOTICE);
         $params = Braintree_TransparentRedirect::parseAndValidateQueryString(
                 $queryString
         );
@@ -259,6 +256,7 @@ final class Braintree_Transaction extends Braintree
                 array('id' => $params['id'])
         );
     }
+
     /**
      *
      * @access public
@@ -267,9 +265,10 @@ final class Braintree_Transaction extends Braintree
      */
     public static function createTransactionUrl()
     {
-        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::url", E_USER_NOTICE);
-        return Braintree_Configuration::merchantUrl() .
-                '/transactions/all/create_via_transparent_redirect_request';
+        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::url",
+            E_USER_NOTICE);
+        return Braintree_Configuration::merchantUrl().
+            '/transactions/all/create_via_transparent_redirect_request';
     }
 
     public static function cloneSignature()
@@ -284,11 +283,15 @@ final class Braintree_Transaction extends Braintree
     public static function createSignature()
     {
         return array(
-            'amount', 'customerId', 'merchantAccountId', 'orderId', 'channel', 'paymentMethodToken', 'deviceSessionId',
-            'purchaseOrderNumber', 'recurring', 'shippingAddressId', 'taxAmount', 'taxExempt', 'type', 'venmoSdkPaymentMethodCode',
-            'serviceFeeAmount', 'deviceData', 'fraudMerchantId', 'billingAddressId', 'paymentMethodNonce',
+            'amount', 'customerId', 'merchantAccountId', 'orderId', 'channel', 'paymentMethodToken',
+            'deviceSessionId',
+            'purchaseOrderNumber', 'recurring', 'shippingAddressId', 'taxAmount',
+            'taxExempt', 'type', 'venmoSdkPaymentMethodCode',
+            'serviceFeeAmount', 'deviceData', 'fraudMerchantId', 'billingAddressId',
+            'paymentMethodNonce',
             array('creditCard' =>
-                array('token', 'cardholderName', 'cvv', 'expirationDate', 'expirationMonth', 'expirationYear', 'number'),
+                array('token', 'cardholderName', 'cvv', 'expirationDate', 'expirationMonth',
+                    'expirationYear', 'number'),
             ),
             array('customer' =>
                 array(
@@ -333,7 +336,8 @@ final class Braintree_Transaction extends Braintree
      */
     public static function credit($attribs)
     {
-        return self::create(array_merge($attribs, array('type' => Braintree_Transaction::CREDIT)));
+        return self::create(array_merge($attribs,
+                    array('type' => Braintree_Transaction::CREDIT)));
     }
 
     /**
@@ -349,7 +353,6 @@ final class Braintree_Transaction extends Braintree
         return self::returnObjectOrThrowException(__CLASS__, $result);
     }
 
-
     /**
      * @access public
      *
@@ -362,11 +365,11 @@ final class Braintree_Transaction extends Braintree
             return self::factory($response['transaction']);
         } catch (Braintree_Exception_NotFound $e) {
             throw new Braintree_Exception_NotFound(
-            'transaction with id ' . $id . ' not found'
+                'transaction with id '.$id.' not found'
             );
         }
-
     }
+
     /**
      * new sale
      * @param array $attribs
@@ -374,7 +377,8 @@ final class Braintree_Transaction extends Braintree
      */
     public static function sale($attribs)
     {
-        return self::create(array_merge(array('type' => Braintree_Transaction::SALE), $attribs));
+        return self::create(array_merge(array('type' => Braintree_Transaction::SALE),
+                    $attribs));
     }
 
     /**
@@ -409,13 +413,14 @@ final class Braintree_Transaction extends Braintree
             $criteria[$term->name] = $term->toparam();
         }
 
-        $response = Braintree_Http::post('/transactions/advanced_search_ids', array('search' => $criteria));
+        $response = Braintree_Http::post('/transactions/advanced_search_ids',
+                array('search' => $criteria));
         if (array_key_exists('searchResults', $response)) {
             $pager = array(
                 'className' => __CLASS__,
                 'classMethod' => 'fetch',
                 'methodArgs' => array($query)
-                );
+            );
 
             return new Braintree_ResourceCollection($response, $pager);
         } else {
@@ -430,11 +435,11 @@ final class Braintree_Transaction extends Braintree
             $criteria[$term->name] = $term->toparam();
         }
         $criteria["ids"] = Braintree_TransactionSearch::ids()->in($ids)->toparam();
-        $response = Braintree_Http::post('/transactions/advanced_search', array('search' => $criteria));
+        $response        = Braintree_Http::post('/transactions/advanced_search',
+                array('search' => $criteria));
 
         return Braintree_Util::extractattributeasarray(
-            $response['creditCardTransactions'],
-            'transaction'
+                $response['creditCardTransactions'], 'transaction'
         );
     }
 
@@ -448,9 +453,10 @@ final class Braintree_Transaction extends Braintree
     {
         self::_validateId($transactionId);
 
-        $response = Braintree_Http::put('/transactions/'. $transactionId . '/void');
+        $response = Braintree_Http::put('/transactions/'.$transactionId.'/void');
         return self::_verifyGatewayResponse($response);
     }
+
     /**
      *
      */
@@ -465,13 +471,14 @@ final class Braintree_Transaction extends Braintree
         self::_validateId($transactionId);
 
         $response = Braintree_Http::put(
-             '/transactions/'. $transactionId . '/submit_for_settlement',
-             array( 'transaction' => array( 'amount' => $amount))
+                '/transactions/'.$transactionId.'/submit_for_settlement',
+                array('transaction' => array('amount' => $amount))
         );
         return self::_verifyGatewayResponse($response);
     }
 
-    public static function submitForSettlementNoValidate($transactionId, $amount = null)
+    public static function submitForSettlementNoValidate($transactionId,
+                                                         $amount = null)
     {
         $result = self::submitForSettlement($transactionId, $amount);
         return self::returnObjectOrThrowException(__CLASS__, $result);
@@ -482,8 +489,7 @@ final class Braintree_Transaction extends Braintree
         self::_validateId($transactionId);
 
         $response = Braintree_Http::put(
-            '/transactions/' . $transactionId . '/hold_in_escrow',
-            array()
+                '/transactions/'.$transactionId.'/hold_in_escrow', array()
         );
         return self::_verifyGatewayResponse($response);
     }
@@ -493,8 +499,7 @@ final class Braintree_Transaction extends Braintree
         self::_validateId($transactionId);
 
         $response = Braintree_Http::put(
-            '/transactions/' . $transactionId . '/release_from_escrow',
-            array()
+                '/transactions/'.$transactionId.'/release_from_escrow', array()
         );
         return self::_verifyGatewayResponse($response);
     }
@@ -504,12 +509,10 @@ final class Braintree_Transaction extends Braintree
         self::_validateId($transactionId);
 
         $response = Braintree_Http::put(
-            '/transactions/' . $transactionId . '/cancel_release',
-            array()
+                '/transactions/'.$transactionId.'/cancel_release', array()
         );
         return self::_verifyGatewayResponse($response);
     }
-
 
     /**
      * sets instance properties from an array of values
@@ -616,26 +619,27 @@ final class Braintree_Transaction extends Braintree
      * returns a string representation of the transaction
      * @return string
      */
-    public function  __toString()
+    public function __toString()
     {
         // array of attributes to print
         $display = array(
             'id', 'type', 'amount', 'status',
             'createdAt', 'creditCardDetails', 'customerDetails'
-            );
+        );
 
         $displayAttributes = array();
         foreach ($display AS $attrib) {
             $displayAttributes[$attrib] = $this->$attrib;
         }
-        return __CLASS__ . '[' .
-                Braintree_Util::attributesToString($displayAttributes) .']';
+        return __CLASS__.'['.
+            Braintree_Util::attributesToString($displayAttributes).']';
     }
 
     public static function refund($transactionId, $amount = null)
     {
-        $params = array('transaction' => array('amount' => $amount));
-        $response = Braintree_Http::post('/transactions/' . $transactionId . '/refund', $params);
+        $params   = array('transaction' => array('amount' => $amount));
+        $response = Braintree_Http::post('/transactions/'.$transactionId.'/refund',
+                $params);
         return self::_verifyGatewayResponse($response);
     }
 
@@ -649,8 +653,7 @@ final class Braintree_Transaction extends Braintree
         $token = $this->creditCardDetails->token;
         if (empty($token)) {
             return null;
-        }
-        else {
+        } else {
             return Braintree_CreditCard::find($token);
         }
     }
@@ -660,13 +663,13 @@ final class Braintree_Transaction extends Braintree
         $customerId = $this->customerDetails->id;
         if (empty($customerId)) {
             return null;
-        }
-        else {
+        } else {
             return Braintree_Customer::find($customerId);
         }
     }
 
-    public function isDisbursed() {
+    public function isDisbursed()
+    {
         return $this->disbursementDetails->isValid();
     }
 
@@ -691,20 +694,19 @@ final class Braintree_Transaction extends Braintree
      * @param string transaction id
      * @throws InvalidArgumentException
      */
-    private static function _validateId($id = null) {
+    private static function _validateId($id = null)
+    {
         if (empty($id)) {
-           throw new InvalidArgumentException(
-                   'expected transaction id to be set'
-                   );
+            throw new InvalidArgumentException(
+                'expected transaction id to be set'
+            );
         }
         if (!preg_match('/^[0-9a-z]+$/', $id)) {
             throw new InvalidArgumentException(
-                    $id . ' is an invalid transaction id.'
-                    );
+                $id.' is an invalid transaction id.'
+            );
         }
     }
-
-
     /* private class methods */
 
     /**
@@ -725,13 +727,13 @@ final class Braintree_Transaction extends Braintree
         if (isset($response['transaction'])) {
             // return a populated instance of Braintree_Transaction
             return new Braintree_Result_Successful(
-                    self::factory($response['transaction'])
+                self::factory($response['transaction'])
             );
         } else if (isset($response['apiErrorResponse'])) {
             return new Braintree_Result_Error($response['apiErrorResponse']);
         } else {
             throw new Braintree_Exception_Unexpected(
-            "Expected transaction or apiErrorResponse"
+                "Expected transaction or apiErrorResponse"
             );
         }
     }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Raised when a client library must be upgraded.
  *
@@ -8,5 +9,5 @@
  */
 class Braintree_Exception_UpgradeRequired extends Braintree_Exception
 {
-
+    
 }

@@ -115,7 +115,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
             ?></div>
             <?php } else {
                 ?>
-                <div class="articlePadding"><?php echo sprintf(TEXT_DATE_ADDED,
+                <div class="articlePadding"><?php echo sprintf(_('DATE ADDED'),
                 tep_date_long($article_info['articles_date_added']));
                 ?></div>
             <?php

@@ -35,9 +35,9 @@ class bm_card_acceptance
 
     function execute()
     {
-        global $PHP_SELF, $oscTemplate;
+        global $oscTemplate;
 
-        if ((substr(basename($PHP_SELF), 0, 8) != 'checkout') && tep_not_null(MODULE_BOXES_CARD_ACCEPTANCE_LOGOS)) {
+        if ((substr(basename($_SERVER['PHP_SELF']), 0, 8) != 'checkout') && tep_not_null(MODULE_BOXES_CARD_ACCEPTANCE_LOGOS)) {
             $output = NULL;
 
             foreach (explode(';', MODULE_BOXES_CARD_ACCEPTANCE_LOGOS) as $logo) {

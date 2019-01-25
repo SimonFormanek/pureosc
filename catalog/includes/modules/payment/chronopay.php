@@ -364,7 +364,8 @@ class chronopay
         global $customer_id, $order, $order_totals, $sendto, $billto, $languages_id, $payment, $currencies, $cart, $cart_ChronoPay_ID;
         global $$payment;
 
-        $order_id = substr($cart_ChronoPay_ID, strpos($cart_ChronoPay_ID, '-') + 1);
+        $order_id = substr($cart_ChronoPay_ID,
+            strpos($cart_ChronoPay_ID, '-') + 1);
 
         $check_query = tep_db_query("select orders_status from ".TABLE_ORDERS." where orders_id = '".(int) $order_id."'");
         if (tep_db_num_rows($check_query)) {

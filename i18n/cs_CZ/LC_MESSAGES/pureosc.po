@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-29 22:19+0100\n"
-"PO-Revision-Date: 2018-12-29 22:19+0100\n"
+"POT-Creation-Date: 2019-01-25 19:38+0100\n"
+"PO-Revision-Date: 2019-01-25 19:39+0100\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -50,13 +50,13 @@ msgstr "Vyžadovaná informace"
 #: create_account.php:646 create_account.php:664 create_account.php:709
 #: create_account.php:722 ext/modules/content/account/set_password.php:87
 #: ext/modules/content/account/set_password.php:95
-#: includes/modules/address_book_details.php:44
-#: includes/modules/address_book_details.php:59
-#: includes/modules/address_book_details.php:69
-#: includes/modules/address_book_details.php:127
-#: includes/modules/address_book_details.php:162
-#: includes/modules/address_book_details.php:175
-#: includes/modules/address_book_details.php:228 password_forgotten.php:127
+#: includes/modules/address_book_details.php:46
+#: includes/modules/address_book_details.php:63
+#: includes/modules/address_book_details.php:75
+#: includes/modules/address_book_details.php:134
+#: includes/modules/address_book_details.php:169
+#: includes/modules/address_book_details.php:182
+#: includes/modules/address_book_details.php:235 password_forgotten.php:127
 #: password_reset.php:128 password_reset.php:139 product_reviews_write.php:173
 #: tell_a_friend.php:177 tell_a_friend.php:188 tell_a_friend.php:203
 #: tell_a_friend.php:214 tell_a_friend.php:229
@@ -86,28 +86,36 @@ msgid "XLS Invoice"
 msgstr "XLS Faktura"
 
 #: account_pwa.php:368 account_pwa.php:372 admin/create_account.php:499
-#: admin/create_account.php:503 admin/customers.php:554
+#: admin/create_account.php:503 admin/customers.php:564
 #: admin/edit_orders.php:1112 admin/edit_orders.php:1244
 #: admin/edit_orders.php:1355 admin/includes/modules/account_details.php:216
 #: admin/includes/modules/create_order_details.php:80 create_account.php:510
-#: create_account.php:514 includes/modules/address_book_details.php:79
-#: includes/modules/address_book_details.php:84
-#: includes/modules/checkout_new_address.php:77
-#: includes/modules/checkout_new_address.php:81
+#: create_account.php:514 includes/modules/address_book_details.php:85
+#: includes/modules/address_book_details.php:90
+#: includes/modules/checkout_new_address.php:79
+#: includes/modules/checkout_new_address.php:83
 msgid "Company Name"
 msgstr "Název firmy"
 
 #: account_pwa.php:378 account_pwa.php:382 admin/create_account.php:519
 #: admin/create_account.php:523 admin/edit_orders.php:1118
 #: admin/edit_orders.php:1250 admin/edit_orders.php:1361 create_account.php:520
-#: create_account.php:524 includes/modules/address_book_details.php:90
-#: includes/modules/address_book_details.php:96
-#: includes/modules/checkout_new_address.php:87
-#: includes/modules/checkout_new_address.php:91
+#: create_account.php:524 includes/modules/address_book_details.php:96
+#: includes/modules/address_book_details.php:102
+#: includes/modules/checkout_new_address.php:89
+#: includes/modules/checkout_new_address.php:93
 msgid "Vat Number"
 msgstr "DIČ"
 
-#: admin/categories.php:2014
+#: admin/article_manager_blog_comments.php:518 admin/articles.php:1893
+#: admin/articles.php:1910 admin/authors.php:673 admin/categories.php:2052
+#: admin/categories.php:2086 admin/manufacturers.php:370 article_blog.php:118
+#: article_info.php:85
+#, php-format
+msgid "DATE ADDED"
+msgstr "Přidáno dne"
+
+#: admin/categories.php:2079
 msgid "Open in FlexiBee"
 msgstr "Otevřít ve FlexiBee"
 
@@ -116,6 +124,7 @@ msgid "Created by admin"
 msgstr "Založeno administrátorem"
 
 #: admin/create_account.php:384
+#: includes/modules/content/login/templates/create_account_link.php:4
 msgid "New Customer"
 msgstr "Nový zákazník"
 
@@ -132,7 +141,7 @@ msgstr "Heslo"
 msgid "Password Confirmation"
 msgstr "Heslo znovu"
 
-#: admin/customers.php:582 create_account.php:530
+#: admin/customers.php:592 create_account.php:530
 msgid "Company number"
 msgstr "Ičo"
 
@@ -165,7 +174,7 @@ msgid "Cash Desk payment"
 msgstr "Platba na pokladně"
 
 #: checkout_process.php:343 includes/modules/payment/cash.php:346
-#: includes/modules/payment/gpwebpay.php:411
+#: includes/modules/payment/gpwebpay.php:397
 msgid "New order saved"
 msgstr "Nová objednávka uložena"
 
@@ -195,57 +204,473 @@ msgstr "Chcete se přihlásit k odběru emailových novinek z %s ?"
 msgid "Click here to Agree"
 msgstr "Klikněte zde pro vyjádření souhlasu"
 
+#: includes/modules/article_listing.php:44
+#: includes/modules/articles_upcoming.php:43
+msgid "Topic"
+msgstr "Kategorie článků"
+
+#: includes/modules/article_listing.php:63
+msgid "Date added"
+msgstr "Přidáno dne"
+
+#: includes/modules/content/footer/cm_footer_contact_us.php:32
+msgid "Contact Us Details"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_contact_us.php:33
+msgid "Adds a Contact Us Block to the Footer Area of your site"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_contact_us.php:34
+#: includes/modules/content/footer/cm_footer_information_links.php:34
+#: includes/modules/content/footer/cm_footer_text.php:34
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:30
+#: includes/modules/header_tags/ht_pages_seo.php:30
+msgid "Content Width can be 12 or less per column per row"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_contact_us.php:35
+#: includes/modules/content/footer/cm_footer_information_links.php:35
+#: includes/modules/content/footer/cm_footer_text.php:35
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:31
+#: includes/modules/header_tags/ht_pages_seo.php:31
+msgid "12/12 = 100% width, 6/12 = 50% width, 4/12 = 33% width."
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_contact_us.php:36
+#: includes/modules/content/footer/cm_footer_information_links.php:36
+#: includes/modules/content/footer/cm_footer_text.php:36
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:32
+#: includes/modules/header_tags/ht_pages_seo.php:32
+msgid ""
+"Total of all columns in any one row must equal 12 (eg:  3 boxes of 4 columns "
+"each, 1 box of 12 columns and so on)"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_information_links.php:32
+msgid "Information Links Block"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_information_links.php:33
+msgid "Adds Information Links Block to the Footer Area of your site"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_text.php:32
+msgid "Text Block"
+msgstr "Blok textu"
+
+#: includes/modules/content/footer/cm_footer_text.php:33
+msgid "Adds a Text Block to the Footer Area of your site"
+msgstr "Přidá textový blok do patičky vašich stránek"
+
+#: includes/modules/content/footer/templates/cm_footer_account.php:3
+msgid "Customer Services"
+msgstr ""
+
+#: includes/modules/content/footer/templates/cm_footer_contact_us.php:3
+msgid "How To Contact Us"
+msgstr "Jak nás kontaktovat"
+
+#: includes/modules/content/footer/templates/cm_footer_information_links.php:3
+msgid "Information"
+msgstr "Informace"
+
+#: includes/modules/content/footer/templates/cm_footer_text.php:3
+#, fuzzy
+msgid "About Us"
+msgstr "O aplikaci"
+
+#: includes/modules/content/footer/templates/cm_footer_text.php:4
+msgid "Footer Text"
+msgstr "Text patičiky"
+
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:28
+msgid "Front Page Customer Greeting"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:29
+msgid "Show the customer greeting block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:22
+msgid "Front Page New Blog Articles"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:23
+msgid "Show the new blog articles block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:48
+msgid "Blog"
+msgstr "Blog"
+
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:51
+msgid "Show all articles"
+msgstr "Více"
+
+#: includes/modules/content/login/cm_create_account_link.php:27
+msgid "Create Account Link"
+msgstr ""
+
+#: includes/modules/content/login/cm_create_account_link.php:28
+msgid "Show a create account container on the login page"
+msgstr ""
+
+#: includes/modules/content/login/cm_login_form.php:27
+msgid "Login Form"
+msgstr ""
+
+#: includes/modules/content/login/cm_login_form.php:28
+msgid "Show a login form on the login page"
+msgstr ""
+
+#: includes/modules/content/login/cm_login_form.php:68
+msgid "Error: No match for E-Mail Address and/or Password."
+msgstr ""
+
+#: includes/modules/content/login/cm_pwa_login.php:25
+msgid "Login without Account Form"
+msgstr ""
+
+#: includes/modules/content/login/cm_pwa_login.php:26
+msgid "Show a PWA login form on the login page"
+msgstr ""
+
+#: includes/modules/content/login/templates/create_account_link.php:6
+#, fuzzy
+msgid "I am a new customer."
+msgstr "Nový zákazník"
+
+#: includes/modules/content/login/templates/create_account_link.php:7
+#, php-format
+msgid ""
+"By creating an account at %s you will be able to shop faster, be up to date "
+"on an orders status, and keep track of the orders you have previously made."
+msgstr ""
+
+#: includes/modules/content/login/templates/login_form.php:4
+msgid "Returning Customer"
+msgstr "Vážený zákazníku,"
+
+#: includes/modules/content/login/templates/login_form.php:6
+msgid "I am a returning customer."
+msgstr ""
+
+#: includes/modules/content/login/templates/login_form.php:24
+msgid "Password forgotten? Click here."
+msgstr ""
+
+#: includes/modules/content/login/templates/pwa_login.php:4
+msgid "Purchase without account"
+msgstr "Nákup bez registrace"
+
+#: includes/modules/content/login/templates/pwa_login.php:6
+msgid "Purchase without creating user account."
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_settings.php:20
+msgid "Lng/CCY"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_settings.php:25
+#, php-format
+msgid "Selected Language"
+msgstr "Zvolený jazyk"
+
+#: includes/modules/content/navbar/templates/cm_nb_settings.php:25
+#, php-format
+msgid "L:"
+msgstr "J:"
+
+#: includes/modules/content/navbar/templates/cm_nb_settings.php:25
+#, fuzzy, php-format
+msgid "Selected Currency"
+msgstr "Zvolený jazyk"
+
+#: includes/modules/content/navbar/templates/cm_nb_settings.php:25
+#, php-format
+msgid "C:"
+msgstr "M:"
+
+#: includes/modules/header_tags/ht_grid_list_view.php:26
+msgid "Grid List Javascript (jQuery)"
+msgstr ""
+
+#: includes/modules/header_tags/ht_grid_list_view.php:27
+msgid ""
+"Add Grid List javascript to specified pages, which invokes a Grid/List view "
+"for product lists"
+msgstr ""
+
+#: includes/modules/header_tags/ht_mailchimp_360.php:28
+msgid "MailChimp E-Commerce 360"
+msgstr ""
+
+#: includes/modules/header_tags/ht_mailchimp_360.php:29
+msgid "Visit MailChimp Website"
+msgstr ""
+
+#: includes/modules/header_tags/ht_mailchimp_360.php:30
+msgid ""
+"Using the above link to signup at MailChimp grants osCommerce a small "
+"financial bonus for referring a customer."
+msgstr ""
+
+#: includes/modules/header_tags/ht_mailchimp_360.php:31
+msgid ""
+"The MailChimp E-Commerce 360 module measures the ROI of your MailChimp e-"
+"mail campaigns"
+msgstr ""
+
+#: includes/modules/header_tags/ht_manufacturer_meta.php:28
+msgid "Manufacturer Meta"
+msgstr ""
+
+#: includes/modules/header_tags/ht_manufacturer_meta.php:29
+msgid ""
+"Add the META elements defined when setting up the manufacturer, to the "
+"header of the manufacturer page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_manufacturer_title.php:29
+msgid "Manufacturer Title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_manufacturer_title.php:30
+msgid "Add the title of the current manufacturer to the page title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_noscript.php:26
+msgid "No Script Message"
+msgstr ""
+
+#: includes/modules/header_tags/ht_noscript.php:27
+msgid "Shows a message to the user if they are browsing with javascript off."
+msgstr ""
+
+#: includes/modules/header_tags/ht_noscript.php:37
+msgid "JavaScript seems to be disabled in your browser."
+msgstr ""
+
+#: includes/modules/header_tags/ht_noscript.php:37
+msgid ""
+"You must have JavaScript enabled in your browser to utilize the "
+"functionality of this website."
+msgstr ""
+
+#: includes/modules/header_tags/ht_noscript.php:37
+msgid "Click here for instructions on enabling javascript in your browser"
+msgstr ""
+
+#: includes/modules/header_tags/ht_opensearch.php:28
+msgid "OpenSearch"
+msgstr ""
+
+#: includes/modules/header_tags/ht_opensearch.php:29
+msgid "Allow the browser to search the shop via OpenSearch"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_meta.php:28
+msgid "Pages Meta"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_meta.php:29
+msgid ""
+"Add the META elements defined when editing the pages (eg: specials.php), to "
+"the header of the page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_seo.php:28
+msgid "SEO - Pages"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_seo.php:29
+msgid ""
+"Add the SEO element defined when editing the pages (eg: specials.php), to "
+"the header of the page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_seo.php:44
+msgid " | "
+msgstr " | "
+
+#: includes/modules/header_tags/ht_pages_title.php:28
+msgid "Pages Title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_title.php:29
+msgid ""
+"Add the TITLE element defined when editing the pages (eg: specials.php), to "
+"the header of the page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_colorbox.php:28
+msgid "Colorbox Script"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_colorbox.php:29
+msgid "Add Colorbox Script to specified pages"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_meta.php:28
+#, fuzzy
+msgid "Product Meta"
+msgstr "Produkční"
+
+#: includes/modules/header_tags/ht_product_meta.php:29
+msgid ""
+"Add the META elements defined when setting up the product, to the header of "
+"the product page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_opengraph.php:28
+msgid "Product Open Graph Meta Tags"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_opengraph.php:29
+msgid ""
+"Add Open Graph Meta Tags to your product info pages, this is good for "
+"Facebook and for Pinterest Rich Pins."
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_opengraph.php:85
+msgid "stock"
+msgstr "skladem"
+
+#: includes/modules/header_tags/ht_product_opengraph.php:85
+msgid "oos"
+msgstr "vyprodáno"
+
+#: includes/modules/header_tags/ht_product_title.php:27
+msgid "Product Title"
+msgstr "Název produktu"
+
+#: includes/modules/header_tags/ht_product_title.php:28
+msgid "Add the title of the current product to the page title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_robot_control.php:28
+msgid "Robot Control"
+msgstr ""
+
+#: includes/modules/header_tags/ht_robot_control.php:29
+msgid "Take control of your pages abstracts in the Search Engine Result Pages."
+msgstr ""
+
+#: includes/modules/header_tags/ht_robot_control.php:30
+msgid "Helper Page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_robot_noindex.php:29
+msgid "Robot NoIndex"
+msgstr ""
+
+#: includes/modules/header_tags/ht_robot_noindex.php:30
+msgid "Add robot noindex tags to specified pages"
+msgstr ""
+
+#: includes/modules/header_tags/ht_table_click_jquery.php:28
+msgid "Table Row Click jQuery"
+msgstr ""
+
+#: includes/modules/header_tags/ht_table_click_jquery.php:29
+msgid "Add Table Row Click jQuery to specified pages"
+msgstr ""
+
+#: includes/modules/header_tags/ht_topic_title.php:28
+msgid "Topic Title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_topic_title.php:29
+msgid "Add the title of the current topic to the page title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:28
+msgid "Twitter Product Card"
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:29
+msgid "Add Twitter Product Card tags to your product information pages."
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:88
+msgid "Pre-Order"
+msgstr "Předobjednávka"
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:91
+msgid "In Stock"
+msgstr "Na skladě"
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:92
+msgid "BUY NOW"
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:94
+msgid "Out of Stock"
+msgstr "Není skladem"
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:95
+msgid "CONTACT US"
+msgstr ""
+
 #: includes/modules/payment/cash.php:25
 msgid "Cash"
 msgstr "Hotovost"
 
 #: includes/modules/payment/cash.php:26
+#, fuzzy
 msgid "Cash desk payment"
 msgstr "Platba na pokladně"
 
 #: includes/modules/payment/cash.php:27
+#, fuzzy
 msgid "Cash on table"
 msgstr "Platba na dřevo"
 
 #: includes/modules/payment/cash.php:598
+#, fuzzy
 msgid "Completed [cash]"
 msgstr "Hotovo [hotově]"
 
-#: includes/modules/payment/gpwebpay.php:44
+#: includes/modules/payment/gpwebpay.php:43
 msgid "GP WebPay"
 msgstr "GP WebPay"
 
-#: includes/modules/payment/gpwebpay.php:45
+#: includes/modules/payment/gpwebpay.php:44
 msgid "Card Payment"
 msgstr "Platba Kartou"
 
-#: includes/modules/payment/gpwebpay.php:46
+#: includes/modules/payment/gpwebpay.php:45
 msgid "GP WebPay Payment"
 msgstr "GP WebPay Platba"
 
-#: includes/modules/payment/gpwebpay.php:469
+#: includes/modules/payment/gpwebpay.php:455
 msgid "Payment failed"
 msgstr "Platba selhala"
 
-#: includes/modules/payment/gpwebpay.php:790
+#: includes/modules/payment/gpwebpay.php:766
 msgid "Your secret key"
 msgstr "Váš tajný klíč"
 
-#: includes/modules/payment/gpwebpay.php:790
+#: includes/modules/payment/gpwebpay.php:766
 msgid "Your secret key (supplied by gpwebpay)"
 msgstr "Váš tajný klíč (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:791
+#: includes/modules/payment/gpwebpay.php:767
 msgid "Your secret key password (supplied by gpwebpay)"
 msgstr "heslo vašeho tajného klíče  (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:792
+#: includes/modules/payment/gpwebpay.php:768
 msgid "Your public key (supplied by gpwebpay)"
 msgstr "váš veřejný klíč (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:897
+#: includes/modules/payment/gpwebpay.php:868
 msgid "Testing payment"
 msgstr "Testovací platba"
+
+#: includes/modules/product_listing.php:51
+msgid "Sort by"
+msgstr "Řadit dle"
 
 #: includes/modules/social_bookmarks/sb_google_buzz.php:24
 msgid "Google Buzz"
@@ -294,6 +719,33 @@ msgstr "p"
 #~ msgid "Vat number"
 #~ msgstr "Dič"
 
+#~ msgid "Previous"
+#~ msgstr "Předchozí"
+
+#~ msgid "Next"
+#~ msgstr "Následující"
+
+#~ msgid "... [more]"
+#~ msgstr "..."
+
+#~ msgid "View"
+#~ msgstr "Zobrazit"
+
+#~ msgid "Buy"
+#~ msgstr "Koupit"
+
+#~ msgid "New Products For %s"
+#~ msgstr "New Products For %s"
+
+#~ msgid "View Cart"
+#~ msgstr "Košík"
+
+#~ msgid "0 items"
+#~ msgstr "bez položek"
+
+#~ msgid "item(s)"
+#~ msgstr "položky"
+
 #~ msgid "MODULE_PAYMENT_POSTAL_ORDER_TEXT_TITLE"
 #~ msgstr "MODULE_PAYMENT_POSTAL_ORDER_TEXT_TITLE"
 
@@ -305,9 +757,6 @@ msgstr "p"
 
 #~ msgid "MODULE_PAYMENT_POSTAL_ORDER_TEXT_EMAIL_FOOTER"
 #~ msgstr "MODULE_PAYMENT_POSTAL_ORDER_TEXT_EMAIL_FOOTER"
-
-#~ msgid "Production"
-#~ msgstr "Produkční"
 
 #~ msgid "Invoice #%s was matched with proforma #%s"
 #~ msgstr "Faktura #%s byla spárována se zálohou #%s"

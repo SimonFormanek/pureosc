@@ -16,5 +16,5 @@
  */
 class Braintree_Exception_ServerError extends Braintree_Exception
 {
-
+    
 }

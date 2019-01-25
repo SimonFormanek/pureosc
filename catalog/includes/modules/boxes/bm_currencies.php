@@ -40,9 +40,9 @@ class bm_currencies
 
     function execute()
     {
-        global $PHP_SELF, $currencies, $_GET, $request_type, $currency, $oscTemplate;
+        global $currencies, $_GET, $request_type, $currency, $oscTemplate;
 
-        if (substr(basename($PHP_SELF), 0, 8) != 'checkout') {
+        if (substr(basename($_SERVER['PHP_SELF']), 0, 8) != 'checkout') {
             if (isset($currencies) && is_object($currencies) && (count($currencies->currencies)
                 > 1)) {
                 reset($currencies->currencies);
@@ -62,8 +62,8 @@ class bm_currencies
                 }
 
                 $form_output = tep_draw_form('currencies',
-                        tep_href_link($PHP_SELF, '', $request_type, false),
-                        'get').tep_draw_pull_down_menu('currency',
+                        tep_href_link($_SERVER['PHP_SELF'], '', $request_type,
+                            false), 'get').tep_draw_pull_down_menu('currency',
                         $currencies_array, $currency,
                         'onchange="this.form.submit();" style="width: 100%"').$hidden_get_variables.tep_hide_session_id().'</form>';
 

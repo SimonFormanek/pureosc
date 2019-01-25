@@ -41,8 +41,9 @@ if ($listing_split->number_of_rows > 0) {
         if (DISPLAY_TOPIC_ARTICLE_LISTING == 'true' && tep_not_null($articles_listing['topics_name'])
             && (MAIN_PAGE_BLOG != 'true')) {
             ?>
-            <div><?php echo TEXT_TOPIC.'&nbsp;<a href="'.tep_href_link(FILENAME_ARTICLES,
-                'tPath='.$articles_listing['topics_id']).'">'.$articles_listing['topics_name'].'</a>'; ?></div>
+            <div><?php echo _('Topic').'&nbsp;<a href="'.tep_href_link(FILENAME_ARTICLES,
+                'tPath='.$articles_listing['topics_id']).'">'.$articles_listing['topics_name'].'</a>';
+            ?></div>
             <?php
         }
         ?>
@@ -50,19 +51,21 @@ if ($listing_split->number_of_rows > 0) {
         <?php
         if (DISPLAY_ABSTRACT_ARTICLE_LISTING == 'true') {
             ?>
-            <div><?php echo clean_html_comments(substr($articles_listing['articles_head_desc_tag'],
-                    0, MAX_ARTICLE_ABSTRACT_LENGTH)).((strlen($articles_listing['articles_head_desc_tag'])
-            >= MAX_ARTICLE_ABSTRACT_LENGTH) ? '...' : ''); ?></div>
+            <div><?php
+                echo clean_html_comments(substr($articles_listing['articles_head_desc_tag'],
+                        0, MAX_ARTICLE_ABSTRACT_LENGTH)).((strlen($articles_listing['articles_head_desc_tag'])
+                >= MAX_ARTICLE_ABSTRACT_LENGTH) ? '...' : '');
+                ?></div>
             <?php
         }
         if (DISPLAY_DATE_ADDED_ARTICLE_LISTING == 'true') {
             ?>
-            <div><?php echo TEXT_DATE_ADDED.' '.tep_date_long($articles_listing['articles_date_added']); ?></div>
-                <?php
-            }
-        } // End of listing loop
-    } else {
-        ?>
+            <div><?php echo _('Date added').' '.tep_date_long($articles_listing['articles_date_added']); ?></div>
+            <?php
+        }
+    } // End of listing loop
+} else {
+    ?>
     <div class="main">
         <?php
         if ($listing_no_article <> '') {
@@ -76,20 +79,21 @@ if ($listing_split->number_of_rows > 0) {
         }
         ?>
     </div>
-            <?php
-        }
-        ?>
+    <?php
+}
+?>
 <?php
 if ((MAIN_PAGE_BLOG != 'true') && (($listing_split->number_of_rows > 0) && ((ARTICLE_PREV_NEXT_BAR_LOCATION
     == 'bottom') || (ARTICLE_PREV_NEXT_BAR_LOCATION == 'both')))) {
     ?>
     <div class="row">
         <div class="col-sm-6 pagenumber hidden-xs">
-    <?php echo $listing_split->display_count(TEXT_DISPLAY_NUMBER_OF_ARTICLES); ?>
+                    <?php echo $listing_split->display_count(TEXT_DISPLAY_NUMBER_OF_ARTICLES); ?>
         </div>
         <div class="col-sm-6">
             <div class="pull-right pagenav"><ul class="pagination"><?php echo $listing_split->display_links(MAX_DISPLAY_PAGE_LINKS,
-        tep_get_all_get_params(array('page', 'info', 'x', 'y'))); ?></ul></div>
+                        tep_get_all_get_params(array('page', 'info', 'x', 'y')));
+                    ?></ul></div>
             <span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span>
         </div>
     </div>            

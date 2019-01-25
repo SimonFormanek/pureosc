@@ -28,11 +28,12 @@ if ($messageStack->size('product_action') > 0) {
         ?>
         <div class="row">
             <div class="col-sm-6 pagenumber hidden-xs">
-    <?php echo $listing_split->display_count(TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?>
+                <?php echo $listing_split->display_count(TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?>
             </div>
             <div class="col-sm-6">
                 <div class="pull-right pagenav"><ul class="pagination"><?php echo $listing_split->display_links(MAX_DISPLAY_PAGE_LINKS,
-        tep_get_all_get_params(array('page', 'info', 'x', 'y'))); ?></ul></div>
+                tep_get_all_get_params(array('page', 'info', 'x', 'y')));
+                ?></ul></div>
                 <span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span>
             </div>
         </div>
@@ -47,7 +48,7 @@ if ($messageStack->size('product_action') > 0) {
         <?php if (PRODUCT_LIST_DISPLAY_SORTBY == 'true') { ?>
                     <div class="btn-group btn-group-sm pull-right">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <?php echo TEXT_SORT_BY; ?><span class="caret"></span>
+          <?php echo _('Sort by'); ?><span class="caret"></span>
                         </button>
 
                         <ul class="dropdown-menu text-left">
@@ -107,18 +108,18 @@ if ($messageStack->size('product_action') > 0) {
                             ?>
                         </ul>
                     </div>
-            <?php
-        }
-        if (MODULE_HEADER_TAGS_GRID_LIST_VIEW_STATUS == 'True') {
-            ?>
+                    <?php
+                }
+                if (MODULE_HEADER_TAGS_GRID_LIST_VIEW_STATUS == 'True') {
+                    ?>
                     <strong><?php echo TEXT_VIEW; ?></strong>
                     <div class="btn-group">
                         <a href="#" id="list" class="btn btn-default btn-sm"><span class="fa fa-th-list"></span><?php echo TEXT_VIEW_LIST; ?></a>
                         <a href="#" id="grid" class="btn btn-default btn-sm"><span class="fa fa-th"></span><?php echo TEXT_VIEW_GRID; ?></a>
                     </div>
-                <?php
-            }
-            ?>
+                    <?php
+                }
+                ?>
                 <div class="clearfix"></div>
             </div>
             <?php
@@ -213,12 +214,13 @@ if ($messageStack->size('product_action') > 0) {
             </div>
             <div class="col-sm-6">
                 <div class="pull-right pagenav"><ul class="pagination"><?php echo $listing_split->display_links(MAX_DISPLAY_PAGE_LINKS,
-        tep_get_all_get_params(array('page', 'info', 'x', 'y'))); ?></ul></div>
+        tep_get_all_get_params(array('page', 'info', 'x', 'y')));
+    ?></ul></div>
                 <span class="pull-right"><?php echo TEXT_RESULT_PAGE; ?></span>
             </div>
         </div>
-    <?php
-}
-?>
+        <?php
+    }
+    ?>
 
 </div>

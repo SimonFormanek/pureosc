@@ -16,5 +16,5 @@
  */
 class Braintree_Exception_Configuration extends Braintree_Exception
 {
-
+    
 }

@@ -19,4 +19,5 @@
  */
 class Braintree_Transaction_SubscriptionDetails extends Braintree_Instance
 {
+    
 }

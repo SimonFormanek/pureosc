@@ -515,7 +515,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         IMAGE_EDIT).'</a> <a href="'.tep_href_link(FILENAME_ARTICLES_BLOG_COMMENTS,
                         'page='.$_GET['page'].'&comID='.$comInfo->articles_id.'&action=delete').'">'.tep_image_button('button_delete.gif',
                         IMAGE_DELETE).'</a>');
-                $contents[] = array('text' => '<br>'.TEXT_DATE_ADDED.' '.tep_date_short($comInfo->comment_date_added));
+                $contents[] = array('text' => '<br>'._('DATE ADDED').' '.tep_date_short($comInfo->comment_date_added));
                 $contents[] = array('text' => '<br>'.TEXT_COMMENTS.' '.$comInfo->ttl_comments);
             }
             break;

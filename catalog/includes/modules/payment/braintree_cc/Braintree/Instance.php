@@ -17,17 +17,17 @@
  */
 abstract class Braintree_Instance
 {
+
     /**
      *
      * @param array $aAttribs
      */
-    public function  __construct($attributes)
+    public function __construct($attributes)
     {
         if (!empty($attributes)) {
             $this->_initializeFromArray($attributes);
         }
     }
-
 
     /**
      * returns private/nonexistent instance properties
@@ -40,7 +40,8 @@ abstract class Braintree_Instance
         if (array_key_exists($name, $this->_attributes)) {
             return $this->_attributes[$name];
         } else {
-            trigger_error('Undefined property on ' . get_class($this) . ': ' . $name, E_USER_NOTICE);
+            trigger_error('Undefined property on '.get_class($this).': '.$name,
+                E_USER_NOTICE);
             return null;
         }
     }
@@ -61,11 +62,12 @@ abstract class Braintree_Instance
      * ClassName[property=value, property=value]
      * @return var
      */
-    public function  __toString()
+    public function __toString()
     {
         $objOutput = Braintree_Util::implodeAssociativeArray($this->_attributes);
-        return get_class($this) .'['.$objOutput.']';
+        return get_class($this).'['.$objOutput.']';
     }
+
     /**
      * initializes instance properties from the keys/values of an array
      * @ignore
@@ -77,5 +79,4 @@ abstract class Braintree_Instance
     {
         $this->_attributes = $attributes;
     }
-
 }

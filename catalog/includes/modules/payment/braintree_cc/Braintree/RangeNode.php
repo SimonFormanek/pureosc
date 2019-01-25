@@ -2,9 +2,10 @@
 
 class Braintree_RangeNode
 {
+
     function __construct($name)
     {
-        $this->name = $name;
+        $this->name        = $name;
         $this->searchTerms = array();
     }
 
@@ -28,7 +29,7 @@ class Braintree_RangeNode
 
     function between($min, $max)
     {
-		return $this->greaterThanOrEqualTo($min)->lessThanOrEqualTo($max);
+        return $this->greaterThanOrEqualTo($min)->lessThanOrEqualTo($max);
     }
 
     function toParam()

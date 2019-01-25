@@ -1224,9 +1224,10 @@ class MCAPI
 
      * @return boolean true on success, false on failure. When using MCAPI.class.php, the value can be tested and error messages pulled from the MCAPI object (see below)
      */
-    function listSubscribe($id, $email_address, $merge_vars, $email_type = 'html',
-                           $double_optin = true, $update_existing = false,
-                           $replace_interests = true, $send_welcome = false)
+    function listSubscribe($id, $email_address, $merge_vars,
+                           $email_type = 'html', $double_optin = true,
+                           $update_existing = false, $replace_interests = true,
+                           $send_welcome = false)
     {
         $params                      = array();
         $params["id"]                = $id;
@@ -1279,8 +1280,8 @@ class MCAPI
      * @param boolean $replace_interests flag to determine whether we replace the interest groups with the updated groups provided, or we add the provided groups to the member's interest groups (optional, defaults to true)
      * @return boolean true on success, false on failure. When using MCAPI.class.php, the value can be tested and error messages pulled from the MCAPI object
      */
-    function listUpdateMember($id, $email_address, $merge_vars, $email_type = '',
-                              $replace_interests = true)
+    function listUpdateMember($id, $email_address, $merge_vars,
+                              $email_type = '', $replace_interests = true)
     {
         $params                      = array();
         $params["id"]                = $id;

@@ -34,14 +34,15 @@
  */
 class Braintree_Customer extends Braintree
 {
+
     public static function all()
     {
         $response = Braintree_Http::post('/customers/advanced_search_ids');
-        $pager = array(
+        $pager    = array(
             'className' => __CLASS__,
             'classMethod' => 'fetch',
             'methodArgs' => array(array())
-            );
+        );
 
         return new Braintree_ResourceCollection($response, $pager);
     }
@@ -53,11 +54,11 @@ class Braintree_Customer extends Braintree
             $criteria[$term->name] = $term->toparam();
         }
         $criteria["ids"] = Braintree_CustomerSearch::ids()->in($ids)->toparam();
-        $response = Braintree_Http::post('/customers/advanced_search', array('search' => $criteria));
+        $response        = Braintree_Http::post('/customers/advanced_search',
+                array('search' => $criteria));
 
         return Braintree_Util::extractattributeasarray(
-            $response['customers'],
-            'customer'
+                $response['customers'], 'customer'
         );
     }
 
@@ -106,6 +107,7 @@ class Braintree_Customer extends Braintree
         $result = self::create($attribs);
         return self::returnObjectOrThrowException(__CLASS__, $result);
     }
+
     /**
      * create a customer from a TransparentRedirect operation
      *
@@ -115,10 +117,11 @@ class Braintree_Customer extends Braintree
      */
     public static function createFromTransparentRedirect($queryString)
     {
-        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::confirm", E_USER_NOTICE);
+        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::confirm",
+            E_USER_NOTICE);
         $params = Braintree_TransparentRedirect::parseAndValidateQueryString(
                 $queryString
-                );
+        );
         return self::_doCreate(
                 '/customers/all/confirm_transparent_redirect_request',
                 array('id' => $params['id'])
@@ -133,11 +136,11 @@ class Braintree_Customer extends Braintree
      */
     public static function createCustomerUrl()
     {
-        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::url", E_USER_NOTICE);
-        return Braintree_Configuration::merchantUrl() .
-                '/customers/all/create_via_transparent_redirect_request';
+        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::url",
+            E_USER_NOTICE);
+        return Braintree_Configuration::merchantUrl().
+            '/customers/all/create_via_transparent_redirect_request';
     }
-
 
     /**
      * creates a full array signature of a valid create request
@@ -148,13 +151,13 @@ class Braintree_Customer extends Braintree
 
         $creditCardSignature = Braintree_CreditCard::createSignature();
         unset($creditCardSignature['customerId']);
-        $signature = array(
+        $signature           = array(
             'id', 'company', 'email', 'fax', 'firstName',
             'lastName', 'phone', 'website', 'deviceData',
             'deviceSessionId', 'fraudMerchantId',
             array('creditCard' => $creditCardSignature),
             array('customFields' => array('_anyKey_')),
-            );
+        );
         return $signature;
     }
 
@@ -166,9 +169,10 @@ class Braintree_Customer extends Braintree
     {
         $creditCardSignature = Braintree_CreditCard::updateSignature();
 
-        foreach($creditCardSignature AS $key => $value) {
-            if(is_array($value) and array_key_exists('options', $value)) {
-                array_push($creditCardSignature[$key]['options'], 'updateExistingToken');
+        foreach ($creditCardSignature AS $key => $value) {
+            if (is_array($value) and array_key_exists('options', $value)) {
+                array_push($creditCardSignature[$key]['options'],
+                    'updateExistingToken');
             }
         }
 
@@ -178,10 +182,9 @@ class Braintree_Customer extends Braintree
             'deviceSessionId', 'fraudMerchantId',
             array('creditCard' => $creditCardSignature),
             array('customFields' => array('_anyKey_')),
-            );
+        );
         return $signature;
     }
-
 
     /**
      * find a customer by id
@@ -199,10 +202,9 @@ class Braintree_Customer extends Braintree
             return self::factory($response['customer']);
         } catch (Braintree_Exception_NotFound $e) {
             throw new Braintree_Exception_NotFound(
-            'customer with id ' . $id . ' not found'
+                'customer with id '.$id.' not found'
             );
         }
-
     }
 
     /**
@@ -217,9 +219,9 @@ class Braintree_Customer extends Braintree
         self::_validateId($customerId);
         return Braintree_Transaction::credit(
                 array_merge($transactionAttribs,
-                        array('customerId' => $customerId)
-                        )
-                );
+                    array('customerId' => $customerId)
+                )
+        );
     }
 
     /**
@@ -235,7 +237,8 @@ class Braintree_Customer extends Braintree
     public static function creditNoValidate($customerId, $transactionAttribs)
     {
         $result = self::credit($customerId, $transactionAttribs);
-        return self::returnObjectOrThrowException('Braintree_Transaction', $result);
+        return self::returnObjectOrThrowException('Braintree_Transaction',
+                $result);
     }
 
     /**
@@ -246,7 +249,7 @@ class Braintree_Customer extends Braintree
     public static function delete($customerId)
     {
         self::_validateId($customerId);
-        Braintree_Http::delete('/customers/' . $customerId);
+        Braintree_Http::delete('/customers/'.$customerId);
         return new Braintree_Result_Successful();
     }
 
@@ -263,9 +266,9 @@ class Braintree_Customer extends Braintree
         self::_validateId($customerId);
         return Braintree_Transaction::sale(
                 array_merge($transactionAttribs,
-                        array('customerId' => $customerId)
-                        )
-                );
+                    array('customerId' => $customerId)
+                )
+        );
     }
 
     /**
@@ -282,7 +285,8 @@ class Braintree_Customer extends Braintree
     public static function saleNoValidate($customerId, $transactionAttribs)
     {
         $result = self::sale($customerId, $transactionAttribs);
-        return self::returnObjectOrThrowException('Braintree_Transaction', $result);
+        return self::returnObjectOrThrowException('Braintree_Transaction',
+                $result);
     }
 
     /**
@@ -304,12 +308,13 @@ class Braintree_Customer extends Braintree
             $criteria[$term->name] = $term->toparam();
         }
 
-        $response = Braintree_Http::post('/customers/advanced_search_ids', array('search' => $criteria));
-        $pager = array(
+        $response = Braintree_Http::post('/customers/advanced_search_ids',
+                array('search' => $criteria));
+        $pager    = array(
             'className' => __CLASS__,
             'classMethod' => 'fetch',
             'methodArgs' => array($query)
-            );
+        );
 
         return new Braintree_ResourceCollection($response, $pager);
     }
@@ -330,9 +335,8 @@ class Braintree_Customer extends Braintree
         Braintree_Util::verifyKeys(self::updateSignature(), $attributes);
         self::_validateId($customerId);
         return self::_doUpdate(
-            'put',
-            '/customers/' . $customerId,
-            array('customer' => $attributes)
+                'put', '/customers/'.$customerId,
+                array('customer' => $attributes)
         );
     }
 
@@ -354,6 +358,7 @@ class Braintree_Customer extends Braintree
         $result = self::update($customerId, $attributes);
         return self::returnObjectOrThrowException(__CLASS__, $result);
     }
+
     /**
      *
      * @access public
@@ -362,9 +367,10 @@ class Braintree_Customer extends Braintree
      */
     public static function updateCustomerUrl()
     {
-        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::url", E_USER_NOTICE);
-        return Braintree_Configuration::merchantUrl() .
-                '/customers/all/update_via_transparent_redirect_request';
+        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::url",
+            E_USER_NOTICE);
+        return Braintree_Configuration::merchantUrl().
+            '/customers/all/update_via_transparent_redirect_request';
     }
 
     /**
@@ -376,17 +382,16 @@ class Braintree_Customer extends Braintree
      */
     public static function updateFromTransparentRedirect($queryString)
     {
-        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::confirm", E_USER_NOTICE);
+        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::confirm",
+            E_USER_NOTICE);
         $params = Braintree_TransparentRedirect::parseAndValidateQueryString(
                 $queryString
         );
         return self::_doUpdate(
-                'post',
-                '/customers/all/confirm_transparent_redirect_request',
+                'post', '/customers/all/confirm_transparent_redirect_request',
                 array('id' => $params['id'])
         );
     }
-
     /* instance methods */
 
     /**
@@ -420,17 +425,16 @@ class Braintree_Customer extends Braintree
             }
         }
         $this->_set('creditCards', $ccArray);
-
     }
 
     /**
      * returns a string representation of the customer
      * @return string
      */
-    public function  __toString()
+    public function __toString()
     {
-        return __CLASS__ . '[' .
-                Braintree_Util::attributesToString($this->_attributes) .']';
+        return __CLASS__.'['.
+            Braintree_Util::attributesToString($this->_attributes).']';
     }
 
     /**
@@ -444,27 +448,25 @@ class Braintree_Customer extends Braintree
     {
         return !($otherCust instanceof Braintree_Customer) ? false : $this->id === $otherCust->id;
     }
-
     /* private class properties  */
-
     /**
      * @access protected
      * @var array registry of customer data
      */
     protected $_attributes = array(
-        'addresses'   => '',
-        'company'     => '',
+        'addresses' => '',
+        'company' => '',
         'creditCards' => '',
-        'email'       => '',
-        'fax'         => '',
-        'firstName'   => '',
-        'id'          => '',
-        'lastName'    => '',
-        'phone'       => '',
-        'createdAt'   => '',
-        'updatedAt'   => '',
-        'website'     => '',
-        );
+        'email' => '',
+        'fax' => '',
+        'firstName' => '',
+        'id' => '',
+        'lastName' => '',
+        'phone' => '',
+        'createdAt' => '',
+        'updatedAt' => '',
+        'website' => '',
+    );
 
     /**
      * sends the create request to the gateway
@@ -487,20 +489,19 @@ class Braintree_Customer extends Braintree
      * @param string customer id
      * @throws InvalidArgumentException
      */
-    private static function _validateId($id = null) {
+    private static function _validateId($id = null)
+    {
         if (empty($id)) {
-           throw new InvalidArgumentException(
-                   'expected customer id to be set'
-                   );
+            throw new InvalidArgumentException(
+                'expected customer id to be set'
+            );
         }
         if (!preg_match('/^[0-9A-Za-z_-]+$/', $id)) {
             throw new InvalidArgumentException(
-                    $id . ' is an invalid customer id.'
-                    );
+                $id.' is an invalid customer id.'
+            );
         }
     }
-
-
     /* private class methods */
 
     /**
@@ -536,13 +537,13 @@ class Braintree_Customer extends Braintree
         if (isset($response['customer'])) {
             // return a populated instance of Braintree_Customer
             return new Braintree_Result_Successful(
-                    self::factory($response['customer'])
+                self::factory($response['customer'])
             );
         } else if (isset($response['apiErrorResponse'])) {
             return new Braintree_Result_Error($response['apiErrorResponse']);
         } else {
             throw new Braintree_Exception_Unexpected(
-            "Expected customer or apiErrorResponse"
+                "Expected customer or apiErrorResponse"
             );
         }
     }
@@ -560,5 +561,4 @@ class Braintree_Customer extends Braintree
         $instance->_initialize($attributes);
         return $instance;
     }
-
 }

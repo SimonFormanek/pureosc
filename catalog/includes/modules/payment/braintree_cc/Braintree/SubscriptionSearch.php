@@ -1,6 +1,8 @@
 <?php
+
 class Braintree_SubscriptionSearch
 {
+
     static function billingCyclesRemaining()
     {
         return new Braintree_RangeNode('billing_cycles_remaining');
@@ -18,7 +20,8 @@ class Braintree_SubscriptionSearch
 
     static function inTrialPeriod()
     {
-        return new Braintree_MultipleValueNode('in_trial_period', array(true, false));
+        return new Braintree_MultipleValueNode('in_trial_period',
+            array(true, false));
     }
 
     static function merchantAccountId()
@@ -43,7 +46,8 @@ class Braintree_SubscriptionSearch
 
     static function status()
     {
-        return new Braintree_MultipleValueNode("status", array(
+        return new Braintree_MultipleValueNode("status",
+            array(
             Braintree_Subscription::ACTIVE,
             Braintree_Subscription::CANCELED,
             Braintree_Subscription::EXPIRED,

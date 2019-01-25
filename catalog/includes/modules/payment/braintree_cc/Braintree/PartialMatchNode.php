@@ -2,6 +2,7 @@
 
 class Braintree_PartialMatchNode extends Braintree_EqualityNode
 {
+
     function startsWith($value)
     {
         $this->searchTerms["starts_with"] = strval($value);

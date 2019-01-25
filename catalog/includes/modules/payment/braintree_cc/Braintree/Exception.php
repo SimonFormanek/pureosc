@@ -7,7 +7,6 @@
  * @copyright  2014 Braintree, a division of PayPal, Inc.
  */
 
-
 /**
  * super class for all Braintree exceptions
  *
@@ -17,4 +16,5 @@
  */
 class Braintree_Exception extends Exception
 {
+    
 }

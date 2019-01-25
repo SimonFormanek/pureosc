@@ -38,7 +38,7 @@ if (isset($_GET['products_id'])) {
         <h3><?php echo TEXT_ALSO_PURCHASED_PRODUCTS; ?></h3>
 
         <div class="row">
-        <?php echo $also_pur_prods_content; ?>
+            <?php echo $also_pur_prods_content; ?>
         </div>
 
 

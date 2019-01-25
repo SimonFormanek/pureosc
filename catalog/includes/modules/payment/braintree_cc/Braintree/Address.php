@@ -7,6 +7,7 @@
  * @package   Braintree
  * @copyright 2014 Braintree, a division of PayPal, Inc.
  */
+
 /**
  * Creates and manages Braintree Addresses
  *
@@ -33,8 +34,8 @@
  */
 class Braintree_Address extends Braintree
 {
-
     /* public class methods */
+
     /**
      *
      * @access public
@@ -51,8 +52,8 @@ class Braintree_Address extends Braintree
         self::_validateCustomerId($customerId);
         unset($attribs['customerId']);
         return self::_doCreate(
-            '/customers/' . $customerId . '/addresses',
-            array('address' => $attribs)
+                '/customers/'.$customerId.'/addresses',
+                array('address' => $attribs)
         );
     }
 
@@ -69,7 +70,6 @@ class Braintree_Address extends Braintree
     {
         $result = self::create($attribs);
         return self::returnObjectOrThrowException(__CLASS__, $result);
-
     }
 
     /**
@@ -83,7 +83,7 @@ class Braintree_Address extends Braintree
         self::_validateId($addressId);
         $customerId = self::_determineCustomerId($customerOrId);
         Braintree_Http::delete(
-            '/customers/' . $customerId . '/addresses/' . $addressId
+            '/customers/'.$customerId.'/addresses/'.$addressId
         );
         return new Braintree_Result_Successful();
     }
@@ -110,16 +110,15 @@ class Braintree_Address extends Braintree
 
         try {
             $response = Braintree_Http::get(
-                '/customers/' . $customerId . '/addresses/' . $addressId
+                    '/customers/'.$customerId.'/addresses/'.$addressId
             );
             return self::factory($response['address']);
         } catch (Braintree_Exception_NotFound $e) {
             throw new Braintree_Exception_NotFound(
-            'address for customer ' . $customerId .
-                ' with id ' . $addressId . ' not found.'
+                'address for customer '.$customerId.
+                ' with id '.$addressId.' not found.'
             );
         }
-
     }
 
     /**
@@ -157,12 +156,11 @@ class Braintree_Address extends Braintree
         Braintree_Util::verifyKeys(self::updateSignature(), $attributes);
 
         $response = Braintree_Http::put(
-            '/customers/' . $customerId . '/addresses/' . $addressId,
-            array('address' => $attributes)
+                '/customers/'.$customerId.'/addresses/'.$addressId,
+                array('address' => $attributes)
         );
 
         return self::_verifyGatewayResponse($response);
-
     }
 
     /**
@@ -179,7 +177,8 @@ class Braintree_Address extends Braintree
      * @throws Braintree_Exception_ValidationsFailed
      * @see Braintree_Address::update()
      */
-    public static function updateNoValidate($customerOrId, $addressId, $attributes)
+    public static function updateNoValidate($customerOrId, $addressId,
+                                            $attributes)
     {
         $result = self::update($customerOrId, $addressId, $attributes);
         return self::returnObjectOrThrowException(__CLASS__, $result);
@@ -206,7 +205,6 @@ class Braintree_Address extends Braintree
     {
         // TODO: remove customerId from update signature
         return self::createSignature();
-
     }
 
     /**
@@ -215,10 +213,10 @@ class Braintree_Address extends Braintree
      * @ignore
      * @return var
      */
-    public function  __toString()
+    public function __toString()
     {
-        return __CLASS__ . '[' .
-                Braintree_Util::attributesToString($this->_attributes) .']';
+        return __CLASS__.'['.
+            Braintree_Util::attributesToString($this->_attributes).']';
     }
 
     /**
@@ -245,12 +243,12 @@ class Braintree_Address extends Braintree
     {
         if (empty($id) || trim($id) == "") {
             throw new InvalidArgumentException(
-            'expected address id to be set'
+                'expected address id to be set'
             );
         }
         if (!preg_match('/^[0-9A-Za-z_-]+$/', $id)) {
             throw new InvalidArgumentException(
-            $id . ' is an invalid address id.'
+                $id.' is an invalid address id.'
             );
         }
     }
@@ -265,15 +263,14 @@ class Braintree_Address extends Braintree
     {
         if (empty($id) || trim($id) == "") {
             throw new InvalidArgumentException(
-            'expected customer id to be set'
+                'expected customer id to be set'
             );
         }
         if (!preg_match('/^[0-9A-Za-z_-]+$/', $id)) {
             throw new InvalidArgumentException(
-            $id . ' is an invalid customer id.'
+                $id.' is an invalid customer id.'
             );
         }
-
     }
 
     /**
@@ -284,13 +281,13 @@ class Braintree_Address extends Braintree
      */
     private static function _determineCustomerId($customerOrId)
     {
-        $customerId = ($customerOrId instanceof Braintree_Customer) ? $customerOrId->id : $customerOrId;
+        $customerId = ($customerOrId instanceof Braintree_Customer) ? $customerOrId->id
+                : $customerOrId;
         self::_validateCustomerId($customerId);
         return $customerId;
-
     }
-
     /* private class methods */
+
     /**
      * sends the create request to the gateway
      * @ignore
@@ -303,7 +300,6 @@ class Braintree_Address extends Braintree
         $response = Braintree_Http::post($url, $params);
 
         return self::_verifyGatewayResponse($response);
-
     }
 
     /**
@@ -330,10 +326,9 @@ class Braintree_Address extends Braintree
             return new Braintree_Result_Error($response['apiErrorResponse']);
         } else {
             throw new Braintree_Exception_Unexpected(
-            "Expected address or apiErrorResponse"
+                "Expected address or apiErrorResponse"
             );
         }
-
     }
 
     /**
@@ -347,6 +342,5 @@ class Braintree_Address extends Braintree
         $instance = new self();
         $instance->_initialize($attributes);
         return $instance;
-
     }
 }

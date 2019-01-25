@@ -1,10 +1,10 @@
 <?php
-
 /**
  * Braintree XML Parser
  *
  * @copyright  2014 Braintree, a division of PayPal, Inc.
  */
+
 /**
  * Parses incoming Xml into arrays using PHP's
  * built-in SimpleXML, and its extension via
@@ -14,7 +14,6 @@
  */
 class Braintree_Xml_Parser
 {
-
     private static $_xmlRoot;
     private static $_responseType;
 
@@ -28,15 +27,14 @@ class Braintree_Xml_Parser
     {
         // SimpleXML provides the root information on construct
         $iterator = new SimpleXMLIterator($xml);
-        $xmlRoot = Braintree_Util::delimiterToCamelCase($iterator->getName());
-        $type = $iterator->attributes()->type;
+        $xmlRoot  = Braintree_Util::delimiterToCamelCase($iterator->getName());
+        $type     = $iterator->attributes()->type;
 
-        self::$_xmlRoot = $iterator->getName();
+        self::$_xmlRoot      = $iterator->getName();
         self::$_responseType = $type;
 
         // return the mapped array with the root element as the header
         return array($xmlRoot => self::_iteratorToArray($iterator));
-
     }
 
     /**
@@ -49,7 +47,7 @@ class Braintree_Xml_Parser
     private static function _iteratorToArray($iterator)
     {
         $xmlArray = array();
-        $value = null;
+        $value    = null;
 
         // rewind the iterator and check if the position is valid
         // if not, return the string it contains
@@ -60,16 +58,16 @@ class Braintree_Xml_Parser
         for ($iterator->rewind(); $iterator->valid(); $iterator->next()) {
 
             $tmpArray = null;
-            $value = null;
+            $value    = null;
 
             // get the attribute type string for use in conditions below
             $attributeType = $iterator->attributes()->type;
 
             // extract the parent element via xpath query
-            $parentElement = $iterator->xpath($iterator->key() . '/..');
+            $parentElement = $iterator->xpath($iterator->key().'/..');
             if ($parentElement[0] instanceof SimpleXMLIterator) {
                 $parentElement = $parentElement[0];
-                $parentKey = Braintree_Util::delimiterToCamelCase($parentElement->getName());
+                $parentKey     = Braintree_Util::delimiterToCamelCase($parentElement->getName());
             } else {
                 $parentElement = null;
             }
@@ -103,8 +101,8 @@ class Braintree_Xml_Parser
             if (isset($parentElement) &&
                 ($parentElement->attributes()->type == 'collection') &&
                 $iterator->hasChildren()) {
-              $xmlArray[$key][] = $output;
-              continue;
+                $xmlArray[$key][] = $output;
+                continue;
             }
 
             // if the element was an array type, output to a numbered key
@@ -139,15 +137,15 @@ class Braintree_Xml_Parser
                 return self::_timestampToUTC((string) $valueObj);
                 break;
             case 'date':
-                return new DateTime((string)$valueObj);
+                return new DateTime((string) $valueObj);
                 break;
             case 'integer':
                 return (int) $valueObj;
                 break;
             case 'boolean':
-                $value =  (string) $valueObj;
+                $value = (string) $valueObj;
                 // look for a number inside the string
-                if(is_numeric($value)) {
+                if (is_numeric($value)) {
                     return (bool) $value;
                 } else {
                     // look for the string "true", return false in all other cases
@@ -159,7 +157,6 @@ class Braintree_Xml_Parser
             default:
                 return (string) $valueObj;
         }
-
     }
 
     /**
@@ -169,7 +166,7 @@ class Braintree_Xml_Parser
      */
     private static function _timestampToUTC($timestamp)
     {
-        $tz = new DateTimeZone('UTC');
+        $tz       = new DateTimeZone('UTC');
         // strangely DateTime requires an explicit set below
         // to show the proper time zone
         $dateTime = new DateTime($timestamp, $tz);

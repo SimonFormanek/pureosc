@@ -26,4 +26,5 @@
  */
 class Braintree_Transaction_CustomerDetails extends Braintree_Instance
 {
+    
 }

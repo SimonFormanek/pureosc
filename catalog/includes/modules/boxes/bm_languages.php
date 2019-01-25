@@ -40,9 +40,9 @@ class bm_languages
 
     function execute()
     {
-        global $PHP_SELF, $lng, $request_type, $oscTemplate;
+        global $lng, $request_type, $oscTemplate;
 
-        if (substr(basename($PHP_SELF), 0, 8) != 'checkout') {
+        if (substr(basename($_SERVER['PHP_SELF']), 0, 8) != 'checkout') {
             if (!isset($lng) || (isset($lng) && !is_object($lng))) {
                 include(DIR_WS_CLASSES.'language.php');
                 $lng = new language;

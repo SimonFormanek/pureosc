@@ -2,40 +2,42 @@
 
 final class Braintree_MerchantAccount extends Braintree
 {
-    const STATUS_ACTIVE = 'active';
-    const STATUS_PENDING = 'pending';
-    const STATUS_SUSPENDED = 'suspended';
-
-    const FUNDING_DESTINATION_BANK = 'bank';
-    const FUNDING_DESTINATION_EMAIL = 'email';
+    const STATUS_ACTIVE                    = 'active';
+    const STATUS_PENDING                   = 'pending';
+    const STATUS_SUSPENDED                 = 'suspended';
+    const FUNDING_DESTINATION_BANK         = 'bank';
+    const FUNDING_DESTINATION_EMAIL        = 'email';
     const FUNDING_DESTINATION_MOBILE_PHONE = 'mobile_phone';
 
     public static function create($attribs)
     {
         Braintree_Util::verifyKeys(self::detectSignature($attribs), $attribs);
-        return self::_doCreate('/merchant_accounts/create_via_api', array('merchant_account' => $attribs));
+        return self::_doCreate('/merchant_accounts/create_via_api',
+                array('merchant_account' => $attribs));
     }
 
     public static function find($merchant_account_id)
     {
         try {
-            $response = Braintree_Http::get('/merchant_accounts/' . $merchant_account_id);
+            $response = Braintree_Http::get('/merchant_accounts/'.$merchant_account_id);
             return self::factory($response['merchantAccount']);
         } catch (Braintree_Exception_NotFound $e) {
-            throw new Braintree_Exception_NotFound('merchant account with id ' . $merchant_account_id . ' not found');
+            throw new Braintree_Exception_NotFound('merchant account with id '.$merchant_account_id.' not found');
         }
     }
 
     public static function update($merchant_account_id, $attributes)
     {
         Braintree_Util::verifyKeys(self::updateSignature(), $attributes);
-        return self::_doUpdate('/merchant_accounts/' . $merchant_account_id . '/update_via_api', array('merchant_account' => $attributes));
+        return self::_doUpdate('/merchant_accounts/'.$merchant_account_id.'/update_via_api',
+                array('merchant_account' => $attributes));
     }
 
     public static function detectSignature($attribs)
     {
         if (isset($attribs['applicantDetails'])) {
-            trigger_error("DEPRECATED: Passing applicantDetails to create is deprecated. Please use individual, business, and funding", E_USER_NOTICE);
+            trigger_error("DEPRECATED: Passing applicantDetails to create is deprecated. Please use individual, business, and funding",
+                E_USER_NOTICE);
             return self::createDeprecatedSignature();
         } else {
             return self::createSignature();
@@ -51,7 +53,7 @@ final class Braintree_MerchantAccount extends Braintree
 
     public static function createSignature()
     {
-        $addressSignature = array('streetAddress', 'postalCode', 'locality', 'region');
+        $addressSignature    = array('streetAddress', 'postalCode', 'locality', 'region');
         $individualSignature = array(
             'firstName',
             'lastName',
@@ -89,8 +91,9 @@ final class Braintree_MerchantAccount extends Braintree
 
     public static function createDeprecatedSignature()
     {
-        $applicantDetailsAddressSignature = array('streetAddress', 'postalCode', 'locality', 'region');
-        $applicantDetailsSignature = array(
+        $applicantDetailsAddressSignature = array('streetAddress', 'postalCode',
+            'locality', 'region');
+        $applicantDetailsSignature        = array(
             'companyName',
             'firstName',
             'lastName',
@@ -105,7 +108,7 @@ final class Braintree_MerchantAccount extends Braintree
         );
 
         return array(
-            array('applicantDetails' =>  $applicantDetailsSignature),
+            array('applicantDetails' => $applicantDetailsSignature),
             'id',
             'tosAccepted',
             'masterMerchantAccountId'
@@ -131,13 +134,13 @@ final class Braintree_MerchantAccount extends Braintree
         if (isset($response['merchantAccount'])) {
             // return a populated instance of Braintree_merchantAccount
             return new Braintree_Result_Successful(
-                    self::factory($response['merchantAccount'])
+                self::factory($response['merchantAccount'])
             );
         } else if (isset($response['apiErrorResponse'])) {
             return new Braintree_Result_Error($response['apiErrorResponse']);
         } else {
             throw new Braintree_Exception_Unexpected(
-            "Expected merchant account or apiErrorResponse"
+                "Expected merchant account or apiErrorResponse"
             );
         }
     }
@@ -155,22 +158,26 @@ final class Braintree_MerchantAccount extends Braintree
 
         if (isset($merchantAccountAttribs['individual'])) {
             $individual = $merchantAccountAttribs['individual'];
-            $this->_set('individualDetails', Braintree_MerchantAccount_IndividualDetails::Factory($individual));
+            $this->_set('individualDetails',
+                Braintree_MerchantAccount_IndividualDetails::Factory($individual));
         }
 
         if (isset($merchantAccountAttribs['business'])) {
             $business = $merchantAccountAttribs['business'];
-            $this->_set('businessDetails', Braintree_MerchantAccount_BusinessDetails::Factory($business));
+            $this->_set('businessDetails',
+                Braintree_MerchantAccount_BusinessDetails::Factory($business));
         }
 
         if (isset($merchantAccountAttribs['funding'])) {
             $funding = $merchantAccountAttribs['funding'];
-            $this->_set('fundingDetails', new Braintree_MerchantAccount_FundingDetails($funding));
+            $this->_set('fundingDetails',
+                new Braintree_MerchantAccount_FundingDetails($funding));
         }
 
         if (isset($merchantAccountAttribs['masterMerchantAccount'])) {
             $masterMerchantAccount = $merchantAccountAttribs['masterMerchantAccount'];
-            $this->_set('masterMerchantAccount', Braintree_MerchantAccount::Factory($masterMerchantAccount));
+            $this->_set('masterMerchantAccount',
+                Braintree_MerchantAccount::Factory($masterMerchantAccount));
         }
     }
 }

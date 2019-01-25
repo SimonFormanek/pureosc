@@ -13,6 +13,7 @@
  */
 class Braintree_Xml_Generator
 {
+
     /**
      * arrays passed to this method should have a single root element
      * with an array as its value
@@ -30,12 +31,13 @@ class Braintree_Xml_Generator
         $writer->startDocument('1.0', 'UTF-8');
 
         // get the root element name
-        $aKeys = array_keys($aData);
+        $aKeys           = array_keys($aData);
         $rootElementName = $aKeys[0];
         // open the root element
         $writer->startElement(Braintree_Util::camelCaseToDelimiter($rootElementName));
         // create the body
-        self::_createElementsFromArray($writer, $aData[$rootElementName], $rootElementName);
+        self::_createElementsFromArray($writer, $aData[$rootElementName],
+            $rootElementName);
 
         // close the root element and document
         $writer->endElement();
@@ -62,7 +64,7 @@ class Braintree_Xml_Generator
             } else {
                 $writer->text($aData);
             }
-          return;
+            return;
         }
         foreach ($aData AS $index => $element) {
             // convert the style back to gateway format
@@ -77,8 +79,7 @@ class Braintree_Xml_Generator
                         self::_createElementsFromArray($writer, $itemInArray);
                         $writer->endElement();
                     }
-                }
-                else {
+                } else {
                     self::_createElementsFromArray($writer, $element);
                 }
             } else {
@@ -116,6 +117,7 @@ class Braintree_Xml_Generator
             return array('nil', 'true', $value);
         }
     }
+
     /**
      * converts datetime back to xml schema format
      * @access protected
@@ -125,14 +127,14 @@ class Braintree_Xml_Generator
     private static function _dateTimeToXmlTimestamp($dateTime)
     {
         $dateTime->setTimeZone(new DateTimeZone('UTC'));
-        return ($dateTime->format('Y-m-d\TH:i:s') . 'Z');
+        return ($dateTime->format('Y-m-d\TH:i:s').'Z');
     }
 
     private static function _castDateTime($string)
     {
         try {
             if (empty($string)) {
-               return false;
+                return false;
             }
             $dateTime = new DateTime($string);
             return self::_dateTimeToXmlTimestamp($dateTime);

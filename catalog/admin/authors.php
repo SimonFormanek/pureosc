@@ -670,7 +670,7 @@ switch (ARTICLE_ENABLE_HTML_EDITOR) {
                         IMAGE_DELETE).'</a><br>'.' <a href="'.tep_href_link(FILENAME_AUTHORS,
                         'page='.$_GET['page'].'&auID='.$_GET['auID']).'&action=preview'.'">'.tep_image_button('button_preview.gif',
                         IMAGE_PREVIEW).'</a>');
-                $contents[] = array('text' => '<br>'.TEXT_DATE_ADDED.' '.tep_date_short($auInfo->date_added));
+                $contents[] = array('text' => '<br>'._('DATE ADDED').' '.tep_date_short($auInfo->date_added));
                 if (tep_not_null($auInfo->last_modified))
                         $contents[] = array('text' => TEXT_LAST_MODIFIED.' '.tep_date_short($auInfo->last_modified));
                 $contents[] = array('text' => '<br>'.TEXT_ARTICLES.' '.$auInfo->articles_count);

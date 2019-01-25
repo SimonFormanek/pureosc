@@ -1,4 +1,5 @@
 <?php
+
 /**
  * KISS Image Thumbnailer
  * Creates image thumbnails where the image size requested differs from the actual image size.
@@ -15,7 +16,7 @@
  * @version $Rev:: 19 BS                                    $:  Revision of last commit
  * @Id $Id:: Image_Helper.php 10 BS 2015-01-28 @raiwa       $:  Full Details
  */
-
+require_once DIR_WS_MODULES . 'kiss_image_thumbnailer/classes/Image.php';
 
 /**
  * Helper class to create valid thumbnails on the fly within the tep_image() wrapper
@@ -25,31 +26,33 @@
  * @author     Robert fisher - FWR Media ( www.fwrmedia.co.uk )
  * @version     1.0
  */
-class Image_Helper extends ArrayObject
-{
+class Image_Helper extends ArrayObject {
+
     /**
      * put your comment there...
      * 
      * @var mixed
      */
     protected $_valid_mime = array('image/png', 'image/jpeg', 'image/jpg', 'image/gif');
+    public $src;
+    private $attributes = ['width' => null, 'height' => null,'alt'=>null];
+    private $_original_image_info = [0 => null, 1 => null];
 
     /**
      * put your comment there...
      * 
      */
-    public function __construct($input)
-    {
+    public function __construct($input) {
         parent::__construct($input, parent::ARRAY_AS_PROPS);
     }
+
 // end constructor
 
     /**
      * put your comment there...
      * 
      */
-    public function assemble()
-    {
+    public function assemble() {
         $image_check = $this->_checkImage();
         // Image check is bad so we pass control back to the old OsC image wrapper
         if ('abort' == $image_check) {
@@ -62,6 +65,7 @@ class Image_Helper extends ArrayObject
         $this->_build();
         return (string) $this;
     }
+
 // end method
 
     /**
@@ -69,19 +73,18 @@ class Image_Helper extends ArrayObject
      *  // end method
      * @param mixed $attribs
      */
-    protected function _checkImage()
-    {
+    protected function _checkImage() {
         if (!is_file($this->src)) {
             $this->src = $this->default_missing_image;
         }
-        $image_path_parts      = pathinfo($this->src);
-        $this->_image_name     = $image_path_parts['basename'];
+        $image_path_parts = pathinfo($this->src);
+        $this->_image_name = $image_path_parts['basename'];
         $this->_thumb_filename = $this->_image_name;
-        $this->_thumb_src      = $this->thumbs_dir_path.$this->_thumb_filename;
+        $this->_thumb_src = $this->thumbs_dir_path . $this->_thumb_filename;
         if (is_readable($this->_thumb_src)) {
-            $this->_calculated_width  = $this->attributes['width'];
+            $this->_calculated_width = $this->attributes['width'];
             $this->_calculated_height = $this->attributes['height'];
-            $this->src                = $this->_thumb_src;
+            $this->src = $this->_thumb_src;
             return 'no_thumb_required';
         }
         if (KISSIT_MAIN_PRODUCT_WATERMARK_SIZE == 0) {
@@ -89,37 +92,36 @@ class Image_Helper extends ArrayObject
                 return 'abort';
             }
             if (!in_array($this->_original_image_info['mime'],
-                    $this->_valid_mime)) {
+                            $this->_valid_mime)) {
                 return 'abort';
             }
         }
     }
+
 // end method
 
     /**
      * put your comment there...
      * 
      */
-    protected function _generateThumbnail()
-    {
-        if ($this->attributes['width'] == $this->_original_image_info[0] && $this->attributes['height']
-            == $this->_original_image_info[1]) {
-            $this->_calculated_width  = $this->attributes['width'];
+    protected function _generateThumbnail() {
+        if ($this->attributes['width'] == $this->_original_image_info[0] && $this->attributes['height'] == $this->_original_image_info[1]) {
+            $this->_calculated_width = $this->attributes['width'];
             return $this->_calculated_height = $this->attributes['height'];
         }
         if ($this->attributes['width'] == 0 || $this->attributes['height'] == 0) {
-            $this->_calculated_width  = $this->_original_image_info[0];
+            $this->_calculated_width = $this->_original_image_info[0];
             return $this->_calculated_height = $this->_original_image_info[1];
         }
         //make sure the thumbnail directory exists. 
         if (!is_writable($this->thumbs_dir_path)) {
             trigger_error('Cannot detect a writable thumbs directory!',
-                E_USER_NOTICE);
+                    E_USER_NOTICE);
         }
         if (is_readable($this->_thumb_src)) {
-            $this->_calculated_width  = (int) $this->attributes['width'];
+            $this->_calculated_width = (int) $this->attributes['width'];
             $this->_calculated_height = (int) $this->attributes['height'];
-            return $this->src                = $this->_thumb_src;
+            return $this->src = $this->_thumb_src;
         }
         // resize image
 
@@ -127,46 +129,46 @@ class Image_Helper extends ArrayObject
             $this->_thumbnail = $this->_filename;
         } else {
 
-            $image                    = new Image();
+            $image = new Image();
             $image->open($this->src, $this->thumb_background_rgb)
-                ->resize((int) $this->attributes['width'],
-                    (int) $this->attributes['height'])
-                ->save($this->_thumb_src, (int) $this->thumb_quality);
-            $this->_thumbnail         = $image;
-            $this->_calculated_width  = $this->_thumbnail->getWidth();
+                    ->resize((int) $this->attributes['width'],
+                            (int) $this->attributes['height'])
+                    ->save($this->_thumb_src, (int) $this->thumb_quality);
+            $this->_thumbnail = $image;
+            $this->_calculated_width = $this->_thumbnail->getWidth();
             $this->_calculated_height = $this->_thumbnail->getHeight();
-            $this->src                = $this->_thumb_src;
+            $this->src = $this->_thumb_src;
         }
     }
+
 // end method
 
     /**
      * put your comment there...
      *  // end method
      */
-    protected function _build()
-    {
-        $alt_title   = $this->isXhtml ? tep_output_string_protected(str_replace('&amp;',
-                    '&', $this->attributes['alt'])) : tep_output_string($this->attributes['alt']);
-        $parameters  = tep_not_null($this->parameters) ? tep_output_string($this->parameters)
-                : false;
-        $width       = (int) $this->_calculated_width;
-        $height      = (int) $this->_calculated_height;
-        $this->_html = '<img width="'.$width.'" height="'.$height.'" src="'.$this->src.'" title="'.$alt_title.'" alt="'.$alt_title.'"';
+    protected function _build() {
+        $alt_title = $this->isXhtml ? tep_output_string_protected(str_replace('&amp;',
+                                '&', $this->attributes['alt'])) : tep_output_string($this->attributes['alt']);
+        $parameters = tep_not_null($this->parameters) ? tep_output_string($this->parameters) : false;
+        $width = (int) $this->_calculated_width;
+        $height = (int) $this->_calculated_height;
+        $this->_html = '<img width="' . $width . '" height="' . $height . '" src="' . $this->src . '" title="' . $alt_title . '" alt="' . $alt_title . '"';
         if (false !== $parameters)
-                $this->_html .= ' '.html_entity_decode(tep_output_string($parameters));
+            $this->_html .= ' ' . html_entity_decode(tep_output_string($parameters));
         $this->_html .= $this->isXhtml ? ' />' : '>';
     }
+
 // end method
 
     /**
      * put your comment there...
      * 
      */
-    public function __tostring()
-    {
+    public function __tostring() {
         return $this->_html;
     }
+
 // end method
 }
 

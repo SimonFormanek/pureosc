@@ -37,55 +37,48 @@
 class Braintree_CreditCard extends Braintree
 {
     // Card Type
-    const AMEX = 'American Express';
-    const CARTE_BLANCHE = 'Carte Blanche';
-    const CHINA_UNION_PAY = 'China UnionPay';
-    const DINERS_CLUB_INTERNATIONAL = 'Diners Club';
-    const DISCOVER = 'Discover';
-    const JCB = 'JCB';
-    const LASER = 'Laser';
-    const MAESTRO = 'Maestro';
-    const MASTER_CARD = 'MasterCard';
-    const SOLO = 'Solo';
-    const SWITCH_TYPE = 'Switch';
-    const VISA = 'Visa';
-    const UNKNOWN = 'Unknown';
-
-	// Credit card origination location
-	const INTERNATIONAL = "international";
-	const US            = "us";
-
-    const PREPAID_YES = 'Yes';
-    const PREPAID_NO = 'No';
-    const PREPAID_UNKNOWN = 'Unknown';
-
-    const PAYROLL_YES = 'Yes';
-    const PAYROLL_NO = 'No';
-    const PAYROLL_UNKNOWN = 'Unknown';
-
-    const HEALTHCARE_YES = 'Yes';
-    const HEALTHCARE_NO = 'No';
-    const HEALTHCARE_UNKNOWN = 'Unknown';
-
-    const DURBIN_REGULATED_YES = 'Yes';
-    const DURBIN_REGULATED_NO = 'No';
-    const DURBIN_REGULATED_UNKNOWN = 'Unknown';
-
-    const DEBIT_YES = 'Yes';
-    const DEBIT_NO = 'No';
-    const DEBIT_UNKNOWN = 'Unknown';
-
-    const COMMERCIAL_YES = 'Yes';
-    const COMMERCIAL_NO = 'No';
-    const COMMERCIAL_UNKNOWN = 'Unknown';
-
+    const AMEX                        = 'American Express';
+    const CARTE_BLANCHE               = 'Carte Blanche';
+    const CHINA_UNION_PAY             = 'China UnionPay';
+    const DINERS_CLUB_INTERNATIONAL   = 'Diners Club';
+    const DISCOVER                    = 'Discover';
+    const JCB                         = 'JCB';
+    const LASER                       = 'Laser';
+    const MAESTRO                     = 'Maestro';
+    const MASTER_CARD                 = 'MasterCard';
+    const SOLO                        = 'Solo';
+    const SWITCH_TYPE                 = 'Switch';
+    const VISA                        = 'Visa';
+    const UNKNOWN                     = 'Unknown';
+    // Credit card origination location
+    const INTERNATIONAL               = "international";
+    const US                          = "us";
+    const PREPAID_YES                 = 'Yes';
+    const PREPAID_NO                  = 'No';
+    const PREPAID_UNKNOWN             = 'Unknown';
+    const PAYROLL_YES                 = 'Yes';
+    const PAYROLL_NO                  = 'No';
+    const PAYROLL_UNKNOWN             = 'Unknown';
+    const HEALTHCARE_YES              = 'Yes';
+    const HEALTHCARE_NO               = 'No';
+    const HEALTHCARE_UNKNOWN          = 'Unknown';
+    const DURBIN_REGULATED_YES        = 'Yes';
+    const DURBIN_REGULATED_NO         = 'No';
+    const DURBIN_REGULATED_UNKNOWN    = 'Unknown';
+    const DEBIT_YES                   = 'Yes';
+    const DEBIT_NO                    = 'No';
+    const DEBIT_UNKNOWN               = 'Unknown';
+    const COMMERCIAL_YES              = 'Yes';
+    const COMMERCIAL_NO               = 'No';
+    const COMMERCIAL_UNKNOWN          = 'Unknown';
     const COUNTRY_OF_ISSUANCE_UNKNOWN = "Unknown";
-    const ISSUING_BANK_UNKNOWN = "Unknown";
+    const ISSUING_BANK_UNKNOWN        = "Unknown";
 
     public static function create($attribs)
     {
         Braintree_Util::verifyKeys(self::createSignature(), $attribs);
-        return self::_doCreate('/payment_methods', array('credit_card' => $attribs));
+        return self::_doCreate('/payment_methods',
+                array('credit_card' => $attribs));
     }
 
     /**
@@ -102,6 +95,7 @@ class Braintree_CreditCard extends Braintree
         $result = self::create($attribs);
         return self::returnObjectOrThrowException(__CLASS__, $result);
     }
+
     /**
      * create a customer from a TransparentRedirect operation
      *
@@ -111,13 +105,14 @@ class Braintree_CreditCard extends Braintree
      */
     public static function createFromTransparentRedirect($queryString)
     {
-        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::confirm", E_USER_NOTICE);
+        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::confirm",
+            E_USER_NOTICE);
         $params = Braintree_TransparentRedirect::parseAndValidateQueryString(
-            $queryString
+                $queryString
         );
         return self::_doCreate(
-            '/payment_methods/all/confirm_transparent_redirect_request',
-            array('id' => $params['id'])
+                '/payment_methods/all/confirm_transparent_redirect_request',
+                array('id' => $params['id'])
         );
     }
 
@@ -129,9 +124,10 @@ class Braintree_CreditCard extends Braintree
      */
     public static function createCreditCardUrl()
     {
-        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::url", E_USER_NOTICE);
-        return Braintree_Configuration::merchantUrl() .
-                '/payment_methods/all/create_via_transparent_redirect_request';
+        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::url",
+            E_USER_NOTICE);
+        return Braintree_Configuration::merchantUrl().
+            '/payment_methods/all/create_via_transparent_redirect_request';
     }
 
     /**
@@ -141,7 +137,7 @@ class Braintree_CreditCard extends Braintree
     public static function expired()
     {
         $response = Braintree_Http::post("/payment_methods/all/expired_ids");
-        $pager = array(
+        $pager    = array(
             'className' => __CLASS__,
             'classMethod' => 'fetchExpired',
             'methodArgs' => array()
@@ -152,13 +148,14 @@ class Braintree_CreditCard extends Braintree
 
     public static function fetchExpired($ids)
     {
-        $response = Braintree_Http::post("/payment_methods/all/expired", array('search' => array('ids' => $ids)));
+        $response = Braintree_Http::post("/payment_methods/all/expired",
+                array('search' => array('ids' => $ids)));
 
         return Braintree_Util::extractattributeasarray(
-            $response['paymentMethods'],
-            'creditCard'
+                $response['paymentMethods'], 'creditCard'
         );
     }
+
     /**
      * returns a ResourceCollection of credit cards expiring between start/end
      *
@@ -166,9 +163,10 @@ class Braintree_CreditCard extends Braintree
      */
     public static function expiringBetween($startDate, $endDate)
     {
-        $queryPath = '/payment_methods/all/expiring_ids?start=' . date('mY', $startDate) . '&end=' . date('mY', $endDate);
-        $response = Braintree_Http::post($queryPath);
-        $pager = array(
+        $queryPath = '/payment_methods/all/expiring_ids?start='.date('mY',
+                $startDate).'&end='.date('mY', $endDate);
+        $response  = Braintree_Http::post($queryPath);
+        $pager     = array(
             'className' => __CLASS__,
             'classMethod' => 'fetchExpiring',
             'methodArgs' => array($startDate, $endDate)
@@ -179,12 +177,13 @@ class Braintree_CreditCard extends Braintree
 
     public static function fetchExpiring($startDate, $endDate, $ids)
     {
-        $queryPath = '/payment_methods/all/expiring?start=' . date('mY', $startDate) . '&end=' . date('mY', $endDate);
-        $response = Braintree_Http::post($queryPath, array('search' => array('ids' => $ids)));
+        $queryPath = '/payment_methods/all/expiring?start='.date('mY',
+                $startDate).'&end='.date('mY', $endDate);
+        $response  = Braintree_Http::post($queryPath,
+                array('search' => array('ids' => $ids)));
 
         return Braintree_Util::extractAttributeAsArray(
-            $response['paymentMethods'],
-            'creditCard'
+                $response['paymentMethods'], 'creditCard'
         );
     }
 
@@ -204,10 +203,9 @@ class Braintree_CreditCard extends Braintree
             return self::factory($response['creditCard']);
         } catch (Braintree_Exception_NotFound $e) {
             throw new Braintree_Exception_NotFound(
-                'credit card with token ' . $token . ' not found'
+                'credit card with token '.$token.' not found'
             );
         }
-
     }
 
     /**
@@ -226,13 +224,12 @@ class Braintree_CreditCard extends Braintree
             return self::factory($response['creditCard']);
         } catch (Braintree_Exception_NotFound $e) {
             throw new Braintree_Exception_NotFound(
-                'credit card with nonce ' . $nonce . ' locked, consumed or not found'
+                'credit card with nonce '.$nonce.' locked, consumed or not found'
             );
         }
-
     }
 
-   /**
+    /**
      * create a credit on the card for the passed transaction
      *
      * @access public
@@ -243,10 +240,9 @@ class Braintree_CreditCard extends Braintree
     {
         self::_validateId($token);
         return Braintree_Transaction::credit(
-            array_merge(
-                $transactionAttribs,
-                array('paymentMethodToken' => $token)
-            )
+                array_merge(
+                    $transactionAttribs, array('paymentMethodToken' => $token)
+                )
         );
     }
 
@@ -278,10 +274,9 @@ class Braintree_CreditCard extends Braintree
     {
         self::_validateId($token);
         return Braintree_Transaction::sale(
-            array_merge(
-                $transactionAttribs,
-                array('paymentMethodToken' => $token)
-            )
+                array_merge(
+                    $transactionAttribs, array('paymentMethodToken' => $token)
+                )
         );
     }
 
@@ -318,7 +313,8 @@ class Braintree_CreditCard extends Braintree
     {
         Braintree_Util::verifyKeys(self::updateSignature(), $attributes);
         self::_validateId($token);
-        return self::_doUpdate('put', '/payment_methods/' . $token, array('creditCard' => $attributes));
+        return self::_doUpdate('put', '/payment_methods/'.$token,
+                array('creditCard' => $attributes));
     }
 
     /**
@@ -339,6 +335,7 @@ class Braintree_CreditCard extends Braintree
         $result = self::update($token, $attributes);
         return self::returnObjectOrThrowException(__CLASS__, $result);
     }
+
     /**
      *
      * @access public
@@ -347,9 +344,10 @@ class Braintree_CreditCard extends Braintree
      */
     public static function updateCreditCardUrl()
     {
-        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::url", E_USER_NOTICE);
-        return Braintree_Configuration::merchantUrl() .
-                '/payment_methods/all/update_via_transparent_redirect_request';
+        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::url",
+            E_USER_NOTICE);
+        return Braintree_Configuration::merchantUrl().
+            '/payment_methods/all/update_via_transparent_redirect_request';
     }
 
     /**
@@ -361,18 +359,19 @@ class Braintree_CreditCard extends Braintree
      */
     public static function updateFromTransparentRedirect($queryString)
     {
-        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::confirm", E_USER_NOTICE);
+        trigger_error("DEPRECATED: Please use Braintree_TransparentRedirectRequest::confirm",
+            E_USER_NOTICE);
         $params = Braintree_TransparentRedirect::parseAndValidateQueryString(
-            $queryString
+                $queryString
         );
         return self::_doUpdate(
-            'post',
-            '/payment_methods/all/confirm_transparent_redirect_request',
-            array('id' => $params['id'])
+                'post',
+                '/payment_methods/all/confirm_transparent_redirect_request',
+                array('id' => $params['id'])
         );
     }
-
     /* instance methods */
+
     /**
      * returns false if default is null or false
      *
@@ -406,7 +405,7 @@ class Braintree_CreditCard extends Braintree
     public static function delete($token)
     {
         self::_validateId($token);
-        Braintree_Http::delete('/payment_methods/' . $token);
+        Braintree_Http::delete('/payment_methods/'.$token);
         return new Braintree_Result_Successful();
     }
 
@@ -436,8 +435,9 @@ class Braintree_CreditCard extends Braintree
 
         $this->_set('subscriptions', $subscriptionArray);
         $this->_set('billingAddress', $billingAddress);
-        $this->_set('expirationDate', $this->expirationMonth . '/' . $this->expirationYear);
-        $this->_set('maskedNumber', $this->bin . '******' . $this->last4);
+        $this->_set('expirationDate',
+            $this->expirationMonth.'/'.$this->expirationYear);
+        $this->_set('maskedNumber', $this->bin.'******'.$this->last4);
     }
 
     /**
@@ -449,68 +449,71 @@ class Braintree_CreditCard extends Braintree
      */
     public function isEqual($otherCreditCard)
     {
-        return !($otherCreditCard instanceof Braintree_CreditCard) ? false : $this->token === $otherCreditCard->token;
+        return !($otherCreditCard instanceof Braintree_CreditCard) ? false : $this->token
+            === $otherCreditCard->token;
     }
 
     private static function baseOptions()
     {
-        return array('makeDefault', 'verificationMerchantAccountId', 'verifyCard', 'venmoSdkSession');
+        return array('makeDefault', 'verificationMerchantAccountId', 'verifyCard',
+            'venmoSdkSession');
     }
 
     private static function baseSignature($options)
     {
-         return array(
-             'billingAddressId', 'cardholderName', 'cvv', 'number', 'deviceSessionId',
-             'expirationDate', 'expirationMonth', 'expirationYear', 'token', 'venmoSdkPaymentMethodCode',
-             'deviceData', 'fraudMerchantId', 'paymentMethodNonce',
-             array('options' => $options),
-             array(
-                 'billingAddress' => array(
-                     'firstName',
-                     'lastName',
-                     'company',
-                     'countryCodeAlpha2',
-                     'countryCodeAlpha3',
-                     'countryCodeNumeric',
-                     'countryName',
-                     'extendedAddress',
-                     'locality',
-                     'region',
-                     'postalCode',
-                     'streetAddress'
-                 ),
-             ),
-         );
+        return array(
+            'billingAddressId', 'cardholderName', 'cvv', 'number', 'deviceSessionId',
+            'expirationDate', 'expirationMonth', 'expirationYear', 'token', 'venmoSdkPaymentMethodCode',
+            'deviceData', 'fraudMerchantId', 'paymentMethodNonce',
+            array('options' => $options),
+            array(
+                'billingAddress' => array(
+                    'firstName',
+                    'lastName',
+                    'company',
+                    'countryCodeAlpha2',
+                    'countryCodeAlpha3',
+                    'countryCodeNumeric',
+                    'countryName',
+                    'extendedAddress',
+                    'locality',
+                    'region',
+                    'postalCode',
+                    'streetAddress'
+                ),
+            ),
+        );
     }
 
     public static function createSignature()
     {
-        $options = self::baseOptions();
-        $options[] = "failOnDuplicatePaymentMethod";
-        $signature = self::baseSignature($options);
+        $options     = self::baseOptions();
+        $options[]   = "failOnDuplicatePaymentMethod";
+        $signature   = self::baseSignature($options);
         $signature[] = 'customerId';
         return $signature;
     }
 
     public static function updateSignature()
     {
-         $signature = self::baseSignature(self::baseOptions());
+        $signature = self::baseSignature(self::baseOptions());
 
-         $updateExistingBillingSignature = array(
-             array(
-                 'options' => array(
-                     'updateExisting'
-                 )
-             )
-         );
+        $updateExistingBillingSignature = array(
+            array(
+                'options' => array(
+                    'updateExisting'
+                )
+            )
+        );
 
-         foreach($signature AS $key => $value) {
-             if(is_array($value) and array_key_exists('billingAddress', $value)) {
-                 $signature[$key]['billingAddress'] = array_merge_recursive($value['billingAddress'], $updateExistingBillingSignature);
-             }
-         }
+        foreach ($signature AS $key => $value) {
+            if (is_array($value) and array_key_exists('billingAddress', $value)) {
+                $signature[$key]['billingAddress'] = array_merge_recursive($value['billingAddress'],
+                    $updateExistingBillingSignature);
+            }
+        }
 
-         return $signature;
+        return $signature;
     }
 
     /**
@@ -533,10 +536,10 @@ class Braintree_CreditCard extends Braintree
      * ClassName[property=value, property=value]
      * @return string
      */
-    public function  __toString()
+    public function __toString()
     {
-        return __CLASS__ . '[' .
-                Braintree_Util::attributesToString($this->_attributes) .']';
+        return __CLASS__.'['.
+            Braintree_Util::attributesToString($this->_attributes).']';
     }
 
     /**
@@ -546,17 +549,18 @@ class Braintree_CreditCard extends Braintree
      * @param Optional $string $identifierType type of identifier supplied, default "token"
      * @throws InvalidArgumentException
      */
-    private static function _validateId($identifier = null, $identifierType = "token")
+    private static function _validateId($identifier = null,
+                                        $identifierType = "token")
     {
         if (empty($identifier)) {
-           throw new InvalidArgumentException(
-                   'expected credit card id to be set'
-                   );
+            throw new InvalidArgumentException(
+                'expected credit card id to be set'
+            );
         }
         if (!preg_match('/^[0-9A-Za-z_-]+$/', $identifier)) {
             throw new InvalidArgumentException(
-                    $identifier . ' is an invalid credit card ' . $identifierType . '.'
-                    );
+                $identifier.' is an invalid credit card '.$identifierType.'.'
+            );
         }
     }
 
@@ -592,13 +596,13 @@ class Braintree_CreditCard extends Braintree
         if (isset($response['creditCard'])) {
             // return a populated instance of Braintree_Address
             return new Braintree_Result_Successful(
-                    self::factory($response['creditCard'])
+                self::factory($response['creditCard'])
             );
         } else if (isset($response['apiErrorResponse'])) {
             return new Braintree_Result_Error($response['apiErrorResponse']);
         } else {
             throw new Braintree_Exception_Unexpected(
-            "Expected address or apiErrorResponse"
+                "Expected address or apiErrorResponse"
             );
         }
     }
@@ -614,9 +618,9 @@ class Braintree_CreditCard extends Braintree
     {
         $defaultAttributes = array(
             'bin' => '',
-            'expirationMonth'    => '',
-            'expirationYear'    => '',
-            'last4'  => '',
+            'expirationMonth' => '',
+            'expirationYear' => '',
+            'last4' => '',
         );
 
         $instance = new self();

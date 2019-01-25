@@ -1,3 +1,3 @@
 <li>
-  <?php echo $search_box; ?>
+    <?php echo $search_box; ?>
 </li>

@@ -4,6 +4,7 @@ use Phinx\Migration\AbstractMigration;
 
 class BiblioProductExtraFields extends AbstractMigration
 {
+
     /**
      * Change Method.
      *
@@ -28,19 +29,21 @@ class BiblioProductExtraFields extends AbstractMigration
     public function change()
     {
         $table = $this->table('products');
-            if (!$table->hasColumn('products_biblio_isbn')) {
 
-        $table
-        -> addColumn('products_biblio_isbn', 'string')
-        ->addColumn('products_biblio_isbn_pdf', 'string')
-        ->addColumn('products_biblio_isbn_epub', 'string')
-        ->addColumn('products_biblio_isbn_mobi', 'string')
-        -> addColumn('products_biblio_pages_count', 'string')
-        -> addColumn('products_biblio_bindings', 'string')
-        -> addColumn('products_biblio_book_size', 'string')
-        -> addColumn('products_biblio_publication_year', 'string')
-            ->save();
+        foreach (['products_biblio_isbn',
+        'products_biblio_isbn_pdf',
+        'products_biblio_isbn_epub',
+        'products_biblio_isbn_mobi',
+        'products_biblio_pages_count',
+        'products_biblio_bindings',
+        'products_biblio_book_size',
+        'products_biblio_publication_year'] as $columnToCreate) {
+            if (!$table->hasColumn($columnToCreate)) {
 
+                $table
+                    ->addColumn($columnToCreate, 'string')
+                    ->save();
+            }
+        }
     }
-	}
 }

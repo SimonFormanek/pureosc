@@ -2,9 +2,10 @@
 
 class Braintree_IsNode
 {
+
     function __construct($name)
     {
-        $this->name = $name;
+        $this->name        = $name;
         $this->searchTerms = array();
     }
 

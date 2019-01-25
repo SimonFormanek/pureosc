@@ -1,11 +1,12 @@
 <?php
+
 final class Braintree_Disbursement extends Braintree
 {
     private $_merchantAccount;
 
     protected function _initialize($disbursementAttribs)
     {
-        $this->_attributes = $disbursementAttribs;
+        $this->_attributes            = $disbursementAttribs;
         $this->merchantAccountDetails = $disbursementAttribs['merchantAccount'];
 
         if (isset($disbursementAttribs['merchantAccount'])) {
@@ -18,7 +19,7 @@ final class Braintree_Disbursement extends Braintree
     public function transactions()
     {
         $collection = Braintree_Transaction::search(array(
-            Braintree_TransactionSearch::ids()->in($this->transactionIds)
+                Braintree_TransactionSearch::ids()->in($this->transactionIds)
         ));
 
         return $collection;
@@ -31,19 +32,19 @@ final class Braintree_Disbursement extends Braintree
         return $instance;
     }
 
-    public function  __toString()
+    public function __toString()
     {
         $display = array(
             'id', 'merchantAccountDetails', 'exceptionMessage', 'amount',
             'disbursementDate', 'followUpAction', 'retry', 'success',
             'transactionIds'
-            );
+        );
 
         $displayAttributes = array();
         foreach ($display AS $attrib) {
             $displayAttributes[$attrib] = $this->$attrib;
         }
-        return __CLASS__ . '[' .
-                Braintree_Util::attributesToString($displayAttributes) .']';
+        return __CLASS__.'['.
+            Braintree_Util::attributesToString($displayAttributes).']';
     }
 }

@@ -12,9 +12,9 @@
 ?>
 
 <!-- Start cm_fp_customer_greeting module -->
-  <div id="customer_greeting" class="col-sm-<?php echo (int) MODULE_CONTENT_FRONT_PAGE_CUSTOMER_GREETING_CONTENT_WIDTH; ?>">
+<div id="customer_greeting" class="col-sm-<?php echo (int) MODULE_CONTENT_FRONT_PAGE_CUSTOMER_GREETING_CONTENT_WIDTH; ?>">
     <div class="alert alert-info">
-      <?php echo tep_customer_greeting(); ?>
+        <?php echo tep_customer_greeting(); ?>
     </div>
-  </div>
+</div>
 <!-- End cm_fp_customer_greeting module -->

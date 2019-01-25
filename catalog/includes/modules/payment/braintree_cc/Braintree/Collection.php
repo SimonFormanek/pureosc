@@ -43,8 +43,8 @@ class Braintree_Collection implements Countable, IteratorAggregate, ArrayAccess
      */
     public function set($index, $value)
     {
-        if($index >= $this->count())
-            throw new OutOfRangeException('Index out of range');
+        if ($index >= $this->count())
+                throw new OutOfRangeException('Index out of range');
 
         $this->_collection[$index] = $value;
     }
@@ -56,8 +56,8 @@ class Braintree_Collection implements Countable, IteratorAggregate, ArrayAccess
      */
     public function remove($index)
     {
-        if($index >= $this->count())
-            throw new OutOfRangeException('Index out of range');
+        if ($index >= $this->count())
+                throw new OutOfRangeException('Index out of range');
 
         array_splice($this->_collection, $index, 1);
     }
@@ -70,8 +70,8 @@ class Braintree_Collection implements Countable, IteratorAggregate, ArrayAccess
      */
     public function get($index)
     {
-        if($index >= $this->count())
-            throw new OutOfRangeException('Index out of range');
+        if ($index >= $this->count())
+                throw new OutOfRangeException('Index out of range');
 
         return $this->_collection[$index];
     }
@@ -83,11 +83,11 @@ class Braintree_Collection implements Countable, IteratorAggregate, ArrayAccess
      */
     public function exists($index)
     {
-        if($index >= $this->count())
-            return false;
+        if ($index >= $this->count()) return false;
 
         return true;
     }
+
     /**
      * Return count of items in collection
      * Implements countable
@@ -97,7 +97,6 @@ class Braintree_Collection implements Countable, IteratorAggregate, ArrayAccess
     {
         return count($this->_collection);
     }
-
 
     /**
      * Return an iterator
@@ -155,5 +154,4 @@ class Braintree_Collection implements Countable, IteratorAggregate, ArrayAccess
     {
         return $this->exists($offset);
     }
-
 }

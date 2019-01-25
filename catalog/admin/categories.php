@@ -2049,7 +2049,7 @@ if ($action == 'new_product') {
                                                 'arrow-4',
                                                 tep_href_link(FILENAME_CATEGORIES,
                                                     'cPath=' . $category_path_string . '&cID=' . $cInfo->categories_id . '&action=move_category'))];
-                                        $contents[] = ['text' => '<br />' . TEXT_DATE_ADDED . ' ' . tep_date_short($cInfo->date_added)];
+                                        $contents[] = ['text' => '<br />' . _('DATE ADDED') . ' ' . tep_date_short($cInfo->date_added)];
                                         if (tep_not_null($cInfo->last_modified))
                                             $contents[] = ['text' => TEXT_LAST_MODIFIED . ' ' . tep_date_short($cInfo->last_modified)];
                                         $contents[] = ['text' => '<br />' . tep_info_image($cInfo->categories_image,
@@ -2083,7 +2083,7 @@ if ($action == 'new_product') {
 
                                         $contents[] = ['align' => 'center', 'text' => $buttons];
 
-                                        $contents[] = ['text' => '<br />' . TEXT_DATE_ADDED . ' ' . tep_date_short($pInfo->products_date_added)];
+                                        $contents[] = ['text' => '<br />' . _('DATE ADDED') . ' ' . tep_date_short($pInfo->products_date_added)];
                                         if (tep_not_null($pInfo->products_last_modified))
                                             $contents[] = ['text' => TEXT_LAST_MODIFIED . ' ' . tep_date_short($pInfo->products_last_modified)];
                                         if (tep_not_null($pInfo->products_date_available))

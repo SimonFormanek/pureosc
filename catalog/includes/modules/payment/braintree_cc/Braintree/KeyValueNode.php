@@ -2,11 +2,11 @@
 
 class Braintree_KeyValueNode
 {
+
     function __construct($name)
     {
-        $this->name = $name;
+        $this->name       = $name;
         $this->searchTerm = True;
-
     }
 
     function is($value)

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Creates an instance of Dispute as returned from a transaction
  *
@@ -19,7 +20,7 @@ final class Braintree_Dispute extends Braintree_Instance
     protected $_attributes = array();
 
     /* Dispute Status */
-    const Open  = 'open';
+    const Open = 'open';
     const WON  = 'won';
     const LOST = 'lost';
 
@@ -35,7 +36,6 @@ final class Braintree_Dispute extends Braintree_Instance
     const PRODUCT_UNSATISFACTORY          = "product_unsatisfactory";
     const TRANSACTION_AMOUNT_DIFFERS      = "transaction_amount_differs";
 
-
     protected function _initialize($disputeAttribs)
     {
         $this->_attributes = $disputeAttribs;
@@ -48,18 +48,18 @@ final class Braintree_Dispute extends Braintree_Instance
         return $instance;
     }
 
-    public function  __toString()
+    public function __toString()
     {
         $display = array(
             'amount', 'reason', 'status',
             'replyByDate', 'receivedDate', 'currencyIsoCode'
-            );
+        );
 
         $displayAttributes = array();
         foreach ($display AS $attrib) {
             $displayAttributes[$attrib] = $this->$attrib;
         }
-        return __CLASS__ . '[' .
-                Braintree_Util::attributesToString($displayAttributes) .']';
+        return __CLASS__.'['.
+            Braintree_Util::attributesToString($displayAttributes).']';
     }
 }

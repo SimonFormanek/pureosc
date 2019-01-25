@@ -1,21 +1,21 @@
 <?php
+
 class Braintree_SettlementBatchSummary extends Braintree
 {
+
     public static function generate($settlement_date, $groupByCustomField = NULL)
     {
         $criteria = array('settlement_date' => $settlement_date);
-        if (isset($groupByCustomField))
-        {
+        if (isset($groupByCustomField)) {
             $criteria['group_by_custom_field'] = $groupByCustomField;
         }
-        $params = array('settlement_batch_summary' => $criteria);
+        $params   = array('settlement_batch_summary' => $criteria);
         $response = Braintree_Http::post('/settlement_batch_summary', $params);
 
-        if (isset($groupByCustomField))
-        {
+        if (isset($groupByCustomField)) {
             $response['settlementBatchSummary']['records'] = self::_underscoreCustomField(
-                $groupByCustomField,
-                $response['settlementBatchSummary']['records']
+                    $groupByCustomField,
+                    $response['settlementBatchSummary']['records']
             );
         }
 
@@ -26,12 +26,11 @@ class Braintree_SettlementBatchSummary extends Braintree
     {
         $updatedRecords = array();
 
-        foreach ($records as $record)
-        {
-            $camelized = Braintree_Util::delimiterToCamelCase($groupByCustomField);
+        foreach ($records as $record) {
+            $camelized                   = Braintree_Util::delimiterToCamelCase($groupByCustomField);
             $record[$groupByCustomField] = $record[$camelized];
             unset($record[$camelized]);
-            $updatedRecords[] = $record;
+            $updatedRecords[]            = $record;
         }
 
         return $updatedRecords;

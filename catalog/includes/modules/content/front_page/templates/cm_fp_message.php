@@ -12,7 +12,7 @@
 ?>
 
 <!-- Start cm_fp_message module -->
-  <div id="message" class="col-sm-<?php echo (int) MODULE_CONTENT_FRONT_PAGE_MESSAGE_CONTENT_WIDTH; ?>">
+<div id="message" class="col-sm-<?php echo (int) MODULE_CONTENT_FRONT_PAGE_MESSAGE_CONTENT_WIDTH; ?>">
     <?php echo $messageStack->output('product_action'); ?>
-  </div>
+</div>
 <!-- End cm_fp_message module -->

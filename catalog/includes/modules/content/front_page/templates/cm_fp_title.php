@@ -12,9 +12,9 @@
 ?>
 
 <!-- Start cm_fp_title module -->
-  <div id="message" class="col-sm-<?php echo (int) MODULE_CONTENT_FRONT_PAGE_TITLE_CONTENT_WIDTH; ?>">
+<div id="message" class="col-sm-<?php echo (int) MODULE_CONTENT_FRONT_PAGE_TITLE_CONTENT_WIDTH; ?>">
     <div class="page-header">
-      <h1><?php echo HEADING_TITLE; ?></h1>
+        <h1><?php echo HEADING_TITLE; ?></h1>
     </div>
-  </div>
+</div>
 <!-- End cm_fp_title module -->

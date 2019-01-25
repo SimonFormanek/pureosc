@@ -1,6 +1,8 @@
 <?php
+
 class Braintree_Modification extends Braintree
 {
+
     protected function _initialize($attributes)
     {
         $this->_attributes = $attributes;

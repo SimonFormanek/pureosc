@@ -22,7 +22,8 @@ if (tep_db_num_rows($expected_query) > 0) {
                 </tr>
                 <tr>
                     <td><?php echo tep_draw_separator('pixel_trans.gif', '100%',
-        '10'); ?></td>
+        '10');
+    ?></td>
                 </tr>
                 <?php
                 while ($articles_expected = tep_db_fetch_array($expected_query)) {
@@ -39,7 +40,7 @@ if (tep_db_num_rows($expected_query) > 0) {
                         <?php
                         if (DISPLAY_TOPIC_ARTICLE_LISTING == 'true') {
                             ?>
-                            <td valign="top" class="main" width="25%" nowrap><?php echo TEXT_TOPIC.'&nbsp;'.$articles_expected['topics_name']; ?></td>
+                            <td valign="top" class="main" width="25%" nowrap><?php echo _('Topic').'&nbsp;'.$articles_expected['topics_name']; ?></td>
                             <?php
                         }
                         ?>
@@ -48,27 +49,30 @@ if (tep_db_num_rows($expected_query) > 0) {
                     if (DISPLAY_ABSTRACT_ARTICLE_LISTING == 'true') {
                         ?>
                         <tr>
-                            <td class="main" style="padding-left:15px"><?php echo clean_html_comments(substr($articles_expected['articles_head_desc_tag'],
-                    0, MAX_ARTICLE_ABSTRACT_LENGTH)).((strlen($articles_expected['articles_head_desc_tag'])
-            >= MAX_ARTICLE_ABSTRACT_LENGTH) ? '...' : ''); ?></td>
+                            <td class="main" style="padding-left:15px"><?php
+                                echo clean_html_comments(substr($articles_expected['articles_head_desc_tag'],
+                                        0, MAX_ARTICLE_ABSTRACT_LENGTH)).((strlen($articles_expected['articles_head_desc_tag'])
+                                >= MAX_ARTICLE_ABSTRACT_LENGTH) ? '...' : '');
+                                ?></td>
                         </tr>
-                        <?php
-                    }
-                    ?>
+            <?php
+        }
+        ?>
                     <tr>
                         <td class="smallText" style="padding-left:15px"><?php echo TEXT_DATE_EXPECTED.' '.tep_date_long($articles_expected['date_expected']); ?></td>
                     </tr>
-                    <?php
-                    if (DISPLAY_ABSTRACT_ARTICLE_LISTING == 'true' || DISPLAY_DATE_ADDED_ARTICLE_LISTING) {
-                        ?>
+        <?php
+        if (DISPLAY_ABSTRACT_ARTICLE_LISTING == 'true' || DISPLAY_DATE_ADDED_ARTICLE_LISTING) {
+            ?>
                         <tr>
                             <td><?php echo tep_draw_separator('pixel_trans.gif', '100%',
-                            '10'); ?></td>
+                        '10');
+            ?></td>
                         </tr>
-                        <?php
-                    }
-                } // End of listing loop
-                ?>
+            <?php
+        }
+    } // End of listing loop
+    ?>
             </table></td>
     </tr>
     <!-- eof upcoming_articles //-->

@@ -18,10 +18,10 @@ class paypal_express
     {
         $this->paypal_express();
     }
-
+    
     function paypal_express()
     {
-        global $_GET, $PHP_SELF, $order, $payment;
+        global $_GET, $order, $payment;
 
         $this->signature   = 'paypal|paypal_express|3.0|2.3';
         $this->api_version = '112';
@@ -68,7 +68,7 @@ class paypal_express
         }
 
 // When changing the shipping address due to no shipping rates being available, head straight to the checkout confirmation page
-        if (defined('FILENAME_CHECKOUT_PAYMENT') && (basename($PHP_SELF) == FILENAME_CHECKOUT_PAYMENT)
+        if (defined('FILENAME_CHECKOUT_PAYMENT') && (basename($_SERVER['PHP_SELF']) == FILENAME_CHECKOUT_PAYMENT)
             && tep_session_is_registered('ppec_right_turn')) {
             tep_session_unregister('ppec_right_turn');
 
@@ -78,7 +78,7 @@ class paypal_express
             }
         }
 
-        if (defined('FILENAME_MODULES') && ($PHP_SELF == FILENAME_MODULES) && isset($_GET['action'])
+        if (defined('FILENAME_MODULES') && ($_SERVER['PHP_SELF'] == FILENAME_MODULES) && isset($_GET['action'])
             && ($_GET['action'] == 'install') && isset($_GET['subaction']) && ($_GET['subaction']
             == 'conntest')) {
             echo $this->getTestConnectionResult();
@@ -844,3 +844,5 @@ EOD;
         return -1;
     }
 }
+
+

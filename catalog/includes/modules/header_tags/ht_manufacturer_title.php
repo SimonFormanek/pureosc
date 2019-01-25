@@ -21,13 +21,13 @@ class ht_manufacturer_title
 
     public function __construct()
     {
-        $this->ht_manufacturer_title();
+            $this->ht_manufacturer_title();
     }
 
     function ht_manufacturer_title()
     {
-        $this->title       = MODULE_HEADER_TAGS_MANUFACTURER_TITLE_TITLE;
-        $this->description = MODULE_HEADER_TAGS_MANUFACTURER_TITLE_DESCRIPTION;
+        $this->title       = _('Manufacturer Title');
+        $this->description = _('Add the title of the current manufacturer to the page title');
 
         if (defined('MODULE_HEADER_TAGS_MANUFACTURER_TITLE_STATUS')) {
             $this->sort_order = MODULE_HEADER_TAGS_MANUFACTURER_TITLE_SORT_ORDER;
@@ -37,9 +37,9 @@ class ht_manufacturer_title
 
     function execute()
     {
-        global $PHP_SELF, $_GET, $oscTemplate, $manufacturers, $languages_id;
+        global  $_GET, $oscTemplate, $manufacturers, $languages_id;
 
-        if (basename($PHP_SELF) == FILENAME_DEFAULT) {
+        if (basename($_SERVER['PHP_SELF']) == FILENAME_DEFAULT) {
             if (isset($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
                 $manufacturers_query = tep_db_query("select manufacturers_name, manufacturers_seo_title from ".TABLE_MANUFACTURERS." where manufacturers_id = '".(int) $_GET['manufacturers_id']."'");
                 if (tep_db_num_rows($manufacturers_query)) {

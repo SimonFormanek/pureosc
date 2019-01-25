@@ -13,12 +13,13 @@
  */
 final class Braintree_Xml
 {
+
     /**
      * @ignore
      */
-    protected function  __construct()
+    protected function __construct()
     {
-
+        
     }
 
     /**

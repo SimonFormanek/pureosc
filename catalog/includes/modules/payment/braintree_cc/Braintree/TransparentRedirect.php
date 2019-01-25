@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Braintree Transparent Redirect module
  *
@@ -46,11 +44,11 @@
 class Braintree_TransparentRedirect
 {
     // Request Kinds
-    const CREATE_TRANSACTION = 'create_transaction';
+    const CREATE_TRANSACTION    = 'create_transaction';
     const CREATE_PAYMENT_METHOD = 'create_payment_method';
     const UPDATE_PAYMENT_METHOD = 'update_payment_method';
-    const CREATE_CUSTOMER = 'create_customer';
-    const UPDATE_CUSTOMER = 'update_customer';
+    const CREATE_CUSTOMER       = 'create_customer';
+    const UPDATE_CUSTOMER       = 'update_customer';
 
     /**
      *
@@ -63,7 +61,6 @@ class Braintree_TransparentRedirect
     private static $_createCreditCardSignature;
     private static $_updateCreditCardSignature;
 
-
     /**
      * @ignore
      * don't permit an explicit call of the constructor!
@@ -71,7 +68,7 @@ class Braintree_TransparentRedirect
      */
     protected function __construct()
     {
-
+        
     }
 
     /**
@@ -81,33 +78,33 @@ class Braintree_TransparentRedirect
     public static function init()
     {
 
-        self::$_createCustomerSignature = array(
+        self::$_createCustomerSignature   = array(
             self::$_transparentRedirectKeys,
             array('customer' => Braintree_Customer::createSignature()),
-            );
-        self::$_updateCustomerSignature = array(
+        );
+        self::$_updateCustomerSignature   = array(
             self::$_transparentRedirectKeys,
             'customerId',
             array('customer' => Braintree_Customer::updateSignature()),
-            );
-        self::$_transactionSignature = array(
+        );
+        self::$_transactionSignature      = array(
             self::$_transparentRedirectKeys,
             array('transaction' => Braintree_Transaction::createSignature()),
-            );
+        );
         self::$_createCreditCardSignature = array(
             self::$_transparentRedirectKeys,
             array('creditCard' => Braintree_CreditCard::createSignature()),
-            );
+        );
         self::$_updateCreditCardSignature = array(
             self::$_transparentRedirectKeys,
             'paymentMethodToken',
             array('creditCard' => Braintree_CreditCard::updateSignature()),
-            );
+        );
     }
 
     public static function confirm($queryString)
     {
-        $params = Braintree_TransparentRedirect::parseAndValidateQueryString(
+        $params              = Braintree_TransparentRedirect::parseAndValidateQueryString(
                 $queryString
         );
         $confirmationKlasses = array(
@@ -118,8 +115,7 @@ class Braintree_TransparentRedirect
             Braintree_TransparentRedirect::UPDATE_PAYMENT_METHOD => 'Braintree_CreditCard'
         );
         return call_user_func(array($confirmationKlasses[$params["kind"]], '_doCreate'),
-            '/transparent_redirect_requests/' . $params['id'] . '/confirm',
-            array()
+            '/transparent_redirect_requests/'.$params['id'].'/confirm', array()
         );
     }
 
@@ -131,9 +127,8 @@ class Braintree_TransparentRedirect
     public static function createCreditCardData($params)
     {
         Braintree_Util::verifyKeys(
-                self::$_createCreditCardSignature,
-                $params
-                );
+            self::$_createCreditCardSignature, $params
+        );
         $params["kind"] = Braintree_TransparentRedirect::CREATE_PAYMENT_METHOD;
         return self::_data($params);
     }
@@ -146,17 +141,15 @@ class Braintree_TransparentRedirect
     public static function createCustomerData($params)
     {
         Braintree_Util::verifyKeys(
-                self::$_createCustomerSignature,
-                $params
-                );
+            self::$_createCustomerSignature, $params
+        );
         $params["kind"] = Braintree_TransparentRedirect::CREATE_CUSTOMER;
         return self::_data($params);
-
     }
 
     public static function url()
     {
-        return Braintree_Configuration::merchantUrl() . "/transparent_redirect_requests";
+        return Braintree_Configuration::merchantUrl()."/transparent_redirect_requests";
     }
 
     /**
@@ -167,18 +160,17 @@ class Braintree_TransparentRedirect
     public static function transactionData($params)
     {
         Braintree_Util::verifyKeys(
-                self::$_transactionSignature,
-                $params
-                );
-        $params["kind"] = Braintree_TransparentRedirect::CREATE_TRANSACTION;
+            self::$_transactionSignature, $params
+        );
+        $params["kind"]  = Braintree_TransparentRedirect::CREATE_TRANSACTION;
         $transactionType = isset($params['transaction']['type']) ?
             $params['transaction']['type'] :
             null;
         if ($transactionType != Braintree_Transaction::SALE && $transactionType != Braintree_Transaction::CREDIT) {
-           throw new InvalidArgumentException(
-                   'expected transaction[type] of sale or credit, was: ' .
-                   $transactionType
-                   );
+            throw new InvalidArgumentException(
+                'expected transaction[type] of sale or credit, was: '.
+                $transactionType
+            );
         }
 
         return self::_data($params);
@@ -202,13 +194,12 @@ class Braintree_TransparentRedirect
     public static function updateCreditCardData($params)
     {
         Braintree_Util::verifyKeys(
-                self::$_updateCreditCardSignature,
-                $params
-                );
+            self::$_updateCreditCardSignature, $params
+        );
         if (!isset($params['paymentMethodToken'])) {
             throw new InvalidArgumentException(
-                   'expected params to contain paymentMethodToken.'
-                   );
+                'expected params to contain paymentMethodToken.'
+            );
         }
         $params["kind"] = Braintree_TransparentRedirect::UPDATE_PAYMENT_METHOD;
         return self::_data($params);
@@ -232,13 +223,12 @@ class Braintree_TransparentRedirect
     public static function updateCustomerData($params)
     {
         Braintree_Util::verifyKeys(
-                self::$_updateCustomerSignature,
-                $params
-                );
+            self::$_updateCustomerSignature, $params
+        );
         if (!isset($params['customerId'])) {
             throw new InvalidArgumentException(
-                   'expected params to contain customerId of customer to update'
-                   );
+                'expected params to contain customerId of customer to update'
+            );
         }
         $params["kind"] = Braintree_TransparentRedirect::UPDATE_CUSTOMER;
         return self::_data($params);
@@ -250,26 +240,26 @@ class Braintree_TransparentRedirect
         parse_str($queryString, $params);
         // remove the hash
         $queryStringWithoutHash = null;
-        if(preg_match('/^(.*)&hash=[a-f0-9]+$/', $queryString, $match)) {
+        if (preg_match('/^(.*)&hash=[a-f0-9]+$/', $queryString, $match)) {
             $queryStringWithoutHash = $match[1];
         }
 
-        if($params['http_status'] != '200') {
+        if ($params['http_status'] != '200') {
             $message = null;
-            if(array_key_exists('bt_message', $params)) {
+            if (array_key_exists('bt_message', $params)) {
                 $message = $params['bt_message'];
             }
-            Braintree_Util::throwStatusCodeException($params['http_status'], $message);
+            Braintree_Util::throwStatusCodeException($params['http_status'],
+                $message);
         }
 
         // recreate the hash and compare it
-        if(self::_hash($queryStringWithoutHash) == $params['hash']) {
+        if (self::_hash($queryStringWithoutHash) == $params['hash']) {
             return $params;
         } else {
             throw new Braintree_Exception_ForgedQueryString();
         }
     }
-
 
     /**
      *
@@ -279,20 +269,20 @@ class Braintree_TransparentRedirect
     {
         if (!isset($params['redirectUrl'])) {
             throw new InvalidArgumentException(
-                    'expected params to contain redirectUrl'
-                    );
+                'expected params to contain redirectUrl'
+            );
         }
-        $params = self::_underscoreKeys($params);
-        $now = new DateTime('now', new DateTimeZone('UTC'));
-        $trDataParams = array_merge($params,
+        $params           = self::_underscoreKeys($params);
+        $now              = new DateTime('now', new DateTimeZone('UTC'));
+        $trDataParams     = array_merge($params,
             array(
                 'api_version' => Braintree_Configuration::API_VERSION,
-                'public_key'  => Braintree_Configuration::publicKey(),
-                'time'        => $now->format('YmdHis'),
+                'public_key' => Braintree_Configuration::publicKey(),
+                'time' => $now->format('YmdHis'),
             )
         );
         ksort($trDataParams);
-        $urlEncodedData = http_build_query($trDataParams, null, "&");
+        $urlEncodedData   = http_build_query($trDataParams, null, "&");
         $signatureService = new Braintree_SignatureService(
             Braintree_Configuration::privateKey(),
             "Braintree_Digest::hexDigestSha1"
@@ -302,16 +292,12 @@ class Braintree_TransparentRedirect
 
     private static function _underscoreKeys($array)
     {
-        foreach($array as $key=>$value)
-        {
+        foreach ($array as $key => $value) {
             $newKey = Braintree_Util::camelCaseToDelimiter($key, '_');
             unset($array[$key]);
-            if (is_array($value))
-            {
+            if (is_array($value)) {
                 $array[$newKey] = self::_underscoreKeys($value);
-            }
-            else
-            {
+            } else {
                 $array[$newKey] = $value;
             }
         }
@@ -323,8 +309,9 @@ class Braintree_TransparentRedirect
      */
     private static function _hash($string)
     {
-        return Braintree_Digest::hexDigestSha1(Braintree_Configuration::privateKey(), $string);
+        return Braintree_Digest::hexDigestSha1(Braintree_Configuration::privateKey(),
+                $string);
     }
-
 }
+
 Braintree_TransparentRedirect::init();

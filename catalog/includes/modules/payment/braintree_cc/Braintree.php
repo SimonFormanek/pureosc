@@ -6,7 +6,6 @@
  *
  * @copyright  2014 Braintree, a division of PayPal, Inc.
  */
-set_include_path(get_include_path().PATH_SEPARATOR.realpath(dirname(__FILE__)));
 
 /**
  * Braintree PHP Library

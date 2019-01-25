@@ -2,11 +2,13 @@
 
 final class Braintree_MerchantAccount_IndividualDetails extends Braintree
 {
+
     protected function _initialize($individualAttribs)
     {
         $this->_attributes = $individualAttribs;
         if (isset($individualAttribs['address'])) {
-            $this->_set('addressDetails', new Braintree_MerchantAccount_AddressDetails($individualAttribs['address']));
+            $this->_set('addressDetails',
+                new Braintree_MerchantAccount_AddressDetails($individualAttribs['address']));
         }
     }
 

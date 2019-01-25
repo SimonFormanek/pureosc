@@ -29,4 +29,5 @@
 class Braintree_Transaction_AddressDetails extends Braintree_Instance
 {
     protected $_attributes = array();
+
 }

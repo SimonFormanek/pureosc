@@ -52,7 +52,7 @@ if ($num_new_products > 0) {
     <h3><?php echo sprintf(TABLE_HEADING_NEW_PRODUCTS, strftime('%B')); ?></h3>
 
     <div class="row">
-    <?php echo $new_prods_content; ?>
+        <?php echo $new_prods_content; ?>
     </div>
 
     <?php

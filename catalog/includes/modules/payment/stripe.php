@@ -595,8 +595,7 @@ EOD;
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_FORBID_REUSE, true);
         curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);
-        curl_setopt($curl, CURLOPT_USERPWD,
-            MODULE_PAYMENT_STRIPE_SECRET_KEY.':');
+        curl_setopt($curl, CURLOPT_USERPWD, MODULE_PAYMENT_STRIPE_SECRET_KEY.':');
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
 
         if (!empty($parameters)) {

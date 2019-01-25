@@ -9,7 +9,6 @@
  * @copyright  2014 Braintree, a division of PayPal, Inc.
  */
 
-
 /**
  * Handles validation errors
  *
@@ -28,10 +27,8 @@ class Braintree_Error_ErrorCollection
 
     public function __construct($errorData)
     {
-        $this->_errors =
-                new Braintree_Error_ValidationErrorCollection($errorData);
+        $this->_errors = new Braintree_Error_ValidationErrorCollection($errorData);
     }
-
 
     /**
      * Returns all of the validation errors at all levels of nesting in a single, flat array.
@@ -43,7 +40,7 @@ class Braintree_Error_ErrorCollection
 
     /**
      * Returns the total number of validation errors at all levels of nesting. For example,
-     *if creating a customer with a credit card and a billing address, and each of the customer,
+     * if creating a customer with a credit card and a billing address, and each of the customer,
      * credit card, and billing address has 1 error, this method will return 3.
      *
      * @return int size
@@ -76,9 +73,11 @@ class Braintree_Error_ErrorCollection
     {
         $pieces = preg_split("/[\[\]]+/", $field, 0, PREG_SPLIT_NO_EMPTY);
         $errors = $this;
-        foreach(array_slice($pieces, 0, -1) as $key) {
+        foreach (array_slice($pieces, 0, -1) as $key) {
             $errors = $errors->forKey(Braintree_Util::delimiterToCamelCase($key));
-            if (!isset($errors)) { return array(); }
+            if (!isset($errors)) {
+                return array();
+            }
         }
         $finalKey = Braintree_Util::delimiterToCamelCase(end($pieces));
         return $errors->onAttribute($finalKey);
@@ -101,7 +100,7 @@ class Braintree_Error_ErrorCollection
      *
      * @ignore
      */
-    public function  __get($name)
+    public function __get($name)
     {
         $varName = "_$name";
         return isset($this->$varName) ? $this->$varName : null;
@@ -111,7 +110,7 @@ class Braintree_Error_ErrorCollection
      *
      * @ignore
      */
-    public function  __toString()
+    public function __toString()
     {
         return sprintf('%s', $this->_errors);
     }

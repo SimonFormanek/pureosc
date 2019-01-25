@@ -97,8 +97,9 @@ class ipayment_cc
 
         $today = getdate();
         for ($i = $today['year']; $i < $today['year'] + 10; $i++) {
-            $expires_year[] = array('id' => strftime('%y', mktime(0, 0, 0, 1, 1,
-                        $i)), 'text' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)));
+            $expires_year[] = array('id' => strftime('%y',
+                    mktime(0, 0, 0, 1, 1, $i)), 'text' => strftime('%Y',
+                    mktime(0, 0, 0, 1, 1, $i)));
         }
 
         $confirmation = array('fields' => array(array('title' => MODULE_PAYMENT_IPAYMENT_CC_TEXT_CREDIT_CARD_OWNER,

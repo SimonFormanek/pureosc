@@ -19,13 +19,13 @@ class cm_fp_new_blog_articles
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_TITLE;
-        $this->description = MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_DESCRIPTION;
+        $this->title       = _('Front Page New Blog Articles');
+        $this->description = _('Show the new blog articles block on the front page.');
         $this->description .= '<div class="secWarning">'.MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION.'</div>';
 
         if (defined('MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_STATUS')) {
-            $this->sort_order = MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_SORT_ORDER;
-            $this->enabled    = (MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_STATUS
+            $this->sort_order = constant('MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_SORT_ORDER');
+            $this->enabled    = (constant('MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_STATUS')
                 == 'True');
         }
     }
@@ -45,10 +45,10 @@ class cm_fp_new_blog_articles
             echo '<div class="col-sm-'.(int) MODULE_CONTENT_FRONT_PAGE_MESSAGE_CONTENT_WIDTH.'">
         	<div class="contentText">';
 
-            echo '<h2 class="mainpage-blog">'.MAIN_PAGE_BLOG_ARTICLES.'</h2>';
+            echo '<h2 class="mainpage-blog">'._('Blog').'</h2>';
             include(DIR_WS_MODULES.FILENAME_ARTICLE_LISTING);
             echo '<div align="right"><a class="btn btn-default" href="'.tep_href_link(FILENAME_ARTICLES,
-                'showblogarticles=true').'"><span class="glyphicon glyphicon-chevron-right"></span> '.TEXT_DISPLAY_ALL_BLOG_ARTICLES.'</a><br />&nbsp;</div>';
+                'showblogarticles=true').'"><span class="glyphicon glyphicon-chevron-right"></span> '._('Show all articles').'</a><br />&nbsp;</div>';
             echo '</div></div>';
             $template = ob_get_clean();
             $oscTemplate->addContent($template, $this->group);

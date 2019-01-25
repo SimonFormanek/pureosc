@@ -367,7 +367,7 @@ while ($manufacturers           = tep_db_fetch_array($manufacturers_query)) {
                             'trash',
                             tep_href_link(FILENAME_MANUFACTURERS,
                                 'page='.$_GET['page'].'&mID='.$mInfo->manufacturers_id.'&action=delete')));
-                    $contents[] = array('text' => '<br />'.TEXT_DATE_ADDED.' '.tep_date_short($mInfo->date_added));
+                    $contents[] = array('text' => '<br />'._('DATE ADDED').' '.tep_date_short($mInfo->date_added));
                     if (tep_not_null($mInfo->last_modified))
                             $contents[] = array('text' => TEXT_LAST_MODIFIED.' '.tep_date_short($mInfo->last_modified));
                     $contents[] = array('text' => '<br />'.tep_info_image($mInfo->manufacturers_image,

@@ -2,6 +2,7 @@
 
 class Braintree_MultipleValueOrTextNode extends Braintree_MultipleValueNode
 {
+
     function __construct($name)
     {
         parent::__construct($name);

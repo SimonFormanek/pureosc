@@ -41,11 +41,11 @@ class Braintree_ResourceCollection implements Iterator
      * @param array $attributes
      * @param array $pagerAttribs
      */
-    public function  __construct($response, $pager)
+    public function __construct($response, $pager)
     {
         $this->_pageSize = $response["searchResults"]["pageSize"];
-        $this->_ids = $response["searchResults"]["ids"];
-        $this->_pager = $pager;
+        $this->_ids      = $response["searchResults"]["ids"];
+        $this->_pager    = $pager;
     }
 
     /**
@@ -63,7 +63,7 @@ class Braintree_ResourceCollection implements Iterator
      */
     public function firstItem()
     {
-        $ids = $this->_ids;
+        $ids  = $this->_ids;
         $page = $this->_getPage(array($ids[0]));
         return $page[0];
     }
@@ -113,15 +113,13 @@ class Braintree_ResourceCollection implements Iterator
 
     private function _getNextPage()
     {
-        if (empty($this->_ids))
-        {
+        if (empty($this->_ids)) {
             $this->_items = array();
-        }
-        else
-        {
-            $this->_items = $this->_getPage(array_slice($this->_ids, $this->_batchIndex, $this->_pageSize));
+        } else {
+            $this->_items      = $this->_getPage(array_slice($this->_ids,
+                    $this->_batchIndex, $this->_pageSize));
             $this->_batchIndex += $this->_pageSize;
-            $this->_index = 0;
+            $this->_index      = 0;
         }
     }
 
@@ -132,17 +130,16 @@ class Braintree_ResourceCollection implements Iterator
      */
     private function _getPage($ids)
     {
-        $className = $this->_pager['className'];
+        $className   = $this->_pager['className'];
         $classMethod = $this->_pager['classMethod'];
-        $methodArgs = array();
+        $methodArgs  = array();
         foreach ($this->_pager['methodArgs'] as $arg) {
             array_push($methodArgs, $arg);
         }
         array_push($methodArgs, $ids);
 
         return call_user_func_array(
-            array($className, $classMethod),
-            $methodArgs
+            array($className, $classMethod), $methodArgs
         );
     }
 }

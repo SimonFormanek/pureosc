@@ -8,10 +8,6 @@
  */
 
 
-if (file_exists(constant('DIR_FS_CATALOG').'ext/modules/payment/inpay/inpay_functions.php')) {
-    require_once( constant('DIR_FS_CATALOG').'ext/modules/payment/inpay/inpay_functions.php');
-}
-
 class inpay
 {
     var $code, $title, $description, $enabled;

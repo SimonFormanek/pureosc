@@ -16,5 +16,5 @@
  */
 class Braintree_Exception_SSLCaFileNotFound extends Braintree_Exception
 {
-
+    
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
   $Id cm_nb_home.php v1.0 20160215 Kymation $
 
@@ -8,7 +8,7 @@
   Copyright (c) 2016 James C Keebaugh
 
   Released under the GNU General Public License
-*/
+ */
 ?>
 
 <!-- Start cm_nb_home -->

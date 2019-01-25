@@ -29,10 +29,10 @@ class Braintree_Error_ValidationErrorCollection extends Braintree_Collection
     /**
      * @ignore
      */
-    public function  __construct($data)
+    public function __construct($data)
     {
-        foreach($data AS $key => $errorData)
-            // map errors to new collections recursively
+        foreach ($data AS $key => $errorData)
+        // map errors to new collections recursively
             if ($key == 'errors') {
                 foreach ($errorData AS $error) {
                     $this->_errors[] = new Braintree_Error_Validation($error);
@@ -40,15 +40,14 @@ class Braintree_Error_ValidationErrorCollection extends Braintree_Collection
             } else {
                 $this->_nested[$key] = new Braintree_Error_ValidationErrorCollection($errorData);
             }
-
     }
 
     public function deepAll()
     {
         $validationErrors = array_merge(array(), $this->_errors);
-        foreach($this->_nested as $nestedErrors)
-        {
-            $validationErrors = array_merge($validationErrors, $nestedErrors->deepAll());
+        foreach ($this->_nested as $nestedErrors) {
+            $validationErrors = array_merge($validationErrors,
+                $nestedErrors->deepAll());
         }
         return $validationErrors;
     }
@@ -56,8 +55,7 @@ class Braintree_Error_ValidationErrorCollection extends Braintree_Collection
     public function deepSize()
     {
         $total = sizeof($this->_errors);
-        foreach($this->_nested as $_nestedErrors)
-        {
+        foreach ($this->_nested as $_nestedErrors) {
             $total = $total + $_nestedErrors->deepSize();
         }
         return $total;
@@ -65,7 +63,7 @@ class Braintree_Error_ValidationErrorCollection extends Braintree_Collection
 
     public function forIndex($index)
     {
-        return $this->forKey("index" . $index);
+        return $this->forKey("index".$index);
     }
 
     public function forKey($key)
@@ -77,13 +75,12 @@ class Braintree_Error_ValidationErrorCollection extends Braintree_Collection
     {
         $matches = array();
         foreach ($this->_errors AS $key => $error) {
-           if($error->attribute == $attribute) {
-               $matches[] = $error;
-           }
+            if ($error->attribute == $attribute) {
+                $matches[] = $error;
+            }
         }
         return $matches;
     }
-
 
     public function shallowAll()
     {
@@ -94,7 +91,7 @@ class Braintree_Error_ValidationErrorCollection extends Braintree_Collection
      *
      * @ignore
      */
-    public function  __get($name)
+    public function __get($name)
     {
         $varName = "_$name";
         return isset($this->$varName) ? $this->$varName : null;
@@ -124,11 +121,11 @@ class Braintree_Error_ValidationErrorCollection extends Braintree_Collection
      */
     private function _inspect($errors, $scope = null)
     {
-        $eOutput = '[' . __CLASS__ . '/errors:[';
-        foreach($errors AS $error => $errorObj) {
+        $eOutput = '['.__CLASS__.'/errors:[';
+        foreach ($errors AS $error => $errorObj) {
             $outputErrs[] = "({$errorObj->error['code']} {$errorObj->error['message']})";
         }
-        $eOutput .= join(', ', $outputErrs) . ']]';
+        $eOutput .= join(', ', $outputErrs).']]';
 
         return $eOutput;
     }

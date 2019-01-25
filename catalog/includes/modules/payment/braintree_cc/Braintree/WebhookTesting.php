@@ -1,10 +1,13 @@
 <?php
+
 class Braintree_WebhookTesting
 {
+
     public static function sampleNotification($kind, $id)
     {
-        $payload = base64_encode(self::_sampleXml($kind, $id)) . "\n";
-        $signature = Braintree_Configuration::publicKey() . "|" . Braintree_Digest::hexDigestSha1(Braintree_Configuration::privateKey(), $payload);
+        $payload   = base64_encode(self::_sampleXml($kind, $id))."\n";
+        $signature = Braintree_Configuration::publicKey()."|".Braintree_Digest::hexDigestSha1(Braintree_Configuration::privateKey(),
+                $payload);
 
         return array(
             'signature' => $signature,
@@ -209,7 +212,7 @@ class Braintree_WebhookTesting
     {
         $originalZone = date_default_timezone_get();
         date_default_timezone_set('UTC');
-        $timestamp = strftime('%Y-%m-%dT%TZ');
+        $timestamp    = strftime('%Y-%m-%dT%TZ');
         date_default_timezone_set($originalZone);
 
         return $timestamp;

@@ -33,6 +33,7 @@ class ConfigProductListDisplaySortBy extends AbstractMigration
     public function change()
     {
         $this->execute("
+        DELETE FROM configuration WHERE configuration_key='PRODUCT_LIST_DISPLAY_SORTBY';
 				insert into configuration (configuration_title, configuration_key, configuration_value,   configuration_description, configuration_group_id, sort_order,  last_modified, date_added)  
 					values 
 				('display Sort order?', 'PRODUCT_LIST_DISPLAY_SORTBY', 'false', 'display Sort order capabilities in listing page?', '8', '1001', NOW(), NOW());

@@ -25,18 +25,19 @@
  */
 class Braintree_Error_Validation
 {
-   private $_attribute;
-   private $_code;
-   private $_message;
+    private $_attribute;
+    private $_code;
+    private $_message;
 
     /**
      * @ignore
      * @param array $attributes
      */
-    public function  __construct($attributes)
+    public function __construct($attributes)
     {
         $this->_initializeFromArray($attributes);
     }
+
     /**
      * initializes instance properties from the keys/values of an array
      * @ignore
@@ -46,8 +47,8 @@ class Braintree_Error_Validation
      */
     private function _initializeFromArray($attributes)
     {
-        foreach($attributes AS $name => $value) {
-            $varName = "_$name";
+        foreach ($attributes AS $name => $value) {
+            $varName        = "_$name";
             $this->$varName = Braintree_Util::delimiterToCamelCase($value, '_');
         }
     }
@@ -56,7 +57,7 @@ class Braintree_Error_Validation
      *
      * @ignore
      */
-    public function  __get($name)
+    public function __get($name)
     {
         $varName = "_$name";
         return isset($this->$varName) ? $this->$varName : null;

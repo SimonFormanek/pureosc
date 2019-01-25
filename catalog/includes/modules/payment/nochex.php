@@ -93,8 +93,7 @@ class nochex
             tep_draw_hidden_field('amount',
                 number_format($order->info['total'] * $currencies->currencies['GBP']['value'],
                     $currencies->currencies['GBP']['decimal_places'])).
-            tep_draw_hidden_field('ordernumber',
-                $customer_id.'-'.date('Ymdhis')).
+            tep_draw_hidden_field('ordernumber', $customer_id.'-'.date('Ymdhis')).
             tep_draw_hidden_field('returnurl',
                 tep_href_link(FILENAME_CHECKOUT_PROCESS, '', 'SSL')).
             tep_draw_hidden_field('cancel_return',

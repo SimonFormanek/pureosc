@@ -4,6 +4,7 @@ use Phinx\Migration\AbstractMigration;
 
 class GpwebpayOrdersStatus extends AbstractMigration
 {
+
     /**
      * Change Method.
      *
@@ -27,11 +28,15 @@ class GpwebpayOrdersStatus extends AbstractMigration
      */
     public function change()
     {
-        $this->execute("
+        $orders = $this->fetchAll('SELECT * FROM orders_status WHERE orders_status_id=105');
+
+        if (empty($orders)) {
+
+            $this->execute("
 				INSERT INTO orders_status values (105, 1, 'Paid by Gpwebpay', 1, 1);
 				INSERT INTO orders_status values (105, 4, 'Zaplaceno Gpwebpay', 1, 1);
 
         ");
-
+        }
     }
 }

@@ -2,9 +2,9 @@
 
 class mc360
 {
-    var $system  = "osc";
-    var $version = "1.1";
-    var $debug = false;
+    var $system    = "osc";
+    var $version   = "1.1";
+    var $debug     = false;
     var $apikey    = '';
     var $key_valid = false;
     var $store_id  = '';

@@ -36,8 +36,7 @@ class Braintree_Transaction_CreditCardDetails extends Braintree_Instance
     public function __construct($attributes)
     {
         parent::__construct($attributes);
-        $this->_attributes['expirationDate'] = $this->expirationMonth . '/' . $this->expirationYear;
-        $this->_attributes['maskedNumber'] = $this->bin . '******' . $this->last4;
-
+        $this->_attributes['expirationDate'] = $this->expirationMonth.'/'.$this->expirationYear;
+        $this->_attributes['maskedNumber']   = $this->bin.'******'.$this->last4;
     }
 }

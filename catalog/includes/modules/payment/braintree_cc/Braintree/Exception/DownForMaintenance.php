@@ -16,5 +16,5 @@
  */
 class Braintree_Exception_DownForMaintenance extends Braintree_Exception
 {
-
+    
 }

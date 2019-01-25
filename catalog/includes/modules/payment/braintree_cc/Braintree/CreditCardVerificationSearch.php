@@ -1,17 +1,37 @@
 <?php
+
 class Braintree_CreditCardVerificationSearch
 {
-    static function id()                               { return new Braintree_TextNode('id'); }
-    static function creditCardCardholderName()                   { return new Braintree_TextNode('credit_card_cardholder_name'); }
 
-    static function creditCardExpirationDate()         { return new Braintree_EqualityNode('credit_card_expiration_date'); }
-    static function creditCardNumber()                 { return new Braintree_PartialMatchNode('credit_card_number'); }
+    static function id()
+    {
+        return new Braintree_TextNode('id');
+    }
 
-    static function ids()                              { return new Braintree_MultipleValueNode('ids'); }
+    static function creditCardCardholderName()
+    {
+        return new Braintree_TextNode('credit_card_cardholder_name');
+    }
+
+    static function creditCardExpirationDate()
+    {
+        return new Braintree_EqualityNode('credit_card_expiration_date');
+    }
+
+    static function creditCardNumber()
+    {
+        return new Braintree_PartialMatchNode('credit_card_number');
+    }
+
+    static function ids()
+    {
+        return new Braintree_MultipleValueNode('ids');
+    }
 
     static function creditCardCardType()
     {
-        return new Braintree_MultipleValueNode("credit_card_card_type", array(
+        return new Braintree_MultipleValueNode("credit_card_card_type",
+            array(
             Braintree_CreditCard::AMEX,
             Braintree_CreditCard::CARTE_BLANCHE,
             Braintree_CreditCard::CHINA_UNION_PAY,
@@ -28,6 +48,8 @@ class Braintree_CreditCardVerificationSearch
         ));
     }
 
-
-    static function createdAt()                        { return new Braintree_RangeNode("created_at"); }
+    static function createdAt()
+    {
+        return new Braintree_RangeNode("created_at");
+    }
 }

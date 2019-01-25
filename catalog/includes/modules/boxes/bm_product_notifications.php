@@ -40,7 +40,7 @@ class bm_product_notifications
 
     function execute()
     {
-        global $_GET, $customer_id, $PHP_SELF, $request_type, $oscTemplate;
+        global $_GET, $customer_id, $request_type, $oscTemplate;
 
         if (isset($_GET['products_id'])) {
             if (tep_session_is_registered('customer_id')) {
@@ -55,12 +55,12 @@ class bm_product_notifications
             $notif_contents = '';
 
             if ($notification_exists == true) {
-                $notif_contents = '<a href="'.tep_href_link($PHP_SELF,
+                $notif_contents = '<a href="'.tep_href_link($_SERVER['PHP_SELF'],
                         tep_get_all_get_params(array('action')).'action=notify_remove',
                         $request_type).'"><span class="fa fa-remove"></span> '.sprintf(MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_NOTIFY_REMOVE,
                         tep_get_products_name($_GET['products_id'])).'</a>';
             } else {
-                $notif_contents = '<a href="'.tep_href_link($PHP_SELF,
+                $notif_contents = '<a href="'.tep_href_link($_SERVER['PHP_SELF'],
                         tep_get_all_get_params(array('action')).'action=notify',
                         $request_type).'"><span class="fa fa-envelope"></span> '.sprintf(MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_NOTIFY,
                         tep_get_products_name($_GET['products_id'])).'</a>';
