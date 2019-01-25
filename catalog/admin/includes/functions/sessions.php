@@ -10,7 +10,7 @@
   Released under the GNU General Public License
  */
 
-if ((PHP_VERSION >= 4.3) && ((bool) ini_get('register_globals') == false)) {
+if ((PHP_VERSION >= 4.3) && ((bool) ini_get('register_globals') === false)) {
     @ini_set('session.bug_compat_42', 1);
     @ini_set('session.bug_compat_warn', 0);
 }
@@ -72,7 +72,7 @@ function tep_session_start()
 
     if (isset($_GET[tep_session_name()])) {
         if ((SESSION_FORCE_COOKIE_USE == 'True') || (preg_match('/^[a-zA-Z0-9,-]+$/',
-                $_GET[tep_session_name()]) == false)) {
+                $_GET[tep_session_name()]) === false)) {
             unset($_GET[tep_session_name()]);
 
             $sane_session_id = false;
@@ -81,7 +81,7 @@ function tep_session_start()
 
     if (isset($_POST[tep_session_name()])) {
         if ((SESSION_FORCE_COOKIE_USE == 'True') || (preg_match('/^[a-zA-Z0-9,-]+$/',
-                $_POST[tep_session_name()]) == false)) {
+                $_POST[tep_session_name()]) === false)) {
             unset($_POST[tep_session_name()]);
 
             $sane_session_id = false;
@@ -90,7 +90,7 @@ function tep_session_start()
 
     if (isset($HTTP_COOKIE_VARS[tep_session_name()])) {
         if (preg_match('/^[a-zA-Z0-9,-]+$/',
-                $HTTP_COOKIE_VARS[tep_session_name()]) == false) {
+                $HTTP_COOKIE_VARS[tep_session_name()]) === false) {
             $session_data = session_get_cookie_params();
 
             setcookie(tep_session_name(), '', time() - 42000,

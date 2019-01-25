@@ -134,7 +134,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit') && isset($_POST['f
             }
         }
 
-        if ((is_numeric($country) == false) || ($country < 1)) {
+        if ((is_numeric($country) === false) || ($country < 1)) {
             $error = true;
 
             $messageStack->add('checkout_address', ENTRY_COUNTRY_ERROR);

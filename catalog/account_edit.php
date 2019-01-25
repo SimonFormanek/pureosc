@@ -25,7 +25,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     if (ACCOUNT_GENDER == 'true')
             $gender        = tep_db_prepare_input($_POST['gender']);
     $firstname     = tep_db_prepare_input($_POST['firstname']);
-    $lastname      = tep_db_prepare_input($_POST['lastname']);
+    $lastname      = tep_db_prepare_input($_POST['lastname']);    
     if (ACCOUNT_DOB == 'true') $dob           = tep_db_prepare_input($_POST['dob']);
     $email_address = tep_db_prepare_input($_POST['email_address']);
     $telephone     = tep_db_prepare_input($_POST['telephone']);

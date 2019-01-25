@@ -347,7 +347,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'test') {
         /*
           $check_query = tep_db_query("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE_STS_DEFAULT_NORMAL'");
           $check = tep_db_fetch_array($check_query);
-          if (strpos($check['configuration_value'], "headertags.php") == FALSE)
+          if (strpos($check['configuration_value'], "headertags.php") === FALSE)
           {
           if (! $dbError)
           {

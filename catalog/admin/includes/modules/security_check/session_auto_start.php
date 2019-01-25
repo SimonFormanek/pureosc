@@ -25,7 +25,7 @@
     }
 
     function pass() {
-      return ((bool)ini_get('session.auto_start') == false);
+      return ((bool)ini_get('session.auto_start') === false);
     }
 
     function getMessage() {

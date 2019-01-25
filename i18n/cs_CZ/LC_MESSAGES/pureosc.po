@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PureOSC\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-25 19:38+0100\n"
-"PO-Revision-Date: 2019-01-25 19:39+0100\n"
+"PO-Revision-Date: 2019-01-25 22:25+0100\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -513,9 +513,8 @@ msgid "Add Colorbox Script to specified pages"
 msgstr ""
 
 #: includes/modules/header_tags/ht_product_meta.php:28
-#, fuzzy
 msgid "Product Meta"
-msgstr "Produkční"
+msgstr "Metainformace Produktu"
 
 #: includes/modules/header_tags/ht_product_meta.php:29
 msgid ""
@@ -618,12 +617,10 @@ msgid "Cash"
 msgstr "Hotovost"
 
 #: includes/modules/payment/cash.php:26
-#, fuzzy
 msgid "Cash desk payment"
 msgstr "Platba na pokladně"
 
 #: includes/modules/payment/cash.php:27
-#, fuzzy
 msgid "Cash on table"
 msgstr "Platba na dřevo"
 

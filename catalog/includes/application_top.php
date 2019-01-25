@@ -24,7 +24,7 @@ define('PAGE_PARSE_START_TIME', microtime());
 require_once dirname(__DIR__).'/../vendor/autoload.php';
 
 // check support for register_globals
-if (function_exists('ini_get') && (ini_get('register_globals') == false) && (PHP_VERSION
+if (function_exists('ini_get') && (ini_get('register_globals') === false) && (PHP_VERSION
     < 4.3)) {
     exit('Server Requirement Error: register_globals is disabled in your PHP configuration. This can be enabled in your php.ini configuration file or in the .htaccess file in your catalog directory. Please use PHP 4.3+ if register_globals cannot be enabled on the server.');
 }
@@ -205,7 +205,7 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
 }
 
 if (($session_started == true) && (PHP_VERSION >= 4.3) && function_exists('ini_get')
-    && (ini_get('register_globals') == false)) {
+    && (ini_get('register_globals') === false)) {
     extract($_SESSION, EXTR_OVERWRITE + EXTR_REFS);
 }
 

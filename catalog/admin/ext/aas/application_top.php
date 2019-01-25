@@ -585,7 +585,7 @@ if (isset($fieldsArray['attributes']) && $fieldsArray['attributes']['visible']) 
 //CHEK TO SEE IF COLUMN LINKED EXISTS
 //unset($_SESSION['admin']['AAS']['table_columns_exist']['aas_settings']);
 if ((isset($_SESSION['admin']['AAS']['table_columns_exist']['linked']) && $_SESSION['admin']['AAS']['table_columns_exist']['linked']
-    == false ) || !isset($_SESSION['admin']['AAS']['table_columns_exist']['linked'])) {
+    === false ) || !isset($_SESSION['admin']['AAS']['table_columns_exist']['linked'])) {
     $ptc_columns = tep_db_num_rows(tep_db_query("Show columns from ".TABLE_PRODUCTS_TO_CATEGORIES." like 'linked' "));
 } else $ptc_columns = 1;
 
@@ -662,7 +662,7 @@ if (isset($enableColumnSorting) && $enableColumnSorting) {
 
         if ($value['visible']) {
             $cnt++;
-            if (isset($value['sortable']) && $value['sortable'] == false)
+            if (isset($value['sortable']) && $value['sortable'] === false)
                     $tt[] = ' '.$cnt.': {sorter: false}';
         }
     }

@@ -841,7 +841,7 @@ $(function() {
 
       if ( !target.is('input:radio') ) {
         $(this).find('input:radio').each(function() {
-          if ( $(this).prop('checked') == false ) {
+          if ( $(this).prop('checked') === false ) {
             $(this).prop('checked', true).trigger('change');
           }
         });

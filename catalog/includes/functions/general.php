@@ -1478,7 +1478,7 @@ function tep_count_customer_orders($id = '', $check_session = true)
 {
     global $customer_id, $languages_id;
 
-    if (is_numeric($id) == false) {
+    if (is_numeric($id) === false) {
         if (tep_session_is_registered('customer_id')) {
             $id = $customer_id;
         } else {
@@ -1487,7 +1487,7 @@ function tep_count_customer_orders($id = '', $check_session = true)
     }
 
     if ($check_session == true) {
-        if ((tep_session_is_registered('customer_id') == false) || ($id != $customer_id)) {
+        if ((tep_session_is_registered('customer_id') === false) || ($id != $customer_id)) {
             return 0;
         }
     }
@@ -1502,7 +1502,7 @@ function tep_count_customer_address_book_entries($id = '', $check_session = true
 {
     global $customer_id;
 
-    if (is_numeric($id) == false) {
+    if (is_numeric($id) === false) {
         if (tep_session_is_registered('customer_id')) {
             $id = $customer_id;
         } else {
@@ -1511,7 +1511,7 @@ function tep_count_customer_address_book_entries($id = '', $check_session = true
     }
 
     if ($check_session == true) {
-        if ((tep_session_is_registered('customer_id') == false) || ($id != $customer_id)) {
+        if ((tep_session_is_registered('customer_id') === false) || ($id != $customer_id)) {
             return 0;
         }
     }

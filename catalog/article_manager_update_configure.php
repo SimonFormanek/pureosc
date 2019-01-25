@@ -19,7 +19,7 @@ if (tep_db_num_rows($config_query) > 0) {
 
     foreach ($config_sql_array as $sql_array) {
         foreach ($sql_array as $value) {
-            if (tep_db_query($value) == false) {
+            if (tep_db_query($value) === false) {
                 $db_error = true;
             }
         }
@@ -42,7 +42,7 @@ echo 'Attempting to install Article Manager database changes.<br>';
 // create configuration group
 $group_query = "INSERT INTO configuration_group (configuration_group_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES ($id, 'Article Manager', 'Article Manager site wide options', '20' , '1')";
 
-if (tep_db_query($group_query) == false) {
+if (tep_db_query($group_query) === false) {
     $db_error = true;
 }
 
@@ -110,7 +110,7 @@ if (!$db_error) {
     foreach ($am_sql_array as $sql_array) {
         foreach ($sql_array as $value) {
             //echo $value . '<br>';
-            if (tep_db_query($value) == false) {
+            if (tep_db_query($value) === false) {
                 $db_error = true;
             }
         }

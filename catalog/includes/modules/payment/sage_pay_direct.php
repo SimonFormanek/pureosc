@@ -79,7 +79,7 @@ class sage_pay_direct
     {
         global $order;
 
-        if (($this->enabled == true) && ($this->hasCards() == false)) {
+        if (($this->enabled == true) && ($this->hasCards() === false)) {
             $this->enabled = false;
         }
 
@@ -349,7 +349,7 @@ class sage_pay_direct
                 $cc_type = isset($_POST['cc_type']) ? substr($_POST['cc_type'],
                         0, 15) : null;
 
-                if (!isset($cc_type) || ($this->isCard($cc_type) == false)) {
+                if (!isset($cc_type) || ($this->isCard($cc_type) === false)) {
                     tep_redirect(tep_href_link(FILENAME_CHECKOUT_PAYMENT,
                             'payment_error='.$this->code.'&error=cardtype',
                             'SSL'));
@@ -392,7 +392,7 @@ class sage_pay_direct
                                 'SSL'));
                     }
 
-                    if (!isset($cc_number) || (is_numeric($cc_number) == false)) {
+                    if (!isset($cc_number) || (is_numeric($cc_number) === false)) {
                         tep_redirect(tep_href_link(FILENAME_CHECKOUT_PAYMENT,
                                 'payment_error='.$this->code.'&error=cardnumber',
                                 'SSL'));
@@ -1382,7 +1382,7 @@ $(function() {
 
       if ( !target.is('input:radio') ) {
         $(this).find('input:radio').each(function() {
-          if ( $(this).prop('checked') == false ) {
+          if ( $(this).prop('checked') === false ) {
             $(this).prop('checked', true).trigger('change');
           }
         });

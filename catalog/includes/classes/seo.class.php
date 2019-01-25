@@ -2945,11 +2945,11 @@ class SEO_URL
             switch (true) {
                 case ($num_rows == 1):
                     if ($global) {
-                        if ($container['GLOBAL'][$cache_name] == false || !isset($container['GLOBAL'][$cache_name]))
+                        if ($container['GLOBAL'][$cache_name] === false || !isset($container['GLOBAL'][$cache_name]))
                                 return false;
                         else return $container['GLOBAL'][$cache_name];
                     } else { // not global
-                        if ($container[$cache_name] == false || !isset($container[$cache_name]))
+                        if ($container[$cache_name] === false || !isset($container[$cache_name]))
                                 return false;
                         else return $container[$cache_name];
                     } # end if ($global)                                        

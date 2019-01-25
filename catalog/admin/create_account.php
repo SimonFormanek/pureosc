@@ -104,7 +104,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
         $error = true;
 
         $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_ERROR);
-    } elseif (tep_validate_email($email_address) == false) {
+    } elseif (tep_validate_email($email_address) === false) {
         $error = true;
 
         $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
@@ -137,7 +137,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
         $messageStack->add('create_account', ENTRY_CITY_ERROR);
     }
 
-    if (is_numeric($country) == false) {
+    if (is_numeric($country) === false) {
         $error = true;
 
         $messageStack->add('create_account', ENTRY_COUNTRY_ERROR);

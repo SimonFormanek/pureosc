@@ -241,7 +241,7 @@ if (!isset($process)) $process = false;
 
 <?php
 if ((isset($_GET['edit']) && ($customer_default_address_id != $_GET['edit'])) || (isset($_GET['edit'])
-    == false)) {
+    === false)) {
     ?>
 
         <div class="form-group">
