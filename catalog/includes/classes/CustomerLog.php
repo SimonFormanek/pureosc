@@ -102,10 +102,10 @@ class CustomerLog extends \Ease\Brick
      */
     public function setCustomerID($customers_id)
     {
-        if (empty($customers_id)) {
-            $customers_id = $_SESSION['customers_id'];
+        if (empty($customers_id) && isset($_SESSION['customers_id'])) {
+            $customers_id       = $_SESSION['customers_id'];
+            $this->customers_id = $customers_id;
         }
-        $this->customers_id = $customers_id;
     }
 
     /**
