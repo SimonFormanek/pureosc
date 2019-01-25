@@ -41,7 +41,7 @@ class ht_pages_seo {
         global $oscTemplate;
 
         if ((defined('META_SEO_TITLE')) && (strlen(META_SEO_TITLE) > 0)) {
-            $oscTemplate->setTitle(tep_output_string(META_SEO_TITLE) . _(' | ') . $oscTemplate->getTitle());
+            $oscTemplate->setTitle(tep_output_string(META_SEO_TITLE) . '|'  . $oscTemplate->getTitle());
         }
         if ((defined('META_SEO_DESCRIPTION')) && (strlen(META_SEO_DESCRIPTION) > 0)) {
             $oscTemplate->addBlock('<meta name="description" content="' . tep_output_string(META_SEO_DESCRIPTION) . '" />' . "\n",
