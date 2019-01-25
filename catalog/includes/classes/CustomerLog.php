@@ -36,10 +36,10 @@ class CustomerLog extends \Ease\Brick
      * Log Customer events
      * 
      * @param string $venue       current url is used as default  
-     * @param int    $customer_id current logged user id is used as default
+     * @param int    $customers_id current logged user id is used as default
      * @param int    $administrators_id
      */
-    public function __construct($venue = null, $customer_id = null,
+    public function __construct($venue = null, $customers_id = null,
                                 $administrators_id = null)
     {
         parent::__construct();
