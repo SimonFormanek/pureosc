@@ -13,7 +13,10 @@
 
 <!-- Start cm_nb_cart -->
 <li class="dropdown">
-    <?php if ($cart->count_contents() > 0) { ?>
+    <?php
+    
+    
+    if ($cart->count_contents() > 0) { ?>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php
             echo sprintf(HEADER_CART_CONTENTS.' ', $cart->count_contents(),
                 $cart->count_contents());

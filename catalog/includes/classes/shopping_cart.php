@@ -39,7 +39,9 @@ class shoppingCart
         global $customer_id, $gv_id, $REMOTE_ADDR;
         /*         * * EOF alterations for CCGV ** */
 
-        if (!tep_session_is_registered('customer_id')) return false;
+        if (!tep_session_is_registered('customer_id')) {
+            return false;
+        }
 
 // insert current cart contents in database
         if (is_array($this->contents)) {
@@ -93,7 +95,7 @@ class shoppingCart
     {
         global $customer_id;
 
-        $this->contents     = array();
+        $this->contents     = [];
         $this->total        = 0;
         $this->weight       = 0;
         $this->content_type = false;
@@ -248,7 +250,7 @@ class shoppingCart
         $total_items = 0;
         if (is_array($this->contents)) {
             reset($this->contents);
-            foreach($this->contents as $products_id){
+            foreach ($this->contents as $products_id => $qty) {
                 $total_items += $this->get_quantity($products_id);
             }
         }
@@ -258,7 +260,9 @@ class shoppingCart
 
     function get_quantity($products_id)
     {
-        if (isset($this->contents[$products_id])) {
+
+
+        if (!empty($products_id) && array_key_exists($products_id, $this->contents)) {
             return $this->contents[$products_id]['qty'];
         } else {
             return 0;
