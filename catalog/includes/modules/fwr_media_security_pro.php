@@ -97,15 +97,15 @@ class Fwr_Media_Security_Pro
      * @access public
      * @return void
      */
-    function cleanse($_SERVER['PHP_SELF'] = '')
+    function cleanse($phpSelf = '')
     {
         if (false === $this->_enabled) {
             return;
         }
-        if (empty($_SERVER['PHP_SELF'])) {
+        if (empty($phpSelf)) {
             return;
         }
-        $this->_basename = $_SERVER['PHP_SELF'];
+        $this->_basename = $phpSelf;
         if (in_array($this->_basename, $this->_excluded_from_cleansing)) {
             return;
         }
