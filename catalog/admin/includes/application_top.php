@@ -75,9 +75,6 @@ while ($configuration       = tep_db_fetch_array($configuration_query)) {
 require(DIR_WS_FUNCTIONS.'general.php');
 require(DIR_WS_FUNCTIONS.'html_output.php');
 
-// initialize the logger class
-require(DIR_WS_CLASSES.'logger.php');
-
 // define how the session functions will be used
 require(DIR_WS_FUNCTIONS.'sessions.php');
 
@@ -116,7 +113,6 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
         tep_session_register('languages_id');
     }
 
-    include(DIR_WS_CLASSES.'language.php');
     $lng = new language();
 
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
@@ -200,18 +196,11 @@ require(DIR_WS_FUNCTIONS.'localization.php');
 // Include validation functions (right now only email address)
 require(DIR_WS_FUNCTIONS.'validations.php');
 
-// setup our boxes
-require(DIR_WS_CLASSES.'table_block.php');
-require(DIR_WS_CLASSES.'box.php');
-
 // initialize the message stack for output messages
 $messageStack = new AdminMessageStack();
 $phpMail = new \PHPMailer\PHPMailer\PHPMailer();
-// entry/item info classes
-require(DIR_WS_CLASSES.'object_info.php');
 
-// file uploading class
-require(DIR_WS_CLASSES.'upload.php');
+
 
 // calculate category path
 if (isset($_GET['cPath'])) {
@@ -229,7 +218,6 @@ if (tep_not_null($cPath)) {
 }
 
 // initialize configuration modules
-require(DIR_WS_CLASSES.'cfg_modules.php');
 $cfgModules = new cfg_modules();
 
 // the following cache blocks are used in the Tools->Cache section

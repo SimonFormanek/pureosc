@@ -43,8 +43,6 @@ class cm_nb_categories_full
 
         $this->add_categories_css();
 
-        require_once DIR_WS_CLASSES.'category_tree_extended.php';
-
         $full_category_tree = new category_tree_extended();
         $full_category_tree->setCategoryPath($cPath, '<strong>', '</strong>');
         $full_category_tree->setSpacerString('&nbsp;&nbsp;', 1);

@@ -41,11 +41,9 @@
   }
 
 // load the selected payment module
-  require(DIR_WS_CLASSES . 'payment.php');
   $payment_modules = new payment($payment);
 
-  require(DIR_WS_CLASSES . 'order.php');
-  $order = new order;
+  $order = new order();
 
   $payment_modules->update_status();
 
@@ -58,11 +56,11 @@
   }
 
 // load the selected shipping module
-  require(DIR_WS_CLASSES . 'shipping.php');
+  
   $shipping_modules = new shipping($shipping);
 
-  require(DIR_WS_CLASSES . 'order_total.php');
-  $order_total_modules = new order_total;
+
+  $order_total_modules = new order_total();
   $order_total_modules->process();
 
 // Stock Check

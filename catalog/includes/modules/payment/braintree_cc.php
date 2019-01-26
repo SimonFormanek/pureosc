@@ -885,10 +885,6 @@ function tep_cfg_braintree_cc_show_client_key($key)
 
 function tep_cfg_braintree_cc_set_merchant_accounts($value, $key)
 {
-    if (!class_exists('currencies')) {
-        include(DIR_WS_CLASSES.'currencies.php');
-    }
-
     $data = array();
 
     foreach (explode(';', $value) as $ma) {
@@ -952,10 +948,6 @@ EOD;
 
 function tep_cfg_braintree_cc_show_merchant_accounts($value)
 {
-    if (!class_exists('currencies')) {
-        include(DIR_WS_CLASSES.'currencies.php');
-    }
-
     $data = array();
 
     foreach (explode(';', $value) as $ma) {

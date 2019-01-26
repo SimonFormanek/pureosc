@@ -49,8 +49,8 @@ class ht_google_adwords_conversion
                 $order_subtotal       = tep_db_fetch_array($order_subtotal_query);
 
                 if (!isset($lng) || (isset($lng) && !is_object($lng))) {
-                    include(DIR_WS_CLASSES.'language.php');
-                    $lng = new language;
+
+                    $lng = new language();
                 }
 
                 $language_code = 'en';

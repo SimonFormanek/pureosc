@@ -140,16 +140,16 @@
 
         $quotes_array = array();
 
-        include(DIR_WS_CLASSES . 'order.php');
-        $order = new order;
+
+        $order = new order();
 
         if ($cart->get_content_type() != 'virtual') {
           $total_weight = $cart->show_weight();
           $total_count = $cart->count_contents();
 
 // load all enabled shipping modules
-          include(DIR_WS_CLASSES . 'shipping.php');
-          $shipping_modules = new shipping;
+
+          $shipping_modules = new shipping();
 
           $free_shipping = false;
 
@@ -214,7 +214,7 @@
         }
 
         include(DIR_WS_CLASSES . 'order_total.php');
-        $order_total_modules = new order_total;
+        $order_total_modules = new order_total();
         $order_totals = $order_total_modules->process();
 
         $params = array('METHOD' => 'CallbackResponse',
@@ -466,16 +466,16 @@ EOD;
           tep_session_register('customer_zone_id');
         }
 
-        include(DIR_WS_CLASSES . 'order.php');
-        $order = new order;
+        
+        $order = new order();
 
         if ($cart->get_content_type() != 'virtual') {
           $total_weight = $cart->show_weight();
           $total_count = $cart->count_contents();
 
 // load all enabled shipping modules
-          include(DIR_WS_CLASSES . 'shipping.php');
-          $shipping_modules = new shipping;
+
+          $shipping_modules = new shipping();
 
           $free_shipping = false;
 
@@ -609,8 +609,7 @@ EOD;
         $paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&';
       }
 
-      include(DIR_WS_CLASSES . 'order.php');
-      $order = new order;
+      $order = new order();
 
       $params = array('PAYMENTREQUEST_0_CURRENCYCODE' => $order->info['currency'],
                       'ALLOWNOTE' => 0);
@@ -662,8 +661,8 @@ EOD;
         $total_count = $cart->count_contents();
 
 // load all enabled shipping modules
-        include(DIR_WS_CLASSES . 'shipping.php');
-        $shipping_modules = new shipping;
+
+        $shipping_modules = new shipping();
 
         $free_shipping = false;
 
@@ -800,8 +799,7 @@ EOD;
         $item_params['CALLBACKVERSION'] = $paypal_express->api_version;
       }
 
-      include(DIR_WS_CLASSES . 'order_total.php');
-      $order_total_modules = new order_total;
+      $order_total_modules = new order_total();
       $order_totals = $order_total_modules->process();
 
 // Remove shipping tax from total that was added again in ot_shipping

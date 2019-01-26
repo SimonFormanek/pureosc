@@ -49,8 +49,7 @@ if (!tep_session_is_registered('sendto')) {
     }
 }
 
-require(DIR_WS_CLASSES.'order.php');
-$order = new order;
+$order = new order();
 
 // register a random ID in the session to check throughout the checkout procedure
 // against alterations in the shopping cart contents
@@ -80,8 +79,8 @@ $total_weight = $cart->show_weight();
 $total_count  = $cart->count_contents();
 
 // load all enabled shipping modules
-require(DIR_WS_CLASSES.'shipping.php');
-$shipping_modules = new shipping;
+
+$shipping_modules = new shipping();
 
 if (defined('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING') && (MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING
     == 'true')) {

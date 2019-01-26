@@ -36,8 +36,7 @@ class sb_google_plus_one
         global $_GET, $lng, $languages_id;
 
         if (!isset($lng) || (isset($lng) && !is_object($lng))) {
-            include(DIR_WS_CLASSES.'language.php');
-            $lng = new language;
+            $lng = new language();
         }
 
         foreach ($lng->catalog_languages as $lkey => $lvalue) {

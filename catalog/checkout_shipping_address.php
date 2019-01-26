@@ -26,8 +26,8 @@ if ($cart->count_contents() < 1) {
 // needs to be included earlier to set the success message in the messageStack
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_CHECKOUT_SHIPPING_ADDRESS);
 
-require(DIR_WS_CLASSES.'order.php');
-$order = new order;
+
+$order = new order();
 
 // if the order contains only virtual products, forward the customer to the billing page as
 // a shipping address is not needed

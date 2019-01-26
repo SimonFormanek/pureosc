@@ -29,7 +29,7 @@ include(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ORDERS_EDIT);
 
 
 // Include currencies class
-require(DIR_WS_CLASSES.'currencies.php');
+
 $currencies = new AdminCurrencies();
 
 //$action 
@@ -256,7 +256,7 @@ if ($action == 'reload_totals') {
     $total_weight = $cart->show_weight();
 
     // Get the shipping quotes
-    $shipping_modules = new shipping;
+    $shipping_modules = new shipping();
     $shipping_quotes  = $shipping_modules->quote();
 
     if (DISPLAY_PRICE_WITH_TAX == 'true') {//extract the base shipping cost or the ot_shipping module will add tax to it again
@@ -696,7 +696,7 @@ if ($action == 'insert_new_comment') {
                         'error');
                 }
 
-                include(DIR_WS_CLASSES.'order.php');
+
                 $order = new AdminOrder($oID);
 
                 $url     = "http://maps.google.com/maps/geo?q=";
@@ -819,7 +819,7 @@ if ($action == 'insert_shipping') {
     $total_weight = $cart->show_weight();
 
     // Get the shipping quotes
-    $shipping_modules = new shipping;
+    $shipping_modules = new shipping();
     $shipping_quotes  = $shipping_modules->quote();
     ?>
 

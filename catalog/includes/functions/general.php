@@ -1241,10 +1241,6 @@ function tep_create_random_value($length, $type = 'mixed')
 
     $value = '';
 
-    if (!class_exists('PasswordHash')) {
-        include(DIR_WS_CLASSES.'passwordhash.php');
-    }
-
     $hasher = new AdminPasswordHash(10, true);
 
     do {

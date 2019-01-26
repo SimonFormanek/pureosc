@@ -28,7 +28,7 @@
                             <?php
                             // languages
                             if (!isset($lng) || (isset($lng) && !is_object($lng))) {
-                                include(DIR_WS_CLASSES.'language.php');
+
                                 $lng = new language;
                             }
                             if (count($lng->catalog_languages) > 1) {

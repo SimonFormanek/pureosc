@@ -23,7 +23,7 @@ include('order_editor/order.php');
 include(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ORDERS_EDIT);
 
 // Include currencies class
-require(DIR_WS_CLASSES.'currencies.php');
+
 $currencies = new AdminCurrencies();
 
 $oID   = tep_db_prepare_input((int) $_GET['oID']);

@@ -160,7 +160,6 @@ if ($result == 'VERIFIED')
     	// for email
 		include(DIR_WS_LANGUAGES . $language . '/modules/payment/inpay.php');
         // let's re-create the required arrays
-        require (DIR_WS_CLASSES.'order.php');
         $order = new order($_POST['order_id']);
         // START STATUS == COMPLETED LOOP
         // initialized for the email confirmation

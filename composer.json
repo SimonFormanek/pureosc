@@ -26,7 +26,7 @@
             "PureOSC\\Admin\\": "admin/includes/classes/",
             "PureOSC\\Admin\\flexibee\\": "admin/ext/flexibee/"
         },
-        "classmap": ["catalog/includes/classes/", "catalog/includes/modules/", "catalog/admin/includes/classes/", "catalog/admin/includes/modules/"]
+        "classmap": ["catalog/includes/classes/", "catalog/includes/modules/", "catalog/admin/includes/classes/", "catalog/admin/includes/modules/","catalog/admin/ext/aas/classes"]
     },
         "scripts": {
         "post-install-cmd": "make install",

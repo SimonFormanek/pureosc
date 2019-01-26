@@ -76,12 +76,12 @@ if (!tep_session_is_registered('billto')) {
     }
 }
 
-require(DIR_WS_CLASSES.'order.php');
-$order = new order;
+
+$order = new order();
 
 /* * * Altered for CCGV ** */
-require(DIR_WS_CLASSES.'order_total.php'); // CCGV
-$order_total_modules = new order_total; // CCGV
+
+$order_total_modules = new order_total(); // CCGV
 /* * * EOF alterations for CCGV ** */
 
 if (!tep_session_is_registered('comments')) tep_session_register('comments');
@@ -97,7 +97,6 @@ $total_count  = $cart->count_contents_virtual(); // CCGV
 
 
 // load all enabled payment modules
-require(DIR_WS_CLASSES.'payment.php');
 $payment_modules = new payment;
 
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_CHECKOUT_PAYMENT);

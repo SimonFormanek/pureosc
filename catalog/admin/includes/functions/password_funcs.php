@@ -20,10 +20,6 @@ function tep_validate_password($plain, $encrypted)
             return tep_validate_old_password($plain, $encrypted);
         }
 
-        if (!class_exists('PasswordHash')) {
-            include(DIR_WS_CLASSES.'passwordhash.php');
-        }
-
         $hasher = new AdminPasswordHash(10, true);
 
         return $hasher->CheckPassword($plain, $encrypted);
@@ -56,10 +52,6 @@ function tep_validate_old_password($plain, $encrypted)
 // password.
 function tep_encrypt_password($plain)
 {
-    if (!class_exists('PasswordHash')) {
-        include(DIR_WS_CLASSES.'passwordhash.php');
-    }
-
     $hasher = new AdminPasswordHash(10, true);
 
     return $hasher->HashPassword($plain);

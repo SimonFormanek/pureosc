@@ -128,9 +128,6 @@ $cookie_path   = (($request_type == 'NONSSL') ? HTTP_COOKIE_PATH : HTTPS_COOKIE_
 // include cache functions if enabled
 if (USE_CACHE == 'true') include(DIR_WS_FUNCTIONS.'cache.php');
 
-// include navigation history class
-require(DIR_WS_CLASSES.'navigation_history.php');
-
 // define how the session functions will be used
 require(DIR_WS_FUNCTIONS.'sessions.php');
 
@@ -307,9 +304,8 @@ require(DIR_WS_LANGUAGES.$language.'.php');
 setlocale(LC_NUMERIC, $_system_locale_numeric); // Prevent LC_ALL from setting LC_NUMERIC to a locale with 1,0 float/decimal values instead of 1.0 (see bug #634)
 // Ultimate SEO URLs v2.2d
 if ((!defined(SEO_ENABLED)) || (SEO_ENABLED == 'true')) {
-    include_once('includes/classes/seo.class.php');
     if (!isset($seo_urls) || !is_object($seo_urls)) {
-        $seo_urls = new SEO_URL($languages_id);
+        $seo_urls = new \PureOSC\SeoUrl($languages_id);
     }
 }
 
@@ -334,12 +330,7 @@ if (!tep_session_is_registered('navigation') || !is_object($navigation)) {
 }
 $navigation->add_current_page();
 
-// action recorder
-include('includes/classes/action_recorder.php');
-// initialize the message stack for output messages
-require(DIR_WS_CLASSES.'alertbox.php');
-require(DIR_WS_CLASSES.'message_stack.php');
-$messageStack = new messageStack;
+$messageStack = new messageStack();
 // Shopping cart actions
 if (isset($_GET['action'])) {
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled
@@ -492,6 +483,8 @@ if (isset($_GET['action'])) {
     }
 }
 
+$oscTemplate = new oscTemplate();
+
 // include the who's online functions
 require(DIR_WS_FUNCTIONS.'whos_online.php');
 tep_update_whos_online();
@@ -502,12 +495,6 @@ require(DIR_WS_FUNCTIONS.'password_funcs.php');
 // include validation functions (right now only email address)
 require(DIR_WS_FUNCTIONS.'validations.php');
 
-// split-page-results
-require(DIR_WS_CLASSES.'split_page_results.php');
-
-// infobox
-require(DIR_WS_CLASSES.'boxes.php');
-
 // auto activate and expire banners
 require(DIR_WS_FUNCTIONS.'banner.php');
 tep_activate_banners();
@@ -516,9 +503,6 @@ tep_expire_banners();
 // auto expire special products
 require(DIR_WS_FUNCTIONS.'specials.php');
 tep_expire_specials();
-
-require(DIR_WS_CLASSES.'osc_template.php');
-$oscTemplate = new oscTemplate();
 
 // calculate category path
 if (isset($_GET['cPath'])) {
@@ -537,11 +521,6 @@ if (tep_not_null($cPath)) {
     $current_category_id = 0;
 }
 
-// include category tree class
-require(DIR_WS_CLASSES.'category_tree.php');
-
-// include the breadcrumb class and start the breadcrumb trail
-require(DIR_WS_CLASSES.'breadcrumb.php');
 $breadcrumb = new breadcrumb;
 
 $breadcrumb->add(HEADER_TITLE_TOP, HTTP_SERVER);

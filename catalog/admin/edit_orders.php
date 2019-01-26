@@ -36,7 +36,7 @@ include('order_editor/http_client.php');
 
 
 // Include currencies class
-require(DIR_WS_CLASSES.'currencies.php');
+
 $currencies = new AdminCurrencies();
 
 
@@ -422,7 +422,7 @@ if (isset($action)) {
             $total_weight = $cart->show_weight();
 
             // Get the shipping quotes- if we don't have shipping quotes shipping tax calculation can't happen
-            $shipping_modules = new shipping;
+            $shipping_modules = new shipping();
             $shipping_quotes  = $shipping_modules->quote();
 
             if (DISPLAY_PRICE_WITH_TAX == 'true') {//extract the base shipping cost or the ot_shipping module will add tax to it again
@@ -858,7 +858,7 @@ if (isset($action)) {
             $total_weight = $cart->show_weight();
 
             // Get the shipping quotes
-            $shipping_modules = new shipping;
+            $shipping_modules = new shipping();
             $shipping_quotes  = $shipping_modules->quote();
 
             break;

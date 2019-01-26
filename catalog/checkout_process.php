@@ -52,7 +52,6 @@ if (isset($cart->cartID) && tep_session_is_registered('cartID')) {
 include(DIR_WS_LANGUAGES.$language.'/'.FILENAME_CHECKOUT_PROCESS);
 
 // load selected payment module
-require(DIR_WS_CLASSES.'payment.php');
 /* * * Altered for CCGV ** */
 if ($credit_covers)
         $payment         = ''; // CCGV
@@ -60,15 +59,14 @@ if ($credit_covers)
 $payment_modules = new payment($payment);
 
 // load the selected shipping module
-require_once(DIR_WS_CLASSES.'shipping.php');
+
 $shipping_modules = new shipping($shipping);
 
-require_once (DIR_WS_CLASSES.'order.php');
-$order = new order;
+
+$order = new order();
 
 /* * * Altered for CCGV ** MOVED FUNCTION FURTHER UP IN CODE */
 // load the before_process function from the payment modules
-require_once(DIR_WS_CLASSES.'order_total.php');
 $order_total_modules = new order_total();
 $order_totals        = $order_total_modules->process();
 

@@ -160,9 +160,9 @@ class SeoUrl
     {
         global $session_started, $SID;
 
-        $this->installer = new SEO_URL_INSTALLER;
+        $this->installer = new SeoUrlInstaller();
 
-        $this->DB = new SEO_DataBase(DB_SERVER, DB_SERVER_USERNAME, DB_DATABASE,
+        $this->DB = new \SeoDataBase(DB_SERVER, DB_SERVER_USERNAME, DB_DATABASE,
             DB_SERVER_PASSWORD);
 
         $this->languages_id = (int) $languages_id;

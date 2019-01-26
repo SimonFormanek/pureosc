@@ -159,7 +159,7 @@ class SeoUrlInstaller
         switch (true) {
             case (!$this->attributes['IS_DEFINED'] ):
                 $this->eval_defaults();
-                $this->DB                         = new SEO_DataBase(DB_SERVER,
+                $this->DB                         = new \SeoDataBase(DB_SERVER,
                     DB_SERVER_USERNAME, DB_DATABASE, DB_SERVER_PASSWORD);
                 $sql                              = "SELECT configuration_key, configuration_value  
                                                 FROM `configuration` 

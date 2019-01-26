@@ -12,7 +12,7 @@
 
 require('includes/application_top.php');
 
-require(DIR_WS_CLASSES.'currencies.php');
+
 $currencies = new AdminCurrencies();
 
 $oID           = tep_db_prepare_input($_GET['oID']);
@@ -21,7 +21,6 @@ $datetax_query = tep_db_query("select date_tax from ".TABLE_ORDERS." where order
 $datetax       = tep_db_fetch_array($datetax_query);
 $date_tax      = tep_date_short($datetax['date_tax']);
 
-include(DIR_WS_CLASSES.'order.php');
 $order = new AdminOrder($oID);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

@@ -22,7 +22,7 @@
 
 require('includes/application_top.php');
 
-require(DIR_WS_CLASSES.'currencies.php');
+
 $currencies = new AdminCurrencies();
 
 $orders_statuses     = array();
@@ -120,8 +120,6 @@ if (($action == 'edit') && isset($_GET['oID'])) {
         $messageStack->add(sprintf(ERROR_ORDER_DOES_NOT_EXIST, $oID), 'error');
     }
 }
-
-include(DIR_WS_CLASSES.'order.php');
 
 require(DIR_WS_INCLUDES.'template_top.php');
 ?>

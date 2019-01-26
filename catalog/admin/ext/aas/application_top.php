@@ -19,7 +19,6 @@ require 'ext/aas/config.php';
 //pagination class
 require 'ext/aas/classes/pagination.php';
 
-require DIR_WS_CLASSES.'currencies.php';
 $currencies = new AdminCurrencies();
 
 $time   = time();

@@ -36,7 +36,6 @@ $breadcrumb->add(sprintf(NAVBAR_TITLE_3, $_GET['order_id']),
     tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id='.$_GET['order_id'],
         'SSL'));
 
-require(DIR_WS_CLASSES.'order.php');
 $order = new order($_GET['order_id']);
 if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
     $invoice = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$_GET['order_id']);

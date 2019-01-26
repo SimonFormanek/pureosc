@@ -36,13 +36,9 @@ class d_latest_news
 
     function getOutput()
     {
-        if (!class_exists('lastRSS')) {
-            include(DIR_WS_CLASSES.'rss.php');
-        }
-
-        $rss              = new lastRSS;
+        $rss              = new lastRSS();
         $rss->items_limit = 5;
-        $rss->cache_dir   = DIR_FS_CACHE;
+        $rss->cache_dir   = constant('DIR_FS_CACHE');
         $rss->cache_time  = 86400;
         $feed             = $rss->get('http://feeds.feedburner.com/osCommerceNewsAndBlogs');
 

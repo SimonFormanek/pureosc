@@ -10,8 +10,6 @@
   Released under the GNU General Public License
  */
 
-include(DIR_WS_CLASSES.'phplot.php');
-
 $year  = (($_GET['year']) ? $_GET['year'] : date('Y'));
 $month = (($_GET['month']) ? $_GET['month'] : date('n'));
 

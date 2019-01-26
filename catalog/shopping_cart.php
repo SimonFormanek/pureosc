@@ -13,8 +13,8 @@
 require_once('includes/application_top.php');
 
 if ($cart->count_contents() > 0) {
-    include(DIR_WS_CLASSES.'payment.php');
-    $payment_modules = new payment;
+    
+    $payment_modules = new payment();
 }
 
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_SHOPPING_CART);

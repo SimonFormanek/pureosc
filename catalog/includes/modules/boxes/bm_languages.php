@@ -44,8 +44,7 @@ class bm_languages
 
         if (substr(basename($_SERVER['PHP_SELF']), 0, 8) != 'checkout') {
             if (!isset($lng) || (isset($lng) && !is_object($lng))) {
-                include(DIR_WS_CLASSES.'language.php');
-                $lng = new language;
+                $lng = new language();
             }
 
             if (count($lng->catalog_languages) > 1) {

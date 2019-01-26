@@ -14,7 +14,7 @@ $xx_mins_ago = (time() - 900);
 
 require('includes/application_top.php');
 
-require(DIR_WS_CLASSES.'currencies.php');
+
 $currencies = new AdminCurrencies();
 
 // remove entries that have expired

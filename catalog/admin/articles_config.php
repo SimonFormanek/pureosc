@@ -67,7 +67,6 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                     $class_method = explode('->',
                                                         $use_function);
                                                     if (!is_object(${$class_method[0]})) {
-                                                        include(DIR_WS_CLASSES.$class_method[0].'.php');
                                                         ${$class_method[0]} = new $class_method[0]();
                                                     }
                                                     $cfgValue = tep_call_function($class_method[1],

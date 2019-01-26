@@ -7,7 +7,7 @@
   Released under the GNU General Public License
  */
 require('includes/application_top.php');
-require(DIR_WS_CLASSES.'currencies.php');
+
 $currencies = new AdminCurrencies();
 if ($_GET['action'] == 'confirmrelease' && isset($_GET['gid'])) {
     $gv_query  = tep_db_query("select release_flag from ".TABLE_COUPON_GV_QUEUE." where unique_id='".$_GET['gid']."'");
