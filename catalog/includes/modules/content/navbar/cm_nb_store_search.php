@@ -26,8 +26,8 @@ class cm_nb_store_search
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_NAVIGATION_BAR_STORE_SEARCH_TITLE;
-        $this->description = MODULE_NAVIGATION_BAR_STORE_SEARCH_DESCRIPTION;
+        $this->title       = _('Navbar Store Search Bar');
+        $this->description = _('Adds your Store Search Bar into the Navbar Area of your site.');
 
         if (defined('MODULE_NAVIGATION_BAR_STORE_SEARCH_STATUS')) {
             $this->sort_order = MODULE_NAVIGATION_BAR_STORE_SEARCH_SORT_ORDER;
@@ -146,7 +146,7 @@ function tep_navbar_store_search($btnclass = 'btn-default', $description = true)
         'get', 'class="form-horizontal"');
     $search_link .= '   <div class="input-group">'.
         tep_draw_input_field('keywords', '',
-            'required placeholder="'.MODULE_NAVIGATION_BAR_STORE_SEARCH_PLACEHOLDER.'" id="quick_search" data-provide="typeahead" autocomplete="off" style="margin-right:-2px;"',
+            'required placeholder="'._('Site search').'" id="quick_search" data-provide="typeahead" autocomplete="off" style="margin-right:-2px;"',
             'search').
         ' 		<span class="input-group-btn"><button type="submit" class="btn btn-submit-search" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;"><i class="fa fa-search"></i></button></span>';
     if (tep_not_null($description) && ($description === true)) {
@@ -166,9 +166,9 @@ function cm_nb_store_search_show_pages($text)
 
 function cm_nb_store_search_pages($values, $key)
 {
-     
+    global $PHP_SELF;
 
-    $file_extension = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
+    $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
     $files_array    = array();
     if ($dir            = @dir(DIR_FS_CATALOG)) {
         while ($file = $dir->read()) {

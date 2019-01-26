@@ -57,7 +57,7 @@ function tep_information_show_category($information_group_id = 1)
     }
 
     // Run through the $information_tree to find all pages
-    while ($element = each($information_tree)) {
+    foreach ($information_tree as $element) {
         if (!isset($information_tree[$element['key']]['parent_id']) || ($information_tree[$element['key']]['parent_id']
             == 0)) {
 
