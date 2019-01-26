@@ -8,7 +8,7 @@
  */
 require('includes/application_top.php');
 require(DIR_WS_CLASSES.'currencies.php');
-$currencies = new currencies();
+$currencies = new AdminCurrencies();
 if ($_GET['selected_box']) {
     $_GET['action']     = '';
     $_GET['old_action'] = '';

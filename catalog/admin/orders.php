@@ -23,7 +23,7 @@
 require('includes/application_top.php');
 
 require(DIR_WS_CLASSES.'currencies.php');
-$currencies = new currencies();
+$currencies = new AdminCurrencies();
 
 $orders_statuses     = array();
 $orders_status_array = array();

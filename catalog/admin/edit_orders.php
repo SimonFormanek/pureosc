@@ -37,7 +37,7 @@ include('order_editor/http_client.php');
 
 // Include currencies class
 require(DIR_WS_CLASSES.'currencies.php');
-$currencies = new currencies();
+$currencies = new AdminCurrencies();
 
 
 //orders status

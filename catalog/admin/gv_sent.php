@@ -8,7 +8,7 @@
  */
 require('includes/application_top.php');
 require(DIR_WS_CLASSES.'currencies.php');
-$currencies   = new currencies();
+$currencies   = new AdminCurrencies();
 require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 <table border="0" width="100%" cellspacing="0" cellpadding="2">

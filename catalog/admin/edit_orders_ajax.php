@@ -30,7 +30,7 @@ include(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ORDERS_EDIT);
 
 // Include currencies class
 require(DIR_WS_CLASSES.'currencies.php');
-$currencies = new currencies();
+$currencies = new AdminCurrencies();
 
 //$action 
 //all variables are sent by $_GET only or by $_POST only, never together

@@ -13,7 +13,7 @@
 require('includes/application_top.php');
 
 require(DIR_WS_CLASSES.'currencies.php');
-$currencies = new currencies();
+$currencies = new AdminCurrencies();
 
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
 

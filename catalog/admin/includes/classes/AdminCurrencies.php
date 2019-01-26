@@ -13,7 +13,7 @@
 ////
 // Class to handle currencies
 // TABLES: currencies
-class currencies
+class AdminCurrencies
 {
     var $currencies;
 
@@ -23,7 +23,7 @@ class currencies
     }
 
 // class constructor
-    function currencies()
+    function AdminCurrencies()
     {
         $this->currencies = array();
         $currencies_query = tep_db_query("select code, title, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, value from ".TABLE_CURRENCIES);

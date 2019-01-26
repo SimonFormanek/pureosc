@@ -20,7 +20,7 @@ require 'ext/aas/config.php';
 require 'ext/aas/classes/pagination.php';
 
 require DIR_WS_CLASSES.'currencies.php';
-$currencies = new currencies();
+$currencies = new AdminCurrencies();
 
 $time   = time();
 $alerts = array();

@@ -8,7 +8,7 @@
  */
 require('includes/application_top.php');
 require(DIR_WS_CLASSES.'currencies.php');
-$currencies = new currencies();
+$currencies = new AdminCurrencies();
 $action     = (isset($_GET['action']) ? $_GET['action'] : '');
 if (($action == 'send_email_to_user') && isset($_POST['customers_email_address'])
     && !isset($_POST['back_x'])) {

@@ -15,7 +15,7 @@ $xx_mins_ago = (time() - 900);
 require('includes/application_top.php');
 
 require(DIR_WS_CLASSES.'currencies.php');
-$currencies = new currencies();
+$currencies = new AdminCurrencies();
 
 // remove entries that have expired
 tep_db_query("delete from ".TABLE_WHOS_ONLINE." where time_last_click < '".$xx_mins_ago."'");
