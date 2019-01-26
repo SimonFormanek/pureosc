@@ -24,15 +24,21 @@ switch ($action) {
 
 require(DIR_WS_INCLUDES.'template_top.php');
 
+
+$checker2 = new FlexiPeeHP\ui\StatusInfoBox();
+
+
+
 $container = new Ease\TWB\Container(new \Ease\Html\H1Tag(_('FlexiBee sync')));
 
+$container->addItem($checker2);
 
-$adresar   = new PureOSC\flexibee\Adresar();
-$kontakter = new PureOSC\flexibee\Kontakt();
+if ($checker2->connected()) {
+    $adresar   = new PureOSC\flexibee\Adresar();
+    $kontakter = new PureOSC\flexibee\Kontakt();
 
-
-$ids  = $adresar->getAllFromFlexibee();
-$list = new Ease\Html\UlTag();
+    $ids  = $adresar->getAllFromFlexibee();
+    $list = new Ease\Html\UlTag();
 //foreach ($ids as $idinfo) {
 //    $sql_data_array = array('customers_firstname' => $firstname,
 //        'customers_lastname' => $lastname,
@@ -41,35 +47,37 @@ $list = new Ease\Html\UlTag();
 //    $list->addItemSmart(implode(':', $idinfo));
 //}
 
+    foreach ($adresar->dblink->queryToArray("select * FROM customers ORDER BY customers_lastname,customers_firstname") as $customerData) {
+        $adresar->setData($adresar->convertOscData($customerData), true);
+        if ($adresar->sync()) {
+            $adresar->addStatusMessage($adresar->getApiURL().' '.FlexiPeeHP\FlexiBeeRO::uncode($adresar->getRecordCode()),
+                'success');
 
+            $addresses = $adresar->getContacts($customerData['customers_id']);
+            foreach ($addresses as $kontakt) {
+                $kontakter->setData($kontakter->convertOscData($kontakt), true);
+                $kontakter->setDataValue('id',
+                    'ext:contact:'.$kontakt['address_book_id']);
+                $kontakter->setDataValue('firma', $adresar);
+                $kontakter->setDataValue('stat',
+                    $adresar->oscCountryCode($kontakt['entry_country_id']));
 
-foreach ($adresar->dblink->queryToArray("select * FROM customers ORDER BY customers_lastname,customers_firstname") as $customerData) {
-    $adresar->setData($adresar->convertOscData($customerData), true);
-    if ($adresar->sync()) {
-        $adresar->addStatusMessage($adresar->getApiURL().' '.FlexiPeeHP\FlexiBeeRO::uncode($adresar->getRecordCode()),
-            'success');
-
-        $addresses = $adresar->getContacts($customerData['customers_id']);
-        foreach ($addresses as $kontakt) {
-            $kontakter->setData($kontakter->convertOscData($kontakt), true);
-            $kontakter->setDataValue('id',
-                'ext:contact:'.$kontakt['address_book_id']);
-            $kontakter->setDataValue('firma', $adresar);
-            $kontakter->setDataValue('stat',
-                $adresar->oscCountryCode($kontakt['entry_country_id']));
-
-            if ($kontakter->sync()) {
-                $kontakter->addStatusMessage($kontakter->getApiURL().' '.FlexiPeeHP\FlexiBeeRO::uncode($kontakter->getRecordCode()),
-                    'success');
+                if ($kontakter->sync()) {
+                    $kontakter->addStatusMessage($kontakter->getApiURL().' '.FlexiPeeHP\FlexiBeeRO::uncode($kontakter->getRecordCode()),
+                        'success');
+                }
             }
+            $list->addItemSmart(new Ease\Html\ATag($adresar->getApiURL(),
+                    $adresar->getRecordIdent()));
         }
-        $list->addItemSmart(new Ease\Html\ATag($adresar->getApiURL(),
-                $adresar->getRecordIdent()));
     }
+} else {
+    $container->addItem(_('FlexiBee server not connected.'));
+    $container->addItem(_('Please change  FlexiBee options').' <a href="configuration.php">'._('Here').'</a>');
 }
+
 $container->addItem($list);
 echo $container;
 
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-
