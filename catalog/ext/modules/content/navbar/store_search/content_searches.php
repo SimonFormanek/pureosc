@@ -218,7 +218,7 @@
 //                $array[] = array('icon'  => "file",
                 $array[] = array('icon'  => '<span style="float:left; margin-right:10px;"><i class="fa fa-file fa-2x"></i></span>',
 //                                 'title' => sprintf(MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGE, substr(basename($file), 0, -4)),
-                                 'title' => sprintf(MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGE, $page_title),
+                                 'title' => sprintf(_('Page of %s'), $page_title),
                                  'href'  => tep_href_link($file_name, null, $request_type),
                                  'price' => null);
                 break 2;

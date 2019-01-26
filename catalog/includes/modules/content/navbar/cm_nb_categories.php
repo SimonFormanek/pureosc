@@ -26,8 +26,8 @@ class cm_nb_categories
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_NAVBAR_CATEGORIES_TITLE;
-        $this->description = MODULE_CONTENT_NAVBAR_CATEGORIES_DESCRIPTION;
+        $this->title       = _('Navbar Categories Menu');
+        $this->description = _('Show the categories menu in the navbar.');
 
         if (defined('MODULE_CONTENT_NAVBAR_CATEGORIES_STATUS')) {
             $this->sort_order = MODULE_CONTENT_NAVBAR_CATEGORIES_SORT_ORDER;

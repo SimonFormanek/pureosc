@@ -13,7 +13,8 @@
 
 <!-- Start cm_nb_categories_full -->
 <li>
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo HEADER_SITE_CATEGORIES; ?> <b class="caret"></b></a>
+    
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-navicon"></i><span class="hidden-sm"><?php echo _('Products'); ?></span> <b class="caret"></b></a>
         <?php echo $category_tree; ?>
 </li>
 <!-- End cm_nb_categories_full -->

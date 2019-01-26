@@ -161,7 +161,7 @@ function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '',
 
         require_once DIR_WS_MODULES.'kiss_image_thumbnailer/classes/Image_Helper.php';
         $attributes = array('alt' => $alt, 'width' => $width, 'height' => $height);
-
+        $image='';
         if (tep_not_null($width) && tep_not_null($height)) {
             $image .= ' width="'.tep_output_string($width).'" height="'.tep_output_string($height).'"';
         }
