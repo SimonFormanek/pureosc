@@ -188,7 +188,7 @@ if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('".$chdir_dest_dir."');
 \$_GET['cPath']='".tep_get_category_path($canonical_category['categories_id'])."';
 \$_GET['products_id']=".$products['products_id'].";
-\$PHP_SELF = '".FILENAME_PRODUCT_INFO."';
+\$_SERVER['PHP_SELF'] = '".FILENAME_PRODUCT_INFO."';
 include('".FILENAME_PRODUCT_INFO."');
 exit;
 }
@@ -288,7 +288,7 @@ while ($categories       = tep_db_fetch_array($categories_query)) {
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('".$chdir_dest_dir."');
 \$_GET['cPath']='".tep_get_category_path($categories['categories_id'])."';
-\$PHP_SELF = '".FILENAME_DEFAULT."';
+\$_SERVER['PHP_SELF'] = '".FILENAME_DEFAULT."';
 include('".FILENAME_DEFAULT."');
 exit;
 }
@@ -374,7 +374,7 @@ while ($topics       = tep_db_fetch_array($topics_query)) {
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('".$chdir_dest_dir."');
 \$_GET['tPath']=".$topics['topics_id'].";
-\$PHP_SELF = '".FILENAME_ARTICLES."';
+\$_SERVER['PHP_SELF'] = '".FILENAME_ARTICLES."';
 include('".FILENAME_ARTICLES."');
 exit;
 }
@@ -419,7 +419,7 @@ while ($articles       = tep_db_fetch_array($articles_query)) {
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('".$chdir_dest_dir."');
 \$_GET['articles_id']=".$articles['articles_id'].";
-\$PHP_SELF = '".FILENAME_ARTICLE_INFO."';
+\$_SERVER['PHP_SELF'] = '".FILENAME_ARTICLE_INFO."';
 include('".FILENAME_ARTICLE_INFO."');
 exit;
 }
@@ -460,7 +460,7 @@ while ($information       = tep_db_fetch_array($information_query)) {
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
 chdir('".$chdir_dest_dir."');
 \$_GET['info_id']=".$information['information_id'].";
-\$PHP_SELF = '".FILENAME_INFORMATION."';
+\$_SERVER['PHP_SELF'] = '".FILENAME_INFORMATION."';
 include('".FILENAME_INFORMATION."');
 exit;
 }

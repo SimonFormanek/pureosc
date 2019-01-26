@@ -36,12 +36,12 @@ class cm_carousel
     function execute()
     {
 
-        global $PHP_SELF, $oscTemplate, $cPath;
+        global $oscTemplate, $cPath;
 
         $content_width = (int) MODULE_FRONT_PAGE_BANNER_ROTATOR_CONTENT_WIDTH;
 
 
-        if ($PHP_SELF == 'index.php' && $cPath == '') {
+        if ($_SERVER['PHP_SELF'] == 'index.php' && $cPath == '') {
             // Set the Javascript to go in the header
             $footer_scripts = '<script>'.'$(\'#carousel-example-generic.carousel\').carousel({ interval: '.(int) MODULE_FRONT_PAGE_BANNER_ROTATOR_HOLD_TIME.'})'."\n".'</script>';
 

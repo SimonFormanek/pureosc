@@ -33,7 +33,7 @@ class ht_google_adwords_conversion
 
     function execute()
     {
-        global $PHP_SELF, $oscTemplate, $customer_id, $lng, $languages_id;
+        global $oscTemplate, $customer_id, $lng, $languages_id;
 
         if (MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_JS_PLACEMENT != 'Footer') {
             $this->group = 'header_tags';

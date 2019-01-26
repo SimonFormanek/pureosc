@@ -193,7 +193,7 @@ if ($messageStack->size('product_action') > 0) {
                 }
                 $prod_list_contents .= '       <div class="col-xs-6 text-right">'.tep_draw_button(IMAGE_BUTTON_BUY_NOW,
                         'fa fa-shopping-cart',
-                        tep_href_link(basename($PHP_SELF),
+                        tep_href_link(basename($_SERVER['PHP_SELF']),
                             tep_get_all_get_params(array('action', 'sort', 'cPath')).'action=buy_now&products_id='.$listing['products_id']),
                         NULL, NULL, 'btn-success btn-sm').'</div>';
                 $prod_list_contents .= '      </div>';

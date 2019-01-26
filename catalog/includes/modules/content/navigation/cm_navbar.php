@@ -35,7 +35,7 @@ class cm_navbar
 
     function execute()
     {
-        global $PHP_SELF, $cart, $lng, $language, $currencies, $_GET, $request_type, $currency, $oscTemplate;
+        global $cart, $lng, $language, $currencies, $_GET, $request_type, $currency, $oscTemplate;
         global $customer_first_name;
 
         ob_start();

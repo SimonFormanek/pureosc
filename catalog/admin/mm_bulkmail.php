@@ -157,7 +157,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
             $nInfo->objectInfo($_POST);
         }
 
-        $file_extension  = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+        $file_extension  = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
         $directory_array = array();
         if ($dir             = dir(DIR_WS_MODULES.'mail_manager/')) {
             while ($file = $dir->read()) {
@@ -364,8 +364,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     $newsletter_query = tep_db_query("select  module from ".TABLE_MM_NEWSLETTERS." where newsletters_id = '".(int) $nID."'");
     $newsletter       = tep_db_fetch_array($newsletter_query);
-    include(DIR_WS_MODULES.'mail_manager/'.$newsletter['module'].substr($PHP_SELF,
-            strrpos($PHP_SELF, '.')));
+    include(DIR_WS_MODULES.'mail_manager/'.$newsletter['module'].substr($_SERVER['PHP_SELF'],
+            strrpos($_SERVER['PHP_SELF'], '.')));
 
     //retrieve content and template name
     $newsletter_query = tep_db_query("select title, subject, content, txtcontent, template, module, mailrate from ".TABLE_MM_NEWSLETTERS." where newsletters_id = '".(int) $nID."'");
@@ -424,9 +424,9 @@ require(DIR_WS_INCLUDES.'template_top.php');
     $output_content_html = $template['htmlheader'].$newsletter['content'].$template['htmlfooter'];
     $output_content_txt  = $template['txtheader'].$newsletter['txtcontent'].$template['txtfooter'];
 
-    //   include(DIR_WS_LANGUAGES . $language . '/modules/mail_manager/' . $nInfo->module . substr($PHP_SELF, strrpos($PHP_SELF, '.')));
-    include(DIR_WS_MODULES.'mail_manager/'.$nInfo->module.substr($PHP_SELF,
-            strrpos($PHP_SELF, '.')));
+    //   include(DIR_WS_LANGUAGES . $language . '/modules/mail_manager/' . $nInfo->module . substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.')));
+    include(DIR_WS_MODULES.'mail_manager/'.$nInfo->module.substr($_SERVER['PHP_SELF'],
+            strrpos($_SERVER['PHP_SELF'], '.')));
 
     if (($newsletter['module'] == 'product_notification') && isset($_GET['global'])
         && ($_GET['global'] == 'true')) {
@@ -481,8 +481,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
         $output_content_html);
 
     // get customer selection criteria and additional content from module     
-    require(DIR_WS_MODULES.'mail_manager/'.$newsletter['module'].substr($PHP_SELF,
-            strrpos($PHP_SELF, '.')));
+    require(DIR_WS_MODULES.'mail_manager/'.$newsletter['module'].substr($_SERVER['PHP_SELF'],
+            strrpos($_SERVER['PHP_SELF'], '.')));
 
     if ($additional_htmlcontent != NULL) {
         //add additional_htmlcontent and additional_txtcontent, if it exists.  from selected module. Module files located in admin/includes/mail_manager.

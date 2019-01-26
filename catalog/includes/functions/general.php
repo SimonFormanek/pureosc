@@ -974,13 +974,13 @@ function tep_is_leap_year($year)
 // Return table heading with sorting capabilities
 function tep_create_sort_heading($sortby, $colnum, $heading)
 {
-    global $PHP_SELF;
+     
 
     $sort_prefix = '';
     $sort_suffix = '';
 
     if ($sortby) {
-        $sort_prefix = '<a href="'.tep_href_link($PHP_SELF,
+        $sort_prefix = '<a href="'.tep_href_link($_SERVER['PHP_SELF'],
                 tep_get_all_get_params(array('info', 'sort')).'sort='.$colnum.($sortby
                 == $colnum.'a' ? 'd' : 'a')).'" title="'.tep_output_string(TEXT_SORT_PRODUCTS.($sortby
                 == $colnum.'d' || substr($sortby, 0, 1) != $colnum ? TEXT_ASCENDINGLY

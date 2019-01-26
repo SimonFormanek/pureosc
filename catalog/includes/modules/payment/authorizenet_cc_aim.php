@@ -21,7 +21,7 @@ class authorizenet_cc_aim
 
     function authorizenet_cc_aim()
     {
-        global $_GET, $PHP_SELF, $order;
+        global $_GET,$order;
 
         $this->signature   = 'authorizenet|authorizenet_cc_aim|2.0|2.3';
         $this->api_version = '3.1';
@@ -68,7 +68,7 @@ class authorizenet_cc_aim
             }
         }
 
-        if (defined('FILENAME_MODULES') && ($PHP_SELF == FILENAME_MODULES) && isset($_GET['action'])
+        if (defined('FILENAME_MODULES') && ($_SERVER['PHP_SELF'] == FILENAME_MODULES) && isset($_GET['action'])
             && ($_GET['action'] == 'install') && isset($_GET['subaction']) && ($_GET['subaction']
             == 'conntest')) {
             echo $this->getTestConnectionResult();

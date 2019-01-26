@@ -92,20 +92,20 @@ class Fwr_Media_Security_Pro
      * @uses ini_get()
      * @see Fwr_Media_Security_Pro::cleanGlobals()
      * @param array $HTTP_GET_VARS - long array
-     * @param string $PHP_SELF - base filename from osCommerce application_top.php
+     * @param string $_SERVER['PHP_SELF'] - base filename from osCommerce application_top.php
      * 
      * @access public
      * @return void
      */
-    function cleanse($PHP_SELF = '')
+    function cleanse($_SERVER['PHP_SELF'] = '')
     {
         if (false === $this->_enabled) {
             return;
         }
-        if (empty($PHP_SELF)) {
+        if (empty($_SERVER['PHP_SELF'])) {
             return;
         }
-        $this->_basename = $PHP_SELF;
+        $this->_basename = $_SERVER['PHP_SELF'];
         if (in_array($this->_basename, $this->_excluded_from_cleansing)) {
             return;
         }

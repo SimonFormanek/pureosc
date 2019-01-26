@@ -39,7 +39,7 @@ class cm_nb_settings
 
     public function getOutput()
     {
-        global $PHP_SELF, $cart, $lng, $language, $currencies, $request_type, $currency, $oscTemplate;
+        global $cart, $lng, $language, $currencies, $request_type, $currency, $oscTemplate;
 
         ob_start();
         include DIR_WS_MODULES.'content/navbar/templates/'.basename(__FILE__);

@@ -36,14 +36,14 @@ class d_security_checks
 
     function getOutput()
     {
-        global $PHP_SELF;
+         
 
         $output = '';
 
         $secCheck_types    = array('info', 'warning', 'error');
         $secCheck_messages = array();
 
-        $file_extension   = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+        $file_extension   = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
         $secmodules_array = array();
         if ($secdir           = @dir(DIR_FS_ADMIN.'includes/modules/security_check/')) {
             while ($file = $secdir->read()) {

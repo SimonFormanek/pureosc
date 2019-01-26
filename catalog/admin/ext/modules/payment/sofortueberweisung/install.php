@@ -65,7 +65,7 @@
   $alert_http_url = tep_catalog_href_link('ext/modules/payment/sofortueberweisung/callback.php','' ,'SSL', false, false);
 
   if (isset($_GET['action']) && ($_GET['action'] == 'install')) {
-    $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+    $file_extension = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
     $class = 'sofortueberweisung_direct';
 
     if (file_exists(DIR_FS_CATALOG_MODULES . 'payment/sofortueberweisung_direct' . $file_extension)) {

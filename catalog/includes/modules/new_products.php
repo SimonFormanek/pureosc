@@ -39,7 +39,7 @@ if ($num_new_products > 0) {
         $new_prods_content .= '        <div class="btn-group">';
         $new_prods_content .= '          <a href="'.tep_href_link(FILENAME_PRODUCT_INFO,
                 tep_get_all_get_params(array('action')).'products_id='.$new_products['products_id']).'" class="btn btn-default" role="button">'.SMALL_IMAGE_BUTTON_VIEW.'</a>';
-        $new_prods_content .= '          <a href="'.tep_href_link($PHP_SELF,
+        $new_prods_content .= '          <a href="'.tep_href_link($_SERVER['PHP_SELF'],
                 tep_get_all_get_params(array('action')).'action=buy_now&products_id='.$new_products['products_id']).'" class="btn btn-success" role="button">'.SMALL_IMAGE_BUTTON_BUY.'</a>';
         $new_prods_content .= '        </div>';
         $new_prods_content .= '      </div>';

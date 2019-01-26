@@ -148,7 +148,7 @@ echo tep_draw_form('product_reviews_write',
 
             <p><?php
             echo tep_draw_button(IMAGE_BUTTON_IN_CART, 'fa fa-shopping-cart',
-                tep_href_link(basename($PHP_SELF),
+                tep_href_link(basename($_SERVER['PHP_SELF']),
                     tep_get_all_get_params(array('action')).'action=buy_now'));
             ?></p>
         </div>

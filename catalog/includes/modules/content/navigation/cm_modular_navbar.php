@@ -25,8 +25,8 @@ class cm_modular_navbar
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_TITLE;
-        $this->description = MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_DESCRIPTION;
+        $this->title       = _('Modular Navigation Bar');
+        $this->description = _('Show the Modular Navigation Bar on your site.');
 
         if (defined('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_STATUS')) {
             $this->sort_order = MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_SORT_ORDER;
