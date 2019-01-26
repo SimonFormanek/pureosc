@@ -23,11 +23,6 @@ class shoppingCart
 
     public function __construct()
     {
-        $this->shoppingCart();
-    }
-
-    function shoppingCart()
-    {
         $this->reset();
     }
 

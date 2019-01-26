@@ -126,7 +126,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $orders_status_query_raw = "select * from ".TABLE_ORDERS_STATUS." where language_id = '".(int) $languages_id."' order by orders_status_id";
-                            $orders_status_split     = new splitPageResults($_GET['page'],
+                            $orders_status_split     = new AdminSplitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS,
                                 $orders_status_query_raw,
                                 $orders_status_query_numrows);

@@ -435,7 +435,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
         <?php
         $comments_query_raw = "select *, count(ab.articles_id) as ttl_comments from ".TABLE_ARTICLES." a left join ".TABLE_ARTICLES_DESCRIPTION." ad on a.articles_id = ad.articles_id inner join ".TABLE_ARTICLES_BLOG." ab on ad.articles_id = ab.articles_id and a.articles_is_blog = 1 and ad.language_id = ".(int) $languages_id." group by ab.articles_id order by ab.comment_date_added";
-        $comments_split     = new splitPageResults($_GET['page'],
+        $comments_split     = new AdminSplitPageResults($_GET['page'],
             MAX_DISPLAY_SEARCH_RESULTS, $comments_query_raw,
             $comments_query_numrows);
         $comments_query     = tep_db_query($comments_query_raw);

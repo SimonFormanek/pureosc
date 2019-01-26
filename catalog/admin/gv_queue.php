@@ -76,7 +76,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $gv_query_raw = "select c.customers_firstname, c.customers_lastname, gv.unique_id, gv.date_created, gv.amount, gv.order_id from ".TABLE_CUSTOMERS." c, ".TABLE_COUPON_GV_QUEUE." gv where (gv.customer_id = c.customers_id and gv.release_flag = 'N')";
-                            $gv_split     = new splitPageResults($_GET['page'],
+                            $gv_split     = new AdminSplitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS, $gv_query_raw,
                                 $gv_query_numrows);
                             $gv_query     = tep_db_query($gv_query_raw);

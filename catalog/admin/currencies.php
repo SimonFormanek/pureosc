@@ -237,7 +237,7 @@ foreach ($currency_select_array as $cs) {
                             </tr>
                             <?php
                             $currency_query_raw = "select currencies_id, title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, last_updated, value from ".TABLE_CURRENCIES." order by title";
-                            $currency_split     = new splitPageResults($_GET['page'],
+                            $currency_split     = new AdminSplitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS, $currency_query_raw,
                                 $currency_query_numrows);
                             $currency_query     = tep_db_query($currency_query_raw);

@@ -10,7 +10,7 @@
   Released under the GNU General Public License
  */
 
-class splitPageResults
+class AdminSplitPageResults
 {
 
     public function __construct(&$current_page_number, $max_rows_per_page,
@@ -20,7 +20,7 @@ class splitPageResults
             $sql_query, $query_num_rows);
     }
 
-    function splitPageResults(&$current_page_number, $max_rows_per_page,
+    function AdminSplitPageResults(&$current_page_number, $max_rows_per_page,
                               &$sql_query, &$query_num_rows)
     {
         if (empty($current_page_number)) $current_page_number = 1;

@@ -176,8 +176,7 @@ class mime
 //    function &addSubPart($body, $params) {
     function addSubPart($body, $params)
     {
-        $this->_subparts[] = new mime($body, $params);
-
+        $this->_subparts[] = new AdminMime($body, $params);
         return $this->_subparts[count($this->_subparts) - 1];
     }
 

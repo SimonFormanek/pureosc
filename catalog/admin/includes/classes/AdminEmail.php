@@ -20,9 +20,9 @@
   sendmail, SMTP and gmail compatibility
  */
 
-$phpMail = new \PHPMailer\PHPMailer\PHPMailer();
 
-class admin_email
+
+class AdminEmail
 {
     var $html;
     var $text;

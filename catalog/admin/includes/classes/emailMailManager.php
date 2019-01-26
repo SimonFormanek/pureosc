@@ -15,7 +15,7 @@
 /* * * Altered for Mail Manager ** */
 
 // eliminate line feeds as <br>
-class admin_emailMailManager extends admin_email
+class admin_emailMailManager extends AdminEmail
 {
 
     function add_html($html, $text = NULL, $images_dir = NULL)

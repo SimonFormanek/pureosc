@@ -43,7 +43,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     $rows                    = $_GET['page'] * MAX_DISPLAY_SEARCH_RESULTS
                                     - MAX_DISPLAY_SEARCH_RESULTS;
                             $customers_query_raw     = "select c.customers_firstname, c.customers_lastname, sum(op.products_quantity * op.final_price) as ordersum from ".TABLE_CUSTOMERS." c, ".TABLE_ORDERS_PRODUCTS." op, ".TABLE_ORDERS." o where c.customers_id = o.customers_id and o.orders_id = op.orders_id group by c.customers_firstname, c.customers_lastname order by ordersum DESC";
-                            $customers_split         = new splitPageResults($_GET['page'],
+                            $customers_split         = new AdminSplitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS,
                                 $customers_query_raw, $customers_query_numrows);
 // fix counted customers

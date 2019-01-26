@@ -13,27 +13,33 @@
 if (tep_session_is_registered('admin')) {
     $cl_box_groups = array();
 
-    if ($dir = @dir(DIR_FS_ADMIN.'includes/boxes')) {
-        $files = array();
+    $boxesDir = constant('DIR_FS_ADMIN').'includes/boxes';
 
-        while ($file = $dir->read()) {
-            if (!is_dir($dir->path.'/'.$file)) {
-                if (substr($file, strrpos($file, '.')) == '.php') {
-                    $files[] = $file;
+
+    if (is_dir($boxesDir)) {
+        $dir = dir($boxesDir);
+        if ($dir) {
+            $files = array();
+
+            while ($file = $dir->read()) {
+                if (!is_dir($dir->path.'/'.$file)) {
+                    if (substr($file, strrpos($file, '.')) == '.php') {
+                        $files[] = $file;
+                    }
                 }
             }
-        }
 
-        $dir->close();
+            $dir->close();
 
-        natcasesort($files);
+            natcasesort($files);
 
-        foreach ($files as $file) {
-            if (file_exists(DIR_FS_ADMIN.'includes/languages/'.$language.'/modules/boxes/'.$file)) {
-                include(DIR_FS_ADMIN.'includes/languages/'.$language.'/modules/boxes/'.$file);
+            foreach ($files as $file) {
+                if (file_exists(DIR_FS_ADMIN.'includes/languages/'.$language.'/modules/boxes/'.$file)) {
+                    include(DIR_FS_ADMIN.'includes/languages/'.$language.'/modules/boxes/'.$file);
+                }
+
+                include($dir->path.'/'.$file);
             }
-
-            include($dir->path.'/'.$file);
         }
     }
 
@@ -86,7 +92,8 @@ if (tep_session_is_registered('admin')) {
         $counter++;
     }
 
-    echo 'active: '.(isset($app) && ($app['code'] == $_SERVER['PHP_SELF']) ? $counter : 'false');
+    echo 'active: '.(isset($app) && ($app['code'] == $_SERVER['PHP_SELF']) ? $counter
+            : 'false');
     ?>
 
         });
@@ -94,4 +101,5 @@ if (tep_session_is_registered('admin')) {
 
     <?php
 }
-?>
+
+    

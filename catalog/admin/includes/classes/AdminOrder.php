@@ -10,7 +10,7 @@
   Released under the GNU General Public License
  */
 
-class order
+class AdminOrder
 {
     var $info, $totals, $products, $customer, $delivery;
 
@@ -19,7 +19,7 @@ class order
         $this->order($order_id);
     }
 
-    function order($order_id)
+    function AdminOrder($order_id)
     {
         $this->info     = array();
         $this->totals   = array();

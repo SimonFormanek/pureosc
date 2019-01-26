@@ -353,7 +353,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $newsletters_query_raw = "select newsletters_id, title, length(content) as content_length, module, date_added, date_sent, status, locked from ".TABLE_NEWSLETTERS." order by date_added desc";
-                            $newsletters_split     = new splitPageResults($_GET['page'],
+                            $newsletters_split     = new AdminSplitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS,
                                 $newsletters_query_raw,
                                 $newsletters_query_numrows);

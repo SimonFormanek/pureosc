@@ -128,9 +128,6 @@ $cookie_path   = (($request_type == 'NONSSL') ? HTTP_COOKIE_PATH : HTTPS_COOKIE_
 // include cache functions if enabled
 if (USE_CACHE == 'true') include(DIR_WS_FUNCTIONS.'cache.php');
 
-// include shopping cart class
-require(DIR_WS_CLASSES.'shopping_cart.php');
-
 // include navigation history class
 require(DIR_WS_CLASSES.'navigation_history.php');
 

@@ -22,7 +22,7 @@ $datetax       = tep_db_fetch_array($datetax_query);
 $date_tax      = tep_date_short($datetax['date_tax']);
 
 include(DIR_WS_CLASSES.'order.php');
-$order = new order($oID);
+$order = new AdminOrder($oID);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html <?php echo HTML_PARAMS; ?>>

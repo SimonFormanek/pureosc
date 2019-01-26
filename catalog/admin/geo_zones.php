@@ -149,7 +149,7 @@ if ($action == 'list') {
                                     <?php
                                     $rows            = 0;
                                     $zones_query_raw = "select a.association_id, a.zone_country_id, c.countries_name, a.zone_id, a.geo_zone_id, a.last_modified, a.date_added, z.zone_name from ".TABLE_ZONES_TO_GEO_ZONES." a left join ".TABLE_COUNTRIES." c on a.zone_country_id = c.countries_id left join ".TABLE_ZONES." z on a.zone_id = z.zone_id where a.geo_zone_id = ".$_GET['zID']." order by association_id";
-                                    $zones_split     = new splitPageResults($_GET['spage'],
+                                    $zones_split     = new AdminSplitPageResults($_GET['spage'],
                                         MAX_DISPLAY_SEARCH_RESULTS,
                                         $zones_query_raw, $zones_query_numrows);
                                     $zones_query     = tep_db_query($zones_query_raw);
@@ -235,7 +235,7 @@ if ($action == 'list') {
                         </tr>
                         <?php
                         $zones_query_raw = "select geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added from ".TABLE_GEO_ZONES." order by geo_zone_name";
-                        $zones_split     = new splitPageResults($_GET['zpage'],
+                        $zones_split     = new AdminSplitPageResults($_GET['zpage'],
                             MAX_DISPLAY_SEARCH_RESULTS, $zones_query_raw,
                             $zones_query_numrows);
                         $zones_query     = tep_db_query($zones_query_raw);

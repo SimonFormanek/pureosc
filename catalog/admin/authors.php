@@ -567,7 +567,7 @@ switch (ARTICLE_ENABLE_HTML_EDITOR) {
                                 </tr>
             <?php
             $authors_query_raw = "select authors_id, authors_name, date_added, last_modified from ".TABLE_AUTHORS." order by authors_name";
-            $authors_split     = new splitPageResults($_GET['page'],
+            $authors_split     = new AdminSplitPageResults($_GET['page'],
                 MAX_DISPLAY_SEARCH_RESULTS, $authors_query_raw,
                 $authors_query_numrows);
             $authors_query     = tep_db_query($authors_query_raw);

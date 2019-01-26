@@ -78,9 +78,6 @@ require(DIR_WS_FUNCTIONS.'html_output.php');
 // initialize the logger class
 require(DIR_WS_CLASSES.'logger.php');
 
-// include shopping cart class
-require(DIR_WS_CLASSES.'shopping_cart.php');
-
 // define how the session functions will be used
 require(DIR_WS_FUNCTIONS.'sessions.php');
 
@@ -208,18 +205,10 @@ require(DIR_WS_CLASSES.'table_block.php');
 require(DIR_WS_CLASSES.'box.php');
 
 // initialize the message stack for output messages
-require(DIR_WS_CLASSES.'message_stack.php');
-$messageStack = new messageStack;
-
-// split-page-results
-require(DIR_WS_CLASSES.'split_page_results.php');
-
+$messageStack = new AdminMessageStack();
+$phpMail = new \PHPMailer\PHPMailer\PHPMailer();
 // entry/item info classes
 require(DIR_WS_CLASSES.'object_info.php');
-
-// email classes
-require(DIR_WS_CLASSES.'mime.php');
-require(DIR_WS_CLASSES.'admin_email.php');
 
 // file uploading class
 require(DIR_WS_CLASSES.'upload.php');
@@ -283,7 +272,7 @@ if (tep_not_null($tPath)) {
 require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');
 $breadcrumb = new breadcrumb;
 
-$messageStack = new messageStack;
+$messageStack = new AdminMessageStack;
 $adminLog     = new PureOSC\CustomerLog();
 $adminLog->setAdministratorID($_SESSION['admin']['id']);
 

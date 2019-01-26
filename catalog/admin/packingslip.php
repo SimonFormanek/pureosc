@@ -19,7 +19,7 @@ $oID          = tep_db_prepare_input($_GET['oID']);
 $orders_query = tep_db_query("select orders_id from ".TABLE_ORDERS." where orders_id = '".(int) $oID."'");
 
 include(DIR_WS_CLASSES.'order.php');
-$order = new order($oID);
+$order = new AdminOrder($oID);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html <?php echo HTML_PARAMS; ?>>

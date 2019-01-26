@@ -24,7 +24,7 @@ function tep_validate_password($plain, $encrypted)
             include(DIR_WS_CLASSES.'passwordhash.php');
         }
 
-        $hasher = new PasswordHash(10, true);
+        $hasher = new AdminPasswordHash(10, true);
 
         return $hasher->CheckPassword($plain, $encrypted);
     }
@@ -60,7 +60,7 @@ function tep_encrypt_password($plain)
         include(DIR_WS_CLASSES.'passwordhash.php');
     }
 
-    $hasher = new PasswordHash(10, true);
+    $hasher = new AdminPasswordHash(10, true);
 
     return $hasher->HashPassword($plain);
 }

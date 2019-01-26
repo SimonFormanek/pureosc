@@ -10,16 +10,11 @@
   Released under the GNU General Public License
  */
 
-class shoppingCart
+class AdminShoppingCart
 {
     var $contents, $total, $weight;
 
     public function __construct()
-    {
-        $this->shoppingCart();
-    }
-
-    function shoppingCart()
     {
         $this->reset();
     }

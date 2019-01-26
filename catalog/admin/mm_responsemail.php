@@ -322,7 +322,7 @@ if ($action == 'new') {
 
                             <?php
                             $mail_query_raw = "select mail_id, title, status, template, length(htmlcontent) as content_length from ".TABLE_MM_RESPONSEMAIL." order by mail_id desc";
-                            $mail_split     = new splitPageResults($_GET['page'],
+                            $mail_split     = new AdminSplitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS, $mail_query_raw,
                                 $mail_query_numrows);
                             $mail_query     = tep_db_query($mail_query_raw);

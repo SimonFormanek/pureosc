@@ -69,7 +69,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $classes_query_raw = "select tax_class_id, tax_class_title, tax_class_description, last_modified, date_added from ".TABLE_TAX_CLASS." order by tax_class_title";
-                            $classes_split     = new splitPageResults($_GET['page'],
+                            $classes_split     = new AdminSplitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS, $classes_query_raw,
                                 $classes_query_numrows);
                             $classes_query     = tep_db_query($classes_query_raw);

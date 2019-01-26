@@ -1245,7 +1245,7 @@ function tep_create_random_value($length, $type = 'mixed')
         include(DIR_WS_CLASSES.'passwordhash.php');
     }
 
-    $hasher = new PasswordHash(10, true);
+    $hasher = new AdminPasswordHash(10, true);
 
     do {
         $random = base64_encode($hasher->get_random_bytes($length));

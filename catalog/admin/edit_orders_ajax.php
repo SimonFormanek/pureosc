@@ -697,7 +697,7 @@ if ($action == 'insert_new_comment') {
                 }
 
                 include(DIR_WS_CLASSES.'order.php');
-                $order = new order($oID);
+                $order = new AdminOrder($oID);
 
                 $url     = "http://maps.google.com/maps/geo?q=";
                 $url     .= $order->delivery['street_address'].",".$order->delivery['postcode'].",".$order->delivery['city'].",".$order->delivery['country'];

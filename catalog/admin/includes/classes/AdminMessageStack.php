@@ -11,19 +11,19 @@
 
   Example usage:
 
-  $messageStack = new messageStack();
+  $messageStack = new AdminMessageStack();
   $messageStack->add('Error: Error 1', 'error');
   $messageStack->add('Error: Error 2', 'warning');
   if ($messageStack->size > 0) echo $messageStack->output();
  */
 
-class messageStack extends tableBlock
+class AdminMessageStack extends tableBlock
 {
     var $size = 0;
 
     public function __construct()
     {
-        parent::__construct($this->messageStack());
+        parent::__construct($this->AdminMessageStack());
     }
 
     public function size()
@@ -31,7 +31,7 @@ class messageStack extends tableBlock
         return $this->size;
     }
 
-    function messageStack()
+    function AdminMessageStack()
     {
         global $messageToStack;
 

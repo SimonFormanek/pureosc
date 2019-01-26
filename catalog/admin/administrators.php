@@ -231,7 +231,7 @@ if (tep_not_null($action)) {
     }
 }
 
-$secMessageStack = new messageStack();
+$secMessageStack = new AdminMessageStack();
 
 if (is_array($htpasswd_array)) {
     if (empty($htpasswd_array)) {

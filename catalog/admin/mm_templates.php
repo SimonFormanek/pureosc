@@ -235,7 +235,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 </tr>
                                 <?php
                                 $templates_query_raw = "select template_id, title, htmlfooter, txtheader, txtfooter, length(htmlheader) as content_length from ".TABLE_MM_TEMPLATES." order by template_id desc";
-                                $templates_split     = new splitPageResults($_GET['page'],
+                                $templates_split     = new AdminSplitPageResults($_GET['page'],
                                     MAX_DISPLAY_SEARCH_RESULTS,
                                     $templates_query_raw,
                                     $templates_query_numrows);

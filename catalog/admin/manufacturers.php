@@ -143,7 +143,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
 <?php
 $manufacturers_query_raw = "select manufacturers_id, manufacturers_name, manufacturers_seo_title, manufacturers_image, date_added, last_modified from ".TABLE_MANUFACTURERS." order by manufacturers_name";
-$manufacturers_split     = new splitPageResults($_GET['page'],
+$manufacturers_split     = new AdminSplitPageResults($_GET['page'],
     MAX_DISPLAY_SEARCH_RESULTS, $manufacturers_query_raw,
     $manufacturers_query_numrows);
 $manufacturers_query     = tep_db_query($manufacturers_query_raw);

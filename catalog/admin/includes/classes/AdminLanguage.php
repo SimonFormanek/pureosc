@@ -13,11 +13,11 @@
   Copyright Stephane Garin <sgarin@sgarin.com> (detect_language.php v0.1 04/02/2002)
  */
 
-class language
+class AdminLanguage
 {
     var $languages, $catalog_languages, $browser_languages, $language;
 
-    function language($lng = '')
+    public function __construct($lng = '')
     {
         $this->languages = array('af' => 'af|afrikaans',
             'ar' => 'ar([-_][[:alpha:]]{2})?|arabic',

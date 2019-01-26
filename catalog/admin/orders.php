@@ -129,7 +129,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <?php
     if (($action == 'edit') && ($order_exists == true)) {
-        $order = new order($oID);
+        $order = new AdminOrder($oID);
         ?>
         <tr>
             <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
@@ -489,7 +489,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     /*                                     * * EOE for Order Maker ** */
                                     /*                                     * * EOE for PWA ** */
                                 }
-                                $orders_split = new splitPageResults($_GET['page'],
+                                $orders_split = new AdminSplitPageResults($_GET['page'],
                                     MAX_DISPLAY_SEARCH_RESULTS,
                                     $orders_query_raw, $orders_query_numrows);
                                 $orders_query = tep_db_query($orders_query_raw);

@@ -106,7 +106,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 $products_query = tep_db_query("select cb.customers_basket_quantity, cb.products_id, pd.products_name from ".TABLE_CUSTOMERS_BASKET." cb, ".TABLE_PRODUCTS_DESCRIPTION." pd where cb.customers_id = '".(int) $info->customer_id."' and cb.products_id = pd.products_id and pd.language_id = '".(int) $languages_id."'");
 
                 if (tep_db_num_rows($products_query)) {
-                    $shoppingCart = new shoppingCart();
+                    $shoppingCart = new AdminShoppingCart();
 
                     while ($products = tep_db_fetch_array($products_query)) {
                         $contents[] = array('text' => $products['customers_basket_quantity'].' x '.$products['products_name']);

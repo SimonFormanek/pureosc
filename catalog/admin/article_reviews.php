@@ -241,7 +241,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                             </tr>
                                             <?php
                                             $reviews_query_raw = "select reviews_id, articles_id, date_added, last_modified, reviews_rating, approved from ".TABLE_ARTICLE_REVIEWS." order by date_added DESC";
-                                            $reviews_split     = new splitPageResults($_GET['page'],
+                                            $reviews_split     = new AdminSplitPageResults($_GET['page'],
                                                 MAX_DISPLAY_SEARCH_RESULTS,
                                                 $reviews_query_raw,
                                                 $reviews_query_numrows);

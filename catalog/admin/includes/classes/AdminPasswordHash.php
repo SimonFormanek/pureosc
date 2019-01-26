@@ -30,7 +30,7 @@
 # requirements (there can be none), but merely suggestions.
 #
 
-class PasswordHash
+class AdminPasswordHash
 {
     var $itoa64;
     var $iteration_count_log2;
@@ -42,7 +42,7 @@ class PasswordHash
         $this->PasswordHash($iteration_count_log2, $portable_hashes);
     }
 
-    function PasswordHash($iteration_count_log2, $portable_hashes)
+    function AdminPasswordHash($iteration_count_log2, $portable_hashes)
     {
         $this->itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
