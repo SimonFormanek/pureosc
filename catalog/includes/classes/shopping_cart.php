@@ -250,7 +250,7 @@ class shoppingCart
         $total_items = 0;
         if (is_array($this->contents)) {
             reset($this->contents);
-            foreach ($this->contents as $products_id => $qty) {
+            foreach (array_keys($this->contents) as $products_id) {
                 $total_items += $this->get_quantity($products_id);
             }
         }
@@ -262,7 +262,8 @@ class shoppingCart
     {
 
 
-        if (!empty($products_id) && array_key_exists($products_id, $this->contents)) {
+        if (!empty($products_id) && array_key_exists($products_id,
+                $this->contents)) {
             return $this->contents[$products_id]['qty'];
         } else {
             return 0;
