@@ -30,9 +30,8 @@ class ht_div_equal_heights
         }
     }
 
-    function execute()
-    {
-        global $PHP_SELF, $oscTemplate;
+    function execute() {
+        global $oscTemplate;
 
         if (tep_not_null(MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_PAGES)) {
             $pages_array = array();
@@ -111,13 +110,12 @@ function ht_div_equal_heights_show_pages($text)
     return nl2br(implode("\n", explode(';', $text)));
 }
 
-function ht_div_equal_heights_edit_pages($values, $key)
-{
-    global $PHP_SELF;
+function ht_div_equal_heights_edit_pages($values, $key) {
 
-    $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
-    $files_array    = array();
-    if ($dir            = @dir(DIR_FS_CATALOG)) {
+
+    $file_extension = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
+    $files_array = array();
+    if ($dir = @dir(DIR_FS_CATALOG)) {
         while ($file = $dir->read()) {
             if (!is_dir(DIR_FS_CATALOG.$file)) {
                 if (substr($file, strrpos($file, '.')) == $file_extension) {

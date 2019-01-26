@@ -31,9 +31,8 @@ class ht_google_analytics
         }
     }
 
-    function execute()
-    {
-        global $PHP_SELF, $oscTemplate, $customer_id;
+    function execute() {
+        global $oscTemplate, $customer_id;
 
         if (tep_not_null(MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_ID)) {
             if (MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_JS_PLACEMENT != 'Header') {
