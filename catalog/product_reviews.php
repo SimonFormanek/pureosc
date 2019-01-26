@@ -89,7 +89,7 @@ if ($messageStack->size('product_reviews') > 0) {
                 <p><?php
                 echo tep_draw_button(IMAGE_BUTTON_IN_CART,
                     'fa fa-shopping-cart',
-                    tep_href_link($PHP_SELF,
+                    tep_href_link($_SERVER['PHP_SELF'],
                         tep_get_all_get_params(array('action')).'action=buy_now'));
                 ?></p>
             </div>

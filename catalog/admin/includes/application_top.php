@@ -45,7 +45,7 @@ $request_type = (getenv('HTTPS') == 'on') ? 'SSL' : 'NONSSL';
 
 // set php_self in the local scope
 $req      = parse_url($HTTP_SERVER_VARS['SCRIPT_NAME']);
-$PHP_SELF = substr($req['path'],
+$_SERVER['PHP_SELF'] = substr($req['path'],
     ($request_type == 'SSL') ? strlen(DIR_WS_HTTPS_ADMIN) : strlen(DIR_WS_ADMIN));
 
 // Used in the "Backup Manager" to compress backups
@@ -142,7 +142,7 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
 if (!tep_session_is_registered('admin')) {
     $redirect = false;
 
-    $current_page = $PHP_SELF;
+    $current_page = $_SERVER['PHP_SELF'];
 
 // if the first page request is to the login page, set the current page to the index page
 // so the redirection on a successful login is not made to the login page again
@@ -198,7 +198,7 @@ $_system_locale_numeric = setlocale(LC_NUMERIC, 0);
 require(DIR_WS_LANGUAGES.$language.'.php');
 setlocale(LC_NUMERIC, $_system_locale_numeric); // Prevent LC_ALL from setting LC_NUMERIC to a locale with 1,0 float/decimal values instead of 1.0 (see bug #634)
 
-$current_page = basename($PHP_SELF);
+$current_page = basename($_SERVER['PHP_SELF']);
 if (file_exists(DIR_WS_LANGUAGES.$language.'/'.$current_page)) {
     include(DIR_WS_LANGUAGES.$language.'/'.$current_page);
 }

@@ -86,7 +86,7 @@ class splitPageResults
 // display split-page-number-links
     function display_links($max_page_links, $parameters = '')
     {
-        global $PHP_SELF, $request_type;
+        global $request_type;
 
         $display_links_string = '';
 
@@ -97,7 +97,7 @@ class splitPageResults
 
 // previous button - not displayed on first page
         if ($this->current_page_number > 1) {
-            $display_links_string .= '<li><a href="'.tep_href_link($PHP_SELF,
+            $display_links_string .= '<li><a href="'.tep_href_link($_SERVER['PHP_SELF'],
                     $parameters.$this->page_name.'='.($this->current_page_number
                     - 1), $request_type).'" title=" '.PREVNEXT_TITLE_PREVIOUS_PAGE.' ">&laquo;</a></li>';
         } else {
@@ -112,7 +112,7 @@ class splitPageResults
 
 // previous window of pages
         if ($cur_window_num > 1)
-                $display_links_string .= '<li><a href="'.tep_href_link($PHP_SELF,
+                $display_links_string .= '<li><a href="'.tep_href_link($_SERVER['PHP_SELF'],
                     $parameters.$this->page_name.'='.(($cur_window_num - 1) * $max_page_links),
                     $request_type).'" title=" '.sprintf(PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE,
                     $max_page_links).' ">...</a></li>';
@@ -121,12 +121,12 @@ class splitPageResults
         for ($jump_to_page = 1 + (($cur_window_num - 1) * $max_page_links); ($jump_to_page
             <= ($cur_window_num * $max_page_links)) && ($jump_to_page <= $this->number_of_pages); $jump_to_page++) {
             if ($jump_to_page == $this->current_page_number) {
-                $display_links_string .= '<li class="active"><a href="'.tep_href_link($PHP_SELF,
+                $display_links_string .= '<li class="active"><a href="'.tep_href_link($_SERVER['PHP_SELF'],
                         $parameters.$this->page_name.'='.$jump_to_page,
                         $request_type).'" title=" '.sprintf(PREVNEXT_TITLE_PAGE_NO,
                         $jump_to_page).' ">'.$jump_to_page.'<span class="sr-only">(current)</span></a></li>';
             } else {
-                $display_links_string .= '<li><a href="'.tep_href_link($PHP_SELF,
+                $display_links_string .= '<li><a href="'.tep_href_link($_SERVER['PHP_SELF'],
                         $parameters.$this->page_name.'='.$jump_to_page,
                         $request_type).'" title=" '.sprintf(PREVNEXT_TITLE_PAGE_NO,
                         $jump_to_page).' ">'.$jump_to_page.'</a></li>';
@@ -135,7 +135,7 @@ class splitPageResults
 
 // next window of pages
         if ($cur_window_num < $max_window_num)
-                $display_links_string .= '<li><a href="'.tep_href_link($PHP_SELF,
+                $display_links_string .= '<li><a href="'.tep_href_link($_SERVER['PHP_SELF'],
                     $parameters.$this->page_name.'='.(($cur_window_num) * $max_page_links
                     + 1), $request_type).'" title=" '.sprintf(PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE,
                     $max_page_links).' ">...</a></li>';
@@ -143,7 +143,7 @@ class splitPageResults
 // next button
         if (($this->current_page_number < $this->number_of_pages) && ($this->number_of_pages
             != 1)) {
-            $display_links_string .= '<li><a href="'.tep_href_link($PHP_SELF,
+            $display_links_string .= '<li><a href="'.tep_href_link($_SERVER['PHP_SELF'],
                     $parameters.'page='.($this->current_page_number + 1),
                     $request_type).'" title=" '.PREVNEXT_TITLE_NEXT_PAGE.' ">&raquo;</a></li>';
         } else {

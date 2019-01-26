@@ -17,7 +17,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php
-                if (substr(basename($PHP_SELF), 0, 8) != 'checkout') {
+                if (substr(basename($_SERVER['PHP_SELF']), 0, 8) != 'checkout') {
                     ?>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo HEADER_SITE_SETTINGS; ?></a>
@@ -35,7 +35,7 @@
                                 echo '<li class="divider"></li>';
                                 reset($lng->catalog_languages);
                                 while (list($key, $value) = each($lng->catalog_languages)) {
-                                    echo '<li><a href="'.tep_href_link(basename($PHP_SELF),
+                                    echo '<li><a href="'.tep_href_link(basename($_SERVER['PHP_SELF']),
                                         tep_get_all_get_params(array('language',
                                             'currency')).'language='.$key,
                                         $request_type).'">'.tep_image(DIR_WS_LANGUAGES.$value['directory'].'/images/'.$value['image'],
@@ -50,7 +50,7 @@
                                 $currencies_array = array();
                                 while (list($key, $value) = each($currencies->currencies)) {
                                     $currencies_array[] = array('id' => $key, 'text' => $value['title']);
-                                    echo '<li><a href="'.tep_href_link(basename($PHP_SELF),
+                                    echo '<li><a href="'.tep_href_link(basename($_SERVER['PHP_SELF']),
                                         tep_get_all_get_params(array('language',
                                             'currency')).'currency='.$key,
                                         $request_type).'">'.$value['title'].'</a></li>';

@@ -143,7 +143,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
             $nInfo->objectInfo($_POST);
         }
 
-        $file_extension  = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+        $file_extension  = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
         $directory_array = array();
         if ($dir             = dir(DIR_WS_MODULES.'newsletters/')) {
             while ($file = $dir->read()) {
@@ -254,10 +254,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     $nInfo = new objectInfo($newsletter);
 
-    include(DIR_WS_LANGUAGES.$language.'/modules/newsletters/'.$nInfo->module.substr($PHP_SELF,
-            strrpos($PHP_SELF, '.')));
-    include(DIR_WS_MODULES.'newsletters/'.$nInfo->module.substr($PHP_SELF,
-            strrpos($PHP_SELF, '.')));
+    include(DIR_WS_LANGUAGES.$language.'/modules/newsletters/'.$nInfo->module.substr($_SERVER['PHP_SELF'],
+            strrpos($_SERVER['PHP_SELF'], '.')));
+    include(DIR_WS_MODULES.'newsletters/'.$nInfo->module.substr($_SERVER['PHP_SELF'],
+            strrpos($_SERVER['PHP_SELF'], '.')));
     $module_name = $nInfo->module;
     $module      = new $module_name($nInfo->title, $nInfo->content);
     ?>
@@ -279,10 +279,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     $nInfo = new objectInfo($newsletter);
 
-    include(DIR_WS_LANGUAGES.$language.'/modules/newsletters/'.$nInfo->module.substr($PHP_SELF,
-            strrpos($PHP_SELF, '.')));
-    include(DIR_WS_MODULES.'newsletters/'.$nInfo->module.substr($PHP_SELF,
-            strrpos($PHP_SELF, '.')));
+    include(DIR_WS_LANGUAGES.$language.'/modules/newsletters/'.$nInfo->module.substr($_SERVER['PHP_SELF'],
+            strrpos($_SERVER['PHP_SELF'], '.')));
+    include(DIR_WS_MODULES.'newsletters/'.$nInfo->module.substr($_SERVER['PHP_SELF'],
+            strrpos($_SERVER['PHP_SELF'], '.')));
     $module_name = $nInfo->module;
     $module      = new $module_name($nInfo->title, $nInfo->content);
     ?>
@@ -298,10 +298,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     $nInfo = new objectInfo($newsletter);
 
-    include(DIR_WS_LANGUAGES.$language.'/modules/newsletters/'.$nInfo->module.substr($PHP_SELF,
-            strrpos($PHP_SELF, '.')));
-    include(DIR_WS_MODULES.'newsletters/'.$nInfo->module.substr($PHP_SELF,
-            strrpos($PHP_SELF, '.')));
+    include(DIR_WS_LANGUAGES.$language.'/modules/newsletters/'.$nInfo->module.substr($_SERVER['PHP_SELF'],
+            strrpos($_SERVER['PHP_SELF'], '.')));
+    include(DIR_WS_MODULES.'newsletters/'.$nInfo->module.substr($_SERVER['PHP_SELF'],
+            strrpos($_SERVER['PHP_SELF'], '.')));
     $module_name = $nInfo->module;
     $module      = new $module_name($nInfo->title, $nInfo->content);
     ?>

@@ -31,7 +31,7 @@ class ot_coupon
 
     function process()
     {
-        global $PHP_SELF, $order, $currencies;
+        global $order, $currencies;
         $order_total     = $this->get_order_total();
         $od_amount       = $this->calculate_credit($order_total);
         $tod_amount      = 0.0;

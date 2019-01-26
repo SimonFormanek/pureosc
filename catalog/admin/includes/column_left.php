@@ -78,7 +78,7 @@ if (tep_session_is_registered('admin')) {
     $counter = 0;
     foreach ($cl_box_groups as $groups) {
         foreach ($groups['apps'] as $app) {
-            if ($app['code'] == $PHP_SELF) {
+            if ($app['code'] == $_SERVER['PHP_SELF']) {
                 break 2;
             }
         }
@@ -86,7 +86,7 @@ if (tep_session_is_registered('admin')) {
         $counter++;
     }
 
-    echo 'active: '.(isset($app) && ($app['code'] == $PHP_SELF) ? $counter : 'false');
+    echo 'active: '.(isset($app) && ($app['code'] == $_SERVER['PHP_SELF']) ? $counter : 'false');
     ?>
 
         });

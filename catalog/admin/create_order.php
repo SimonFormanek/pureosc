@@ -152,7 +152,7 @@ function selectExisting() {
                                                         <td class="main" valign="top"></td>
                                                         <td class="main" valign="top">
                                                             <?php
-                                                            echo "<form action=\"$PHP_SELF\" method=\"GET\" name=\"cust_select\" id=\"cust_select\">\n";
+                                                            echo "<form action=\"$_SERVER['PHP_SELF']\" method=\"GET\" name=\"cust_select\" id=\"cust_select\">\n";
                                                             echo tep_hide_session_id();
                                                             echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n";
                                                             echo "<tr>\n";
@@ -175,7 +175,7 @@ function selectExisting() {
                                                         <td class="main" valign="top"></td>
                                                         <td class="main" valign="top">
                                                             <?php
-                                                            echo "<form action=\"$PHP_SELF\" method=\"GET\" name=\"cust_select_id\" id=\"cust_select_id\">\n";
+                                                            echo "<form action=\"$_SERVER['PHP_SELF']\" method=\"GET\" name=\"cust_select_id\" id=\"cust_select_id\">\n";
                                                             echo tep_hide_session_id();
                                                             echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n";
                                                             echo "<tr>\n";

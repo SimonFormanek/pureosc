@@ -1469,8 +1469,8 @@ include('order_editor/javascript.php');
                                                             // Get list of all payment modules available
                                                             $enabled_payment  = array();
                                                             $module_directory = DIR_FS_CATALOG_MODULES.'payment/';
-                                                            $file_extension   = substr($PHP_SELF,
-                                                                strrpos($PHP_SELF,
+                                                            $file_extension   = substr($_SERVER['PHP_SELF'],
+                                                                strrpos($_SERVER['PHP_SELF'],
                                                                     '.'));
 
                                                             if ($dir = @dir($module_directory)) {

@@ -21,7 +21,7 @@ class sage_pay_server
 
     function sage_pay_server()
     {
-        global $_GET, $PHP_SELF, $order;
+        global $_GET,$order;
 
         $this->signature   = 'sage_pay|sage_pay_server|2.0|2.3';
         $this->api_version = '3.00';
@@ -67,7 +67,7 @@ class sage_pay_server
             }
         }
 
-        if (defined('FILENAME_MODULES') && ($PHP_SELF == FILENAME_MODULES) && isset($_GET['action'])
+        if (defined('FILENAME_MODULES') && ($_SERVER['PHP_SELF'] == FILENAME_MODULES) && isset($_GET['action'])
             && ($_GET['action'] == 'install') && isset($_GET['subaction']) && ($_GET['subaction']
             == 'conntest')) {
             echo $this->getTestConnectionResult();

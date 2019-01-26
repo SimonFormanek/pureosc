@@ -42,7 +42,7 @@ if (tep_not_null($action)) {
             break;
         case 'install':
         case 'remove':
-            $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+            $file_extension = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
             $class          = basename($_GET['module']);
             if (file_exists($module_directory.$class.$file_extension)) {
                 include($module_directory.$class.$file_extension);
@@ -91,7 +91,7 @@ $modules_installed   = (defined($module_key) ? explode(';',
         constant($module_key)) : array());
 $new_modules_counter = 0;
 
-$file_extension  = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+$file_extension  = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
 $directory_array = array();
 if ($dir             = @dir($module_directory)) {
     while ($file = $dir->read()) {

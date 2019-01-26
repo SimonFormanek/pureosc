@@ -166,9 +166,9 @@ function cm_nb_store_search_show_pages($text)
 
 function cm_nb_store_search_pages($values, $key)
 {
-    global $PHP_SELF;
+     
 
-    $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+    $file_extension = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
     $files_array    = array();
     if ($dir            = @dir(DIR_FS_CATALOG)) {
         while ($file = $dir->read()) {

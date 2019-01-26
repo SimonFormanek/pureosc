@@ -196,7 +196,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
     }
 } else {
     $filename       = $_GET['lngdir'].'.php';
-    $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+    $file_extension = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
     ?>
                     <tr>
                         <td><table border="0" width="100%" cellspacing="0" cellpadding="2">

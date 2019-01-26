@@ -12,7 +12,7 @@
 
 require('includes/application_top.php');
 
-$file_extension  = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+$file_extension  = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
 $directory_array = array();
 if ($dir             = @dir(DIR_FS_CATALOG_MODULES.'action_recorder/')) {
     while ($file = $dir->read()) {

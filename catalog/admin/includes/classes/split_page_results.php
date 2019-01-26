@@ -57,7 +57,7 @@ class splitPageResults
                            $current_page_number, $parameters = '',
                            $page_name = 'page')
     {
-        global $PHP_SELF;
+         
 
         if (tep_not_null($parameters) && (substr($parameters, -1) != '&'))
                 $parameters .= '&';
@@ -71,10 +71,10 @@ class splitPageResults
         }
 
         if ($num_pages > 1) {
-            $display_links = tep_draw_form('pages', $PHP_SELF, '', 'get');
+            $display_links = tep_draw_form('pages','', 'get');
 
             if ($current_page_number > 1) {
-                $display_links .= '<a href="'.tep_href_link($PHP_SELF,
+                $display_links .= '<a href="'.tep_href_link($_SERVER['PHP_SELF'],
                         $parameters.$page_name.'='.($current_page_number - 1)).'" class="splitPageLink">'.PREVNEXT_BUTTON_PREV.'</a>&nbsp;&nbsp;';
             } else {
                 $display_links .= PREVNEXT_BUTTON_PREV.'&nbsp;&nbsp;';
@@ -86,7 +86,7 @@ class splitPageResults
                 $num_pages);
 
             if (($current_page_number < $num_pages) && ($num_pages != 1)) {
-                $display_links .= '&nbsp;&nbsp;<a href="'.tep_href_link($PHP_SELF,
+                $display_links .= '&nbsp;&nbsp;<a href="'.tep_href_link($_SERVER['PHP_SELF'],
                         $parameters.$page_name.'='.($current_page_number + 1)).'" class="splitPageLink">'.PREVNEXT_BUTTON_NEXT.'</a>';
             } else {
                 $display_links .= '&nbsp;&nbsp;'.PREVNEXT_BUTTON_NEXT;

@@ -32,11 +32,11 @@ class navigationHistory
 
     function add_current_page()
     {
-        global $PHP_SELF, $_GET, $_POST, $request_type, $cPath;
+        global $_GET, $_POST, $request_type, $cPath;
 
         $set = 'true';
         for ($i = 0, $n = sizeof($this->path); $i < $n; $i++) {
-            if ($this->path[$i]['page'] == $PHP_SELF) {
+            if ($this->path[$i]['page'] == $_SERVER['PHP_SELF']) {
                 if (isset($cPath)) {
                     if (!isset($this->path[$i]['get']['cPath'])) {
                         continue;
@@ -68,7 +68,7 @@ class navigationHistory
         }
 
         if ($set == 'true') {
-            $this->path[] = array('page' => $PHP_SELF,
+            $this->path[] = array('page' => $_SERVER['PHP_SELF'],
                 'mode' => $request_type,
                 'get' => $this->filter_parameters($_GET),
                 'post' => $this->filter_parameters($_POST));
@@ -77,17 +77,17 @@ class navigationHistory
 
     function remove_current_page()
     {
-        global $PHP_SELF;
+         
 
         $last_entry_position = sizeof($this->path) - 1;
-        if ($this->path[$last_entry_position]['page'] == $PHP_SELF) {
+        if ($this->path[$last_entry_position]['page'] == $_SERVER['PHP_SELF']) {
             unset($this->path[$last_entry_position]);
         }
     }
 
     function set_snapshot($page = '')
     {
-        global $PHP_SELF, $_GET, $_POST, $request_type;
+        global $_GET, $_POST, $request_type;
 
         if (is_array($page)) {
             $this->snapshot = array('page' => $page['page'],
@@ -95,7 +95,7 @@ class navigationHistory
                 'get' => $this->filter_parameters($page['get']),
                 'post' => $this->filter_parameters($page['post']));
         } else {
-            $this->snapshot = array('page' => $PHP_SELF,
+            $this->snapshot = array('page' => $_SERVER['PHP_SELF'],
                 'mode' => $request_type,
                 'get' => $this->filter_parameters($_GET),
                 'post' => $this->filter_parameters($_POST));

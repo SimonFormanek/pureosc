@@ -37,7 +37,7 @@ class cm_fp_new_products
 
     public function execute()
     {
-        global $oscTemplate, $currencies, $PHP_SELF;
+        global $oscTemplate, $currencies;
 
         $new_products_data = $this->get_data();
         if ($new_products_data !== false && count($new_products_data) > 0) {

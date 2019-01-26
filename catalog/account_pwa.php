@@ -250,7 +250,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     }
 }
 
-$breadcrumb->add(NAVBAR_TITLE_3, tep_href_link($PHP_SELF, '', 'SSL'));
+$breadcrumb->add(NAVBAR_TITLE_3, tep_href_link($_SERVER['PHP_SELF'], '', 'SSL'));
 
 require(DIR_WS_INCLUDES.'template_top.php');
 require('includes/check_account.js.php');
