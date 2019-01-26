@@ -248,7 +248,7 @@ class shoppingCart
         $total_items = 0;
         if (is_array($this->contents)) {
             reset($this->contents);
-            while (list($products_id, ) = each($this->contents)) {
+            foreach($this->contents as $products_id){
                 $total_items += $this->get_quantity($products_id);
             }
         }
