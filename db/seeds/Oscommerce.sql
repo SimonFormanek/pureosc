@@ -1,1 +1,1 @@
-../../install/oscommerce.sql
+./oscommerce.sql
