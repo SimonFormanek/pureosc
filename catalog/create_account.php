@@ -531,9 +531,9 @@ echo tep_draw_form('create_account',
                 <div class="col-sm-9">
                     <?php
                     echo tep_draw_input_field('company_number', NULL,
-                        'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="'.ENTRY_COMPANY_NUMBER.'"');
-                    if (tep_not_null(ENTRY_COMPANY_NUMBER_TEXT_2))
-                            echo '<span id="atVatnumber" class="help-block">'.ENTRY_COMPANY_NUMBER_TEXT_2.'</span>';
+                        'id="inputVatnumber" aria-describedby="atVatnumber" placeholder="'. _('Company Number') .'"');
+                    if (!empty(_('Company Number2')))
+                            echo '<span id="atVatnumber" class="help-block">'. _('Company Number') .'</span>';
                     ?>
                 </div>
 
