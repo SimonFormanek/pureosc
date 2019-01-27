@@ -86,7 +86,7 @@ class Braintree_Util
      * removes the Braintree_ header from a classname
      *
      * @param string $name Braintree_ClassName
-     * @return camelCased classname minus Braintree_ header
+     * @return string camelCased classname minus Braintree_ header
      */
     public static function cleanClassName($name)
     {
