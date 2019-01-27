@@ -1,4 +1,4 @@
-all: 	clean fresh
+all: 	 fresh dbreset upgrade
 
 clean:
 	phinx seed:run -s Reset -c ./phinx-adapter.php
@@ -14,21 +14,18 @@ fresh:
 upgrade:
 #	composer update
 ##ckeditor#####################
-		rm -rf admin/ext/ckeditor
-		mkdir admin/ext/ckeditor
-		cp -r vendor/ckeditor/ckeditor/adapters admin/ext/ckeditor
-		cp -r vendor/ckeditor/ckeditor/assets admin/ext/ckeditor
-		cp -r vendor/ckeditor/ckeditor/lang admin/ext/ckeditor
-		cp -r vendor/ckeditor/ckeditor/plugins admin/ext/ckeditor
-		cp -r vendor/ckeditor/ckeditor/skins admin/ext/ckeditor
-		cp -r vendor/ckeditor/ckeditor/ckeditor.js admin/ext/ckeditor
-		cp -r vendor/ckeditor/ckeditor/config.js admin/ext/ckeditor
-		cp -r vendor/ckeditor/ckeditor/contents.css admin/ext/ckeditor
-		cp -r vendor/ckeditor/ckeditor/styles.js admin/ext/ckeditor
-		cp admin/ext/ckeditor.config/config.js admin/ext/ckeditor/config.js
-
-production: 
-	composer update -a -o --no-dev
+		rm -rf catalog/admin/ext/ckeditor
+		mkdir catalog/admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/adapters catalog/admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/assets catalog/admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/lang catalog/admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/plugins catalog/admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/skins catalog/admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/ckeditor.js catalog/admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/config.js catalog/admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/contents.css catalog/admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/styles.js catalog/admin/ext/ckeditor
+		cp catalog/admin/ext/ckeditor.config/config.js catalog/admin/ext/ckeditor/config.js
 
 lang:
 	find . -iname "*.php" | xargs xgettext --from-code=utf-8  -n  --language=PHP --add-comments=TRANSLATORS --add-comments=translators: --force-po -o i18n/pureosc.pot
