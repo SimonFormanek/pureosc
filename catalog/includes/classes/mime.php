@@ -15,7 +15,7 @@
   Renamed and Modified by Jan Wildeboer for osCommerce
  */
 
-class AdminMime
+class mime
 {
     var $_encoding;
     var $_subparts;
@@ -39,26 +39,6 @@ class AdminMime
      * @access public
      */
     public function __construct($body, $params = '')
-    {
-        $this->mime($body, $params);
-    }
-
-    /**
-     * Constructor.
-     * 
-     * Sets up the object.
-     *
-     * @param $body   - The body of the mime part if any.
-     * @param $params - An associative array of parameters:
-     *                  content_type - The content type for this part eg multipart/mixed
-     *                  encoding     - The encoding to use, 7bit, base64, or quoted-printable
-     *                  cid          - Content ID to apply
-     *                  disposition  - Content disposition, inline or attachment
-     *                  dfilename    - Optional filename parameter for content disposition
-     *                  description  - Content description
-     * @access public
-     */
-    function AdminMime($body, $params = '')
     {
         if ($params == '') $params = array();
 
@@ -191,7 +171,7 @@ class AdminMime
 //    function &addSubPart($body, $params) {
     function addSubPart($body, $params)
     {
-        $this->_subparts[] = new AdminMime($body, $params);
+        $this->_subparts[] = new mime($body, $params);
 
         return $this->_subparts[count($this->_subparts) - 1];
     }

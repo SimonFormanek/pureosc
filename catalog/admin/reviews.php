@@ -84,9 +84,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-                    <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
-?></td>
+                    <td class="pageHeading" align="right"><?php
+                        echo tep_draw_separator('pixel_trans.gif',
+                            HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
+                        ?></td>
                 </tr>
             </table></td>
     </tr>
@@ -120,9 +121,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 $out_status = false;
         }
         ?>
-        <tr><?php echo tep_draw_form('review', FILENAME_REVIEWS,
-        'page='.$_GET['page'].'&rID='.$_GET['rID'].'&action=preview');
-    ?>
+        <tr><?php
+            echo tep_draw_form('review', FILENAME_REVIEWS,
+                'page='.$_GET['page'].'&rID='.$_GET['rID'].'&action=preview');
+            ?>
             <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="main" valign="top"><strong><?php echo ENTRY_PRODUCT; ?></strong> <?php echo $rInfo->products_name; ?><br /><strong><?php echo ENTRY_FROM; ?></strong> <?php echo $rInfo->customers_name; ?><br /><br /><strong><?php echo ENTRY_DATE; ?></strong> <?php echo tep_date_short($rInfo->date_added); ?></td>
@@ -134,11 +136,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     </tr>
                     <tr>
                         <td class="main" colspan="2"><strong><?php echo TEXT_INFO_REVIEW_STATUS; ?></strong> <?php
-                                echo tep_draw_separator('pixel_trans.gif', '24',
-                                    '15').'&nbsp;'.tep_draw_radio_field('reviews_status',
-                                    '1', $in_status).'&nbsp;'.TEXT_REVIEW_PUBLISHED.'&nbsp;'.tep_draw_radio_field('reviews_status',
-                                    '0', $out_status).'&nbsp;'.TEXT_REVIEW_NOT_PUBLISHED;
-                                ?></td>
+                            echo tep_draw_separator('pixel_trans.gif', '24',
+                                '15').'&nbsp;'.tep_draw_radio_field('reviews_status',
+                                '1', $in_status).'&nbsp;'.TEXT_REVIEW_PUBLISHED.'&nbsp;'.tep_draw_radio_field('reviews_status',
+                                '0', $out_status).'&nbsp;'.TEXT_REVIEW_NOT_PUBLISHED;
+                            ?></td>
                     </tr>
                 </table></td>
         </tr>
@@ -148,9 +150,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <tr>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td class="main" valign="top"><strong><?php echo ENTRY_REVIEW; ?></strong><br /><br /><?php echo tep_draw_textarea_field('reviews_text',
-                                    'soft', '60', '15', $rInfo->reviews_text);
-                                ?></td>
+                        <td class="main" valign="top"><strong><?php echo ENTRY_REVIEW; ?></strong><br /><br /><?php
+                            echo tep_draw_textarea_field('reviews_text', 'soft',
+                                '60', '15', $rInfo->reviews_text);
+                            ?></td>
                     </tr>
                     <tr>
                         <td class="smallText" align="right"><?php echo ENTRY_REVIEW_TEXT; ?></td>
@@ -162,10 +165,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
         </tr>
         <tr>
             <td class="main"><strong><?php echo ENTRY_RATING; ?></strong>&nbsp;<?php echo TEXT_BAD; ?>&nbsp;<?php
-            for ($i = 1; $i <= 5; $i++)
-                echo tep_draw_radio_field('reviews_rating', $i, '',
-                    $rInfo->reviews_rating).'&nbsp;'; echo TEXT_GOOD;
-            ?></td>
+                    for ($i = 1; $i <= 5; $i++)
+                        echo tep_draw_radio_field('reviews_rating', $i, '',
+                            $rInfo->reviews_rating).'&nbsp;'; echo TEXT_GOOD;
+                    ?></td>
         </tr>
         <tr>
             <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
@@ -204,10 +207,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
         }
         ?>
         <tr><?php
-                            echo tep_draw_form('update', FILENAME_REVIEWS,
-                                'page='.$_GET['page'].'&rID='.$_GET['rID'].'&action=update',
-                                'post', 'enctype="multipart/form-data"');
-                            ?>
+            echo tep_draw_form('update', FILENAME_REVIEWS,
+                'page='.$_GET['page'].'&rID='.$_GET['rID'].'&action=update',
+                'post', 'enctype="multipart/form-data"');
+            ?>
             <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="main" valign="top"><strong><?php echo ENTRY_PRODUCT; ?></strong> <?php echo $rInfo->products_name; ?><br /><strong><?php echo ENTRY_FROM; ?></strong> <?php echo $rInfo->customers_name; ?><br /><br /><strong><?php echo ENTRY_DATE; ?></strong> <?php echo tep_date_short($rInfo->date_added); ?></td>
@@ -222,8 +225,9 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <tr>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td valign="top" class="main"><strong><?php echo ENTRY_REVIEW; ?></strong><br /><br /><?php echo nl2br(tep_db_output(tep_break_string($rInfo->reviews_text,
-                        15)));
+                        <td valign="top" class="main"><strong><?php echo ENTRY_REVIEW; ?></strong><br /><br /><?php
+                            echo nl2br(tep_db_output(tep_break_string($rInfo->reviews_text,
+                                        15)));
                             ?></td>
                     </tr>
                 </table></td>
@@ -233,11 +237,12 @@ require(DIR_WS_INCLUDES.'template_top.php');
         </tr>
 
         <tr>
-            <td class="main"><strong><?php echo ENTRY_RATING; ?></strong>&nbsp;<?php echo tep_image(DIR_WS_CATALOG_IMAGES.'stars_'.$rInfo->reviews_rating.'.gif',
-        sprintf(TEXT_OF_5_STARS, $rInfo->reviews_rating));
-                            ?>&nbsp;<small>[<?php echo sprintf(TEXT_OF_5_STARS,
-        $rInfo->reviews_rating);
-    ?>]</small></td>
+            <td class="main"><strong><?php echo ENTRY_RATING; ?></strong>&nbsp;<?php
+                echo tep_image(DIR_WS_CATALOG_IMAGES.'stars_'.$rInfo->reviews_rating.'.gif',
+                    sprintf(TEXT_OF_5_STARS, $rInfo->reviews_rating));
+                ?>&nbsp;<small>[<?php
+                echo sprintf(TEXT_OF_5_STARS, $rInfo->reviews_rating);
+                            ?>]</small></td>
         </tr>
         <tr>
             <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
@@ -252,11 +257,11 @@ require(DIR_WS_INCLUDES.'template_top.php');
             ?>
             <tr>
                 <td align="right" class="smallText"><?php
-        echo tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
-            'close',
-            tep_href_link(FILENAME_REVIEWS,
-                'page='.$_GET['page'].'&rID='.$rInfo->reviews_id));
-        ?></td>
+            echo tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
+                'close',
+                tep_href_link(FILENAME_REVIEWS,
+                    'page='.$_GET['page'].'&rID='.$rInfo->reviews_id));
+            ?></td>
                 </form></tr>
             <?php
         } else {
@@ -269,51 +274,53 @@ require(DIR_WS_INCLUDES.'template_top.php');
             }
             ?>
             <tr>
-                <td align="right" class="smallText"><?php echo tep_draw_button(IMAGE_BACK,
-                'triangle-1-w',
+                <td align="right" class="smallText"><?php
+            echo tep_draw_button(IMAGE_BACK, 'triangle-1-w',
                 tep_href_link($back_url, $back_url_params, 'NONSSL'));
             ?></td>
             </tr>
-                                <?php
-                            }
-                        } elseif ($action == 'new') {
-                            ?>
+        <?php
+    }
+} elseif ($action == 'new') {
+    ?>
         <tr><?php echo tep_draw_form('review', FILENAME_REVIEWS, 'action=addnew'); ?>
             <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="main" valign="top" width="140"><strong><?php echo ENTRY_PRODUCT; ?></strong></td>
-                        <td><?php echo tep_draw_products('products_id',
-                            'style="font-size:10px"');
+                        <td><?php
+                            echo tep_draw_products('products_id',
+                                'style="font-size:10px"');
                             ?></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                            '1', '10');
-                        ?></td>
+                        <td colspan="2"><?php
+                            echo tep_draw_separator('pixel_trans.gif', '1', '10');
+                            ?></td>
                     </tr>
                     <tr>
                         <td class="main" valign="top" width="140"><strong><?php echo ENTRY_FROM; ?></strong></td>
-                        <td><?php echo tep_draw_customers('customer_id',
-                            'style="font-size:10px"');
-                        ?></td>
+                        <td><?php
+                            echo tep_draw_customers('customer_id',
+                                'style="font-size:10px"');
+                            ?></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                            '1', '10');
-                        ?></td>
+                        <td colspan="2"><?php
+                            echo tep_draw_separator('pixel_trans.gif', '1', '10');
+                            ?></td>
                     </tr>
                     <tr>
                         <td class="main" valign="top" width="140"><strong><?php echo ENTRY_RATING; ?></strong></td>
                         <td class="main"><?php
-                        echo TEXT_BAD.' '.tep_draw_radio_field('rating', '1').' '.tep_draw_radio_field('rating',
-                            '2').' '.tep_draw_radio_field('rating', '3').' '.tep_draw_radio_field('rating',
-                            '4').' '.tep_draw_radio_field('rating', '5').' '.TEXT_GOOD;
+                            echo TEXT_BAD.' '.tep_draw_radio_field('rating', '1').' '.tep_draw_radio_field('rating',
+                                '2').' '.tep_draw_radio_field('rating', '3').' '.tep_draw_radio_field('rating',
+                                '4').' '.tep_draw_radio_field('rating', '5').' '.TEXT_GOOD;
                             ?></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10');
-    ?></td>
+                        <td colspan="2"><?php
+                            echo tep_draw_separator('pixel_trans.gif', '1', '10');
+                            ?></td>
                     </tr>
                 </table></td>
         </tr>
@@ -321,9 +328,10 @@ require(DIR_WS_INCLUDES.'template_top.php');
             <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
         </tr>
         <tr>
-            <td class="main" valign="top"><strong><?php echo ENTRY_REVIEW; ?></strong><br /><br /><?php echo tep_draw_textarea_field('reviews_text',
-        'soft', '60', '15', $rInfo->reviews_text);
-    ?></td>
+            <td class="main" valign="top"><strong><?php echo ENTRY_REVIEW; ?></strong><br /><br /><?php
+                            echo tep_draw_textarea_field('reviews_text', 'soft',
+                                '60', '15', $rInfo->reviews_text);
+                            ?></td>
         </tr>
         <tr>
             <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
@@ -335,20 +343,22 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <?php
 } elseif ($action == 'newtestimonial') {
     ?>
-    <tr><?php echo tep_draw_form('review', FILENAME_REVIEWS,
-        'action=addnewtestimonial');
-    ?>
+    <tr><?php
+                    echo tep_draw_form('review', FILENAME_REVIEWS,
+                        'action=addnewtestimonial');
+                    ?>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td class="main" valign="top" width="140"><strong><?php echo ENTRY_NAME; ?></strong></td>
-                    <td><?php echo tep_draw_input_field('customer_name', '',
-        'style="font-size:10px; width: 240px;"');
-    ?></td>
+                    <td><?php
+                    echo tep_draw_input_field('customer_name', '',
+                        'style="font-size:10px; width: 240px;"');
+                    ?></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-        '1', '10');
-    ?></td>
+                    <td colspan="2"><?php
+            echo tep_draw_separator('pixel_trans.gif', '1', '10');
+            ?></td>
                 </tr>
             </table></td>
     </tr>
@@ -356,8 +366,9 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
     </tr>
     <tr>
-        <td class="main" valign="top"><strong><?php echo ENTRY_TESTIMONIAL; ?></strong><br /><br /><?php echo tep_draw_textarea_field('reviews_text',
-                            'soft', '60', '15', $rInfo->reviews_text);
+        <td class="main" valign="top"><strong><?php echo ENTRY_TESTIMONIAL; ?></strong><br /><br /><?php
+    echo tep_draw_textarea_field('reviews_text', 'soft', '60', '15',
+        $rInfo->reviews_text);
     ?></td>
     </tr>
     <tr>
@@ -367,9 +378,9 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <td><?php echo tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary'); ?></td>
     </tr>
     </form>
-                            <?php
-                        } else {
-                            ?>
+    <?php
+} else {
+    ?>
     <tr>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
@@ -384,8 +395,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $reviews_query_raw = "select reviews_id, products_id, date_added, last_modified, reviews_rating, reviews_status, is_testimonial from ".TABLE_REVIEWS." order by date_added DESC";
-                            $reviews_split     = new splitPageResults($reviews_query_raw,
-                                MAX_DISPLAY_SEARCH_RESULTS, '*' ,$_GET['page']);
+                            $reviews_split     = new splitPageResults($reviews_query_raw,MAX_DISPLAY_SEARCH_RESULTS,'*', $_GET['page']);
                             $reviews_query     = tep_db_query($reviews_query_raw);
                             while ($reviews           = tep_db_fetch_array($reviews_query)) {
                                 if ((!isset($_GET['rID']) || (isset($_GET['rID'])
@@ -431,29 +441,30 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableContent" align="right"><?php echo tep_image(HTTP_CATALOG_SERVER.DIR_WS_CATALOG_IMAGES.'stars_'.$reviews['reviews_rating'].'.gif'); ?></td>
                                 <td class="dataTableContent" align="right"><?php echo tep_date_short($reviews['date_added']); ?></td>
                                 <td class="dataTableContent" align="center">
-        <?php
-        if ($reviews['reviews_status'] == '1') {
-            echo tep_image(DIR_WS_IMAGES.'icon_status_green.gif',
-                IMAGE_ICON_STATUS_GREEN, 10, 10).'&nbsp;&nbsp;<a href="'.tep_href_link(FILENAME_REVIEWS,
-                'action=setflag&flag=0&rID='.$reviews['reviews_id'].'&page='.$_GET['page']).'">'.tep_image(DIR_WS_IMAGES.'icon_status_red_light.gif',
-                IMAGE_ICON_STATUS_RED_LIGHT, 10, 10).'</a>';
-        } else {
-            echo '<a href="'.tep_href_link(FILENAME_REVIEWS,
-                'action=setflag&flag=1&rID='.$reviews['reviews_id'].'&page='.$_GET['page']).'">'.tep_image(DIR_WS_IMAGES.'icon_status_green_light.gif',
-                IMAGE_ICON_STATUS_GREEN_LIGHT, 10, 10).'</a>&nbsp;&nbsp;'.tep_image(DIR_WS_IMAGES.'icon_status_red.gif',
-                IMAGE_ICON_STATUS_RED, 10, 10);
-        }
-        ?></td>
+                                    <?php
+                                    if ($reviews['reviews_status'] == '1') {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_status_green.gif',
+                                            IMAGE_ICON_STATUS_GREEN, 10, 10).'&nbsp;&nbsp;<a href="'.tep_href_link(FILENAME_REVIEWS,
+                                            'action=setflag&flag=0&rID='.$reviews['reviews_id'].'&page='.$_GET['page']).'">'.tep_image(DIR_WS_IMAGES.'icon_status_red_light.gif',
+                                            IMAGE_ICON_STATUS_RED_LIGHT, 10, 10).'</a>';
+                                    } else {
+                                        echo '<a href="'.tep_href_link(FILENAME_REVIEWS,
+                                            'action=setflag&flag=1&rID='.$reviews['reviews_id'].'&page='.$_GET['page']).'">'.tep_image(DIR_WS_IMAGES.'icon_status_green_light.gif',
+                                            IMAGE_ICON_STATUS_GREEN_LIGHT, 10,
+                                            10).'</a>&nbsp;&nbsp;'.tep_image(DIR_WS_IMAGES.'icon_status_red.gif',
+                                            IMAGE_ICON_STATUS_RED, 10, 10);
+                                    }
+                                    ?></td>
                                 <td class="dataTableContent" align="center">
-        <?php
-        if ($reviews['is_testimonial'] == '1') {
-            echo tep_image(DIR_WS_IMAGES.'icon_status_red.gif',
-                IMAGE_ICON_TESTIMONIAL_YES, 10, 10);
-        } else {
-            echo tep_image(DIR_WS_IMAGES.'icon_status_green.gif',
-                IMAGE_ICON_TESTIMONIAL_NO, 10, 10);
-        }
-        ?></td>
+                                    <?php
+                                    if ($reviews['is_testimonial'] == '1') {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_status_red.gif',
+                                            IMAGE_ICON_TESTIMONIAL_YES, 10, 10);
+                                    } else {
+                                        echo tep_image(DIR_WS_IMAGES.'icon_status_green.gif',
+                                            IMAGE_ICON_TESTIMONIAL_NO, 10, 10);
+                                    }
+                                    ?></td>
                                 <td class="dataTableContent" align="right"><?php
             if ((is_object($rInfo)) && ($reviews['reviews_id'] == $rInfo->reviews_id)) {
                 echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif');
@@ -462,22 +473,23 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     'page='.$_GET['page'].'&rID='.$reviews['reviews_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
                     IMAGE_ICON_INFO).'</a>';
             }
-            ?>&nbsp;</td>
+                                    ?>&nbsp;</td>
                     </tr>
-            <?php
-        }
-        ?>
+                                        <?php
+                                    }
+                                    ?>
                 <tr>
                     <td colspan="6"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr>
                                 <td class="smallText" valign="top"><?php
-        echo $reviews_split->display_count($reviews_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-            TEXT_DISPLAY_NUMBER_OF_REVIEWS);
-        ?></td>
+                                    echo $reviews_split->display_count($reviews_query_numrows,
+                                        MAX_DISPLAY_SEARCH_RESULTS,
+                                        $_GET['page'],
+                                        TEXT_DISPLAY_NUMBER_OF_REVIEWS);
+                                    ?></td>
                                 <td class="smallText" align="right"><?php
-        echo $reviews_split->display_links(MAX_DISPLAY_PAGE_LINKS);
-        ?></td>
+                                    echo $reviews_split->display_links(MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+                                    ?></td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="smallText" align="right"><?php
@@ -556,4 +568,4 @@ require(DIR_WS_INCLUDES.'template_top.php');
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+

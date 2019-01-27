@@ -489,13 +489,13 @@ function popupImageWindow(url) {
                                             <td colspan="5"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                                                     <tr>
                                                         <td class="smallText" valign="top"><?php
-                                                        echo $banners_split->display_count($banners_query_numrows,
-                                                            MAX_DISPLAY_SEARCH_RESULTS,
+                                                        echo $banners_split->display_count(MAX_DISPLAY_SEARCH_RESULTS,
                                                             $_GET['page'],
                                                             TEXT_DISPLAY_NUMBER_OF_BANNERS);
                                                             ?></td>
                                                         <td class="smallText" align="right"><?php
-                                echo $banners_split->display_links(MAX_DISPLAY_PAGE_LINKS);
+                                echo $banners_split->display_links(MAX_DISPLAY_PAGE_LINKS,
+                                    $_GET['page']);
                                 ?></td>
                                                     </tr>
                                                     <tr>
@@ -604,4 +604,4 @@ function popupImageWindow(url) {
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+
