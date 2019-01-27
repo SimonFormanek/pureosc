@@ -299,6 +299,8 @@ $order_total_modules->apply_credit(); // CCGV
 
 if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
 
+    $invoice = new PureOSC\flexibee\FakturaVydana(['typDokl' => FlexiPeeHP\FlexiBeeRO::code('FAKTURA')]);
+
     foreach ($order_total_modules->process() as $orderTotalRow) {
         switch ($orderTotalRow['code']) {
             case 'ot_shipping':
