@@ -27,6 +27,9 @@ upgrade:
 		cp -r vendor/ckeditor/ckeditor/styles.js admin/ext/ckeditor
 		cp admin/ext/ckeditor.config/config.js admin/ext/ckeditor/config.js
 
+production: 
+	composer update -a -o --no-dev
+
 lang:
 	find . -iname "*.php" | xargs xgettext --from-code=utf-8  -n  --language=PHP --add-comments=TRANSLATORS --add-comments=translators: --force-po -o i18n/pureosc.pot
 	find . -iname "*.php" | xargs xgettext --from-code=utf-8  -n  --language=PHP --add-comments=TRANSLATORS --add-comments=translators: --force-po -j -o i18n/cs_CZ/LC_MESSAGES/pureosc.po
