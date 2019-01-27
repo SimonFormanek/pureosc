@@ -11,6 +11,12 @@ fresh:
 	composer update
 	phinx migrate -c ./phinx-adapter.php
 
+production:
+	composer update -a -o --no-dev
+
+autoload:
+	composer dumpautoload -a -o --no-dev
+
 upgrade:
 #	composer update
 ##ckeditor#####################
