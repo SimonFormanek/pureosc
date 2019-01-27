@@ -15,18 +15,13 @@
   Renamed and Modified by Jan Wildeboer for osCommerce
  */
 
-class mime
+class AdminMime
 {
     var $_encoding;
     var $_subparts;
     var $_encoded;
     var $_headers;
     var $_body;
-
-    public function __construct($body, $params = '')
-    {
-        $this->mime($body, $params);
-    }
 
     /**
      * Constructor.
@@ -43,8 +38,9 @@ class mime
      *                  description  - Content description
      * @access public
      */
-    function mime($body, $params = '')
+    public function __construct($body, $params = '')
     {
+        $this->mime($body, $params);
         if ($params == '') $params = array();
 
 // Make sure we use the correct linfeed sequence

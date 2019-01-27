@@ -16,11 +16,6 @@ class AdminOrder
 
     public function __construct($order_id)
     {
-        $this->order($order_id);
-    }
-
-    function AdminOrder($order_id)
-    {
         $this->info     = array();
         $this->totals   = array();
         $this->products = array();

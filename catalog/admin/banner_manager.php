@@ -198,82 +198,87 @@ if (function_exists('imagecreate') && tep_not_null($banner_extension)) {
 require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 
-<script type="text/javascript"><!--
+        <script type="text/javascript"><!--
 function popupImageWindow(url) {
-        window.open(url, 'popupImageWindow', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150')
-    }
-//--></script>
+                window.open(url, 'popupImageWindow', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150')
+            }
+            //--></script>
 
         <table border="0" width="100%" cellspacing="0" cellpadding="2">
                 <tr>
                     <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-                                <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-    HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
-?></td>
+                                <td class="pageHeading" align="right"><?php
+                                    echo tep_draw_separator('pixel_trans.gif',
+                                        HEADING_IMAGE_WIDTH,
+                                        HEADING_IMAGE_HEIGHT);
+                                    ?></td>
                             </tr>
                         </table></td>
                 </tr>
-<?php
-if ($action == 'new') {
-    $form_action = 'insert';
+                <?php
+                if ($action == 'new') {
+                    $form_action = 'insert';
 
-    $parameters = array('expires_date' => '',
-        'date_scheduled' => '',
-        'banners_title' => '',
-        'banners_url' => '',
-        'banners_group' => '',
-        'banners_image' => '',
-        'banners_html_text' => '',
-        'expires_impressions' => '');
+                    $parameters = array('expires_date' => '',
+                        'date_scheduled' => '',
+                        'banners_title' => '',
+                        'banners_url' => '',
+                        'banners_group' => '',
+                        'banners_image' => '',
+                        'banners_html_text' => '',
+                        'expires_impressions' => '');
 
-    $bInfo = new objectInfo($parameters);
+                    $bInfo = new objectInfo($parameters);
 
-    if (isset($_GET['bID'])) {
-        $form_action = 'update';
+                    if (isset($_GET['bID'])) {
+                        $form_action = 'update';
 
-        $bID = tep_db_prepare_input($_GET['bID']);
+                        $bID = tep_db_prepare_input($_GET['bID']);
 
-        $banner_query = tep_db_query("select banners_title, banners_url, banners_image, banners_group, banners_html_text, status, date_format(date_scheduled, '%Y/%m/%d') as date_scheduled, date_format(expires_date, '%Y/%m/%d') as expires_date, expires_impressions, date_status_change from ".TABLE_BANNERS." where banners_id = '".(int) $bID."'");
-        $banner       = tep_db_fetch_array($banner_query);
+                        $banner_query = tep_db_query("select banners_title, banners_url, banners_image, banners_group, banners_html_text, status, date_format(date_scheduled, '%Y/%m/%d') as date_scheduled, date_format(expires_date, '%Y/%m/%d') as expires_date, expires_impressions, date_status_change from ".TABLE_BANNERS." where banners_id = '".(int) $bID."'");
+                        $banner       = tep_db_fetch_array($banner_query);
 
-        $bInfo->objectInfo($banner);
-    } elseif (tep_not_null($_POST)) {
-        $bInfo->objectInfo($_POST);
-    }
+                        $bInfo->objectInfo($banner);
+                    } elseif (tep_not_null($_POST)) {
+                        $bInfo->objectInfo($_POST);
+                    }
 
-    $groups_array = array();
-    $groups_query = tep_db_query("select distinct banners_group from ".TABLE_BANNERS." order by banners_group");
-    while ($groups       = tep_db_fetch_array($groups_query)) {
-        $groups_array[] = array('id' => $groups['banners_group'],
-            'text' => $groups['banners_group']);
-    }
-    ?>
+                    $groups_array = array();
+                    $groups_query = tep_db_query("select distinct banners_group from ".TABLE_BANNERS." order by banners_group");
+                    while ($groups       = tep_db_fetch_array($groups_query)) {
+                        $groups_array[] = array('id' => $groups['banners_group'],
+                            'text' => $groups['banners_group']);
+                    }
+                    ?>
                     <tr>
-                        <td><?php echo tep_draw_separator('pixel_trans.gif', '1',
-                    '10');
-                ?></td>
+                        <td><?php
+                    echo tep_draw_separator('pixel_trans.gif', '1', '10');
+                    ?></td>
                     </tr>
                     <tr><?php
-                echo tep_draw_form('new_banner', FILENAME_BANNER_MANAGER,
-                    (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').'action='.$form_action,
-                    'post', 'enctype="multipart/form-data"');
-                if ($form_action == 'update')
-                        echo tep_draw_hidden_field('banners_id', $bID);
-    ?>
+                        echo tep_draw_form('new_banner',
+                            FILENAME_BANNER_MANAGER,
+                            (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').'action='.$form_action,
+                            'post', 'enctype="multipart/form-data"');
+                        if ($form_action == 'update')
+                                echo tep_draw_hidden_field('banners_id', $bID);
+                        ?>
                         <td><table border="0" cellspacing="0" cellpadding="2">
                                 <tr>
                                     <td class="main"><?php echo TEXT_BANNERS_TITLE; ?></td>
-                                    <td class="main"><?php echo tep_draw_input_field('banners_title',
-                        $bInfo->banners_title, '', true);
-                    ?></td>
+                                    <td class="main"><?php
+                                    echo tep_draw_input_field('banners_title',
+                                        $bInfo->banners_title, '', true);
+                                    ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main"><?php echo TEXT_BANNERS_URL; ?></td>
-                                    <td class="main"><?php echo tep_draw_input_field('banners_url',
-                        $bInfo->banners_url);
-    ?></td>
+                                    <td class="main"><?php
+                                    echo tep_draw_input_field('banners_url',
+                                        $bInfo->banners_url);
+                        ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main" valign="top"><?php echo TEXT_BANNERS_GROUP; ?></td>
@@ -286,20 +291,23 @@ if ($action == 'new') {
                                         ?></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
+                                    <td colspan="2"><?php
+                                    echo tep_draw_separator('pixel_trans.gif',
                                         '1', '10');
                                         ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main" valign="top"><?php echo TEXT_BANNERS_IMAGE; ?></td>
-                                    <td class="main"><?php echo tep_draw_file_field('banners_image').' '.TEXT_BANNERS_IMAGE_LOCAL.'<br />'.DIR_FS_CATALOG_IMAGES.tep_draw_input_field('banners_image_local',
-                                        (isset($bInfo->banners_image) ? $bInfo->banners_image
-                                                : ''));
-                                    ?></td>
+                                    <td class="main"><?php
+                                        echo tep_draw_file_field('banners_image').' '.TEXT_BANNERS_IMAGE_LOCAL.'<br />'.DIR_FS_CATALOG_IMAGES.tep_draw_input_field('banners_image_local',
+                                            (isset($bInfo->banners_image) ? $bInfo->banners_image
+                                                    : ''));
+                                        ?></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '1', '10');
+                                    <td colspan="2"><?php
+                                        echo tep_draw_separator('pixel_trans.gif',
+                                            '1', '10');
                                         ?></td>
                                 </tr>
                                 <tr>
@@ -307,31 +315,36 @@ if ($action == 'new') {
                                     <td class="main"><?php echo DIR_FS_CATALOG_IMAGES.tep_draw_input_field('banners_image_target'); ?></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '1', '10');
+                                    <td colspan="2"><?php
+                                        echo tep_draw_separator('pixel_trans.gif',
+                                            '1', '10');
                                         ?></td>
                                 </tr>
                                 <tr>
                                     <td valign="top" class="main"><?php echo TEXT_BANNERS_HTML_TEXT; ?></td>
-                                    <td class="main"><?php echo tep_draw_textarea_field('banners_html_text',
+                                    <td class="main"><?php
+                                    echo tep_draw_textarea_field('banners_html_text',
                                         'soft', '60', '5',
                                         $bInfo->banners_html_text);
-                                    ?></td>
+                                        ?></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
+                                    <td colspan="2"><?php
+                                    echo tep_draw_separator('pixel_trans.gif',
                                         '1', '10');
-                                    ?></td>
+                                        ?></td>
                                 </tr>
                                 <tr>
                                     <td class="main"><?php echo TEXT_BANNERS_SCHEDULED_AT; ?></td>
-                                    <td class="main"><?php echo tep_draw_input_field('date_scheduled',
+                                    <td class="main"><?php
+                                    echo tep_draw_input_field('date_scheduled',
                                         $bInfo->date_scheduled,
                                         'id="date_scheduled"').' <small>(YYYY-MM-DD)</small>';
-                                    ?></td>
+                                        ?></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
+                                    <td colspan="2"><?php
+                                    echo tep_draw_separator('pixel_trans.gif',
                                         '1', '10');
                                     ?></td>
                                 </tr>
@@ -347,20 +360,21 @@ if ($action == 'new') {
                             </table>
 
                             <script type="text/javascript">
-        $('#date_scheduled').datepicker({
-            dateFormat: 'yy-mm-dd'
-        });
-        $('#expires_date').datepicker({
-            dateFormat: 'yy-mm-                                dd'
-        });
-        </script>
+                $('#date_scheduled').datepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+                $('#expires_date').datepicker({
+                    dateFormat: 'yy-mm-                                                                dd'
+                });
+      </script>
 
-                                      </td>
-              </tr>
+                                          </td>
+                  </tr>
                         <tr>
-                                <td><?php echo tep_draw_separator('pixel_trans.gif',
-                                    '1', '10');
-                        ?></td>
+                                <td><?php
+                                                echo tep_draw_separator('pixel_trans.gif',
+                                                    '1', '10');
+                                                ?></td>
                             </tr>
                             <tr>
                                 <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
@@ -393,10 +407,9 @@ if ($action == 'new') {
                                                     </tr>
                                                     <?php
                                                     $banners_query_raw = "select banners_id, banners_title, banners_image, banners_group, status, expires_date, expires_impressions, date_status_change, date_scheduled, date_added from ".TABLE_BANNERS." order by banners_title, banners_group";
-                                                    $banners_split     = new splitPageResults($_GET['page'],
+                                                    $banners_split     = new splitPageResults($banners_query_raw,
                                                         MAX_DISPLAY_SEARCH_RESULTS,
-                                                        $banners_query_raw,
-                                                        $banners_query_numrows);
+                                                        '*', $_GET['page']);
                                                     $banners_query     = tep_db_query($banners_query_raw);
                                                     while ($banners           = tep_db_fetch_array($banners_query)) {
                                                         $info_query = tep_db_query("select sum(banners_shown) as banners_shown, sum(banners_clicked) as banners_clicked from ".TABLE_BANNERS_HISTORY." where banners_id = '".(int) $banners['banners_id']."'");
@@ -429,9 +442,10 @@ if ($action == 'new') {
                                                                 'page='.$_GET['page'].'&bID='.$banners['banners_id']).'\'">'."\n";
                                                         }
                                                         ?>
-                                                        <td class="dataTableContent"><?php echo '<a href="javascript:popupImageWindow(\''.FILENAME_POPUP_IMAGE.'?banner='.$banners['banners_id'].'\')">'.tep_image(DIR_WS_IMAGES.'icon_popup.gif',
-                                                        'View Banner').'</a>&nbsp;'.$banners['banners_title'];
-                                                        ?></td>
+                                                        <td class="dataTableContent"><?php
+                                                            echo '<a href="javascript:popupImageWindow(\''.FILENAME_POPUP_IMAGE.'?banner='.$banners['banners_id'].'\')">'.tep_image(DIR_WS_IMAGES.'icon_popup.gif',
+                                                                'View Banner').'</a>&nbsp;'.$banners['banners_title'];
+                                                            ?></td>
                                                         <td class="dataTableContent" align="right"><?php echo $banners['banners_group']; ?></td>
                                                         <td class="dataTableContent" align="right"><?php echo $banners_shown.' / '.$banners_clicked; ?></td>
                                                         <td class="dataTableContent" align="right">
@@ -454,43 +468,41 @@ if ($action == 'new') {
                                                             }
                                                             ?></td>
                                                         <td class="dataTableContent" align="right"><?php
-                                                        echo '<a href="'.tep_href_link(FILENAME_BANNER_STATISTICS,
-                                                            'page='.$_GET['page'].'&bID='.$banners['banners_id']).'">'.tep_image(DIR_WS_ICONS.'statistics.gif',
-                                                            ICON_STATISTICS).'</a>&nbsp;';
-                                                        if (isset($bInfo) && is_object($bInfo)
-                                                            && ($banners['banners_id']
-                                                            == $bInfo->banners_id)) {
-                                                            echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
-                                                                '');
-                                                        } else {
-                                                            echo '<a href="'.tep_href_link(FILENAME_BANNER_MANAGER,
-                                                                'page='.$_GET['page'].'&bID='.$banners['banners_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
-                                                                IMAGE_ICON_INFO).'</a>';
-                                                        }
-                                                            ?>&nbsp;</td>
+                                            echo '<a href="'.tep_href_link(FILENAME_BANNER_STATISTICS,
+                                                'page='.$_GET['page'].'&bID='.$banners['banners_id']).'">'.tep_image(DIR_WS_ICONS.'statistics.gif',
+                                                ICON_STATISTICS).'</a>&nbsp;';
+                                            if (isset($bInfo) && is_object($bInfo)
+                                                && ($banners['banners_id'] == $bInfo->banners_id)) {
+                                                echo tep_image(DIR_WS_IMAGES.'icon_arrow_right.gif',
+                                                    '');
+                                            } else {
+                                                echo '<a href="'.tep_href_link(FILENAME_BANNER_MANAGER,
+                                                    'page='.$_GET['page'].'&bID='.$banners['banners_id']).'">'.tep_image(DIR_WS_IMAGES.'icon_info.gif',
+                                                    IMAGE_ICON_INFO).'</a>';
+                                            }
+                                            ?>&nbsp;</td>
                                             </tr>
-                                    <?php
-                                }
-                                ?>
+                                                                <?php
+                                                            }
+                                                            ?>
                                         <tr>
                                             <td colspan="5"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                                                     <tr>
                                                         <td class="smallText" valign="top"><?php
-                                echo $banners_split->display_count($banners_query_numrows,
-                                    MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'],
-                                    TEXT_DISPLAY_NUMBER_OF_BANNERS);
-                                ?></td>
+                                                        echo $banners_split->display_count(MAX_DISPLAY_SEARCH_RESULTS,
+                                                            $_GET['page'],
+                                                            TEXT_DISPLAY_NUMBER_OF_BANNERS);
+                                                            ?></td>
                                                         <td class="smallText" align="right"><?php
-                                echo $banners_split->display_links($banners_query_numrows,
-                                    MAX_DISPLAY_SEARCH_RESULTS,
-                                    MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+                                echo $banners_split->display_links(MAX_DISPLAY_PAGE_LINKS,
+                                    $_GET['page']);
                                 ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="smallText" align="right" colspan="2"><?php echo tep_draw_button(IMAGE_NEW_BANNER,
-                                'plus',
-                                tep_href_link(FILENAME_BANNER_MANAGER,
-                                    'action=new'));
+                                                        <td class="smallText" align="right" colspan="2"><?php
+                                echo tep_draw_button(IMAGE_NEW_BANNER, 'plus',
+                                    tep_href_link(FILENAME_BANNER_MANAGER,
+                                        'action=new'));
                                 ?></td>
                                                     </tr>
                                                 </table></td>
@@ -592,4 +604,4 @@ if ($action == 'new') {
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+
