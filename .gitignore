@@ -2,9 +2,9 @@
 #images
 #images NOT ignored uncomment:
 #!images
-images/thumbs
-images/thumbs/.htaccess
-images/paps
+#images/thumbs
+#images/thumbs/.htaccess
+#images/paps
 
 includes/configure.php
 admin/includes/configure.php
@@ -27,5 +27,3 @@ phinx.yml
 /gpe.signing_test.pem
 /gpwebpay-pvk.key
 /docs/
-/catalog/images/thumbs/
-/admin/ext/oscconfig/
