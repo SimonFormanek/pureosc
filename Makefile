@@ -3,6 +3,8 @@ all: 	clean fresh
 clean:
 	phinx seed:run -s Reset -c ./phinx-adapter.php
 
+adminreset:
+	phinx seed:run -s ResetAdmin -c ./phinx-adapter.php
 dbreset:
 	phinx seed:run -s Oscommerce -c ./phinx-adapter.php
 	phinx migrate -c ./phinx-adapter.php
