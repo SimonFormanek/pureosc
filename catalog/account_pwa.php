@@ -349,11 +349,11 @@ echo tep_draw_form('create_account',
         }
         ?>
         <div class="form-group has-feedback">
-            <label for="inputEmail" class="control-label col-xs-3"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
+            <label for="inputEmail" class="control-label col-xs-3"><?php echo _('E-Mail Address'); ?></label>
             <div class="col-xs-9">
                 <?php
                 echo tep_draw_input_field('email_address', NULL,
-                    'required aria-required="true" id="inputEmail" placeholder="'.ENTRY_EMAIL_ADDRESS.'"');
+                    'required aria-required="true" id="inputEmail" placeholder="'._('E-Mail Address').'"');
                 echo _('Required');
                 if (tep_not_null(ENTRY_EMAIL_ADDRESS_TEXT))
                         echo '<span class="help-block">'.ENTRY_EMAIL_ADDRESS_TEXT.'</span>';

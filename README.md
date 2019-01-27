@@ -29,6 +29,7 @@ FlexiBee support
  * CashDesk Paymet
  * Card Payment by GPWebPay
  * Post Money Order Payment
+ * Shop to FlexiBee init tool
 
 Whats new
 ---------

@@ -25,12 +25,13 @@ class d_total_customers
 
     function d_total_customers()
     {
-        $this->title       = MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_TITLE;
-        $this->description = MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_DESCRIPTION;
+        $this->title       = _('Total Customers Chart (last 30 days)');
+        $this->description = _('Show the total customers chart of the last 30 days');
 
         if (defined('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_STATUS')) {
-            $this->sort_order = MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_SORT_ORDER;
-            $this->enabled    = (MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_STATUS == 'True');
+            $this->sort_order = constant('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_SORT_ORDER');
+            $this->enabled    = ( constant('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_STATUS')
+                == 'True');
         }
     }
 
@@ -58,7 +59,7 @@ class d_total_customers
             $js_array = substr($js_array, 0, -1);
         }
 
-        $chart_label      = tep_output_string(MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_CHART_LINK);
+        $chart_label      = tep_output_string(_('Total Customers'));
         $chart_label_link = tep_href_link(FILENAME_CUSTOMERS);
 
         $output = <<<EOD
@@ -159,5 +160,3 @@ EOD;
         return array('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_STATUS', 'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_SORT_ORDER');
     }
 }
-
-

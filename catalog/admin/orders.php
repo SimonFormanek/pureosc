@@ -198,7 +198,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <td class="main"><?php echo $order->customer['telephone']; ?></td>
                                 </tr>
                                 <tr>
-                                    <td class="main"><strong><?php echo ENTRY_EMAIL_ADDRESS; ?></strong></td>
+                                    <td class="main"><strong><?php echo _('E-Mail Address'); ?></strong></td>
                                     <td class="main"><?php echo '<a href="mailto:'.$order->customer['email_address'].'"><u>'.$order->customer['email_address'].'</u></a>'; ?></td>
                                 </tr>
                             </table></td>

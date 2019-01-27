@@ -208,7 +208,7 @@ define('ENTRY_LAST_NAME_ERROR',
 define('ENTRY_DATE_OF_BIRTH', 'Geburtsdatum:', true);
 define('ENTRY_DATE_OF_BIRTH_ERROR',
     '&nbsp;<span class="errorText">(z.B. 21/05/1970)</span>', true);
-define('ENTRY_EMAIL_ADDRESS', 'eMail Adresse:', true);
+define('_('E-Mail Address')', 'eMail Adresse:', true);
 define('ENTRY_EMAIL_ADDRESS_ERROR',
     '&nbsp;<span class="errorText">mindestens '.ENTRY_EMAIL_ADDRESS_MIN_LENGTH.' Buchstaben</span>',
     true);
