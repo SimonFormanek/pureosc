@@ -40,7 +40,7 @@ if (isset($_POST[0])) {
 
             while ($db = tep_db_fetch_array($db_query)) {
                 $enabledArray[] = $db['groupname'];
-                $width = $height = substr($db['data'], 0, 2) + 1.'px';
+                $width = $height = substr($db['data'], 0, 2) + 1 . 'px';
                 $name           = $db['data'];
             }
 
@@ -62,7 +62,7 @@ if (isset($_POST[0])) {
                 if ($_POST[1] == 'saved' || $group == $_POST[1]) {
 
                     if ($group == $_POST[1]) { //othrwise load from the db - initial load only
-                        $width = $height = substr($group, 0, 2) + 1.'px';
+                        $width = $height = substr($group, 0, 2) + 1 .'px';
                         $name = $group;
 
                         switch ($name) {

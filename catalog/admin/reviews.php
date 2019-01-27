@@ -384,9 +384,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $reviews_query_raw = "select reviews_id, products_id, date_added, last_modified, reviews_rating, reviews_status, is_testimonial from ".TABLE_REVIEWS." order by date_added DESC";
-                            $reviews_split     = new splitPageResults($_GET['page'],
-                                MAX_DISPLAY_SEARCH_RESULTS, $reviews_query_raw,
-                                $reviews_query_numrows);
+                            $reviews_split     = new splitPageResults($reviews_query_raw,
+                                MAX_DISPLAY_SEARCH_RESULTS, '*' ,$_GET['page']);
                             $reviews_query     = tep_db_query($reviews_query_raw);
                             while ($reviews           = tep_db_fetch_array($reviews_query)) {
                                 if ((!isset($_GET['rID']) || (isset($_GET['rID'])
@@ -477,8 +476,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
             TEXT_DISPLAY_NUMBER_OF_REVIEWS);
         ?></td>
                                 <td class="smallText" align="right"><?php
-        echo $reviews_split->display_links($reviews_query_numrows,
-            MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']);
+        echo $reviews_split->display_links(MAX_DISPLAY_PAGE_LINKS);
         ?></td>
                             </tr>
                             <tr>
