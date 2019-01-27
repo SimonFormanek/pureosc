@@ -25,12 +25,12 @@ class d_orders
 
     function d_orders()
     {
-        $this->title       = MODULE_ADMIN_DASHBOARD_ORDERS_TITLE;
-        $this->description = MODULE_ADMIN_DASHBOARD_ORDERS_DESCRIPTION;
+        $this->title       = _('Orders');
+        $this->description = _('Show the latest orders');
 
         if (defined('MODULE_ADMIN_DASHBOARD_ORDERS_STATUS')) {
-            $this->sort_order = MODULE_ADMIN_DASHBOARD_ORDERS_SORT_ORDER;
-            $this->enabled    = (MODULE_ADMIN_DASHBOARD_ORDERS_STATUS == 'True');
+            $this->sort_order = constant('MODULE_ADMIN_DASHBOARD_ORDERS_SORT_ORDER');
+            $this->enabled    = (constant('MODULE_ADMIN_DASHBOARD_ORDERS_STATUS') == 'True');
         }
     }
 
@@ -40,10 +40,10 @@ class d_orders
 
         $output = '<table border="0" width="100%" cellspacing="0" cellpadding="4">'.
             '  <tr class="dataTableHeadingRow">'.
-            '    <td class="dataTableHeadingContent">'.MODULE_ADMIN_DASHBOARD_ORDERS_TITLE.'</td>'.
-            '    <td class="dataTableHeadingContent">'.MODULE_ADMIN_DASHBOARD_ORDERS_TOTAL.'</td>'.
-            '    <td class="dataTableHeadingContent">'.MODULE_ADMIN_DASHBOARD_ORDERS_DATE.'</td>'.
-            '    <td class="dataTableHeadingContent">'.MODULE_ADMIN_DASHBOARD_ORDERS_ORDER_STATUS.'</td>'.
+            '    <td class="dataTableHeadingContent">'._('Orders').'</td>'.
+            '    <td class="dataTableHeadingContent">'._('Total').'</td>'.
+            '    <td class="dataTableHeadingContent">'._('Date').'</td>'.
+            '    <td class="dataTableHeadingContent">'._('Status').'</td>'.
             '  </tr>';
 
         $orders_query = tep_db_query("select o.orders_id, o.customers_name, greatest(o.date_purchased, ifnull(o.last_modified, 0)) as date_last_modified, s.orders_status_name, ot.text as order_total from ".TABLE_ORDERS." o, ".TABLE_ORDERS_TOTAL." ot, ".TABLE_ORDERS_STATUS." s where o.orders_id = ot.orders_id and ot.class = 'ot_total' and o.orders_status = s.orders_status_id and s.language_id = '".(int) $languages_id."' order by date_last_modified desc limit 6");
@@ -90,4 +90,4 @@ class d_orders
     }
 }
 
-?>
+

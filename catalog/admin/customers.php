@@ -519,7 +519,7 @@ if ($action == 'edit' || $action == 'update') {
                     }
                     ?>
                     < tr >
-                    <td clas s="main"><?php echo ENTRY_EMAIL_ADDRESS; ?></td>
+                    <td clas s="main"><?php echo _('E-Mail Address'); ?></td>
                     <td class="main">
                         <?php
                         if ($error == true) {

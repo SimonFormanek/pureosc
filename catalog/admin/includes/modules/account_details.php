@@ -177,7 +177,7 @@ function sbs_get_country_list($name, $selected = '', $parameters = '')
                                     }
                                     ?>
                             <tr>
-                                <td class="main" width="130">&nbsp;<?php echo ENTRY_EMAIL_ADDRESS; ?></td>
+                                <td class="main" width="130">&nbsp;<?php echo _('E-Mail Address'); ?></td>
                                 <td class="main">&nbsp;
                                     <?php
                                     if ($is_read_only) {

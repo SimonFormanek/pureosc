@@ -1191,7 +1191,7 @@ include('order_editor/javascript.php');
                                                 ?>onChange="updateOrdersField('customers_telephone', encodeURIComponent(this.value))"<?php } ?>></td>
                                     </tr>
                                     <tr class="dataTableRow"> 
-                                        <td class="dataTableContent" valign="middle" align="right"><?php echo ENTRY_EMAIL_ADDRESS; ?></td>
+                                        <td class="dataTableContent" valign="middle" align="right"><?php echo _('E-Mail Address'); ?></td>
                                         <td colspan="3" valign="top" class="dataTableContent"><input name="update_customer_email_address" size="35" value="<?php echo $order->customer['email_address']; ?>" <?php if (ORDER_EDITOR_USE_AJAX
                                                 == 'true') {
                                                 ?>onChange="updateOrdersField('customers_email_address', encodeURIComponent(this.value))"<?php } ?>></td>

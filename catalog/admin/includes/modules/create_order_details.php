@@ -57,7 +57,7 @@
 }
 ?> 
                             <tr>
-                                <td class="main" width="130">&nbsp;<?php echo ENTRY_EMAIL_ADDRESS; ?></td>
+                                <td class="main" width="130">&nbsp;<?php echo _('E-Mail Address'); ?></td>
                                 <td class="main">&nbsp;<?php echo tep_draw_input_field('customers_email_address',
         $account['customers_email_address']).'&nbsp;'.ENTRY_EMAIL_ADDRESS_TEXT; ?></td>
                             </tr>

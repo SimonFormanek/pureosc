@@ -25,12 +25,12 @@ class d_total_revenue
 
     function d_total_revenue()
     {
-        $this->title       = MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_TITLE;
-        $this->description = MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_DESCRIPTION;
+        $this->title       = _('Total Revenue Chart (last 30 days)');
+        $this->description = _('Show the total revenue chart of the last 30 days');
 
         if (defined('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_STATUS')) {
-            $this->sort_order = MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_SORT_ORDER;
-            $this->enabled    = (MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_STATUS == 'True');
+            $this->sort_order = constant('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_SORT_ORDER');
+            $this->enabled    = (constant('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_STATUS') == 'True');
         }
     }
 
@@ -58,7 +58,7 @@ class d_total_revenue
             $js_array = substr($js_array, 0, -1);
         }
 
-        $chart_label      = tep_output_string(MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_CHART_LINK);
+        $chart_label      = tep_output_string(_('Total Revenue'));
         $chart_label_link = tep_href_link(FILENAME_ORDERS);
 
         $output = <<<EOD

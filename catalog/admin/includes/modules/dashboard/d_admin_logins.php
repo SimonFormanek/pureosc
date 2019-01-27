@@ -25,8 +25,8 @@ class d_admin_logins
 
     function d_admin_logins()
     {
-        $this->title       = MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_TITLE;
-        $this->description = MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_DESCRIPTION;
+        $this->title       = _('Last Administrator Logins');
+        $this->description = _('Show the last successful and failed administrator logins');
 
         if (defined('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_STATUS')) {
             $this->sort_order = MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_SORT_ORDER;
@@ -39,8 +39,8 @@ class d_admin_logins
         $output = '<table border="0" width="100%" cellspacing="0" cellpadding="4">'.
             '  <tr class="dataTableHeadingRow">'.
             '    <td class="dataTableHeadingContent" width="20">&nbsp;</td>'.
-            '    <td class="dataTableHeadingContent">'.MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_TITLE.'</td>'.
-            '    <td class="dataTableHeadingContent" align="right">'.MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_DATE.'</td>'.
+            '    <td class="dataTableHeadingContent">'._('Last Administrator Logins').'</td>'.
+            '    <td class="dataTableHeadingContent" align="right">'._('Date').'</td>'.
             '  </tr>';
 
         $logins_query = tep_db_query("select id, user_name, success, date_added from ".TABLE_ACTION_RECORDER." where module = 'ar_admin_login' order by date_added desc limit 6");

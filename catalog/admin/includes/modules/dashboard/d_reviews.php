@@ -23,12 +23,12 @@
     }
     
     function d_reviews() {
-      $this->title = MODULE_ADMIN_DASHBOARD_REVIEWS_TITLE;
-      $this->description = MODULE_ADMIN_DASHBOARD_REVIEWS_DESCRIPTION;
+      $this->title = _('Reviews');
+      $this->description = _('Show the latest reviews');
 
       if ( defined('MODULE_ADMIN_DASHBOARD_REVIEWS_STATUS') ) {
-        $this->sort_order = MODULE_ADMIN_DASHBOARD_REVIEWS_SORT_ORDER;
-        $this->enabled = (MODULE_ADMIN_DASHBOARD_REVIEWS_STATUS == 'True');
+        $this->sort_order = constant('MODULE_ADMIN_DASHBOARD_REVIEWS_SORT_ORDER');
+        $this->enabled = (constant('MODULE_ADMIN_DASHBOARD_REVIEWS_STATUS') == 'True');
       }
     }
 
@@ -37,11 +37,11 @@
 
       $output = '<table border="0" width="100%" cellspacing="0" cellpadding="4">' .
                 '  <tr class="dataTableHeadingRow">' .
-                '    <td class="dataTableHeadingContent">' . MODULE_ADMIN_DASHBOARD_REVIEWS_TITLE . '</td>' .
-                '    <td class="dataTableHeadingContent">' . MODULE_ADMIN_DASHBOARD_REVIEWS_DATE . '</td>' .
-                '    <td class="dataTableHeadingContent">' . MODULE_ADMIN_DASHBOARD_REVIEWS_REVIEWER . '</td>' .
-                '    <td class="dataTableHeadingContent">' . MODULE_ADMIN_DASHBOARD_REVIEWS_RATING . '</td>' .
-                '    <td class="dataTableHeadingContent">' . MODULE_ADMIN_DASHBOARD_REVIEWS_REVIEW_STATUS . '</td>' .
+                '    <td class="dataTableHeadingContent">' . _('Reviews') . '</td>' .
+                '    <td class="dataTableHeadingContent">' . _('Date') . '</td>' .
+                '    <td class="dataTableHeadingContent">' . _('Reviewer') . '</td>' .
+                '    <td class="dataTableHeadingContent">' . _('Rating') . '</td>' .
+                '    <td class="dataTableHeadingContent">' . _('Status') . '</td>' .
                 '  </tr>';
 
       $reviews_query = tep_db_query("select r.reviews_id, r.date_added, pd.products_name, r.customers_name, r.reviews_rating, r.reviews_status from " . TABLE_REVIEWS . " r, " . TABLE_PRODUCTS_DESCRIPTION . " pd where pd.products_id = r.products_id and pd.language_id = '" . (int)$languages_id . "' order by r.date_added desc limit 6");
@@ -82,4 +82,4 @@
       return array('MODULE_ADMIN_DASHBOARD_REVIEWS_STATUS', 'MODULE_ADMIN_DASHBOARD_REVIEWS_SORT_ORDER');
     }
   }
-?>
+  

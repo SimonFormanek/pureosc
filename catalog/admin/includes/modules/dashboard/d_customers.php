@@ -25,11 +25,11 @@ class d_customers
 
     function d_customers()
     {
-        $this->title       = MODULE_ADMIN_DASHBOARD_CUSTOMERS_TITLE;
-        $this->description = MODULE_ADMIN_DASHBOARD_CUSTOMERS_DESCRIPTION;
+        $this->title       = _('Customers');
+        $this->description = _('Show the newest customers');
 
         if (defined('MODULE_ADMIN_DASHBOARD_CUSTOMERS_STATUS')) {
-            $this->sort_order = MODULE_ADMIN_DASHBOARD_CUSTOMERS_SORT_ORDER;
+            $this->sort_order = constant('MODULE_ADMIN_DASHBOARD_CUSTOMERS_SORT_ORDER');
             $this->enabled    = (MODULE_ADMIN_DASHBOARD_CUSTOMERS_STATUS == 'True');
         }
     }
@@ -38,8 +38,8 @@ class d_customers
     {
         $output = '<table border="0" width="100%" cellspacing="0" cellpadding="4">'.
             '  <tr class="dataTableHeadingRow">'.
-            '    <td class="dataTableHeadingContent">'.MODULE_ADMIN_DASHBOARD_CUSTOMERS_TITLE.'</td>'.
-            '    <td class="dataTableHeadingContent" align="right">'.MODULE_ADMIN_DASHBOARD_CUSTOMERS_DATE.'</td>'.
+            '    <td class="dataTableHeadingContent">'._('Customers').'</td>'.
+            '    <td class="dataTableHeadingContent" align="right">'._('Date').'</td>'.
             '  </tr>';
 
         $customers_query = tep_db_query("select c.customers_id, c.customers_lastname, c.customers_firstname, ci.customers_info_date_account_created from ".TABLE_CUSTOMERS." c, ".TABLE_CUSTOMERS_INFO." ci where c.customers_id = ci.customers_info_id order by ci.customers_info_date_account_created desc limit 6");
@@ -84,4 +84,4 @@ class d_customers
     }
 }
 
-?>
+
