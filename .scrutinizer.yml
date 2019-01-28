@@ -9,7 +9,8 @@ build:
                 - mysql -u root -e "GRANT ALL PRIVILEGES ON pureosc.* TO pureosc@localhost IDENTIFIED BY 'pureosc'"
                 - composer self-update
                 - composer install --no-interaction
-                - ./vendor/bin/phinx seed:run -s Oscommerce -c ./phinx-adapter.php
+                - ls -la
+                - ./vendor/bin/phinx seed:run -s Oscommerce -c phinx-adapter.php
                 - ./vendor/bin/phinx migrate -c ./phinx-adapter.php
     analysis:
       tests:
