@@ -27,9 +27,6 @@ build:
               format: clover
 
 
-    environment:
-        php:
-            version: 7.1.0
     dependencies:
         before:
             - mysql -u root -e "CREATE DATABASE pureosc"
