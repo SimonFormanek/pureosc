@@ -1,6 +1,8 @@
 build:
   nodes:
     pureosc:
+        services:
+            mariadb: latest          
         dependencies:
             before:
                 - mysql -u root -e "CREATE DATABASE pureosc"
@@ -35,8 +37,4 @@ checks:
     php:
         code_rating: true
         duplication: true
-node:
-    pureosc:
-        services:
-            mariadb: latest          
             
