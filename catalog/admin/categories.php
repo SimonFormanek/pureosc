@@ -831,7 +831,7 @@ if ($action == 'new_product') {
                             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
                                         '24', '15') . '&nbsp;' . tep_draw_input_field('products_date_available',
                                         $pInfo->products_date_available,
-                                        'id="products_date_available"') . ' <small>(YYYY-MM-DD)</small>'; ?></td>
+                                        'id="products_date_available"class="hasDatepicker" ','date') . ' <small>(YYYY-MM-DD)</small>'; ?></td>
                         </tr>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
@@ -871,7 +871,9 @@ if ($action == 'new_product') {
                             <td class="main"><?php echo TEXT_PRODUCTS_MANUFACTURER; ?></td>
                             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
                                         '24', '15') . '&nbsp;' . tep_draw_pull_down_menu('manufacturers_id',
-                                        $manufacturers_array, $pInfo->manufacturers_id); ?></td>
+                                        $manufacturers_array, $pInfo->manufacturers_id); ?>
+                                <?php echo '<a href='. tep_href_link( 'manufacturers.php?page=0&mID=&action=new' ) .'><i class="fa fa-plus"></i>'._('Add new').'</a>'; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',

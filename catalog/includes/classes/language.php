@@ -19,11 +19,6 @@ class language
 
     public function __construct($lng = '')
     {
-        $this->language($lng);
-    }
-
-    function language($lng = '')
-    {
         $this->languages = array('af' => 'af|afrikaans',
             'ar' => 'ar([-_][[:alpha:]]{2})?|arabic',
             'be' => 'be|belarusian',
@@ -101,25 +96,16 @@ class language
     {
         if ((tep_not_null($language)) && (isset($this->catalog_languages[$language]))) {
             $this->language = $this->catalog_languages[$language];
+            $this->language['lng'] = $language;
         } else {
-            $this->language = $this->catalog_languages[DEFAULT_LANGUAGE];
+            $this->language = $this->catalog_languages[constant('DEFAULT_LANGUAGE')];
+            $this->language['lng'] = constant('DEFAULT_LANGUAGE');
         }
+            $this->language['locale'] = \Ease\Locale::langToLocale($this->language['lng']);
     }
 
     function get_browser_language()
     {
-        $this->browser_languages = explode(',', getenv('HTTP_ACCEPT_LANGUAGE'));
-
-        for ($i = 0, $n = sizeof($this->browser_languages); $i < $n; $i++) {
-            reset($this->languages);
-            /* while (list($key, $value) = each($this->languages)) { */
-            foreach ($this->languages as $key => $value) {
-                if (preg_match('/^('.$value.')(;q=[0-9]\\.[0-9])?$/i',
-                        $this->browser_languages[$i]) && isset($this->catalog_languages[$key])) {
-                    $this->language = $this->catalog_languages[$key];
-                    break 2;
-                }
-            }
-        }
+        return  $this->language = $this->catalog_languages[Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE'])];
     }
 }

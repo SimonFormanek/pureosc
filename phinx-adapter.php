@@ -6,7 +6,6 @@
  * @copyright  2018 Vitex@hippy.cz (G)
  */
 
-namespace Icinga\Editor;
 
 include_once './vendor/autoload.php';
 
@@ -15,6 +14,7 @@ include_once './vendor/autoload.php';
 if (file_exists('../oscconfig/dbconfigure.php')) {
     require_once '../oscconfig/dbconfigure.php';
 } else {
+    echo "Using BulitIN dbconfig\n";
     define('DB_PORT',3306);
     define('DB_SERVER', 'localhost');
     define('DB_DATABASE', 'pureosc');

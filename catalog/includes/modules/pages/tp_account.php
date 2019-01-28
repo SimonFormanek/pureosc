@@ -18,31 +18,31 @@ class tp_account
     {
         global $oscTemplate;
 
-        $oscTemplate->_data[$this->group] = array('account' => array('title' => MY_ACCOUNT_TITLE,
+        $oscTemplate->_data[$this->group] = array('account' => array('title' => _('My Account'),
                 'sort_order' => 10,
-                'links' => array('edit' => array('title' => MY_ACCOUNT_INFORMATION,
+                'links' => array('edit' => array('title' => _('View or change my account information.'),
                         'link' => tep_href_link(FILENAME_ACCOUNT_EDIT, '', 'SSL'),
                         'icon' => 'fa fa-user'),
-                    'address_book' => array('title' => MY_ACCOUNT_ADDRESS_BOOK,
+                    'address_book' => array('title' => _('View or change entries in my address book.'),
                         'link' => tep_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL'),
                         'icon' => 'fa fa-home'),
-                    'password' => array('title' => MY_ACCOUNT_PASSWORD,
+                    'password' => array('title' => _('Change my account password.'),
                         'link' => tep_href_link(FILENAME_ACCOUNT_PASSWORD, '',
                             'SSL'),
                         'icon' => 'fa fa-cog'))),
-            'orders' => array('title' => MY_ORDERS_TITLE,
+            'orders' => array('title' => _('My Orders'),
                 'sort_order' => 20,
-                'links' => array('history' => array('title' => MY_ORDERS_VIEW,
+                'links' => array('history' => array('title' => _('View the orders I have made.'),
                         'link' => tep_href_link(FILENAME_ACCOUNT_HISTORY, '',
                             'SSL'),
                         'icon' => 'fa fa-shopping-cart'))),
-            'notifications' => array('title' => EMAIL_NOTIFICATIONS_TITLE,
+            'notifications' => array('title' => _('E-Mail Notifications'),
                 'sort_order' => 30,
-                'links' => array('newsletters' => array('title' => EMAIL_NOTIFICATIONS_NEWSLETTERS,
+                'links' => array('newsletters' => array('title' => _('Subscribe or unsubscribe from newsletters.'),
                         'link' => tep_href_link(FILENAME_ACCOUNT_NEWSLETTERS,
                             '', 'SSL'),
                         'icon' => 'fa fa-envelope'),
-                    'products' => array('title' => EMAIL_NOTIFICATIONS_PRODUCTS,
+                    'products' => array('title' => _('View or change my product notification list.'),
                         'link' => tep_href_link(FILENAME_ACCOUNT_NOTIFICATIONS,
                             '', 'SSL'),
                         'icon' => 'fa fa-send'))));
@@ -86,5 +86,3 @@ class tp_account
         $oscTemplate->addContent($output, $this->group);
     }
 }
-
-?>

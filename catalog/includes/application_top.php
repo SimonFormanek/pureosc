@@ -31,7 +31,10 @@ if (file_exists('includes/local/configure.php')) { // for developers
 }
 
 if (empty(constant('DB_SERVER'))) {
-    die(_('DB_SERVER not defined'));
+    if (is_dir('install')) {
+        header('Location: install/index.php');
+        exit;
+    }
 }
 
 // some code to solve compatibility issues
@@ -259,6 +262,8 @@ if (!tep_session_is_registered('cart') || !is_object($cart)) {
 // include currencies class and create an instance
 $currencies = new currencies();
 
+$oPage = new Ease\Page();
+
 // include the mail classes
 //pure:modified
 // set the language
@@ -267,17 +272,16 @@ if (!tep_session_is_registered('language')) {
     tep_session_register('languages_id');
 }
 
-$lng = new language();
-if (!defined('DEFAULT_LANGUAGE')) {
-    $lng->set_language('cs');
-} else {
-    $lng->set_language(DEFAULT_LANGUAGE);
-}
+$force_language = $oPage->getRequestValue('language');
+
+$lng = new language(empty($force_language) ? (defined('DEFAULT_LANGUAGE') ? constant('DEFAULT_LANGUAGE')
+        : 'en') : $force_language);
 
 $language     = $lng->language['directory'];
 $languages_id = $lng->language['id'];
 
-\Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
+\Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
+
 //original version:
 // set the language
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
@@ -623,8 +627,6 @@ if (isset($_GET['articles_id'])) {
 require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
-
-$oPage = new Ease\Page();
 
 \Ease\Shared::instanced()->webPage($oPage);
 
