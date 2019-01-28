@@ -11,6 +11,11 @@ checks:
     php:
         code_rating: true
         duplication: true
+node:
+    my-node:
+        services:
+            mariadb: latest          
+          
         
 build:
   nodes:
@@ -19,11 +24,6 @@ build:
         override:
           - php-scrutinizer-run
           
-  node:
-    my-node:
-      services:
-        mariadb: latest          
-          
     coverage:
       tests:
         override:
@@ -31,8 +31,7 @@ build:
             coverage:
               file: coverage.xml
               format: clover
-
-
+              
     dependencies:
         before:
             - mysql -u root -e "CREATE DATABASE pureosc"
