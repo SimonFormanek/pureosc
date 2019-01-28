@@ -11,7 +11,7 @@ define('GENERATOR_INSTANCE', 'true'); // set to 'true'for generator dir set 'fal
 
 
 define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . 'catalog/');
-if ($_SERVER['REQUEST_SCHEME'] =='https') {
+if ($_SERVER['REQUEST_SCHEME'] =='https') { 
   $https = 'https';
   define('ENABLE_SSL', true); // <------ need to bee configured
 } else {

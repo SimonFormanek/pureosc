@@ -3,6 +3,8 @@ all: 	 fresh dbreset upgrade
 clean:
 	phinx seed:run -s Reset -c ./phinx-adapter.php
 
+adminreset:
+	phinx seed:run -s ResetAdmin -c ./phinx-adapter.php
 dbreset:
 	phinx seed:run -s Oscommerce -c ./phinx-adapter.php
 	phinx migrate -c ./phinx-adapter.php
@@ -46,6 +48,9 @@ lang:
 
 doc:
 	apigen generate --source catalog --destination docs --title "PureOSC" --charset UTF-8 --access-levels public --access-levels protected --php --tree
+
+phpunit:
+	phpunit --colors --log-junit /tmp/nb-phpunit-log.xml --bootstrap tests/bootstrap.php --configuration /home/vitex/Projects/PureHTML/pureosc/tests/configuration.xml --coverage-clover /tmp/nb-phpunit-coverage.xml /usr/share/netbeans/php/phpunit/NetBeansSuite.php -- --run=tests
 
 test:
 	codecept run

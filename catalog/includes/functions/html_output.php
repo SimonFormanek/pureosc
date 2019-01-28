@@ -17,8 +17,21 @@
   Released under the GNU General Public License
  */
 
-////
-// The HTML href link wrapper function ORIGINAL (unmodified)
+/**
+ * The HTML href link wrapper function ORIGINAL (unmodified)
+ * 
+ * @global string  $request_type
+ * @global boolean $session_started
+ * @global string  $SID
+ * 
+ * @param string  $page
+ * @param string  $parameters
+ * @param string  $connection
+ * @param boolean $add_session_id
+ * @param boolean $search_engine_safe
+ * 
+ * @return string
+ */
 function tep_href_link_original($page = '', $parameters = '',
                                 $connection = 'NONSSL', $add_session_id = true,
                                 $search_engine_safe = true)
@@ -85,8 +98,20 @@ function tep_href_link_original($page = '', $parameters = '',
     return $link;
 }
 
-//new seo_urls unmodified
-// The HTML href link wrapper function
+/**
+ * The HTML href link wrapper function
+ * 
+ * @global SEO_URL $seo_urls
+ * @global int $languages_id
+ * 
+ * @param string  $page
+ * @param string  $parameters
+ * @param string  $connection
+ * @param boolean $add_session_id
+ * @param boolean $search_engine_safe
+ * 
+ * @return string
+ */
 function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL',
                        $add_session_id = true, $search_engine_safe = true)
 {

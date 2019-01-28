@@ -31,8 +31,17 @@ class AdminCurrencies
                 'value' => $currencies['value']);
         }
     }
-
 // class methods
+
+    /**
+     * 
+     * @param type $number
+     * @param type $calculate_currency_value
+     * @param type $currency_type
+     * @param type $currency_value
+     * 
+     * @return string
+     */
     function format($number, $calculate_currency_value = true,
                     $currency_type = DEFAULT_CURRENCY, $currency_value = '')
     {
@@ -62,11 +71,26 @@ class AdminCurrencies
         return $format_string;
     }
 
+    /**
+     * 
+     * @param type $code
+     * 
+     * @return type
+     */
     function get_value($code)
     {
         return $this->currencies[$code]['value'];
     }
 
+    /**
+     * 
+     * @param type $products_price
+     * @param type $products_tax
+     * @param type $quantity
+     * @param type $currency_type
+     * 
+     * @return type
+     */
     function display_price($products_price, $products_tax, $quantity = 1,
                            $currency_type = DEFAULT_CURRENCY)
     {

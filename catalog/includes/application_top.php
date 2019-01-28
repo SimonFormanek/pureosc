@@ -20,7 +20,7 @@
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
-require_once dirname( __DIR__ ).'/../vendor/autoload.php' ;
+require_once dirname(__DIR__).'/../vendor/autoload.php';
 
 // load server configuration parameters
 if (file_exists('includes/local/configure.php')) { // for developers
@@ -47,7 +47,7 @@ date_default_timezone_set(defined('CFG_TIME_ZONE') ? CFG_TIME_ZONE : date_defaul
 $request_type = (getenv('HTTPS') == 'on') ? 'SSL' : 'NONSSL';
 
 // set php_self in the local scope
-$req      = parse_url($_SERVER['SCRIPT_NAME']);
+$req                 = parse_url($_SERVER['SCRIPT_NAME']);
 //PURE:NEW:PURE_SEO_URLS only if $_SERVER['PHP_SELF'] is empty...
 if (!($_SERVER['PHP_SELF']))
         $_SERVER['PHP_SELF'] = substr($req['path'],
@@ -84,7 +84,7 @@ tep_db_connect() or die('Unable to connect to database server!');
 // set the application parameters
 $configuration_query = tep_db_query('select configuration_key as cfgKey, configuration_value as cfgValue from '.TABLE_CONFIGURATION);
 while ($configuration       = tep_db_fetch_array($configuration_query)) {
-    if(defined($configuration['cfgKey'])){
+    if (defined($configuration['cfgKey'])) {
 //        echo sprintf( _('Configuration %s key alreay defined!'),$configuration['cfgKey']);
     } else {
         define($configuration['cfgKey'], $configuration['cfgValue']);
@@ -95,11 +95,12 @@ while ($configuration       = tep_db_fetch_array($configuration_query)) {
 // set the HTTP GET parameters manually if search_engine_friendly_urls is enabled
 if (SEARCH_ENGINE_FRIENDLY_URLS == 'true') {
     if (strlen(getenv('PATH_INFO')) > 1) {
-        $GET_array = array();
-        $_SERVER['PHP_SELF']  = str_replace(getenv('PATH_INFO'), '', $_SERVER['PHP_SELF']);
-        $vars      = explode('/', substr(getenv('PATH_INFO'), 1));
+        $GET_array           = array();
+        $_SERVER['PHP_SELF'] = str_replace(getenv('PATH_INFO'), '',
+            $_SERVER['PHP_SELF']);
+        $vars                = explode('/', substr(getenv('PATH_INFO'), 1));
         do_magic_quotes_gpc($vars);
-        $n         = sizeof($vars);
+        $n                   = sizeof($vars);
         for ($i = 0; $i < $n; $i++) {
             if (strpos($vars[$i], '[]')) {
                 $GET_array[substr($vars[$i], 0, -2)][] = $vars[$i + 1];
@@ -261,6 +262,8 @@ if (!tep_session_is_registered('cart') || !is_object($cart)) {
 // include currencies class and create an instance
 $currencies = new currencies();
 
+$oPage = new Ease\Page();
+
 // include the mail classes
 //pure:modified
 // set the language
@@ -269,17 +272,16 @@ if (!tep_session_is_registered('language')) {
     tep_session_register('languages_id');
 }
 
-$lng = new language();
-if (!defined('DEFAULT_LANGUAGE')) {
-    $lng->set_language('cs');
-} else {
-    $lng->set_language(DEFAULT_LANGUAGE);
-}
+$force_language = $oPage->getRequestValue('language');
+
+$lng = new language(empty($force_language) ? (defined('DEFAULT_LANGUAGE') ? constant('DEFAULT_LANGUAGE')
+        : 'en') : $force_language);
 
 $language     = $lng->language['directory'];
 $languages_id = $lng->language['id'];
 
-\Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
+\Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
+
 //original version:
 // set the language
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
@@ -625,8 +627,6 @@ if (isset($_GET['articles_id'])) {
 require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
-
-$oPage = new Ease\Page();
 
 \Ease\Shared::instanced()->webPage($oPage);
 

@@ -75,7 +75,16 @@ class splitPageResults
     }
     /* class functions */
 
-// display split-page-number-links
+    /**
+     * display split-page-number-links
+     * 
+     * @global string $request_type
+     * 
+     * @param int $max_page_links
+     * @param string $parameters
+     * 
+     * @return string
+     */
     function display_links($max_page_links, $parameters = '')
     {
         global $request_type;
@@ -145,7 +154,13 @@ class splitPageResults
         return $display_links_string;
     }
 
-// display number of total products found
+    /**
+     * display number of total products found
+     * 
+     * @param string $text_output
+     * 
+     * @return string
+     */
     function display_count($text_output)
     {
         $to_num = ($this->number_of_rows_per_page * $this->current_page_number);

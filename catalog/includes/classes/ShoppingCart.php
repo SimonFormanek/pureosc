@@ -41,7 +41,7 @@ class shoppingCart
 // insert current cart contents in database
         if (is_array($this->contents)) {
             reset($this->contents);
-            while (list($products_id, ) = each($this->contents)) {
+            foreach (array_keys($this->contents) as $products_id){
                 $qty           = $this->contents[$products_id]['qty'];
                 $product_query = tep_db_query("select products_id from ".TABLE_CUSTOMERS_BASKET." where customers_id = '".(int) $customer_id."' and products_id = '".tep_db_input($products_id)."'");
                 if (!tep_db_num_rows($product_query)) {

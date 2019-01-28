@@ -142,8 +142,15 @@ function tep_black_line()
     return tep_image(DIR_WS_IMAGES.'pixel_black.gif', '', '100%', '1');
 }
 
-////
-// Output a separator either through whitespace, or with an image
+/**
+ * Output a separator either through whitespace, or with an image
+ * 
+ * @param string $image
+ * @param int    $width
+ * @param int    $height
+ * 
+ * @return string
+ */
 function tep_draw_separator($image = 'pixel_black.gif', $width = '100%',
                             $height = '1')
 {

@@ -46,17 +46,12 @@ class httpClient
     var $useProxy        = false;
     var $proxyHost, $proxyPort;
 
-    public function __construct($host = '', $port = '')
-    {
-        $this->httpClient($host, $port);
-    }
-
     /**
      * httpClient constructor
      * Note: when host and port are defined, the connection is immediate
      * @seeAlso connect
      * */
-    function httpClient($host = '', $port = '')
+    public function __construct($host = '', $port = '')
     {
         if (tep_not_null($host)) {
             $this->connect($host, $port);
@@ -78,8 +73,10 @@ class httpClient
     /**
      * setProtocolVersion
      * define the HTTP protocol version to use
+     * 
      * @param version string the version number with one decimal: "0.9", "1.0", "1.1"
      * when using 1.1, you MUST set the mandatory headers "Host"
+     * 
      * @return boolean false if the version number is bad, true if ok
      * */
     function setProtocolVersion($version)
@@ -95,6 +92,7 @@ class httpClient
     /**
      * set a username and password to access a protected resource
      * Only "Basic" authentication scheme is supported yet
+     * 
      * @param username string - identifier
      * @param password string - clear password
      * */
@@ -145,6 +143,7 @@ class httpClient
      * open the connection to the server
      * @param host string server address (or IP)
      * @param port string server listening port - defaults to 80
+     * 
      * @return boolean false is connection failed, true otherwise
      * */
     function Connect($host, $port = '')
