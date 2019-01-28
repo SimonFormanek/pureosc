@@ -1,29 +1,12 @@
-#uncommnet next line to IGNORE images:
-#images
-#images NOT ignored uncomment:
-#!images
-#images/thumbs
-#images/thumbs/.htaccess
-#images/paps
-
-includes/configure.php
-admin/includes/configure.php
-includes/work/*
-admin/images/graphs/*.png
-/OM/Work/*
-!OM/Work/CoreUpdate/update.phar.pubkey
-OM/Config/local_settings.ini
-OM/Custom/*
-!OM/Custom/README
-mailhive/common/templates_c/
-admin/.htaccess
-mailhive/cloudbeez/cloudloader/install.log
+/catalog/includes/configure.php
+/catalog/admin/includes/configure.php
+/catalog/includes/work/*
+/catalog/admin/images/graphs/*.png
 /nbproject/private/
 /vendor/
 /composer.lock
-phinx.yml
+/phinx.yml
 !/tests/phinx.yml
 /gpe.signing_test.cer
 /gpe.signing_test.pem
 /gpwebpay-pvk.key
-/docs/
