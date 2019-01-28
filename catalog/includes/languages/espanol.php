@@ -138,7 +138,7 @@ define('ENTRY_DATE_OF_BIRTH_ERROR',
     'Su fecha de nacimiento debe estar en este formato : DD/MM/YYYY (ej 21/05/1970)',
     true);
 define('ENTRY_DATE_OF_BIRTH_TEXT', '* (ej. 21/05/1970)', true);
-define('_('E-Mail Address')', 'Correo Electr&oacute;nico:', true);
+define('ENTRY_EMAIL_ADDRESS', 'Correo Electr&oacute;nico:', true);
 define('ENTRY_EMAIL_ADDRESS_ERROR',
     'Su direcci&oacute;n de Correo Electr&oacute;nico debe contener un m&iacute;nimo de '.ENTRY_EMAIL_ADDRESS_MIN_LENGTH.' caracteres.',
     true);
