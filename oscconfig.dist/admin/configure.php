@@ -38,7 +38,7 @@ define('DIR_WS_MODULES', DIR_WS_INCLUDES . 'modules/');
 define('DIR_WS_LANGUAGES', DIR_WS_INCLUDES . 'languages/');
 define('DIR_WS_CATALOG_LANGUAGES', DIR_WS_CATALOG . 'includes/languages/');
 define('DIR_FS_CATALOG_LANGUAGES', DIR_FS_CATALOG . 'includes/languages/');
-define('DIR_FS_CATALOG_IMAGES', DIR_FS_MASTER_ROOT_DIR . 'images/'); // <------ need to bee configured
+define('DIR_FS_CATALOG_IMAGES', DIR_FS_MASTER_ROOT_DIR . 'catalog/images/'
 define('DIR_FS_CATALOG_MODULES', DIR_FS_CATALOG . 'includes/modules/');
 define('DIR_FS_BACKUP', DIR_FS_ADMIN . '../../data/backups/');
 define('DIR_FS_DOWNLOAD', DIR_FS_CATALOG . 'download/');
