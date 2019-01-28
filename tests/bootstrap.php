@@ -7,6 +7,7 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 
 \Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
 
+define('DB_PORT',3306);
 define('DB_SERVER', 'localhost');
 define('DB_DATABASE', 'pureosc');
 define('DB_SERVER_USERNAME', 'pureosc');

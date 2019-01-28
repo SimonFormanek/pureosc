@@ -15,6 +15,7 @@ include_once './vendor/autoload.php';
 if (file_exists('../oscconfig/dbconfigure.php')) {
     require_once '../oscconfig/dbconfigure.php';
 } else {
+    define('DB_PORT',3306);
     define('DB_SERVER', 'localhost');
     define('DB_DATABASE', 'pureosc');
     define('DB_SERVER_USERNAME', 'pureosc');
