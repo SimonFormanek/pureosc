@@ -1078,9 +1078,7 @@ if ($action == 'new_product') {
                                 $('#piList').sortable({
                                     containment: 'parent'
                                 });
-                                va
-                                r
-                                piSize = <?php echo $pi_counter; ?>;
+                                var piSize = <?php echo $pi_counter; ?>;
 
                                 function addNewPiForm() {
                                     piSize++;
