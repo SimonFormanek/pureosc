@@ -1,61 +1,39 @@
 <?php
 /*
-  $Id$
+  $Id: tell_a_friend.php,v 1.7 2003/06/10 18:20:39 hpdl Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
   Copyright (c) 2003 osCommerce
 
-  Edited by 2014 Newburns Design and Technology
- * ************************************************
- * *********** New addon definitions **************
- * ***********        Below          **************
- * ************************************************
-  Mail Manager added -- http://addons.oscommerce.com/info/9133/v,23
-
   Released under the GNU General Public License
- */
+*/
 
-define('NAVBAR_TITLE', 'Upozorněte přítele', true);
+define('NAVBAR_TITLE', 'Upozorniť priateľa');
 
-define('HEADING_TITLE', 'Upozorněte přítele \'%s\'', true);
+define('HEADING_TITLE', 'Upozornite priateľov o \'%s\'');
 
-define('FORM_TITLE_CUSTOMER_DETAILS', 'Vaše údaje', true);
-define('FORM_TITLE_FRIEND_DETAILS', 'Váš přítel', true);
-define('FORM_TITLE_FRIEND_MESSAGE', 'Vaše zpráva', true);
+define('FORM_TITLE_CUSTOMER_DETAILS', 'Detaily o vás');
+define('FORM_TITLE_FRIEND_DETAILS', 'Detaily o vašom priateľovi');
+define('FORM_TITLE_FRIEND_MESSAGE', 'Vaša správa');
 
-define('FORM_FIELD_CUSTOMER_NAME', 'Vaše jméno:', true);
-define('FORM_FIELD_CUSTOMER_EMAIL', 'Váš e-mail:', true);
-define('FORM_FIELD_FRIEND_NAME', 'jméno Vašeho přítele:', true);
-define('FORM_FIELD_FRIEND_EMAIL', 'e-mail Vašeho přítele:', true);
+define('FORM_FIELD_CUSTOMER_NAME', 'Vaše meno:');
+define('FORM_FIELD_CUSTOMER_EMAIL', 'Váš e-mail:');
+define('FORM_FIELD_FRIEND_NAME', 'Meno vášho priateľa:');
+define('FORM_FIELD_FRIEND_EMAIL', 'E-mail vášho priateľa:');
 
-define('TEXT_EMAIL_SUCCESSFUL_SENT',
-    'Váš e-mail o zboží <strong>%s</strong> byl odeslán an adresu <strong>%s</strong>.',
-    true);
+define('TEXT_EMAIL_SUCCESSFUL_SENT', 'Váš e-mail o <b>%s</b> bol úspešne odoslaný na adresu <b>%s</b>.');
 
-define('TEXT_EMAIL_SUBJECT', 'Váš přítel %s doporučil zboží z %s', true);
-define('TEXT_EMAIL_INTRO',
-    'Dobrý den %s!'."\n\n".'Váš přítel, %s, si myslí, že by Vás mohlo zajímat zboží %s z %s.',
-    true);
-define('TEXT_EMAIL_LINK',
-    'Pro zobrazení zboží klikněte na následující odkaz:'."\n\n".'%s', true);
-define('TEXT_EMAIL_SIGNATURE', 'S pozdravem,'."\n\n".'%s', true);
+define('TEXT_EMAIL_SUBJECT', 'Váš priateľ %s vám doporučuje tento produkt z %s');
+define('TEXT_EMAIL_INTRO', 'Ahoj %s,' . "\n\n" . 'Váš priateľ, %s si myslí, že by vás mohol zaujímať produkt %s z %s.');
+define('TEXT_EMAIL_LINK', 'Pre zobrazenie ďalších informácií kliknite na následujúci odkaz alebo skopírujte a vložte tento odkaz do vášho web prehliadača:' . "\n\n" . '%s');
+define('TEXT_EMAIL_SIGNATURE', 'S pozdravom,' . "\n\n" . '%s');
 
-define('ERROR_TO_NAME', 'Chyba: jméno Vašeho přítele musí být vyplněno.', true);
-define('ERROR_TO_ADDRESS', 'Chyba: e-mail vašeho přítele je chybný.', true);
-define('ERROR_FROM_NAME', 'Chyba: Vaše jméno musí být vyplněno.', true);
-define('ERROR_FROM_ADDRESS', 'Chyba: Váš e-mail musí být vyplněn.', true);
-define('ERROR_ACTION_RECORDER',
-    'Chyba: e-mail je připraven k odeslání. Prosím zkuste znovu za %s minut.',
-    true);
-/*
- * ***********************************************************************
- * ************* Custom Filenames can be defined below here **************
- * *************               Raymond Burns                **************
- * ***********************************************************************
- */
-// Mail Manager
-define('TEXT_RECOMMEND', 'Doporučil', true);
-define('TEXT_FROM', 'od', true);
+define('ERROR_TO_NAME', 'Chyba: Meno vášho priateľa nesmie zostať prázdne.');
+define('ERROR_TO_ADDRESS', 'Chyba: e-mail vášho priateľa musí byť platný.');
+define('ERROR_FROM_NAME', 'Chyba: Vaše meno nesmie zostať prázdne.');
+define('ERROR_FROM_ADDRESS', 'Chyba: Váš e-mail musí byť platný.');
+define('ERROR_ACTION_RECORDER', 'Chyba: E-mail bol už odoslaný, prosíme skúste znova za% s minút .');
+
 ?>

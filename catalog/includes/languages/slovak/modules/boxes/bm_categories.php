@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_CATEGORIES_TITLE', 'Kategorie',true);
-  define('MODULE_BOXES_CATEGORIES_DESCRIPTION', 'ukázat strom kategorií',true);
-  define('MODULE_BOXES_CATEGORIES_BOX_TITLE', 'Kategorie',true);
+  define('MODULE_BOXES_CATEGORIES_TITLE', 'kategórie');
+  define('MODULE_BOXES_CATEGORIES_DESCRIPTION', 'Zobraziť kategórie v navigačnom strome');
+  define('MODULE_BOXES_CATEGORIES_BOX_TITLE', 'kategórie');
 ?>

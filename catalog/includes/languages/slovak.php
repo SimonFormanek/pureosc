@@ -1,30 +1,28 @@
 <?php
 /*
-  $Id$
+  $Id: english.php,v 1.114 2003/07/09 18:13:39 dgw_ Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2013 osCommerce
-  
-  Edited by 2014 Newburns Design and Technology
-  *************************************************
-  ************ New addon definitions **************
-  ************        Below          **************
-  *************************************************
-  SEO Header Tags Reloaded added -- http://addons.oscommerce.com/info/8864
-  Credit Class, Gift Vouchers & Discount Coupons osC2.3.3.4 (CCGV) added -- http://addons.oscommerce.com/info/9020
-  Mail Manager added -- http://addons.oscommerce.com/info/9133/v,23
-  
+  Copyright (c) 2003 osCommerce
+
   Released under the GNU General Public License
 */
 
-define('DATE_FORMAT_SHORT', '%d.%m.%Y',true);  // this is used for strftime()
-define('DATE_FORMAT_LONG', '%A %d %B, %Y',true); // this is used for strftime()
-define('DATE_FORMAT', 'd.m.Y',true); // this is used for date()
-define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S',true);
-define('JQUERY_DATEPICKER_I18N_CODE', 'cs',true); // leave empty for en_US; see http://jqueryui.com/demos/datepicker/#localization pure:todo
-define('JQUERY_DATEPICKER_FORMAT', 'mm.dd.yy',true); // see http://docs.jquery.com/UI/Datepicker/formatDate
+// look in your $PATH_LOCALE/locale directory for available locales
+// or type locale -a on the server.
+// Examples:
+// on RedHat try 'en_US'
+// on FreeBSD try 'en_US.ISO_8859-1'
+// on Windows try 'en', or 'English'
+//@setlocale(LC_ALL, 'Slovak_Slovak.1250');
+@setlocale(LC_ALL, 'sk_SK.UTF-8');
+
+define('DATE_FORMAT_SHORT', '%d.%m.%Y');  // this is used for strftime()
+define('DATE_FORMAT_LONG', '%d. %m. %Y'); // this is used for strftime()
+define('DATE_FORMAT', 'd.m.Y'); // this is used for date()
+define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
 
 ////
 // Return date in raw format
@@ -32,354 +30,219 @@ define('JQUERY_DATEPICKER_FORMAT', 'mm.dd.yy',true); // see http://docs.jquery.c
 // raw date is in format YYYYMMDD, or DDMMYYYY
 function tep_date_raw($date, $reverse = false) {
   if ($reverse) {
-    return substr($date, 3, 2) . substr($date, 0, 2) . substr($date, 6, 4);
+    return substr($date, 0, 2) . substr($date, 3, 2) . substr($date, 6, 4);
   } else {
-    return substr($date, 6, 4) . substr($date, 0, 2) . substr($date, 3, 2);
+    return substr($date, 6, 4) . substr($date, 3, 2) . substr($date, 0, 2);
   }
 }
 
 // if USE_DEFAULT_LANGUAGE_CURRENCY is true, use the following currency, instead of the applications default currency (used when changing language)
-define('LANGUAGE_CURRENCY', 'CZK',true);
+//define('LANGUAGE_CURRENCY', 'SKK');
+define('LANGUAGE_CURRENCY', 'EUR');
 
 // Global entries for the <html> tag
-define('HTML_PARAMS', 'dir="ltr" lang="cs"',true);
+define('HTML_PARAMS','dir="LTR" lang="sk"');
 
 // charset for web pages and emails
-define('CHARSET', 'utf-8',true);
+define('CHARSET', 'utf-8');
 
 // page title
 define('TITLE', STORE_NAME);
 
 // header text in includes/header.php
-define('HEADER_TITLE_CREATE_ACCOUNT', 'Založit účet',true);
-define('HEADER_TITLE_MY_ACCOUNT', 'můj účet',true);
-define('HEADER_TITLE_CART_CONTENTS', 'košík',true);
-define('HEADER_TITLE_CHECKOUT', 'pokladna',true);
-define('HEADER_TITLE_TOP', '<i class="glyphicon glyphicon-home"><span class="sr-only">shop-name.domain</span></i>',true);
-define('HEADER_TITLE_CATALOG', 'Home',true);
-define('HEADER_TITLE_LOGOFF', 'Odhlásit',true);
-define('HEADER_TITLE_LOGIN', 'Přihlásit',true);
+define('HEADER_TITLE_CREATE_ACCOUNT', 'Vytvoriť účet');
+define('HEADER_TITLE_MY_ACCOUNT', 'Môj účet');
+define('HEADER_TITLE_CART_CONTENTS', 'Obsah košíka');
+define('HEADER_TITLE_CHECKOUT', 'Pokladňa');
+define('HEADER_TITLE_TOP', 'Domov');
+define('HEADER_TITLE_CATALOG', 'Katalóg');
+define('HEADER_TITLE_LOGOFF', 'Odhlásiť sa');
+define('HEADER_TITLE_LOGIN', 'Prihlásiť sa');
+
+// footer text in includes/footer.php
+define('FOOTER_TEXT_REQUESTS_SINCE', 'prístupov od');
 
 // text for gender
-define('MALE', 'M<span class="hidden-xs">už</span>',true);
-define('FEMALE', 'Ž<span class="hidden-xs">ena</span>',true);
-define('MALE_ADDRESS', 'Pan',true);
-define('FEMALE_ADDRESS', 'Paní',true);
+define('MALE', 'Muž');
+define('FEMALE', 'Žena');
+define('MALE_ADDRESS', 'pán');
+define('FEMALE_ADDRESS', 'pani');
 
 // text for date of birth example
-define('DOB_FORMAT_STRING', 'mm/dd/yyyy',true);
-
+define('DOB_FORMAT_STRING', 'dd.mm.rrrr');
 // checkout procedure text
-define('CHECKOUT_BAR_DELIVERY', 'Dodání',true);
-define('CHECKOUT_BAR_PAYMENT', 'Platba',true);
-define('CHECKOUT_BAR_CONFIRMATION', 'Potvrdit',true);
-define('CHECKOUT_BAR_FINISHED', 'Dokončeno!',true);
+define('CHECKOUT_BAR_DELIVERY', 'Informácie o dodávke');
+define('CHECKOUT_BAR_PAYMENT', 'Informácie o platbe');
+define('CHECKOUT_BAR_CONFIRMATION', 'Potvrdenie');
+define('CHECKOUT_BAR_FINISHED', 'Dokončenie objednávky');
 
 // pull down default text
-define('PULL_DOWN_DEFAULT', 'vyberte',true);
-define('TYPE_BELOW', 'Napsat níže',true);
+define('PULL_DOWN_DEFAULT', 'Vyberte si');
+define('TYPE_BELOW', 'Napíšte');
 
 // javascript messages
-define('JS_ERROR', 'Ve formuláři je chyba.\n\nOpravte následující:\n\n',true);
+define('JS_ERROR', 'Vyskytly sa chyby pri spracovávaní vášho formulára.\n\nOpravte následujúce položky:\n\n');
 
-define('JS_REVIEW_TEXT', '* The \'Review Text\' musí mít nejméně ' . REVIEW_TEXT_MIN_LENGTH . ' znaků.\n',true);
-define('JS_REVIEW_RATING', '* Přepočítat zboží\n',true);
+define('JS_REVIEW_TEXT', '* \'Text komentára\' musí mať minimálne ' . REVIEW_TEXT_MIN_LENGTH . ' znakov.\n');
+define('JS_REVIEW_RATING', '* Musíte produkt ohodnotiť.\n');
 
-define('JS_ERROR_NO_PAYMENT_MODULE_SELECTED', '* Prosíme vyberte typ platby.\n',true);
+define('JS_ERROR_NO_PAYMENT_MODULE_SELECTED', '* Prosím vyberte spôsob platby pre vašu objednávku.\n');
 
-define('JS_ERROR_SUBMITTED', 'Formulář může být odeslán. Zmáčkněte Ok a vyčkejte.',true);
+define('JS_ERROR_SUBMITTED', 'Tento formulár už bol odoslaný. Stlačte Ok a počkajte na dokončenie procesu.');
 
-define('ERROR_NO_PAYMENT_MODULE_SELECTED', 'Vyberte způsob platby Vaší objednávky.',true);
+define('ERROR_NO_PAYMENT_MODULE_SELECTED', 'Prosím vyberte spôsob platby pre vašu objednávku.');
 
-define('CATEGORY_COMPANY', 'Společnost',true);
-define('CATEGORY_PERSONAL', 'Osobní',true);
-define('CATEGORY_ADDRESS', 'Adresa',true);
-define('CATEGORY_CONTACT', 'Kontakt',true);
-define('CATEGORY_OPTIONS', 'Nastavení',true);
-define('CATEGORY_PASSWORD', 'Heslo',true);
+define('CATEGORY_COMPANY', 'Údaje o firme');
+define('CATEGORY_PERSONAL', 'Vaše osobné údaje');
+define('CATEGORY_ADDRESS', 'Vaša adresa');
+define('CATEGORY_CONTACT', 'Vaše kontaktné informácie');
+define('CATEGORY_OPTIONS', 'Možnosti');
+define('CATEGORY_PASSWORD', 'Vaše heslo');
 
-define('ENTRY_COMPANY', 'Společnost:',true);
-define('ENTRY_COMPANY_TEXT', '',true);
-define('ENTRY_GENDER', 'Pohlaví:',true);
-define('ENTRY_GENDER_ERROR', 'Vyberte pohlaví',true);
-define('ENTRY_GENDER_TEXT', '',true);
-define('ENTRY_FIRST_NAME', 'Jméno:',true);
-define('ENTRY_FIRST_NAME_ERROR', 'Vaše jméno musí mít nejméně ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_FIRST_NAME_TEXT', '',true);
-define('ENTRY_LAST_NAME', 'Příjmení:',true);
-define('ENTRY_LAST_NAME_ERROR', 'Vaše příjmení musí mít nejméně ' . ENTRY_LAST_NAME_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_LAST_NAME_TEXT', '',true);
-define('ENTRY_DATE_OF_BIRTH', 'Datum narození:',true);
-define('ENTRY_DATE_OF_BIRTH_ERROR', 'Datum narození ve tvaru: MM/DD/YYYY (eg 05/21/1970)',true);
-define('ENTRY_DATE_OF_BIRTH_TEXT', '* (např. 05/21/1970)',true);
-define('ENTRY_EMAIL_ADDRESS', 'E-Mail:',true);
-define('ENTRY_EMAIL_ADDRESS_ERROR', 'E-Mail musí mít nejméně ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'E-Mail je špatně, opravte jej.',true);
-define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Váš E-Mail je již v databázi.',true);
-define('ENTRY_EMAIL_ADDRESS_TEXT', '',true);
-define('ENTRY_STREET_ADDRESS', 'Ulice:',true);
-define('ENTRY_STREET_ADDRESS_ERROR', 'Ulice musí mít nejméně ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_STREET_ADDRESS_TEXT', '',true);
-define('ENTRY_SUBURB', 'Čtvrť:',true);
-define('ENTRY_SUBURB_TEXT', '',true);
-define('ENTRY_POST_CODE', 'PSČ:',true);
-define('ENTRY_POST_CODE_ERROR', 'PSČ musí mít nejméně ' . ENTRY_POSTCODE_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_POST_CODE_TEXT', '',true);
-define('ENTRY_CITY', 'Město:',true);
-define('ENTRY_CITY_ERROR', 'Město musí mít nejméně ' . ENTRY_CITY_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_CITY_TEXT', '',true);
-define('ENTRY_STATE', 'Stát:',true);
-define('ENTRY_STATE_ERROR', 'Stát musí mít nejméně ' . ENTRY_STATE_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_STATE_ERROR_SELECT', 'Please select a state from the States pull down menu.',true);
-define('ENTRY_STATE_TEXT', '',true);
-define('ENTRY_COUNTRY', 'Země:',true);
-define('ENTRY_COUNTRY_ERROR', 'Vyberte zemi v menu.',true);
-define('ENTRY_COUNTRY_TEXT', '',true);
-define('ENTRY_TELEPHONE_NUMBER', 'Telefon:',true);
-define('ENTRY_TELEPHONE_NUMBER_ERROR', 'Telefonní číslo musí mít nejméně ' . ENTRY_TELEPHONE_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_TELEPHONE_NUMBER_TEXT', '',true);
-define('ENTRY_FAX_NUMBER', 'Fax:',true);
-define('ENTRY_FAX_NUMBER_TEXT', '',true);
-define('ENTRY_NEWSLETTER', 'Novinky:',true);
-define('ENTRY_NEWSLETTER_TEXT', '',true);
-define('ENTRY_NEWSLETTER_YES', 'Přihlásit k zasílání',true);
-define('ENTRY_NEWSLETTER_NO', 'Odhlásit zasílání',true);
-define('ENTRY_PASSWORD', 'Heslo:',true);
-define('ENTRY_PASSWORD_ERROR', 'Vaše heslo musí mít nejméně ' . ENTRY_PASSWORD_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_PASSWORD_ERROR_NOT_MATCHING', 'Hesla nejsou stejná.',true);
-define('ENTRY_PASSWORD_TEXT', '',true);
-define('ENTRY_PASSWORD_CONFIRMATION', 'Heslo znovu:',true);
-define('ENTRY_PASSWORD_CONFIRMATION_TEXT', '',true);
-define('ENTRY_PASSWORD_CURRENT', 'Původní heslo:',true);
-define('ENTRY_PASSWORD_CURRENT_TEXT', '',true);
-define('ENTRY_PASSWORD_CURRENT_ERROR', 'Vaše heslo musí mít nejméně ' . ENTRY_PASSWORD_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_PASSWORD_NEW', 'Nové heslo:',true);
-define('ENTRY_PASSWORD_NEW_TEXT', '',true);
-define('ENTRY_PASSWORD_NEW_ERROR', 'Vaše nové heslo musí mít nejméně ' . ENTRY_PASSWORD_MIN_LENGTH . ' znaků.',true);
-define('ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING', 'Hesla nejsou stejná.',true);
-define('PASSWORD_HIDDEN', '--HIDDEN--',true);
+define('ENTRY_COMPANY', 'Meno firmy:');
+define('ENTRY_COMPANY_TEXT', '');
+define('ENTRY_GENDER', 'Pohlavie:');
+define('ENTRY_GENDER_ERROR', 'Výber pohlavia.');
+define('ENTRY_GENDER_TEXT', '*');
+define('ENTRY_FIRST_NAME', 'Krstné meno:');
+define('ENTRY_FIRST_NAME_ERROR', 'Krstné meno musí mať minimálne ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' znakov.');
+define('ENTRY_FIRST_NAME_TEXT', '*');
+define('ENTRY_LAST_NAME', 'Priezvisko:');
+define('ENTRY_LAST_NAME_ERROR', 'Priezvisko musí mať minimálne ' . ENTRY_LAST_NAME_MIN_LENGTH . ' znakov.');
+define('ENTRY_LAST_NAME_TEXT', '*');
+define('ENTRY_DATE_OF_BIRTH', 'Dátum narodenia:');
+define('ENTRY_DATE_OF_BIRTH_ERROR', 'Dátum narodenia musí byť vo formáte: DD.MM.RRRR (napr. 21.05.1970)');
+define('ENTRY_DATE_OF_BIRTH_TEXT', '* (napr. 21.05.1970)');
+define('ENTRY_EMAIL_ADDRESS', 'E-Mail:');
+define('ENTRY_EMAIL_ADDRESS_ERROR', 'E-Mail musí mať minimálne ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' znakov.');
+define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Tvar vašej e-mailovej adresy je nesprávny. Opravte si ju prosím.');
+define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Vašu e-mailovú adresu už máme zaregistrovanú. Prihláste sa s ňou, alebo sa zaregistrujte s inou e-mailovou adresou.');
+define('ENTRY_EMAIL_ADDRESS_TEXT', '*');
+define('ENTRY_STREET_ADDRESS', 'Ulica:');
+define('ENTRY_STREET_ADDRESS_ERROR', 'Ulica musí mať minimálne ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' znakov.');
+define('ENTRY_STREET_ADDRESS_TEXT', '*');
+define('ENTRY_SUBURB', 'Predmestie:');
+define('ENTRY_SUBURB_TEXT', '');
+define('ENTRY_POST_CODE', 'PSČ:');
+define('ENTRY_POST_CODE_ERROR', 'PSČ musí mať minimálne ' . ENTRY_POSTCODE_MIN_LENGTH . ' znakov.');
+define('ENTRY_POST_CODE_TEXT', '*');
+define('ENTRY_CITY', 'Mesto:');
+define('ENTRY_CITY_ERROR', 'Mesto musí mať minimálne ' . ENTRY_CITY_MIN_LENGTH . ' znakov.');
+define('ENTRY_CITY_TEXT', '*');
+define('ENTRY_STATE', 'Štát:');
+define('ENTRY_STATE_ERROR', 'Štát musí mať minimálne ' . ENTRY_STATE_MIN_LENGTH . ' znakov.');
+define('ENTRY_STATE_ERROR_SELECT', 'Vyberte prosím štát z rozbalovacieho menu.');
+define('ENTRY_STATE_TEXT', '*');
+define('ENTRY_COUNTRY', 'Krajina:');
+define('ENTRY_COUNTRY_ERROR', 'Vyberte prosím krajinu z rozbalovacieho menu.');
+define('ENTRY_COUNTRY_TEXT', '*');
+define('ENTRY_TELEPHONE_NUMBER', 'Telefón:');
+define('ENTRY_TELEPHONE_NUMBER_ERROR', 'Telefon musí mať minimálne ' . ENTRY_TELEPHONE_MIN_LENGTH . ' znakov.');
+define('ENTRY_TELEPHONE_NUMBER_TEXT', '*');
+define('ENTRY_FAX_NUMBER', 'Fax:');
+define('ENTRY_FAX_NUMBER_TEXT', '');
+define('ENTRY_NEWSLETTER', 'Novinky e-mailom:');
+define('ENTRY_NEWSLETTER_TEXT', '');
+define('ENTRY_NEWSLETTER_YES', 'Prihlásený');
+define('ENTRY_NEWSLETTER_NO', 'Odhlásený');
+define('ENTRY_PASSWORD', 'Heslo:');
+define('ENTRY_PASSWORD_ERROR', 'Heslo musí mať minimálne ' . ENTRY_PASSWORD_MIN_LENGTH . ' znakov.');
+define('ENTRY_PASSWORD_ERROR_NOT_MATCHING', 'Potvrdenie hesla musí byť zhodné s vašim heslom.');
+define('ENTRY_PASSWORD_TEXT', '*');
+define('ENTRY_PASSWORD_CONFIRMATION', 'Potvrdenie hesla:');
+define('ENTRY_PASSWORD_CONFIRMATION_TEXT', '*');
+define('ENTRY_PASSWORD_CURRENT', 'Aktuálne heslo:');
+define('ENTRY_PASSWORD_CURRENT_TEXT', '*');
+define('ENTRY_PASSWORD_CURRENT_ERROR', 'Heslo musí mať minimálne ' . ENTRY_PASSWORD_MIN_LENGTH . ' znakov.');
+define('ENTRY_PASSWORD_NEW', 'Nové heslo:');
+define('ENTRY_PASSWORD_NEW_TEXT', '*');
+define('ENTRY_PASSWORD_NEW_ERROR', 'Nové heslo musí mať minimálne ' . ENTRY_PASSWORD_MIN_LENGTH . ' znakov.');
+define('ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING', 'Potvrdenie hesla musí byť zhodné s vašim novým heslom.');
+define('PASSWORD_HIDDEN', '--HIDDEN--');
+
+define('FORM_REQUIRED_INFORMATION', '* Povinné údaje');
 
 // constants for use in tep_prev_next_display function
-define('TEXT_RESULT_PAGE', 'Celkem stránek:',true);
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Zobrazeno <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> produktů)',true);
-define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Zobrazeno <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> objednávek)',true);
-define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'Zobrazeno <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> hodnocení)',true);
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_NEW', 'Zobrazeno <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> novinek)',true);
-define('TEXT_DISPLAY_NUMBER_OF_SPECIALS', 'Zobrazeno <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> slev)',true);
+define('TEXT_RESULT_PAGE', 'Stránky:');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Zobrazujem <b>%d</b> až <b>%d</b> (z <b>%d</b> produktov)');
+define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Zobrazujem <b>%d</b> až <b>%d</b> (z <b>%d</b> objednávok)');
+define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'Zobrazujem <b>%d</b> až <b>%d</b> (z <b>%d</b> komentárov)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_NEW', 'Zobrazujem <b>%d</b> až <b>%d</b> (z <b>%d</b> nových produktov)');
+define('TEXT_DISPLAY_NUMBER_OF_SPECIALS', 'Zobrazujem <b>%d</b> až <b>%d</b> (z <b>%d</b> zliav)');
 
-define('PREVNEXT_TITLE_FIRST_PAGE', 'První stránka',true);
-define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Předchozí stránka',true);
-define('PREVNEXT_TITLE_NEXT_PAGE', 'Další stránka',true);
-define('PREVNEXT_TITLE_LAST_PAGE', 'Poslední stránka',true);
-define('PREVNEXT_TITLE_PAGE_NO', 'Stránka %d',true);
-define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Předcházejících %d stránek',true);
-define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Dalších %d stránek',true);
-define('PREVNEXT_BUTTON_FIRST', '&lt;&lt;první',true);
-define('PREVNEXT_BUTTON_PREV', '[&lt;&lt;&nbsp;předchozí]',true);
-define('PREVNEXT_BUTTON_NEXT', '[další&nbsp;&gt;&gt;]',true);
-define('PREVNEXT_BUTTON_LAST', 'poslední&gt;&gt;',true);
+define('PREVNEXT_TITLE_FIRST_PAGE', 'Prvá strana');
+define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Predošlá strana');
+define('PREVNEXT_TITLE_NEXT_PAGE', 'Následujúca strana');
+define('PREVNEXT_TITLE_LAST_PAGE', 'Posledná strana');
+define('PREVNEXT_TITLE_PAGE_NO', 'Strana %d');
+define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Predošlá sada %d stránok');
+define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Následujúca sada %d stránok');
+define('PREVNEXT_BUTTON_FIRST', '&lt;&lt;PRVÁ');
+define('PREVNEXT_BUTTON_PREV', '[&lt;&lt;&nbsp;Predošlá]');
+define('PREVNEXT_BUTTON_NEXT', '[Následujúca&nbsp;&gt;&gt;]');
+define('PREVNEXT_BUTTON_LAST', 'POSLEDNÁ&gt;&gt;');
 
-define('IMAGE_BUTTON_ADD_ADDRESS', 'Přidat adresu',true);
-define('IMAGE_BUTTON_ADDRESS_BOOK', 'Adresář',true);
-define('IMAGE_BUTTON_BACK', 'Zpět',true);
-define('IMAGE_BUTTON_BUY_NOW', 'objednat',true);
-define('IMAGE_BUTTON_CHANGE_ADDRESS', 'Změnit adresu',true);
-define('IMAGE_BUTTON_CHECKOUT', 'Pokladna',true);
-define('IMAGE_BUTTON_CONFIRM_ORDER', 'Potvrdit objednávku',true);
-define('IMAGE_BUTTON_CONTINUE', 'pokračovat',true);
-define('IMAGE_BUTTON_CONTINUE_SHOPPING', 'Pokračovat v nákupu',true);
-define('IMAGE_BUTTON_DELETE', 'Smazat',true);
-define('IMAGE_BUTTON_EDIT_ACCOUNT', 'Upravit účet',true);
-define('IMAGE_BUTTON_HISTORY', 'Historie objednávek',true);
-define('IMAGE_BUTTON_LOGIN', 'přihlásit',true);
-define('IMAGE_BUTTON_IN_CART', 'Koupit',true);
-define('IMAGE_BUTTON_NOTIFICATIONS', 'Zpráva',true);
-define('IMAGE_BUTTON_QUICK_FIND', 'Rychlé hledání',true);
-define('IMAGE_BUTTON_REMOVE_NOTIFICATIONS', 'Smazat zprávu',true);
-define('IMAGE_BUTTON_REVIEWS', 'Hodnocení',true);
-define('IMAGE_BUTTON_SEARCH', 'Vyhledat',true);
-define('IMAGE_BUTTON_SHIPPING_OPTIONS', 'Doprava',true);
-define('IMAGE_BUTTON_TELL_A_FRIEND', 'Dejte vědět příteli',true);
-define('IMAGE_BUTTON_UPDATE', 'obnovit',true);
-define('IMAGE_BUTTON_UPDATE_CART', 'Obnovit košík',true);
-define('IMAGE_BUTTON_WRITE_REVIEW', 'Zapsat hodnocení',true);
+define('IMAGE_BUTTON_ADD_ADDRESS', 'Pridať adresu');
+define('IMAGE_BUTTON_ADDRESS_BOOK', 'Adresár');
+define('IMAGE_BUTTON_BACK', 'Späť');
+define('IMAGE_BUTTON_BUY_NOW', 'Kúpiť');
+define('IMAGE_BUTTON_CHANGE_ADDRESS', 'Zmena adresy');
+define('IMAGE_BUTTON_CHECKOUT', 'Pokladňa');
+define('IMAGE_BUTTON_CONFIRM_ORDER', 'Potvrdiť objednávku');
+define('IMAGE_BUTTON_CONTINUE', 'Pokračovať');
+define('IMAGE_BUTTON_CONTINUE_SHOPPING', 'Pokračovať v nákupe');
+define('IMAGE_BUTTON_DELETE', 'Odstrániť');
+define('IMAGE_BUTTON_EDIT_ACCOUNT', 'Upraviť užívateľský účet');
+define('IMAGE_BUTTON_HISTORY', 'História objednávok');
+define('IMAGE_BUTTON_LOGIN', 'Prihlásiť sa');
+define('IMAGE_BUTTON_IN_CART', 'Pridať do košíka');
+define('IMAGE_BUTTON_NOTIFICATIONS', 'Upozornenie');
+define('IMAGE_BUTTON_QUICK_FIND', 'Rýchle hľadanie');
+define('IMAGE_BUTTON_REMOVE_NOTIFICATIONS', 'Odstrániť oznmámenia');
+define('IMAGE_BUTTON_REVIEWS', 'Komentáre');
+define('IMAGE_BUTTON_SEARCH', 'Hľadanie');
+define('IMAGE_BUTTON_SHIPPING_OPTIONS', 'Možnosti dopravy');
+define('IMAGE_BUTTON_TELL_A_FRIEND', 'Upozorniť priateľa');
+define('IMAGE_BUTTON_UPDATE', 'Aktualizovať');
+define('IMAGE_BUTTON_UPDATE_CART', 'Aktualizovať obsah košíka');
+define('IMAGE_BUTTON_WRITE_REVIEW', 'Napísať komentár');
 
-define('SMALL_IMAGE_BUTTON_DELETE', 'Smazat',true);
-define('SMALL_IMAGE_BUTTON_EDIT', 'Upravit',true);
-define('SMALL_IMAGE_BUTTON_VIEW', 'Zobrazit',true);
-define('SMALL_IMAGE_BUTTON_BUY', 'Koupit',true);
+define('SMALL_IMAGE_BUTTON_DELETE', 'Odstrániť');
+define('SMALL_IMAGE_BUTTON_EDIT', 'Upraviť');
+define('SMALL_IMAGE_BUTTON_VIEW', 'Zobraziť');
 
-define('ICON_ARROW_RIGHT', 'dále',true);
-define('ICON_CART', 'v košíku',true);
-define('ICON_ERROR', 'chyba',true);
-define('ICON_SUCCESS', 'správně',true);
-define('ICON_WARNING', 'Pozor',true);
+define('ICON_ARROW_RIGHT', 'viac');
+define('ICON_CART', 'Do košíka');
+define('ICON_ERROR', 'Chyba');
+define('ICON_SUCCESS', 'Úspešne');
+define('ICON_WARNING', 'Varovanie');
 
-define('TEXT_GREETING_PERSONAL', 'Vítejte zpět <span class="greetUser">%s!</span> Chcete se podívat jaké máme <a href="%s"><u>novinky</u></a> od Vašeho posledního nákupu?',true);
-define('TEXT_GREETING_PERSONAL_RELOGON', '<small>Pokud ne, %s, prosíme <a href="%s"><u>přihlaste se</u></a> na váš účet.</small>',true);
-define('TEXT_GREETING_GUEST', 'Vítejte <span class="greetUser">návštěvníku!</span> Chcete se  <a href="%s"><u>přihlásit</u></a>? nebo teprve <a href="%s"><u>zaregistrovat</u></a>?',true); 
+define('TEXT_GREETING_PERSONAL', 'Vitajte späť <span class="greetUser">%s</span>, zaujímajú vás <a href="%s"><u>naše novinky</u></a> v predaji?');
+define('TEXT_GREETING_PERSONAL_RELOGON', '<small>Pokiaľ nie ste %s, <a href="%s"><u>prihláste sa prosím</u></a> pomocou vašich prihlasovacích údajov.</small>');
+define('TEXT_GREETING_GUEST', 'Vitajte <span class="greetUser">Hosť!</span>, chcete sa <a href="%s"><u>zaregistrovať</u></a>? alebo si chcete <a href="%s"><u>vytvoriť účet</u></a>?');
 
-define('TEXT_SORT_PRODUCTS', 'seřadit',true);
-define('TEXT_DESCENDINGLY', 'sestupně',true);
-define('TEXT_ASCENDINGLY', 'vzestupně',true);
-define('TEXT_BY', ' by ',true);
+define('TEXT_SORT_PRODUCTS', 'Triediť produkty ');
+define('TEXT_DESCENDINGLY', 'zostupne');
+define('TEXT_ASCENDINGLY', 'vzostupne');
+define('TEXT_BY', ' podľa ');
 
-define('TEXT_REVIEW_BY', 'od %s',true);
-define('TEXT_REVIEW_WORD_COUNT', '%s slov',true);
-define('TEXT_REVIEW_RATING', 'hodnocení: %s [%s]',true);
-define('TEXT_REVIEW_DATE_ADDED', 'přidáno: %s',true);
-define('TEXT_NO_REVIEWS', 'žádná nová hodnocení.',true);
+define('TEXT_REVIEW_BY', 'podľa %s');
+define('TEXT_REVIEW_WORD_COUNT', '%s slov');
+define('TEXT_REVIEW_RATING', 'Hodnotenie: %s [%s]');
+define('TEXT_REVIEW_DATE_ADDED', 'Dátum vloženia: %s');
+define('TEXT_NO_REVIEWS', 'Momentálne tu nie sú žiadne komentáre.');
 
-define('TEXT_NO_NEW_PRODUCTS', 'žádné nové produkty.',true);
+define('TEXT_NO_NEW_PRODUCTS', 'Momentálne tu nie sú žiadne produkty.');
 
-define('TEXT_UNKNOWN_TAX_RATE', 'Unknown tax rate',true);
+define('TEXT_UNKNOWN_TAX_RATE', 'Nezistená daň');
 
-define('TEXT_REQUIRED', '<span class="errorText">je nutné</span>',true);
+define('TEXT_REQUIRED', '<span class="errorText">Vyžadované</span>');
 
-define('ERROR_TEP_MAIL', '<font face="Verdana, Arial" size="2" color="#ff0000"><strong><small>TEP ERROR:</small> Cannot send the email through the specified SMTP server. Please check your php.ini setting and correct the SMTP server if necessary.</strong></font>',true);
+define('ERROR_TEP_MAIL', '<font face="Verdana, Arial" size="2" color="#ff0000"><b><small>TEP CHYBA:</small> Nemožno zaslať mail cez špecifikovaný SMTP server. Prosím skontrolujte vaše nastavenia v php.ini a ak je nevýhnutné opravte nastavenia SMTP servera.</b></font>');
+define('TEXT_CCVAL_ERROR_INVALID_DATE', 'Dátum expirácie kreditnej karty je neplatný.<br>Skontrolujte ho a skúste to znova.');
+define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'Zadané číslo kreditnej karty je neplatné.<br>Skontrolujte ho a skúste to znova.');
+define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'Prvé štvorčíslie zadaného čísla kreditnej karty je: %s<br>Pokiaľ je toto číslo správne, tento typ kreditných kariet neprijímame.');
 
-define('TEXT_CCVAL_ERROR_INVALID_DATE', 'The expiry date entered for the credit card is invalid. Please check the date and try again.',true);
-define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'The credit card number entered is invalid. Please check the number and try again.',true);
-define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'The first four digits of the number entered are: %s. If that number is correct, we do not accept that type of credit card. If it is wrong, please try again.',true);
+define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . tep_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a><br />Powered by <a href="http://www.shopwebshop.eu/osc_shop/catalog/" target="_blank">shopwebshop.eu</a>');
 
-// category views
-define('TEXT_VIEW', 'Zobrazit: ',true);
-define('TEXT_VIEW_LIST', ' Seznam',true);
-define('TEXT_VIEW_GRID', ' Grid',true);
-
-// search placeholder
-define('TEXT_SEARCH_PLACEHOLDER','Vyhledávání',true);
-
-// message for required inputs
-define('FORM_REQUIRED_INFORMATION', '<span class="glyphicon glyphicon-asterisk inputRequirement"></span> Nutno vyplnit',true);
-define('FORM_REQUIRED_INPUT', '<span><span class="glyphicon glyphicon-asterisk form-control-feedback inputRequirement"></span></span>',true);
-
-// reviews
-define('REVIEWS_TEXT_RATED', 'Hodnoceno %s s <cite title="%s" itemprop="recenzent">%s</cite>',true);
-define('REVIEWS_TEXT_AVERAGE', 'Hodnocení <span itemprop="počet">%s</span> recenzí %s',true);
-define('REVIEWS_TEXT_TITLE', 'Co říkají naši zákazníci...',true);
-
-// grid/list
-
-// moved from index
-define('TABLE_HEADING_IMAGE', '',true);
-define('TABLE_HEADING_MODEL', 'Model',true);
-define('TABLE_HEADING_PRODUCTS', 'Název zboží',true);
-define('TABLE_HEADING_MANUFACTURER', 'Výrobce',true);
-define('TABLE_HEADING_QUANTITY', 'Množství',true);
-define('TABLE_HEADING_PRICE', 'Cena',true);
-define('TABLE_HEADING_WEIGHT', 'Váha',true);
-define('TABLE_HEADING_BUY_NOW', 'Koupit',true);
-//pure: removed define('TABLE_HEADING_LATEST_ADDED', 'Poslední zboží',true);
-define('TABLE_HEADING_DATE_AVAILABLE','Nejnovější zboží',true);
-define('TABLE_HEADING_CUSTOM_DATE','Podle data',true);
-define('TABLE_HEADING_SORT_ORDER','Pořadí',true);
-
-// product notifications
-define('PRODUCT_SUBSCRIBED', '%s bylo přidána do vašeho seznamu',true);
-define('PRODUCT_UNSUBSCRIBED', '%s bylo odebráno z vašeho seznamu',true);
-define('PRODUCT_ADDED', '%s přidáno do vašeho košíku',true);
-define('PRODUCT_REMOVED', '%s odebráno z vašeho košíku',true);
-
-// bootstrap helper
-define('MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION', '',true);
-
-// sorting product_listing module
-
-/*
-************************************************************************
-************** Custom Filenames can be defined below here **************
-**************               Raymond Burns                **************
-************************************************************************
-*/
-// SEO Header Tags Reloaded
-  //header titles
-define('HEADER_CART_CONTENTS', '<i class="glyphicon fa-shopping-cart"></i> %s kusů<span class="caret"></span>',true);
-define('HEADER_CART_NO_CONTENTS', '<i class="glyphicon fa-shopping-cart"></i><span class="hidden-lg hidden-md hidden-sm"> košík</span><span class="caret"></span>',true); //pure:static version needed clickable statc cart if you go back to generated page - no idea about cart contents
-define('HEADER_ACCOUNT_LOGGED_OUT', '<span class="hidden-sm"> přihlásit se/registrace</span> <span class="caret"></span>',true);
-define('HEADER_ACCOUNT_LOGGED_IN', '<i class="glyphicon glyphicon-user"></i> %s <span class="caret"></span>',true);
-define('HEADER_SITE_SETTINGS', '<i class="glyphicon glyphicon-cog"></i><span class="hidden-sm"> Site Settings</span> <span class="caret"></span>',true);
-define('HEADER_TOGGLE_NAV', 'Toggle Navigation',true);
-define('HEADER_HOME', '<i class="glyphicon glyphicon-home"></i><span class="hidden-sm"> Home</span>',true);
-define('HEADER_WHATS_NEW', '<i class="glyphicon glyphicon-certificate"></i><span class="hidden-sm">  Nové zboží</span>',true);
-define('HEADER_SPECIALS', '<i class="glyphicon glyphicon-fire"></i><span class="hidden-sm"> Speciální nabídky</span>',true);
-define('HEADER_REVIEWS', '<i class="glyphicon glyphicon-comment"></i><span class="hidden-sm"> Hodnocení</span>',true);
-// header dropdowns
-define('HEADER_ACCOUNT_LOGIN', '<i class="glyphicon glyphicon-log-in"></i> Přihlásit',true);
-define('HEADER_ACCOUNT_LOGOFF', '<i class="glyphicon glyphicon-log-out"></i> Odhlásit',true);
-define('HEADER_ACCOUNT', 'Můj účet',true);
-define('HEADER_ACCOUNT_HISTORY', 'Moje objednávky',true);
-define('HEADER_ACCOUNT_EDIT', 'Moje údaje',true);
-define('HEADER_ACCOUNT_ADDRESS_BOOK', 'Můj Adresář',true);
-define('HEADER_ACCOUNT_PASSWORD', 'Heslo',true);
-define('HEADER_ACCOUNT_REGISTER', '<i class="glyphicon glyphicon-pencil"></i> Registrace',true);
-define('HEADER_CART_HAS_CONTENTS', '%s item(s), %s',true);
-define('HEADER_CART_VIEW_CART', 'Košík',true);
-define('HEADER_CART_CHECKOUT', '<i class="glyphicon glyphicon-chevron-right"></i> Pokladna',true);
-define('USER_LOCALIZATION', '<abbr title="Vybraný jazyk">L:</abbr> %s <abbr title="Vybraná měna">C:</abbr> %s',true);
-
-// CCGV
-  define('VOUCHER_BALANCE', 'Voucher Balance',true);
-  define('BOX_HEADING_GIFT_VOUCHER', 'Dárkový poukaz účet',true);
-  define('GV_FAQ', 'Gift Voucher FAQ',true);
-  define('IMAGE_REDEEM_VOUCHER', 'Redeem',true);
-  define('ERROR_REDEEMED_AMOUNT', 'Congratulations, you have redeemed ',true);
-  define('ERROR_NO_REDEEM_CODE', 'You did not enter a redeem code.',true);
-  define('ERROR_NO_INVALID_REDEEM_GV', 'nesprávný kód',true);
-  define('TABLE_HEADING_CREDIT', 'Discount Coupon',true);
-  define('GV_HAS_VOUCHERA', 'Máte finanční prostředky na vašem účtu dárkového poukazu. If you want <br>                           you can send those funds by <a class="pageResults" href="',true);
-  define('GV_HAS_VOUCHERB', '"><b>email</b></a> to someone',true);
-  define('ENTRY_AMOUNT_CHECK_ERROR', 'Nemáte dostatek finančních prostředků.',true);
-  define('BOX_SEND_TO_FRIEND', 'Zaslat dárkový poukaz',true);
-  define('VOUCHER_REDEEMED', 'Voucher Redeemed',true);
-  define('CART_COUPON', 'Kupon :',true);
-  define('CART_COUPON_INFO', 'další info',true);
-// MailManager
-  define('BOX_HEADING_MAIL_MANAGER', 'Mail Manager',true);
-  define('BOX_MM_BULKMAIL', 'BulkMail Manager',true);
-  define('BOX_MM_TEMPLATES', 'Template Manager',true);
-  define('BOX_MM_EMAIL', 'Zaslat e-mail',true);
-  define('BOX_MM_RESPONSEMAIL', 'Response Mail',true);
-//pure:new link to advanced search
-  define('IMAGE_BUTTON_ADVANCED_SEARCH_LINK','podrobné',true);
-//VAT numbber
-define('ENTRY_VAT_NUMBER_TEXT_2', '',true);
-define('ENTRY_COMPANY_NUMBER_TEXT_2', '',true);
-
-/**** BEGIN ARTICLE MANAGER ****/
-define('BOX_HEADING_ARTICLES', 'Články');
-define('BOX_ALL_ARTICLES', 'Všechny články');
-define('BOX_ALL_BLOG_ARTICLES', 'Všechny blogy');
-define('BOX_ARTICLE_SUBMIT', 'Odeslat článek');
-define('BOX_ARTICLE_TOPICS', 'Všechny kategorie');
-define('BOX_NEW_ARTICLES', 'Nový článek');
-define('TEXT_ARTICLE_SEARCH', 'Vyhledávání v článcích');
-define('TEXT_ARTICLE_SEARCH_STRING', 'hledat článek');
-define('TEXT_DISPLAY_NUMBER_OF_ARTICLES', 'Zobrazuji <b>%d</b> až <b>%d</b> (z <b>%d</b> článků)');
-define('TEXT_DISPLAY_NUMBER_OF_ARTICLES_NEW', 'Zobrazuji <b>%d</b> až <b>%d</b> (z <b>%d</b> nových článků)');
-define('TEXT_ARTICLES', 'Níže je seznam všech článků od nejnovějších k nejstarším.');
-define('TABLE_HEADING_AUTHOR', 'Autor');
-define('TABLE_HEADING_ABSTRACT', 'Shrnutí');
-define('TEXT_PXSELL_ARTICLES', 'Příbuzné články');
-define('BOX_HEADING_AUTHORS', 'Články podle autora');
-define('BOX_ARTICLES_BLOG_COMMENTS', 'Diskuse k článkům');
-define('NAVBAR_TITLE_DEFAULT', 'Články');
-define('BOX_RSS_ARTICLES', 'RSS Feed k článkům');
-define('BOX_UPCOMING_ARTICLES', 'Připravované články');
-define('BOX_HEADING_TELL_A_FRIEND', 'Poslat na e-mail');
-/**** END ARTICLE MANAGER ****/
-
-/*** Begin Header Tags SEO ***/
-define('BOX_HEADING_HEADERTAGS_TAGCLOUD', 'Populární vyhledávání');
-define('TEXT_SEE_MORE', 'více');
-define('TEXT_SEE_MORE_FULL', 'více o %s');
-define('HTS_OG_AVAILABLE_STOCK', 'Sostupnost skladem');
-define('HTS_OG_PRICE', 'Cena');
-/*** End Header Tags SEO ***/
-
-//oik
-define('HEADER_AUTHORS','AUTOŘI');
-define('HEADER_NEWS','AKTUALITY');
-define('HEADER_ABOUT_US','O NÁS');
-define('XHEADER_CONTACT_US','KONTAKTY');
-define('HEADER_ADVANCED_SEARCH','podrobné vyhledávání');
+?>

@@ -10,11 +10,11 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_INFORMATION_TITLE', 'Informace',true);
-  define('MODULE_BOXES_INFORMATION_DESCRIPTION', 'ukázat stránku s informacemi',true);
-  define('MODULE_BOXES_INFORMATION_BOX_TITLE', 'Informace',true);
-  define('MODULE_BOXES_INFORMATION_BOX_PRIVACY', 'Ochrana soukromí',true);
-  define('MODULE_BOXES_INFORMATION_BOX_CONDITIONS', 'Podmínky použití',true);
-  define('MODULE_BOXES_INFORMATION_BOX_SHIPPING', 'Doprava &amp; vracení',true); //cs?
-  define('MODULE_BOXES_INFORMATION_BOX_CONTACT', 'Kontakt',true);
+  define('MODULE_BOXES_INFORMATION_TITLE', 'informácie');
+  define('MODULE_BOXES_INFORMATION_DESCRIPTION', 'Zobraziť informácie Odkazy');
+  define('MODULE_BOXES_INFORMATION_BOX_TITLE', 'informácie');
+  define('MODULE_BOXES_INFORMATION_BOX_PRIVACY', 'oznámenie');
+  define('MODULE_BOXES_INFORMATION_BOX_CONDITIONS', 'podmienky');
+  define('MODULE_BOXES_INFORMATION_BOX_SHIPPING', 'Ako nakupovať');
+  define('MODULE_BOXES_INFORMATION_BOX_CONTACT', 'Kontaktujte nás');
 ?>

@@ -1,6 +1,6 @@
 <?php
 /*
-  $Id$
+  $Id: address_book_process.php,v 1.9 2003/05/22 14:39:32 hpdl Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -8,40 +8,32 @@
   Copyright (c) 2003 osCommerce
 
   Released under the GNU General Public License
- */
+*/
 
-define('NAVBAR_TITLE_1', 'Můj účet', true);
-define('NAVBAR_TITLE_2', 'Adresář', true);
+define('NAVBAR_TITLE_1', 'Môj účet');
+define('NAVBAR_TITLE_2', 'Adresár');
 
-define('NAVBAR_TITLE_ADD_ENTRY', 'Nové', true);
-define('NAVBAR_TITLE_MODIFY_ENTRY', 'Upravit', true);
-define('NAVBAR_TITLE_DELETE_ENTRY', 'Smazat', true);
+define('NAVBAR_TITLE_ADD_ENTRY', 'Nový záznam');
+define('NAVBAR_TITLE_MODIFY_ENTRY', 'Aktualizovať záznam');
+define('NAVBAR_TITLE_DELETE_ENTRY', 'Odstrániť záznam');
 
-define('HEADING_TITLE_ADD_ENTRY', 'Přidání nové adresy', true);
-define('HEADING_TITLE_MODIFY_ENTRY', 'Oprava vybrané adresy', true);
-define('HEADING_TITLE_DELETE_ENTRY', 'Smazat vybranou adresu', true);
+define('HEADING_TITLE_ADD_ENTRY', 'Nový záznam adresára');
+define('HEADING_TITLE_MODIFY_ENTRY', 'Aktualizovať záznam');
+define('HEADING_TITLE_DELETE_ENTRY', 'Odstrániť záznam');
 
-define('DELETE_ADDRESS_TITLE', 'Smazat adresu', true);
-define('DELETE_ADDRESS_DESCRIPTION', 'Chcete opravdu smazat vybranou adresu?',
-    true);
+define('DELETE_ADDRESS_TITLE', 'Odstrániť adresu');
+define('DELETE_ADDRESS_DESCRIPTION', 'Naozaj chcete odstrániť vybranú adresu z adresára?');
 
-define('NEW_ADDRESS_TITLE', 'Přidat novou adresu', true);
+define('NEW_ADDRESS_TITLE', 'Nový záznam adresára');
 
-define('SELECTED_ADDRESS', 'Vybrat adresu', true);
-define('SET_AS_PRIMARY', 'Nastavit jako hlavní.', true);
+define('SELECTED_ADDRESS', 'Vybraná adresa');
+define('SET_AS_PRIMARY', 'Nastaviť ako primárnu adresu.');
 
-define('SUCCESS_ADDRESS_BOOK_ENTRY_DELETED', 'Vybraná adresa byla vymazána.',
-    true);
-define('SUCCESS_ADDRESS_BOOK_ENTRY_UPDATED',
-    'Váš adresář byl úspěšně aktualizován.', true);
+define('SUCCESS_ADDRESS_BOOK_ENTRY_DELETED', 'Vybraná adresa bola úspešne odstránená z vášho adresára.');
+define('SUCCESS_ADDRESS_BOOK_ENTRY_UPDATED', 'Váš adresár bol úspešne aktualizovaný.');
 
-define('WARNING_PRIMARY_ADDRESS_DELETION',
-    'Hlavní adresu nelze smazat. Nastavte jinou jako výchozí a pokračujte.',
-    true);
+define('WARNING_PRIMARY_ADDRESS_DELETION', 'Primárna adresa nemôže byť odstranená. Označte inú adresu ako primárnu a akciu opakujte.');
 
-define('ERROR_NONEXISTING_ADDRESS_BOOK_ENTRY', 'Tato adresa v adresáři není.',
-    true);
-define('ERROR_ADDRESS_BOOK_FULL',
-    'Váš adresář je plný. Smažte některou nepoužívanou adresu a potom přidejte novou.',
-    true);
+define('ERROR_NONEXISTING_ADDRESS_BOOK_ENTRY', 'Položka adresára neexistuje.');
+define('ERROR_ADDRESS_BOOK_FULL', 'Váš adresár je plný. Odstráňte prosím nepotrebnú adresu a akciu opakujte.');
 ?>

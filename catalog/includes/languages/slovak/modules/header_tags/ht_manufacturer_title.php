@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_MANUFACTURER_TITLE_TITLE', 'Manufacturer Title',true);
-  define('MODULE_HEADER_TAGS_MANUFACTURER_TITLE_DESCRIPTION', 'Add the title of the current manufacturer to the page title',true);
+  define('MODULE_HEADER_TAGS_MANUFACTURER_TITLE_TITLE', 'výrobcovia Názov');
+  define('MODULE_HEADER_TAGS_MANUFACTURER_TITLE_DESCRIPTION', 'Pridať titul výrobcu názvu stránky');
 ?>

@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_SPECIALS_TITLE', 'Slevy',true);
-  define('MODULE_BOXES_SPECIALS_DESCRIPTION', 'ukázat zboží se slevou',true);
-  define('MODULE_BOXES_SPECIALS_BOX_TITLE', 'Slevy',true);
+  define('MODULE_BOXES_SPECIALS_TITLE', 'ponuky');
+  define('MODULE_BOXES_SPECIALS_DESCRIPTION', 'Zobraziť ponuku produktov');
+  define('MODULE_BOXES_SPECIALS_BOX_TITLE', 'ponuky');
 ?>

@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_ROBOT_NOINDEX_TITLE', 'Robot NoIndex',true);
-  define('MODULE_HEADER_TAGS_ROBOT_NOINDEX_DESCRIPTION', 'Add robot noindex tags to specified pages',true);
+  define('MODULE_HEADER_TAGS_ROBOT_NOINDEX_TITLE', 'Robot NoIndex');
+  define('MODULE_HEADER_TAGS_ROBOT_NOINDEX_DESCRIPTION', 'Pridať robot NOINDEX tagy zadanej stránky');
 ?>

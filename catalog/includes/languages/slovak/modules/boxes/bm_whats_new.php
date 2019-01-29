@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_WHATS_NEW_TITLE', 'Novinky',true);
-  define('MODULE_BOXES_WHATS_NEW_DESCRIPTION', 'ukázat nejnovější zboží',true);
-  define('MODULE_BOXES_WHATS_NEW_BOX_TITLE', 'Novinky',true);
+  define('MODULE_BOXES_WHATS_NEW_TITLE', 'Najnovšie produkty');
+  define('MODULE_BOXES_WHATS_NEW_DESCRIPTION', 'Zobraziť najnovšie produkty');
+  define('MODULE_BOXES_WHATS_NEW_BOX_TITLE', 'Najnovšie produkty');
 ?>

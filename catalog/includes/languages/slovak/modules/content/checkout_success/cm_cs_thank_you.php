@@ -10,12 +10,12 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_CHECKOUT_SUCCESS_THANK_YOU_TITLE', 'Poděkování',true);
-  define('MODULE_CONTENT_CHECKOUT_SUCCESS_THANK_YOU_DESCRIPTION', 'Zobrazit podělování na stránce Potvrzení přijetí objednávky.',true);
+  define('MODULE_CONTENT_CHECKOUT_SUCCESS_THANK_YOU_TITLE', 'ďakujem');
+  define('MODULE_CONTENT_CHECKOUT_SUCCESS_THANK_YOU_DESCRIPTION', 'Zobraziť děkuji blokovať na úspech stránke pokladnice.');
 
-  define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_SUCCESS', 'Vaše objednávka byla úspěšně zpracována. Zboží bude expedováno nejbližší pracovní den.',true);
-  define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_SEE_ORDERS', 'Stav zpracování objednávky zobrazíte na stránce <a class="btn btn-success" role="button" href="%s">Historie objednávek</a>',true);
-  define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_CONTACT_STORE_OWNER', 'Máte-li jakýkoli dotaz, využijte <a class="btn btn-info" role="button" href="%s">kontaktní formulář</a>, nebo nám napište <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.',true);
+  define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_SUCCESS', 'Vaša objednávka bola úspešne spracovaná! Vaše produkty dorazí na miesto určenia v priebehu 2-5 pracovných dní.');
+  define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_SEE_ORDERS', 'Môžete zobraziť stav Vašej objednávky kedykoľvek na vašom účte <a href="%s">zobraziť Objednávky</a> strana.');
+ define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_CONTACT_STORE_OWNER', 'Prosím, odovzdal nejaké otázky, ktoré môžete mať na nás <a href="%s">Kontaktujte nás</a> strana.');
+  define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_THANKS_FOR_SHOPPING', 'Vďaka za nákupy s nami on-line!');
 
-  define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_THANKS_FOR_SHOPPING', '<strong>Děkujeme za vaši objednávku.</strong>',true);
 ?>

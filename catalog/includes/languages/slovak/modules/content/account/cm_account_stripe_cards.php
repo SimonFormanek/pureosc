@@ -10,21 +10,22 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_TITLE', 'Stripe Cards Management Page',true);
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_DESCRIPTION', 'Adds a Stripe Cards management page to the My Account area',true);
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_TITLE', 'Stripe karty Spravovanie Page');
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_DESCRIPTION', 'Stripe karty Spravovanie Page');
 
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_ERROR_MAIN_MODULE', 'This module will not load until the Stripe payment module has been installed, configured, and is enabled. Please install and configure the Stripe payment module.',true);
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_ERROR_MAIN_MODULE', 'Tento modul nenačíta, kým bol nainštalovaný platba Stripe modul nakonfigurovaný, a je povolená. Prosím, nainštalovať a nakonfigurovať platobnej Stripe modul.');
 
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_LINK_TITLE', 'Manage saved payment cards.',true);
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_LINK_TITLE', 'Správa uložených platobnej karty.');
 
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_NAVBAR_TITLE_1', 'My Account',true);
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_NAVBAR_TITLE_2', 'Saved Cards',true);
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_NAVBAR_TITLE_1', 'Môj účet');
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_NAVBAR_TITLE_2', 'uložené karty');
 
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_HEADING_TITLE', 'Saved Cards',true);
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_TEXT_DESCRIPTION', '<p>Saved payment cards are stored securely and safely in a certified and audited PCI Service Provider Level 1 environment, the most stringent level of certification available. This high level of security provides convenience in allowing saved cards to be used for next purchases without the card information having to be re-typed again for each order made.</p><p>New cards can be securely saved during the process of your next order.</p>',true);
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_HEADING_TITLE', 'uložené karty');
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_TEXT_DESCRIPTION', '<p>Uložené platobné karty sú bezpečne a bezpečne uložené v certifikovanom a poskytovateľ auditovanej PCI Service Level 1 životného prostredia, na najprísnejšie úrovni certifikácie k dispozícii. Táto vysoká úroveň zabezpečenia poskytuje pohodlné ubytovanie v meste umožňuje uložené karty, ktoré majú byť použité pre ďalšie nákupy bez informácie o karte, ktoré majú byť re-napísaný opäť pre každú objednávku vyrobené.</p><p>Nové karty môžu byť bezpečne uložený v priebehu Vašej ďalšej objednávke.
+</p>');
 
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_SAVED_CARDS_TITLE', 'Saved Cards',true);
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_TEXT_NO_CARDS', '<p>No cards have been saved yet.</p>',true);
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_SAVED_CARDS_TITLE', 'uložené karty');
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_TEXT_NO_CARDS', '<p>Žiadne karty neboli doteraz ulo ¾ ené.</p>');
 
-  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_SUCCESS_DELETED', 'The card has been successfully deleted.',true);
+  define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_SUCCESS_DELETED', 'Karta bola úspešne zmazaná.');
 ?>

@@ -1,6 +1,6 @@
 <?php
 /*
-  $Id$
+  $Id: info_shopping_cart.php,v 1.4 2002/11/19 01:48:08 dgw_ Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -8,20 +8,14 @@
   Copyright (c) 2002 osCommerce
 
   Released under the GNU General Public License
- */
+*/
 
-define('HEADING_TITLE', 'návštěvnický košík / členský košík', true);
-define('SUB_HEADING_TITLE_1', 'návštěvnický košík', true);
-define('SUB_HEADING_TITLE_2', 'členský košík', true);
-define('SUB_HEADING_TITLE_3', 'Informace', true);
-define('SUB_HEADING_TEXT_1',
-    'Každý návštěvník našeho obchodu má svůj \'návštěvnický košík\'. Do něj si může zákazník ukládat zboží během nakupování. Opustí-li obchod před placením v pokladně, košík se vyprázdní.',
-    true);
-define('SUB_HEADING_TEXT_2',
-    'Každý registrovaný člen obchodu dostane \'členský košík\'. Vybrané zboží v tomto košíku zústává i tehdy, když obchod opustí a vrátí se později. Vyprázdnění košíku proběhne až při placení, nebo jej musí zákazník vyprázdnit sám.',
-    true);
-define('SUB_HEADING_TEXT_3',
-    'Pokud se návštěvník s \'návštěvnickým košíkem\' rozhodne pro registraci až v průběhu nákupu, změní se jeho košík na \'členský košík\', a všechno zboží v něm zůstane automaticky.',
-    true);
-define('TEXT_CLOSE_WINDOW', '[ zavřít okno ]', true);
+define('HEADING_TITLE', 'Hosťovský košík / Zákaznícky košík');
+define('SUB_HEADING_TITLE_1', 'Hosťovský košík');
+define('SUB_HEADING_TITLE_2', 'Zákaznícky košík');
+define('SUB_HEADING_TITLE_3', 'Informácie');
+define('SUB_HEADING_TEXT_1', 'Každý návštevník v našom obchode ma k dispozícií tzv. hosťovský košík. Tento dočasný košík je k dispozícii do tej doby, pokiaľ návštevník opustí tieto stránky.');
+define('SUB_HEADING_TEXT_2', 'Každý registrovaný zákazník, ktorý sa prihlási, dostane k dispozícii tzv. zákaznícky košík. Ten umožňuje zákazníkovi vkladať do neho produkty, pokiaľ zákazník odíde mimo obchod, po príchode späť môže dokončiť objednávku. Obsah zákazníckeho košíka sa nevyprázdňuje odchodom z týchto stránok.');
+define('SUB_HEADING_TEXT_3', 'Pokiaľ si neregistrovaný návštevník vloží produkty do hosťovského košíka a až potom sa zaregistruje a prihlási, hosťovský košík sa automaticky prevedie na zákaznícky košík vrátane všetkých produktov z hosťovského košíka.');
+define('TEXT_CLOSE_WINDOW', '[ zavrieť okno ]');
 ?>

@@ -1,26 +1,25 @@
 <?php
 /*
-  $Id$
+  $Id: shopping_cart.php,v 1.13 2002/04/05 20:24:02 project3000 Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2007 osCommerce
+  Copyright (c) 2002 osCommerce
 
   Released under the GNU General Public License
- */
+*/
 
-define('NAVBAR_TITLE', 'Obsah košíku', true);
-define('HEADING_TITLE', 'Obsah košíku', true);
-define('TEXT_CART_EMPTY', 'Váš košík je prázdný!', true);
-define('SUB_TITLE_SUB_TOTAL', 'celkem zboží:', true);
-define('SUB_TITLE_TOTAL', 'Celkem k úhradě:', true);
+define('NAVBAR_TITLE', 'Obsah košíka');
+define('HEADING_TITLE', 'Čo je v mojom košíku?');
+define('TABLE_HEADING_PRODUCTS', 'Produkt(y)');
+define('TEXT_CART_EMPTY', 'Váš košík je prázdny!');
+define('SUB_TITLE_SUB_TOTAL', 'Medzisúčet:');
+define('SUB_TITLE_TOTAL', 'Celkom:');
 
-define('OUT_OF_STOCK_CANT_CHECKOUT',
-    'Zboží označené '.STOCK_MARK_PRODUCT_OUT_OF_STOCK.' dont exist in desired quantity in our stock.<br />Please alter the quantity of products marked with ('.STOCK_MARK_PRODUCT_OUT_OF_STOCK.'), Thank you',
-    true);
-define('OUT_OF_STOCK_CAN_CHECKOUT',
-    'Zboží označené '.STOCK_MARK_PRODUCT_OUT_OF_STOCK.' dont exist in desired quantity in our stock.<br />You can buy them anyway and check the quantity we have in stock for immediate deliver in the checkout process.',
-    true);
-
-define('TEXT_ALTERNATIVE_CHECKOUT_METHODS', '- OR -', true);
+define('OUT_OF_STOCK_CANT_CHECKOUT', 'Produkty označené s ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' už nie sú v dostatočnom množstve na sklade.<br>Upravte prosím množstvo produktov označeného s (' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '), Ďakujeme.');
+define('OUT_OF_STOCK_CAN_CHECKOUT', 'Produkty označené s ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' už nie sú v dostatočnom množstve na sklade.<br>Môžte si ich kúpiť a skontrolovať ich množstvo ktoré máme na sklade pre okamžité doručenie.');
+define('TEXT_ALTERNATIVE_CHECKOUT_METHODS', '- ALEBO -');
+define('TEXT_OR', 'alebo ');
+define('TEXT_REMOVE', 'odstrániť');
+?>

@@ -1,6 +1,6 @@
 <?php
 /*
-  $Id$
+  $Id: flat.php,v 1.5 2002/11/19 01:48:08 dgw_ Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_SHIPPING_FLAT_TEXT_TITLE', 'Flat Rate',true);
-define('MODULE_SHIPPING_FLAT_TEXT_DESCRIPTION', 'Flat Rate',true);
-define('MODULE_SHIPPING_FLAT_TEXT_WAY', '',true);
+define('MODULE_SHIPPING_FLAT_TEXT_TITLE', 'Doprava');
+define('MODULE_SHIPPING_FLAT_TEXT_DESCRIPTION', 'Kuriér');
+define('MODULE_SHIPPING_FLAT_TEXT_WAY', 'Kuriér');
 ?>

@@ -10,9 +10,9 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_MANUFACTURER_INFO_TITLE', 'Výrobce',true);
-  define('MODULE_BOXES_MANUFACTURER_INFO_DESCRIPTION', 'Ukázat informace o výrobci',true);
-  define('MODULE_BOXES_MANUFACTURER_INFO_BOX_TITLE', 'Výrobce',true);
-  define('MODULE_BOXES_MANUFACTURER_INFO_BOX_HOMEPAGE', '%s Homepage',true);
-  define('MODULE_BOXES_MANUFACTURER_INFO_BOX_OTHER_PRODUCTS', 'Jiné zboží',true);
+  define('MODULE_BOXES_MANUFACTURER_INFO_TITLE', 'informácie o výrobcovi');
+  define('MODULE_BOXES_MANUFACTURER_INFO_DESCRIPTION', 'Zobraziť výrobcovia podrobnosti na stránke s informáciami o produkte');
+  define('MODULE_BOXES_MANUFACTURER_INFO_BOX_TITLE', 'informácie o výrobcovi');
+  define('MODULE_BOXES_MANUFACTURER_INFO_BOX_HOMEPAGE', '%s homepage');
+  define('MODULE_BOXES_MANUFACTURER_INFO_BOX_OTHER_PRODUCTS', 'Ostatné výrobky');
 ?>

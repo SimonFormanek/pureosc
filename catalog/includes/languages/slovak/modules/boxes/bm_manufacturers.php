@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_MANUFACTURERS_TITLE', 'Výrobci',true);
-  define('MODULE_BOXES_MANUFACTURERS_DESCRIPTION', 'ukázat seznam výrobců',true);
-  define('MODULE_BOXES_MANUFACTURERS_BOX_TITLE', 'Výrobci',true);
+  define('MODULE_BOXES_MANUFACTURERS_TITLE', 'Výrobca');
+  define('MODULE_BOXES_MANUFACTURERS_DESCRIPTION', 'Zobraziť zoznam výrobcov');
+  define('MODULE_BOXES_MANUFACTURERS_BOX_TITLE', 'Výrobca');
 ?>

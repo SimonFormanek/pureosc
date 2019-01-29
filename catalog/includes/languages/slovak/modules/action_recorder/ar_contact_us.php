@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ACTION_RECORDER_CONTACT_US_TITLE', 'Contact Us',true);
-  define('MODULE_ACTION_RECORDER_CONTACT_US_DESCRIPTION', 'Record usage of the Contact Us feature.',true);
+  define('MODULE_ACTION_RECORDER_CONTACT_US_TITLE', 'Kontaktujte nás');
+  define('MODULE_ACTION_RECORDER_CONTACT_US_DESCRIPTION', 'Ukladanie použitie Kontaktujte nás zvláštne');
 ?>

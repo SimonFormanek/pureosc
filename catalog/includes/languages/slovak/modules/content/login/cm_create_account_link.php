@@ -10,10 +10,10 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_CREATE_ACCOUNT_LINK_TITLE', 'Vytvořit odkaz na přihlášení',true);
-  define('MODULE_CONTENT_CREATE_ACCOUNT_LINK_DESCRIPTION', 'Zobrazit Vytovřit účet na stránce Přihlášení',true);
+  define('MODULE_CONTENT_CREATE_ACCOUNT_LINK_TITLE', 'Vytvoriť účet Link');
+  define('MODULE_CONTENT_CREATE_ACCOUNT_LINK_DESCRIPTION', 'Zobraziť nádobu vytvorenie účtu na prihlasovaciu stránku');
 
-  define('MODULE_CONTENT_LOGIN_HEADING_NEW_CUSTOMER', 'Registrace',true);
-  define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER', 'Jsem nový zákazník.',true);
-  define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER_INTRODUCTION', 'Vytvořením účtu v obchodě ' . STORE_NAME . ' budete moci nakupovat rychleji a sledovat zpracování svých objednávek.',true);
+  define('MODULE_CONTENT_LOGIN_HEADING_NEW_CUSTOMER', 'Registrácia nového zákazníka');
+  define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER', 'Som nový zákazník.');
+  define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER_INTRODUCTION', 'Vytvorením účtu na ' . STORE_NAME . ' budete môcť nakupovať rýchlejšie, byť až do dnešného dňa o stave objednávky a sledovať objednávok ktoré ste predtým vykonali.');
 ?>

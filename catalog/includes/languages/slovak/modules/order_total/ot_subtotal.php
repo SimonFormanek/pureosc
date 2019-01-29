@@ -1,6 +1,6 @@
 <?php
 /*
-  $Id$
+  $Id: ot_subtotal.php,v 1.1 2002/04/03 23:09:49 hpdl Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ORDER_TOTAL_SUBTOTAL_TITLE', 'Mezisoučet',true);
-  define('MODULE_ORDER_TOTAL_SUBTOTAL_DESCRIPTION', 'Mezisoučet objednávky',true);
-  
+  define('MODULE_ORDER_TOTAL_SUBTOTAL_TITLE', 'Medzisúčet');
+  define('MODULE_ORDER_TOTAL_SUBTOTAL_DESCRIPTION', 'Medzisúčet objednávky');
+?>

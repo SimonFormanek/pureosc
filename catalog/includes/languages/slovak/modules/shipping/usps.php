@@ -1,6 +1,6 @@
 <?php
 /*
-  $Id$
+  $Id: usps.php,v 1.8 2003/02/14 12:54:37 dgw_ Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -10,10 +10,10 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_SHIPPING_USPS_TEXT_TITLE', 'United States Postal Service',true);
-define('MODULE_SHIPPING_USPS_TEXT_DESCRIPTION', 'United States Postal Service<br /><br />You will need to have registered an account with USPS at http://www.uspsprioritymail.com/et_regcert.html to use this module<br /><br />USPS expects you to use pounds as weight measure for your products.',true);
-define('MODULE_SHIPPING_USPS_TEXT_OPT_PP', 'Parcel Post',true);
-define('MODULE_SHIPPING_USPS_TEXT_OPT_PM', 'Priority Mail',true);
-define('MODULE_SHIPPING_USPS_TEXT_OPT_EX', 'Express Mail',true);
-define('MODULE_SHIPPING_USPS_TEXT_ERROR', 'An error occured with the USPS shipping calculations.<br />If you prefer to use USPS as your shipping method, please contact the store owner.',true);
+define('MODULE_SHIPPING_USPS_TEXT_TITLE', 'United States Postal Služba');
+define('MODULE_SHIPPING_USPS_TEXT_DESCRIPTION', 'United States Postal Služba<br><br>Budete musieť mať registrovaný účet USPS na http://www.uspsprioritymail.com/et_regcert.html pre použitie tohoto modulu<br><br>USPS očakáva použitie pounds ako hmotnostnú jednotku vašich produktov.');
+define('MODULE_SHIPPING_USPS_TEXT_OPT_PP', 'Parcel Post');
+define('MODULE_SHIPPING_USPS_TEXT_OPT_PM', 'Priority Mail');
+define('MODULE_SHIPPING_USPS_TEXT_OPT_EX', 'Express Mail');
+define('MODULE_SHIPPING_USPS_TEXT_ERROR', 'Nastala chyba pri spracovávaní USPS kalkulácií dodávky.<br>Ak preferujete použitie USPS ako vašu dodaciu metódu, kontaktujte majiteľa obchodu.');
 ?>

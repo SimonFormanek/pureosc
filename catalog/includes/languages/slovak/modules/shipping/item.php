@@ -1,6 +1,6 @@
 <?php
 /*
-  $Id$
+  $Id: item.php,v 1.5 2002/11/19 01:48:08 dgw_ Exp $
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_SHIPPING_ITEM_TEXT_TITLE', 'Per Item',true);
-define('MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION', 'Per Item',true);
-define('MODULE_SHIPPING_ITEM_TEXT_WAY', '',true);
+define('MODULE_SHIPPING_ITEM_TEXT_TITLE', 'Doprava');
+define('MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION', 'Doprava');
+define('MODULE_SHIPPING_ITEM_TEXT_WAY', 'Doprava');
 ?>

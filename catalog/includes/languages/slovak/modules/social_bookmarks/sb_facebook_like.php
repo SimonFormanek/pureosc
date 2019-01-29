@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_TITLE', 'Facebook Like',true);
-  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_DESCRIPTION', 'Share products on Facebook Like.',true);
-  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_PUBLIC_TITLE', 'Share on Facebook',true);
+  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_TITLE', 'Facebook Like');
+  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_DESCRIPTION', 'Zdieľať produkt na Facebooku páči.');
+  define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_PUBLIC_TITLE', 'Zdieľať na Facebooku.');
 ?>

@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_TITLE', 'Google AdWords Conversion Tracking',true);
-  define('MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_DESCRIPTION', 'Add Google AdWords Conversion Tracking to the Checkout Success page',true);
+  define('MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_TITLE', 'Sledovanie konverzií Google AdWords');
+  define('MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_DESCRIPTION', 'Pridať Satelitné sledovanie konverzií AdWords na stránku Checkout Úspech');
 ?>

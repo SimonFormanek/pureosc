@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_CATEGORY_TITLE_TITLE', 'Category Title',true);
-  define('MODULE_HEADER_TAGS_CATEGORY_TITLE_DESCRIPTION', 'Add the title of the current category to the page title',true);
+  define('MODULE_HEADER_TAGS_CATEGORY_TITLE_TITLE', 'kategórie Názov');
+  define('MODULE_HEADER_TAGS_CATEGORY_TITLE_DESCRIPTION', 'Pridajte názov aktuálnej kategórie do názvu stránky');
 ?>

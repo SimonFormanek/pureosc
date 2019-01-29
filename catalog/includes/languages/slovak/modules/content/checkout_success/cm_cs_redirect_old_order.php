@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_TITLE', 'Redirect Old Order',true);
-  define('MODULE_CONTENT_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_DESCRIPTION', 'Redirect the customer when an old order is being viewed.',true);
+  define('MODULE_CONTENT_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_TITLE', 'Presmerovanie starých poriadkov');
+  define('MODULE_CONTENT_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_DESCRIPTION', 'Presmerovanie na zákazníka, keď je starý, aby bol zobrazený.');
 ?>

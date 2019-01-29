@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ACTION_RECORDER_TELL_A_FRIEND_TITLE', 'Tell A Friend',true);
-  define('MODULE_ACTION_RECORDER_TELL_A_FRIEND_DESCRIPTION', 'Record usage of the Tell A Friend feature.',true);
+  define('MODULE_ACTION_RECORDER_TELL_A_FRIEND_TITLE', 'Povedzte známemu');
+  define('MODULE_ACTION_RECORDER_TELL_A_FRIEND_DESCRIPTION', 'Monitorovať využívanie osloviť priateľa funkciu.');
 ?>

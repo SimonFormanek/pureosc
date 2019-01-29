@@ -10,7 +10,7 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_TITLE', 'Google+ Share',true);
-  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_DESCRIPTION', 'Share products on Google+.',true);
-  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_PUBLIC_TITLE', 'Share on Google+',true);
+  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_TITLE', 'Google+ Zdieľať');
+  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_DESCRIPTION', 'Podiel výrobkov na Google+.');
+  define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_PUBLIC_TITLE', 'Zdieľať na Google+');
 ?>

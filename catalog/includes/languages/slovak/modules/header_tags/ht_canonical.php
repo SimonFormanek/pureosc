@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_CANONICAL_TITLE', 'Canonical Header Links',true);
-  define('MODULE_HEADER_TAGS_CANONICAL_DESCRIPTION', 'Add header canonical links to category and product pages',true);
+  define('MODULE_HEADER_TAGS_CANONICAL_TITLE', 'Canonical záhlavie odkazy');
+  define('MODULE_HEADER_TAGS_CANONICAL_DESCRIPTION', 'Pridať záhlavie kánonické odkazy na kategórie a produktov strán');
 ?>

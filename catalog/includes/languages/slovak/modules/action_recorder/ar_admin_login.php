@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_ACTION_RECORDER_ADMIN_LOGIN_TITLE', 'Administration Tool Login',true);
-  define('MODULE_ACTION_RECORDER_ADMIN_LOGIN_DESCRIPTION', 'Record usage of Administration Tool logins.',true);
+  define('MODULE_ACTION_RECORDER_ADMIN_LOGIN_TITLE', 'Administrator softvérový modul Prihlásenie');
+  define('MODULE_ACTION_RECORDER_ADMIN_LOGIN_DESCRIPTION', 'Sledovať používanie správneho prihlásenie softvéru modulu funkcie.');
 ?>

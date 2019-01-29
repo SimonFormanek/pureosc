@@ -10,12 +10,12 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_LOGIN_FORM_TITLE', 'Přihlášení',true);
-  define('MODULE_CONTENT_LOGIN_FORM_DESCRIPTION', 'Zobrazit přihlašovací formulář na stránce Přihlášení',true);
+  define('MODULE_CONTENT_LOGIN_FORM_TITLE', 'Prihlasovací formulár');
+  define('MODULE_CONTENT_LOGIN_FORM_DESCRIPTION', 'Ukáž prihlasovací formulár na prihlasovacej stránke');
 
-  define('MODULE_CONTENT_LOGIN_HEADING_RETURNING_CUSTOMER', 'Přihlášení',true);
-  define('MODULE_CONTENT_LOGIN_TEXT_RETURNING_CUSTOMER', 'Již mám účet.',true);
-  define('MODULE_CONTENT_LOGIN_TEXT_PASSWORD_FORGOTTEN', 'Zapomenuté heslo? Klikněte zde.',true);
+  define('MODULE_CONTENT_LOGIN_HEADING_RETURNING_CUSTOMER', 'Vracajúci sa zákazník');
+  define('MODULE_CONTENT_LOGIN_TEXT_RETURNING_CUSTOMER', 'Som vracajúci sa zákazník.');
+  define('MODULE_CONTENT_LOGIN_TEXT_PASSWORD_FORGOTTEN', 'Zabudli ste heslo? Kliknite tu.');
 
-  define('MODULE_CONTENT_LOGIN_TEXT_LOGIN_ERROR', 'CHYBA: jméno/heslo nenalezeno.',true);
+  define('MODULE_CONTENT_LOGIN_TEXT_LOGIN_ERROR', 'Chyba: Žiadny zápas pre e-mailovú adresu a/alebo heslo.');
 ?>

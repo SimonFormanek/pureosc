@@ -10,10 +10,10 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_BOXES_REVIEWS_TITLE', 'Hodnocení',true);
-  define('MODULE_BOXES_REVIEWS_DESCRIPTION', 'ukázat hodnocení zboží',true);
-  define('MODULE_BOXES_REVIEWS_BOX_TITLE', 'Hodnocení',true);
-  define('MODULE_BOXES_REVIEWS_BOX_WRITE_REVIEW', 'Napište hodnoceni k tomuto zboží!',true);
-  define('MODULE_BOXES_REVIEWS_BOX_NO_REVIEWS', 'žádné hodnocení',true);
-  define('MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS', '%s z 5 hvězdiček!',true);
+  define('MODULE_BOXES_REVIEWS_TITLE', 'Recenzia');
+  define('MODULE_BOXES_REVIEWS_DESCRIPTION', 'Zobraziť hodnotenia výrobkov');
+  define('MODULE_BOXES_REVIEWS_BOX_TITLE', 'Recenzia');
+  define('MODULE_BOXES_REVIEWS_BOX_WRITE_REVIEW', 'Napíšte recenziu na tento produkt!');
+  define('MODULE_BOXES_REVIEWS_BOX_NO_REVIEWS', 'Momentálne tu nie sú žiadne komentáre');
+  define('MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS', '%s z 5 hviezdičiek!');
 ?>
