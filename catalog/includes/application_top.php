@@ -256,7 +256,7 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
 // create the shopping cart
 if (!tep_session_is_registered('cart') || !is_object($cart)) {
     tep_session_register('cart');
-    $cart = new shoppingCart;
+    $cart = new ShoppingCart;
 }
 
 // include currencies class and create an instance
