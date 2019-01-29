@@ -29,7 +29,7 @@ class cm_account_set_password
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_ACCOUNT_SET_PASSWORD_TITLE;
+        $this->title       =  MODULE_CONTENT_ACCOUNT_SET_PASSWORD_TITLE;
         $this->description = MODULE_CONTENT_ACCOUNT_SET_PASSWORD_DESCRIPTION;
 
         if (defined('MODULE_CONTENT_ACCOUNT_SET_PASSWORD_STATUS')) {

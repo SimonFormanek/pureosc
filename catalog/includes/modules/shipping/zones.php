@@ -128,7 +128,7 @@ class zones
     function zones()
     {
         $this->code        = 'zones';
-        $this->title       = MODULE_SHIPPING_ZONES_TEXT_TITLE;
+        $this->title       =  MODULE_SHIPPING_ZONES_TEXT_TITLE;
         $this->description = MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION;
         $this->num_zones   = NUM_ZONES;
         $this->sort_order  = MODULE_SHIPPING_ZONES_SORT_ORDER;

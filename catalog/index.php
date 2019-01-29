@@ -116,7 +116,9 @@ if ($category_depth == 'nested') {
 
             <br />
 
-            <?php include(DIR_WS_MODULES.FILENAME_NEW_PRODUCTS); ?>
+            <?php 
+            include(DIR_WS_MODULES.FILENAME_NEW_PRODUCTS); 
+            ?>
 
         </div>
     </div>

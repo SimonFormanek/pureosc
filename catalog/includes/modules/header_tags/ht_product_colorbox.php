@@ -1,5 +1,4 @@
 <?php
-
 /*
   $Id$
 
@@ -11,30 +10,28 @@
   Released under the GNU General Public License
  */
 
-class ht_product_colorbox {
-
-    var $code = 'ht_product_colorbox';
-    var $group = 'footer_scripts';
+class ht_product_colorbox
+{
+    var $code    = 'ht_product_colorbox';
+    var $group   = 'footer_scripts';
     var $title;
     var $description;
     var $sort_order;
     var $enabled = false;
 
-    public function __construct() {
-        $this->ht_product_colorbox();
-    }
-
-    function ht_product_colorbox() {
-        $this->title = _('Colorbox Script');
+    public function __construct()
+    {
+        $this->title       = _('Colorbox Script');
         $this->description = _('Add Colorbox Script to specified pages');
 
         if (defined('MODULE_HEADER_TAGS_PRODUCT_COLORBOX_STATUS')) {
             $this->sort_order = MODULE_HEADER_TAGS_PRODUCT_COLORBOX_SORT_ORDER;
-            $this->enabled = (MODULE_HEADER_TAGS_PRODUCT_COLORBOX_STATUS == 'True');
+            $this->enabled    = (MODULE_HEADER_TAGS_PRODUCT_COLORBOX_STATUS == 'True');
         }
     }
 
-    function execute() {
+    function execute()
+    {
         global $oscTemplate;
 
         if (tep_not_null(MODULE_HEADER_TAGS_PRODUCT_COLORBOX_PAGES)) {
@@ -57,46 +54,57 @@ class ht_product_colorbox {
         }
     }
 
-    function isEnabled() {
+    function isEnabled()
+    {
         return $this->enabled;
     }
 
-    function check() {
+    function check()
+    {
         return defined('MODULE_HEADER_TAGS_PRODUCT_COLORBOX_STATUS');
     }
 
-    function install() {
-        tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Colorbox Script', 'MODULE_HEADER_TAGS_PRODUCT_COLORBOX_STATUS', 'True', 'Do you want to enable the Colorbox Scripts?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Pages', 'MODULE_HEADER_TAGS_PRODUCT_COLORBOX_PAGES', '" . implode(';', $this->get_default_pages()) . "', 'The pages to add the Colorbox Scripts to.', '6', '0', 'ht_product_colorbox_show_pages', 'ht_product_colorbox_edit_pages(', now())");
-        tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_HEADER_TAGS_PRODUCT_COLORBOX_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
+    function install()
+    {
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Colorbox Script', 'MODULE_HEADER_TAGS_PRODUCT_COLORBOX_STATUS', 'True', 'Do you want to enable the Colorbox Scripts?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Pages', 'MODULE_HEADER_TAGS_PRODUCT_COLORBOX_PAGES', '".implode(';',
+                $this->get_default_pages())."', 'The pages to add the Colorbox Scripts to.', '6', '0', 'ht_product_colorbox_show_pages', 'ht_product_colorbox_edit_pages(', now())");
+        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_HEADER_TAGS_PRODUCT_COLORBOX_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
     }
 
-    function remove() {
-        tep_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+    function remove()
+    {
+        tep_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key in ('".implode("', '",
+                $this->keys())."')");
     }
 
-    function keys() {
-        return array('MODULE_HEADER_TAGS_PRODUCT_COLORBOX_STATUS', 'MODULE_HEADER_TAGS_PRODUCT_COLORBOX_PAGES', 'MODULE_HEADER_TAGS_PRODUCT_COLORBOX_SORT_ORDER');
+    function keys()
+    {
+        return array('MODULE_HEADER_TAGS_PRODUCT_COLORBOX_STATUS', 'MODULE_HEADER_TAGS_PRODUCT_COLORBOX_PAGES',
+            'MODULE_HEADER_TAGS_PRODUCT_COLORBOX_SORT_ORDER');
     }
 
-    function get_default_pages() {
+    function get_default_pages()
+    {
         return array('product_info.php');
     }
-
 }
 
-function ht_product_colorbox_show_pages($text) {
+function ht_product_colorbox_show_pages($text)
+{
     return nl2br(implode("\n", explode(';', $text)));
 }
 
-function ht_product_colorbox_edit_pages($values, $key) {
+function ht_product_colorbox_edit_pages($values, $key)
+{
 
 
-    $file_extension = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
-    $files_array = array();
-    if ($dir = @dir(DIR_FS_CATALOG)) {
+    $file_extension = substr($_SERVER['PHP_SELF'],
+        strrpos($_SERVER['PHP_SELF'], '.'));
+    $files_array    = array();
+    if ($dir            = @dir(DIR_FS_CATALOG)) {
         while ($file = $dir->read()) {
-            if (!is_dir(DIR_FS_CATALOG . $file)) {
+            if (!is_dir(DIR_FS_CATALOG.$file)) {
                 if (substr($file, strrpos($file, '.')) == $file_extension) {
                     $files_array[] = $file;
                 }
@@ -110,14 +118,16 @@ function ht_product_colorbox_edit_pages($values, $key) {
 
     $output = '';
     foreach ($files_array as $file) {
-        $output .= tep_draw_checkbox_field('ht_product_colorbox_file[]', $file, in_array($file, $values_array)) . '&nbsp;' . tep_output_string($file) . '<br />';
+        $output .= tep_draw_checkbox_field('ht_product_colorbox_file[]', $file,
+                in_array($file, $values_array)).'&nbsp;'.tep_output_string($file).'<br />';
     }
 
     if (!empty($output)) {
-        $output = '<br />' . substr($output, 0, -6);
+        $output = '<br />'.substr($output, 0, -6);
     }
 
-    $output .= tep_draw_hidden_field('configuration[' . $key . ']', '', 'id="htrn_files"');
+    $output .= tep_draw_hidden_field('configuration['.$key.']', '',
+        'id="htrn_files"');
 
     $output .= '<script>
                 function htrn_update_cfg_value() {
@@ -149,5 +159,3 @@ function ht_product_colorbox_edit_pages($values, $key) {
 
     return $output;
 }
-
-?>

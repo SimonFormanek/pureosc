@@ -26,7 +26,7 @@ class bm_whats_new
 
     function bm_whats_new()
     {
-        $this->title       = MODULE_BOXES_WHATS_NEW_TITLE;
+        $this->title       =  MODULE_BOXES_WHATS_NEW_TITLE;
         $this->description = MODULE_BOXES_WHATS_NEW_DESCRIPTION;
 
         if (defined('MODULE_BOXES_WHATS_NEW_STATUS')) {

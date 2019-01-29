@@ -121,7 +121,7 @@ class zones2
     function zones2()
     {
         $this->code        = 'zones2';
-        $this->title       = MODULE_SHIPPING_ZONES2_TEXT_TITLE;
+        $this->title       =  MODULE_SHIPPING_ZONES2_TEXT_TITLE;
         $this->description = MODULE_SHIPPING_ZONES2_TEXT_DESCRIPTION;
         $this->sort_order  = MODULE_SHIPPING_ZONES2_SORT_ORDER;
         $this->icon        = '';

@@ -12,9 +12,9 @@
 ?>
 
 <!-- Start cm_fp_text_main module -->
-<div id="text_main" class="col-sm-<?php echo (int) MODULE_CONTENT_FRONT_PAGE_MESSAGE_CONTENT_WIDTH; ?>">
+<div id="text_main" class="col-sm-<?php echo (int) constant('MODULE_CONTENT_FRONT_PAGE_MESSAGE_CONTENT_WIDTH'); ?>">
     <div class="contentText">
-        <?php echo TEXT_MAIN; ?>
+        <?php echo constant('TEXT_MAIN'); ?>
     </div>
 </div>
 <!-- End cm_fp_text_main module -->

@@ -26,7 +26,7 @@ class bm_product_notifications
 
     function bm_product_notifications()
     {
-        $this->title       = MODULE_BOXES_PRODUCT_NOTIFICATIONS_TITLE;
+        $this->title       =  MODULE_BOXES_PRODUCT_NOTIFICATIONS_TITLE;
         $this->description = MODULE_BOXES_PRODUCT_NOTIFICATIONS_DESCRIPTION;
 
         if (defined('MODULE_BOXES_PRODUCT_NOTIFICATIONS_STATUS')) {

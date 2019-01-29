@@ -26,7 +26,7 @@ class bm_product_social_bookmarks
 
     function bm_product_social_bookmarks()
     {
-        $this->title       = MODULE_BOXES_PRODUCT_SOCIAL_BOOKMARKS_TITLE;
+        $this->title       =  MODULE_BOXES_PRODUCT_SOCIAL_BOOKMARKS_TITLE;
         $this->description = MODULE_BOXES_PRODUCT_SOCIAL_BOOKMARKS_DESCRIPTION;
 
         if (defined('MODULE_BOXES_PRODUCT_SOCIAL_BOOKMARKS_STATUS')) {

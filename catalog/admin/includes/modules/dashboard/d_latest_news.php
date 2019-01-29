@@ -25,8 +25,8 @@ class d_latest_news
 
     function d_latest_news()
     {
-        $this->title       = MODULE_ADMIN_DASHBOARD_LATEST_NEWS_TITLE;
-        $this->description = MODULE_ADMIN_DASHBOARD_LATEST_NEWS_DESCRIPTION;
+        $this->title       =  _('Latest News'); 
+        $this->description = _('Show latest Oscommerce News');
 
         if (defined('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_STATUS')) {
             $this->sort_order = MODULE_ADMIN_DASHBOARD_LATEST_NEWS_SORT_ORDER;

@@ -20,7 +20,7 @@ class item
         global $order;
 
         $this->code        = 'item';
-        $this->title       = MODULE_SHIPPING_ITEM_TEXT_TITLE;
+        $this->title       =  MODULE_SHIPPING_ITEM_TEXT_TITLE;
         $this->description = MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION;
         $this->sort_order  = MODULE_SHIPPING_ITEM_SORT_ORDER;
         $this->icon        = '';

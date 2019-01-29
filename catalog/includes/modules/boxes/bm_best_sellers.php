@@ -26,7 +26,7 @@ class bm_best_sellers
 
     function bm_best_sellers()
     {
-        $this->title       = MODULE_BOXES_BEST_SELLERS_TITLE;
+        $this->title       =  MODULE_BOXES_BEST_SELLERS_TITLE;
         $this->description = MODULE_BOXES_BEST_SELLERS_DESCRIPTION;
 
         if (defined('MODULE_BOXES_BEST_SELLERS_STATUS')) {

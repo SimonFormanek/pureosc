@@ -21,7 +21,7 @@ class bm_categories
 
     function bm_categories()
     {
-        $this->title       = MODULE_BOXES_CATEGORIES_TITLE;
+        $this->title       =  MODULE_BOXES_CATEGORIES_TITLE;
         $this->description = MODULE_BOXES_CATEGORIES_DESCRIPTION;
 
         if (defined('MODULE_BOXES_CATEGORIES_STATUS')) {

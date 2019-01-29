@@ -26,7 +26,7 @@ class bm_manufacturers
 
     function bm_manufacturers()
     {
-        $this->title       = MODULE_BOXES_MANUFACTURERS_TITLE;
+        $this->title       =  MODULE_BOXES_MANUFACTURERS_TITLE;
         $this->description = MODULE_BOXES_MANUFACTURERS_DESCRIPTION;
 
         if (defined('MODULE_BOXES_MANUFACTURERS_STATUS')) {

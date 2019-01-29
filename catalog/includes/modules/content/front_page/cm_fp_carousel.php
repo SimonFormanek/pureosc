@@ -25,8 +25,8 @@ class cm_fp_carousel
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_FRONT_PAGE_CAROUSEL_TITLE;
-        $this->description = MODULE_CONTENT_FRONT_PAGE_CAROUSEL_DESCRIPTION;
+        $this->title       =  _('Front Page Carousel Banners'); 
+        $this->description = _('Adds a carousel to the front page with banner images set in the Banner Manager.'); 
 
         if (defined('MODULE_CONTENT_FRONT_PAGE_CAROUSEL_STATUS')) {
             $this->sort_order = MODULE_CONTENT_FRONT_PAGE_CAROUSEL_SORT_ORDER;

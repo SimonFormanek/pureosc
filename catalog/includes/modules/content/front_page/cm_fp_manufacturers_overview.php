@@ -25,7 +25,7 @@ class cm_fp_manufacturers_overview
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_FRONT_PAGE_MANUFACTURERS_TITLE;
+        $this->title       =  MODULE_CONTENT_FRONT_PAGE_MANUFACTURERS_TITLE;
         $this->description = MODULE_CONTENT_FRONT_PAGE_MANUFACTURERS_DESCRIPTION;
 
         if (defined('MODULE_CONTENT_FRONT_PAGE_MANUFACTURERS_STATUS')) {

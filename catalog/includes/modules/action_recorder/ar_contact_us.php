@@ -21,7 +21,7 @@ class ar_contact_us
 
     function ar_contact_us()
     {
-        $this->title       = MODULE_ACTION_RECORDER_CONTACT_US_TITLE;
+        $this->title       =  MODULE_ACTION_RECORDER_CONTACT_US_TITLE;
         $this->description = MODULE_ACTION_RECORDER_CONTACT_US_DESCRIPTION;
 
         if ($this->check()) {

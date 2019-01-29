@@ -20,7 +20,7 @@ class table
         global $order;
 
         $this->code        = 'table';
-        $this->title       = MODULE_SHIPPING_TABLE_TEXT_TITLE;
+        $this->title       =  MODULE_SHIPPING_TABLE_TEXT_TITLE;
         $this->description = MODULE_SHIPPING_TABLE_TEXT_DESCRIPTION;
         $this->sort_order  = MODULE_SHIPPING_TABLE_SORT_ORDER;
         $this->icon        = '';

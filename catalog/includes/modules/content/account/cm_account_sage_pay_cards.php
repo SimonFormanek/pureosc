@@ -26,7 +26,7 @@ class cm_account_sage_pay_cards
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_ACCOUNT_SAGE_PAY_CARDS_TITLE;
+        $this->title       =  MODULE_CONTENT_ACCOUNT_SAGE_PAY_CARDS_TITLE;
         $this->description = MODULE_CONTENT_ACCOUNT_SAGE_PAY_CARDS_DESCRIPTION;
 
         if (defined('MODULE_CONTENT_ACCOUNT_SAGE_PAY_CARDS_STATUS')) {

@@ -26,7 +26,7 @@ class bm_reviews
 
     function bm_reviews()
     {
-        $this->title       = MODULE_BOXES_REVIEWS_TITLE;
+        $this->title       =  MODULE_BOXES_REVIEWS_TITLE;
         $this->description = MODULE_BOXES_REVIEWS_DESCRIPTION;
 
         if (defined('MODULE_BOXES_REVIEWS_STATUS')) {

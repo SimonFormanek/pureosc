@@ -19,10 +19,10 @@ class ar_tell_a_friend
     var $minutes    = 15;
     var $identifier;
 
-    function ar_tell_a_friend()
+    public function __construct()
     {
-        $this->title       = MODULE_ACTION_RECORDER_TELL_A_FRIEND_TITLE;
-        $this->description = MODULE_ACTION_RECORDER_TELL_A_FRIEND_DESCRIPTION;
+        $this->title       =  _('Tell A Friend');
+        $this->description = _('Record usage of the Tell A Friend feature.');
 
         if ($this->check()) {
             $this->minutes = (int) MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES;

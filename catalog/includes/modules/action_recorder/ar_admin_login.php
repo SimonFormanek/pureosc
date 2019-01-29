@@ -22,7 +22,7 @@ class ar_admin_login
 
     function ar_admin_login()
     {
-        $this->title       = MODULE_ACTION_RECORDER_ADMIN_LOGIN_TITLE;
+        $this->title       =  MODULE_ACTION_RECORDER_ADMIN_LOGIN_TITLE;
         $this->description = MODULE_ACTION_RECORDER_ADMIN_LOGIN_DESCRIPTION;
 
         if ($this->check()) {

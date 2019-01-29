@@ -26,7 +26,7 @@ class bm_specials
 
     function bm_specials()
     {
-        $this->title       = MODULE_BOXES_SPECIALS_TITLE;
+        $this->title       =  MODULE_BOXES_SPECIALS_TITLE;
         $this->description = MODULE_BOXES_SPECIALS_DESCRIPTION;
 
         if (defined('MODULE_BOXES_SPECIALS_STATUS')) {

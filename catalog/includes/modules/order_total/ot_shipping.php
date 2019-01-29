@@ -22,7 +22,7 @@ class ot_shipping
     function ot_shipping()
     {
         $this->code        = 'ot_shipping';
-        $this->title       = MODULE_ORDER_TOTAL_SHIPPING_TITLE;
+        $this->title       =  MODULE_ORDER_TOTAL_SHIPPING_TITLE;
         $this->description = MODULE_ORDER_TOTAL_SHIPPING_DESCRIPTION;
         $this->enabled     = ((MODULE_ORDER_TOTAL_SHIPPING_STATUS == 'true') ? true
                 : false);

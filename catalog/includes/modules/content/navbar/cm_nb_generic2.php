@@ -26,7 +26,7 @@ class cm_nb_generic2
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_NAVBAR_GENERIC2_TITLE;
+        $this->title       =  MODULE_CONTENT_NAVBAR_GENERIC2_TITLE;
         $this->description = MODULE_CONTENT_NAVBAR_GENERIC2_DESCRIPTION;
         $this->description .= '<div class="secWarning">'.MODULE_CONTENT_NAVBAR_GENERIC2_ERROR_MAIN_MODULE.'</div>';
 

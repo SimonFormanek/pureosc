@@ -14,8 +14,8 @@
  * @copyright Copyright 2008-2009 FWR Media ( Robert Fisher )
  * @author Robert Fisher, FWR Media, http://www.fwrmedia.co.uk 
  * @lastdev $Author:: @raiwa  info@sarplataygemas.com       $:  Author of last commit
- * @lastmod $Date:: 2015-06-25       			     						 $:  Date of last commit
- * @version $Rev:: 14                                       $:  Revision of last commit
+ * @lastmod $Date:: 2016-03-17       			     						 $:  Date of last commit
+ * @version $Rev:: 24                                       $:  Revision of last commit
  * @Id $Id:: Image.php 14 2015-06-25 @raiwa                 $:  Full Details
 
  * $Rev:: 14 Added Watermark support in line 277 + function in 320 by @oboy
@@ -178,8 +178,7 @@ class Image
                 return imagejpeg($this->_image, $save_in, $quality);
                 break;
             case self::IMAGETYPE_PNG :
-                $quality = is_null($quality) ? 0 : $quality;
-                $quality = ($quality > 9) ? $quality = floor($quality / 10) : $quality;
+                $quality = 9;
                 $filters = is_null($filters) ? null : $filters;
                 return imagepng($this->_image, $save_in, $quality, $filters);
                 break;
@@ -341,9 +340,7 @@ class Image
             < $max_height)) {
             $new_image = $this->_image;
         } else {
-            if ($this->_mime_type == 'image/svg') {
-                
-            } else {
+            if ($this->_mime_type != 'image/svg') {
                 imagecopyresampled($new_image, $this->_image, 0, 0, 0, 0,
                     $max_width, $max_height, $this->_width, $this->_height);
             }
@@ -359,9 +356,19 @@ class Image
                     $max_height);
             }
         }
-        // EOF
+        // EOF added for watermark support
+        // BOF sharpen filter
+        if (KISSIT_SHARPEN_THUMBNAIL != 'none') {
+            $info       = pathinfo($this->_filename);
+            $image_name = $info['basename'];
+            if (strpos($image_name, 'no_image') === false) {
+                $new_image = $this->_sharpen($new_image, $max_width);
+            }
+        }
+        // EOF sharpen filter
+
         $this->_image = $new_image;
-        if ($this->_take_resize_dimensions_as_absolute) {
+        if (KISSIT_APPLY_BACKGROUND == 'true' && $this->_take_resize_dimensions_as_absolute) {
             // the image has scaled badly we need to add a background
             $info       = pathinfo($this->_filename);
             $image_name = $info['basename'];
@@ -370,23 +377,82 @@ class Image
                 || $this->_height < $max_height))) {
                 $thumb_background = imagecreatetruecolor($this->_requested_thumbnail_width,
                     $this->_requested_thumbnail_height);
-                $background_color = imagecolorallocate($thumb_background,
-                    $this->_thumb_background_rgb['red'],
-                    $this->_thumb_background_rgb['green'],
-                    $this->_thumb_background_rgb['blue']);
-                imagefill($thumb_background, 0, 0, $background_color);
-                $dst_x            = 0;
-                $dst_y            = 0;
-                $new_image_width  = imagesx($new_image);
-                $new_image_height = imagesy($new_image);
-                $dst_x            = floor(( $this->_requested_thumbnail_width - $new_image_width )
-                    / 2);
-                $dst_y            = floor(( $this->_requested_thumbnail_height - $new_image_height )
-                    / 2);
-                imagecopyresampled($thumb_background, $new_image, $dst_x,
-                    $dst_y, 0, 0, $new_image_width, $new_image_height,
-                    $new_image_width, $new_image_height);
-                $this->_image     = $thumb_background;
+                // transparent background for GIF and PNG images
+                if (($this->_mime_type == self::IMAGETYPE_GIF)) {
+                    $trnprt_indx = @imagecolortransparent($this->_image);
+                    // If we have a specific transparent color
+                    if ($trnprt_indx >= 0) {
+                        // Get the original image's transparent color's RGB values
+                        // Allocate the same color in the new image resource
+                        $trnprt_indx = @imagecolorallocate($thumb_background,
+                                $this->_thumb_background_rgb['red'],
+                                $this->_thumb_background_rgb['green'],
+                                $this->_thumb_background_rgb['blue']);
+                    } else {
+                        // use transparent background for all other GIFs and PNGs 
+                        $trnprt_indx = 127;
+                    }
+                    $trnprt_color     = @imagecolorsforindex($this->_image,
+                            $trnprt_indx);
+                    // Completely fill the background of the new image with allocated color.
+                    imagefill($thumb_background, 0, 0, $trnprt_indx);
+                    $dst_x            = 0;
+                    $dst_y            = 0;
+                    $new_image_width  = imagesx($new_image);
+                    $new_image_height = imagesy($new_image);
+                    $dst_x            = floor(( $this->_requested_thumbnail_width
+                        - $new_image_width ) / 2);
+                    $dst_y            = floor(( $this->_requested_thumbnail_height
+                        - $new_image_height ) / 2);
+                    // Set the background color for new image to transparent
+                    imagecolortransparent($thumb_background, $trnprt_indx);
+                    imagecopyresampled($thumb_background, $new_image, $dst_x,
+                        $dst_y, 0, 0, $new_image_width, $new_image_height,
+                        $new_image_width, $new_image_height);
+                    $this->_image     = $thumb_background;
+                } elseif ($this->_mime_type == self::IMAGETYPE_PNG) {
+                    // Always make a transparent background color for PNGs that don't have one allocated already
+                    // Turn off transparency blending (temporarily)
+                    imagealphablending($thumb_background, false);
+                    // Create a new transparent color for image
+                    $color            = imagecolorallocatealpha($thumb_background,
+                        0, 0, 0, 127);
+                    // Completely fill the background of the new image with allocated color.
+                    imagefill($thumb_background, 0, 0, $color);
+                    $dst_x            = 0;
+                    $dst_y            = 0;
+                    $new_image_width  = imagesx($new_image);
+                    $new_image_height = imagesy($new_image);
+                    $dst_x            = floor(( $this->_requested_thumbnail_width
+                        - $new_image_width ) / 2);
+                    $dst_y            = floor(( $this->_requested_thumbnail_height
+                        - $new_image_height ) / 2);
+                    // Restore transparency blending
+                    imagesavealpha($thumb_background, true);
+                    imagecopyresampled($thumb_background, $new_image, $dst_x,
+                        $dst_y, 0, 0, $new_image_width, $new_image_height,
+                        $new_image_width, $new_image_height);
+                    $this->_image     = $thumb_background;
+                } else {
+                    // jpg images have no transparency
+                    $background_color = imagecolorallocate($thumb_background,
+                        $this->_thumb_background_rgb['red'],
+                        $this->_thumb_background_rgb['green'],
+                        $this->_thumb_background_rgb['blue']);
+                    imagefill($thumb_background, 0, 0, $background_color);
+                    $dst_x            = 0;
+                    $dst_y            = 0;
+                    $new_image_width  = imagesx($new_image);
+                    $new_image_height = imagesy($new_image);
+                    $dst_x            = floor(( $this->_requested_thumbnail_width
+                        - $new_image_width ) / 2);
+                    $dst_y            = floor(( $this->_requested_thumbnail_height
+                        - $new_image_height ) / 2);
+                    imagecopyresampled($thumb_background, $new_image, $dst_x,
+                        $dst_y, 0, 0, $new_image_width, $new_image_height,
+                        $new_image_width, $new_image_height);
+                    $this->_image     = $thumb_background;
+                }
             }
         } // end need a background
         $this->_refreshDimensions();
@@ -457,7 +523,65 @@ class Image
         imagecopy($new_image, $stamp, $xoffset, $yoffset, 0, 0, $sx, $sy);
         return $new_image;
     }
+
     // EOF added for watermark support
+    // BOF  sharpen filter
+    protected function _sharpen($new_image, $max_width)
+    {
+
+        // function from Ryan Rud (http://adryrun.com)
+        $final = $max_width * (750.0 / $this->_width);
+        $a     = 52;
+        $b     = -0.27810650887573124;
+        $c     = .00047337278106508946;
+
+        $result = $a + $b * $final + $c * $final * $final;
+
+        $sharpness = max(round($result), 0);
+        // findSharp()
+
+        switch (KISSIT_SHARPEN_THUMBNAIL) {
+            case 'soft' :
+                $sharpenMatrix = array
+                    (
+                    array(-1, -2, -1),
+                    array(-2, $sharpness + 36, -2),
+                    array(-1, -2, -1)
+                );
+                break;
+            case 'medium' :
+                $sharpenMatrix = array
+                    (
+                    array(-1, -2, -1),
+                    array(-2, $sharpness + 24, -2),
+                    array(-1, -2, -1)
+                );
+                break;
+            case 'strong' :
+                $sharpenMatrix = array
+                    (
+                    array(-1, -2, -1),
+                    array(-2, $sharpness + 12, -2),
+                    array(-1, -2, -1)
+                );
+                break;
+            default :
+                $sharpenMatrix = array
+                    (
+                    array(-1, -2, -1),
+                    array(-2, $sharpness + 36, -2),
+                    array(-1, -2, -1)
+                );
+                break;
+        } // end switch
+
+        $divisor = array_sum(array_map('array_sum', $sharpenMatrix));
+        $offset  = 0;
+        // apply the matrix
+        imageconvolution($new_image, $sharpenMatrix, $divisor, $offset);
+
+        return $new_image;
+    }
 }
 
 // end class

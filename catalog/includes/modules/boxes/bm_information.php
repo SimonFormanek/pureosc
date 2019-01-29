@@ -27,7 +27,7 @@ class bm_information
 
     function bm_information()
     {
-        $this->title       = MODULE_BOXES_INFORMATION_TITLE;
+        $this->title       =  MODULE_BOXES_INFORMATION_TITLE;
         $this->description = MODULE_BOXES_INFORMATION_DESCRIPTION;
 
         if (defined('MODULE_BOXES_INFORMATION_STATUS')) {

@@ -23,8 +23,8 @@
     }
     
     function d_latest_addons() {
-      $this->title = MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_TITLE;
-      $this->description = MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_DESCRIPTION;
+      $this->title = _('Latests Addons');
+      $this->description = _('Show the latest osCommerce Add-Ons');
 
       if ( defined('MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_STATUS') ) {
         $this->sort_order = MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_SORT_ORDER;

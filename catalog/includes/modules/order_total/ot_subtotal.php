@@ -22,7 +22,7 @@ class ot_subtotal
     function ot_subtotal()
     {
         $this->code        = 'ot_subtotal';
-        $this->title       = MODULE_ORDER_TOTAL_SUBTOTAL_TITLE;
+        $this->title       =  MODULE_ORDER_TOTAL_SUBTOTAL_TITLE;
         $this->description = MODULE_ORDER_TOTAL_SUBTOTAL_DESCRIPTION;
         $this->enabled     = ((MODULE_ORDER_TOTAL_SUBTOTAL_STATUS == 'true') ? true
                 : false);

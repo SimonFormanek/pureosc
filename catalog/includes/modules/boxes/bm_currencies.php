@@ -26,7 +26,7 @@ class bm_currencies
 
     function bm_currencies()
     {
-        $this->title       = MODULE_BOXES_CURRENCIES_TITLE;
+        $this->title       =  MODULE_BOXES_CURRENCIES_TITLE;
         $this->description = MODULE_BOXES_CURRENCIES_DESCRIPTION;
 
         if (defined('MODULE_BOXES_CURRENCIES_STATUS')) {

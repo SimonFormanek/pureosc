@@ -19,12 +19,8 @@
 
     public function __construct()
     {
-        $this->d_version_check();
-    }
-    
-    function d_version_check() {
-      $this->title = MODULE_ADMIN_DASHBOARD_VERSION_CHECK_TITLE;
-      $this->description = MODULE_ADMIN_DASHBOARD_VERSION_CHECK_DESCRIPTION;
+      $this->title = _('Version Check');
+      $this->description = _('Show the version check results'); 
 
       if ( defined('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_STATUS') ) {
         $this->sort_order = MODULE_ADMIN_DASHBOARD_VERSION_CHECK_SORT_ORDER;
