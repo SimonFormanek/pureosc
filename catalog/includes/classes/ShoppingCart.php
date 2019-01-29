@@ -17,7 +17,7 @@
   Released under the GNU General Public License
  */
 
-class shoppingCart
+class ShoppingCart
 {
     var $contents, $total, $weight, $cartID, $content_type;
 

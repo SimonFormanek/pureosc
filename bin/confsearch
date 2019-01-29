@@ -1,0 +1,3 @@
+#!/bin/sh
+. ./dbconnect.sh
+mysql -h${H} -u${U} ${P} $D -e "SELECT configuration_key, configuration_value FROM configuration WHERE configuration_key like '%${1}%'"
