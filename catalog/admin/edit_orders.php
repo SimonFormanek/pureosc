@@ -2065,7 +2065,7 @@ include('order_editor/javascript.php');
                                 <td class="dataTableHeadingContent" align="left" width="10">&nbsp;</td>
                                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_CUSTOMER_NOTIFIED; ?></td>
                                 <td class="dataTableHeadingContent" align="left" width="10">&nbsp;</td>
-                                <td class="dataTableHeadingContent" align="left"><?php echo TABLE_HEADING_STATUS; ?></td>
+                                <td class="dataTableHeadingContent" align="left"><?php echo _('Status'); ?></td>
                                 <td class="dataTableHeadingContent" align="left" width="10">&nbsp;</td>
                                 <td class="dataTableHeadingContent" align="left"><?php echo TABLE_HEADING_COMMENTS; ?></td>
                             </tr>

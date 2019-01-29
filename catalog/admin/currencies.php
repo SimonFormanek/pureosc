@@ -233,7 +233,7 @@ foreach ($currency_select_array as $cs) {
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CURRENCY_NAME; ?></td>
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CURRENCY_CODES; ?></td>
                                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_CURRENCY_VALUE; ?></td>
-                                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                             </tr>
                             <?php
                             $currency_query_raw = "select currencies_id, title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, last_updated, value from ".TABLE_CURRENCIES." order by title";

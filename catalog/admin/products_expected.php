@@ -35,7 +35,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             <tr class="dataTableHeadingRow">
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCTS; ?></td>
                                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_DATE_EXPECTED; ?></td>
-                                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                             </tr>
                             <?php
                             $products_query_raw = "select pd.products_id, pd.products_name, p.products_date_available from ".TABLE_PRODUCTS_DESCRIPTION." pd, ".TABLE_PRODUCTS." p where p.products_id = pd.products_id and p.products_date_available != '' and pd.language_id = '".(int) $languages_id."' order by p.products_date_available DESC";

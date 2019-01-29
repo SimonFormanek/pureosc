@@ -272,7 +272,7 @@ echo $secMessageStack->output();
                             <tr class="dataTableHeadingRow">
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_ADMINISTRATORS; ?></td>
                                 <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_HTPASSWD; ?></td>
-                                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                             </tr>
 <?php
 $admins_query = tep_db_query("select id, user_name from ".TABLE_ADMINISTRATORS." order by user_name");

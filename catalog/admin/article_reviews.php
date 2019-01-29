@@ -237,7 +237,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_RATING; ?></td>
                                                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_DATE_ADDED; ?></td>
                                                 <td class="dataTableHeadingContent" align="center"><?php echo TEXT_APPROVED; ?></td>
-                                                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                                <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                             </tr>
                                             <?php
                                             $reviews_query_raw = "select reviews_id, articles_id, date_added, last_modified, reviews_rating, approved from ".TABLE_ARTICLE_REVIEWS." order by date_added DESC";

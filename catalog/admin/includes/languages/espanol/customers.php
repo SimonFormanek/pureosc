@@ -16,7 +16,7 @@ define('HEADING_TITLE_SEARCH', 'Buscar:',true);
 define('TABLE_HEADING_FIRSTNAME', 'Nombre',true);
 define('TABLE_HEADING_LASTNAME', 'Apellidos',true);
 define('TABLE_HEADING_ACCOUNT_CREATED', 'Cuenta Creada',true);
-define('TABLE_HEADING_ACTION', 'Acción',true);
+define('_('Action')', 'Acción',true);
 
 define('TEXT_DATE_ACCOUNT_CREATED', 'Cuenta Creada:',true);
 define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Ultima Modificación:',true);

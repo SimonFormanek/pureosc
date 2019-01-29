@@ -65,7 +65,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr class="dataTableHeadingRow">
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_TAX_CLASSES; ?></td>
-                                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                             </tr>
                             <?php
                             $classes_query_raw = "select tax_class_id, tax_class_title, tax_class_description, last_modified, date_added from ".TABLE_TAX_CLASS." order by tax_class_title";

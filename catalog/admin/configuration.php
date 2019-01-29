@@ -54,7 +54,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             <tr class="dataTableHeadingRow">
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CONFIGURATION_TITLE; ?></td>
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CONFIGURATION_VALUE; ?></td>
-                                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                             </tr>
                             <?php
                             $configuration_query = tep_db_query("select configuration_id, configuration_title, configuration_value, use_function from ".TABLE_CONFIGURATION." where configuration_group_id = '".(int) $gID."' order by sort_order");

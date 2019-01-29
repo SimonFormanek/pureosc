@@ -139,7 +139,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                             <tr class="dataTableHeadingRow">
                                 <td class="dataTableHeadingContent" colspan="2"><?php echo TABLE_HEADING_MANUFACTURERS; ?></td>
-                                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                             </tr>
 <?php
 $manufacturers_query_raw = "select manufacturers_id, manufacturers_name, manufacturers_seo_title, manufacturers_image, date_added, last_modified from ".TABLE_MANUFACTURERS." order by manufacturers_name";

@@ -51,7 +51,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             <tr class="dataTableHeadingRow">
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CACHE; ?></td>
                                 <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_DATE_CREATED; ?></td>
-                                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                             </tr>
                             <?php
                             if ($messageStack->size < 1) {

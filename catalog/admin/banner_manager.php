@@ -402,8 +402,8 @@ function popupImageWindow(url) {
                                                         <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_BANNERS; ?></td>
                                                         <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_GROUPS; ?></td>
                                                         <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_STATISTICS; ?></td>
-                                                        <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_STATUS; ?></td>
-                                                        <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                                        <td class="dataTableHeadingContent" align="right"><?php echo _('Status'); ?></td>
+                                                        <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                                     </tr>
                                                     <?php
                                                     $banners_query_raw = "select banners_id, banners_title, banners_image, banners_group, status, expires_date, expires_impressions, date_status_change, date_scheduled, date_added from ".TABLE_BANNERS." order by banners_title, banners_group";

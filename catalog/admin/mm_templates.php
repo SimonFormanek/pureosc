@@ -231,7 +231,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_TEMPLATE; ?></td>
                                     <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_SIZE; ?></td>
 
-                                    <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                    <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                 </tr>
                                 <?php
                                 $templates_query_raw = "select template_id, title, htmlfooter, txtheader, txtfooter, length(htmlheader) as content_length from ".TABLE_MM_TEMPLATES." order by template_id desc";

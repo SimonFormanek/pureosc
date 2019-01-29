@@ -269,7 +269,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <tr class="dataTableHeadingRow">
                                     <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_ID; ?>&nbsp;</td>
                                     <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_OPT_NAME; ?>&nbsp;</td>
-                                    <td class="dataTableHeadingContent" align="center">&nbsp;<?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                    <td class="dataTableHeadingContent" align="center">&nbsp;<?php echo _('Action'); ?>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3"><?php echo tep_black_line(); ?></td>
@@ -471,7 +471,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_ID; ?>&nbsp;</td>
                                     <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_OPT_NAME; ?>&nbsp;</td>
                                     <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_OPT_VALUE; ?>&nbsp;</td>
-                                    <td class="dataTableHeadingContent" align="center">&nbsp;<?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                    <td class="dataTableHeadingContent" align="center">&nbsp;<?php echo _('Action'); ?>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4"><?php echo tep_black_line(); ?></td>
@@ -641,7 +641,7 @@ echo $attributes_split->display_links($attributes_query_numrows,
                         <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_OPT_VALUE; ?>&nbsp;</td>
                         <td class="dataTableHeadingContent" align="right">&nbsp;<?php echo TABLE_HEADING_OPT_PRICE; ?>&nbsp;</td>
                         <td class="dataTableHeadingContent" align="center">&nbsp;<?php echo TABLE_HEADING_OPT_PRICE_PREFIX; ?>&nbsp;</td>
-                        <td class="dataTableHeadingContent" align="center">&nbsp;<?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                        <td class="dataTableHeadingContent" align="center">&nbsp;<?php echo _('Action'); ?>&nbsp;</td>
                     </tr>
                     <tr>
                         <td colspan="7"><?php echo tep_black_line(); ?></td>

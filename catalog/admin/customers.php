@@ -865,7 +865,7 @@ if ($action == 'edit' || $action == 'update') {
                                     <td class="dataTableHeadingContent"
                                         align="right"><?php echo TABLE_HEADING_ACCOUNT_CREATED; ?></td>
                                     <td class="dataTableHeadingContent"
-                                        align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;
+                                        align="right"><?php echo _('Action'); ?>&nbsp;
                                     </td>
                                 </tr>
                                 <?php
