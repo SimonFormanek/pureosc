@@ -144,7 +144,7 @@ if ($action == 'list') {
                                     <tr class="dataTableHeadingRow">
                                         <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_COUNTRY; ?></td>
                                         <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_COUNTRY_ZONE; ?></td>
-                                        <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                        <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                     </tr>
                                     <?php
                                     $rows            = 0;
@@ -231,7 +231,7 @@ if ($action == 'list') {
                     <table border="0" width="100%" cellspacing="0" cellpadding="2">
                         <tr class="dataTableHeadingRow">
                             <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_TAX_ZONES; ?></td>
-                            <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                            <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                         </tr>
                         <?php
                         $zones_query_raw = "select geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added from ".TABLE_GEO_ZONES." order by geo_zone_name";

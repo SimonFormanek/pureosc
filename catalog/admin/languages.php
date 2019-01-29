@@ -141,7 +141,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             <tr class="dataTableHeadingRow">
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_LANGUAGE_NAME; ?></td>
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_LANGUAGE_CODE; ?></td>
-                                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                             </tr>
 <?php
 $languages_query_raw = "select languages_id, name, code, image, directory, sort_order from ".TABLE_LANGUAGES." order by sort_order";

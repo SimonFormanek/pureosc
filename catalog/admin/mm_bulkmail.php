@@ -621,8 +621,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_AUDIENCE; ?></td>
                             <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_MAILRATE; ?></td>
                             <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_SENT; ?></td>
-                            <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_STATUS; ?></td>
-                            <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                            <td class="dataTableHeadingContent" align="center"><?php echo _('Status'); ?></td>
+                            <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                         </tr>
                         <?php
                         $newsletters_query_raw = "select newsletters_id, title, template, length(content) as content_length, module, mailrate, date_added, date_sent, status, locked from ".TABLE_MM_NEWSLETTERS." order by date_added desc";

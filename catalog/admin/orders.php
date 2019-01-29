@@ -337,7 +337,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     <tr>
                         <td class="smallText" align="center"><strong><?php echo TABLE_HEADING_DATE_ADDED; ?></strong></td>
                         <td class="smallText" align="center"><strong><?php echo TABLE_HEADING_CUSTOMER_NOTIFIED; ?></strong></td>
-                        <td class="smallText" align="center"><strong><?php echo TABLE_HEADING_STATUS; ?></strong></td>
+                        <td class="smallText" align="center"><strong><?php echo _('Status'); ?></strong></td>
                         <td class="smallText" align="center"><strong><?php echo TABLE_HEADING_COMMENTS; ?></strong></td>
                     </tr>
                     <?php
@@ -457,8 +457,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <?php /*                                 * * EOE for PWA ** */ ?>
                                     <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ORDER_TOTAL; ?></td>
                                     <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_DATE_PURCHASED; ?></td>
-                                    <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_STATUS; ?></td>
-                                    <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                    <td class="dataTableHeadingContent" align="right"><?php echo _('Status'); ?></td>
+                                    <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                 </tr>
                                 <?php
                                 if (isset($_GET['cID'])) {

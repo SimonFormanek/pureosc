@@ -717,14 +717,18 @@ if ($action == 'new_product') {
         ?>
 
         function doRound(x, places) {
-            return Math.round(x * Math.pow(10, places)) / Math.pow(10, places);
+                return parseFloat(Math.round(x)).toFixed(places);
+        }
+
+        function getCoefficient(taxRate){
+            return taxRate / (100+taxRate);
         }
 
         function getTaxRate() {
-            var selected_value = document.forms["new_product"].products_tax_class_id.selectedIndex;
-            var parameterVal = document.forms["new_product"].products_tax_class_id[selected_value].value;
+            var selected_value = parseInt(document.forms["new_product"].products_tax_class_id.selectedIndex);
+            var parameterVal = parseFloat(document.forms["new_product"].products_tax_class_id[selected_value].value);
             if ((parameterVal > 0) && (tax_rates[parameterVal] > 0)) {
-                return tax_rates[parameterVal];
+                return parseFloat(tax_rates[parameterVal]);
             } else {
                 return 0;
             }
@@ -732,7 +736,7 @@ if ($action == 'new_product') {
 
         function updateGross() {
             var taxRate = getTaxRate();
-            var grossValue = document.forms["new_product"].products_price.value;
+            var grossValue = parseFloat(document.forms["new_product"].products_price.value);
             if (taxRate > 0) {
                 grossValue = grossValue * ((taxRate / 100) + 1);
             }
@@ -742,9 +746,9 @@ if ($action == 'new_product') {
 
         function updateNet() {
             var taxRate = getTaxRate();
-            var netValue = document.forms["new_product"].products_price_gross.value;
+            var netValue = parseFloat(document.forms["new_product"].products_price_gross.value);
             if (taxRate > 0) {
-                netValue = netValue / ((taxRate / 100) + 1);
+                netValue = netValue / ((taxRate / 100)+1 );
             }
 
             document.forms["new_product"].products_price.value = doRound(netValue, 4);
@@ -1507,7 +1511,7 @@ if ($action == 'new_product') {
                                         echo tep_draw_form('goto',
                                             FILENAME_CATEGORIES, '',
                                             'get');
-                                        echo HEADING_TITLE_GOTO . ' ' . tep_draw_pull_down_menu('cPath',
+                                        echo _('Go to') . ' ' . tep_draw_pull_down_menu('cPath',
                                                 tep_get_category_tree(),
                                                 $current_category_id,
                                                 'onchange="this.form.submit();"');
@@ -1528,11 +1532,11 @@ if ($action == 'new_product') {
                         <td valign="top">
                             <table border="0" width="100%" cellspacing="0" cellpadding="2">
                                 <tr class="dataTableHeadingRow">
-                                    <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CATEGORIES_PRODUCTS; ?></td>
+                                    <td class="dataTableHeadingContent"><?php echo _('Categories / Products') ?></td>
                                     <td class="dataTableHeadingContent"
-                                        align="center"><?php echo TABLE_HEADING_STATUS; ?></td>
+                                        align="center"><?php echo _('Status'); ?></td>
                                     <td class="dataTableHeadingContent"
-                                        align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;
+                                        align="right"><?php echo _('Action'); ?>&nbsp;
                                     </td>
                                 </tr>
                                 <?php
@@ -1549,8 +1553,9 @@ if ($action == 'new_product') {
                                     $rows++;
 
 // Get parent_id for subcategories if search
-                                    if (isset($_GET['search']))
-                                        $cPath = $categories['parent_id'];
+                                        if (isset($_GET['search'])) {
+                                            $cPath = $categories['parent_id'];
+                                        }
 
                                     if ((!isset($_GET['cID']) && !isset($_GET['pID'])
                                             || (isset($_GET['cID']) && ($_GET['cID']
@@ -1690,7 +1695,7 @@ if ($action == 'new_product') {
                                     <td colspan="3">
                                         <table border="0" width="100%" cellspacing="0" cellpadding="2">
                                             <tr>
-                                                <td class="smallText"><?php echo TEXT_CATEGORIES . '&nbsp;' . $categories_count . '<br />' . TEXT_PRODUCTS . '&nbsp;' . $products_count; ?></td>
+                                                <td class="smallText"><?php echo _('Categories') . '&nbsp;' . $categories_count . '<br />' . TEXT_PRODUCTS . '&nbsp;' . $products_count; ?></td>
                                                 <td align="right" class="smallText"><?php if (sizeof($cPath_array)
                                                         > 0) echo tep_draw_button(IMAGE_BACK,
                                                         'triangle-1-w',
@@ -1715,7 +1720,7 @@ if ($action == 'new_product') {
                         $contents = [];
                         switch ($action) {
                             case 'new_category':
-                                $heading[] = ['text' => '<strong>' . TEXT_INFO_HEADING_NEW_CATEGORY . '</strong>'];
+                                $heading[] = ['text' => '<strong>' . _('New Category / Article') . '</strong>'];
 
                                 $contents = ['form' => tep_draw_form('newcategory',
                                     FILENAME_CATEGORIES,
@@ -1760,7 +1765,7 @@ if ($action == 'new_product') {
                                 }
 
 
-                                $contents[] = ['text' => '<br />' . TEXT_CATEGORIES_NAME . $category_inputs_string];
+                                $contents[] = ['text' => '<br />' . _('The Category name') . $category_inputs_string];
                                 $contents[] = ['text' => '<br />' . TEXT_CATEGORIES_DESCRIPTION . $category_description_string];
                                 $contents[] = ['text' => '<br />' . TEXT_SORT_ORDER . '<br />' . tep_draw_input_field('sort_order',
                                         '', 'size="2"')];
@@ -1980,7 +1985,7 @@ if ($action == 'new_product') {
                                 $contents[] = ['text' => TEXT_INFO_COPY_TO_INTRO];
                                 $contents[] = ['text' => '<br />' . TEXT_INFO_CURRENT_CATEGORIES . '<br /><strong>' . tep_output_generated_category_path($pInfo->products_id,
                                         'product') . '</strong>'];
-                                $contents[] = ['text' => '<br />' . TEXT_CATEGORIES . '<br />' . tep_draw_pull_down_menu('categories_id',
+                                $contents[] = ['text' => '<br />' . _('Categories') . '<br />' . tep_draw_pull_down_menu('categories_id',
                                         tep_get_category_tree(), $current_category_id)];
                                 $contents[] = ['text' => '<br />' . TEXT_HOW_TO_COPY . '<br />' . tep_draw_radio_field('copy_as',
                                         'link', true) . ' ' . TEXT_COPY_AS_LINK . '<br />' . tep_draw_radio_field('copy_as',

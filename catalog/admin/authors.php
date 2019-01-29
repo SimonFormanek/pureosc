@@ -563,7 +563,7 @@ switch (ARTICLE_ENABLE_HTML_EDITOR) {
                         <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                                 <tr class="dataTableHeadingRow">
                                     <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_AUTHORS; ?></td>
-                                    <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                    <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                 </tr>
             <?php
             $authors_query_raw = "select authors_id, authors_name, date_added, last_modified from ".TABLE_AUTHORS." order by authors_name";

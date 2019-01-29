@@ -207,7 +207,7 @@ if ($action == 'list_new') {
                                 <tr class="dataTableHeadingRow">
                                     <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_MODULES; ?></td>
                                     <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_GROUP; ?></td>
-                                    <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                    <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                 </tr>
                                 <?php
                                 foreach ($modules['new'] as $m) {
@@ -259,7 +259,7 @@ if ($action == 'list_new') {
                         <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_MODULES; ?></td>
                         <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_GROUP; ?></td>
                         <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_SORT_ORDER; ?></td>
-                        <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                        <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                     </tr>
                     <?php
                     foreach ($modules['installed'] as $m) {

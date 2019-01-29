@@ -431,7 +431,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             <tr class="dataTableHeadingRow">
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_ARTICLE_NAME; ?></td>
                                 <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_BLOG_STATUS; ?></td>
-                                <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                             </tr>
         <?php
         $comments_query_raw = "select *, count(ab.articles_id) as ttl_comments from ".TABLE_ARTICLES." a left join ".TABLE_ARTICLES_DESCRIPTION." ad on a.articles_id = ad.articles_id inner join ".TABLE_ARTICLES_BLOG." ab on ad.articles_id = ab.articles_id and a.articles_is_blog = 1 and ad.language_id = ".(int) $languages_id." group by ab.articles_id order by ab.comment_date_added";

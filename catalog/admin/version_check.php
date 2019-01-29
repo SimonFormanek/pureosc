@@ -118,7 +118,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <tr class="dataTableHeadingRow">
                                     <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_VERSION; ?></td>
                                     <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_RELEASED; ?></td>
-                                    <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                    <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                 </tr>
 
                                 <?php

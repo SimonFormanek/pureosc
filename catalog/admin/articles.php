@@ -1487,7 +1487,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'new_topic_ACD' || $_GET['acti
   <?php
   echo tep_draw_form('goto',
     FILENAME_ARTICLES, '', 'get');
-  echo HEADING_TITLE_GOTO . ' ' . tep_draw_pull_down_menu('tPath',
+  echo _('Go to') . ' ' . tep_draw_pull_down_menu('tPath',
     tep_get_topic_tree(), $current_topic_id,
     'onChange="this.form.submit();"');
   echo '</form>';
@@ -1505,10 +1505,10 @@ if (isset($_GET['action']) && ($_GET['action'] == 'new_topic_ACD' || $_GET['acti
                                       <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
                                               <tr class="dataTableHeadingRow">
                                                   <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_TOPICS_ARTICLES; ?></td>
-                                                  <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_STATUS; ?></td>
+                                                  <td class="dataTableHeadingContent" align="center"><?php echo _('Status'); ?></td>
                                                   <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_BLOG_STATUS; ?></td>
                                                   <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_SORT_ORDER; ?></td>
-                                                  <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                                  <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                               </tr>
                                                       <?php
                                                       $topics_count = 0;

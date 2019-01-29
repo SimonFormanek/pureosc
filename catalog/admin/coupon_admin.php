@@ -195,7 +195,7 @@ switch ($_GET['action']) {
                                             <td class="dataTableHeadingContent" align="center"><?php echo CUSTOMER_NAME; ?></td>
                                             <td class="dataTableHeadingContent" align="center"><?php echo IP_ADDRESS; ?></td>
                                             <td class="dataTableHeadingContent" align="center"><?php echo REDEEM_DATE; ?></td>
-                                            <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                            <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                         </tr>
                                         <?php
                                         $cc_query_raw = "select * from ".TABLE_COUPON_REDEEM_TRACK." where coupon_id = '".$_GET['cid']."'";
@@ -814,7 +814,7 @@ switch ($_GET['action']) {
                                             <td class="dataTableHeadingContent" align="center"><?php echo COUPON_STARTDATE; ?></td>
                                             <td class="dataTableHeadingContent" align="center"><?php echo COUPON_FINISHDATE; ?></td>
                                             <td class="dataTableHeadingContent" align="center"><?php echo TEXT_COUPON_STATUS; ?></td>
-                                            <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                            <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                                         </tr>
                                             <?php
                                             if ($_GET['page'] > 1)
