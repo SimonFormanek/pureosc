@@ -2277,7 +2277,7 @@
         // Keeping the time actually adds/subtracts (one hour)
         // from the actual represented time. That is why we call updateOffset
         // a second time. In case it wants us to change the offset again
-        // _changeInProgress == true case, then we have to adjust, because
+        // _changeInProgress === true case, then we have to adjust, because
         // there is no such time in the given timezone.
         zone: function (input, keepLocalTime) {
             var offset = this._offset || 0,

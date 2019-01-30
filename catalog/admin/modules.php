@@ -258,7 +258,7 @@ if ($dir             = @dir($module_directory)) {
                                 $installed_modules)."', 'This is automatically updated. No need to edit.', '6', '0', now())");
                     }
 
-                    if ($template_integration == true) {
+                    if ($template_integration === true) {
                         $check_query = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'TEMPLATE_BLOCK_GROUPS'");
                         if (tep_db_num_rows($check_query)) {
                             $check          = tep_db_fetch_array($check_query);

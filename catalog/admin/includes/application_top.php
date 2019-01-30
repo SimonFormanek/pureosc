@@ -165,11 +165,11 @@ if (!tep_session_is_registered('admin')) {
     }
 
     /*     * * Altered for Alternative Administration System **
-      if ($redirect == true) {
+      if ($redirect === true) {
       tep_redirect(tep_href_link(FILENAME_LOGIN, (isset($redirect_origin['auth_user']) ? 'action=process' : '')));
       }
      */
-    if ($redirect == true) {
+    if ($redirect === true) {
         if (basename($current_page) == FILENAME_AAS) $sessionTimeout = true;
         else
                 tep_redirect(tep_href_link(FILENAME_LOGIN,

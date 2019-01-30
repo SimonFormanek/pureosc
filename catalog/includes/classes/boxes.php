@@ -82,7 +82,7 @@ class tableBox
 
         $tableBox_string .= '</table>'."\n";
 
-        if ($direct_output == true) echo $tableBox_string;
+        if ($direct_output === true) echo $tableBox_string;
 
         return $tableBox_string;
     }
@@ -142,18 +142,18 @@ class infoBoxHeading extends tableBox
     {
         $this->table_cellpadding = '0';
 
-        if ($left_corner == true) {
+        if ($left_corner === true) {
             $left_corner = tep_image(DIR_WS_IMAGES.'infobox/corner_left.gif');
         } else {
             $left_corner = tep_image(DIR_WS_IMAGES.'infobox/corner_right_left.gif');
         }
-        if ($right_arrow == true) {
+        if ($right_arrow === true) {
             $right_arrow = '<a href="'.$right_arrow.'">'.tep_image(DIR_WS_IMAGES.'infobox/arrow_right.gif',
                     ICON_ARROW_RIGHT).'</a>';
         } else {
             $right_arrow = '';
         }
-        if ($right_corner == true) {
+        if ($right_corner === true) {
             $right_corner = $right_arrow.tep_image(DIR_WS_IMAGES.'infobox/corner_right.gif');
         } else {
             $right_corner = $right_arrow.tep_draw_separator('pixel_trans.gif',

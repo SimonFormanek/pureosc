@@ -13,7 +13,7 @@
 require_once('includes/application_top.php');
 
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled (or the session has not started)
-if ($session_started == false) {
+if ($session_started === false) {
     if (!isset($_GET['cookie_test'])) {
         $all_get = tep_get_all_get_params();
 

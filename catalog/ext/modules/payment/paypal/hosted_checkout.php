@@ -57,7 +57,7 @@
   <?php echo tep_image('ext/modules/payment/paypal/images/hss_load.gif');?>
 </div>
 
-<form name="pphs" action="<?php echo $form_url; ?>" method="post" <?php echo ($error == true ? 'target="_top"' : ''); ?>>
+<form name="pphs" action="<?php echo $form_url; ?>" method="post" <?php echo ($error === true ? 'target="_top"' : ''); ?>>
   <input type="hidden" name="hosted_button_id" value="<?php echo (isset($pphs_result['HOSTEDBUTTONID']) ? tep_output_string_protected($pphs_result['HOSTEDBUTTONID']) : ''); ?>" />
 </form>
 

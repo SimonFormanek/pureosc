@@ -29,7 +29,7 @@ function tep_opendir($path)
 
                 $result[] = $file;
 
-                if ($file['is_dir'] == true) {
+                if ($file['is_dir'] === true) {
                     $result = array_merge($result, tep_opendir($path.$filename));
                 }
             }
@@ -89,7 +89,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 strlen(DIR_FS_CATALOG));
                                     ?></td>
                                         <td class="dataTableContent" align="center"><?php echo tep_image(DIR_WS_IMAGES.'icons/'.(($file['writable']
-                                        == true) ? 'tick.gif' : 'cross.gif'));
+                                        === true) ? 'tick.gif' : 'cross.gif'));
                                     ?></td>
                                         <td class="dataTableContent" align="center"><?php
                                     echo tep_image(DIR_WS_IMAGES.'icons/'.(in_array(substr($file['name'],

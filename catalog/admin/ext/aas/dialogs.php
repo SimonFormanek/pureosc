@@ -399,8 +399,8 @@ defined('AAS') or die;
     <div class="clear margin-20-auto" style="font-size:15px;text-align:left"><?php echo AAS_SPECIALS_DIALOG_TEXT_SPECIAL_NOTES; ?></div>
 </div>
 
-<?php if (DOWNLOAD_ENABLED == 'true' && ($fieldsArray['attributes']['visible'] == true
-    || $fieldsArray['products_description']['visible'] == true)) { ?>
+<?php if (DOWNLOAD_ENABLED == 'true' && ($fieldsArray['attributes']['visible'] === true
+    || $fieldsArray['products_description']['visible'] === true)) { ?>
     <div class="dialog" id="dialog-downloadable-products-manager" title="<?php echo AAS_DIALOG_TITLE_DOWNLOADABLE_ATTRIBUTES_CONTENT_MANAGER; ?>">
         <div class="message"></div>
         <div class="clear margin-20-auto">

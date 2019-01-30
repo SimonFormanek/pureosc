@@ -93,7 +93,7 @@ if ($messageStack->size('password_forgotten') > 0) {
     echo $messageStack->output('password_forgotten');
 }
 
-if ($password_reset_initiated == true) {
+if ($password_reset_initiated === true) {
     ?>
 
     <div class="contentContainer">

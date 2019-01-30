@@ -58,7 +58,7 @@ class moneybookers
     {
         global $order;
 
-        if (($this->enabled == true) && ((int) MODULE_PAYMENT_MONEYBOOKERS_ZONE > 0)) {
+        if (($this->enabled === true) && ((int) MODULE_PAYMENT_MONEYBOOKERS_ZONE > 0)) {
             $check_flag  = false;
             $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_MONEYBOOKERS_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
             while ($check       = tep_db_fetch_array($check_query)) {
@@ -71,7 +71,7 @@ class moneybookers
                 }
             }
 
-            if ($check_flag == false) {
+            if ($check_flag === false) {
                 $this->enabled = false;
             }
         }
@@ -158,7 +158,7 @@ class moneybookers
             $insert_order = true;
         }
 
-        if ($insert_order == true) {
+        if ($insert_order === true) {
             $order_totals = array();
             if (is_array($order_total_modules->modules)) {
                 reset($order_total_modules->modules);
@@ -399,7 +399,7 @@ class moneybookers
             $pass = true;
         }
 
-        if ($pass == true) {
+        if ($pass === true) {
             $order_id = substr($GLOBALS[$this->_mbcartID],
                 strpos($GLOBALS[$this->_mbcartID], '-') + 1);
 
@@ -733,7 +733,7 @@ class moneybookers
             $curl = curl_init($server['scheme'].'://'.$server['host'].$server['path'].(isset($server['query'])
                     ? '?'.$server['query'] : ''));
             curl_setopt($curl, CURLOPT_PORT, $server['port']);
-            curl_setopt($curl, CURLOPT_HEADER, ($with_headers == true) ? 1 : 0);
+            curl_setopt($curl, CURLOPT_HEADER, ($with_headers === true) ? 1 : 0);
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_FORBID_REUSE, 1);

@@ -76,7 +76,7 @@ class sage_pay_form
     {
         global $order;
 
-        if (($this->enabled == true) && ((int) MODULE_PAYMENT_SAGE_PAY_FORM_ZONE
+        if (($this->enabled === true) && ((int) MODULE_PAYMENT_SAGE_PAY_FORM_ZONE
             > 0)) {
             $check_flag  = false;
             $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_SAGE_PAY_FORM_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
@@ -90,7 +90,7 @@ class sage_pay_form
                 }
             }
 
-            if ($check_flag == false) {
+            if ($check_flag === false) {
                 $this->enabled = false;
             }
         }

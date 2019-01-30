@@ -205,7 +205,7 @@ if (tep_not_null($action)) {
             } elseif ($action == 'restorelocalnow') {
                 $sql_file = new upload('sql_file');
 
-                if ($sql_file->parse() == true) {
+                if ($sql_file->parse() === true) {
                     $restore_query = fread(fopen($sql_file->tmp_filename, 'r'),
                         filesize($sql_file->tmp_filename));
                     $read_from     = $sql_file->filename;
@@ -287,7 +287,7 @@ if (tep_not_null($action)) {
                 tep_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key = 'DB_LAST_RESTORE'");
                 tep_db_query("insert into ".TABLE_CONFIGURATION." values (null, 'Last Database Restore', 'DB_LAST_RESTORE', '".$read_from."', 'Last database restore file', '6', '0', null, now(), '', '')");
 
-                if (isset($remove_raw) && ($remove_raw == true)) {
+                if (isset($remove_raw) && ($remove_raw === true)) {
                     unlink($restore_from);
                 }
 
@@ -367,7 +367,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 <td class="dataTableHeadingContent" align="right"><?php echo _('Action'); ?>&nbsp;</td>
                             </tr>
                             <?php
-                            if ($dir_ok == true) {
+                            if ($dir_ok === true) {
                                 $dir      = dir(DIR_FS_BACKUP);
                                 $contents = array();
                                 while ($file     = $dir->read()) {
@@ -489,7 +489,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         $contents[] = array('text' => tep_draw_radio_field('compress',
                             'zip').' '.TEXT_INFO_USE_ZIP);
 
-                if ($dir_ok == true) {
+                if ($dir_ok === true) {
                     $contents[] = array('text' => '<br />'.tep_draw_checkbox_field('download',
                             'yes').' '.TEXT_INFO_DOWNLOAD_ONLY.'*<br /><br />*'.TEXT_INFO_BEST_THROUGH_HTTPS);
                 } else {

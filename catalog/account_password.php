@@ -39,7 +39,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
             ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING);
     }
 
-    if ($error == false) {
+    if ($error === false) {
         $check_customer_query = tep_db_query("select customers_password from ".TABLE_CUSTOMERS." where customers_id = '".(int) $customer_id."'");
         $check_customer       = tep_db_fetch_array($check_customer_query);
 

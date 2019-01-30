@@ -112,7 +112,7 @@ if (tep_not_null($action)) {
                 $entry_city_error = false;
             }
 
-            if ($entry_country_id == false) {
+            if ($entry_country_id === false) {
                 $error = true;
                 $entry_country_error = true;
             } else {
@@ -120,7 +120,7 @@ if (tep_not_null($action)) {
             }
 
             if (ACCOUNT_STATE == 'true') {
-                if ($entry_country_error == true) {
+                if ($entry_country_error === true) {
                     $entry_state_error = true;
                 } else {
                     $zone_id = 0;
@@ -128,7 +128,7 @@ if (tep_not_null($action)) {
                     $check_query = tep_db_query("select count(*) as total from " . TABLE_ZONES . " where zone_country_id = '" . (int)$entry_country_id . "'");
                     $check_value = tep_db_fetch_array($check_query);
                     $entry_state_has_zones = ($check_value['total'] > 0);
-                    if ($entry_state_has_zones == true) {
+                    if ($entry_state_has_zones === true) {
                         $zone_query = tep_db_query("select zone_id from " . TABLE_ZONES . " where zone_country_id = '" . (int)$entry_country_id . "' and zone_name = '" . tep_db_input($entry_state) . "'");
                         if (tep_db_num_rows($zone_query) == 1) {
                             $zone_values = tep_db_fetch_array($zone_query);
@@ -161,7 +161,7 @@ if (tep_not_null($action)) {
                 $entry_email_address_exists = false;
             }
 
-            if ($error == false) {
+            if ($error === false) {
 
                 $sql_data_array = array('customers_firstname' => $customers_firstname,
                     'customers_lastname' => $customers_lastname,
@@ -244,7 +244,7 @@ if (tep_not_null($action)) {
 
                 tep_redirect(tep_href_link(FILENAME_CUSTOMERS,
                     tep_get_all_get_params(array('cID', 'action')) . 'cID=' . $customers_id));
-            } else if ($error == true) {
+            } else if ($error === true) {
                 $cInfo = new objectInfo($_POST);
                 $processed = true;
             }
@@ -428,8 +428,8 @@ if ($action == 'edit' || $action == 'update') {
                             <td class="main"><?php echo ENTRY_GENDER; ?></td>
                             <td class="main">
                                 <?php
-                                if ($error == true) {
-                                    if ($entry_gender_error == true) {
+                                if ($error === true) {
+                                    if ($entry_gender_error === true) {
                                         echo tep_draw_radio_field('customers_gender', 'm', false,
                                                 $cInfo->customers_gender) . '&nbsp;&nbsp;' . MALE . '&nbsp;&nbsp;' . tep_draw_radio_field('customers_gender',
                                                 'f', false, $cInfo->customers_gender) . '&nbsp;&nbsp;' . FEMALE . '&nbsp;' . ENTRY_GENDER_ERROR;
@@ -451,8 +451,8 @@ if ($action == 'edit' || $action == 'update') {
                         <td class="main"><?php echo ENTRY_FIRST_NAME; ?></td>
                         <td class="main">
                             <?php
-                            if ($error == true) {
-                                if ($entry_firstname_error == true) {
+                            if ($error === true) {
+                                if ($entry_firstname_error === true) {
                                     echo tep_draw_input_field('customers_firstname',
                                             $cInfo->customers_firstname,
                                             'maxlength="32"') . '&nbsp;' . ENTRY_FIRST_NAME_ERROR;
@@ -470,8 +470,8 @@ if ($action == 'edit' || $action == 'update') {
                         <td class="main"><?php echo ENTRY_LAST_NAME; ?></td>
                         <td class="main">
                             <?php
-                            if ($error == true) {
-                                if ($entry_lastname_error == true) {
+                            if ($error === true) {
+                                if ($entry_lastname_error === true) {
                                     echo tep_draw_input_field('customers_lastname',
                                             $cInfo->customers_lastname,
                                             'maxlength="32"') . '&nbsp;' . ENTRY_LAST_NAME_ERROR;
@@ -492,8 +492,8 @@ if ($action == 'edit' || $action == 'update') {
                             <td class="main"><?php echo ENTRY_DATE_OF_BIRTH; ?></td>
                             <td class="main">
                                 <?php
-                                if ($error == true) {
-                                    if ($entry_date_of_birth_error == true) {
+                                if ($error === true) {
+                                    if ($entry_date_of_birth_error === true) {
                                         echo tep_draw_input_field('customers_dob',
                                                 tep_date_short($cInfo->customers_dob),
                                                 'maxlength="10"') . '&nbsp;' . ENTRY_DATE_OF_BIRTH_ERROR;
@@ -522,16 +522,16 @@ if ($action == 'edit' || $action == 'update') {
                     <td clas s="main"><?php echo _('E-Mail Address'); ?></td>
                     <td class="main">
                         <?php
-                        if ($error == true) {
-                            if ($entry_email_address_error == true) {
+                        if ($error === true) {
+                            if ($entry_email_address_error === true) {
                                 echo tep_draw_input_field('customers_email_address',
                                         $cInfo->customers_email_address,
                                         'maxlength="96"') . '&nbsp;' . ENTRY_EMAIL_ADDRESS_ERROR;
-                            } elseif ($entry_email_address_check_error == true) {
+                            } elseif ($entry_email_address_check_error === true) {
                                 echo tep_draw_input_field('customers_email_address',
                                         $cInfo->customers_email_address,
                                         'maxlength="96"') . '&nbsp;' . ENTRY_EMAIL_ADDRESS_CHECK_ERROR;
-                            } elseif ($entry_email_address_exists == true) {
+                            } elseif ($entry_email_address_exists === true) {
                                 echo tep_draw_input_field('customers_email_address',
                                         $cInfo->customers_email_address,
                                         'maxlength="96"') . '&nbsp;' . ENTRY_EMAIL_ADDRESS_ERROR_EXISTS;
@@ -564,7 +564,7 @@ if ($action == 'edit' || $action == 'update') {
                             <td class="main"><?php echo _('Company Name'); ?></td>
                             <td class="main">
                                 <?php
-                                if ($error == true) {
+                                if ($error === true) {
                                     echo $cInfo->entry_company . tep_draw_hidden_field('entry_company');
                                 } else {
                                     echo tep_draw_input_field('entry_company',
@@ -578,7 +578,7 @@ if ($action == 'edit' || $action == 'update') {
                             <td class="main"><?php echo_('Vat number'); ?></td>
                             <td class="main">
                                 <?php
-                                if ($error == true) {
+                                if ($error === true) {
                                     echo $cInfo->entry_vat_number . tep_draw_hidden_field('entry_vat_number');
                                 } else {
                                     echo tep_draw_input_field('entry_vat_number',
@@ -592,7 +592,7 @@ if ($action == 'edit' || $action == 'update') {
                             <td class="main"><?php echo _('Company number');; ?></td>
                             <td class="main">
                                 <?php
-                                if ($error == true) {
+                                if ($error === true) {
                                     echo $cInfo->entry_company_number . tep_draw_hidden_field('entry_company_number');
                                 } else {
                                     echo tep_draw_input_field('entry_company_number',
@@ -621,8 +621,8 @@ if ($action == 'edit' || $action == 'update') {
                         <td class="main"><?php echo ENTRY_STREET_ADDRESS; ?></td>
                         <td class="m            ain">
                             <?php
-                            if ($error == true) {
-                                if ($entry_street_address_error == true) {
+                            if ($error === true) {
+                                if ($entry_street_address_error === true) {
                                     echo tep_draw_input_field('entry_street_address',
                                             $cInfo->entry_street_address,
                                             'maxlength="64"') . '&nbsp;' . ENTRY_STREET_ADDRESS_ERROR;
@@ -643,7 +643,7 @@ if ($action == 'edit' || $action == 'update') {
                             <td class="main"><?php echo ENTRY_SUBURB; ?></td>
                             <td class="main">
                                 <?php
-                                if ($error == true) {
+                                if ($error === true) {
                                     echo $cInfo->entry_suburb . tep_draw_hidden_field('entry_suburb');
                                 } else {
                                     echo tep_draw_input_field('entry_suburb',
@@ -659,8 +659,8 @@ if ($action == 'edit' || $action == 'update') {
                         <td class="main"><?php echo ENTRY_POST_CODE; ?></td>
                         <td class="main">
                             <?php
-                            if ($error == true) {
-                                if ($entry_post_code_error == true) {
+                            if ($error === true) {
+                                if ($entry_post_code_error === true) {
                                     echo tep_draw_input_field('entry_postcode',
                                             $cInfo->entry_postcode,
                                             'maxlength="8"') . '&nbsp;' . ENTRY_POST_CODE_ERROR;
@@ -678,8 +678,8 @@ if ($action == 'edit' || $action == 'update') {
                         <td class="main"><?php echo ENTRY_CITY; ?></td>
                         <td class="main">
                             <?php
-                            if ($error == true) {
-                                if ($entry_city_error == true) {
+                            if ($error === true) {
+                                if ($entry_city_error === true) {
                                     echo tep_draw_input_field('entry_city',
                                             $cInfo->entry_city,
                                             'maxlength="32"') . '&nbsp;' . ENTRY_CITY_ERROR;
@@ -703,9 +703,9 @@ if ($action == 'edit' || $action == 'update') {
                                 $entry_state = tep_get_zone_name($cInfo->entry_country_id,
                                     $cInfo->entry_zone_id,
                                     $cInfo->entry_state);
-                                if ($error == true) {
-                                    if ($entry_state_error == true) {
-                                        if ($entry_state_has_zones == true) {
+                                if ($error === true) {
+                                    if ($entry_state_error === true) {
+                                        if ($entry_state_has_zones === true) {
                                             $zones_array = array();
                                             $zones_query = tep_db_query("select zone_name from " . TABLE_ZONES . " where zone_country_id = '" . tep_db_input($cInfo->entry_country_id) . "' order by zone_name");
                                             while ($zones_values = tep_db_fetch_array($zones_query)) {
@@ -738,8 +738,8 @@ if ($action == 'edit' || $action == 'update') {
                         <td class="main"><?php echo ENTRY_COUNTRY; ?></td>
                         <td class="main">
                             <?php
-                            if ($error == true) {
-                                if ($entry_country_error == true) {
+                            if ($error === true) {
+                                if ($entry_country_error === true) {
                                     echo tep_draw_pull_down_menu('entry_country_id',
                                             tep_get_countries(),
                                             $cInfo->entry_country_id) . '&nbsp;' . ENTRY_COUNTRY_ERROR;
@@ -769,8 +769,8 @@ if ($action == 'edit' || $action == 'update') {
                         <td class="main"><?php echo ENTRY_TELEPHONE_NUMBER; ?></td>
                         <td class="main">
                             <?php
-                            if ($error == true) {
-                                if ($entry_telephone_error == true) {
+                            if ($error === true) {
+                                if ($entry_telephone_error === true) {
                                     echo tep_draw_input_field('customers_telephone',
                                             $cInfo->customers_telephone, 'maxlength="32"') . '&nbsp;' . ENTRY_TELEPHONE_NUMBER_ERROR;
                                 } else {
@@ -786,7 +786,7 @@ if ($action == 'edit' || $action == 'update') {
                         <td class="main"><?php echo ENTRY_FAX_NUMBER; ?></td>
                         <td class="main">
                             <?php
-                            if ($processed == true) {
+                            if ($processed === true) {
                                 echo $cInfo->customers_fax . tep_draw_hidden_field('customers_fax');
                             } else {
                                 echo tep_draw_input_field('customers_fax',
@@ -811,7 +811,7 @@ if ($action == 'edit' || $action == 'update') {
                         <td class="main"><?php echo ENTRY_NEWSLETTER; ?></td>
                         <td class="main">
                             <?php
-                            if ($processed == true) {
+                            if ($processed === true) {
                                 if ($cInfo->customers_newsletter == '1') {
                                     echo ENTRY_NEWSLETTER_YES;
                                 } else {

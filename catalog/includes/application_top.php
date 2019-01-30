@@ -184,7 +184,7 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
         }
     }
 
-    if ($spider_flag == false) {
+    if ($spider_flag === false) {
         tep_session_start();
         $session_started = true;
     }
@@ -193,8 +193,8 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
     $session_started = true;
 }
 
-if (($session_started == true) && (PHP_VERSION >= 4.3) && function_exists('ini_get')
-    && (ini_get('register_globals') == false)) {
+if (($session_started === true) && (PHP_VERSION >= 4.3) && function_exists('ini_get')
+    && (ini_get('register_globals') === false)) {
     extract($_SESSION, EXTR_OVERWRITE + EXTR_REFS);
 }
 
@@ -209,7 +209,7 @@ $SID = (defined('SID') ? SID : '');
 
 // verify the ssl_session_id if the feature is enabled
 if (($request_type == 'SSL') && (SESSION_CHECK_SSL_SESSION_ID == 'True') && (ENABLE_SSL
-    == true) && ($session_started == true)) {
+    === true) && ($session_started === true)) {
     $ssl_session_id = getenv('SSL_SESSION_ID');
     if (!tep_session_is_registered('SSL_SESSION_ID')) {
         $SESSION_SSL_ID = $ssl_session_id;
@@ -340,7 +340,7 @@ $messageStack = new messageStack();
 // Shopping cart actions
 if (isset($_GET['action'])) {
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled
-    if ($session_started == false) {
+    if ($session_started === false) {
         tep_redirect(tep_href_link(FILENAME_COOKIE_USAGE));
     }
 

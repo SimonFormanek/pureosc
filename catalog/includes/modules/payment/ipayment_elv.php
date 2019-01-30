@@ -51,7 +51,7 @@ class ipayment_elv
     {
         global $order;
 
-        if (($this->enabled == true) && ((int) MODULE_PAYMENT_IPAYMENT_ELV_ZONE > 0)) {
+        if (($this->enabled === true) && ((int) MODULE_PAYMENT_IPAYMENT_ELV_ZONE > 0)) {
             $check_flag  = false;
             $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_IPAYMENT_ELV_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
             while ($check       = tep_db_fetch_array($check_query)) {
@@ -64,7 +64,7 @@ class ipayment_elv
                 }
             }
 
-            if ($check_flag == false) {
+            if ($check_flag === false) {
                 $this->enabled = false;
             }
         }
@@ -181,7 +181,7 @@ class ipayment_elv
             }
 
 // verify ret_url_checksum
-            $url                  = 'http'.(ENABLE_SSL == true ? 's' : '').'://'.$HTTP_SERVER_VARS['SERVER_NAME'].$HTTP_SERVER_VARS['REQUEST_URI'];
+            $url                  = 'http'.(ENABLE_SSL === true ? 's' : '').'://'.$HTTP_SERVER_VARS['SERVER_NAME'].$HTTP_SERVER_VARS['REQUEST_URI'];
             $url_without_checksum = substr($url, 0,
                 strpos($url, '&ret_url_checksum') + 1);
             if ($_GET['ret_url_checksum'] != md5($url_without_checksum.MODULE_PAYMENT_IPAYMENT_ELV_SECRET_HASH_PASSWORD)) {

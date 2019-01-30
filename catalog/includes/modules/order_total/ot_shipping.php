@@ -53,7 +53,7 @@ class ot_shipping
                     break;
             }
 
-            if (($pass == true) && ( ($order->info['total'] - $order->info['shipping_cost'])
+            if (($pass === true) && ( ($order->info['total'] - $order->info['shipping_cost'])
                 >= MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)) {
                 $order->info['shipping_method'] = FREE_SHIPPING_TITLE;
                 $order->info['total']           -= $order->info['shipping_cost'];

@@ -36,7 +36,7 @@ class alertBlock
             $alertBox_string .= '  </div>'."\n";
         }
 
-        if ($alert_output == true) echo $alertBox_string;
+        if ($alert_output === true) echo $alertBox_string;
         return $alertBox_string;
     }
 }

@@ -50,7 +50,7 @@ class sofortueberweisung_direct
     {
         global $order;
 
-        if (($this->enabled == true) && ((int) MODULE_PAYMENT_SOFORTUEBERWEISUNG_DIRECT_ZONE
+        if (($this->enabled === true) && ((int) MODULE_PAYMENT_SOFORTUEBERWEISUNG_DIRECT_ZONE
             > 0)) {
             $check_flag  = false;
             $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_SOFORTUEBERWEISUNG_DIRECT_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
@@ -64,7 +64,7 @@ class sofortueberweisung_direct
                 }
             }
 
-            if ($check_flag == false) {
+            if ($check_flag === false) {
                 $this->enabled = false;
             }
         }
@@ -148,7 +148,7 @@ class sofortueberweisung_direct
             $insert_order = true;
         }
 
-        if ($insert_order == true) {
+        if ($insert_order === true) {
             $order_totals = array();
             if (is_array($order_total_modules->modules)) {
                 reset($order_total_modules->modules);

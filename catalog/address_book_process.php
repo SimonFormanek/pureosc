@@ -120,7 +120,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
         $check_query           = tep_db_query("select count(*) as total from ".TABLE_ZONES." where zone_country_id = '".(int) $country."'");
         $check                 = tep_db_fetch_array($check_query);
         $entry_state_has_zones = ($check['total'] > 0);
-        if ($entry_state_has_zones == true) {
+        if ($entry_state_has_zones === true) {
             $zone_query = tep_db_query("select distinct zone_id from ".TABLE_ZONES." where zone_country_id = '".(int) $country."' and (zone_name = '".tep_db_input($state)."' or zone_code = '".tep_db_input($state)."')");
             if (tep_db_num_rows($zone_query) == 1) {
                 $zone    = tep_db_fetch_array($zone_query);
@@ -139,7 +139,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
         }
     }
 
-    if ($error == false) {
+    if ($error === false) {
         $sql_data_array = array('entry_firstname' => $firstname,
             'entry_lastname' => $lastname,
             'entry_vat_number' => $vat_number,

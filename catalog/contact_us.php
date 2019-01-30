@@ -41,7 +41,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send') && isset($_POST['formi
                         : 15)));
     }
 
-    if ($error == false) {
+    if ($error === false) {
         tep_mail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, EMAIL_SUBJECT,
             $enquiry, $name, $email_address);
 

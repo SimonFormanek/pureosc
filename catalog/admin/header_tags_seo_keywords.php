@@ -56,7 +56,7 @@ if (isset($_POST['sortgroup'])) {
         default: $sortBy['keyword']              = 'checked';
             $sortBy['current']              = $type.' keyword ASC';
     }
-} else if (isset($_POST['delete_words']) && $_POST['delete_words'] == true) {
+} else if (isset($_POST['delete_words']) && $_POST['delete_words'] === true) {
     $deleted = 0;
 
     while (list($key, $value) = each($_POST)) {
@@ -74,7 +74,7 @@ if (isset($_POST['sortgroup'])) {
     tep_db_query("truncate headertags_keywords");
     $messageStack->add(sprintf(TEXT_DELETE_SUCCESSFUL, $searches['ttl_words']),
         'success');
-} else if (isset($_POST['search_site']) && $_POST['search_site'] == true) {
+} else if (isset($_POST['search_site']) && $_POST['search_site'] === true) {
     $updated = 0;
 
     while (list($key, $value) = each($_POST)) {

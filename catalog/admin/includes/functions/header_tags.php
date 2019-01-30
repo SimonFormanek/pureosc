@@ -467,7 +467,7 @@ function DeletePage($page_to_delete)
         }
     }
 
-    if ($found == true) {         //page entry may not be present
+    if ($found === true) {         //page entry may not be present
         array_splice($lines, $delStart, $delStop);
         return WriteHeaderTagsFile($path, $lines);
     }

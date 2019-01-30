@@ -46,7 +46,7 @@ function read_cache(&$var, $filename, $auto_expire = false)
     $filename = DIR_FS_CACHE.$filename;
     $success  = false;
 
-    if (($auto_expire == true) && file_exists($filename)) {
+    if (($auto_expire === true) && file_exists($filename)) {
         $now        = time();
         $filetime   = filemtime($filename);
         $difference = $now - $filetime;
@@ -83,7 +83,7 @@ function get_db_cache($sql, &$var, $filename, $refresh = false)
     $var = array();
 
 // check for the refresh flag and try to the data
-    if (($refresh == true) || !read_cache($var, $filename)) {
+    if (($refresh === true) || !read_cache($var, $filename)) {
 // Didn' get cache so go to the database.
 //      $conn = mysql_connect("localhost", "apachecon", "apachecon");
         $res = tep_db_query($sql);
@@ -106,7 +106,7 @@ function tep_cache_categories_box($auto_expire = false, $refresh = false)
 
     $cache_output = '';
 
-    if (($refresh == true) || !read_cache($cache_output,
+    if (($refresh === true) || !read_cache($cache_output,
             'categories_box-'.$language.'.cache'.$cPath, $auto_expire)) {
         if (!class_exists('bm_categories')) {
             include(DIR_WS_MODULES.'boxes/bm_categories.php');
@@ -136,7 +136,7 @@ function tep_cache_manufacturers_box($auto_expire = false, $refresh = false)
         $manufacturers_id = $_GET['manufacturers_id'];
     }
 
-    if (($refresh == true) || !read_cache($cache_output,
+    if (($refresh === true) || !read_cache($cache_output,
             'manufacturers_box-'.$language.'.cache'.$manufacturers_id,
             $auto_expire)) {
         if (!class_exists('bm_manufacturers')) {
@@ -163,7 +163,7 @@ function tep_cache_also_purchased($auto_expire = false, $refresh = false)
     $cache_output = '';
 
     if (isset($_GET['products_id']) && is_numeric($_GET['products_id'])) {
-        if (($refresh == true) || !read_cache($cache_output,
+        if (($refresh === true) || !read_cache($cache_output,
                 'also_purchased-'.$language.'.cache'.$_GET['products_id'],
                 $auto_expire)) {
             ob_start();

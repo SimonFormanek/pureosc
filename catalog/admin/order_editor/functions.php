@@ -135,7 +135,7 @@ function oe_draw_selection_field($name, $type, $value = '', $checked = false,
     if (tep_not_null($parameters)) $selection .= ' '.$parameters;
 
 
-    if (($checked == true) || (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])
+    if (($checked === true) || (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])
         && ($GLOBALS[$name] == 'on')) || (isset($value) && isset($GLOBALS[$name])
         && (stripslashes($GLOBALS[$name]) == $value)) || (tep_not_null($value) && tep_not_null($compare)
         && ($value == $compare))) {

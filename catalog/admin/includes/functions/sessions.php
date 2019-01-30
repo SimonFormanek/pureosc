@@ -101,7 +101,7 @@ function tep_session_start()
         }
     }
 
-    if ($sane_session_id == false) {
+    if ($sane_session_id === false) {
         tep_redirect(tep_href_link(FILENAME_DEFAULT, '', 'SSL', false));
     }
 

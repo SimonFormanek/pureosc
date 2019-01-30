@@ -79,11 +79,11 @@ class sage_pay_direct
     {
         global $order;
 
-        if (($this->enabled == true) && ($this->hasCards() === false)) {
+        if (($this->enabled === true) && ($this->hasCards() === false)) {
             $this->enabled = false;
         }
 
-        if (($this->enabled == true) && ((int) MODULE_PAYMENT_SAGE_PAY_DIRECT_ZONE
+        if (($this->enabled === true) && ((int) MODULE_PAYMENT_SAGE_PAY_DIRECT_ZONE
             > 0)) {
             $check_flag  = false;
             $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_SAGE_PAY_DIRECT_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
@@ -97,7 +97,7 @@ class sage_pay_direct
                 }
             }
 
-            if ($check_flag == false) {
+            if ($check_flag === false) {
                 $this->enabled = false;
             }
         }

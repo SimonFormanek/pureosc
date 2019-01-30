@@ -138,7 +138,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
             var group = ($("input[type='radio']:checked").val());
             dataArray[1] = group;
             var disablebox = ($("input[type='checkbox']:checked").val());
-            dataArray[2] = (disablebox == false ? 0 : 1);
+            dataArray[2] = (disablebox === false ? 0 : 1);
 
             /**** GET THE IMAGES ****/
             var images = [];

@@ -70,7 +70,7 @@ if (tep_not_null($action)) {
                 }
             }
 
-            if ($banner_error == false) {
+            if ($banner_error === false) {
                 $db_image_location = (tep_not_null($banners_image_local)) ? $banners_image_local
                         : $banners_image_target.$banners_image->filename;
                 $sql_data_array    = array('banners_title' => $banners_title,

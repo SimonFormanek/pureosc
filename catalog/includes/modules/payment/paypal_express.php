@@ -90,7 +90,7 @@ class paypal_express
     {
         global $order;
 
-        if (($this->enabled == true) && ((int) MODULE_PAYMENT_PAYPAL_EXPRESS_ZONE
+        if (($this->enabled === true) && ((int) MODULE_PAYMENT_PAYPAL_EXPRESS_ZONE
             > 0)) {
             $check_flag  = false;
             $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_PAYPAL_EXPRESS_ZONE."' and zone_country_id = '".$order->delivery['country']['id']."' order by zone_id");
@@ -104,7 +104,7 @@ class paypal_express
                 }
             }
 
-            if ($check_flag == false) {
+            if ($check_flag === false) {
                 $this->enabled = false;
             }
         }

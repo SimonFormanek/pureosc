@@ -34,7 +34,7 @@ if (tep_not_null($action)) {
                 $error = true;
             }
 
-            if ($error == false) {
+            if ($error === false) {
                 tep_redirect(tep_href_link(FILENAME_STORE_LOGO));
             }
             break;

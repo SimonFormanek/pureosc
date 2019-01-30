@@ -26,7 +26,7 @@ function tep_href_link($page = '', $parameters = '', $connection = 'SSL',
     if ($connection == 'NONSSL') {
         $link = HTTP_SERVER.DIR_WS_ADMIN;
     } elseif ($connection == 'SSL') {
-        if (ENABLE_SSL == true) {
+        if (ENABLE_SSL === true) {
             $link = HTTPS_SERVER.DIR_WS_HTTPS_ADMIN;
         } else {
             $link = HTTP_SERVER.DIR_WS_ADMIN;
@@ -47,11 +47,11 @@ function tep_href_link($page = '', $parameters = '', $connection = 'SSL',
         $link = substr($link, 0, -1);
 
 // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
-    if (($add_session_id == true) && (SESSION_FORCE_COOKIE_USE == 'False')) {
+    if (($add_session_id === true) && (SESSION_FORCE_COOKIE_USE == 'False')) {
         if (tep_not_null($SID)) {
             $_sid = $SID;
         } elseif (( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL
-            == true) ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') )) {
+            === true) ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') )) {
             if (HTTP_COOKIE_DOMAIN != HTTPS_COOKIE_DOMAIN) {
                 $_sid = tep_session_name().'='.tep_session_id();
             }
@@ -242,7 +242,7 @@ function tep_draw_input_field($name, $value = '', $parameters = '',
 
     $field = '<input type="'.tep_output_string($type).'" name="'.tep_output_string($name).'"';
 
-    if (($reinsert_value == true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
+    if (($reinsert_value === true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($_POST[$name]) && is_string($_POST[$name])) )) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
             $value = stripslashes($_GET[$name]);
@@ -259,7 +259,7 @@ function tep_draw_input_field($name, $value = '', $parameters = '',
 
     $field .= ' />';
 
-    if ($required == true) $field .= TEXT_FIELD_REQUIRED;
+    if ($required === true) $field .= TEXT_FIELD_REQUIRED;
 
     return $field;
 }
@@ -295,7 +295,7 @@ function tep_draw_selection_field($name, $type, $value = '', $checked = false,
     if (tep_not_null($value))
             $selection .= ' value="'.tep_output_string($value).'"';
 
-    if (($checked == true) || (isset($_GET[$name]) && is_string($_GET[$name]) && (($_GET[$name]
+    if (($checked === true) || (isset($_GET[$name]) && is_string($_GET[$name]) && (($_GET[$name]
         == 'on') || (stripslashes($_GET[$name]) == $value))) || (isset($_POST[$name])
         && is_string($_POST[$name]) && (($_POST[$name] == 'on') || (stripslashes($_POST[$name])
         == $value))) || (tep_not_null($compare) && ($value == $compare))) {
@@ -339,7 +339,7 @@ function tep_draw_textarea_field_ckeditor($name, $wrap, $width, $height,
 
     $field .= '>';
 
-    if (($reinsert_value == true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
+    if (($reinsert_value === true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($_POST[$name]) && is_string($_POST[$name])) )) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
             $field .= tep_output_string_protected(stripslashes($_GET[$name]));
@@ -369,7 +369,7 @@ function tep_draw_textarea_field($name, $wrap, $width, $height, $text = '',
 
     $field .= '>';
 
-    if (($reinsert_value == true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
+    if (($reinsert_value === true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($_POST[$name]) && is_string($_POST[$name])) )) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
             $field .= tep_output_string_protected(stripslashes($_GET[$name]));
@@ -457,7 +457,7 @@ function tep_draw_pull_down_menu($name, $values, $default = '',
     }
     $field .= '</select>';
 
-    if ($required == true) $field .= TEXT_FIELD_REQUIRED;
+    if ($required === true) $field .= TEXT_FIELD_REQUIRED;
 
     return $field;
 }

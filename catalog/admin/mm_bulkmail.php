@@ -49,7 +49,7 @@ if (tep_not_null($action)) {
                 $newsletter_error = true;
             }
 
-            if ($newsletter_error == false) {
+            if ($newsletter_error === false) {
                 $sql_data_array = array('title' => $title,
                     'subject' => $subject,
                     'content' => $content,

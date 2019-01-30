@@ -47,7 +47,7 @@ function tep_href_link_original($page = '', $parameters = '',
     if ($connection == 'NONSSL') {
         $link = HTTP_SERVER.DIR_WS_HTTP_CATALOG;
     } elseif ($connection == 'SSL') {
-        if (ENABLE_SSL == true) {
+        if (ENABLE_SSL === true) {
             $link = HTTPS_SERVER.DIR_WS_HTTPS_CATALOG;
         } else {
             $link = HTTP_SERVER.DIR_WS_HTTP_CATALOG;
@@ -68,12 +68,12 @@ function tep_href_link_original($page = '', $parameters = '',
         $link = substr($link, 0, -1);
 
 // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
-    if (($add_session_id == true) && ($session_started == true) && (SESSION_FORCE_COOKIE_USE
+    if (($add_session_id === true) && ($session_started === true) && (SESSION_FORCE_COOKIE_USE
         == 'False')) {
         if (tep_not_null($SID)) {
             $_sid = $SID;
         } elseif (( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL
-            == true) ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') )) {
+            === true) ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') )) {
             if (HTTP_COOKIE_DOMAIN != HTTPS_COOKIE_DOMAIN) {
                 $_sid = tep_session_name().'='.tep_session_id();
             }
@@ -87,7 +87,7 @@ function tep_href_link_original($page = '', $parameters = '',
     while (strpos($link, '&&') !== false)
         $link = str_replace('&&', '&', $link);
 
-    if ((SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe == true)) {
+    if ((SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe === true)) {
         $link = str_replace('?', '/', $link);
         $link = str_replace('&', '/', $link);
         $link = str_replace('=', '/', $link);
@@ -335,7 +335,7 @@ function tep_draw_form($name, $action, $method = 'post', $parameters = '',
 
     $form .= '>';
 
-    if (($tokenize == true) && isset($sessiontoken)) {
+    if (($tokenize === true) && isset($sessiontoken)) {
         $form .= '<input type="hidden" name="formid" value="'.tep_output_string($sessiontoken).'" />';
     }
 
@@ -352,7 +352,7 @@ function tep_draw_input_field($name, $value = '', $parameters = '',
 
     $field = '<input type="'.tep_output_string($type).'" name="'.tep_output_string($name).'"';
 
-    if (($reinsert_value == true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
+    if (($reinsert_value === true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($_POST[$name]) && is_string($_POST[$name])) )) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
             $value = stripslashes($_GET[$name]);
@@ -394,7 +394,7 @@ function tep_draw_selection_field($name, $type, $value = '', $checked = false,
     if (tep_not_null($value))
             $selection .= ' value="'.tep_output_string($value).'"';
 
-    if (($checked == true) || (isset($_GET[$name]) && is_string($_GET[$name]) && (($_GET[$name]
+    if (($checked === true) || (isset($_GET[$name]) && is_string($_GET[$name]) && (($_GET[$name]
         == 'on') || (stripslashes($_GET[$name]) == $value))) || (isset($_POST[$name])
         && is_string($_POST[$name]) && (($_POST[$name] == 'on') || (stripslashes($_POST[$name])
         == $value)))) {
@@ -440,7 +440,7 @@ function tep_draw_textarea_field($name, $wrap, $width, $height, $text = '',
 
     $field .= '>';
 
-    if (($reinsert_value == true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
+    if (($reinsert_value === true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($_POST[$name]) && is_string($_POST[$name])) )) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
             $field .= tep_output_string_protected(stripslashes($_GET[$name]));
@@ -488,7 +488,7 @@ function tep_hide_session_id()
 {
     global $session_started, $SID;
 
-    if (($session_started == true) && tep_not_null($SID)) {
+    if (($session_started === true) && tep_not_null($SID)) {
         return tep_draw_hidden_field(tep_session_name(), tep_session_id());
     }
 }
@@ -526,7 +526,7 @@ function tep_draw_pull_down_menu($name, $values, $default = '',
     }
     $field .= '</select>';
 
-    if ($required == true) $field .= TEXT_FIELD_REQUIRED;
+    if ($required === true) $field .= TEXT_FIELD_REQUIRED;
 
     return $field;
 }

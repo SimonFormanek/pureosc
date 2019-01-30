@@ -18,7 +18,7 @@
 require 'includes/application_top.php';
 
 if (!tep_session_is_registered('admin') && isset($sessionTimeout) && $sessionTimeout
-    == true)
+    === true)
         tep_redirect(tep_href_link(FILENAME_LOGIN,
             (isset($redirect_origin['auth_user']) ? 'action=process' : '')));
 

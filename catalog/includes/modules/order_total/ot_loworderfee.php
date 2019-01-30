@@ -48,7 +48,7 @@ class ot_loworderfee
                     break;
             }
 
-            if (($pass == true) && ( ($order->info['total'] - $order->info['shipping_cost'])
+            if (($pass === true) && ( ($order->info['total'] - $order->info['shipping_cost'])
                 < MODULE_ORDER_TOTAL_LOWORDERFEE_ORDER_UNDER)) {
                 $tax             = tep_get_tax_rate(MODULE_ORDER_TOTAL_LOWORDERFEE_TAX_CLASS,
                     $order->delivery['country']['id'],

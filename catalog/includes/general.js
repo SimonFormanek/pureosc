@@ -164,7 +164,7 @@ function IsValidDate(DateToCheck, FormatString) {
     if (isNaN(intYear)) {
         return false;
     }
-    if (IsLeapYear(intYear) == true) {
+    if (IsLeapYear(intYear) === true) {
         intDaysArray[1] = 29;
     }
 

@@ -247,10 +247,10 @@ function tep_aas_link($section = 'admin', $page = '', $parameters = '',
 
         if (defined('ENABLE_SSL')) {
 
-            $link = ENABLE_SSL == true ? HTTPS_CATALOG_SERVER.DIR_WS_HTTPS_CATALOG
+            $link = ENABLE_SSL === true ? HTTPS_CATALOG_SERVER.DIR_WS_HTTPS_CATALOG
                     : HTTP_CATALOG_SERVER.DIR_WS_CATALOG;
         } elseif (defined('ENABLE_SSL_CATALOG')) { //for old version of osc
-            if (ENABLE_SSL_CATALOG == true) {
+            if (ENABLE_SSL_CATALOG === true) {
 
                 if (defined('DIR_WS_HTTPS_CATALOG'))
                         $link = HTTPS_CATALOG_SERVER.DIR_WS_HTTPS_CATALOG;
@@ -262,12 +262,12 @@ function tep_aas_link($section = 'admin', $page = '', $parameters = '',
         if (defined('ENABLE_SSL')) {
 
             if (defined('DIR_WS_HTTPS_ADMIN'))
-                    $link = ENABLE_SSL == true ? HTTPS_SERVER.DIR_WS_HTTPS_ADMIN
+                    $link = ENABLE_SSL === true ? HTTPS_SERVER.DIR_WS_HTTPS_ADMIN
                         : HTTP_SERVER.DIR_WS_ADMIN;
             else
-                    $link = ENABLE_SSL == true ? HTTPS_SERVER.DIR_WS_ADMIN : HTTP_SERVER.DIR_WS_ADMIN;
+                    $link = ENABLE_SSL === true ? HTTPS_SERVER.DIR_WS_ADMIN : HTTP_SERVER.DIR_WS_ADMIN;
         } elseif (defined('ENABLE_SSL_CATALOG')) { //for old version of osc
-            $link = ENABLE_SSL_CATALOG == true ? HTTPS_CATALOG_SERVER.DIR_WS_ADMIN
+            $link = ENABLE_SSL_CATALOG === true ? HTTPS_CATALOG_SERVER.DIR_WS_ADMIN
                     : HTTP_SERVER.DIR_WS_ADMIN;
         } else $link = '#';
     }
@@ -288,7 +288,7 @@ function tep_aas_link($section = 'admin', $page = '', $parameters = '',
 
     if ($section !== 'admin') {
 
-        if ((SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe == true)) {
+        if ((SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe === true)) {
             $link = str_replace('?', '/', $link);
             $link = str_replace('&', '/', $link);
             $link = str_replace('=', '/', $link);
@@ -482,7 +482,7 @@ function generateToken($length = 24)
 
     if (function_exists('openssl_random_pseudo_bytes')) {
         $token = base64_encode(openssl_random_pseudo_bytes($length, $strong));
-        if ($strong == TRUE)
+        if ($strong === true)
                 return strtr(substr($token, 0, $length), '+/=', '-_,'); //base64 is about 33% longer, so we need to truncate the result
     }
 

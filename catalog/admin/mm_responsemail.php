@@ -55,7 +55,7 @@ if (tep_not_null($action)) {
             $txtcontent = tep_db_prepare_input($_POST['txtcontent']);
             $template   = tep_db_prepare_input($_POST['template']);
 
-            if ($mail_error == false) {
+            if ($mail_error === false) {
                 $sql_data_array = array('title' => $title,
                     'htmlcontent' => $content,
                     'txtcontent' => $txtcontent,

@@ -195,7 +195,7 @@ if (tep_db_num_rows($check_email)) {
     $entry_email_address_exists = false;
 }
 
-if ($error == true) {
+if ($error === true) {
     $processed = true;
 
     require(DIR_WS_INCLUDES.'template_top.php');

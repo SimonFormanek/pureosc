@@ -58,7 +58,7 @@ class moneybookers_bwi extends moneybookers
 
         if (!defined('MODULE_PAYMENT_MONEYBOOKERS_STATUS')) {
             $this->enabled = false;
-        } elseif (($this->enabled == true) && ((int) MODULE_PAYMENT_MONEYBOOKERS_BWI_ZONE
+        } elseif (($this->enabled === true) && ((int) MODULE_PAYMENT_MONEYBOOKERS_BWI_ZONE
             > 0)) {
             $check_flag  = false;
             $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_MONEYBOOKERS_BWI_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
@@ -72,7 +72,7 @@ class moneybookers_bwi extends moneybookers
                 }
             }
 
-            if ($check_flag == false) {
+            if ($check_flag === false) {
                 $this->enabled = false;
             }
         }

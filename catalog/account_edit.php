@@ -92,7 +92,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
         $messageStack->add('account_edit', ENTRY_TELEPHONE_NUMBER_ERROR);
     }
 
-    if ($error == false) {
+    if ($error === false) {
         $sql_data_array = array('customers_firstname' => $firstname,
             'customers_lastname' => $lastname,
             'customers_email_address' => $email_address,

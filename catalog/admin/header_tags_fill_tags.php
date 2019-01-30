@@ -509,7 +509,7 @@ $(document).ready(function () {
             }
         });
         function EnableGenericCheckBoxes() { //enable all of the checkboxes
-            if (document.header_tags.generic_enabled.checked == true) {
+            if (document.header_tags.generic_enabled.checked === true) {
                 document.header_tags.add_generic_cat_title.disabled = '';
                 document.header_tags.add_generic_cat_meta_desc.disabled = '';
                 document.header_tags.add_generic_cat_keywords.disabled = '';
@@ -538,7 +538,7 @@ $(document).ready(function () {
             }
         }
         function EnableGeneric(box, ctrl) { //enable the input for each checkbox
-            if (box.checked == false)
+            if (box.checked === false)
                 ctrl.disabled = 'disabled';
             else
                 ctrl.disabled = '';
@@ -551,7 +551,7 @@ $(document).ready(function () {
         function ChangeIntervalState() {
             var state = document.header_tags.enable_sleep.checked;
 
-            if (state == true) {
+            if (state === true) {
                 document.header_tags.enable_sleep_interval.disabled = '';
             } else {
                 document.header_tags.enable_sleep_interval.disabled = 'disabled';

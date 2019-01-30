@@ -34,13 +34,13 @@ var form = "";
                     var radio = form.elements[field_name];
 
                     for (var i = 0; i < radio.length; i++) {
-                        if (radio[i].checked == true) {
+                        if (radio[i].checked === true) {
                             isChecked = true;
                             break;
                         }
                     }
 
-                    if (isChecked == false) {
+                    if (isChecked === false) {
                         error_message = error_message + "* " + message + "\n";
                         error = true;
                     }
@@ -60,7 +60,7 @@ var form = "";
 
 
             function check_form(form_name) {
-                if (submitted == true) {
+                if (submitted === true) {
                     alert("<?php echo JS_ERROR_SUBMITTED; ?>");
                     return false;
                 }
@@ -87,7 +87,7 @@ var form = "";
 
 <?php if (GUEST_CHECKOUT_TELEPHONE == 'true') echo ' check_input("telephone", '.ENTRY_TELEPHONE_MIN_LENGTH.', "'.ENTRY_TELEPHONE_NUMBER_ERROR.'");'; ?>
 
-                if (error == true) {
+                if (error === true) {
                     alert(error_message);
                     return false;
                 } else {
