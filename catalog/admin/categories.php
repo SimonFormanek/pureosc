@@ -374,9 +374,15 @@ if (tep_not_null($action)) {
             $products_date_available = tep_db_prepare_input($_POST['products_date_available']);
 
             //pure: make permanent, used for sorting $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
+            
+
             //pure:new if empty product_template - use default
             if ($_POST['product_template'] == '')
                 $_POST['product_template'] = DEFAULT_PRODUCT_TEMPLATE;
+            //dirtyHack: TODO:error manufacturer is empty => no product 
+            if ($_POST['manufacturers_id'] == '') {
+              $_POST['manufacturers_id'] = constant('DEFAULT_MANUFACTURERS_ID');
+            }
             $sql_data_array = ['products_quantity' => (int)tep_db_prepare_input($_POST['products_quantity']),
                 'products_model' => tep_db_prepare_input($_POST['products_model']),
                 'products_price' => tep_db_prepare_input($_POST['products_price']),
@@ -822,7 +828,7 @@ if ($action == 'new_product') {
                             echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;'
                                 . '<INPUT type="CHECKBOX" name="canonical" value="on"' . ($isChk
                                     ? (' CHECKED' . ($ro ? ' READONLY' : '')) : '') . '>'
-                                . ($wrn ? (' POZOR - produkt dosud nemá kanonické označení - odznačte, nemá-li být zde. ')
+                                . ($wrn ? (_('WARNING: Canonical category AutoDetection'))
                                     : ''); //.$qs
                             //. tep_draw_checkbox_field('canonical', 'on', ($pInfo->canonical > 0 ? true : false));
                             ?></td>

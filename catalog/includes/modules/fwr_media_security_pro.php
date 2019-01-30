@@ -180,8 +180,8 @@ class Fwr_Media_Security_Pro
     function cleanseValueString($string)
     {
         $banned_string_pattern = '@GLOBALS|_REQUEST|base64_encode|UNION|%3C|%3E@i';
-        // Apply the whitelist
-        $cleansed              = preg_replace("/[^\s{}a-z0-9_\.\-@]/i", "",
+        // Apply the whitelist TODO  dirtyHack"whitelist
+        $cleansed              = preg_replace("/[^\s{}a-z0-9_\.\-@áÁčČďĎéÉěĚíÍňŇóÓřŘšŠťŤúÚůžŽ]/i", "",
             urldecode($string));
         // Remove banned words
         $cleansed              = preg_replace($banned_string_pattern, '',
