@@ -55,9 +55,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
 
     if (ACCOUNT_DOB == 'true') {
         if ((strlen($dob) < ENTRY_DOB_MIN_LENGTH) || (!empty($dob) && (!is_numeric(tep_date_raw($dob))
-            || !@checkdate(substr(tep_date_raw($dob), 4, 2),
-                substr(tep_date_raw($dob), 6, 2),
-                substr(tep_date_raw($dob), 0, 4))))) {
+            || !@checkdate(
+                intval(substr(tep_date_raw($dob), 4, 2)),
+                intval(substr(tep_date_raw($dob), 6, 2)),
+                intval(substr(tep_date_raw($dob), 0, 4))
+                )))) {
             $error = true;
 
             $messageStack->add('account_edit', ENTRY_DATE_OF_BIRTH_ERROR);
