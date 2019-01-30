@@ -20,7 +20,7 @@ class flat
         global $order;
 
         $this->code        = 'flat';
-        $this->title       = MODULE_SHIPPING_FLAT_TEXT_TITLE;
+        $this->title       =  MODULE_SHIPPING_FLAT_TEXT_TITLE;
         $this->description = MODULE_SHIPPING_FLAT_TEXT_DESCRIPTION;
         $this->sort_order  = MODULE_SHIPPING_FLAT_SORT_ORDER;
         $this->icon        = '';

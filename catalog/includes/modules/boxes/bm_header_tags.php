@@ -22,7 +22,7 @@ class bm_header_tags
 
     function bm_header_tags()
     {
-        $this->title       = MODULE_BOXES_HEADER_TAGS_TITLE;
+        $this->title       =  MODULE_BOXES_HEADER_TAGS_TITLE;
         $this->description = MODULE_BOXES_HEADER_TAGS_DESCRIPTION;
 
         if (defined('MODULE_BOXES_HEADER_TAGS_STATUS')) {

@@ -20,7 +20,7 @@
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
-require_once dirname(__DIR__).'/../vendor/autoload.php';
+require_once dirname( __DIR__ ).'/../vendor/autoload.php' ;
 
 // load server configuration parameters
 if (file_exists('includes/local/configure.php')) { // for developers
@@ -31,11 +31,8 @@ if (file_exists('includes/local/configure.php')) { // for developers
 }
 
 if (empty(constant('DB_SERVER'))) {
-    if (is_dir('install')) {
-        header('Location: install/index.php');
-        exit;
+    die( _('DB_SERVER not defined'));
     }
-}
 
 // some code to solve compatibility issues
 require(DIR_WS_FUNCTIONS.'compatibility.php');
@@ -47,7 +44,7 @@ date_default_timezone_set(defined('CFG_TIME_ZONE') ? CFG_TIME_ZONE : date_defaul
 $request_type = (getenv('HTTPS') == 'on') ? 'SSL' : 'NONSSL';
 
 // set php_self in the local scope
-$req                 = parse_url($_SERVER['SCRIPT_NAME']);
+$req      = parse_url($_SERVER['SCRIPT_NAME']);
 //PURE:NEW:PURE_SEO_URLS only if $_SERVER['PHP_SELF'] is empty...
 if (!($_SERVER['PHP_SELF']))
         $_SERVER['PHP_SELF'] = substr($req['path'],
@@ -84,7 +81,7 @@ tep_db_connect() or die('Unable to connect to database server!');
 // set the application parameters
 $configuration_query = tep_db_query('select configuration_key as cfgKey, configuration_value as cfgValue from '.TABLE_CONFIGURATION);
 while ($configuration       = tep_db_fetch_array($configuration_query)) {
-    if (defined($configuration['cfgKey'])) {
+    if(defined($configuration['cfgKey'])){
 //        echo sprintf( _('Configuration %s key alreay defined!'),$configuration['cfgKey']);
     } else {
         define($configuration['cfgKey'], $configuration['cfgValue']);
@@ -95,12 +92,11 @@ while ($configuration       = tep_db_fetch_array($configuration_query)) {
 // set the HTTP GET parameters manually if search_engine_friendly_urls is enabled
 if (SEARCH_ENGINE_FRIENDLY_URLS == 'true') {
     if (strlen(getenv('PATH_INFO')) > 1) {
-        $GET_array           = array();
-        $_SERVER['PHP_SELF'] = str_replace(getenv('PATH_INFO'), '',
-            $_SERVER['PHP_SELF']);
-        $vars                = explode('/', substr(getenv('PATH_INFO'), 1));
+        $GET_array = array();
+        $_SERVER['PHP_SELF']  = str_replace(getenv('PATH_INFO'), '', $_SERVER['PHP_SELF']);
+        $vars      = explode('/', substr(getenv('PATH_INFO'), 1));
         do_magic_quotes_gpc($vars);
-        $n                   = sizeof($vars);
+        $n         = sizeof($vars);
         for ($i = 0; $i < $n; $i++) {
             if (strpos($vars[$i], '[]')) {
                 $GET_array[substr($vars[$i], 0, -2)][] = $vars[$i + 1];

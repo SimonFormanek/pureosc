@@ -22,7 +22,7 @@ class bm_header_tags_social
 
     function bm_header_tags_social()
     {
-        $this->title       = MODULE_BOXES_HEADER_TAGS_SOCIAL_TITLE;
+        $this->title       =  MODULE_BOXES_HEADER_TAGS_SOCIAL_TITLE;
         $this->description = MODULE_BOXES_HEADER_TAGS_SOCIAL_DESCRIPTION;
 
         if (defined('MODULE_BOXES_HEADER_TAGS_SOCIAL_STATUS')) {

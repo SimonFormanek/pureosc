@@ -24,7 +24,7 @@ class cm_cs_product_notifications
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_TITLE;
+        $this->title       =  MODULE_CONTENT_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_TITLE;
         $this->description = MODULE_CONTENT_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_DESCRIPTION;
 
         if (defined('MODULE_CONTENT_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_STATUS')) {

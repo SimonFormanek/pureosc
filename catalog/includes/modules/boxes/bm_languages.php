@@ -26,7 +26,7 @@ class bm_languages
 
     function bm_languages()
     {
-        $this->title       = MODULE_BOXES_LANGUAGES_TITLE;
+        $this->title       =  MODULE_BOXES_LANGUAGES_TITLE;
         $this->description = MODULE_BOXES_LANGUAGES_DESCRIPTION;
 
         if (defined('MODULE_BOXES_LANGUAGES_STATUS')) {

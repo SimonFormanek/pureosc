@@ -23,7 +23,7 @@ class usps
         global $order;
 
         $this->code        = 'usps';
-        $this->title       = MODULE_SHIPPING_USPS_TEXT_TITLE;
+        $this->title       =  MODULE_SHIPPING_USPS_TEXT_TITLE;
         $this->description = MODULE_SHIPPING_USPS_TEXT_DESCRIPTION;
         $this->sort_order  = MODULE_SHIPPING_USPS_SORT_ORDER;
         $this->icon        = DIR_WS_ICONS.'shipping_usps.gif';

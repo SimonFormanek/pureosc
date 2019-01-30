@@ -22,8 +22,8 @@ class ar_reset_password
 
     function ar_reset_password()
     {
-        $this->title       = MODULE_ACTION_RECORDER_RESET_PASSWORD_TITLE;
-        $this->description = MODULE_ACTION_RECORDER_RESET_PASSWORD_DESCRIPTION;
+        $this->title       = _('Customer Password Reset');
+        $this->description = _('Record usage of customer password resets');
 
         if ($this->check()) {
             $this->minutes  = (int) MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES;

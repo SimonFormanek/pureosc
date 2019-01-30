@@ -21,7 +21,7 @@ class bm_card_acceptance
 
     function bm_card_acceptance()
     {
-        $this->title       = MODULE_BOXES_CARD_ACCEPTANCE_TITLE;
+        $this->title       =  MODULE_BOXES_CARD_ACCEPTANCE_TITLE;
         $this->description = MODULE_BOXES_CARD_ACCEPTANCE_DESCRIPTION;
 
         if (defined('MODULE_BOXES_CARD_ACCEPTANCE_STATUS')) {

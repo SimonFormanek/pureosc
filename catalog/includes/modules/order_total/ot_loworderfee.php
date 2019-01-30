@@ -17,7 +17,7 @@ class ot_loworderfee
     function ot_loworderfee()
     {
         $this->code        = 'ot_loworderfee';
-        $this->title       = MODULE_ORDER_TOTAL_LOWORDERFEE_TITLE;
+        $this->title       =  MODULE_ORDER_TOTAL_LOWORDERFEE_TITLE;
         $this->description = MODULE_ORDER_TOTAL_LOWORDERFEE_DESCRIPTION;
         $this->enabled     = ((MODULE_ORDER_TOTAL_LOWORDERFEE_STATUS == 'true') ? true
                 : false);

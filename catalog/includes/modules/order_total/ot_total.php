@@ -22,7 +22,7 @@ class ot_total
     function ot_total()
     {
         $this->code        = 'ot_total';
-        $this->title       = MODULE_ORDER_TOTAL_TOTAL_TITLE;
+        $this->title       =  MODULE_ORDER_TOTAL_TOTAL_TITLE;
         $this->description = MODULE_ORDER_TOTAL_TOTAL_DESCRIPTION;
         $this->enabled     = ((MODULE_ORDER_TOTAL_TOTAL_STATUS == 'true') ? true
                 : false);

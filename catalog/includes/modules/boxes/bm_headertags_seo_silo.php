@@ -21,7 +21,7 @@ class bm_headertags_seo_silo
 
     function bm_headertags_seo_silo()
     {
-        $this->title       = MODULE_BOXES_HEADERTAGS_SEO_SILO_TITLE;
+        $this->title       =  MODULE_BOXES_HEADERTAGS_SEO_SILO_TITLE;
         $this->description = MODULE_BOXES_HEADERTAGS_SEO_SILO_DESCRIPTION;
 
         if (defined('MODULE_BOXES_HEADERTAGS_SEO_SILO_STATUS')) {

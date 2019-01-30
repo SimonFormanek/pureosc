@@ -12,8 +12,8 @@
 ?>
 
 <!-- Start cm_fp_new_products module -->
-  <div id="new_products" class="col-sm-<?php echo (int) MODULE_CONTENT_FRONT_PAGE_NEW_PRODUCTS_CONTENT_WIDTH; ?>">
-    <h3><?php echo sprintf(TABLE_HEADING_NEW_PRODUCTS, strftime('%B')); ?></h3>
+<div id="new_products" class="col-sm-<?php echo (int) constant('MODULE_CONTENT_FRONT_PAGE_NEW_PRODUCTS_CONTENT_WIDTH'); ?>">
+    <h3><?php echo sprintf(_('New Products'), strftime('%B')); ?></h3>
 
     <div class="row">
 <?php

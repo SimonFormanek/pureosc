@@ -26,7 +26,7 @@ class bm_manufacturer_info
 
     function bm_manufacturer_info()
     {
-        $this->title       = MODULE_BOXES_MANUFACTURER_INFO_TITLE;
+        $this->title       =  MODULE_BOXES_MANUFACTURER_INFO_TITLE;
         $this->description = MODULE_BOXES_MANUFACTURER_INFO_DESCRIPTION;
 
         if (defined('MODULE_BOXES_MANUFACTURER_INFO_STATUS')) {

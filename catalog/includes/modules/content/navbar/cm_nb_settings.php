@@ -26,7 +26,7 @@ class cm_nb_settings
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_NAVBAR_SETTINGS_TITLE;
+        $this->title       =  MODULE_CONTENT_NAVBAR_SETTINGS_TITLE;
         $this->description = MODULE_CONTENT_NAVBAR_SETTINGS_DESCRIPTION;
 
         if (defined('MODULE_CONTENT_NAVBAR_SETTINGS_STATUS')) {

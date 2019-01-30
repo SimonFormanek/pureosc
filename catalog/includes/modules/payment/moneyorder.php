@@ -25,7 +25,7 @@ class moneyorder
         global $order;
 
         $this->code        = 'moneyorder';
-        $this->title       = MODULE_PAYMENT_MONEYORDER_TEXT_TITLE;
+        $this->title       =  MODULE_PAYMENT_MONEYORDER_TEXT_TITLE;
         $this->description = MODULE_PAYMENT_MONEYORDER_TEXT_DESCRIPTION;
         $this->sort_order  = MODULE_PAYMENT_MONEYORDER_SORT_ORDER;
         $this->enabled     = ((MODULE_PAYMENT_MONEYORDER_STATUS == 'True') ? true

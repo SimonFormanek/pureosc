@@ -26,7 +26,7 @@ class bm_search
 
     function bm_search()
     {
-        $this->title       = MODULE_BOXES_SEARCH_TITLE;
+        $this->title       =  MODULE_BOXES_SEARCH_TITLE;
         $this->description = MODULE_BOXES_SEARCH_DESCRIPTION;
 
         if (defined('MODULE_BOXES_SEARCH_STATUS')) {

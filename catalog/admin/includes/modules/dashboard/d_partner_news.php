@@ -23,8 +23,8 @@
     }
     
     function d_partner_news() {
-      $this->title = MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_TITLE;
-      $this->description = MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_DESCRIPTION;
+      $this->title = _('Partner news');
+      $this->description = _('Show the lastest osCommerce Partner News'); 
 
       if ( defined('MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_STATUS') ) {
         $this->sort_order = MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_SORT_ORDER;

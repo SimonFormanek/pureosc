@@ -26,7 +26,7 @@ class bm_order_history
 
     function bm_order_history()
     {
-        $this->title       = MODULE_BOXES_ORDER_HISTORY_TITLE;
+        $this->title       =  MODULE_BOXES_ORDER_HISTORY_TITLE;
         $this->description = MODULE_BOXES_ORDER_HISTORY_DESCRIPTION;
 
         if (defined('MODULE_BOXES_ORDER_HISTORY_STATUS')) {

@@ -25,8 +25,8 @@ class d_security_checks
 
     function d_security_checks()
     {
-        $this->title       = MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_TITLE;
-        $this->description = MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_DESCRIPTION;
+        $this->title       =  _('Security Checks');
+        $this->description = _('Run security checks'); 
 
         if (defined('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_STATUS')) {
             $this->sort_order = MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_SORT_ORDER;

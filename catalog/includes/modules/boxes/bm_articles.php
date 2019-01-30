@@ -21,8 +21,8 @@ class bm_articles
 
     function bm_articles()
     {
-        $this->title       = MODULE_BOXES_ARTICLES_TITLE;
-        $this->description = MODULE_BOXES_ARTICLES_DESCRIPTION;
+        $this->title       =  _('Articles'); 
+        $this->description = _('Show Article Manager Articles InfoBox'); 
 
         if (defined('MODULE_BOXES_ARTICLES_STATUS')) {
             $this->sort_order = MODULE_BOXES_ARTICLES_SORT_ORDER;

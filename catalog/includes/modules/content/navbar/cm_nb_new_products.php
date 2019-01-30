@@ -26,7 +26,7 @@ class cm_nb_new_products
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_NAVBAR_NEW_PRODUCTS_TITLE;
+        $this->title       =  MODULE_CONTENT_NAVBAR_NEW_PRODUCTS_TITLE;
         $this->description = MODULE_CONTENT_NAVBAR_NEW_PRODUCTS_DESCRIPTION;
 
         if (defined('MODULE_CONTENT_NAVBAR_NEW_PRODUCTS_STATUS')) {

@@ -26,7 +26,7 @@ class cm_nb_cart
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_CONTENT_NAVBAR_CART_TITLE;
+        $this->title       =  MODULE_CONTENT_NAVBAR_CART_TITLE;
         $this->description = MODULE_CONTENT_NAVBAR_CART_DESCRIPTION;
 
         if (defined('MODULE_CONTENT_NAVBAR_CART_STATUS')) {

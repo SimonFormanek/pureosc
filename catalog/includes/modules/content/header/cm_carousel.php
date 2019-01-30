@@ -24,7 +24,7 @@ class cm_carousel
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       = MODULE_FRONT_PAGE_BANNER_ROTATOR_TITLE;
+        $this->title       =  MODULE_FRONT_PAGE_BANNER_ROTATOR_TITLE;
         $this->description = MODULE_FRONT_PAGE_BANNER_ROTATOR_DESCRIPTION;
 
         if (defined('MODULE_FRONT_PAGE_BANNER_ROTATOR_STATUS')) {

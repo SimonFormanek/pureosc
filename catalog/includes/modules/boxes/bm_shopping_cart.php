@@ -33,7 +33,7 @@ class bm_shopping_cart
 
     function bm_shopping_cart()
     {
-        $this->title       = MODULE_BOXES_SHOPPING_CART_TITLE;
+        $this->title       =  MODULE_BOXES_SHOPPING_CART_TITLE;
         $this->description = MODULE_BOXES_SHOPPING_CART_DESCRIPTION;
 
         if (defined('MODULE_BOXES_SHOPPING_CART_STATUS')) {

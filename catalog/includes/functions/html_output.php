@@ -117,9 +117,9 @@ function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL',
 {
     global $seo_urls;
     if (!is_object($seo_urls)) {
-        if (!class_exists('SEO_URL')) {
-            include_once('includes/classes/seo.class.php');
-        }
+
+
+
         global $languages_id;
         $seo_urls = new SEO_URL($languages_id);
     }
@@ -146,9 +146,10 @@ function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '',
     if (!defined('KISSIT_THUMBS_MAIN_DIR'))
             require_once DIR_WS_MODULES.'kiss_image_thumbnailer/db_install.php';
     // If width and height are not numeric then we can't do anything with it
-    if (!is_numeric($width) || !is_numeric($height))
-            return tep_image_legacy($src, $alt, $width, $height, $parameters,
+    if (!is_numeric($width) || !is_numeric($height)) {
+        return tep_image_legacy($src, $alt, $width, $height, $parameters,
             $responsive, $bootstrap_css);
+    }
 
     if (strstr($src, '.svg')) {
         $image_assembled = '<img src="'.$src.'" class="img-responsive">';
@@ -184,7 +185,7 @@ function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '',
         } // end for
         // End create subdirectory and .htaccess.	
 
-        require_once DIR_WS_MODULES.'kiss_image_thumbnailer/classes/Image_Helper.php';
+        
         $attributes = array('alt' => $alt, 'width' => $width, 'height' => $height);
         $image='';
         if (tep_not_null($width) && tep_not_null($height)) {
@@ -201,9 +202,11 @@ function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '',
 
         $bs_parameters .= '"';
 
-        if (tep_not_null($parameters)) $bs_parameters .= ' '.$parameters;
+        if (tep_not_null($parameters)) {
+            $bs_parameters .= ' '.$parameters;
+        }
 
-        $image           = new Image_Helper(array('src' => $src,
+        $imager           = new Image_Helper(array('src' => $src,
             'attributes' => $attributes,
             'parameters' => $bs_parameters,
             'default_missing_image' => DIR_WS_IMAGES.'no_image_available_150_150.gif',
@@ -213,7 +216,7 @@ function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '',
             'thumb_background_rgb' => array('red' => 255,
                 'green' => 255,
                 'blue' => 255)));
-        if (false === $image_assembled = $image->assemble()) {
+        if (false === $image_assembled = $imager->assemble()) {
             return tep_image_legacy($src, $alt, $width, $height, $parameters,
                 $responsive, $bootstrap_css);
         }
