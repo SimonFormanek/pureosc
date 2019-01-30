@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-30 04:50+0100\n"
-"PO-Revision-Date: 2019-01-30 04:54+0100\n"
+"POT-Creation-Date: 2019-01-30 05:45+0100\n"
+"PO-Revision-Date: 2019-01-30 05:46+0100\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -332,7 +332,7 @@ msgstr "Celkem"
 
 #: admin/includes/modules/dashboard/d_partner_news.php:26
 msgid "Partner news"
-msgstr ""
+msgstr "Novinky partnerů"
 
 #: admin/includes/modules/dashboard/d_partner_news.php:27
 #, fuzzy
@@ -677,6 +677,16 @@ msgstr ""
 msgid "New Products"
 msgstr "Nové knihy za %s"
 
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:31
+#: includes/modules/new_products.php:41
+msgid "View"
+msgstr "Zobrazit"
+
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:32
+#: includes/modules/new_products.php:43
+msgid "Buy"
+msgstr "Koupit"
+
 #: includes/modules/content/header/cm_header_breadcrumb.php:27
 msgid "Breadrcumb"
 msgstr ""
@@ -800,14 +810,19 @@ msgstr "%s položek"
 msgid "View cart"
 msgstr "Košík"
 
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:31
+#: includes/modules/content/navigation/templates/navbar.php:119
+msgid "Checkout"
+msgstr "Pokladna"
+
 #: includes/modules/content/navbar/templates/cm_nb_cart.php:35
+#: includes/modules/content/navigation/templates/navbar.php:121
 msgid "0 items"
 msgstr "bez položek"
 
 #: includes/modules/content/navbar/templates/cm_nb_cart.php:37
-#: includes/modules/content/navigation/templates/navbar.php:113
-msgid "VIEW CART"
-msgstr "Košík"
+msgid "View Cart"
+msgstr "Ukaž Košík"
 
 #: includes/modules/content/navbar/templates/cm_nb_categories.php:16
 #: includes/modules/content/navbar/templates/cm_nb_categories_full.php:17
@@ -845,6 +860,10 @@ msgstr ""
 #: includes/modules/content/navigation/cm_modular_navbar.php:29
 msgid "Show the Modular Navigation Bar on your site."
 msgstr ""
+
+#: includes/modules/content/navigation/templates/navbar.php:113
+msgid "VIEW CART"
+msgstr "Košík"
 
 #: includes/modules/header_tags/ht_article_meta.php:25
 msgid "Article Meta"
@@ -1294,12 +1313,6 @@ msgstr "p"
 
 #~ msgid "... [more]"
 #~ msgstr "..."
-
-#~ msgid "View"
-#~ msgstr "Zobrazit"
-
-#~ msgid "Buy"
-#~ msgstr "Koupit"
 
 #~ msgid "New Products For %s"
 #~ msgstr "New Products For %s"

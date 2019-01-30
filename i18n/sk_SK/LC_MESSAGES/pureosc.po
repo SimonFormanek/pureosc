@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pureosc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-30 04:47+0100\n"
-"PO-Revision-Date: 2019-01-30 04:49+0100\n"
+"POT-Creation-Date: 2019-01-30 05:43+0100\n"
+"PO-Revision-Date: 2019-01-30 05:44+0100\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Pure\n"
 "Language: sk_SK\n"
@@ -165,7 +165,7 @@ msgstr "DIČ"
 #: admin/reviews.php:394 admin/specials.php:191 admin/tax_classes.php:68
 #: admin/tax_rates.php:76 admin/version_check.php:121 admin/zones.php:72
 msgid "Action"
-msgstr ""
+msgstr "Akcia"
 
 #: admin/article_manager_blog_comments.php:518 admin/articles.php:1857
 #: admin/articles.php:1874 admin/authors.php:673 admin/categories.php:2056
@@ -580,7 +580,7 @@ msgstr ""
 
 #: includes/modules/content/footer/templates/cm_footer_text.php:3
 msgid "About Us"
-msgstr ""
+msgstr "O nás"
 
 #: includes/modules/content/footer/templates/cm_footer_text.php:4
 msgid "Footer Text"
@@ -675,6 +675,16 @@ msgstr ""
 #: includes/modules/content/front_page/templates/cm_fp_new_products.php:16
 #, php-format
 msgid "New Products"
+msgstr ""
+
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:31
+#: includes/modules/new_products.php:41
+msgid "View"
+msgstr "Zobraz"
+
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:32
+#: includes/modules/new_products.php:43
+msgid "Buy"
 msgstr ""
 
 #: includes/modules/content/header/cm_header_breadcrumb.php:27
@@ -799,14 +809,19 @@ msgstr "%s položek"
 msgid "View cart"
 msgstr "Zobraz košík"
 
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:31
+#: includes/modules/content/navigation/templates/navbar.php:119
+msgid "Checkout"
+msgstr ""
+
 #: includes/modules/content/navbar/templates/cm_nb_cart.php:35
+#: includes/modules/content/navigation/templates/navbar.php:121
 msgid "0 items"
 msgstr ""
 
 #: includes/modules/content/navbar/templates/cm_nb_cart.php:37
-#: includes/modules/content/navigation/templates/navbar.php:113
-msgid "VIEW CART"
-msgstr ""
+msgid "View Cart"
+msgstr "Zobraz košík"
 
 #: includes/modules/content/navbar/templates/cm_nb_categories.php:16
 #: includes/modules/content/navbar/templates/cm_nb_categories_full.php:17
@@ -844,6 +859,10 @@ msgstr ""
 #: includes/modules/content/navigation/cm_modular_navbar.php:29
 msgid "Show the Modular Navigation Bar on your site."
 msgstr ""
+
+#: includes/modules/content/navigation/templates/navbar.php:113
+msgid "VIEW CART"
+msgstr "Zobraz košík"
 
 #: includes/modules/header_tags/ht_article_meta.php:25
 msgid "Article Meta"
@@ -1129,7 +1148,7 @@ msgstr ""
 
 #: includes/modules/header_tags/ht_twitter_product_card.php:91
 msgid "In Stock"
-msgstr ""
+msgstr "Nieje skladom"
 
 #: includes/modules/header_tags/ht_twitter_product_card.php:92
 msgid "BUY NOW"
@@ -1225,7 +1244,7 @@ msgstr ""
 
 #: includes/modules/product_listing.php:51
 msgid "Sort by"
-msgstr ""
+msgstr "razenie"
 
 #: includes/modules/social_bookmarks/sb_google_buzz.php:24
 msgid "Google Buzz"
