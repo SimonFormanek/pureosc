@@ -26,18 +26,12 @@
             "PureOSC\\Admin\\": "admin/includes/classes/",
             "PureOSC\\Admin\\flexibee\\": "admin/ext/flexibee/"
         },
-        "classmap": ["catalog/includes/classes/", "catalog/includes/modules/", "catalog/admin/includes/classes/", "catalog/admin/includes/modules/","catalog/admin/ext/aas/classes"]
-    },
-        "scripts": {
-        "post-install-cmd": "make install",
-        "post-update": "make install"
+        "classmap": ["catalog/includes/classes/", "catalog/includes/modules/", "catalog/admin/includes/classes/", "catalog/admin/includes/modules/", "catalog/admin/ext/aas/classes"]
     },
     "minimum-stability": "dev",
     "prefer-stable": false,
-
     "require-dev": {
-        "phpstan/phpstan": "^0.10.7",
-        "robmorgan/phinx": "dev-master",
+        "robmorgan/phinx": "*",
         "phpunit/phpunit": "*"
     }
 }
