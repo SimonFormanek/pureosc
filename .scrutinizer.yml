@@ -19,7 +19,7 @@ build:
     coverage:
       tests:
         override:
-          - command: './vendor/bin/phpunit --coverage-clover /home/scrutinizer/build/coverage.xml'
+          - command: './vendor/bin/phpunit --whitelist catalog --coverage-clover /home/scrutinizer/build/coverage.xml'
             coverage:
               file: coverage.xml
               format: clover
