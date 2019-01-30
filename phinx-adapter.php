@@ -16,7 +16,7 @@ if (file_exists('../oscconfig/dbconfigure.php')) {
 } else {
     echo "Using BulitIN dbconfig\n";
     define('DB_PORT',3306);
-    define('DB_SERVER', 'localhost');
+    define('DB_SERVER', '127.0.0.1');
     define('DB_DATABASE', 'pureosc');
     define('DB_SERVER_USERNAME', 'pureosc');
     define('DB_SERVER_PASSWORD', 'pureosc');
