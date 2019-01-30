@@ -157,8 +157,8 @@ class Fwr_Media_Security_Pro
     function cleanseKeyString($string)
     {
         $banned_string_pattern = '@GLOBALS|_REQUEST|base64_encode|UNION|%3C|%3E@i';
-        // Apply the whitelist dirtyHack TODO generated whitelist or exclude ext-moules...content_searches.php
-        $cleansed              = preg_replace("/[^\s{}a-z0-9_\.\-]/iáÁčČďĎéÉěĚÍňŇóÓřŘšŠťŤúÚůźŽ", "",
+        // Apply the whitelist
+        $cleansed              = preg_replace("/[^\s{}a-z0-9_\.\-]/i", "",
             urldecode($string));
         // Remove banned words
         $cleansed              = preg_replace($banned_string_pattern, '',
@@ -180,8 +180,8 @@ class Fwr_Media_Security_Pro
     function cleanseValueString($string)
     {
         $banned_string_pattern = '@GLOBALS|_REQUEST|base64_encode|UNION|%3C|%3E@i';
-        // Apply the whitelist
-        $cleansed              = preg_replace("/[^\s{}a-z0-9_\.\-@]/i", "",
+        // Apply the whitelist TODO  dirtyHack"whitelist
+        $cleansed              = preg_replace("/[^\s{}a-z0-9_\.\-@áÁčČďĎéÉěĚíÍňŇóÓřŘšŠťŤúÚůžŽ]/i", "",
             urldecode($string));
         // Remove banned words
         $cleansed              = preg_replace($banned_string_pattern, '',
