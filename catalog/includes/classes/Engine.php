@@ -1,6 +1,6 @@
 <?php
 /**
- * broker.dbfinance.cz
+ * Engine
  * 
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  * @copyright (c) 2017-2019, Vítězslav Dvořák
@@ -113,6 +113,17 @@ class Engine extends \Ease\SQL\Engine
         }
     }
 
+    public function takemyTable($myTable)
+    {
+        if (is_null($this->subject)) {
+            $this->subject = $myTable;
+        }
+        if (is_null($this->keyword)) {
+            $this->keyword = $myTable;
+        }
+        return parent::takemyTable($myTable);
+    }
+
     /**
      * Set page where to work wiht one row detail
      * 
@@ -179,7 +190,7 @@ class Engine extends \Ease\SQL\Engine
     {
         if (empty($this->columnsCache)) {
 
-            $columns = self::reindexArrayBy($columns, 'name');
+            $columns = \Ease\Functions::reindexArrayBy($columns, 'name');
             foreach ($columns as $columnId => $columnInfo) {
                 if (array_key_exists('gdpr', $columnInfo)) {
                     $columns[$columnId]['visible'] = 0;
@@ -369,6 +380,7 @@ class Engine extends \Ease\SQL\Engine
         }
         return $this->listingQuery()->where($this->getMyTable().'.id='.$id)->execute()->fetch();
     }
+
 
     /**
      * 

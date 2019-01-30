@@ -11,9 +11,9 @@
  */
 ?>
 <!DOCTYPE html>
-<html <?php echo HTML_PARAMS; ?>>
+<html <?php echo cfg('HTML_PARAMS'); ?>>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
+        <meta http-equiv="Content-Type" content="text/html; charset=<?php echo cfg('CHARSET'); ?>">
         <meta name="robots" content="noindex,nofollow">
         <title><?php echo cfg('STORE_NAME').' - '.cfg('TITLE'); ?></title>
         <base href="<?php

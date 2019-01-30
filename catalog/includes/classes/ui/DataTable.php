@@ -37,7 +37,8 @@ class DataTable extends \Ease\Html\TableTag
      * Buttons to show by default
      * @var array 
      */
-    public $defaultButtons = ['copy', 'excel', 'print', 'pdf', 'pageLength', 'colvis'];
+    public $defaultButtons = ['reload', 'copy', 'excel', 'print', 'pdf', 'pageLength',
+        'colvis'];
 
     /**
      *
@@ -80,8 +81,6 @@ class DataTable extends \Ease\Html\TableTag
         $gridTagID     = $this->setTagId($engine->getObjectName());
         $this->columns = $this->prepareColumns($engine->getGetDataTableColumns());
 
-        \Ease\JQuery\Part::jQueryze();
-
         $this->includeJavaScript('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js');
         $this->includeJavaScript('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js');
         $this->includeJavaScript('https://cdn.datatables.net/v/ju/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/r-2.2.2/datatables.min.js');
@@ -95,12 +94,12 @@ class DataTable extends \Ease\Html\TableTag
         $this->includeJavaScript('//cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js');
 
 
-//        $this->addJavaScript('$.fn.dataTable.ext.buttons.reload = {
-//    text: \''._('Reload').'\',
-//    action: function ( e, dt, node, config ) {
-//        dt.ajax.reload();
-//    }
-//};');
+        $this->addJavaScript('$.fn.dataTable.ext.buttons.reload = {
+    text: \''._('Reload').'\',
+    action: function ( e, dt, node, config ) {
+        dt.ajax.reload();
+    }
+};');
 
 
         if (array_key_exists('buttons', $properties)) {
@@ -278,7 +277,7 @@ class DataTable extends \Ease\Html\TableTag
             '.self::getColumnsScript($columns).'
         ],
         select: true
-        '.( $this->buttons ? ',        buttons: [ '.\Ease\JQuery\Part::partPropertiesToString($this->buttons).']'
+        '.( $this->buttons ? ',        buttons: [ '.\Ease\Part::partPropertiesToString($this->buttons).']'
                 : '').'
     } );
 
@@ -313,7 +312,7 @@ class DataTable extends \Ease\Html\TableTag
             $name               = $properties['name'];
             unset($properties['name']);
             $properties['data'] = $name;
-            $parts[]            = '{'.\Ease\JQuery\Part::partPropertiesToString($properties).'}';
+            $parts[]            = '{'.\Ease\Part::partPropertiesToString($properties).'}';
         }
         return implode(", \n", $parts);
     }

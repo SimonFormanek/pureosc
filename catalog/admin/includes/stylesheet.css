@@ -124,8 +124,12 @@ FORM { display: inline; }
 #adminAppMenu {
     float: left;
     width: 150px;
-    padding: 5px;
 }
+
+#adminAppMenu .navbar-collapse{
+    padding-left: 0px;
+}
+
 
 #contentText {
     margin-left: 160px;

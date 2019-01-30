@@ -324,8 +324,10 @@ class CustomerLog extends Engine {
 
         if (isset($data['data'])) {
 
-            $this->cryptor->setPrivateKey(file_get_contents(DIR_FS_MASTER_ROOT_DIR . 'oscconfig/keys/privateKey.asc'));
-
+            if(file_exists( cfg('DIR_FS_MASTER_ROOT_DIR') . 'oscconfig/keys/privateKey.asc')){    
+                $this->cryptor->setPrivateKey(file_get_contents(cfg('DIR_FS_MASTER_ROOT_DIR') . 'oscconfig/keys/privateKey.asc'));
+            }
+            
             foreach ($data['data'] as $rowId => $rowValues) {
                 if (!empty($rowValues['answer']) && strstr($rowValues['answer'], ' ')) {
                     $answer = explode(' ', $rowValues['answer']);
