@@ -6,7 +6,7 @@ build:
         dependencies:
             before:
                 - mysql -u root -e "CREATE DATABASE pureosc"
-                - mysql -u root -e "GRANT ALL PRIVILEGES ON pureosc.* TO pureosc@localhost IDENTIFIED BY 'pureosc'"
+                - mysql -u root -e "GRANT ALL PRIVILEGES ON pureosc.* TO 'pureosc'@'%' IDENTIFIED BY 'pureosc'"
                 - composer self-update
                 - composer install --no-interaction
                 - ls -la
