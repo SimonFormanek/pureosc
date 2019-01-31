@@ -381,7 +381,7 @@ class bm_articles
 
 
         $data = '<div class="panel panel-default">'.
-            '  <div class="panel-heading">'.MODULE_BOXES_ARTICLES_BOX_TITLE.'</div>'.
+            '  <div class="panel-heading">'. _('Articles') .'</div>'.
             '  <div class="panel-body">'.$content.'</div>'.
             '</div>';
 
