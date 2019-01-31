@@ -59,7 +59,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     <?php
 } else {
-    $article_info_query = tep_db_query("select a.articles_id, a.articles_date_added, a.articles_date_available, a.authors_id, ad.articles_name, ad.articles_description, ad.articles_image, ad.articles_url, au.authors_name, au.authors_image from ".TABLE_ARTICLES." a left join ".TABLE_AUTHORS." au using(authors_id), ".TABLE_ARTICLES_DESCRIPTION." ad where a.articles_status = '1' and a.articles_id = '".(int) $_GET['articles_id']."' and ad.articles_id = a.articles_id and ad.language_id = '".(int) $languages_id."'");
+    $article_info_query = tep_db_query("select a.articles_id, a.articles_date_added, a.articles_date_available, a.authors_id, ad.articles_name, ad.articles_description, a.articles_image, ad.articles_url, au.authors_name, au.authors_image from ".TABLE_ARTICLES." a left join ".TABLE_AUTHORS." au using(authors_id), ".TABLE_ARTICLES_DESCRIPTION." ad where a.articles_status = '1' and a.articles_id = '".(int) $_GET['articles_id']."' and ad.articles_id = a.articles_id and ad.language_id = '".(int) $languages_id."'");
     $article_info       = tep_db_fetch_array($article_info_query);
 
     tep_db_query("update ".TABLE_ARTICLES_DESCRIPTION." set articles_viewed = articles_viewed+1 where articles_id = '".(int) $_GET['articles_id']."' and language_id = '".(int) $languages_id."'");
