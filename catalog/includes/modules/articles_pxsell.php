@@ -12,7 +12,7 @@
  */
 
 if ($_GET['products_id']) {
-    $xsell_query        = tep_db_query("select distinct ax.articles_id, ad.articles_name, ad.articles_image, a.articles_last_modified from ".TABLE_ARTICLES_XSELL." ax LEFT JOIN ".TABLE_ARTICLES." a USING(articles_id) LEFT JOIN ".TABLE_ARTICLES_DESCRIPTION." ad USING(articles_id) where ax.xsell_id = '".(int) $_GET['products_id']."' and ad.language_id = '".(int) $languages_id."' and a.articles_status = '1' order by a.articles_last_modified");
+    $xsell_query        = tep_db_query("select distinct ax.articles_id, ad.articles_name, a.articles_image, a.articles_last_modified from ".TABLE_ARTICLES_XSELL." ax LEFT JOIN ".TABLE_ARTICLES." a USING(articles_id) LEFT JOIN ".TABLE_ARTICLES_DESCRIPTION." ad USING(articles_id) where ax.xsell_id = '".(int) $_GET['products_id']."' and ad.language_id = '".(int) $languages_id."' and a.articles_status = '1' order by a.articles_last_modified");
     $num_products_xsell = tep_db_num_rows($xsell_query);
     if ($num_products_xsell >= MIN_DISPLAY_ARTICLES_XSELL) {
         ?> 

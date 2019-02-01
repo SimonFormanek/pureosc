@@ -96,7 +96,7 @@ switch (true) {
     case (defined('FILENAME_ARTICLE_INFO') && basename($_SERVER['SCRIPT_FILENAME'])
     === FILENAME_ARTICLE_INFO):
         if ($_GET['articles_id'] > 0) {
-            $og_query = tep_db_query("select a.articles_date_added, a.articles_last_modified, ad.articles_image, ad.articles_name, a.authors_id, ad.articles_description, ad.articles_url, au.authors_name, td.topics_name from ".
+            $og_query = tep_db_query("select a.articles_date_added, a.articles_last_modified, a.articles_image, ad.articles_name, a.authors_id, ad.articles_description, ad.articles_url, au.authors_name, td.topics_name from ".
                 TABLE_ARTICLES." a left join ".
                 TABLE_AUTHORS." au on a.authors_id = au.authors_id left join ".
                 TABLE_ARTICLES_DESCRIPTION." ad on a.articles_id = ad.articles_id left join ".
