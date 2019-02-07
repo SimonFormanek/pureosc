@@ -546,7 +546,7 @@ if ($action == 'edit' || $action == 'update') {
                         ?></td>
                     </tr>
                 </table>
-                < /td>
+                </td>
         </tr>
         <?php
         if (ACCOUNT_COMPANY == 'true') {
@@ -851,7 +851,7 @@ if ($action == 'edit' || $action == 'update') {
                             align="right"><?php echo HEADING_TITLE_SEARCH . ' ' . tep_draw_input_field('search'); ?></td>
                         <?php echo tep_hide_session_id(); ?></form></tr>
                 </table>
-                < /td>
+                </td>
         </tr>
         <tr>
             <td>
