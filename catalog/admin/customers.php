@@ -518,7 +518,7 @@ if ($action == 'edit' || $action == 'update') {
                         <?php
                     }
                     ?>
-                    < tr >
+                    <tr>
                     <td clas s="main"><?php echo _('E-Mail Address'); ?></td>
                     <td class="main">
                         <?php
@@ -608,7 +608,7 @@ if ($action == 'edit' || $action == 'update') {
             <?php
         }
         ?>
-        < tr >
+        <tr>
         <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
         </tr>
         <tr>
