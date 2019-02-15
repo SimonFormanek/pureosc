@@ -262,16 +262,33 @@ $oPage = new Ease\Page();
 
 // include the mail classes
 //pure:modified
-// set the language
-if (!tep_session_is_registered('language')) {
-    tep_session_register('language');
-    tep_session_register('languages_id');
+//set the language 
+    $force_language = $oPage->getRequestValue('language'); //$_GET['language']
+if (!tep_session_is_registered('language') || isset($force_language)) {
+    if (!tep_session_is_registered('language')) {
+        tep_session_register('language');
+        tep_session_register('languages_id');
+    }
+
+    $lng = new language();
+    if (!empty($force_language)){
+        $lng->set_language($force_language);
+    } else {
+      $browser_language = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+      if (preg_match('/^en/', $browser_language)){
+        $browser_language = 'en';
+      }
+      $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES'));
+       while ($languages_all = tep_db_fetch_array($languages_all_query)) {
+         if ($languages_all['code'] == $browser_language) {$new_language = $browser_language;}
+       }
+      if ($new_language){
+        $lng->set_language($new_language);
+      } else {
+        $lng->set_language(constant('DEFAULT_LANGUAGE'));
+      }
+    }  
 }
-
-$force_language = $oPage->getRequestValue('language');
-
-$lng = new language(empty($force_language) ? (defined('DEFAULT_LANGUAGE') ? constant('DEFAULT_LANGUAGE')
-        : 'en') : $force_language);
 
 $language     = $lng->language['directory'];
 $languages_id = $lng->language['id'];
