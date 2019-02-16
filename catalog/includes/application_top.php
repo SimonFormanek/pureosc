@@ -259,28 +259,25 @@ if (!tep_session_is_registered('cart') || !is_object($cart)) {
 $currencies = new currencies();
 
 $oPage = new Ease\Page();
-
-// include the mail classes
-//pure:modified
 //set the language 
-    $force_language = $oPage->getRequestValue('language'); //$_GET['language']
-if (!tep_session_is_registered('language') || isset($force_language)) {
+if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (!tep_session_is_registered('language')) {
         tep_session_register('language');
         tep_session_register('languages_id');
     }
-
     $lng = new language();
-    if (!empty($force_language)){
-        $lng->set_language($force_language);
+    if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
+        $lng->set_language($_GET['language']);
     } else {
-      $browser_language = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+      $browser_language = preg_replace('/,.*/','',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
       if (preg_match('/^en/', $browser_language)){
         $browser_language = 'en';
       }
       $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES'));
        while ($languages_all = tep_db_fetch_array($languages_all_query)) {
-         if ($languages_all['code'] == $browser_language) {$new_language = $browser_language;}
+         if ($languages_all['code'] == $browser_language) {
+           $new_language = $browser_language;
+       }
        }
       if ($new_language){
         $lng->set_language($new_language);
@@ -288,30 +285,17 @@ if (!tep_session_is_registered('language') || isset($force_language)) {
         $lng->set_language(constant('DEFAULT_LANGUAGE'));
       }
     }  
+} else {
+    $lng = new language();
+  //$lng->set_language($_SESSION['language']);
+      $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
+      $language_code = tep_db_fetch_array($language_code_query);
+    $lng->set_language($language_code['code']);
 }
-
-$language     = $lng->language['directory'];
-$languages_id = $lng->language['id'];
 
 \Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
-
-//original version:
-// set the language
-if (!tep_session_is_registered('language') || isset($_GET['language'])) {
-    if (!tep_session_is_registered('language')) {
-        tep_session_register('language');
-        tep_session_register('languages_id');
-    }
-
-    if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
-        $lng->set_language($_GET['language']);
-    } else {
-        $lng->get_browser_language();
-    }
-
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
-}
 
 // include the language translations
 $_system_locale_numeric = setlocale(LC_NUMERIC, 0);
