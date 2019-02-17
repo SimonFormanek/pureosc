@@ -245,7 +245,7 @@ define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'The first four digits of the number ent
 // category views
 define('TEXT_VIEW', 'Zobrazit: ',true);
 define('TEXT_VIEW_LIST', ' Seznam',true);
-define('TEXT_VIEW_GRID', ' Grid',true);
+define('TEXT_VIEW_GRID', ' Mřížka',true);
 
 // search placeholder
 define('TEXT_SEARCH_PLACEHOLDER','Vyhledávání',true);
@@ -373,7 +373,7 @@ define('BOX_HEADING_TELL_A_FRIEND', 'Poslat na e-mail');
 define('BOX_HEADING_HEADERTAGS_TAGCLOUD', 'Populární vyhledávání');
 define('TEXT_SEE_MORE', 'více');
 define('TEXT_SEE_MORE_FULL', 'více o %s');
-define('HTS_OG_AVAILABLE_STOCK', 'Sostupnost skladem');
+define('HTS_OG_AVAILABLE_STOCK', 'Dostupnost skladem');
 define('HTS_OG_PRICE', 'Cena');
 /*** End Header Tags SEO ***/
 
