@@ -43,7 +43,11 @@ if (isset($_POST['set_canonical_return_back'])) {
     tep_redirect($_POST['set_canonical_return_back']);
 }
 
-$action = (isset($_GET['action']) ? $_GET['action'] : '');
+$action = (isset($_GET['action']) ? $_GET['action'] : ''); 
+
+$discount = (isset($_POST['products_discount']) ? $_POST['products_discount'] : 0); 
+
+
 // Ultimate SEO URLs v2.2d
 // If the action will affect the cache entries
 if (preg_match("/(insert|update|setflag)/i", $action))
@@ -413,21 +417,57 @@ if (tep_not_null($action)) {
                 //pure:new canonical
                 $canon = isset($_POST['canonical']) ? '1' : 'null';
                 tep_db_query("insert into " . TABLE_PRODUCTS_TO_CATEGORIES . " (products_id, categories_id, canonical) values ('" . (int)$products_id . "', '" . (int)$current_category_id . "', " . $canon . ")");
+                
+                
+                if (/*USE_DEFAULT_DISCOUNT == 'true' &&*/ $_POST['products_model'] != 'e-book') {
+                
+                  if($discount > 0) {
+                    $discountPrice = ($_POST['products_price'] * (1 - ($discount / 100))); 
+                  
+                    tep_db_query("insert into " . TABLE_SPECIALS . " (products_id, specials_new_products_price) values ('" . (int) $products_id . "', '" . str_replace(',', '.', $discountPrice) ."')"); 
+                  }
+                  
+                }
+
+                
             } elseif ($action == 'update_product') {
+            
+            
                 $update_sql_data = ['products_last_modified' => 'now()'];
 
                 $sql_product_data_array = array_merge($sql_data_array,
                     $update_sql_data);
 
                 tep_db_perform(TABLE_PRODUCTS, $sql_product_data_array,
-                    'update', "products_id = '" . (int)$products_id . "'");
+                    'update', "products_id = '" . (int)$products_id . "'"); 
+                    
                 if (isset($_POST['canonical'])) { //je zaskrt.
                     $wQ = tep_db_query("SELECT categories_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " WHERE products_id = " . (int)$products_id);
                     while ($w = tep_db_fetch_array($wQ))
                         tep_db_query("UPDATE " . TABLE_PRODUCTS_TO_CATEGORIES . " SET canonical = null WHERE products_id = " . (int)$products_id . " AND categories_id = " . $w['categories_id']);
 
                     $uQ = tep_db_query("UPDATE " . TABLE_PRODUCTS_TO_CATEGORIES . " SET canonical = 1 WHERE products_id = " . (int)$products_id . " AND categories_id = " . $current_category_id);
+                } 
+                
+                
+                $discountPrice = (($discount > 0) ? ($_POST['products_price'] * (1 - ( $discount / 100))) : 0); 
+                
+                if( ($_POST['products_model'] == 'e-book') || ($discountPrice == 0) )  {
+                  tep_db_query("DELETE from " . TABLE_SPECIALS . " WHERE products_id = '" . (int) $products_id . "'");
+                } else { 
+                                
+                  $discountQ = tep_db_query("SELECT specials_new_products_price FROM " . TABLE_SPECIALS . " WHERE products_id = '" . (int) $products_id . "'"); 
+                  
+                  if (tep_db_num_rows($discountQ) > 0) { 
+                    
+                      tep_db_query("UPDATE " . TABLE_SPECIALS . " SET specials_new_products_price = " . str_replace(',', '.', $discountPrice) . " WHERE products_id = '" . (int) $products_id . "'"); 
+                      
+                  } else { 
+                  
+                    tep_db_query("INSERT INTO " . TABLE_SPECIALS . " (products_id, specials_new_products_price) VALUES ('" . (int) $products_id . "', '" . str_replace(',', '.', $discountPrice) ."')");
+                  }
                 }
+                
             }
 
             $languages = tep_get_languages();
@@ -670,7 +710,21 @@ if ($action == 'new_product') {
                 'image' => $product_images['image'],
                 'htmlcontent' => $product_images['htmlcontent'],
                 'sort_order' => $product_images['sort_order']];
-        }
+        } 
+        
+        
+        $discountQ = tep_db_query("SELECT specials_new_products_price AS price_spec from " . TABLE_SPECIALS . " WHERE products_id = '" . (int) $product['products_id'] . "'"); 
+        
+        if(tep_db_num_rows($discountQ) > 0) {
+        
+          $discA = tep_db_fetch_array($discountQ);
+          
+          $diff = ($product['products_price'] - $discA['price_spec']);
+          if($diff > 0) $discount = round(($diff / $product['products_price']) * 100); 
+          else $discount = 0; 
+          
+          //echo 'spec=' . $discA['price_spec'] . 'price=' . $product['products_price'] . ' diff='.$diff;
+        } else $discount = 0; 
     }
 
     $manufacturers_array = [['id' => '', 'text' => TEXT_NONE]];
@@ -726,6 +780,17 @@ if ($action == 'new_product') {
                 return parseFloat(Math.round(x)).toFixed(places);
         }
 
+        function doTrunc(x, places) { 
+        
+                var pre = 0, s = x.toString(); 
+                
+                pre = s.indexOf(".");
+                if(pre < 1) pre = s.length;
+        
+                return parseFloat(x.toPrecision(pre + places));
+        }
+
+        
         function getCoefficient(taxRate){
             return taxRate / (100+taxRate);
         }
@@ -747,17 +812,17 @@ if ($action == 'new_product') {
                 grossValue = grossValue * ((taxRate / 100) + 1);
             }
 
-            document.forms["new_product"].products_price_gross.value = doRound(grossValue, 4);
+            document.forms["new_product"].products_price_gross.value = doTrunc(grossValue, 4); //doRound(grossValue, 4);
         }
 
         function updateNet() {
             var taxRate = getTaxRate();
             var netValue = parseFloat(document.forms["new_product"].products_price_gross.value);
             if (taxRate > 0) {
-                netValue = netValue / ((taxRate / 100)+1 );
+                netValue = netValue / ((taxRate / 100) + 1);
             }
 
-            document.forms["new_product"].products_price.value = doRound(netValue, 4);
+            document.forms["new_product"].products_price.value = doTrunc(netValue, 4); //doRound(netValue, 4);
         }
 
         //--></script>
@@ -928,6 +993,7 @@ if ($action == 'new_product') {
                                         'onchange="updateGross()"'); ?></td>
                         </tr>
                     <?php } ?>
+                    
                     <tr bgcolor="#ebebff">
                         <td class="main"><?php echo TEXT_PRODUCTS_PRICE_NET; ?></td>
                         <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
@@ -935,6 +1001,8 @@ if ($action == 'new_product') {
                                     $pInfo->products_price,
                                     'onkeyup="updateGross()"'); ?></td>
                     </tr>
+
+                    
                     <?php if (DISPLAY_PRODUCTS_TAX_CLASS == 'true') { ?>
                         <tr bgcolor="#ebebff">
                             <td class="main"><?php echo TEXT_PRODUCTS_PRICE_GROSS; ?></td>
@@ -942,11 +1010,20 @@ if ($action == 'new_product') {
                                         '24', '15') . '&nbsp;' . tep_draw_input_field('products_price_gross',
                                         $pInfo->products_price, 'onkeyup="updateNet()"'); ?></td>
                         </tr>
+                        
+                        
+                    <tr bgcolor="#ebebff">
+                        <td class="main"><?php echo TEXT_PRODUCTS_DISCOUNT; ?></td>
+                        <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
+                                    '24', '15') . '&nbsp;' . tep_draw_input_field('products_discount', 
+                                    (($form_action=='update_product') ? (string)$discount : DEFAULT_DISCOUNT)); ?>%</td>
+                    </tr>
+                        
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
                                     '1', '10'); ?></td>
                         </tr>
-                        <script type="text/java                        script"><!--
+                        <script type="text/javascript"><!--
         updateGross();
         //-->
                         </script>
@@ -1214,20 +1291,25 @@ if ($action == 'new_product') {
                                                 } else {
                                                     $emptytitle = '';
                                                 }
-                                                echo '<input onKeyUp="count_title_' . $languages[$i]['id'] . '()" name="products_seo_title[' . $languages[$i]['id'] . ']" id="seotitle_' . $languages[$i]['id'] . '" size="80" value="' . (empty(tep_get_products_seo_title($pInfo->products_id,
+                                                
+                                                echo '<input onKeyUp="count_title(' . $languages[$i]['id'] . ', '. (constant('META_TITLE_LENGHT') - mb_strlen(constant('STORE_NAME'))) . ')" name="products_seo_title[' . $languages[$i]['id'] . ']" id="seotitle_' . $languages[$i]['id'] . '" size="80" value="' . (empty(tep_get_products_seo_title($pInfo->products_id,
                                                         $languages[$i]['id']))
                                                         ? $emptytitle
                                                         : tep_get_products_seo_title($pInfo->products_id,
                                                             $languages[$i]['id'])) . '">';
                                                 echo '<br />' . TEXT_META_TITLE_LENGHT_REMAINING_CHARACTERS . ': <span id="counter_title_' . $languages[$i]['id'] . '"></span> (max: ' . META_TITLE_LENGHT . ')';
+                                                
                                                 ?>
-                                                <script>
-                                                    function count_title_<?php echo $languages[$i]['id']; ?>() {
-                                                        document.getElementById('counter_title_<?php echo $languages[$i]['id']; ?>').innerHTML = (<?php echo constant('META_TITLE_LENGHT') - mb_strlen(constant('STORE_NAME')); ?>) - document.getElementById('seotitle_<?php echo $languages[$i]['id']; ?>').value.length;
-                                                    }
+                                                
+<script>
+function count_title(langId, len) {
+document.getElementById('counter_title_'+langId).innerHTML = len - document.getElementById('seotitle_'+langId).value.length;
+}
 
-                                                    count_title_<?php echo $languages[$i]['id']; ?>();
-                                                </script>
+count_title(<?php echo $languages[$i]['id']; ?>, <?php echo constant('META_TITLE_LENGHT') - mb_strlen(constant('STORE_NAME')); ?>);
+</script>
+                                                
+                                                
                                             </td>
                                         </tr>
                                     </table>
@@ -1260,7 +1342,8 @@ if ($action == 'new_product') {
                                                     $languages[$i]['name']); ?>&nbsp;
                                             </td>
                                             <td class="main"><?php
-                                                echo '<textarea onKeyUp="count_description_' . $languages[$i]['id'] . '()" name="products_seo_description[' . $languages[$i]['id'] . ']" id="seodescription_' . $languages[$i]['id'] . '" cols="80" rows="6">' . (empty(tep_get_products_seo_description($pInfo->products_id,
+                                            
+                                                echo '<textarea onKeyUp="count_description(' . $languages[$i]['id'] . ', ' . META_DESCRIPTION_LENGHT . ')" name="products_seo_description[' . $languages[$i]['id'] . ']" id="seodescription_' . $languages[$i]['id'] . '" cols="80" rows="6">' . (empty(tep_get_products_seo_description($pInfo->products_id,
                                                         $languages[$i]['id'])) ? str_replace([
                                                         "\r", "\n"], '',
                                                         strip_tags(tep_get_products_description($pInfo->products_id,
@@ -1268,15 +1351,18 @@ if ($action == 'new_product') {
                                                         : tep_get_products_seo_description($pInfo->products_id,
                                                             $languages[$i]['id'])) . '</textarea>';
                                                 echo '<br />' . TEXT_META_DESCRIPTION_LENGHT_REMAINING_CHARACTERS . ': <strong><span id="counter_description_' . $languages[$i]['id'] . '"></span></strong> (max: ' . META_DESCRIPTION_LENGHT . ')';
+                                                
                                                 ?>
 
-                                                <script>
-                                                    function count_description_<?php echo $languages[$i]['id']; ?>() {
-                                                        document.getElementById('counter_description_<?php echo $languages[$i]['id']; ?>').innerHTML = <?php echo META_DESCRIPTION_LENGHT; ?> -document.getElementById('seodescription_<?php echo $languages[$i]['id']; ?>').value.length;
-                                                    }
+<script>
+function count_description(langId, len) {
+document.getElementById('counter_description_' + langId).innerHTML = len - document.getElementById('seodescription_' + langId).value.length;
+}
 
-                                                    count_description_<?php echo $languages[$i]['id']; ?>();
-                                                </script>
+count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTION_LENGHT; ?>);
+</script> 
+                                                
+                                                
                                             </td>
                                         </tr>
                                     </table>
@@ -1608,7 +1694,7 @@ if ($action == 'new_product') {
                                 if (isset($_GET['search'])) {
                                     $products_query = tep_db_query("select p.products_id, pd.products_name, p.products_quantity, p.products_image, p.products_price, p.products_date_added, p.products_last_modified, p.products_date_available, p.products_status, p2c.categories_id, p.products_custom_date, p.products_sort_order from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c," . TABLE_MANUFACTURERS . " m where p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "' and p.products_id = p2c.products_id AND p.manufacturers_id = m.manufacturers_id and pd.products_name like '%" . tep_db_input($search) . "%' order by " . PRODUCT_LIST_DEFAULT_SORT_ORDER);
                                 } else {
-                                    $products_query = tep_db_query("select p.products_id, pd.products_name, p.products_quantity, p.products_image, p.products_price, p.products_date_added, p.products_last_modified, p.products_date_available, p.products_status, p.products_custom_date, p.products_sort_order from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c," . TABLE_MANUFACTURERS . " m where p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "' and p.products_id = p2c.products_id and p2c.categories_id = '" . (int)$current_category_id . "' AND p.manufacturers_id = m.manufacturers_id  order by " . PRODUCT_LIST_DEFAULT_SORT_ORDER);
+                                    $products_query = tep_db_query("SELECT p.products_id, pd.products_name, p.products_quantity, p.products_image, p.products_price, p.products_date_added, p.products_last_modified, p.products_date_available, p.products_status, p.products_custom_date, p.products_sort_order FROM " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c," . TABLE_MANUFACTURERS . " m WHERE p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "' and p.products_id = p2c.products_id and p2c.categories_id = '" . (int)$current_category_id . "' AND p.manufacturers_id = m.manufacturers_id ORDER BY " . PRODUCT_LIST_DEFAULT_SORT_ORDER);
                                 }
                                 while ($products = tep_db_fetch_array($products_query)) {
                                     $products_count++;
@@ -1814,20 +1900,22 @@ if ($action == 'new_product') {
                                     $languages[$i]['id']);
 //		$category_seo_title_string .= '<input onKeyUp="count_title()" name="categories_seo_title[' . $languages[$i]['id'] . ']" id="seotitle" size="80" value="' . (empty(tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id'])) ? $emptytitle : tep_get_category_seo_title($cInfo->categories_id)) . '">';
 //		$category_seo_title_string .= '<br />Počet znaků limit max: 70 aktuálně ULOŽENO: <strong>' . (empty(tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id'])) ? mb_strlen($emptytitle) : mb_strlen(tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id']))) . '</strong>  Editace aktuálně zbývá: <span id="counter_title"></span>';
-                                $category_seo_title_string .= '<input onKeyUp="count_title_' . $languages[$i]['id'] . '()" name="categories_seo_title[' . $languages[$i]['id'] . ']" id="seotitle_' . $languages[$i]['id'] . '" size="80" value="' . (empty(tep_get_category_seo_title($cInfo->categories_id,
+                                $category_seo_title_string .= '<input onKeyUp="count_title(' . $languages[$i]['id'] . ', '. (constant('META_TITLE_LENGHT') - mb_strlen(constant('STORE_NAME'))) . ')" name="categories_seo_title[' . $languages[$i]['id'] . ']" id="seotitle_' . $languages[$i]['id'] . '" size="80" value="' . (empty(tep_get_category_seo_title($cInfo->categories_id,
                                         $languages[$i]['id'])) ? $emptytitle : tep_get_category_seo_title($cInfo->categories_id,
                                         $languages[$i]['id'])) . '">';
                                 $category_seo_title_string .= '<br />' . TEXT_META_TITLE_LENGHT_REMAINING_CHARACTERS . ': <span id="counter_title_' . $languages[$i]['id'] . '"></span> (max: ' . META_TITLE_LENGHT . ')';
                                 ?>
-                                <script>
-                                    function count_title_<?php echo $languages[$i]['id']; ?>() {
-                                        document.getElementById('counter_title_<?php echo $languages[$i]['id']; ?>').innerHTML = (<?php echo META_TITLE_LENGHT
-                                            - mb_strlen(STORE_NAME); ?>) - document.getElementById('seotitle_<?php echo $languages[$i]['id']; ?>').value.length;
-                                    }
+                                
+                                
+<script>
+function count_title(langId, len) {
+document.getElementById('counter_title_'+langId).innerHTML = len - document.getElementById('seotitle_'+langId).value.length;
+}
 
-                                    count_titl
-                                    e_<?php echo $languages[$i]['id']; ?>();
-                                </script>
+count_title(<?php echo $languages[$i]['id']; ?>, <?php echo constant('META_TITLE_LENGHT') - mb_strlen(constant('STORE_NAME')); ?>);
+</script>
+                                
+                                
                             <?php
                             }
                             for ($i = 0, $n = sizeof($languages);
@@ -1837,7 +1925,7 @@ if ($action == 'new_product') {
                             $category_seo_description_string .= '<br />' . tep_image(tep_catalog_href_link(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'],
                                     '', 'SSL'), $languages[$i]['name'], '', '',
                                     'style="vertical-align: top;"') . '&nbsp;';
-                            $category_seo_description_string .= '<textarea onKeyUp="count_description_' . $languages[$i]['id'] . '()" name="categories_seo_description[' . $languages[$i]['id'] . ']" id="seodescription_' . $languages[$i]['id'] . '" cols="80" rows="6">' . (empty(tep_get_category_seo_description($cInfo->categories_id,
+                            $category_seo_description_string .= '<textarea onKeyUp="count_description(' . $languages[$i]['id'] . ', ' . META_DESCRIPTION_LENGHT . ')" name="categories_seo_description[' . $languages[$i]['id'] . ']" id="seodescription_' . $languages[$i]['id'] . '" cols="80" rows="6">' . (empty(tep_get_category_seo_description($cInfo->categories_id,
                                     $languages[$i]['id'])) ? str_replace(["\r", "\n"],
                                     '',
                                     strip_tags(tep_get_category_description($cInfo->categories_id,
@@ -1845,13 +1933,15 @@ if ($action == 'new_product') {
                                     $languages[$i]['id'])) . '</textarea>';
                             $category_seo_description_string .= '<br />' . TEXT_META_DESCRIPTION_LENGHT_REMAINING_CHARACTERS . ': <strong><span id="counter_description_' . $languages[$i]['id'] . '"></span></strong> (max: ' . META_DESCRIPTION_LENGHT . ')';
                             ?>
-                                <script>
-                                    function count_description_<?php echo $languages[$i]['id']; ?>() {
-                                        document.getElementById('counter_description_<?php echo $languages[$i]['id']; ?>').innerHTML = <?php echo META_DESCRIPTION_LENGHT; ?> -document.getElementById('seodescription_<?php echo $languages[$i]['id']; ?>').value.length;
-                                    }
+                            
+                            
+<script>
+function count_description(langId, len) {
+document.getElementById('counter_description_' + langId).innerHTML = len - document.getElementById('seodescription_' + langId).value.length;
+}
 
-                                    count_description_<?php echo $languages[$i]['id']; ?>();
-                                </script>
+count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTION_LENGHT; ?>);
+</script> 
 
                                 <?php
                             }
