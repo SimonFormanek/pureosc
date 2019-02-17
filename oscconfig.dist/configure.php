@@ -1,14 +1,10 @@
 <?php
 
-define('DIR_FS_MASTER_ROOT_DIR', '/var/WWW/'); //trailing slash YES /catalog subdir NO (!)
+define('DIR_FS_MASTER_ROOT_DIR', '/home/user/WWW/osc/'); //trailing slash YES /catalog subdir NO (!)
 define('MYSQL_DEBUG', 'on'); //on|off=default 'on' set only for DEVEL debug !!!
-define('BOOTSTRAP_LESS_DIR', 'nonexistent-dir'); // <------ need to bee configured
+define('BOOTSTRAP_LESS_DIR', 'DISABLEDbootstrap-3.3.7/less/'); //remove DISABLED
 define('SERVER_INSTANCE', 'admin'); //CONFIGURE: admin|shop <------ need to bee configured
 define('GENERATOR_INSTANCE', 'true'); // set to 'true'for generator dir set 'false' for shop or admin  <------ need to bee configured ! ! !
-//  define('CSS_DEVEL_MODE','1');// empty =  NO
-//  define('SHOP_KEYS_PATH','/home/printondemand/shop_keys/'); //SECURITY WARNING: need to bee obfuscated 
-
-
 
 define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . 'catalog/');
 if ($_SERVER['REQUEST_SCHEME'] =='https') { 
