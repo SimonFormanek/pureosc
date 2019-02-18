@@ -221,7 +221,7 @@ if ($product_check['total'] < 1) {
                                 });
 
                                 $('#piGal').photosetGrid({
-                                    layout: '<?php echo $photoset_layout; ?>',
+                                    layout: '<?php echo ($photoset_layout ? : ''); ?>',
                                     width: '100%',
                                     highresLinks: true,
                                     rel: 'pigallery',
