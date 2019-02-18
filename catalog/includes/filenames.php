@@ -48,6 +48,7 @@ define('FILENAME_DOWNLOAD', 'download.php');
 define('FILENAME_INFO_SHOPPING_CART', 'info_shopping_cart.php');
 define('FILENAME_LOGIN', 'login.php');
 define('FILENAME_LOGOFF', 'logoff.php');
+define('FILENAME_MODULES', 'modules.php');
 define('FILENAME_NEW_PRODUCTS', 'new_products.php');
 define('FILENAME_PASSWORD_FORGOTTEN', 'password_forgotten.php');
 define('FILENAME_PASSWORD_RESET', 'password_reset.php');
