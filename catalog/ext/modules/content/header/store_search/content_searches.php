@@ -103,7 +103,7 @@
     $product = str_replace(array("'", ";", "*", "(", ")"), '', $product);
 	
 	//Add products_head_keywords_tag search option
-	if (MODULE_NAVIGATION_BAR_STORE_SEARCH_MODEL_OR_KEYWORDS == 'Model') {
+	if (MODULE_CONTENT_HEADER_STORE_SEARCH_MODEL_OR_KEYWORDS == 'Model') {
       $like_statement_product .= " (pd.products_name LIKE '%" . tep_db_input($product) . "%' OR p.products_model LIKE '%" . tep_db_input($product) . "%') AND ";
 	} else {
       $like_statement_product .= " (pd.products_name LIKE '%" . tep_db_input($product) . "%' OR pd.products_head_keywords_tag LIKE '%" . tep_db_input($product) . "%') AND ";
@@ -129,8 +129,8 @@
       if ($p > 7) {
 //        $array[] = array('icon'  => "cart-plus",
         $array[] = array('icon'  => '<span style="float:left; margin-right:10px;"><i class="fa fa-plus-circle fa-2x"></i></span>',
-                         'title' => MODULE_NAVIGATION_BAR_STORE_SEARCH_MORE_PRODUCT,
-                         'href'  => tep_href_link('advanced_search_result.php', 'keywords=' . urlencode(str_replace(' ', ' ', $query)), $request_type) . '&search_in_description=' . (MODULE_NAVIGATION_BAR_STORE_SEARCH_FUNCTIONS == 'Descriptions' ? 1 : 0),
+                         'title' => _('More products'),
+                         'href'  => tep_href_link('advanced_search_result.php', 'keywords=' . urlencode(str_replace(' ', ' ', $query)), $request_type) . '&search_in_description=' . (MODULE_CONTENT_HEADER_STORE_SEARCH_FUNCTIONS == 'Descriptions' ? 1 : 0),
                          'price' => null);
         break;
       } else {
@@ -142,17 +142,17 @@
         }
 
 		// image or icon for products
-		if (MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_OR_ICON == 'Image') {
+		if (MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_OR_ICON == 'Image') {
 		  if ($row['products_image'] != '') {
-			$image_product = 	'<span class="visible-xs" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . $row['products_image'] . '" width="' . MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_XS . '" height="auto"></span>';
-			$image_product .= 	'<span class="visible-sm" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . $row['products_image'] . '" width="' . MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_SM . '" height="auto"></span>';
-			$image_product .= 	'<span class="visible-md" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . $row['products_image'] . '" width="' . MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_MD . '" height="auto"></span>';
-			$image_product .= 	'<span class="visible-lg" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . $row['products_image'] . '" width="' . MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_LG . '" height="auto"></span>';
+			$image_product = 	'<span class="visible-xs" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . $row['products_image'] . '" width="' . MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_XS . '" height="auto"></span>';
+			$image_product .= 	'<span class="visible-sm" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . $row['products_image'] . '" width="' . MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_SM . '" height="auto"></span>';
+			$image_product .= 	'<span class="visible-md" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . $row['products_image'] . '" width="' . MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_MD . '" height="auto"></span>';
+			$image_product .= 	'<span class="visible-lg" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . $row['products_image'] . '" width="' . MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_LG . '" height="auto"></span>';
 		  } else {
-			$image_product = 	'<span class="visible-xs" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . 'picture_o_trans.png" width="' . MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_XS . '" height="auto"></span>';
-			$image_product .= 	'<span class="visible-sm" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . 'picture_o_trans.png" width="' . MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_SM . '" height="auto"></span>';
-			$image_product .= 	'<span class="visible-md" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . 'picture_o_trans.png" width="' . MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_MD . '" height="auto"></span>';
-			$image_product .= 	'<span class="visible-lg" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . 'picture_o_trans.png" width="' . MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_LG . '" height="auto"></span>';
+			$image_product = 	'<span class="visible-xs" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . 'picture_o_trans.png" width="' . MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_XS . '" height="auto"></span>';
+			$image_product .= 	'<span class="visible-sm" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . 'picture_o_trans.png" width="' . MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_SM . '" height="auto"></span>';
+			$image_product .= 	'<span class="visible-md" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . 'picture_o_trans.png" width="' . MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_MD . '" height="auto"></span>';
+			$image_product .= 	'<span class="visible-lg" style="float:left; margin-right:10px;"><img src="' . DIR_WS_IMAGES . 'picture_o_trans.png" width="' . MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_LG . '" height="auto"></span>';
 		  }
 		} else {
 		  $image_product = 	'<span style="float:left; margin-right:10px;"><i class="fa fa-cart-plus fa-2x"></i></span>';
@@ -169,17 +169,17 @@
 
 //    $array[] = array('icon'  => "wrench",
     $array[] = array('icon'  => '<span style="float:left; margin-right:10px;"><i class="fa fa-search-plus fa-2x"></i></span>',
-                     'title' => MODULE_NAVIGATION_BAR_STORE_SEARCH_NOT_FOUND,
+                     'title' => _('Not found -> advanced search'),
                      'href'  => tep_href_link('advanced_search.php', 'keywords=' . urlencode(str_replace(' ', ' ', $query)), $request_type),
                      'price' => null);
   }
 
   //Start content searches in files
-/*TODO
-  if (tep_not_null(MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGES)) {
+/*TODO - nefunguje
+  if (tep_not_null(MODULE_CONTENT_HEADER_STORE_SEARCH_PAGES)) {
     $content_files = array();
 
-    foreach (explode(';', MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGES) as $page) {
+    foreach (explode(';', MODULE_CONTENT_HEADER_STORE_SEARCH_PAGES) as $page) {
       $page = trim($page);
 
       if (!empty($page)) {
@@ -209,15 +209,15 @@
 									'privacy.php');
 
 				//don't forget to add the translation for any page registred above and into language file(s)
-				$rendition = array(	MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGE_CONDITIONS,
-									MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGE_SHIPPING,
-									MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGE_PRIVACY);
+				$rendition = array(	MODULE_CONTENT_HEADER_STORE_SEARCH_PAGE_CONDITIONS,
+									MODULE_CONTENT_HEADER_STORE_SEARCH_PAGE_SHIPPING,
+									MODULE_CONTENT_HEADER_STORE_SEARCH_PAGE_PRIVACY);
 
 				$page_title = str_replace($row_file, $rendition, $file_name);
 
 //                $array[] = array('icon'  => "file",
                 $array[] = array('icon'  => '<span style="float:left; margin-right:10px;"><i class="fa fa-file fa-2x"></i></span>',
-//                                 'title' => sprintf(MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGE, substr(basename($file), 0, -4)),
+//                                 'title' => sprintf(MODULE_CONTENT_HEADER_STORE_SEARCH_PAGE, substr(basename($file), 0, -4)),
                                  'title' => sprintf(_('Page of %s'), $page_title),
                                  'href'  => tep_href_link($file_name, null, $request_type),
                                  'price' => null);
