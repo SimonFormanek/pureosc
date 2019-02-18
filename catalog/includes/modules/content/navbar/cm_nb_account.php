@@ -26,8 +26,8 @@ class cm_nb_account
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       =  MODULE_CONTENT_NAVBAR_ACCOUNT_TITLE;
-        $this->description = MODULE_CONTENT_NAVBAR_ACCOUNT_DESCRIPTION;
+        $this->title       =  _('Navbar Account');
+        $this->description = _('Show the account menu in the navbar.');
 
         if (defined('MODULE_CONTENT_NAVBAR_ACCOUNT_STATUS')) {
             $this->sort_order = MODULE_CONTENT_NAVBAR_ACCOUNT_SORT_ORDER;

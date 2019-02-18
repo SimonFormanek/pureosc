@@ -26,8 +26,8 @@ class cm_nb_cart
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       =  MODULE_CONTENT_NAVBAR_CART_TITLE;
-        $this->description = MODULE_CONTENT_NAVBAR_CART_DESCRIPTION;
+        $this->title       =  _('Navbar Cart');
+        $this->description = _('Show the shopping cart menu in the navbar.');
 
         if (defined('MODULE_CONTENT_NAVBAR_CART_STATUS')) {
             $this->sort_order = MODULE_CONTENT_NAVBAR_CART_SORT_ORDER;
