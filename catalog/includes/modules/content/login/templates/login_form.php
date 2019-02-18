@@ -1,7 +1,7 @@
 <div class="login-form fixedHeightBox <?php echo (MODULE_CONTENT_LOGIN_FORM_CONTENT_WIDTH == 'Half') ? 'col-sm-6' : 'col-sm-12'; ?>">
   <div class="panel panel-success">
     <div class="panel-body">
-      <h2><?php echo _('Returning Customer'); ?></h2>
+      <h2><?php echo _('Login'); ?></h2>
 
       <p class="alert alert-success"><?php echo _('I am a returning customer.'); ?></p>
 
