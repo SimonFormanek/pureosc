@@ -644,3 +644,9 @@ function tep_navbar_search($btnclass = 'btn-default', $description = true)
 
     return $search_link;
 }
+
+// strip paragraph ckeditor fix
+function strip_p($txt){
+$txt =  str_replace('</P>','',(str_replace('<P>','', (str_replace('</p>','', str_replace('<p>','', $txt))))));
+ return $txt;
+}

@@ -547,4 +547,9 @@ function tep_draw_button($title = null, $icon = null, $link = null,
 
     return $button;
 }
-?>
+
+// strip paragraph ckeditor fix
+function strip_p($txt){
+$txt =  str_replace('</P>','',(str_replace('<P>','', (str_replace('</p>','', str_replace('<p>','', $txt))))));
+ return $txt;
+}
