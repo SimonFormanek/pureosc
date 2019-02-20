@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.52, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: oscempty
+-- Host: localhost    Database: pureosc
 -- ------------------------------------------------------
 -- Server version	5.5.52-0+deb8u1
 
