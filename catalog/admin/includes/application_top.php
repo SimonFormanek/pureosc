@@ -279,8 +279,8 @@ if (tep_not_null($tPath)) {
 // include the breadcrumb class and start the breadcrumb trail
 require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');
 $breadcrumb = new breadcrumb;
-
+if (isset($_SESSION['admin']['id'])) {
 $messageStack = new AdminMessageStack;
 $adminLog     = new PureOSC\CustomerLog();
 $adminLog->setAdministratorID($_SESSION['admin']['id']);
-
+}
