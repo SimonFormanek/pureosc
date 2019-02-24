@@ -93,9 +93,6 @@ define('FILENAME_MM_RESPONSEMAIL', 'mm_responsemail.php');
 define('FILENAME_MM_TEMPLATES', 'mm_templates.php');
 define('FILENAME_MM_BULKMAIL', 'mm_bulkmail.php');
 define('FILENAME_MM_EMAIL', 'mm_email.php');
-// ### BEGIN ORDER MAKER ###
-define('FILENAME_CREATE_ORDER_PROCESS', 'create_order_process.php');
-define('FILENAME_CREATE_ORDER', 'create_order.php');
 // ### END ORDER MAKER ###
 // BOF Create Account // Create customers
 define('FILENAME_CREATE_ACCOUNT', 'create_account.php');
