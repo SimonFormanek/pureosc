@@ -19,24 +19,24 @@ $error = 0;
 //and include lang dependent shop/admin configuration file
 if ($argv[2] == 'admin') {
     $cached_flag = 'cached_admin';
-    if (file_exists('../oscconfig/languages/'.$argv[1].'/static_admin.php')) {
-        include('../oscconfig/languages/'.$argv[1].'/static_admin.php');
+    if (file_exists('../../oscconfig/languages/'.$argv[1].'/static_admin.php')) {
+        include('../../oscconfig/languages/'.$argv[1].'/static_admin.php');
     } else {
         echo "Static ADMIN configuration file not found\n";
         exit;
     }
 } else {
     $cached_flag = 'cached';
-    if (file_exists('../oscconfig/languages/'.$argv[1].'/static_shop.php')) {
-        include('../oscconfig/languages/'.$argv[1].'/static_shop.php');
+    if (file_exists('../../oscconfig/languages/'.$argv[1].'/static_shop.php')) {
+        include('../../oscconfig/languages/'.$argv[1].'/static_shop.php');
     } else {
         echo "Static SHOP configuration file not found\n";
         exit;
     }
 }
 //now include common static generator
-if (file_exists('../oscconfig/static.php')) {
-    include('../oscconfig/static.php');
+if (file_exists('../../oscconfig/static.php')) {
+    include('../../oscconfig/static.php');
 } else {
     echo "Static CORE configuration file not found\n";
     exit;
@@ -71,9 +71,9 @@ $context    = stream_context_create(array(
 //exit if lockfile exists, exis or create lock
 $minute = date("Hi");
 //if (SERVER_INSTANCE =='shop') {
-if (file_exists('../cronlock/'.$argv['1'].'.'.$argv['2'])) {
+if (file_exists('../../cronlock/'.$argv['1'].'.'.$argv['2'])) {
 //TODO: if lock wait too long send error message and restart
-    $oldlock = file_get_contents('../cronlock/'.$argv['1'].'.'.$argv['2']);
+    $oldlock = file_get_contents('../../cronlock/'.$argv['1'].'.'.$argv['2']);
     $oldlock = $oldlock + MAX_LOCK_TIME;
     echo '$oldlock:'.$oldlock."\n";
     echo '$_SERVER[\'REQUEST_TIME\']:'.$_SERVER['REQUEST_TIME']."\n";
@@ -81,12 +81,12 @@ if (file_exists('../cronlock/'.$argv['1'].'.'.$argv['2'])) {
         echo 'EXITING: lockfile EXISTS!'."\n";
         exit;
     } else {
-        unlink('../cronlock/'.$argv['1'].'.'.$argv['2']);
+        unlink('../../cronlock/'.$argv['1'].'.'.$argv['2']);
         $error = 1;
         echo "ALERT:lock removed\n";
     }
 } else {
-    file_put_contents('../cronlock/'.$argv['1'].'.'.$argv['2'],
+    file_put_contents('../../cronlock/'.$argv['1'].'.'.$argv['2'],
         $_SERVER['REQUEST_TIME']);
 }
 //TODO:move to configure.php
@@ -98,12 +98,12 @@ if ($debug_level > 2) echo 'Conf. loaded OK'."\n";
 /*
   } else {
   //ADMIN:
-  if (file_exists('../cronlock/' . $argv['1'] . '_admin')){
+  if (file_exists('../../cronlock/' . $argv['1'] . '_admin')){
   //TODO: if lock wait too long send error message and restart
   echo 'EXITING: lockfile EXISTS!' . "\n";
   exit;
   } else {
-  file_put_contents('../cronlock/' . $argv['1'] . '_admin',$minute);
+  file_put_contents('../../cronlock/' . $argv['1'] . '_admin',$minute);
   }
   $crontime = (int)file_get_contents('../crontime/' . $argv['1'] . '_admin.cron');
   echo 'Conf. loaded OK' ."\n";
@@ -277,7 +277,7 @@ while ($categories       = tep_db_fetch_array($categories_query)) {
     if (tep_db_num_rows($categories_query)) {
         if ($debug_level > 2)
                 echo 'cPath:'.tep_get_category_path($categories['categories_id'])."\n";
-        $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.str_replace(HTTP_SERVER, '',
+        $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_CATALOG.str_replace(HTTP_SERVER, '',
                 tep_href_link(FILENAME_DEFAULT,
                     'cPath='.$categories['categories_id']))."/";
 
@@ -365,7 +365,7 @@ $topics_query = tep_db_query("SELECT topics_id, topics_name FROM ".TABLE_TOPICS_
     AND language_id = '".$lng['languages_id']."'");
 while ($topics       = tep_db_fetch_array($topics_query)) {
     if (tep_db_num_rows($topics_query)) {
-        $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.str_replace(HTTP_SERVER, '',
+        $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_CATALOGstr_replace(HTTP_SERVER, '',
                 tep_href_link(FILENAME_ARTICLES, 'tPath='.$topics['topics_id']))."/";
         if (!is_dir($newpath)) {
             shell_exec('mkdir -p '.$newpath);
@@ -409,7 +409,7 @@ $articles_query = tep_db_query("SELECT a.articles_id, articles_name FROM ".TABLE
 while ($articles       = tep_db_fetch_array($articles_query)) {
     if (tep_db_num_rows($articles_query)) {
 
-        $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.str_replace(HTTP_SERVER, '',
+        $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_CATALOG.str_replace(HTTP_SERVER, '',
                 tep_href_link(FILENAME_ARTICLE_INFO,
                     'articles_id='.$articles['articles_id']))."/";
         if (!is_dir($newpath)) {
@@ -450,7 +450,7 @@ if ($debug_level > 2) echo "GENERATING_INFORMATION_PAGES\n";
 $information_query = tep_db_query("SELECT information_id, information_title FROM ".TABLE_INFORMATION." WHERE visible='1' AND information_group_id = '".(int) $information_group_id."' AND language_id = '".$lng['languages_id']."' AND ".$cached_flag." = 0");
 while ($information       = tep_db_fetch_array($information_query)) {
     if (tep_db_num_rows($information_query)) {
-        $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.str_replace(HTTP_SERVER, '',
+        $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_CATALOG.str_replace(HTTP_SERVER, '',
                 tep_href_link(FILENAME_INFORMATION,
                     'info_id='.$information['information_id']))."/";
         if (!is_dir($newpath)) {
@@ -602,7 +602,7 @@ if ($updated == 1) {
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
     $output      = str_replace(HTTP_SERVER, '', $output);
-    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR.'/index.html',
+    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_CATALOG.'/index.html',
         stripslashes($output), 644);
 
 
@@ -646,7 +646,7 @@ if ($updated == 1) {
     }
 } //end $updated == 1
 
-unlink('../cronlock/'.$argv['1'].'.'.$argv['2']);
+unlink('../../cronlock/'.$argv['1'].'.'.$argv['2']);
 if ($error == 1)
         mail(WEBMASTER_EMAIL, 'Rsync eshop ERROR  '.HTTPS_COOKIE_DOMAIN,
         'Hard reset lock timeout');
