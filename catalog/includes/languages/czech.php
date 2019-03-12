@@ -19,12 +19,14 @@
   Released under the GNU General Public License
 */
 
-define('DATE_FORMAT_SHORT', '%d.%m.%Y',true);  // this is used for strftime()
-define('DATE_FORMAT_LONG', '%A %d %B, %Y',true); // this is used for strftime()
-define('DATE_FORMAT', 'd.m.Y',true); // this is used for date()
-define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S',true);
-define('JQUERY_DATEPICKER_I18N_CODE', 'cs',true); // leave empty for en_US; see http://jqueryui.com/demos/datepicker/#localization pure:todo
-define('JQUERY_DATEPICKER_FORMAT', 'mm.dd.yy',true); // see http://docs.jquery.com/UI/Datepicker/formatDate
+@setlocale(LC_ALL, array('cs_CZ.utf8', 'cs_CZ.UTF-8'));
+
+define('DATE_FORMAT_SHORT', '%d.%m.%Y', true);  // this is used for strftime()
+define('DATE_FORMAT_LONG', '%A %d %B, %Y', true); // this is used for strftime()
+define('DATE_FORMAT', 'd.m.Y', true); // this is used for date()
+define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT.' %H:%M:%S', true);
+define('JQUERY_DATEPICKER_I18N_CODE', 'cs', true); // leave empty for en_US; see http://jqueryui.com/demos/datepicker/#localization pure:todo
+define('JQUERY_DATEPICKER_FORMAT', 'mm.dd.yy', true); // see http://docs.jquery.com/UI/Datepicker/formatDate
 
 ////
 // Return date in raw format
