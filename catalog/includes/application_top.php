@@ -143,6 +143,8 @@ if (USE_CACHE == 'true') include(DIR_WS_FUNCTIONS.'cache.php');
 
 // define how the session functions will be used
 require(DIR_WS_FUNCTIONS.'sessions.php');
+//add whos_online
+require(DIR_WS_FUNCTIONS.'whos_online.php');
 
 // set the session name and save path
 tep_session_name('osCsid');
@@ -264,6 +266,10 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
         tep_redirect(tep_href_link(FILENAME_LOGIN));
     }
 }
+//PURE:NEW:session ID became OTP token...
+    if (SESSION_RECREATE == 'True') {
+        tep_session_recreate();
+    }
 
 // create the shopping cart
 if (!tep_session_is_registered('cart') || !is_object($cart)) {
@@ -501,7 +507,7 @@ if (isset($_GET['action'])) {
 $oscTemplate = new oscTemplate();
 
 // include the who's online functions
-require(DIR_WS_FUNCTIONS.'whos_online.php');
+//PURE:moved to top require(DIR_WS_FUNCTIONS.'whos_online.php');
 tep_update_whos_online();
 
 // include the password crypto functions

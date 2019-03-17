@@ -185,7 +185,7 @@ if (PRODUCTS_CANONICAL_TYPE == 'path') {
                 }
             }
             } else {
-            //TODO
+            //TODO inactive 
             if ($debug_level > 2) echo 'TODO: manufacturers type ...' ."\n";
             }
             if (PRODUCTS_CANONICAL_TYPE == 'path') {
@@ -213,7 +213,7 @@ if (PRODUCTS_CANONICAL_TYPE == 'path') {
                 shell_exec('mkdir -p '.$newpath);
             }
             $output      = "<\?php
-if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
 \$_GET['cPath']='".tep_get_category_path($canonical_category['categories_id'])."';
 \$_GET['products_id']=".$products['products_id'].";
@@ -240,62 +240,6 @@ exit;
             $updated     = 1;
         }
     }
-//} else {
-    /*
-    if ($debug_level > 2)
-            echo "Debug: PRODUCTS_CANONICAL_TYPE = 'manufacturer'\n";
-    
-      $products_query = tep_db_query("SELECT p.products_id, products_model, products_name, manufacturers_name
-      FROM " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION ." pd, " . TABLE_MANUFACTURERS . " m
-      WHERE
-      products_status=1
-      AND p.products_id = pd.products_id
-      AND p.manufacturers_id = m.manufacturers_id
-      AND pd." . $cached_flag . " = 0
-      AND language_id = '" . $lng['languages_id']. "'
-      ");
-
-      while ($products = tep_db_fetch_array($products_query)) {
-      if (tep_db_num_rows($products_query)) {
-      echo GENERATING_PRODUCTS . "\n";
-      if ($products['products_model'] !='') $model = '-' . $products['products_model']; else $model = '';
-
-      $manufurl = preg_replace('/(-[a-z])*$/','',remove_accents($products['manufacturers_name']));
-      $newpath = $manufurl . '/' . remove_accents($products['products_name']) . $model . '/';
-      //generujeme .htaccess do htaccess.tmp <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< configme
-      //pure:stop    $htaccess .= 'RewriteRule ^' . remove_accents($products['products_name']) . '/$ '  . 'http://en.oikoymenh.cz/' . $newpath .' [R=301,QSA,NC,L]' ."\n";
-
-      //$output = file_get_contents(HTTP_SERVER . '/product_info.php?products_id=' . $products['products_id'] . '&language='. $lc, false, $context);
-      $output = str_replace(SHOP_SERVER . '/index.php"', SHOP_SERVER . '/"', $output);
-      //NNN $output = str_replace(HTTP_SERVER, SHOP_SERVER, $output);
-
-      shell_exec("mkdir -p " . RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath);
-      if (!file_exists(DIR_FS_DOCUMENT_ROOT .  $manufurl)) {
-      symlink(RSYNC_LOCAL_DEST_PATH . OSC_DIR . $manufurl,  DIR_FS_DOCUMENT_ROOT .  $manufurl);
-      }
-      $index_file = fopen(RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath . "/index.html", "w");
-      fwrite($index_file, $output);
-      fclose($index_file);
-      $tst = file_get_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath . "/index.html");
-      if (preg_match("/<\/html>/", $tst)) file_put_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error','0'); else { file_put_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error','1'); echo 'ERROR generating:' . $newpath . "\n"; }
-
-      $hta_content = 'RewriteEngine On
-      RewriteBase /
-      RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
-      RewriteRule ^$ /product_info.php?products_id=' . $products['products_id'] . '&language='. $lc . ' [QSA,L]
-      ';
-
-      $hta_file = fopen(RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath . "/.htaccess", "w");
-      fwrite($hta_file, $hta_content);
-      fclose($hta_file);
-      //echo 'path:'. $newpath;
-      //update status
-      //CHANGEME
-      }}
-      tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET " . $cached_flag . " = 1 WHERE products_id = " . $products['products_id'] . " AND language_id = " . $lng['languages_id']);
-      $updated = 1;
-     */
-//}
 
 if ($debug_level > 2) echo GENERATING_CATEGORIES."\n";
 $categories_query = tep_db_query("SELECT c.categories_id, cd.categories_name FROM ".TABLE_CATEGORIES." c,  ".TABLE_CATEGORIES_DESCRIPTION." cd 
@@ -315,7 +259,7 @@ while ($categories       = tep_db_fetch_array($categories_query)) {
             shell_exec('mkdir -p '.$newpath);
         }
         $output      = "<\?php
-if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
 \$_GET['cPath']='".tep_get_category_path($categories['categories_id'])."';
 \$_SERVER['PHP_SELF'] = '".FILENAME_DEFAULT."';
@@ -347,7 +291,7 @@ exit;
     }
 }
 
-/*
+
 
   if ($debug_level>2) "GENERATING_MANUFACTURERS\n";
 
@@ -358,34 +302,53 @@ exit;
   AND languages_id = '" . $lng['languages_id']. "'");
   while ($manufacturers = tep_db_fetch_array($manufacturers_query)) {
   if (tep_db_num_rows($manufacturers_query)) {
-  $newpath = preg_replace('/(-[a-z])*$/','',remove_accents($manufacturers['manufacturers_name']));
-  $context = stream_context_create(array('http' => array('header'  => "Authorization: Basic " . base64_encode(WGET_USER . ':' . WGET_PASSWORD))));
-  $output = file_get_contents(HTTP_SERVER . '/index.php?manufacturers_id=' . $manufacturers['manufacturers_id'] . '&language='. $lc, false, $context);
-  $output = str_replace(SHOP_SERVER . '/index.php"', SHOP_SERVER . '/"', $output);
-  ///NNN    $output = str_replace(HTTP_SERVER, SHOP_SERVER, $output);
-  shell_exec("mkdir -p " . RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath);
-  if (!file_exists(DIR_FS_DOCUMENT_ROOT .  $newpath)) {
-  symlink(RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath,  DIR_FS_DOCUMENT_ROOT .  $newpath);
-  }
-  $index_file = fopen(RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath . "/index.html", "w");
-  fwrite($index_file, $output);
-  fclose($index_file);
-  $tst = file_get_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath . "/index.html");
-  if (preg_match("/<\/html>/", $tst)) file_put_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error','0'); else { file_put_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error','1'); echo 'ERROR generating:' . $newpath . "\n"; }
+//  $newpath = preg_replace('/(-[a-z])*$/','',remove_accents($manufacturers['manufacturers_name']));
+      $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_RELATIVE_CATALOG.str_replace(HTTP_SERVER, '',
+                tep_href_link(FILENAME_DEFAULT,
+                    'manufacturers_id='.$manufacturers['manufacturers_id']))."/";
+        if (!is_dir($newpath)) {
+            shell_exec('mkdir -p '.$newpath);
+        }
+  
 
-  $hta_content = 'RewriteEngine On
-  RewriteBase /
-  RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
-  RewriteRule ^$ /index.php?manufacturers_id=' . $manufacturers['manufacturers_id'] . '&language='. $lc . ' [QSA,L]
-  ';
-  $hta_file = fopen(RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath . "/.htaccess", "w");
-  fwrite($hta_file, $hta_content);
-  fclose($hta_file);
+
+
+//  TODO errors check:
+//  $tst = file_get_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath . "/index.html");
+//  if (preg_match("/<\/html>/", $tst)) file_put_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error','0'); else { file_put_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error','1'); echo 'ERROR generating:' . $newpath . "\n"; }
+
+        $output      = "<\?php
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
+chdir('".$chdir_dest_dir."');
+\$_GET['manufacturers_id']=".$manufacturers['manufacturers_id'].";
+\$_SERVER['PHP_SELF'] = '" . FILENAME_DEFAULT . "';
+include('" . FILENAME_DEFAULT ."');
+exit;
+}
+?>
+";
+
+            //create static
+            $curl_handle = curl_init();
+            curl_setopt($curl_handle, CURLOPT_URL,
+                HTTP_SERVER.'/index.php?manufacturers_id=' . $manufacturers['manufacturers_id']);
+            curl_setopt($curl_handle, CURLOPT_USERPWD,
+                WGET_USER.":".WGET_PASSWORD);
+            curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
+            curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
+            curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+            $output      .= curl_exec($curl_handle);
+            curl_close($curl_handle);
+            $output      = str_replace(HTTP_SERVER, '', $output);
+            file_put_contents($newpath.'index.php', stripslashes($output), 644);
+
+
   tep_db_query("UPDATE " . TABLE_MANUFACTURERS_INFO . " SET " . $cached_flag . " = 1 WHERE manufacturers_id = " . $manufacturers['manufacturers_id'] . " AND languages_id = " . $lng['languages_id']);
   $updated = 1;
-  }}
+    }
+}
 
- */
+
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 if ($debug_level > 2) echo "GENERATING TOPICS\n";
@@ -400,7 +363,7 @@ while ($topics       = tep_db_fetch_array($topics_query)) {
             shell_exec('mkdir -p '.$newpath);
         }
         $output      = "<\?php
-if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
 \$_GET['tPath']=".$topics['topics_id'].";
 \$_SERVER['PHP_SELF'] = '".FILENAME_ARTICLES."';
@@ -445,7 +408,7 @@ while ($articles       = tep_db_fetch_array($articles_query)) {
             shell_exec('mkdir -p '.$newpath);
         }
         $output      = "<\?php
-if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
 \$_GET['articles_id']=".$articles['articles_id'].";
 \$_SERVER['PHP_SELF'] = '".FILENAME_ARTICLE_INFO."';
@@ -486,7 +449,7 @@ while ($information       = tep_db_fetch_array($information_query)) {
             shell_exec('mkdir -p '.$newpath);
         }
         $output      = "<\?php
-if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
 \$_GET['info_id']=".$information['information_id'].";
 \$_SERVER['PHP_SELF'] = '".FILENAME_INFORMATION."';
@@ -519,12 +482,42 @@ if ($update_all == 'true')
 echo 'updated je:'.$updated."\n";
 if ($updated == 1) {
 
-    /*
-      echo 'Generating Manufacturers index' . "\n";
+if ($debug_level > 2)      echo 'Generating Manufacturers index' . "\n";
+$newpath = remove_accents(constant('MANUFACTURERS'));
+
+    $output      = '';
+      $output = "<\?php
+      if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
+      chdir('" . $chdir_dest_dir . "');
+      include(FILENAME_MANUFACTURERS_INDEX);
+      exit;
+      }
+      ?>
+      ";
+        if (!is_dir($newpath)) {
+            shell_exec('mkdir -p '.$newpath);
+        }
+    //create static
+    $curl_handle = curl_init();
+    curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_MANUFACTURERS_INDEX);
+    curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
+    curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
+    curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
+    curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+    $output      .= curl_exec($curl_handle);
+    curl_close($curl_handle);
+    $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
+    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . $newpath . '/' . 'index.php',
+        stripslashes($output), 644);
+
+
+
+
+/*
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       $newpath = preg_replace('/\//','',MANUFACTURERS_INDEX_LINK); //CONFIG ME! <<
       //file_put_contents('/tmp/cesta',$newpath);
-      $scriptfile = FILENAME_MANUFACTURERS_INDEX; //CONFIG ME! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< !!!
+      $scriptfile = FILENAME_MANUFACTURERS_INDEX; //CONFIG ME! 
       $context = stream_context_create(array('http' => array('header'  => "Authorization: Basic " . base64_encode(WGET_USER . ':' . WGET_PASSWORD))));
       //NNN    $output = str_replace(HTTP_SERVER, SHOP_SERVER, $output);
       $output = file_get_contents(HTTP_SERVER . '/' . $scriptfile . '?language='. $lc, false, $context);
@@ -612,7 +605,7 @@ if ($updated == 1) {
     $output      = '';
     /* SMAZAT?
       $output = "<\?php
-      if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST)){
+      if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
       chdir('" . $chdir_dest_dir . "');
       \$_GET['products_id']=" . $products['products_id'] . ";
       include('product_info.php');
