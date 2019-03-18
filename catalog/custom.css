@@ -518,10 +518,16 @@ h3{font-size:120%}
 
 /*pure:new:addons*/
 .navbar_logo{margin-left:10px;max-width:80%}
-
-
-
-
+.h2ml{
+  display:block;
+  border-bottom: 1px solid #eeeeee;
+}
+.columns3 div {
+  column-count: 3;
+}
+.columns3 div a {
+  display:block;
+}
 
 /* extra resposive rules BEGIN ----------------------------------------------------*/
 

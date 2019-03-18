@@ -1,12 +1,14 @@
 <?php
-
+define('PRODUCTS_CANONICAL_TYPE','path'); //config: path / manufacturer
 define('DIR_FS_MASTER_ROOT_DIR', '/home/user/WWW/osc/'); //trailing slash YES /catalog subdir NO (!)
 define('MYSQL_DEBUG', 'on'); //on|off=default 'on' set only for DEVEL debug !!!
 define('BOOTSTRAP_LESS_DIR', 'DISABLEDbootstrap-3.3.7/less/'); //remove DISABLED
-define('SERVER_INSTANCE', 'admin'); //CONFIGURE: admin|shop <------ need to bee configured
+efine('SERVER_INSTANCE', 'admin'); //CONFIGURE: admin|shop <------ need to bee configured
+
 define('GENERATOR_INSTANCE', 'true'); // set to 'true'for generator dir set 'false' for shop or admin  <------ need to bee configured ! ! !
 
 define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . 'catalog/');
+
 if ($_SERVER['REQUEST_SCHEME'] =='https') { 
   $https = 'https';
   define('ENABLE_SSL', true); // <------ need to bee configured
@@ -15,6 +17,8 @@ if ($_SERVER['REQUEST_SCHEME'] =='https') {
   define('ENABLE_SSL', false); // <------ need to bee configured
 }
 define('HTTP_SERVER', $https . '://' . $_SERVER['HTTP_HOST']);
+//define('HTTP_SERVER', 'http://pureosc.redmine.local'); //no thirth domain = use default language; en.domain.com, cs.domain.com
+
 
 if (GENERATOR_INSTANCE == 'true') {
   define('SESSION_FORCE_COOKIE_USE', 'True');

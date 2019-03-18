@@ -36,7 +36,7 @@ function tep_href_link_original($page = '', $parameters = '',
                                 $connection = 'NONSSL', $add_session_id = true,
                                 $search_engine_safe = true)
 {
-    global $request_type, $session_started, $SID;
+    global $request_type, $session_started;
 
     $page = tep_output_string($page);
 
@@ -123,7 +123,7 @@ function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL',
         global $languages_id;
         $seo_urls = new SEO_URL($languages_id);
     }
-    if ($page == constant('FILENAME_PRODUCT_INFO')){
+    if ($page == constant('FILENAME_PRODUCT_INFO') && constant('PRODUCTS_CANONICAL_TYPE') == 'manufacturer'){
       preg_match('~products_id=(\d+)~', $parameters, $myid );
       $products_id = str_replace('products_id=', '', $myid[0]);
       $manufacturers_id_query = tep_db_query("SELECT manufacturers_id FROM " . TABLE_PRODUCTS . " WHERE products_id=" . $products_id);
@@ -131,18 +131,16 @@ function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL',
       $manufacturers_name_query = tep_db_query("SELECT manufacturers_name from " . TABLE_MANUFACTURERS . " WHERE manufacturers_id = " . $manufacturers_id['manufacturers_id']);
       $manufacturers_name = tep_db_fetch_array($manufacturers_name_query);
       $manufacturer = preg_replace('/(-[a-z])*$/','',remove_accents($manufacturers_name['manufacturers_name']));
-      $products_name_query = tep_db_query("SELECT products_name FROM " . TABLE_PRODUCTS_DESCRIPTION . " WHERE products_id = " . $products_id . " AND language_id = " . $languages_id);
-      $products_name = tep_db_fetch_array($products_name_query);
-      $name = preg_replace('/(-[a-z])*$/','',remove_accents($products_name['products_name']));
-      return '/' . $manufacturer . '/' . $name;
+      $newlink = '/' . $manufacturer . '/' . preg_replace('~.*xslashx~', '', $seo_urls->href_link($page, $parameters, $connection, $add_session_id));
     } else {
+      $newlink = $seo_urls->href_link($page, $parameters, $connection, $add_session_id);
+      }
       //ORIG:   return $seo_urls->href_link($page, $parameters, $connection, $add_session_id);
       return str_replace('xslashx', '/',
         preg_replace('/-[p|c|m|pi|a|au|by|f|fc|fri|fra|i|links|n|nc|nri|nra|pm|po|pr|pri|t]-[0-9|_]*\.html/',
-            '',
-            $seo_urls->href_link($page, $parameters, $connection,
-                $add_session_id)));
-}
+            '', $newlink
+            ));
+
 }
 
 ////

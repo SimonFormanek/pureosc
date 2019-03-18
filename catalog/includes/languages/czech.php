@@ -379,9 +379,18 @@ define('HTS_OG_AVAILABLE_STOCK', 'Dostupnost skladem');
 define('HTS_OG_PRICE', 'Cena');
 /*** End Header Tags SEO ***/
 
-//oik
+//pure
 define('HEADER_AUTHORS','AUTOŘI');
 define('HEADER_NEWS','AKTUALITY');
 define('HEADER_ABOUT_US','O NÁS');
-define('XHEADER_CONTACT_US','KONTAKTY');
+define('HEADER_CONTACT_US','KONTAKTY');
 define('HEADER_ADVANCED_SEARCH','podrobné vyhledávání');
+//DO NOT REMOVE - constants needed to static generator script --------------------------------------------------------->
+//manufacturers page
+define('MANUFACTURER','Výrobce');
+define('MANUFACTURERS_LIST','Seznam výrobců:');
+define('MANUFACTURERS','Výrobci');
+define('MANUFACTURERS_PAGE','Výrobci');
+
+//new products page
+define('PRODUCTS_NEW_PAGE','novinky');

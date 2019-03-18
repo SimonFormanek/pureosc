@@ -2,6 +2,7 @@
 <?php
 chdir('../');
 $error = 0;
+$_SERVER['HTTP_ACCEPT_LANGUAGE'] = $argv[1];
 /*
 TODO: manufacturers_page platon/index.php - Mon 11 Mar 2019 02:30:38 AM CET
 
@@ -483,13 +484,14 @@ echo 'updated je:'.$updated."\n";
 if ($updated == 1) {
 
 if ($debug_level > 2)      echo 'Generating Manufacturers index' . "\n";
-$newpath = remove_accents(constant('MANUFACTURERS'));
+$newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remove_accents(constant('MANUFACTURERS'));
 
     $output      = '';
       $output = "<\?php
       if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
       chdir('" . $chdir_dest_dir . "');
-      include(FILENAME_MANUFACTURERS_INDEX);
+			\$_SERVER['PHP_SELF'] = '".FILENAME_MANUFACTURERS_INDEX."';
+			include('".FILENAME_MANUFACTURERS_INDEX."');
       exit;
       }
       ?>
@@ -507,10 +509,38 @@ $newpath = remove_accents(constant('MANUFACTURERS'));
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
     $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
-    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . $newpath . '/' . 'index.php',
+    file_put_contents($newpath . '/' . 'index.php',
         stripslashes($output), 644);
 
+if ($debug_level > 2)      echo 'Generating New Products All Page' . "\n";
+$newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . remove_accents(constant('PRODUCTS_NEW_PAGE'));
 
+    $output      = '';
+      $output = "<\?php
+      if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
+      chdir('" . $chdir_dest_dir . "');
+			\$_SERVER['PHP_SELF'] = '".FILENAME_PRODUCTS_NEW."';
+			include('".FILENAME_PRODUCTS_NEW."');
+      exit;
+      }
+      ?>
+      ";
+        if (!is_dir($newpath)) {
+        if ($debug_level > 2) echo 'mkdir:' . $newpath;
+            shell_exec('mkdir -p '.$newpath);
+        }
+    //create static
+    $curl_handle = curl_init();
+    curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_PRODUCTS_NEW);
+    curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
+    curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
+    curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
+    curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+    $output      .= curl_exec($curl_handle);
+    curl_close($curl_handle);
+    $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
+    file_put_contents($newpath . '/' . 'index.php',
+        stripslashes($output), 644);
 
 
 /*
