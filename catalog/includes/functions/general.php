@@ -1241,7 +1241,7 @@ function tep_create_random_value($length, $type = 'mixed')
 
     $value = '';
 
-    $hasher = new AdminPasswordHash(10, true);
+    $hasher = new PasswordHash(10, true);
 
     do {
         $random = base64_encode($hasher->get_random_bytes($length));
