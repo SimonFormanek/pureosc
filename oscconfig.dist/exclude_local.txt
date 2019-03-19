@@ -1,4 +1,6 @@
 bin
+composer.json
+composer.catalog-only-template.json
 db
 doc
 docs

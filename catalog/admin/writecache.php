@@ -99,6 +99,7 @@ if (file_exists('../../cronlock/'.$argv['1'].'.'.$argv['2'])) {
 if (!file_exists('../../crontime/'.$argv['1'].'.'.$argv['2']))
         file_put_contents('../../crontime/'.$argv['1'].'.'.$argv['2'], '0301');
 $crontime = (int) file_get_contents('../../crontime/'.$argv['1'].'.'.$argv['2']);
+if ($debug_level > 2) echo 'crontime: ' . $crontime . "\n";
 if ($debug_level > 2) echo 'Conf. loaded OK'."\n";
 
 /*
@@ -115,10 +116,16 @@ if ($debug_level > 2) echo 'Conf. loaded OK'."\n";
   echo 'Conf. loaded OK' ."\n";
   }
  */
-//CACHE RESET <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//CACHE RESET ---------------------------------------------------------------------------------->
 //check for reset needed:
 $update_all             = 'false';
-// 1. information - one change require reset
+
+//crontime
+if (date("Hi") == $crontime ) {
+echo 'Big Update Daily cron time: ' . date("Hi") . "\n";
+$update_all             = 'true';
+}
+//information - one change require reset
 $inormation_reset_query = tep_db_query("select COUNT(cached) as counter from information where ".$cached_flag."=0 AND language_id=".$lng['languages_id']);
 $inormation_reset       = tep_db_fetch_array($inormation_reset_query);
 if ($inormation_reset['counter'] > 0) $update_all             = 'true';
@@ -145,6 +152,12 @@ if ($update_all == 'true' || GENERATOR_FORCE_UPDATE_ALL == '1') {
     if ($debug_level > 2) echo "Action: Cleaning destination\n";
     shell_exec('rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' --delete');
     echo 'rsync-empty: rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' --delete';
+    //TODO: auto create composer.catalog-only
+    if ($argv[2] == 'admin') {
+          copy(RSYNC_LOCAL_SRC_PATH . OSC_DIR . 'composer.json', RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'composer.json');
+    } else {
+          copy(RSYNC_LOCAL_SRC_PATH . OSC_DIR . 'composer.catalog-only-template.json', RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'composer.json');
+    }
 } else {
     if ($debug_level > 2) echo "Action: updating...\n";
 }
