@@ -297,6 +297,10 @@ exit;
 //			echo '$output' . $output;
         curl_close($curl_handle);
         $output      = str_replace(HTTP_SERVER, '', $output);
+      $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
+
+//    $output      = str_replace(HTTP_SERVER, '', str_replace(HTTP_SERVER . '/', '', $output)); //TODO: fixme dirtyHack '/' je navic
+
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
 
@@ -353,7 +357,8 @@ exit;
             curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
             $output      .= curl_exec($curl_handle);
             curl_close($curl_handle);
-            $output      = str_replace(HTTP_SERVER, '', $output);
+//            $output      = str_replace(HTTP_SERVER, '', $output);
+            $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
             file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
 
@@ -396,7 +401,8 @@ exit;
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
         $output      .= curl_exec($curl_handle);
         curl_close($curl_handle);
-        $output      = str_replace(HTTP_SERVER, '', $output);
+//        $output      = str_replace(HTTP_SERVER, '', $output);
+        $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
         tep_db_query("UPDATE ".TABLE_TOPICS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE topics_id = ".$topics['topics_id']." AND language_id = ".$lng['languages_id']);
         $updated     = 1;
@@ -441,7 +447,8 @@ exit;
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
         $output      .= curl_exec($curl_handle);
         curl_close($curl_handle);
-        $output      = str_replace(HTTP_SERVER, '', $output);
+//        $output      = str_replace(HTTP_SERVER, '', $output);
+        $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
 
@@ -482,7 +489,8 @@ exit;
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
         $output      .= curl_exec($curl_handle);
         curl_close($curl_handle);
-        $output      = str_replace(HTTP_SERVER, '', $output);
+//        $output      = str_replace(HTTP_SERVER, '', $output);
+        $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE information_id = ".$information['information_id']." AND language_id = ".$lng['languages_id']);
@@ -521,7 +529,8 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remo
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
-    $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
+//    $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
+      $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
     file_put_contents($newpath . '/' . 'index.php',
         stripslashes($output), 644);
 
@@ -551,7 +560,8 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
-    $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
+//    $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
+      $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
     file_put_contents($newpath . '/' . 'index.php',
         stripslashes($output), 644);
 
@@ -666,7 +676,8 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
-    $output      = str_replace(HTTP_SERVER, '', str_replace(HTTP_SERVER . '/', '', $output)); //TODO: fixme dirtyHack '/' je navic
+//    $output      = str_replace(HTTP_SERVER, '', str_replace(HTTP_SERVER . '/', '', $output)); //TODO: fixme dirtyHack '/' je navic
+      $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
     file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html',
 //??orig:    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_CATALOG.'/index.html',
         stripslashes($output), 644);
