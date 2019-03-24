@@ -1,5 +1,6 @@
 #!/usr/bin/php -q
 <?php
+//SEO_URLS_CACHE_RESET 'true'
 chdir('../');
 $error = 0;
 $_SERVER['HTTP_ACCEPT_LANGUAGE'] = $argv[1];
@@ -296,8 +297,9 @@ exit;
         $output      .= curl_exec($curl_handle);
 //			echo '$output' . $output;
         curl_close($curl_handle);
-        $output      = str_replace(HTTP_SERVER, '', $output);
-      $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
+      $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
+//WORKING BUT...      $output      =  str_replace('https:/','https://', str_replace('http:/','http://', str_replace('//','/',str_replace(HTTP_SERVER . '/', HTTP_SERVER_GENERATED . '/', $output))));
+//            $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
 
 //    $output      = str_replace(HTTP_SERVER, '', str_replace(HTTP_SERVER . '/', '', $output)); //TODO: fixme dirtyHack '/' je navic
 
@@ -358,7 +360,7 @@ exit;
             $output      .= curl_exec($curl_handle);
             curl_close($curl_handle);
 //            $output      = str_replace(HTTP_SERVER, '', $output);
-            $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
+            $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
             file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
 
@@ -402,7 +404,7 @@ exit;
         $output      .= curl_exec($curl_handle);
         curl_close($curl_handle);
 //        $output      = str_replace(HTTP_SERVER, '', $output);
-        $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
+        $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
         tep_db_query("UPDATE ".TABLE_TOPICS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE topics_id = ".$topics['topics_id']." AND language_id = ".$lng['languages_id']);
         $updated     = 1;
@@ -448,7 +450,7 @@ exit;
         $output      .= curl_exec($curl_handle);
         curl_close($curl_handle);
 //        $output      = str_replace(HTTP_SERVER, '', $output);
-        $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
+        $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
 
@@ -490,7 +492,7 @@ exit;
         $output      .= curl_exec($curl_handle);
         curl_close($curl_handle);
 //        $output      = str_replace(HTTP_SERVER, '', $output);
-        $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
+        $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE information_id = ".$information['information_id']." AND language_id = ".$lng['languages_id']);
@@ -530,7 +532,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remo
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
 //    $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
-      $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
+      $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
     file_put_contents($newpath . '/' . 'index.php',
         stripslashes($output), 644);
 
@@ -561,7 +563,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
 //    $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
-      $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
+      $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
     file_put_contents($newpath . '/' . 'index.php',
         stripslashes($output), 644);
 
@@ -677,7 +679,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
 //    $output      = str_replace(HTTP_SERVER, '', str_replace(HTTP_SERVER . '/', '', $output)); //TODO: fixme dirtyHack '/' je navic
-      $output      =  str_replace(HTTP_SERVER, '', preg_replace('~/+~','/', $output));
+      $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
     file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html',
 //??orig:    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_CATALOG.'/index.html',
         stripslashes($output), 644);
