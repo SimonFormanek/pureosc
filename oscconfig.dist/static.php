@@ -11,6 +11,7 @@ define('MAX_LOCK_TIME','500'); //seconds
 define('RSYNCLOGGING','false');
 $debug_level=3; //0 = nothing; 1 = essential 2 = partial 3 = all
 define('GENERATOR_FORCE_UPDATE_ALL', '0'); //0 = production, 1 = komplenti vynuceny
+define('INITIAL_UPDATED','0');//0=production 1=debug HomePage generation
 define('RSYNC_TO_REMOTE','0'); //1 = enable rsync to remote server
 
 //rsync

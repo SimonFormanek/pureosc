@@ -131,9 +131,9 @@ function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL',
       $manufacturers_name_query = tep_db_query("SELECT manufacturers_name from " . TABLE_MANUFACTURERS . " WHERE manufacturers_id = " . $manufacturers_id['manufacturers_id']);
       $manufacturers_name = tep_db_fetch_array($manufacturers_name_query);
       $manufacturer = preg_replace('/(-[a-z])*$/','',remove_accents($manufacturers_name['manufacturers_name']));
-      $newlink = '/' . $manufacturer . '/' . preg_replace('~.*xslashx~', '', $seo_urls->href_link($page, $parameters, $connection, $add_session_id));
+      $newlink = '/' . $manufacturer . '/' . preg_replace('~.*/~', '', preg_replace('~.*xslashx~', '', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
     } else {
-      $newlink = $seo_urls->href_link($page, $parameters, $connection, $add_session_id);
+      $newlink = preg_replace('~.*/~', '/', preg_replace('~.*xslashx~', '/', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
       }
       //ORIG:   return $seo_urls->href_link($page, $parameters, $connection, $add_session_id);
       return str_replace('xslashx', '/',

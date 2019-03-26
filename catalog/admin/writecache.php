@@ -54,6 +54,10 @@ if ($argv[2] == 'admin') {
     $chdir_dest_dir = RSYNC_REMOTE_DEST_DIR . OSC_DIR . DIR_FS_RELATIVE_CATALOG;
 }
 require('includes/application_top.php');
+//echo config vars
+echo 'GENERATOR_FORCE_UPDATE_ALL: ' . GENERATOR_FORCE_UPDATE_ALL . "\n";
+echo '$_SERVER[REQUEST_SCHEME]: ' . $_SERVER['REQUEST_SCHEME'] . "\n";
+echo '$_SERVER[HTTP_HOST]: ' . $_SERVER['HTTP_HOST'] . "\n";
 //TODO: bude tady neco??????
 //require('admin/'. DIR_WS_FUNCTIONS . 'cli.php');
 //TODO: presunout /languages/LANG/static.php do DTB config
@@ -152,7 +156,7 @@ if ($update_all == 'true' || GENERATOR_FORCE_UPDATE_ALL == '1') {
     tep_db_query("UPDATE ".TABLE_TOPICS_DESCRIPTION." SET ".$cached_flag." = 0 WHERE language_id =".$lng['languages_id']);
     if ($debug_level > 2) echo "Action: Cleaning destination\n";
     shell_exec('rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' --delete');
-    echo 'rsync-empty: rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' --delete';
+    echo 'rsync-empty: rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' --delete' . "\n";;
     //TODO: auto create composer.catalog-only
     if ($argv[2] == 'admin') {
           copy(RSYNC_LOCAL_SRC_PATH . OSC_DIR . 'composer.json', RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'composer.json');
@@ -195,7 +199,7 @@ if (PRODUCTS_CANONICAL_TYPE == 'path') {
                 $inactive       = tep_db_fetch_array($inactive_query);
                 if ($inactive['sort_order'] == 0) {
                     if ($debug_level > 2)
-                            echo "id NEAKT:".$products['products_id'];
+                            echo "id NEAKT:".$products['products_id'] . "\n";
                     continue;
                 }
             }
@@ -222,7 +226,7 @@ if (PRODUCTS_CANONICAL_TYPE == 'path') {
             $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . $manufurl . '/' . remove_accents($products['products_name']) . $model . '/';
             }
             if ($debug_level > 2){
-            	echo 'newpath Prods:' .$newpath;
+            	echo 'newpath Prods:' .$newpath . "\n"; 
             }
             if (!is_dir($newpath)) {
                 shell_exec('mkdir -p '.$newpath);
@@ -249,7 +253,7 @@ exit;
             curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
             $output      .= curl_exec($curl_handle);
             curl_close($curl_handle);
-            $output      = str_replace(HTTP_SERVER, '', $output);
+    $output = filtr($output);
             file_put_contents($newpath.'index.php', stripslashes($output), 644);
             tep_db_query("UPDATE ".TABLE_PRODUCTS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE products_id = ".$products['products_id']." AND language_id = ".$lng['languages_id']);
             $updated     = 1;
@@ -295,14 +299,8 @@ exit;
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
         $output      .= curl_exec($curl_handle);
-//			echo '$output' . $output;
         curl_close($curl_handle);
-      $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
-//WORKING BUT...      $output      =  str_replace('https:/','https://', str_replace('http:/','http://', str_replace('//','/',str_replace(HTTP_SERVER . '/', HTTP_SERVER_GENERATED . '/', $output))));
-//            $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
-
-//    $output      = str_replace(HTTP_SERVER, '', str_replace(HTTP_SERVER . '/', '', $output)); //TODO: fixme dirtyHack '/' je navic
-
+    $output = filtr($output);
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
 
@@ -359,8 +357,7 @@ exit;
             curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
             $output      .= curl_exec($curl_handle);
             curl_close($curl_handle);
-//            $output      = str_replace(HTTP_SERVER, '', $output);
-            $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
+    $output = filtr($output);
             file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
 
@@ -403,9 +400,7 @@ exit;
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
         $output      .= curl_exec($curl_handle);
         curl_close($curl_handle);
-//        $output      = str_replace(HTTP_SERVER, '', $output);
-        $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
-        file_put_contents($newpath.'index.php', stripslashes($output), 644);
+    $output = filtr($output);
         tep_db_query("UPDATE ".TABLE_TOPICS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE topics_id = ".$topics['topics_id']." AND language_id = ".$lng['languages_id']);
         $updated     = 1;
     }
@@ -449,8 +444,7 @@ exit;
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
         $output      .= curl_exec($curl_handle);
         curl_close($curl_handle);
-//        $output      = str_replace(HTTP_SERVER, '', $output);
-        $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
+    $output = filtr($output);
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
 
@@ -460,7 +454,7 @@ exit;
 }
 
 
-if ($debug_level > 2) echo "GENERATING_INFORMATION_PAGES\n";
+if ($debug_level > 2) echo "GENERATING INFORMATION PAGES\n";
 
 $information_query = tep_db_query("SELECT information_id, information_title FROM ".TABLE_INFORMATION." WHERE visible='1' AND information_group_id = '".(int) $information_group_id."' AND language_id = '".$lng['languages_id']."' AND ".$cached_flag." = 0");
 while ($information       = tep_db_fetch_array($information_query)) {
@@ -491,8 +485,7 @@ exit;
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
         $output      .= curl_exec($curl_handle);
         curl_close($curl_handle);
-//        $output      = str_replace(HTTP_SERVER, '', $output);
-        $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
+    $output = filtr($output);
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE information_id = ".$information['information_id']." AND language_id = ".$lng['languages_id']);
@@ -531,8 +524,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remo
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
-//    $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
-      $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
+    $output = filtr($output);
     file_put_contents($newpath . '/' . 'index.php',
         stripslashes($output), 644);
 
@@ -550,7 +542,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
       ?>
       ";
         if (!is_dir($newpath)) {
-        if ($debug_level > 2) echo 'mkdir:' . $newpath;
+        if ($debug_level > 2) echo 'mkdir:' . $newpath . "\n";
             shell_exec('mkdir -p '.$newpath);
         }
     //create static
@@ -562,8 +554,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
-//    $output      = str_replace(HTTP_SERVER, '', $output); //TODO: fixme dirtyHack '/' je navic
-      $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
+    $output = filtr($output);
     file_put_contents($newpath . '/' . 'index.php',
         stripslashes($output), 644);
 
@@ -678,8 +669,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
-//    $output      = str_replace(HTTP_SERVER, '', str_replace(HTTP_SERVER . '/', '', $output)); //TODO: fixme dirtyHack '/' je navic
-      $output      =  str_replace('serverplaceholder', HTTP_SERVER_GENERATED, str_replace('//','/',str_replace(HTTP_SERVER . '/', 'serverplaceholder' . '/', $output)));
+    $output = filtr($output);
     file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html',
 //??orig:    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_CATALOG.'/index.html',
         stripslashes($output), 644);
@@ -733,12 +723,19 @@ if ($error == 1)
 
 echo "DONE: ".date("Y/m/d H:i"), "\n";
 
+function filtr ($output) {
 
+$output = str_replace($_SERVER['HTTP_HOST'], HTTP_HOST_GENERATED, $output);
+//$output = 
+return $output;
+    $output = filtr($output);
+
+}
 
 exit;
 
 $time2 = microtime(true);
-echo "script execution time: ".($time2 - $time1); //value in seconds
+echo "script execution time: ".($time2 - $time1) . "\n"; //value in seconds
 /*
 uzitecne funkce:
 
