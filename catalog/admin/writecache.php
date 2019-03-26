@@ -67,7 +67,7 @@ ini_set('display_errors', '1');
 $time1                = microtime(true);
 date_default_timezone_set("Europe/Prague");
 $information_group_id = 1;
-$updated              = 0;
+$updated              = INITIAL_UPDATED;
 
 //language_id
 $lng_querey = tep_db_query("SELECT languages_id FROM ".TABLE_LANGUAGES." WHERE code ='".$argv[1]."'");
