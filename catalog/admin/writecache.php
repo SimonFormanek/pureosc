@@ -231,6 +231,7 @@ if (PRODUCTS_CANONICAL_TYPE == 'path') {
             if (!is_dir($newpath)) {
                 shell_exec('mkdir -p '.$newpath);
             }
+            if (PRODUCTS_CANONICAL_TYPE == 'path') { 
             $output      = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
@@ -242,6 +243,18 @@ exit;
 }
 ?>
 ";
+} else {
+            $output      = "<\?php
+if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
+chdir('".$chdir_dest_dir."');
+\$_GET['products_id']=".$products['products_id'].";
+\$_SERVER['PHP_SELF'] = '".FILENAME_PRODUCT_INFO."';
+include('".FILENAME_PRODUCT_INFO."');
+exit;
+}
+?>
+";
+}
             //create static
             $curl_handle = curl_init();
             curl_setopt($curl_handle, CURLOPT_URL,
