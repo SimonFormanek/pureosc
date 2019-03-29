@@ -29,45 +29,35 @@ class cm_header_search {
     $this->title = _('Header Search Bar');
     $this->description = _('Adds your Header Search Bar into the Navbar Area of your site.');
 
-    if (defined('MODULE_CONTENT_HEADER_STORE_SEARCH_STATUS')) {
-      $this->sort_order = MODULE_CONTENT_HEADER_STORE_SEARCH_SORT_ORDER;
-      $this->enabled = (MODULE_CONTENT_HEADER_STORE_SEARCH_STATUS == 'True');
-      $this->side = ((MODULE_CONTENT_HEADER_STORE_SEARCH_PLACEMENT === 'left') ? 'left' : 'right');
+    if (defined('MODULE_NAVIGATION_BAR_STORE_SEARCH_STATUS')) {
+      $this->sort_order = MODULE_NAVIGATION_BAR_STORE_SEARCH_SORT_ORDER;
+      $this->enabled = (MODULE_NAVIGATION_BAR_STORE_SEARCH_STATUS == 'True');
+      $this->side = ((MODULE_NAVIGATION_BAR_STORE_SEARCH_PLACEMENT === 'left') ? 'left' : 'right');
     }
   }
 
-     function execute()
-    {
-        global $oscTemplate;
+  function execute() {
+    global $oscTemplate;
 
-        $content_width = (int) MODULE_CONTENT_HEADER_STORE_SEARCH_CONTENT_WIDTH;
-$search_box =$this->getOutput();
-        ob_start();
-        //TODO:name spravne dirr...
-        include(DIR_WS_MODULES.'content/'.$this->group.'/templates/search.php');
-        $template = ob_get_clean();
-
-        $oscTemplate->addContent($template, $this->group);
-    }
-
-  public function getOutput() {
-    global $request_type, $oscTemplate;
-
+    $content_width = (int) MODULE_CONTENT_HEADER_LOGO_CONTENT_WIDTH;
     $search_box = $this->tep_store_search('btn-info',
-      (MODULE_CONTENT_HEADER_STORE_SEARCH_FUNCTIONS == 'Descriptions'));
+      (MODULE_NAVIGATION_BAR_STORE_SEARCH_FUNCTIONS == 'Descriptions'));
 
     // define typeahead scripts
-    $script = '<script src="' . tep_href_link('ext/bootstrap-plugins/typeahead/bootstrap3-typeahead.min.js',
-        null, $request_type) . '"></script>';
-    $script .= '<script src="' . tep_href_link('ext/modules/content/header/store_search/content_searches.min.js', null, $request_type) . '"></script>';
+    $script = '<script src="ext/bootstrap-plugins/typeahead/bootstrap3-typeahead.min.js"></script>';
+//orig      $script .= '<script src="' . tep_href_link('ext/modules/content/header/store_search/content_searches.min.js', null, $request_type) . '"></script>';
+    $script .= '<script src="ext/modules/content/header/store_search/content_searches.min.js"></script>';
     $oscTemplate->addBlock($script, 'footer_scripts');
 
     ob_start();
-    //TODO: include DIR_WS_MODULES . 'content/header/templates/' . basename(__FILE__);
-    include DIR_WS_MODULES . 'content/header/templates/search.php';
+    include DIR_WS_MODULES . 'content/header/templates/' . basename(__FILE__);
+    $search_box .= ob_get_clean();
+
+    ob_start();
+    include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/search.php');
     $template = ob_get_clean();
 
-    return $template;
+    $oscTemplate->addContent($template, $this->group);
   }
 
   public function isEnabled() {
@@ -75,32 +65,28 @@ $search_box =$this->getOutput();
   }
 
   public function check() {
-    return defined('MODULE_CONTENT_HEADER_STORE_SEARCH_STATUS');
+    return defined('MODULE_NAVIGATION_BAR_STORE_SEARCH_STATUS');
   }
 
   public function install() {
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Module Version', 'MODULE_CONTENT_HEADER_STORE_SEARCH_VERSION', '" . $this->version . "', 'The version of this module that you are running.', '6', '0', 'tep_cfg_disabled(', now() ) ");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Module Version', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_VERSION', '" . $this->version . "', 'The version of this module that you are running.', '6', '0', 'tep_cfg_disabled(', now() ) ");
 
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Navbar Search Module', 'MODULE_CONTENT_HEADER_STORE_SEARCH_STATUS', 'True', 'Do you want to add the module to your shop?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Navbar Search Module', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_STATUS', 'True', 'Do you want to add the module to your shop?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
     // model or keywords for additional product search
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Content Placement', 'MODULE_CONTENT_HEADER_STORE_SEARCH_PLACEMENT', 'left', 'Should the link be loaded on the left or right side of the navbar?', '6', '3', 'tep_cfg_select_option(array(\'left\', \'right\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Content Placement', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_PLACEMENT', 'left', 'Should the link be loaded on the left or right side of the navbar?', '6', '3', 'tep_cfg_select_option(array(\'left\', \'right\'), ', now())");
     // image or icon for products
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Extended Store Search Functions', 'MODULE_CONTENT_HEADER_STORE_SEARCH_FUNCTIONS', 'Standard', 'Do you want to enable search function in descriptions?', '6', '1', 'tep_cfg_select_option(array(\'Standard\', \'Descriptions\'), ', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Extended Store Search Functions', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_FUNCTIONS', 'Standard', 'Do you want to enable search function in descriptions?', '6', '1', 'tep_cfg_select_option(array(\'Standard\', \'Descriptions\'), ', now())");
     // width of product image lg
-    tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Product Image Width Desktop (LG size)', 'MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_LG', '80', 'What image width must be displayed for desktops?', '6', '6', now())");
+    tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Product Image Width Desktop (LG size)', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_LG', '80', 'What image width must be displayed for desktops?', '6', '6', now())");
     // width of product image md
-    tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Product Image Width Tablet+ (MD size)', 'MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_MD', '66', 'What image width must be displayed for tablets+?', '6', '7', now())");
+    tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Product Image Width Tablet+ (MD size)', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_MD', '66', 'What image width must be displayed for tablets+?', '6', '7', now())");
     // width of product image sm
-    tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Product Image Width Tablet (SM size)', 'MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_SM', '50', 'What image width must be displayed for tablets?', '6', '8', now())");
+    tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Product Image Width Tablet (SM size)', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_SM', '50', 'What image width must be displayed for tablets?', '6', '8', now())");
     // width of product image xs
-    tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Product Image Width Mobile (XS size)', 'MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_XS', '40', 'What image width must be displayed for mobiles?', '6', '9', now())");
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Pages', 'MODULE_CONTENT_HEADER_STORE_SEARCH_PAGES', '" . implode(';',
+    tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Product Image Width Mobile (XS size)', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_XS', '40', 'What image width must be displayed for mobiles?', '6', '9', now())");
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Pages', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGES', '" . implode(';',
         $this->get_default_pages()) . "', 'The pages to add the Store Search\'s results.', '6', '0', 'cm_header_search_show_pages', 'cm_header_search_pages(', now())");
-    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_CONTENT_HEADER_STORE_SEARCH_SORT_ORDER', '520', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
-
-    tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Content Width', 'MODULE_CONTENT_HEADER_STORE_SEARCH_CONTENT_WIDTH', '3', 'What width container should the content be shown in? (12 = full width, 6 = half width).', '6', '1', 'tep_cfg_select_option(array(\'12\', \'11\', \'10\', \'9\', \'8\', \'7\', \'6\', \'5\', \'4\', \'3\', \'2\', \'1\'), ', now())");
-
-    
+    tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_SORT_ORDER', '520', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
   }
 
   public function remove() {
@@ -110,18 +96,18 @@ $search_box =$this->getOutput();
 
   public function keys() {
     $keys = array();
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_OR_ICON';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_MODEL_OR_KEYWORDS';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_XS';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_SM';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_MD';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_IMAGE_WIDTH_LG';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_VERSION';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_STATUS';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_SORT_ORDER';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_PLACEMENT';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_FUNCTIONS';
-    $keys[] = 'MODULE_CONTENT_HEADER_STORE_SEARCH_PAGES';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_OR_ICON';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_MODEL_OR_KEYWORDS';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_XS';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_SM';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_MD';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_IMAGE_WIDTH_LG';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_VERSION';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_STATUS';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_SORT_ORDER';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_PLACEMENT';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_FUNCTIONS';
+    $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGES';
 
     return $keys;
   }
