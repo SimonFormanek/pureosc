@@ -20,3 +20,11 @@ define('WGET_PASSWORD','osc');
 define('OSC_DIR','osc/');
 define('RSYNC_LOCAL_SRC_PATH','/home/user/git/pureosc/'); //trailing slash at the end (/); Without including OSC_DIR!
 define('DIR_FS_CONFIG','/home/user/git/pureosc/oscconfig/'); //trailing slash! '/'
+
+//modules
+define('GENERATE_PRODUCTS', 'false');
+define('GENERATE_CATEGORIES', 'false');
+define('GENERATE_MANUFACTURERS', 'false');
+define('GENERATE_TOPICS', 'false');
+define('GENERATE_ARTICLES', 'false');
+define('GENERATE_INFORMATION', 'false');

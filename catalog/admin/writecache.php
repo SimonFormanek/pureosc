@@ -155,8 +155,8 @@ if ($update_all == 'true' || GENERATOR_FORCE_UPDATE_ALL == '1') {
     tep_db_query("UPDATE ".TABLE_MANUFACTURERS_INFO." SET ".$cached_flag." = 0 WHERE languages_id =".$lng['languages_id']);
     tep_db_query("UPDATE ".TABLE_TOPICS_DESCRIPTION." SET ".$cached_flag." = 0 WHERE language_id =".$lng['languages_id']);
     if ($debug_level > 2) echo "Action: Cleaning destination\n";
-    shell_exec('rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' --delete');
-    echo 'rsync-empty: rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' --delete' . "\n";;
+    shell_exec('rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' --delete --delete-excluded');
+    echo 'rsync-empty: rsync -av --exclude-from  ' . DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' --delete --delete-excluded' . "\n";
     //TODO: auto create composer.catalog-only
     if ($argv[2] == 'admin') {
           copy(RSYNC_LOCAL_SRC_PATH . OSC_DIR . 'composer.json', RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'composer.json');
@@ -166,6 +166,7 @@ if ($update_all == 'true' || GENERATOR_FORCE_UPDATE_ALL == '1') {
 } else {
     if ($debug_level > 2) echo "Action: updating...\n";
 }
+if (GENERATE_PRODUCTS == 'true') {
 if ($debug_level > 2) echo "GENERATING_PRODUCTS\n";
 
 if (PRODUCTS_CANONICAL_TYPE == 'path') {
@@ -272,6 +273,8 @@ exit;
             $updated     = 1;
         }
     }
+} //end GENERATE_PRODUCTS
+if (GENERATE_CATEGORIES == 'true') {
 
 if ($debug_level > 2) echo GENERATING_CATEGORIES."\n";
 $categories_query = tep_db_query("SELECT c.categories_id, cd.categories_name FROM ".TABLE_CATEGORIES." c,  ".TABLE_CATEGORIES_DESCRIPTION." cd 
@@ -321,9 +324,9 @@ exit;
         $updated = 1;
     }
 }
+} //end GENERATE_CATEGORIES
 
-
-
+if (GENERATE_MANUFACTURERS == 'true') {
   if ($debug_level>2) "GENERATING_MANUFACTURERS\n";
 
   $manufacturers_query = tep_db_query("SELECT m.manufacturers_id, manufacturers_name  FROM " . TABLE_MANUFACTURERS . " m, " . TABLE_MANUFACTURERS_INFO . " mi
@@ -378,10 +381,9 @@ exit;
   $updated = 1;
     }
 }
+} //end GENERATE_MANUFACTURERS
 
-
-
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+if (GENERATE_TOPICS == 'true') {
 if ($debug_level > 2) echo "GENERATING TOPICS\n";
 $topics_query = tep_db_query("SELECT topics_id, topics_name FROM ".TABLE_TOPICS_DESCRIPTION." td
     WHERE 
@@ -418,7 +420,9 @@ exit;
         $updated     = 1;
     }
 }
+} //end GENERATE_TOPICS
 
+if (GENERATE_ARTICLES == 'true') {
 if ($debug_level > 2) echo "GENERATING ARTICLES\n";
 
 //TODO: generate admin version articles_status=0
@@ -465,10 +469,10 @@ exit;
         $updated = 1;
     }
 }
+} //end GENERATE_ARTICLES
 
-
+if (GENERATE_INFORMATION == 'true') {
 if ($debug_level > 2) echo "GENERATING INFORMATION PAGES\n";
-
 $information_query = tep_db_query("SELECT information_id, information_title FROM ".TABLE_INFORMATION." WHERE visible='1' AND information_group_id = '".(int) $information_group_id."' AND language_id = '".$lng['languages_id']."' AND ".$cached_flag." = 0");
 while ($information       = tep_db_fetch_array($information_query)) {
     if (tep_db_num_rows($information_query)) {
@@ -507,7 +511,7 @@ exit;
 }
 if ($update_all == 'true')
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE language_id = ".$lng['languages_id']);
-
+} //end GENERATE_INFORMATION 
 //GENERATING_ALL_ALL if UPDATE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 echo 'updated je:'.$updated."\n";
 if ($updated == 1) {
@@ -716,7 +720,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
 
         if (RSYNC_TO_REMOTE == 1 && $argv[2] == 'shop') {
             foreach ($remoteservers_arr as &$remoteserver) {
-                shell_exec('rsync --chmod=D755,F644 -ave   ssh --protocol=29  --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete');
+                shell_exec('rsync --chmod=D755,F644 -ave --exclude catalog/admin   ssh --protocol=29  ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete --delete-excluded');
                 if ($debug_level > 2) echo('rsync --chmod=D755,F644 -ave   ssh --protocol=29  --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete');
             }
 //orig    shell_exec('~/rsync_eshop.sh >> ' . REPLICATION_LOG_DIR . HTTPS_COOKIE_DOMAIN . '_rsync_export.osclog  2>&1');
@@ -739,16 +743,15 @@ echo "DONE: ".date("Y/m/d H:i"), "\n";
 function filtr ($output) {
 
 $output = str_replace($_SERVER['HTTP_HOST'], HTTP_HOST_GENERATED, $output);
-//$output = 
+$output = str_replace('?sort=1','', $output);
 return $output;
     $output = filtr($output);
 
 }
 
-exit;
-
 $time2 = microtime(true);
 echo "script execution time: ".($time2 - $time1) . "\n"; //value in seconds
+exit;
 /*
 uzitecne funkce:
 
