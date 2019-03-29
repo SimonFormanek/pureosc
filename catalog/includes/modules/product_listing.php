@@ -100,8 +100,9 @@ if ($messageStack->size('product_action') > 0) {
 
                                 if (($column_list[$col] != 'PRODUCT_LIST_BUY_NOW')
                                     && ($column_list[$col] != 'PRODUCT_LIST_IMAGE')) {
-                                    $lc_text = tep_create_sort_heading($_GET['sort'],
-                                        $col + 1, $lc_text);
+                                  //fix or dirtyHack? orig not working: $lc_text = tep_create_sort_heading($_GET['sort'], $col + 1, $lc_text);
+                                  $sort = isset($_GET['sort']) ? (($_GET['sort'] != '') ? $_GET['sort'] : '1') : '1';
+                                  $lc_text = tep_create_sort_heading($sort, $col + 1, $lc_text);
                                     echo '        <li>'.$lc_text.'</li>';
                                 }
                             }
