@@ -291,16 +291,23 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);
     } else {
-      $browser_language = preg_replace('/,.*/','',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
-      if (preg_match('/^en/', $browser_language)){
-        $browser_language = 'en';
-      }
+      if (substr_count($_SERVER['HTTP_HOST'], '.') > 1) { //domain: en.example.org
+        $new_language_domain = preg_replace('/\..*/','',$_SERVER['HTTP_HOST']);
+        if ($new_language_domain == 'www')
+          $new_language = (constant('DEFAULT_LANGUAGE'));
+ 
+      //autodetect
+      //$browser_language = preg_replace('/,.*/','',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+      //if (preg_match('/^en/', $browser_language)){
+      //  $browser_language = 'en';
+      //}
       $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES'));
        while ($languages_all = tep_db_fetch_array($languages_all_query)) {
-         if ($languages_all['code'] == $browser_language) {
-           $new_language = $browser_language;
-       }
-       }
+         if ($languages_all['code'] == $new_language_domain) {
+           $new_language = $new_language_domain;
+        }
+      }
+      }
       if ($new_language){
         $lng->set_language($new_language);
       } else {

@@ -4,6 +4,7 @@
 chdir('../');
 $error = 0;
 $_SERVER['HTTP_ACCEPT_LANGUAGE'] = $argv[1];
+$_GET['language'] = $argv[1];
 /*
 TODO: manufacturers_page platon/index.php - Mon 11 Mar 2019 02:30:38 AM CET
 
