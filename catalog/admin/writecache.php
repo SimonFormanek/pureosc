@@ -721,7 +721,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
 
         if (RSYNC_TO_REMOTE == 1 && $argv[2] == 'shop') {
             foreach ($remoteservers_arr as &$remoteserver) {
-                shell_exec('rsync --chmod=D755,F644 -ave --exclude catalog/admin   ssh --protocol=29  ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete --delete-excluded');
+                                shell_exec('rsync --chmod=D755,F644 -ave   ssh --protocol=29 --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete --delete-excluded');
                 if ($debug_level > 2) echo('rsync --chmod=D755,F644 -ave   ssh --protocol=29  --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete');
             }
 //orig    shell_exec('~/rsync_eshop.sh >> ' . REPLICATION_LOG_DIR . HTTPS_COOKIE_DOMAIN . '_rsync_export.osclog  2>&1');
