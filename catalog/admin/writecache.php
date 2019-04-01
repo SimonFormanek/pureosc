@@ -260,7 +260,7 @@ exit;
             //create static
             $curl_handle = curl_init();
             curl_setopt($curl_handle, CURLOPT_URL,
-                HTTP_SERVER.'/product_info.php?cPath='.tep_get_category_path($canonical_category['categories_id']).'&products_id='.$products['products_id']);
+                HTTP_SERVER.'/product_info.php?cPath='.tep_get_category_path($canonical_category['categories_id']).'&products_id='.$products['products_id'] . '&language=' . $_GET['language']);
             curl_setopt($curl_handle, CURLOPT_USERPWD,
                 WGET_USER.":".WGET_PASSWORD);
             curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
@@ -310,7 +310,7 @@ exit;
 //			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/index.php?cPath=1');
 //orig			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/index.php?cPath=' . $categories['categories_id']);
         curl_setopt($curl_handle, CURLOPT_URL,
-            HTTP_SERVER.'/index.php?cPath='.tep_get_category_path($categories['categories_id']));
+            HTTP_SERVER.'/index.php?cPath='.tep_get_category_path($categories['categories_id'] . '&language=' . $_GET['language']));
         curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
@@ -366,7 +366,7 @@ exit;
             //create static
             $curl_handle = curl_init();
             curl_setopt($curl_handle, CURLOPT_URL,
-                HTTP_SERVER.'/index.php?manufacturers_id=' . $manufacturers['manufacturers_id']);
+                HTTP_SERVER.'/index.php?manufacturers_id=' . $manufacturers['manufacturers_id'] . '&language=' . $_GET['language']);
             curl_setopt($curl_handle, CURLOPT_USERPWD,
                 WGET_USER.":".WGET_PASSWORD);
             curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
@@ -409,7 +409,7 @@ exit;
         //create static
         $curl_handle = curl_init();
         curl_setopt($curl_handle, CURLOPT_URL,
-            HTTP_SERVER.'/'.FILENAME_ARTICLES.'?tPath='.$topics['topics_id']);
+            HTTP_SERVER.'/'.FILENAME_ARTICLES.'?tPath='.$topics['topics_id'] . '&language=' . $_GET['language']);
         curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
@@ -455,7 +455,7 @@ exit;
         //create static
         $curl_handle = curl_init();
         curl_setopt($curl_handle, CURLOPT_URL,
-            HTTP_SERVER.'/'.FILENAME_ARTICLE_INFO.'/?articles_id='.$articles['articles_id']);
+            HTTP_SERVER.'/'.FILENAME_ARTICLE_INFO.'/?articles_id='.$articles['articles_id'] . '&language=' . $_GET['language']);
         curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
@@ -496,7 +496,7 @@ exit;
         //create static
         $curl_handle = curl_init();
         curl_setopt($curl_handle, CURLOPT_URL,
-            HTTP_SERVER.'/'.FILENAME_INFORMATION.'?info_id='.$information['information_id']);
+            HTTP_SERVER.'/'.FILENAME_INFORMATION.'?info_id='.$information['information_id'] . '&language=' . $_GET['language']);
         curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
@@ -535,7 +535,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remo
         }
     //create static
     $curl_handle = curl_init();
-    curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_MANUFACTURERS_INDEX);
+    curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_MANUFACTURERS_INDEX . '?language=' . $_GET['language']);
     curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
     curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
     curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
@@ -565,7 +565,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
         }
     //create static
     $curl_handle = curl_init();
-    curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_PRODUCTS_NEW);
+    curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_PRODUCTS_NEW . '?language=' . $_GET['language']);
     curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
     curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
     curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
@@ -680,7 +680,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
      */
     //create static
     $curl_handle = curl_init();
-    curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER.'/index.php');
+    curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER.'/index.php?language=' . $_GET['language']);
     curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
     curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
     curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
