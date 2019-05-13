@@ -312,7 +312,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'getversion') {
         if (isset($_GET['aID']))
           $articles_id = tep_db_prepare_input($_GET['aID']);
         $articles_date_available = tep_db_prepare_input($_POST['articles_date_available']);
-        $articles_date_available = (date('Y-m-d') < $articles_date_available) ? $articles_date_available : 'null';
+//pure:removed (articles_date_available used for sort!)         $articles_date_available = (date('Y-m-d') < $articles_date_available) ? $articles_date_available : 'null';
 
         $sort_order = tep_db_prepare_input($_POST['sort_order']);
 

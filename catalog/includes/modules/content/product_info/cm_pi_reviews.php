@@ -19,14 +19,17 @@ class cm_pi_reviews
     var $sort_order;
     var $enabled = false;
 
-    function cm_pi_reviews()
+    function __construct()
     {
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       =  MODULE_CONTENT_PRODUCT_INFO_REVIEWS_TITLE;
-        $this->description = MODULE_CONTENT_PRODUCT_INFO_REVIEWS_DESCRIPTION;
-        $this->description .= '<div class="secWarning">'.MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION.'</div>';
+        $this->title       = _('Product Reviews');
+        $this->description = _(' Show review block on the product info page.');
+                $this->description .= '<div class="secWarning">'.'<p>'._('Content Width can be 12 or less per column per row').'</p>'.
+            '<p>'._('12/12 = 100% width, 6/12 = 50% width, 4/12 = 33% width.').'</p>'.
+            '<p>'._('Total of all columns in any one row must equal 12 (eg:  3 boxes of 4 columns each, 1 box of 12 columns and so on)').'</p>'.'</div>';
+
 
         if (defined('MODULE_CONTENT_PRODUCT_INFO_REVIEWS_STATUS')) {
             $this->sort_order = MODULE_CONTENT_PRODUCT_INFO_REVIEWS_SORT_ORDER;

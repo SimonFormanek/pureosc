@@ -41,7 +41,7 @@
 
       $output = '<table border="0" width="100%" cellspacing="0" cellpadding="4">' .
                 '  <tr class="dataTableHeadingRow">' .
-                '    <td class="dataTableHeadingContent">' . MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_TITLE . '</td>' .
+                '    <td class="dataTableHeadingContent">' . _('Latests Addons') . '</td>' .
                 '    <td class="dataTableHeadingContent" align="right">' . MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_DATE . '</td>' .
                 '  </tr>';
 

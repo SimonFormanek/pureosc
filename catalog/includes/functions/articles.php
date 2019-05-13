@@ -76,7 +76,7 @@ function tep_get_topic_path($current_topic_id = '')
 function tep_count_articles_in_topic($topic_id, $include_inactive = false)
 {
     $articles_count = 0;
-    if ($include_inactive == true) {
+    if ($include_inactive === true) {
         $articles_query = tep_db_query("SELECT COUNT(*) as total from ".TABLE_ARTICLES." a, ".TABLE_ARTICLES_TO_TOPICS." a2t where (a.articles_date_available IS NULL or to_days(a.articles_date_available) <= to_days(now())) and a.articles_id = a2t.articles_id and a2t.topics_id = '".(int) $topic_id."'");
     } else {
         $articles_query = tep_db_query("SELECT COUNT(*) as total from ".TABLE_ARTICLES." a, ".TABLE_ARTICLES_TO_TOPICS." a2t where (a.articles_date_available IS NULL or to_days(a.articles_date_available) <= to_days(now())) and a.articles_id = a2t.articles_id and a.articles_status = '1' and a2t.topics_id = '".(int) $topic_id."'");
@@ -226,7 +226,7 @@ function tep_cache_topics_box($auto_expire = false, $refresh = false)
 {
     global $tPath, $language, $languages_id, $tree, $tPath_array, $topics_string;
 
-    if (($refresh == true) || !read_cache($cache_output,
+    if (($refresh === true) || !read_cache($cache_output,
             'topics_box-'.$language.'.cache'.$tPath, $auto_expire)) {
         ob_start();
         include(DIR_WS_BOXES.'articles.php');
@@ -250,7 +250,7 @@ function tep_cache_authors_box($auto_expire = false, $refresh = false)
         $authors_id = $_GET['authors_id'];
     }
 
-    if (($refresh == true) || !read_cache($cache_output,
+    if (($refresh === true) || !read_cache($cache_output,
             'authors_box-'.$language.'.cache'.$authors_id, $auto_expire)) {
         ob_start();
         include(DIR_WS_BOXES.'authors.php');

@@ -251,7 +251,7 @@ EOD;
           tep_session_register('billto');
         }
 
-        if ($force_login == true) {
+        if ($force_login === true) {
           $customer_country_id = $ship_country_id;
           $customer_zone_id = $ship_zone_id;
           tep_session_register('customer_default_address_id');
@@ -293,7 +293,7 @@ EOD;
                 break;
             }
 
-            if ( ($pass == true) && ($order->info['total'] >= MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER) ) {
+            if ( ($pass === true) && ($order->info['total'] >= MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER) ) {
               $free_shipping = true;
 
               include(DIR_WS_LANGUAGES . $language . '/modules/order_total/ot_shipping.php');
@@ -303,8 +303,8 @@ EOD;
           if (!tep_session_is_registered('shipping')) tep_session_register('shipping');
           $shipping = false;
 
-          if ( (tep_count_shipping_modules() > 0) || ($free_shipping == true) ) {
-            if ($free_shipping == true) {
+          if ( (tep_count_shipping_modules() > 0) || ($free_shipping === true) ) {
+            if ($free_shipping === true) {
               $shipping = 'free_free';
             } else {
 // get all available shipping quotes
@@ -345,7 +345,7 @@ EOD;
               } else {
                 if ( (isset($quote[0]['methods'][0]['title'])) && (isset($quote[0]['methods'][0]['cost'])) ) {
                   $shipping = array('id' => $shipping,
-                                    'title' => (($free_shipping == true) ?  $quote[0]['methods'][0]['title'] : $quote[0]['module'] . ' (' . $quote[0]['methods'][0]['title'] . ')'),
+                                    'title' => (($free_shipping === true) ?  $quote[0]['methods'][0]['title'] : $quote[0]['module'] . ' (' . $quote[0]['methods'][0]['title'] . ')'),
                                     'cost' => $quote[0]['methods'][0]['cost']);
                 }
               }
@@ -451,15 +451,15 @@ EOD;
               break;
           }
 
-          if ( ($pass == true) && ($order->info['total'] >= MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER) ) {
+          if ( ($pass === true) && ($order->info['total'] >= MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER) ) {
             $free_shipping = true;
 
             include(DIR_WS_LANGUAGES . $language . '/modules/order_total/ot_shipping.php');
           }
         }
 
-        if ( (tep_count_shipping_modules() > 0) || ($free_shipping == true) ) {
-          if ($free_shipping == true) {
+        if ( (tep_count_shipping_modules() > 0) || ($free_shipping === true) ) {
+          if ($free_shipping === true) {
             $quotes_array[] = array('id' => 'free_free',
                                     'name' => FREE_SHIPPING_TITLE,
                                     'label' => '',

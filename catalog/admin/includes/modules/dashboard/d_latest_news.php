@@ -44,7 +44,7 @@ class d_latest_news
 
         $output = '<table border="0" width="100%" cellspacing="0" cellpadding="4">'.
             '  <tr class="dataTableHeadingRow">'.
-            '    <td class="dataTableHeadingContent">'.MODULE_ADMIN_DASHBOARD_LATEST_NEWS_TITLE.'</td>'.
+            '    <td class="dataTableHeadingContent">'._('Latest News').'</td>'.
             '    <td class="dataTableHeadingContent" align="right">'.MODULE_ADMIN_DASHBOARD_LATEST_NEWS_DATE.'</td>'.
             '  </tr>';
 

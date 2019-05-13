@@ -60,10 +60,10 @@ css:
 
 drun:
 	docker volume create pureosc_config
-	docker run -d -p 9999:9000 -v /var/run/docker.sock:/var/run/docker.sock -v pureosc_config:/var/www/oscconfig purehtml/pureosc
+	docker run -d -p 9999:9000 -v /var/run/docker.sock:/var/run/docker.sock -v pureosc_config:/var/www/oscconfig purehtml/admintst
 
 dimage:
-	composer --no-dev --optimize-autoloader update
-	docker build -t purehtml/pureosc -t purehtml/pureosc:`git rev-parse --short HEAD` .
+	docker build -t purehtml/admintst -t purehtml/admintst:`git rev-parse --short HEAD` .
+
 	
 	

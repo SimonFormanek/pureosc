@@ -209,7 +209,7 @@ $(function () {
 
                     }
 
-                    if (safeToProceed == false) {
+                    if (safeToProceed === false) {
 
                         aas.dialog.close('dialog-processing');
                         aas.dialog.open('dialog-error', translate.AAS_DIALOG_ATTRIBUTES_FOUND_OPTION_NAME_WITHOUT_OPTION_VALUES_ASSIGNED_TO_IT);

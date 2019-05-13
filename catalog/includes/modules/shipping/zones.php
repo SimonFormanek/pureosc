@@ -227,7 +227,7 @@ class zones
         if (tep_not_null($this->icon))
                 $this->quotes['icon'] = tep_image($this->icon, $this->title);
 
-        if ($error == true)
+        if ($error === true)
                 $this->quotes['error'] = MODULE_SHIPPING_ZONES_INVALID_ZONE;
         if ($shipping == -1)
                 $this->quotes['error'] = MODULE_SHIPPING_ZONES_UNDEFINED_RATE;

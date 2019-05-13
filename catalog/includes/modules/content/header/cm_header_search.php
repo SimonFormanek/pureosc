@@ -1,5 +1,4 @@
 <?php
-
 /*
   $Id$
 
@@ -23,8 +22,8 @@ class cm_header_search {
   public $side = 'left';
 
   function __construct() {
-    $this->code = get_class($this);
-    $this->group = basename(dirname(__FILE__));
+        $this->code  = get_class($this);
+        $this->group = basename(dirname(__FILE__));
 
     $this->title = _('Header Search Bar');
     $this->description = _('Adds your Header Search Bar into the Navbar Area of your site.');
@@ -33,11 +32,12 @@ class cm_header_search {
       $this->sort_order = MODULE_NAVIGATION_BAR_STORE_SEARCH_SORT_ORDER;
       $this->enabled = (MODULE_NAVIGATION_BAR_STORE_SEARCH_STATUS == 'True');
       $this->side = ((MODULE_NAVIGATION_BAR_STORE_SEARCH_PLACEMENT === 'left') ? 'left' : 'right');
+        }
     }
-  }
 
-  function execute() {
-    global $oscTemplate;
+    function execute()
+    {
+        global $oscTemplate, $request_type;
 
     $content_width = (int) MODULE_CONTENT_HEADER_LOGO_CONTENT_WIDTH;
     $search_box = $this->tep_store_search('btn-info',
@@ -53,20 +53,22 @@ class cm_header_search {
     include DIR_WS_MODULES . 'content/header/templates/' . basename(__FILE__);
     $search_box .= ob_get_clean();
 
-    ob_start();
-    include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/search.php');
-    $template = ob_get_clean();
+        ob_start();
+        include(DIR_WS_MODULES.'content/'.$this->group.'/templates/search.php');
+        $template = ob_get_clean();
 
-    $oscTemplate->addContent($template, $this->group);
-  }
+        $oscTemplate->addContent($template, $this->group);
+    }
 
-  public function isEnabled() {
-    return $this->enabled;
-  }
+    function isEnabled()
+    {
+        return $this->enabled;
+    }
 
-  public function check() {
-    return defined('MODULE_NAVIGATION_BAR_STORE_SEARCH_STATUS');
-  }
+    function check()
+    {
+        return defined('MODULE_CONTENT_HEADER_SEARCH_STATUS');
+    }
 
   public function install() {
     tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Module Version', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_VERSION', '" . $this->version . "', 'The version of this module that you are running.', '6', '0', 'tep_cfg_disabled(', now() ) ");
@@ -87,12 +89,13 @@ class cm_header_search {
     tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Pages', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGES', '" . implode(';',
         $this->get_default_pages()) . "', 'The pages to add the Store Search\'s results.', '6', '0', 'cm_header_search_show_pages', 'cm_header_search_pages(', now())");
     tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_NAVIGATION_BAR_STORE_SEARCH_SORT_ORDER', '520', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
-  }
+    }
 
-  public function remove() {
-    tep_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '",
-        $this->keys()) . "')");
-  }
+    function remove()
+    {
+        tep_db_query("delete from configuration where configuration_key in ('".implode("', '",
+                $this->keys())."')");
+    }
 
   public function keys() {
     $keys = array();
@@ -110,8 +113,7 @@ class cm_header_search {
     $keys[] = 'MODULE_NAVIGATION_BAR_STORE_SEARCH_PAGES';
 
     return $keys;
-  }
-
+    }
   function get_default_pages() {
     return array('shipping.php',
       'contact_us.php',
@@ -216,5 +218,4 @@ class cm_header_search {
 
     return $output;
   }
-
 }

@@ -13,32 +13,27 @@
         "spoje.net/flexipeehp": "dev-master",
         "vitexsoftware/ease-framework": "dev-master",
         "vitexsoftware/flexipeehp-bricks": "dev-master",
-        "league/commonmark": "dev-master",
+        "league/commonmark": "*",
         "dompdf/dompdf": "dev-master",
-        "adamstipak/webpay-php": "dev-master",
+        "adamstipak/webpay-php": "*",
         "phpmailer/phpmailer": "^6.0",
-        "ckeditor/ckeditor": "dev-master"
+        "ckeditor/ckeditor": "dev-master",
+        "envms/fluentpdo": "^1.1"
     },
     "autoload": {
         "psr-4": {
             "PureOSC\\": "catalog/includes/classes/",
+            "PureOSC\\ui\\": "catalog/includes/classes/ui/",
             "PureOSC\\flexibee\\": "catalog/ext/flexibee/",
-            "PureOSC\\Admin\\": "admin/includes/classes/",
-            "PureOSC\\Admin\\flexibee\\": "admin/ext/flexibee/"
+            "PureOSC\\Admin\\": "catalog/admin/includes/classes/",
+            "PureOSC\\Admin\\flexibee\\": "catalog/admin/ext/flexibee/"
         },
-        "classmap": ["catalog/includes/classes/", "catalog/includes/modules/", "catalog/admin/includes/classes/", "catalog/admin/includes/modules/","catalog/admin/ext/aas/classes"]
-    },
-        "scripts": {
-        "post-install-cmd": "make install",
-        "post-update": "make install"
+        "classmap": ["catalog/includes/classes/", "catalog/includes/modules/", "catalog/admin/includes/classes/", "catalog/admin/includes/modules/", "catalog/admin/ext/aas/classes"]
     },
     "minimum-stability": "dev",
     "prefer-stable": false,
-
     "require-dev": {
-        "phpstan/phpstan": "^0.10.7",
-        "robmorgan/phinx": "dev-master",
-        "phpunit/php-code-coverage": "dev-master",
+        "robmorgan/phinx": "*",
         "phpunit/phpunit": "*"
     }
 }

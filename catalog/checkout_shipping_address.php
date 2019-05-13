@@ -114,7 +114,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit') && isset($_POST['f
             $check_query           = tep_db_query("select count(*) as total from ".TABLE_ZONES." where zone_country_id = '".(int) $country."'");
             $check                 = tep_db_fetch_array($check_query);
             $entry_state_has_zones = ($check['total'] > 0);
-            if ($entry_state_has_zones == true) {
+            if ($entry_state_has_zones === true) {
                 $zone_query = tep_db_query("select distinct zone_id from ".TABLE_ZONES." where zone_country_id = '".(int) $country."' and (zone_name = '".tep_db_input($state)."' or zone_code = '".tep_db_input($state)."')");
                 if (tep_db_num_rows($zone_query) == 1) {
                     $zone    = tep_db_fetch_array($zone_query);
@@ -140,7 +140,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit') && isset($_POST['f
             $messageStack->add('checkout_address', ENTRY_COUNTRY_ERROR);
         }
 
-        if ($error == false) {
+        if ($error === false) {
             $sql_data_array = array('customers_id' => $customer_id,
                 'entry_firstname' => $firstname,
                 'entry_lastname' => $lastname,
@@ -198,7 +198,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit') && isset($_POST['f
         $check_address       = tep_db_fetch_array($check_address_query);
 
         if ($check_address['total'] == '1') {
-            if ($reset_shipping == true) tep_session_unregister('shipping');
+            if ($reset_shipping === true) tep_session_unregister('shipping');
             tep_redirect(tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
         } else {
             tep_session_unregister('sendto');
@@ -246,7 +246,7 @@ echo tep_draw_form('checkout_address',
 <div class="contentContainer">
 
     <?php
-    if ($process == false) {
+    if ($process === false) {
         ?>
 
         <h2><?php echo TABLE_HEADING_SHIPPING_ADDRESS; ?></h2>
@@ -357,7 +357,7 @@ if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
 
 
 <?php
-if ($process == true) {
+if ($process === true) {
     ?>
 
         <div class="buttonSet">

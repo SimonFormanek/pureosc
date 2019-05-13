@@ -17,8 +17,11 @@ class Customers extends \Ease\Brick
 
     public function __construct($init, $optins = [])
     {
-        parent::__construct($init, $optins);
         $this->takemyTable('customers');
         $this->setkeyColumn('customers_id');
+        parent::__construct($init, $optins);
+        if (is_integer($init)) {
+            $this->loadFromSQL($init);
+        }
     }
 }

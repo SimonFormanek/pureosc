@@ -415,7 +415,7 @@ class SeoUrl
         if ($connection == 'NONSSL') {
             $link = HTTP_SERVER.DIR_WS_HTTP_CATALOG;
         } elseif ($connection == 'SSL') {
-            if (ENABLE_SSL == true) {
+            if (ENABLE_SSL === true) {
                 $link = HTTPS_SERVER.DIR_WS_HTTPS_CATALOG;
             } else {
                 $link = HTTP_SERVER.DIR_WS_HTTP_CATALOG;
@@ -432,18 +432,18 @@ class SeoUrl
         }
         while ((substr($link, -1) == '&') || (substr($link, -1) == '?'))
             $link = substr($link, 0, -1);
-        if (($add_session_id == true) && ($session_started == true) && (SESSION_FORCE_COOKIE_USE
+        if (($add_session_id === true) && ($session_started === true) && (SESSION_FORCE_COOKIE_USE
             == 'False')) {
             if ($this->not_null($SID)) {
                 $_sid = $SID;
             } elseif (( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL
-                == true) ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') )) {
+                === true) ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') )) {
                 if (HTTP_COOKIE_DOMAIN != HTTPS_COOKIE_DOMAIN) {
                     $_sid = $this->SessionName().'='.$this->SessionID();
                 }
             }
         }
-        if ((SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe == true)) {
+        if ((SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe === true)) {
             while (strstr($link, '&&'))
                 $link      = str_replace('&&', '&', $link);
             $link      = str_replace('?', '/', $link);
@@ -505,7 +505,7 @@ class SeoUrl
             if ($this->not_null($this->attributes['SID'])) {
                 $_sid = $this->attributes['SID'];
             } elseif (( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL
-                == true) ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') )) {
+                === true) ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') )) {
                 if (HTTP_COOKIE_DOMAIN != HTTPS_COOKIE_DOMAIN) {
                     $_sid = $this->SessionName().'='.$this->SessionID();
                 }
@@ -1914,10 +1914,10 @@ class SeoUrl
      */
     function output_string($string, $translate = false, $protected = false)
     {
-        if ($protected == true) {
+        if ($protected === true) {
             return htmlspecialchars($string);
         } else {
-            if ($translate == false) {
+            if ($translate === false) {
                 return $this->parse_input_field_data($string,
                         array('"' => '&quot;'));
             } else {

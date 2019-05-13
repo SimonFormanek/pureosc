@@ -28,7 +28,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
     include('../../../oscconfig/dbconfigure.php');
 }
 
-require_once DIR_FS_CATALOG.'../vendor/autoload.php';
+require_once constant('DIR_FS_CATALOG').'../vendor/autoload.php';
 \Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
 
 // some code to solve compatibility issues
@@ -107,13 +107,14 @@ if ((PHP_VERSION >= 4.3) && function_exists('ini_get') && (ini_get('register_glo
 }
 
 // set the language
-//set the language 
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (!tep_session_is_registered('language')) {
         tep_session_register('language');
         tep_session_register('languages_id');
     }
+
     $lng = new language();
+
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);
     } else {
@@ -139,7 +140,7 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
       $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
       $language_code = tep_db_fetch_array($language_code_query);
     $lng->set_language($language_code['code']);
-}
+    }
 
 \Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
     $language     = $lng->language['directory'];
@@ -273,14 +274,16 @@ if (tep_not_null($tPath)) {
 }
 /* * ** END ARTICLE MANAGER *** */
 
-\Ease\Shared::instanced()->webPage(new Ease\WebPage());
-
+$oPage = new \PureOSC\ui\WebPage();
+\Ease\Shared::instanced()->webPage($oPage);
 
 // include the breadcrumb class and start the breadcrumb trail
 require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');
 $breadcrumb = new breadcrumb;
+
 if (isset($_SESSION['admin']['id'])) {
 $messageStack = new AdminMessageStack;
 $adminLog     = new PureOSC\CustomerLog();
 $adminLog->setAdministratorID($_SESSION['admin']['id']);
+
 }

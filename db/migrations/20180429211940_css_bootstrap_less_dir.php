@@ -36,7 +36,7 @@ class CssBootstrapLessDir extends AbstractMigration
             'configuration_description'    => 'Bootstrap source Less directory',
             'configuration_group_id'    => '16',
             'sort_order'    => '3',
-            'date_added'    => 'NOW()'
+            'date_added'    => date("Y-m-d H:i:s")
 
         ];
 

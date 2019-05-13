@@ -341,7 +341,7 @@ class httpClient
         $this->responseBody    = '';
 
 // connect if necessary
-        if (($this->socket == false) || (feof($this->socket))) {
+        if (($this->socket === false) || (feof($this->socket))) {
             if ($this->useProxy) {
                 $host = $this->proxyHost;
                 $port = $this->proxyPort;

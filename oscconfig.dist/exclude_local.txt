@@ -4,7 +4,6 @@ composer.catalog-only-template.json
 db
 doc
 docs
-i18n
 LICENSE
 mailhive
 Makefile

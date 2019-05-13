@@ -165,7 +165,7 @@
             }//end if action == 'reload2'
 
 
-            if ((action == 'delete') && (field == 'delete') && (value == true)) {
+            if ((action == 'delete') && (field == 'delete') && (value === true)) {
 
                 if (confirm('<?php echo AJAX_CONFIRM_PRODUCT_DELETE; ?>')) {
 
@@ -266,7 +266,7 @@
 
         function updateCommentsField(action, id, status, value, info) {
 
-            if ((status) && (status == true) && (action == 'delete')) {
+            if ((status) && (status === true) && (action == 'delete')) {
                 if (confirm('<?php echo AJAX_CONFIRM_COMMENT_DELETE; ?>')) {
 
                     createRequest();
@@ -610,7 +610,7 @@
                                 if (obj.style) {
                                     obj = obj.style;
                                 }
-                                if (checkID.checked == true) {
+                                if (checkID.checked === true) {
                                     obj.visibility = 'visible';
                                 } else {
                                     obj.visibility = 'hidden';

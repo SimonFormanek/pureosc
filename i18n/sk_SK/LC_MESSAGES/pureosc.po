@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pureosc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-28 22:44+0100\n"
-"PO-Revision-Date: 2019-01-28 22:45+0100\n"
+"POT-Creation-Date: 2019-01-30 05:43+0100\n"
+"PO-Revision-Date: 2019-01-30 05:44+0100\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Pure\n"
 "Language: sk_SK\n"
@@ -21,7 +21,10 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: account.php:14 includes/modules/pages/tp_account.php:21
+#: account.php:14
+#: includes/modules/content/navbar/templates/cm_nb_account.php:18
+#: includes/modules/content/navbar/templates/cm_nb_account.php:32
+#: includes/modules/pages/tp_account.php:21
 msgid "My Account"
 msgstr "Môj účet"
 
@@ -36,7 +39,7 @@ msgstr " "
 
 #: account.php:62
 msgid "send voucher"
-msgstr ""
+msgstr "zašli voucher"
 
 #: account.php:66
 msgid "Vouchers FAQ"
@@ -144,15 +147,77 @@ msgstr ""
 msgid "Vat Number"
 msgstr "DIČ"
 
-#: admin/article_manager_blog_comments.php:518 admin/articles.php:1893
-#: admin/articles.php:1910 admin/authors.php:673 admin/categories.php:2051
-#: admin/categories.php:2090 admin/manufacturers.php:370 article_blog.php:118
-#: article_info.php:85
+#: admin/action_recorder.php:139 admin/administrators.php:275
+#: admin/article_manager_blog_comments.php:434 admin/article_reviews.php:240
+#: admin/articles.php:1511 admin/articles_config.php:58 admin/authors.php:566
+#: admin/backup.php:367 admin/banner_manager.php:406 admin/cache.php:54
+#: admin/categories.php:1537 admin/configuration.php:57 admin/countries.php:72
+#: admin/coupon_admin.php:198 admin/coupon_admin.php:817
+#: admin/currencies.php:236 admin/customers.php:868 admin/geo_zones.php:147
+#: admin/geo_zones.php:234 admin/gv_queue.php:75 admin/gv_sent.php:31
+#: admin/languages.php:144 admin/manufacturers.php:142
+#: admin/mm_bulkmail.php:625 admin/mm_responsemail.php:320
+#: admin/mm_templates.php:234 admin/modules.php:150
+#: admin/modules_content.php:210 admin/modules_content.php:262
+#: admin/newsletters.php:352 admin/orders.php:461 admin/orders_status.php:125
+#: admin/products_attributes.php:272 admin/products_attributes.php:474
+#: admin/products_attributes.php:644 admin/products_expected.php:38
+#: admin/reviews.php:394 admin/specials.php:191 admin/tax_classes.php:68
+#: admin/tax_rates.php:76 admin/version_check.php:121 admin/zones.php:72
+msgid "Action"
+msgstr "Akcia"
+
+#: admin/article_manager_blog_comments.php:518 admin/articles.php:1857
+#: admin/articles.php:1874 admin/authors.php:673 admin/categories.php:2056
+#: admin/categories.php:2095 admin/manufacturers.php:370 article_blog.php:118
+#: article_info.php:86
 #, php-format
 msgid "DATE ADDED"
 msgstr ""
 
-#: admin/categories.php:2083
+#: admin/articles.php:1490 admin/categories.php:1512
+msgid "Go to"
+msgstr ""
+
+#: admin/articles.php:1508 admin/banner_manager.php:405
+#: admin/categories.php:1535 admin/edit_orders.php:2068
+#: admin/edit_orders_ajax.php:745
+#: admin/includes/modules/dashboard/d_orders.php:46
+#: admin/includes/modules/dashboard/d_reviews.php:44 admin/mm_bulkmail.php:624
+#: admin/mm_responsemail.php:319 admin/newsletters.php:351 admin/orders.php:340
+#: admin/orders.php:460 admin/reviews.php:392 admin/specials.php:190
+msgid "Status"
+msgstr ""
+
+#: admin/categories.php:879
+msgid "Add new"
+msgstr ""
+
+#: admin/categories.php:1085
+msgid "image for Gallery"
+msgstr ""
+
+#: admin/categories.php:1085
+msgid "HTML Replacement"
+msgstr ""
+
+#: admin/categories.php:1533
+msgid "Categories / Products"
+msgstr ""
+
+#: admin/categories.php:1696 admin/categories.php:1986
+msgid "Categories"
+msgstr ""
+
+#: admin/categories.php:1721
+msgid "New Category / Article"
+msgstr ""
+
+#: admin/categories.php:1766
+msgid "The Category name"
+msgstr ""
+
+#: admin/categories.php:2088
 msgid "Open in FlexiBee"
 msgstr ""
 
@@ -240,6 +305,22 @@ msgstr ""
 msgid "Show the newest customers"
 msgstr ""
 
+#: admin/includes/modules/dashboard/d_latest_addons.php:26
+msgid "Latests Addons"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_latest_addons.php:27
+msgid "Show the latest osCommerce Add-Ons"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_latest_news.php:28
+msgid "Latest News"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_latest_news.php:29
+msgid "Show latest Oscommerce News"
+msgstr ""
+
 #: admin/includes/modules/dashboard/d_orders.php:28
 #: admin/includes/modules/dashboard/d_orders.php:43
 msgid "Orders"
@@ -253,9 +334,12 @@ msgstr ""
 msgid "Total"
 msgstr "Celkom"
 
-#: admin/includes/modules/dashboard/d_orders.php:46
-#: admin/includes/modules/dashboard/d_reviews.php:44
-msgid "Status"
+#: admin/includes/modules/dashboard/d_partner_news.php:26
+msgid "Partner news"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_partner_news.php:27
+msgid "Show the lastest osCommerce Partner News"
 msgstr ""
 
 #: admin/includes/modules/dashboard/d_reviews.php:26
@@ -273,6 +357,14 @@ msgstr ""
 
 #: admin/includes/modules/dashboard/d_reviews.php:43
 msgid "Rating"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_security_checks.php:28
+msgid "Security Checks"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_security_checks.php:29
+msgid "Run security checks"
 msgstr ""
 
 #: admin/includes/modules/dashboard/d_total_customers.php:28
@@ -297,6 +389,14 @@ msgstr ""
 
 #: admin/includes/modules/dashboard/d_total_revenue.php:61
 msgid "Total Revenue"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_version_check.php:22
+msgid "Version Check"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_version_check.php:23
+msgid "Show the version check results"
 msgstr ""
 
 #: admin/orders.php:156 admin/orders.php:616 checkout_success.php:90
@@ -325,6 +425,10 @@ msgstr ""
 msgid "The Card holder canceled the payment"
 msgstr ""
 
+#: includes/application_top.php:34
+msgid "DB_SERVER not defined"
+msgstr ""
+
 #: includes/classes/NewsletterConsentMailer.php:21
 msgid "Newsletter GDPR Consent"
 msgstr ""
@@ -342,6 +446,22 @@ msgstr ""
 msgid "Click here to Agree"
 msgstr ""
 
+#: includes/modules/action_recorder/ar_reset_password.php:25
+msgid "Customer Password Reset"
+msgstr ""
+
+#: includes/modules/action_recorder/ar_reset_password.php:26
+msgid "Record usage of customer password resets"
+msgstr ""
+
+#: includes/modules/action_recorder/ar_tell_a_friend.php:24
+msgid "Tell A Friend"
+msgstr ""
+
+#: includes/modules/action_recorder/ar_tell_a_friend.php:25
+msgid "Record usage of the Tell A Friend feature."
+msgstr ""
+
 #: includes/modules/article_listing.php:44
 #: includes/modules/articles_upcoming.php:43
 msgid "Topic"
@@ -349,6 +469,14 @@ msgstr ""
 
 #: includes/modules/article_listing.php:63
 msgid "Date added"
+msgstr ""
+
+#: includes/modules/boxes/bm_articles.php:24
+msgid "Articles"
+msgstr ""
+
+#: includes/modules/boxes/bm_articles.php:25
+msgid "Show Article Manager Articles InfoBox"
 msgstr ""
 
 #: includes/modules/content/footer/cm_footer_contact_us.php:27
@@ -365,6 +493,11 @@ msgstr ""
 #: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:29
 #: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:29
 #: includes/modules/content/front_page/cm_fp_customer_greeting.php:30
+#: includes/modules/content/front_page/cm_fp_message.php:30
+#: includes/modules/content/front_page/cm_fp_new_products.php:30
+#: includes/modules/content/front_page/cm_fp_text_main.php:30
+#: includes/modules/content/front_page/cm_fp_title.php:30
+#: includes/modules/content/header/cm_header_breadcrumb.php:30
 #: includes/modules/header_tags/ht_pages_seo.php:30
 msgid "Content Width can be 12 or less per column per row"
 msgstr ""
@@ -375,6 +508,11 @@ msgstr ""
 #: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:30
 #: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:30
 #: includes/modules/content/front_page/cm_fp_customer_greeting.php:31
+#: includes/modules/content/front_page/cm_fp_message.php:31
+#: includes/modules/content/front_page/cm_fp_new_products.php:31
+#: includes/modules/content/front_page/cm_fp_text_main.php:31
+#: includes/modules/content/front_page/cm_fp_title.php:31
+#: includes/modules/content/header/cm_header_breadcrumb.php:31
 #: includes/modules/header_tags/ht_pages_seo.php:31
 msgid "12/12 = 100% width, 6/12 = 50% width, 4/12 = 33% width."
 msgstr ""
@@ -385,6 +523,11 @@ msgstr ""
 #: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:31
 #: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:31
 #: includes/modules/content/front_page/cm_fp_customer_greeting.php:32
+#: includes/modules/content/front_page/cm_fp_message.php:32
+#: includes/modules/content/front_page/cm_fp_new_products.php:32
+#: includes/modules/content/front_page/cm_fp_text_main.php:32
+#: includes/modules/content/front_page/cm_fp_title.php:32
+#: includes/modules/content/header/cm_header_breadcrumb.php:32
 #: includes/modules/header_tags/ht_pages_seo.php:32
 msgid ""
 "Total of all columns in any one row must equal 12 (eg:  3 boxes of 4 columns "
@@ -437,7 +580,7 @@ msgstr ""
 
 #: includes/modules/content/footer/templates/cm_footer_text.php:3
 msgid "About Us"
-msgstr ""
+msgstr "O nás"
 
 #: includes/modules/content/footer/templates/cm_footer_text.php:4
 msgid "Footer Text"
@@ -463,12 +606,30 @@ msgstr ""
 msgid "Footer Text Body"
 msgstr "Patička Slovenskej strany"
 
+#: includes/modules/content/front_page/cm_fp_carousel.php:28
+msgid "Front Page Carousel Banners"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_carousel.php:29
+msgid ""
+"Adds a carousel to the front page with banner images set in the Banner "
+"Manager."
+msgstr ""
+
 #: includes/modules/content/front_page/cm_fp_customer_greeting.php:28
 msgid "Front Page Customer Greeting"
 msgstr ""
 
 #: includes/modules/content/front_page/cm_fp_customer_greeting.php:29
 msgid "Show the customer greeting block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_message.php:28
+msgid "Front Page Messages"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_message.php:29
+msgid "Show the messages block on the front page."
 msgstr ""
 
 #: includes/modules/content/front_page/cm_fp_new_blog_articles.php:22
@@ -485,6 +646,53 @@ msgstr ""
 
 #: includes/modules/content/front_page/cm_fp_new_blog_articles.php:51
 msgid "Show all articles"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_products.php:28
+msgid "Front Page New Products"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_products.php:29
+msgid "Show the new products block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_text_main.php:28
+msgid "Front Page Main Text"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_text_main.php:29
+msgid "Show the main text block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_title.php:28
+msgid "Front Page Title"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_title.php:29
+msgid "Show the title block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:16
+#, php-format
+msgid "New Products"
+msgstr ""
+
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:31
+#: includes/modules/new_products.php:41
+msgid "View"
+msgstr "Zobraz"
+
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:32
+#: includes/modules/new_products.php:43
+msgid "Buy"
+msgstr ""
+
+#: includes/modules/content/header/cm_header_breadcrumb.php:27
+msgid "Breadrcumb"
+msgstr ""
+
+#: includes/modules/content/header/cm_header_breadcrumb.php:28
+msgid "Adds a Breadrcumb Trail into the Header Area of your site."
 msgstr ""
 
 #: includes/modules/content/login/cm_create_account_link.php:27
@@ -566,6 +774,55 @@ msgstr ""
 msgid "Site search"
 msgstr "Vyhľadavanie"
 
+#: includes/modules/content/navbar/templates/cm_nb_account.php:23
+msgid "Log Off"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:25
+msgid "Log In"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:28
+msgid "Register"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:35
+#: includes/modules/pages/tp_account.php:33
+msgid "My Orders"
+msgstr "Moje objednávky"
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:36
+msgid "My Address Book"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:39
+msgid "My Password"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:18
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:23
+#, php-format
+msgid "%s item(s)"
+msgstr "%s položek"
+
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:27
+msgid "View cart"
+msgstr "Zobraz košík"
+
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:31
+#: includes/modules/content/navigation/templates/navbar.php:119
+msgid "Checkout"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:35
+#: includes/modules/content/navigation/templates/navbar.php:121
+msgid "0 items"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:37
+msgid "View Cart"
+msgstr "Zobraz košík"
+
 #: includes/modules/content/navbar/templates/cm_nb_categories.php:16
 #: includes/modules/content/navbar/templates/cm_nb_categories_full.php:17
 msgid "Products"
@@ -602,6 +859,10 @@ msgstr ""
 #: includes/modules/content/navigation/cm_modular_navbar.php:29
 msgid "Show the Modular Navigation Bar on your site."
 msgstr ""
+
+#: includes/modules/content/navigation/templates/navbar.php:113
+msgid "VIEW CART"
+msgstr "Zobraz košík"
 
 #: includes/modules/header_tags/ht_article_meta.php:25
 msgid "Article Meta"
@@ -793,11 +1054,11 @@ msgid ""
 "the header of the page"
 msgstr ""
 
-#: includes/modules/header_tags/ht_product_colorbox.php:28
+#: includes/modules/header_tags/ht_product_colorbox.php:24
 msgid "Colorbox Script"
 msgstr ""
 
-#: includes/modules/header_tags/ht_product_colorbox.php:29
+#: includes/modules/header_tags/ht_product_colorbox.php:25
 msgid "Add Colorbox Script to specified pages"
 msgstr ""
 
@@ -887,7 +1148,7 @@ msgstr ""
 
 #: includes/modules/header_tags/ht_twitter_product_card.php:91
 msgid "In Stock"
-msgstr ""
+msgstr "Nieje skladom"
 
 #: includes/modules/header_tags/ht_twitter_product_card.php:92
 msgid "BUY NOW"
@@ -895,7 +1156,7 @@ msgstr ""
 
 #: includes/modules/header_tags/ht_twitter_product_card.php:94
 msgid "Out of Stock"
-msgstr ""
+msgstr "Nieje skladom"
 
 #: includes/modules/header_tags/ht_twitter_product_card.php:95
 msgid "CONTACT US"
@@ -912,10 +1173,6 @@ msgstr ""
 #: includes/modules/pages/tp_account.php:29
 msgid "Change my account password."
 msgstr ""
-
-#: includes/modules/pages/tp_account.php:33
-msgid "My Orders"
-msgstr "Moje objednávky"
 
 #: includes/modules/pages/tp_account.php:35
 msgid "View the orders I have made."
@@ -987,7 +1244,7 @@ msgstr ""
 
 #: includes/modules/product_listing.php:51
 msgid "Sort by"
-msgstr ""
+msgstr "razenie"
 
 #: includes/modules/social_bookmarks/sb_google_buzz.php:24
 msgid "Google Buzz"
@@ -1021,6 +1278,14 @@ msgstr ""
 msgid "Newsletter subscription consent was not accepted"
 msgstr ""
 
+#: product_info.php:39
+msgid "Product not found"
+msgstr "Produkt nebol nalezený"
+
+#: product_info.php:259
+msgid "Options"
+msgstr "Nastavenia"
+
 #: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
 msgid "align"
 msgstr ""
@@ -1032,6 +1297,3 @@ msgstr ""
 #: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
 msgid "p"
 msgstr ""
-
-#~ msgid "Product not found"
-#~ msgstr "Produkt nebol nalezený"

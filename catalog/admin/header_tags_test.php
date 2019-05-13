@@ -739,7 +739,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
         var checkbox = "option_" + page;
         var ckbox_status = document.getElementById(checkbox).checked;
 
-        if (ckbox_status == false)
+        if (ckbox_status === false)
             document.getElementById(page).disabled = true;
         else
             document.getElementById(page).disabled = false;

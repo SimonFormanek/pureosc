@@ -46,7 +46,7 @@ class currencies
 
         if (empty($currency_type)) $currency_type = $currency;
 
-        if ($calculate_currency_value == true) {
+        if ($calculate_currency_value === true) {
             $rate          = (tep_not_null($currency_value)) ? $currency_value : $this->currencies[$currency_type]['value'];
             $format_string = $this->currencies[$currency_type]['symbol_left'].number_format(tep_round($number
                         * $rate,

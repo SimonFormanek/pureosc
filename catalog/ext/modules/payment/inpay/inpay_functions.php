@@ -53,7 +53,7 @@ function get_invoice_status($pars) {
     } elseif (function_exists('curl_exec')) {
         $curl = true;
     }
-    if ($fsocket == true) {
+    if ($fsocket === true) {
         $header = 'POST /api/get_invoice_status HTTP/1.1'."\r\n".
 		'Host: '.$server."\r\n".
 		'Content-Type: application/x-www-form-urlencoded'."\r\n".
@@ -69,7 +69,7 @@ function get_invoice_status($pars) {
 		$result=$str;
 		$result = preg_split('/^\r?$/m', $result, 2);
         $result = trim($result[1]);
-    } elseif ($curl == true) {
+    } elseif ($curl === true) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://'.$server.'/api/get_invoice_status');
         curl_setopt($ch, CURLOPT_POST, true);

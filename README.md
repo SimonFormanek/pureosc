@@ -1,4 +1,4 @@
-![Logo](https://raw.githubusercontent.com/SimonFormanek/pureosc/pure/images/store_logo.png "PureHtml")
+![Logo](https://raw.githubusercontent.com/SimonFormanek/pureosc/pure/catalog/images/PURE-OCS.svg "PureHtml's PureOSC")
 
 [![Quality](https://scrutinizer-ci.com/g/SimonFormanek/pureosc/badges/quality-score.png?b=pure)](https://scrutinizer-ci.com/g/SimonFormanek/pureosc/)
 [![GitHub release](https://img.shields.io/github/release/SimonFormanek/pureosc.js.svg)](https://GitHub.com/SimonFormanek/pureosc.js/releases/)
@@ -21,6 +21,7 @@ Features
  * GDPR Newsletter Consent 
  * FlexiBee - accunting Software support
  * Static Catalog (no zero point of failure)
+ * GDPR User actions and personal data views log
 
 FlexiBee support
 ----------------

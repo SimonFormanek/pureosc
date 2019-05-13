@@ -982,7 +982,7 @@ include('order_editor/javascript.php');
             <td width="100%" valign="top">
 
                 <?php
-                if (($action == 'edit') && ($order_exists == true)) {
+                if (($action == 'edit') && ($order_exists === true)) {
 
                     echo tep_draw_form('edit_order', FILENAME_ORDERS_EDIT,
                         tep_get_all_get_params(array('action')).'action=update_order');

@@ -57,7 +57,7 @@ if ($topic_depth == 'nested') {
 } else {
     $showBlogArticles = ((isset($_GET['showblogarticles']) && $_GET['showblogarticles']
         == 'true') ? ' and a.articles_is_blog = 1 ' : '');
-    $heading          = (($showBlogArticles == false) ? HEADING_TITLE : HEADING_TITLE_BLOG);
+    $heading          = (($showBlogArticles === false) ? HEADING_TITLE : HEADING_TITLE_BLOG);
 }
 ?>
 

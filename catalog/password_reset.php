@@ -22,7 +22,7 @@ if (!isset($_GET['account']) || !isset($_GET['key'])) {
     $messageStack->add_session('password_forgotten', TEXT_NO_RESET_LINK_FOUND);
 }
 
-if ($error == false) {
+if ($error === false) {
     $email_address = tep_db_prepare_input($_GET['account']);
     $password_key  = tep_db_prepare_input($_GET['key']);
 
@@ -59,7 +59,7 @@ if ($error == false) {
     }
 }
 
-if ($error == true) {
+if ($error === true) {
     tep_redirect(tep_href_link(FILENAME_PASSWORD_FORGOTTEN));
 }
 
@@ -79,7 +79,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['fo
             ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING);
     }
 
-    if ($error == false) {
+    if ($error === false) {
         tep_db_query("update ".TABLE_CUSTOMERS." set customers_password = '".tep_encrypt_password($password_new)."' where customers_id = '".(int) $check_customer['customers_id']."'");
 
         tep_db_query("update ".TABLE_CUSTOMERS_INFO." set customers_info_date_account_last_modified = now(), password_reset_key = null, password_reset_date = null where customers_info_id = '".(int) $check_customer['customers_id']."'");

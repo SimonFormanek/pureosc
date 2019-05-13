@@ -56,6 +56,7 @@ define('FILENAME_SEC_DIR_PERMISSIONS', 'sec_dir_permissions.php');
 define('FILENAME_SERVER_INFO', 'server_info.php');
 define('FILENAME_SHIPPING_MODULES', 'shipping_modules.php');
 define('FILENAME_SPECIALS', 'specials.php');
+define('FILENAME_STATIC_GENERATOR_RESET','static_generator_reset.php');
 define('FILENAME_STATS_CUSTOMERS', 'stats_customers.php');
 define('FILENAME_STATS_PRODUCTS_PURCHASED', 'stats_products_purchased.php');
 define('FILENAME_STATS_PRODUCTS_VIEWED', 'stats_products_viewed.php');

@@ -80,7 +80,7 @@ class authorizenet_cc_aim
     {
         global $order;
 
-        if (($this->enabled == true) && ((int) MODULE_PAYMENT_AUTHORIZENET_CC_AIM_ZONE
+        if (($this->enabled === true) && ((int) MODULE_PAYMENT_AUTHORIZENET_CC_AIM_ZONE
             > 0)) {
             $check_flag  = false;
             $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_AUTHORIZENET_CC_AIM_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
@@ -94,7 +94,7 @@ class authorizenet_cc_aim
                 }
             }
 
-            if ($check_flag == false) {
+            if ($check_flag === false) {
                 $this->enabled = false;
             }
         }

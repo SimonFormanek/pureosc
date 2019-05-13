@@ -106,7 +106,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
     <tr>
         <td align="center">
             <?php
-            if (function_exists('imagecreate') && ($dir_ok == true) && tep_not_null($banner_extension)) {
+            if (function_exists('imagecreate') && ($dir_ok === true) && tep_not_null($banner_extension)) {
                 $banner_id = (int) $_GET['bID'];
 
                 switch ($type) {

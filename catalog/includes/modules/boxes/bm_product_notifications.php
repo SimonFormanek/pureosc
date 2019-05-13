@@ -54,7 +54,7 @@ class bm_product_notifications
 
             $notif_contents = '';
 
-            if ($notification_exists == true) {
+            if ($notification_exists === true) {
                 $notif_contents = '<a href="'.tep_href_link($_SERVER['PHP_SELF'],
                         tep_get_all_get_params(array('action')).'action=notify_remove',
                         $request_type).'"><span class="fa fa-remove"></span> '.sprintf(MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_NOTIFY_REMOVE,

@@ -27,23 +27,17 @@ while (1) {
         exit;
     } elseif (
         (date("s") == 1) ||
-        (date("s") == 5) ||
         (date("s") == 10) ||
-        (date("s") == 15) ||
         (date("s") == 20) ||
-        (date("s") == 25) ||
         (date("s") == 30) ||
-        (date("s") == 35) ||
         (date("s") == 40) ||
-        (date("s") == 45) ||
-        (date("s") == 50) ||
-        (date("s") == 55)
+        (date("s") == 50)
     ) {
         echo 'datum:'.date("s")."\n";
         $lng_code_query = tep_db_query("SELECT code FROM languages");
         while ($lng_code       = tep_db_fetch_array($lng_code_query)) {
 //echo 'code:'. $lng_code['code'] . "\n";
-         exec("./writecache.php ".$lng_code['code'].' shop');
+         exec("/usr/bin/nice -n 10 /usr/bin/ionice -c2 -n7 ./writecache.php ".$lng_code['code'].' shop');
 //   	exec("./writecache.php " . $lng_code['code'] . ' admin');
         }
     }

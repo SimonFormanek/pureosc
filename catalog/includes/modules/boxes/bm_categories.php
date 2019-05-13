@@ -21,12 +21,12 @@ class bm_categories
 
     function bm_categories()
     {
-        $this->title       =  MODULE_BOXES_CATEGORIES_TITLE;
-        $this->description = MODULE_BOXES_CATEGORIES_DESCRIPTION;
+        $this->title       = _('Categories');
+        $this->description = _('Show the category navigation tree');
 
         if (defined('MODULE_BOXES_CATEGORIES_STATUS')) {
-            $this->sort_order = MODULE_BOXES_CATEGORIES_SORT_ORDER;
-            $this->enabled    = (MODULE_BOXES_CATEGORIES_STATUS == 'True');
+            $this->sort_order = constant('MODULE_BOXES_CATEGORIES_SORT_ORDER');
+            $this->enabled    = (constant('MODULE_BOXES_CATEGORIES_STATUS') == 'True');
 
             $this->group = ((MODULE_BOXES_CATEGORIES_CONTENT_PLACEMENT == 'Left Column')
                     ? 'boxes_column_left' : 'boxes_column_right');

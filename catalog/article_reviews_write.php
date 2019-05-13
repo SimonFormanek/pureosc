@@ -45,7 +45,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
         $messageStack->add('review', JS_REVIEW_RATING);
     }
 
-    if ($error == false) {
+    if ($error === false) {
         tep_db_query("insert into ".TABLE_ARTICLE_REVIEWS." (articles_id, customers_id, customers_name, reviews_rating, date_added) values ('".(int) $_GET['articles_id']."', '".(int) $customer_id."', '".tep_db_input($customer['customers_firstname']).' '.tep_db_input($customer['customers_lastname'])."', '".tep_db_input($rating)."', now())");
         $insert_id = tep_db_insert_id();
 

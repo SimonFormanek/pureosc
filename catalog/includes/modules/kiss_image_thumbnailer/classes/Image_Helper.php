@@ -11,8 +11,8 @@
  * @copyright Copyright 2008-2009 FWR Media ( Robert Fisher )
  * @author Robert Fisher, FWR Media, http://www.fwrmedia.co.uk 
  * @lastdev $Author:: @raiwa  info@sarplataygemas.com       $:  Author of last commit
- * @lastmod $Date:: 2015-08-14       			     						 $:  Date of last commit
- * @version $Rev:: 19 BS                                    $:  Revision of last commit
+ * @lastmod $Date:: 2016-10-02       			     						 $:  Date of last commit
+ * @version $Rev:: 27 BS                                    $:  Revision of last commit
  * @Id $Id:: Image_Helper.php 10 BS 2015-01-28 @raiwa       $:  Full Details
  */
 

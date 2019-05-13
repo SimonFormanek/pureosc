@@ -87,29 +87,14 @@ while ($configuration       = tep_db_fetch_array($configuration_query)) {
         define($configuration['cfgKey'], $configuration['cfgValue']);
     }
 }
-// if gzip_compression is enabled, start to buffer the output
-  if ( (GZIP_COMPRESSION == 'true') && ($ext_zlib_loaded = extension_loaded('zlib')) && !headers_sent() ) {
-    if (($ini_zlib_output_compression = (int)ini_get('zlib.output_compression')) < 1) {
-      if (PHP_VERSION < '5.4' || PHP_VERSION > '5.4.5') { // see PHP bug 55544
-        if (PHP_VERSION >= '4.0.4') {
-          ob_start('ob_gzhandler');
-        } elseif (PHP_VERSION >= '4.0.1') {
-          include(DIR_WS_FUNCTIONS . 'gzip_compression.php');
-          ob_start();
-          ob_implicit_flush();
-}
-      }
-    } elseif (function_exists('ini_set')) {
-      ini_set('zlib.output_compression_level', GZIP_LEVEL);
-    }
-  }
 
 
 // set the HTTP GET parameters manually if search_engine_friendly_urls is enabled
 if (SEARCH_ENGINE_FRIENDLY_URLS == 'true') {
     if (strlen(getenv('PATH_INFO')) > 1) {
         $GET_array = array();
-        $_SERVER['PHP_SELF']  = str_replace(getenv('PATH_INFO'), '', $_SERVER['PHP_SELF']);
+        $_SERVER['PHP_SELF'] = str_replace(getenv('PATH_INFO'), '',
+            $_SERVER['PHP_SELF']);
         $vars      = explode('/', substr(getenv('PATH_INFO'), 1));
         do_magic_quotes_gpc($vars);
         $n         = sizeof($vars);
@@ -281,12 +266,14 @@ if (!tep_session_is_registered('cart') || !is_object($cart)) {
 $currencies = new currencies();
 
 $oPage = new Ease\Page();
-//set the language 
+
+// set the language
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (!tep_session_is_registered('language')) {
         tep_session_register('language');
         tep_session_register('languages_id');
     }
+
     $lng = new language();
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);
@@ -297,8 +284,8 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
           $new_language = (constant('DEFAULT_LANGUAGE'));
 				} else {
 					$new_language = $new_language_domain;
-				}
- 
+    }
+
       //autodetect
       //$browser_language = preg_replace('/,.*/','',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
       //if (preg_match('/^en/', $browser_language)){

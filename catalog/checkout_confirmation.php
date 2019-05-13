@@ -59,7 +59,7 @@ if (isset($_POST['comments']) && tep_not_null($_POST['comments'])) {
 
   $payment_modules->update_status();
 
-  if ( ($payment_modules->selected_module != $payment) || ( is_array($payment_modules->modules) && (sizeof($payment_modules->modules) > 1) && !is_object($$payment) ) || (is_object($$payment) && ($$payment->enabled == false)) ) {
+  if ( ($payment_modules->selected_module != $payment) || ( is_array($payment_modules->modules) && (sizeof($payment_modules->modules) > 1) && !is_object($$payment) ) || (is_object($$payment) && ($$payment->enabled === false)) ) {
  */
 if ($credit_covers) $payment = ''; // CCGV
 $payment_modules = new payment($payment);
@@ -70,7 +70,7 @@ $order_total_modules = new order_total(); // CCGV
 $order_total_modules->collect_posts(); // CCGV
 $order_total_modules->pre_confirmation_check(); //  CCGV
 // Line edited for CCGV
-//  if ( ( is_array($payment_modules->modules) && (sizeof($payment_modules->modules) > 1) && !is_object($$payment) ) || (is_object($$payment) && ($$payment->enabled == false)) ) {
+//  if ( ( is_array($payment_modules->modules) && (sizeof($payment_modules->modules) > 1) && !is_object($$payment) ) || (is_object($$payment) && ($$payment->enabled === false)) ) {
 if ((is_array($payment_modules->modules)) && (sizeof($payment_modules->modules) > 1)
     && (!is_object($$payment)) && (!$credit_covers)) {
     /*     * * EOF alteration for CCGV ** */
@@ -98,7 +98,7 @@ if (STOCK_CHECK == 'true') {
         }
     }
     // Out of Stock
-    if ((STOCK_ALLOW_CHECKOUT != 'true') && ($any_out_of_stock == true)) {
+    if ((STOCK_ALLOW_CHECKOUT != 'true') && ($any_out_of_stock === true)) {
         tep_redirect(tep_href_link(FILENAME_SHOPPING_CART));
     }
 }

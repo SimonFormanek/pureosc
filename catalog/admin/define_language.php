@@ -32,7 +32,7 @@ function tep_opendir($path)
 
                 $result[] = $file;
 
-                if ($file['is_dir'] == true) {
+                if ($file['is_dir'] === true) {
                     $result = array_merge($result, tep_opendir($path.$filename));
                 }
             }
@@ -150,7 +150,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     </tr>
                                     <tr>
                                         <td class="smallText" align="right"><?php
-                                            if ($file_writeable == true) {
+                                            if ($file_writeable === true) {
                                                 echo tep_draw_button(IMAGE_SAVE,
                                                     'disk', null, 'primary').tep_draw_button(IMAGE_CANCEL,
                                                     'close',
@@ -210,7 +210,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 'lngdir='.$_GET['lngdir'].'&filename='.$filename);
     ?>"><strong><?php echo $filename; ?></strong></a></td>
                                     <td class="dataTableContent" align="center"><?php echo tep_image(DIR_WS_IMAGES.'icons/'.((tep_is_writable(DIR_FS_CATALOG_LANGUAGES.$filename)
-                                == true) ? 'tick.gif' : 'cross.gif'));
+                                === true) ? 'tick.gif' : 'cross.gif'));
     ?></td>
                                     <td class="dataTableContent" align="right"><?php echo strftime(DATE_TIME_FORMAT,
                                 filemtime(DIR_FS_CATALOG_LANGUAGES.$filename));
@@ -228,7 +228,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                             'lngdir='.$_GET['lngdir'].'&filename='.$filename).'">'.substr($filename,
                                             strlen($_GET['lngdir'].'/')).'</a></td>'.
                                         '                <td class="dataTableContent" align="center">'.tep_image(DIR_WS_IMAGES.'icons/'.(($file['writable']
-                                            == true) ? 'tick.gif' : 'cross.gif')).'</td>'.
+                                            === true) ? 'tick.gif' : 'cross.gif')).'</td>'.
                                         '                <td class="dataTableContent" align="right">'.$file['last_modified'].'</td>'.
                                         '              </tr>';
                                     }

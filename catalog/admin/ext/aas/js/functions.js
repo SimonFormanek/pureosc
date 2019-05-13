@@ -186,7 +186,7 @@ var aas = {
 
                     if (elem.dialog('isOpen')) {
                         elem.dialog('close');
-                        if (clearText == true)
+                        if (clearText === true)
                             elem.find('.message').html('');
                     }
 
@@ -1248,7 +1248,7 @@ function searchTable(inputVal) {
                     return false;
                 }
             });
-            if (found == true)
+            if (found === true)
                 $(row).show();
             else
                 $(row).hide();
@@ -1271,7 +1271,7 @@ function searchList(inputVal) {
                     return false;
                 }
             });
-            if (found == true)
+            if (found === true)
                 $(row).show();
             else
                 $(row).hide();

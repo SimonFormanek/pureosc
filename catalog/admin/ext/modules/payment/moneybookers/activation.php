@@ -74,7 +74,7 @@
 <?php
   if ($action == 'verifyEmail') {
     if (isset($result)) {
-      if ($pass == true) {
+      if ($pass === true) {
 ?>
           <p><strong><u><?php echo MB_ACTIVATION_ACTIVATE_TITLE; ?></u></strong></p>
           <p><?php echo MB_ACTIVATION_ACTIVATE_TEXT; ?></p>
@@ -92,7 +92,7 @@
       }
     }
 
-    if (!isset($result) || ($pass == false)) {
+    if (!isset($result) || ($pass === false)) {
 ?>
           <p><strong><u><?php echo MB_ACTIVATION_ACCOUNT_TITLE; ?></u></strong></p>
           <p><?php echo MB_ACTIVATION_ACCOUNT_TEXT; ?></p>
@@ -103,7 +103,7 @@
 <?php
     }
   } elseif ($action == 'testSecretWord') {
-    if (isset($result) && ($pass == true)) {
+    if (isset($result) && ($pass === true)) {
 ?>
           <p><strong><u><?php echo MB_ACTIVATION_SECRET_WORD_TITLE; ?></u></strong></p>
           <p><?php echo MB_ACTIVATION_SECRET_WORD_SUCCESS_TEXT; ?></p>

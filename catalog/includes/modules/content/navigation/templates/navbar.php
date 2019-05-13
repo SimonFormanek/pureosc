@@ -110,15 +110,15 @@
                     <?php
                     if ($cart->count_contents() > 0) {
                         echo '<li class="divider"></li>';
-                        echo '<li><a href="'.tep_href_link(FILENAME_SHOPPING_CART).'">'.HEADER_CART_VIEW_CART.'</a></li>';
+                        echo '<li><a href="'.tep_href_link(FILENAME_SHOPPING_CART).'">'._('VIEW CART').'</a></li>';
                     }
                     ?>
                         </ul>
                     </li>
     <?php
-    echo '<li><a href="'.tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'">'.HEADER_CART_CHECKOUT.'</a></li>';
+    echo '<li><a href="'.tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL').'"><i class="fa fa-angle-right"></i>'. _('Checkout') .'</a></li>';
 } else {
-    echo '<li class="nav navbar-text">'.HEADER_CART_NO_CONTENTS.'</li>';
+    echo '<li class="nav navbar-text">'._('0 items').'</li>';
 }
 ?>
             </ul>

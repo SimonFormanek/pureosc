@@ -24,7 +24,6 @@ $module_type               = $cfgModules->get($set, 'code');
 $module_directory          = $cfgModules->get($set, 'directory');
 $module_language_directory = $cfgModules->get($set, 'language_directory');
 $module_key                = $cfgModules->get($set, 'key');
-;
 define('HEADING_TITLE', $cfgModules->get($set, 'title'));
 $template_integration      = $cfgModules->get($set, 'template_integration');
 
@@ -240,6 +239,8 @@ if ($dir             = @dir($module_directory)) {
                                         ?>&nbsp;</td>
                         </tr>
                         <?php
+                    } else {
+                        echo  '<div class="error">Error lading class <strong>'. $class .'</strong></div>' ;
                     }
                 }
 
@@ -258,7 +259,7 @@ if ($dir             = @dir($module_directory)) {
                                 $installed_modules)."', 'This is automatically updated. No need to edit.', '6', '0', now())");
                     }
 
-                    if ($template_integration == true) {
+                    if ($template_integration === true) {
                         $check_query = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'TEMPLATE_BLOCK_GROUPS'");
                         if (tep_db_num_rows($check_query)) {
                             $check          = tep_db_fetch_array($check_query);

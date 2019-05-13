@@ -29,7 +29,7 @@ if (!$oscTemplate->hasBlocks('boxes_column_right')) {
         <title><?php echo tep_output_string_protected($oscTemplate->getTitle()); ?></title>
         <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER : HTTP_SERVER).DIR_WS_CATALOG; ?>">
         <?php
-        if (file_exists(DIR_FS_MASTER_ROOT_DIR.BOOTSTRAP_LESS_DIR)) {
+        if (defined('DIR_FS_MASTER_ROOT_DIR') && file_exists(constant('DIR_FS_MASTER_ROOT_DIR').constant('BOOTSTRAP_LESS_DIR'))) {
             $bootstrap_extension = 'css';
         } else {
             $bootstrap_extension = 'min.css';

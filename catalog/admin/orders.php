@@ -90,7 +90,7 @@ if (tep_not_null($action)) {
                 $order_updated = true;
             }
 
-            if ($order_updated == true) {
+            if ($order_updated === true) {
                 $messageStack->add_session(SUCCESS_ORDER_UPDATED, 'success');
             } else {
                 $messageStack->add_session(WARNING_ORDER_NOT_UPDATED, 'warning');
@@ -126,7 +126,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
 <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <?php
-    if (($action == 'edit') && ($order_exists == true)) {
+    if (($action == 'edit') && ($order_exists === true)) {
         $order = new AdminOrder($oID);
         ?>
         <tr>
@@ -421,7 +421,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                         <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
                                     1, HEADING_IMAGE_HEIGHT);
                                 ?></td>
-                        <? /* ** EOF alteration for Manual Order Maker ** */ ?>
+                        <?php /* ** EOF alteration for Manual Order Maker ** */ ?>
                         <td align="right"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                                 <tr><?php echo tep_draw_form('orders',
                                     FILENAME_ORDERS, '', 'get');

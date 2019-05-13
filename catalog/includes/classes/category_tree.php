@@ -127,7 +127,7 @@ class category_tree
 
         if (isset($this->_data[$parent_id])) {
             foreach ($this->_data[$parent_id] as $category_id => $category) {
-                if ($this->breadcrumb_usage == true) {
+                if ($this->breadcrumb_usage === true) {
                     $category_link = $this->buildBreadcrumb($category_id);
                 } else {
                     $category_link = $category_id;

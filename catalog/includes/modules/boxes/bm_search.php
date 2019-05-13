@@ -26,14 +26,14 @@ class bm_search
 
     function bm_search()
     {
-        $this->title       =  MODULE_BOXES_SEARCH_TITLE;
-        $this->description = MODULE_BOXES_SEARCH_DESCRIPTION;
+        $this->title       = _('Search');
+        $this->description = _('Show search field');
 
         if (defined('MODULE_BOXES_SEARCH_STATUS')) {
-            $this->sort_order = MODULE_BOXES_SEARCH_SORT_ORDER;
-            $this->enabled    = (MODULE_BOXES_SEARCH_STATUS == 'True');
+            $this->sort_order = constant('MODULE_BOXES_SEARCH_SORT_ORDER');
+            $this->enabled    = (constant('MODULE_BOXES_SEARCH_STATUS') == 'True');
 
-            $this->group = ((MODULE_BOXES_SEARCH_CONTENT_PLACEMENT == 'Left Column')
+            $this->group = ((constant('MODULE_BOXES_SEARCH_CONTENT_PLACEMENT') == 'Left Column')
                     ? 'boxes_column_left' : 'boxes_column_right');
         }
     }
@@ -47,7 +47,7 @@ class bm_search
                     $request_type, false), 'get').
             '    <div class="input-group">'.
             '    '.tep_draw_input_field('keywords', '',
-                'required placeholder="'.TEXT_SEARCH_PLACEHOLDER.'"', 'search').
+                'required placeholder="'._('Search').'"', 'search').
             '      <span class="input-group-btn"><button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button></span>'.
             '    </div>'.tep_draw_hidden_field('search_in_description', '0').tep_hide_session_id().
             '    </form>';

@@ -93,7 +93,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 }
             }
 
-            if (error_found == true) {
+            if (error_found === true) {
                 alert(error_message);
                 error_field.focus();
                 return false;

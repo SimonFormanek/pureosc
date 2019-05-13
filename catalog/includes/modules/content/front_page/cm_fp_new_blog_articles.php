@@ -21,7 +21,10 @@ class cm_fp_new_blog_articles
 
         $this->title       = _('Front Page New Blog Articles');
         $this->description = _('Show the new blog articles block on the front page.');
-        $this->description .= '<div class="secWarning">'.MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION.'</div>';
+                $this->description .= '<div class="secWarning">'.'<p>'._('Content Width can be 12 or less per column per row').'</p>'.
+            '<p>'._('12/12 = 100% width, 6/12 = 50% width, 4/12 = 33% width.').'</p>'.
+            '<p>'._('Total of all columns in any one row must equal 12 (eg:  3 boxes of 4 columns each, 1 box of 12 columns and so on)').'</p>'.'</div>';
+
 
         if (defined('MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_STATUS')) {
             $this->sort_order = constant('MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_SORT_ORDER');

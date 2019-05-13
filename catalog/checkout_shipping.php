@@ -104,7 +104,7 @@ if (defined('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING') && (MODULE_ORDER_TOTAL_
 
     $free_shipping = false;
 
-    if (($pass == true) && ($order->info['total'] >= MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)) {
+    if (($pass === true) && ($order->info['total'] >= MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)) {
         $free_shipping = true;
 
         include(DIR_WS_LANGUAGES.$language.'/modules/order_total/ot_shipping.php');
@@ -125,7 +125,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     if (!tep_session_is_registered('shipping'))
             tep_session_register('shipping');
 
-    if ((tep_count_shipping_modules() > 0) || ($free_shipping == true)) {
+    if ((tep_count_shipping_modules() > 0) || ($free_shipping === true)) {
         if ((isset($_POST['shipping'])) && (strpos($_POST['shipping'], '_'))) {
             $shipping = $_POST['shipping'];
 
@@ -142,7 +142,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
                 } else {
                     if ((isset($quote[0]['methods'][0]['title'])) && (isset($quote[0]['methods'][0]['cost']))) {
                         $shipping = array('id' => $shipping,
-                            'title' => (($free_shipping == true) ? $quote[0]['methods'][0]['title']
+                            'title' => (($free_shipping === true) ? $quote[0]['methods'][0]['title']
                                 : $quote[0]['module'].' ('.$quote[0]['methods'][0]['title'].')'),
                             'cost' => $quote[0]['methods'][0]['cost']);
 
@@ -173,13 +173,13 @@ $quotes = $shipping_modules->quote();
 // a javascript force-selection method, also automatically select the cheapest shipping
 // method if more than one module is now enabled
 if (!tep_session_is_registered('shipping') || ( tep_session_is_registered('shipping')
-    && ($shipping == false) && (tep_count_shipping_modules() > 1) ))
+    && ($shipping === false) && (tep_count_shipping_modules() > 1) ))
         $shipping = $shipping_modules->cheapest();
 
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_CHECKOUT_SHIPPING);
 
 if (defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES
-    == 'False') && !tep_session_is_registered('shipping') && ($shipping == false)) {
+    == 'False') && !tep_session_is_registered('shipping') && ($shipping === false)) {
     $messageStack->add_session('checkout_address',
         ERROR_NO_SHIPPING_AVAILABLE_TO_SHIPPING_ADDRESS);
     tep_redirect(tep_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'));
@@ -260,7 +260,7 @@ echo tep_draw_form('checkout_address',
             </div>
 
             <?php
-        } elseif ($free_shipping == false) {
+        } elseif ($free_shipping === false) {
             ?>
 
             <div class="contentText">
@@ -276,7 +276,7 @@ echo tep_draw_form('checkout_address',
                 <tbody>
 
                     <?php
-                    if ($free_shipping == true) {
+                    if ($free_shipping === true) {
                         ?>
 
                     <div class="contentText">

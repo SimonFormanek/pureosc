@@ -1,6 +1,5 @@
 #!/usr/bin/php -q
 <?php
-//SEO_URLS_CACHE_RESET 'true'
 chdir('../');
 $error = 0;
 $_SERVER['HTTP_ACCEPT_LANGUAGE'] = $argv[1];
@@ -62,8 +61,10 @@ echo '$_SERVER[HTTP_HOST]: ' . $_SERVER['HTTP_HOST'] . "\n";
 //TODO: bude tady neco??????
 //require('admin/'. DIR_WS_FUNCTIONS . 'cli.php');
 //TODO: presunout /languages/LANG/static.php do DTB config
-error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+if (DISPLAY_GENERATOR_ERRORS == 'true') {
+	error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 ini_set('display_errors', '1');
+}
 //////////////CONF START <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 $time1                = microtime(true);
 date_default_timezone_set("Europe/Prague");
@@ -131,20 +132,24 @@ if (date("Hi") == $crontime ) {
 echo 'Big Update Daily cron time: ' . date("Hi") . "\n";
 $update_all             = 'true';
 }
+if ($debug_level > 2) echo 'update_all0:' . $update_all . "\n";  
 //information - one change require reset
-$inormation_reset_query = tep_db_query("select COUNT(cached) as counter from information where ".$cached_flag."=0 AND language_id=".$lng['languages_id']);
-$inormation_reset       = tep_db_fetch_array($inormation_reset_query);
-if ($inormation_reset['counter'] > 0) $update_all             = 'true';
-
+$information_reset_query = tep_db_query("select COUNT(cached) as counter from information where ".$cached_flag."=0 AND language_id=".$lng['languages_id']);
+if ($debug_level > 2) echo("select COUNT(cached) as counter from information where ".$cached_flag."=0 AND language_id=".$lng['languages_id']) . "\n";
+$information_reset       = tep_db_fetch_array($information_reset_query);
+if ($information_reset['counter'] > 0) $update_all             = 'true';
+if ($debug_level > 2) echo 'update_all1:' . $update_all . "\n";  
 //nowtime: special full update NOW
 //$cron_query = tep_db_query("SELECT * FROM " . TABLE_ROBOT . " WHERE lang = '" . $argv['1'] . "' AND admin = '" . $argv['2'] . "'");
 $reset_query = tep_db_query("SELECT reset FROM ".TABLE_RESET." WHERE lang = '".$argv['1']."' AND admin = '".$argv['2']."' AND section='all'");
 $reset       = tep_db_fetch_array($reset_query);
 if ($reset['reset'] == 1) {
-    echo 'updattujeme'."\n";
+    echo 'Big Reset!'."\n";
     $update_all = 'true';
     tep_db_query("UPDATE ".TABLE_RESET." SET reset='0' WHERE lang = '".$argv['1']."' AND admin = '".$argv['2']."' AND section='all'");
 }
+if ($debug_level > 2) echo 'update_all2:' . $update_all . "\n";
+
 if ($update_all == 'true' || GENERATOR_FORCE_UPDATE_ALL == '1') {
 //creating lockfile
     echo "big upd. START\n";
@@ -269,15 +274,20 @@ exit;
             $output      .= curl_exec($curl_handle);
             curl_close($curl_handle);
     $output = filtr($output);
-            file_put_contents($newpath.'index.php', stripslashes($output), 644);
-            tep_db_query("UPDATE ".TABLE_PRODUCTS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE products_id = ".$products['products_id']." AND language_id = ".$lng['languages_id']);
-            $updated     = 1;
+            file_put_contents($newpath . 'index.php', stripslashes($output), 644);
+            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
+              tep_db_query("UPDATE ".TABLE_PRODUCTS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE products_id = ".$products['products_id']." AND language_id = ".$lng['languages_id']);
+              $updated     = 1;
+            } else {
+              $error = 1;
+              echo "Error: Product:" . $products['products_id'] . " \n";
+            }
         }
     }
 } //end GENERATE_PRODUCTS
 if (GENERATE_CATEGORIES == 'true') {
 
-if ($debug_level > 2) echo GENERATING_CATEGORIES."\n";
+if ($debug_level > 2) echo "GENERATING CATEGORIES\n";
 $categories_query = tep_db_query("SELECT c.categories_id, cd.categories_name FROM ".TABLE_CATEGORIES." c,  ".TABLE_CATEGORIES_DESCRIPTION." cd 
     WHERE cd.categories_id = c.categories_id 
     AND ".$cached_flag." = 0 
@@ -319,17 +329,20 @@ exit;
         curl_close($curl_handle);
     $output = filtr($output);
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
-
-
-        tep_db_query("UPDATE ".TABLE_CATEGORIES_DESCRIPTION." SET ".$cached_flag." = 1 WHERE categories_id = ".$categories['categories_id']." AND language_id = ".$lng['languages_id']);
-        $updated = 1;
+            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
+              tep_db_query("UPDATE ".TABLE_CATEGORIES_DESCRIPTION." SET ".$cached_flag." = 1 WHERE categories_id = ".$categories['categories_id']." AND language_id = ".$lng['languages_id']);
+              $updated     = 1;
+            } else {
+              $error = 1;
+              echo "Error: Category:" . $categories['categories_id'] . " \n";
+            }
     }
 }
 } //end GENERATE_CATEGORIES
 
 if (GENERATE_MANUFACTURERS == 'true') {
-  if ($debug_level>2) "GENERATING_MANUFACTURERS\n";
 
+  if ($debug_level>2) "GENERATING_MANUFACTURERS\n";
   $manufacturers_query = tep_db_query("SELECT m.manufacturers_id, manufacturers_name  FROM " . TABLE_MANUFACTURERS . " m, " . TABLE_MANUFACTURERS_INFO . " mi
   WHERE
   m.manufacturers_id = mi.manufacturers_id
@@ -345,13 +358,6 @@ if (GENERATE_MANUFACTURERS == 'true') {
             shell_exec('mkdir -p '.$newpath);
         }
   
-
-
-
-//  TODO errors check:
-//  $tst = file_get_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . $newpath . "/index.html");
-//  if (preg_match("/<\/html>/", $tst)) file_put_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error','0'); else { file_put_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error','1'); echo 'ERROR generating:' . $newpath . "\n"; }
-
         $output      = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
@@ -374,12 +380,15 @@ exit;
             curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
             $output      .= curl_exec($curl_handle);
             curl_close($curl_handle);
-    $output = filtr($output);
+            $output = filtr($output);
             file_put_contents($newpath.'index.php', stripslashes($output), 644);
-
-
-  tep_db_query("UPDATE " . TABLE_MANUFACTURERS_INFO . " SET " . $cached_flag . " = 1 WHERE manufacturers_id = " . $manufacturers['manufacturers_id'] . " AND languages_id = " . $lng['languages_id']);
-  $updated = 1;
+            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
+              tep_db_query("UPDATE " . TABLE_MANUFACTURERS_INFO . " SET " . $cached_flag . " = 1 WHERE manufacturers_id = " . $manufacturers['manufacturers_id'] . " AND languages_id = " . $lng['languages_id']);
+              $updated     = 1;
+            } else {
+              $error = 1;
+              echo "Error: Manufacturer:" . $manufacturers['manufacturers_id'] . " \n";
+            }
     }
 }
 } //end GENERATE_MANUFACTURERS
@@ -394,7 +403,7 @@ while ($topics       = tep_db_fetch_array($topics_query)) {
     if (tep_db_num_rows($topics_query)) {
         $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_RELATIVE_CATALOG . str_replace(HTTP_SERVER, '', tep_href_link(FILENAME_ARTICLES, 'tPath='.$topics['topics_id']))."/"; //NEW??
         if (!is_dir($newpath)) {
-            shell_exec('mkdir -p '.$newpath);
+            shell_exec('mkdir -p '. $newpath);
         }
         $output      = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
@@ -417,8 +426,14 @@ exit;
         $output      .= curl_exec($curl_handle);
         curl_close($curl_handle);
     $output = filtr($output);
+            file_put_contents($newpath.'index.php', stripslashes($output), 644); //Missing?!
+            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
         tep_db_query("UPDATE ".TABLE_TOPICS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE topics_id = ".$topics['topics_id']." AND language_id = ".$lng['languages_id']);
-        $updated     = 1;
+              $updated     = 1;
+            } else {
+              $error = 1;
+              echo "Error: Topics:" . $topics['topics_id'] . " \n";
+            }
     }
 }
 } //end GENERATE_TOPICS
@@ -466,8 +481,13 @@ exit;
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
 
-        tep_db_query("UPDATE ".TABLE_ARTICLES_DESCRIPTION." SET ".$cached_flag." = 1 WHERE articles_id = ".$articles['articles_id']." AND language_id = ".$lng['languages_id']);
-        $updated = 1;
+            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
+              tep_db_query("UPDATE ".TABLE_ARTICLES_DESCRIPTION." SET ".$cached_flag." = 1 WHERE articles_id = ".$articles['articles_id']." AND language_id = ".$lng['languages_id']);
+              $updated     = 1;
+            } else {
+              $error = 1;
+              echo "Error: Article:" . $articles['articles_id'] . " \n";
+            }
     }
 }
 } //end GENERATE_ARTICLES
@@ -506,15 +526,22 @@ exit;
     $output = filtr($output);
         file_put_contents($newpath.'index.php', stripslashes($output), 644);
 
+            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE information_id = ".$information['information_id']." AND language_id = ".$lng['languages_id']);
-        $updated = 1;
+              $updated     = 1;
+            } else {
+              $error = 1;
+              echo "Error: Information:" . $information['information_id'] . " \n";
+            }
     }
 }
+} //end GENERATE_INFORMATION 
+/*!?????
 if ($update_all == 'true')
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE language_id = ".$lng['languages_id']);
-} //end GENERATE_INFORMATION 
+*/
 //GENERATING_ALL_ALL if UPDATE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-echo 'updated je:'.$updated."\n";
+echo 'updated status:'.$updated."\n";
 if ($updated == 1) {
 
 if ($debug_level > 2)      echo 'Generating Manufacturers index' . "\n";
@@ -543,8 +570,10 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remo
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
     $output = filtr($output);
-    file_put_contents($newpath . '/' . 'index.php',
-        stripslashes($output), 644);
+    file_put_contents($newpath . '/' . 'index.php', stripslashes($output), 644);
+            if (!preg_match("/<\/html>/", file_get_contents($newpath . '/index.php'))) {
+              $error = 1;
+            }
 
 if ($debug_level > 2)      echo 'Generating New Products All Page' . "\n";
 $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . remove_accents(constant('PRODUCTS_NEW_PAGE'));
@@ -573,8 +602,11 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
     $output = filtr($output);
-    file_put_contents($newpath . '/' . 'index.php',
-        stripslashes($output), 644);
+    file_put_contents($newpath . '/' . 'index.php', stripslashes($output), 644);
+            if (!preg_match("/<\/html>/", file_get_contents($newpath . '/index.php'))) {
+              $error = 1;
+              echo "Error: New Products All Page \n";
+            }
 
 
 /*
@@ -688,18 +720,15 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
     $output      .= curl_exec($curl_handle);
     curl_close($curl_handle);
     $output = filtr($output);
-    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html',
-//??orig:    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_CATALOG.'/index.html',
-        stripslashes($output), 644);
+    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html', stripslashes($output), 644);
+            if (!preg_match("/<\/html>/", file_get_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html'))) {
+              $error = 1;
+              echo "Error: HomePage \n";
+            } else {
+//set cached_flag 1 for information constants
+        tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE information_group_id != ". $information_group_id ." AND language_id = ".$lng['languages_id']);
 
-
-
-
-
-//TODO:tohle pustit pak taky!!!
-//    $tst = file_get_contents(DIR_FS_DOCUMENT_ROOT . "/index.html");
-//    if (preg_match("/<\/html>/", $tst)) file_put_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error','0'); else { file_put_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error','1'); echo "ERROR generating: index.html \n"; }
-
+}
 
     /*
       //RSYNC <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -709,22 +738,29 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
       $error = file_get_contents(RSYNC_LOCAL_DEST_PATH . OSC_DIR . 'error');
       echo 'error je: ' . $error ."\n";
      */
-    if ($error < 2) {
+    if ($error < 1) {
         echo 'Rsync start ...'."\n";
 //local rsync
         if (RSYNCLOGGING == 'true') {
             shell_exec('rsync -av --exclude-from  '. DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' >> ' . REPLICATION_LOG_DIR.HTTPS_COOKIE_DOMAIN . '_rsync_import_ALL.osclog  2>&1');
         } else {
-            shell_exec('rsync -av --exclude-from  '. DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR);
+            shell_exec('rsync -av --exclude-from  '. DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR  . ' --delete --delete-excluded');
         }
 
 
         if (RSYNC_TO_REMOTE == 1 && $argv[2] == 'shop') {
+/*
             foreach ($remoteservers_arr as &$remoteserver) {
                                 shell_exec('rsync --chmod=D755,F644 -ave   ssh --protocol=29 --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete --delete-excluded');
-                if ($debug_level > 2) echo('rsync --chmod=D755,F644 -ave   ssh --protocol=29  --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete');
+                if ($debug_level > 2) echo('rsync --chmod=D755,F644 -ave   ssh --protocol=29  --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete --delete-excluded');
             }
+*/
 //orig    shell_exec('~/rsync_eshop.sh >> ' . REPLICATION_LOG_DIR . HTTPS_COOKIE_DOMAIN . '_rsync_export.osclog  2>&1');
+//	shell_exec("composer --no-dev --optimize-autoloader update");
+	die("docker build -t purehtml/" . remove_accents(STORE_NAME) . " -t purehtml/" . remove_accents(STORE_NAME) . ":`git rev-parse --short HEAD` " . RSYNC_LOCAL_DEST_PATH . OSC_DIR);
+	
+
+
         }
     } else {
         echo 'Rsync to Eshop ERROR code:'.$error."\n";

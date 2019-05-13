@@ -50,7 +50,7 @@ function tep_redirect($url)
         tep_redirect(tep_href_link(FILENAME_DEFAULT, '', 'NONSSL', false));
     }
 
-    if ((ENABLE_SSL == true) && (getenv('HTTPS') == 'on')) { // We are loading an SSL page
+    if ((ENABLE_SSL === true) && (getenv('HTTPS') == 'on')) { // We are loading an SSL page
         if (substr($url, 0, strlen(HTTP_SERVER.DIR_WS_HTTP_CATALOG)) == HTTP_SERVER.DIR_WS_HTTP_CATALOG) { // NONSSL url
             $url = HTTPS_SERVER.DIR_WS_HTTPS_CATALOG.substr($url,
                     strlen(HTTP_SERVER.DIR_WS_HTTP_CATALOG)); // Change it to SSL
@@ -72,16 +72,35 @@ function tep_parse_input_field_data($data, $parse)
 {
     return strtr(trim($data), $parse);
 }
+/**
+ * short_words_typography czech languagee typography
+ * 
+ * @author PureHTML
+ * 
+ * @param int    $languages_id Current Language
+ * 
+ * @return string with added &nbsp;
+ */
+function short_words_typography($data)
+{
+    if ( setlocale(0,'0') == 'cs_CZ' ) { //TODO: Fix to lang name/code
+        foreach (['a', 'u', 'i', 'k', 's', 'v', 'z', 'U', 'A', 'I', 'K', 'O', 'S',
+        'V', 'Z'] as $word) {
+            $data = str_replace(' '.$word.' ', ' '.$word.'&nbsp;', $data);
+        }
+    }
+    return $data;
+}
 
 function tep_output_string($string, $translate = false, $protected = false)
 {
-    if ($protected == true) {
+    if ($protected === true) {
         if (!is_string($string)) {
             echo '';
         }
         return htmlspecialchars(is_array($string) ? implode('', $string) : $string);
     } else {
-        if ($translate == false) {
+        if ($translate === false) {
             return tep_parse_input_field_data($string, array('"' => '&quot;'));
         } else {
             return tep_parse_input_field_data($string, $translate);
@@ -223,7 +242,7 @@ function tep_get_countries($countries_id = '', $with_iso_codes = false)
 {
     $countries_array = array();
     if (tep_not_null($countries_id)) {
-        if ($with_iso_codes == true) {
+        if ($with_iso_codes === true) {
             $countries        = tep_db_query("select countries_name, countries_iso_code_2, countries_iso_code_3 from ".TABLE_COUNTRIES." where countries_id = '".(int) $countries_id."' order by countries_name");
             $countries_values = tep_db_fetch_array($countries);
             $countries_array  = array('countries_name' => $countries_values['countries_name'],
@@ -448,7 +467,7 @@ function tep_calculate_tax($price, $tax)
 function tep_count_products_in_category($category_id, $include_inactive = false)
 {
     $products_count = 0;
-    if ($include_inactive == true) {
+    if ($include_inactive === true) {
         $products_query = tep_db_query("select count(*) as total from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_TO_CATEGORIES." p2c where p.products_id = p2c.products_id and p2c.categories_id = '".(int) $category_id."'");
     } else {
         $products_query = tep_db_query("select count(*) as total from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_TO_CATEGORIES." p2c where p.products_id = p2c.products_id and p.products_status = '1' and p2c.categories_id = '".(int) $category_id."'");
@@ -1054,7 +1073,7 @@ function tep_get_uprid($prid, $params)
                 }
             }
 
-            if ($attributes_check == true) {
+            if ($attributes_check === true) {
                 $uprid .= $attributes_ids;
             }
         }
@@ -1080,7 +1099,7 @@ function tep_get_uprid($prid, $params)
                     }
                 }
 
-                if ($attributes_check == true) {
+                if ($attributes_check === true) {
                     $uprid .= $attributes_ids;
                 }
             }
@@ -1482,7 +1501,7 @@ function tep_count_customer_orders($id = '', $check_session = true)
         }
     }
 
-    if ($check_session == true) {
+    if ($check_session === true) {
         if ((tep_session_is_registered('customer_id') === false) || ($id != $customer_id)) {
             return 0;
         }
@@ -1506,7 +1525,7 @@ function tep_count_customer_address_book_entries($id = '', $check_session = true
         }
     }
 
-    if ($check_session == true) {
+    if ($check_session === true) {
         if ((tep_session_is_registered('customer_id') === false) || ($id != $customer_id)) {
             return 0;
         }

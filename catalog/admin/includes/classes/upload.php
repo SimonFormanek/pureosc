@@ -33,7 +33,7 @@ class upload
         if (tep_not_null($this->file) && tep_not_null($this->destination)) {
             $this->set_output_messages('session');
 
-            if (($this->parse() == true) && ($this->save() == true)) {
+            if (($this->parse() === true) && ($this->save() === true)) {
                 return true;
             } else {
                 return false;

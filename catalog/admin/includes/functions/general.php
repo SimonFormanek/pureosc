@@ -68,10 +68,10 @@ function tep_parse_input_field_data($data, $parse)
 
 function tep_output_string($string, $translate = false, $protected = false)
 {
-    if ($protected == true) {
+    if ($protected === true) {
         return htmlspecialchars($string);
     } else {
-        if ($translate == false) {
+        if ($translate === false) {
             return tep_parse_input_field_data($string, array('"' => '&quot;'));
         } else {
             return tep_parse_input_field_data($string, $translate);
@@ -1399,7 +1399,7 @@ function tep_round($value, $precision)
 // Add tax to a products price
 function tep_add_tax($price, $tax, $override = false)
 {
-    if (( (DISPLAY_PRICE_WITH_TAX == 'true') || ($override == true) ) && ($tax > 0)) {
+    if (( (DISPLAY_PRICE_WITH_TAX == 'true') || ($override === true) ) && ($tax > 0)) {
         return $price + tep_calculate_tax($price, $tax);
     } else {
         return $price;

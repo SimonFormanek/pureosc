@@ -32,7 +32,7 @@ if (tep_not_null($action)) {
             $customers_newsletter = tep_db_prepare_input($_POST['customers_newsletter']);
 
             $customers_gender = tep_db_prepare_input($_POST['customers_gender']);
-            $customers_dob = tep_db_prepare_input($_POST['customers_dob']); 
+            $customers_dob = tep_db_prepare_input($_POST['customers_dob']);
 
             $default_address_id = tep_db_prepare_input($_POST['default_address_id']);
             $entry_vat_number = tep_db_prepare_input($_POST['entry_vat_number']);
@@ -47,6 +47,7 @@ if (tep_not_null($action)) {
             $entry_vat_number = tep_db_prepare_input($_POST['entry_vat_number']);
             $entry_company_number = tep_db_prepare_input($_POST['entry_company_number']);
 
+            $adresator = new \PureOSC\Admin\AddressBook((int) $default_address_id);
             $entry_state = tep_db_prepare_input($_POST['entry_state']);
             if (isset($_POST['entry_zone_id']))
                 $entry_zone_id = tep_db_prepare_input($_POST['entry_zone_id']);
@@ -178,6 +179,9 @@ if (tep_not_null($action)) {
 
                 tep_db_perform(TABLE_CUSTOMERS, $sql_data_array, 'update',
                     "customers_id = '" . (int)$customers_id . "'");
+                $adminLog->logMySQLChange($customerator->getData(),
+                    $sql_data_array, 'customers', $customers_id,
+                    array_keys($sql_data_array));
 
                 tep_db_query("update " . TABLE_CUSTOMERS_INFO . " set customers_info_date_account_last_modified = now() where customers_info_id = '" . (int)$customers_id . "'");
 
@@ -207,9 +211,13 @@ if (tep_not_null($action)) {
                     }
                 }
 
-                tep_db_perform(TABLE_ADDRESS_BOOK, $sql_data_array, 'update',
+                tep_db_perform(constant('TABLE_ADDRESS_BOOK'), $sql_data_array,
+                    'update',
                     "customers_id = '" . (int)$customers_id . "' and address_book_id = '" . (int)$default_address_id . "'");
 
+                $adminLog->logMySQLChange($adresator->getData(),
+                    $sql_data_array, constant('TABLE_ADDRESS_BOOK'),
+                    $customers_id, array_keys($sql_data_array));
 
                 if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
 
@@ -241,7 +249,7 @@ if (tep_not_null($action)) {
                 }
 
                 $adminLog->logMySQLChange($customerator->getData(), $sql_data_array, 'customers',
-                    $customers_id, ['entry_firstname', 'entry_lastname', 'entry_vat_number', 'entry_company_number', 'customers_email_address', 'customers_telephone', 'entry_street_address', 'customers_newsletter']);
+                    $customers_id, ['nentry_firstname', 'entry_lastname', 'entry_vat_number', 'entry_company_number', 'customers_email_address', 'customers_telephone', 'entry_street_address', 'customers_newsletter']);
 
                 tep_redirect(tep_href_link(FILENAME_CUSTOMERS,
                     tep_get_all_get_params(array('cID', 'action')) . 'cID=' . $customers_id));
@@ -272,7 +280,9 @@ if (tep_not_null($action)) {
             tep_db_query("delete from " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . " where customers_id = '" . (int)$customers_id . "'");
             tep_db_query("delete from " . TABLE_WHOS_ONLINE . " where customer_id = '" . (int)$customers_id . "'");
 
-            $adminLog->logEvent('Remove what?', 'Customer Data', null, PureOSC\CustomerLog::sqlUri('customers', $customers_id, 'all'), $customers_id);
+            $adminLog->logEvent('Remove what?', 'Customer Data', null,
+                PureOSC\CustomerLog::sqlUri('customers', $customers_id, 'all'),
+                $customers_id);
 
             tep_redirect(tep_href_link(FILENAME_CUSTOMERS,
                 tep_get_all_get_params(array('cID', 'action'))));
@@ -283,14 +293,15 @@ if (tep_not_null($action)) {
             $customers_query = tep_db_query("select c.customers_id, c.customers_gender, c.customers_firstname, c.customers_lastname, c.customers_dob, c.customers_email_address, a.entry_company, a.entry_vat_number, a.entry_company_number, a.entry_street_address, a.entry_suburb, a.entry_postcode, a.entry_city, a.entry_state, a.entry_zone_id, a.entry_country_id, c.customers_telephone, c.customers_fax, c.customers_newsletter, c.customers_default_address_id from " . TABLE_CUSTOMERS . " c left join " . TABLE_ADDRESS_BOOK . " a on c.customers_default_address_id = a.address_book_id where a.customers_id = c.customers_id and c.customers_id = '" . (int)$_GET['cID'] . "'");
             $customers = tep_db_fetch_array($customers_query);
             $cInfo = new objectInfo($customers);
-            $adminLog->logEvent('See what?', 'Customer Data', null, PureOSC\CustomerLog::sqlUri('customers', $customers_id, 'all'), $customers_id);
+            $adminLog->logEvent('See what?', 'Customer Data', null,
+                PureOSC\CustomerLog::sqlUri('customers', $customers_id, 'all'),
+                $customers_id);
     }
 }
 
 require(DIR_WS_INCLUDES . 'template_top.php');
 
 if ($action == 'edit' || $action == 'update') { echo '
-    
     <script type="text/javascript"><!--
 
         function check_form() {
@@ -331,7 +342,7 @@ if ($action == 'edit' || $action == 'update') { echo '
                 error_message = error_message + ' . JS_DOB . ';
                 error = 1;
             }';
-            } 
+            }
 
             echo 'if (customers_email_address.length < ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ') {
                 error_message = error_message + ' . JS_EMAIL_ADDRESS . ';
@@ -353,7 +364,6 @@ if ($action == 'edit' || $action == 'update') { echo '
                 error = 1;
             }';
 
-            
             if (ACCOUNT_STATE == 'true') { echo '
             
             if (document.customers.elements[\'entry_state\'].type != "hidden") {
@@ -362,9 +372,7 @@ if ($action == 'edit' || $action == 'update') { echo '
                     error = 1;
                 }
             }'; 
-            
             }
-            
 
             echo 'if (document.customers.elements[\'entry_country_id\'].type != "hidden") {
                 if (document.customers.entry_country_id.value == 0) {
@@ -387,7 +395,6 @@ if ($action == 'edit' || $action == 'update') { echo '
         }
 
         //--></script>';
-    
 }
 ?>
 
@@ -419,12 +426,12 @@ if ($action == 'edit' || $action == 'update') { echo '
                     $cInfo->customers_default_address_id); 
 
         ?>
-        <tr><?php 
+        <tr><?php
             /*
             echo tep_draw_form('customers', FILENAME_CUSTOMERS,
                     tep_get_all_get_params(array('action')) . 'action=update',
                     'post', 'onsubmit="return check_form();"') . tep_draw_hidden_field('default_address_id',
-                    $cInfo->customers_default_address_id); 
+                    $cInfo->customers_default_address_id);
             */        
             ?>
             <td class="formAreaTitle"><?php echo CATEGORY_PERSONAL; ?></td>
@@ -517,7 +524,6 @@ if ($action == 'edit' || $action == 'update') { echo '
                                         'maxlength="10" id="customers_dob"',
                                         true);
                                 }
-                                
                                 echo '
                                 
                                 <script type="text/javascript">$(\'#customers_dob\').datepicker({
@@ -527,15 +533,12 @@ if ($action == 'edit' || $action == 'update') { echo '
                                         yearRange: \'-                            100:+0\'
                                     }); 
                                 </script> 
-                                
                             </td>
                         </tr>
                                     '; 
-                                    
-                     } 
-                     
+                    }
                     echo '
-                    <tr>
+                    < tr >
                     <td clas s="main">' . _('E-Mail Address') . '</td>
                     <td class="main">';
                         
@@ -560,14 +563,11 @@ if ($action == 'edit' || $action == 'update') { echo '
                                 $cInfo->customers_email_address,
                                 'maxlength="96"', true);
                         }
-                        
                         echo '</td>
                     </tr>
                 </table>
-                </td>
+                < /td>
         </tr>';
-        
-        
         if (ACCOUNT_COMPANY == 'true') {
             ?>
             <tr>
@@ -620,14 +620,14 @@ if ($action == 'edit' || $action == 'update') { echo '
                                 }
                                 ?></td>
                         </tr>
-                        
+
                     </table>
                 </td>
             </tr>
             <?php
         }
         ?>
-        <tr>
+        < tr >
         <td><?php echo tep_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
         </tr>
         <tr>
@@ -1060,7 +1060,7 @@ if ($action == 'edit' || $action == 'update') { echo '
         <?php
     }
     ?>
-    </table>
+    < /table>
 
     <?php
     require(DIR_WS_INCLUDES . 'template_bottom.php');

@@ -26,14 +26,14 @@ class bm_whats_new
 
     function bm_whats_new()
     {
-        $this->title       =  MODULE_BOXES_WHATS_NEW_TITLE;
-        $this->description = MODULE_BOXES_WHATS_NEW_DESCRIPTION;
+        $this->title       = _('What\'s New');
+        $this->description = _('Show the newest products');
 
         if (defined('MODULE_BOXES_WHATS_NEW_STATUS')) {
-            $this->sort_order = MODULE_BOXES_WHATS_NEW_SORT_ORDER;
-            $this->enabled    = (MODULE_BOXES_WHATS_NEW_STATUS == 'True');
+            $this->sort_order = constant('MODULE_BOXES_WHATS_NEW_SORT_ORDER');
+            $this->enabled    = (constant('MODULE_BOXES_WHATS_NEW_STATUS') == 'True');
 
-            $this->group = ((MODULE_BOXES_WHATS_NEW_CONTENT_PLACEMENT == 'Left Column')
+            $this->group = ((constant('MODULE_BOXES_WHATS_NEW_CONTENT_PLACEMENT') == 'Left Column')
                     ? 'boxes_column_left' : 'boxes_column_right');
         }
     }

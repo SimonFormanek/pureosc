@@ -79,7 +79,7 @@ if ((isset($_GET['keywords']) && empty($_GET['keywords'])) &&
         }
     }
 
-    if (($date_check_error == false) && tep_not_null($dfrom) && tep_not_null($dto)) {
+    if (($date_check_error === false) && tep_not_null($dfrom) && tep_not_null($dto)) {
         if (mktime(0, 0, 0, $dfrom_array[1], $dfrom_array[2], $dfrom_array[0]) > mktime(0,
                 0, 0, $dto_array[1], $dto_array[2], $dto_array[0])) {
             $error = true;
@@ -108,7 +108,7 @@ if ((isset($_GET['keywords']) && empty($_GET['keywords'])) &&
         }
     }
 
-    if (($price_check_error == false) && is_float($pfrom) && is_float($pto)) {
+    if (($price_check_error === false) && is_float($pfrom) && is_float($pto)) {
         if ($pfrom >= $pto) {
             $error = true;
 
@@ -132,7 +132,7 @@ if (empty($dfrom) && empty($dto) && empty($pfrom) && empty($pto) && empty($keywo
     $messageStack->add_session('search', ERROR_AT_LEAST_ONE_INPUT);
 }
 
-if ($error == true) {
+if ($error === true) {
     tep_redirect(tep_href_link(FILENAME_ADVANCED_SEARCH,
             tep_get_all_get_params(), 'NONSSL', true, false));
 }

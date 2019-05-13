@@ -77,7 +77,7 @@
     function update_status() {
       global $order;
 
-      if ( ($this->enabled == true) && ((int)MODULE_PAYMENT_PAYPAL_STANDARD_ZONE > 0) ) {
+      if ( ($this->enabled === true) && ((int)MODULE_PAYMENT_PAYPAL_STANDARD_ZONE > 0) ) {
         $check_flag = false;
         $check_query = tep_db_query("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_PAYMENT_PAYPAL_STANDARD_ZONE . "' and zone_country_id = '" . $order->billing['country']['id'] . "' order by zone_id");
         while ($check = tep_db_fetch_array($check_query)) {
@@ -90,7 +90,7 @@
           }
         }
 
-        if ($check_flag == false) {
+        if ($check_flag === false) {
           $this->enabled = false;
         }
       }
@@ -169,7 +169,7 @@
           $insert_order = true;
         }
 
-        if ($insert_order == true) {
+        if ($insert_order === true) {
           $order_totals = array();
           if (is_array($order_total_modules->modules)) {
             foreach ($order_total_modules->modules as $value) {
@@ -430,7 +430,7 @@
         $paypal_item_total += $item_params['tax_cart'];
       }
 
-      if ( ($has_negative_price == false) && ($this->format_raw($paypal_item_total) == $this->format_raw($order->info['total'])) ) {
+      if ( ($has_negative_price === false) && ($this->format_raw($paypal_item_total) == $this->format_raw($order->info['total'])) ) {
         $parameters = array_merge($parameters, $item_params);
       } else {
         $parameters['tax_cart'] = $this->format_raw($total_tax);
@@ -983,7 +983,7 @@
         }
 
         if (!empty($email_body)) {
-          tep_mail('', MODULE_PAYMENT_PAYPAL_STANDARD_DEBUG_EMAIL, 'PayPal Standard Debug E-Mail' . ($ipn == true ? ' (IPN)' : ''), trim($email_body), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+          tep_mail('', MODULE_PAYMENT_PAYPAL_STANDARD_DEBUG_EMAIL, 'PayPal Standard Debug E-Mail' . ($ipn === true ? ' (IPN)' : ''), trim($email_body), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
         }
       }
     }

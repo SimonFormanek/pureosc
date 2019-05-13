@@ -582,6 +582,7 @@ class Image
 
         return $new_image;
     }
+    // EOF sharpen filter
 }
 
 // end class

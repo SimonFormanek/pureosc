@@ -28,8 +28,8 @@
             <p class="text-center"><?php echo $currencies->display_price($new_products['products_price'], tep_get_tax_rate($new_products['products_tax_class_id'])); ?></p>
             <div class="text-center">
               <div class="btn-group">
-                <a href="<?php echo tep_href_link(FILENAME_PRODUCT_INFO, tep_get_all_get_params(array('action')) . 'products_id=' . $new_products['products_id']); ?>" class="btn btn-default" role="button"><?php echo SMALL_IMAGE_BUTTON_VIEW; ?></a>
-                <a href="<?php echo tep_href_link($_SERVER['PHP_SELF'], tep_get_all_get_params(array('action')) . 'action=buy_now&products_id=' . $new_products['products_id']); ?>" class="btn btn-success" role="button"><?php echo SMALL_IMAGE_BUTTON_BUY; ?></a>
+                <a href="<?php echo tep_href_link(FILENAME_PRODUCT_INFO, tep_get_all_get_params(array('action')) . 'products_id=' . $new_products['products_id']); ?>" class="btn btn-default" role="button"><?php echo _('View'); ?></a>
+                <a href="<?php echo tep_href_link($_SERVER['PHP_SELF'], tep_get_all_get_params(array('action')) . 'action=buy_now&products_id=' . $new_products['products_id']); ?>" class="btn btn-success" role="button"><?php echo _('Buy'); ?></a>
               </div>
             </div>
           </div>

@@ -86,7 +86,7 @@ class tableBlock
         }
         $tableBox_string .= '</table>'."\n";
 
-        if ($form_set == true) $tableBox_string .= '</form>'."\n";
+        if ($form_set === true) $tableBox_string .= '</form>'."\n";
 
         return $tableBox_string;
     }

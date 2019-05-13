@@ -38,7 +38,7 @@ if (isset($_GET['products_id'])) {
     }
 }
 
-if ($valid_product == false) {
+if ($valid_product === false) {
     tep_redirect(tep_href_link(FILENAME_PRODUCT_INFO,
             'products_id='.(int) $_GET['products_id']));
 }
@@ -93,7 +93,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['fo
                         : 15)));
     }
 
-    if ($error == false) {
+    if ($error === false) {
         $email_subject = sprintf(TEXT_EMAIL_SUBJECT, $from_name, STORE_NAME);
         $email_body    = sprintf(TEXT_EMAIL_INTRO, $to_name, $from_name,
                 $product_info['products_name'], STORE_NAME)."\n\n";

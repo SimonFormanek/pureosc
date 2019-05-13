@@ -95,7 +95,7 @@ class ShoppingCart
         $this->weight       = 0;
         $this->content_type = false;
 
-        if (tep_session_is_registered('customer_id') && ($reset_database == true)) {
+        if (tep_session_is_registered('customer_id') && ($reset_database === true)) {
             tep_db_query("delete from ".TABLE_CUSTOMERS_BASKET." where customers_id = '".(int) $customer_id."'");
             tep_db_query("delete from ".TABLE_CUSTOMERS_BASKET_ATTRIBUTES." where customers_id = '".(int) $customer_id."'");
         }
@@ -137,13 +137,13 @@ class ShoppingCart
         }
 
         if (is_numeric($products_id) && is_numeric($qty) && ($attributes_pass_check
-            == true)) {
+            === true)) {
             $check_product_query = tep_db_query("select products_status from ".TABLE_PRODUCTS." where products_id = '".(int) $products_id."'");
             $check_product       = tep_db_fetch_array($check_product_query);
 
             if (($check_product !== false) && ($check_product['products_status']
                 == '1')) {
-                if ($notify == true) {
+                if ($notify === true) {
                     $new_products_id_in_cart = $products_id;
                     tep_session_register('new_products_id_in_cart');
                 }
@@ -202,7 +202,7 @@ class ShoppingCart
         }
 
         if (is_numeric($products_id) && isset($this->contents[$products_id_string])
-            && is_numeric($quantity) && ($attributes_pass_check == true)) {
+            && is_numeric($quantity) && ($attributes_pass_check === true)) {
             $this->contents[$products_id_string] = array('qty' => (int) $quantity);
 // update database
             if (tep_session_is_registered('customer_id'))

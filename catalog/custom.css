@@ -528,7 +528,9 @@ h3{font-size:120%}
 .columns3 div a {
   display:block;
 }
-
+.contentContainer{                                                                      
+  min-height:50vh !important;
+}
 /* extra resposive rules BEGIN ----------------------------------------------------*/
 
 /*@media Default*/

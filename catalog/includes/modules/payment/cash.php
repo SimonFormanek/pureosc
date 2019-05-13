@@ -124,7 +124,7 @@ class cash
                 $insert_order = true;
             }
 
-            if ($insert_order == true) {
+            if ($insert_order === true) {
                 $order_totals = array();
                 if (is_array($order_total_modules->modules)) {
                     reset($order_total_modules->modules);

@@ -125,7 +125,7 @@ if ($category_depth == 'nested') {
 
     <?php
 } elseif ($category_depth == 'products' || (isset($_GET['manufacturers_id']) && !empty($_GET['manufacturers_id']))) {
-
+/* TODO: not work for manufacturers
     //PURE:NEW:inactive_category: if sort_order < 1 -> redirect to Index
     //TODO: MORE AI PLEASE .... starting realistic with: go to parent category
     if (SERVER_INSTANCE != 'admin') {
@@ -137,7 +137,7 @@ if ($category_depth == 'nested') {
             exit;
         }
     }
-
+*/
 // create column list
     $define_list = array('PRODUCT_LIST_MODEL' => PRODUCT_LIST_MODEL,
         'PRODUCT_LIST_NAME' => PRODUCT_LIST_NAME,

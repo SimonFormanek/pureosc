@@ -36,7 +36,7 @@
     $error = true;
   }
 
-  if ( $error == false ) {
+  if ( $error === false ) {
     $order_query = tep_db_query("select orders_id, orders_status, currency, currency_value from " . TABLE_ORDERS . " where orders_id = '" . (int)$_POST['cartId'] . "' and customers_id = '" . (int)$_POST['M_cid'] . "'");
 
     if (!tep_db_num_rows($order_query)) {
@@ -44,7 +44,7 @@
     }
   }
 
-  if ( $error == true ) {
+  if ( $error === true ) {
     $rbsworldpay_hosted->sendDebugEmail();
 
     exit;

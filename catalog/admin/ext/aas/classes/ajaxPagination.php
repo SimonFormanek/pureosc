@@ -100,7 +100,7 @@ class ajaxPagination
     public function draw()
     {
 
-        if ($this->drawPaginationIfSinglePage == false) {
+        if ($this->drawPaginationIfSinglePage === false) {
             if ($this->totalPages <= 1) return false;
         }
 
@@ -120,7 +120,7 @@ class ajaxPagination
         for ($i = $this->currentPage - $m; $i < $this->totalPages; $i++) {
 
             if ($i > $this->currentPage + 2 && $i < $this->totalPages - 2) {
-                if ($jump == false)
+                if ($jump === false)
                         echo '<li style="color:black;">'.$this->jumpString.'</li>';
                 $jump = true;
                 continue;

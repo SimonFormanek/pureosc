@@ -231,7 +231,7 @@
               }
             }
 
-            if ($force_login == true) {
+            if ($force_login === true) {
               $paypal_login_customer_id = $customer_id;
             } else {
               $paypal_login_customer_id = false;

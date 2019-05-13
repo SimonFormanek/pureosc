@@ -64,7 +64,7 @@ class moneybookers_ent extends moneybookers
 
         if (!defined('MODULE_PAYMENT_MONEYBOOKERS_STATUS')) {
             $this->enabled = false;
-        } elseif (($this->enabled == true) && ((int) MODULE_PAYMENT_MONEYBOOKERS_ENT_ZONE
+        } elseif (($this->enabled === true) && ((int) MODULE_PAYMENT_MONEYBOOKERS_ENT_ZONE
             > 0)) {
             $check_flag  = false;
             $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_MONEYBOOKERS_ENT_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
@@ -78,7 +78,7 @@ class moneybookers_ent extends moneybookers
                 }
             }
 
-            if ($check_flag == false) {
+            if ($check_flag === false) {
                 $this->enabled = false;
             }
         }

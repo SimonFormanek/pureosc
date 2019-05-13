@@ -64,7 +64,7 @@ class cm_login_form {
             }
         }
 
-        if ($error == true) {
+        if ($error === true) {
             $messageStack->add('login', _('Error: No match for E-Mail Address and/or Password.'));
         }
 

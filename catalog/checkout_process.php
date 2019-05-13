@@ -83,7 +83,7 @@ if (STOCK_CHECK == 'true') {
         }
     }
     // Out of Stock
-    if ((STOCK_ALLOW_CHECKOUT != 'true') && ($any_out_of_stock == true)) {
+    if ((STOCK_ALLOW_CHECKOUT != 'true') && ($any_out_of_stock === true)) {
         tep_redirect(tep_href_link(FILENAME_SHOPPING_CART));
     }
 }
@@ -92,7 +92,7 @@ $payment_modules->update_status();
 
 if (($payment_modules->selected_module != $payment) || ( is_array($payment_modules->modules)
     && (sizeof($payment_modules->modules) > 1) && !is_object($$payment) ) || (is_object($$payment)
-    && ($$payment->enabled == false))) {
+    && ($$payment->enabled === false))) {
     tep_redirect(tep_href_link(FILENAME_CHECKOUT_PAYMENT,
             'error_message='.urlencode(ERROR_NO_PAYMENT_MODULE_SELECTED), 'SSL'));
 }

@@ -207,7 +207,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 <div class="contentContainer">
     <div class="contentText">
 
-        <?php if ($wasSubmitted == true) { ?>
+        <?php if ($wasSubmitted === true) { ?>
             <div class="pageHeading"><?php echo TEXT_ARTICLE_SUBMITTED; ?></div>
             <div class="buttonSet">
                 <div class="text-right"><?php echo tep_draw_button(IMAGE_BUTTON_CONTINUE,

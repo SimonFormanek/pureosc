@@ -73,7 +73,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
     {
         if (custom != 1)
             document.getElementById("add_generic_cat_filterlist").disabled = 'disabled';
-        else if (document.getElementById("add_generic_cat_filterlist").disabled == true)
+        else if (document.getElementById("add_generic_cat_filterlist").disabled === true)
             document.getElementById("add_generic_cat_filterlist").disabled = '';
         else
             document.getElementById("add_generic_cat_filterlist").disabled = 'disabled';

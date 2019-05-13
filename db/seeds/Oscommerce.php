@@ -15,8 +15,6 @@ class Oscommerce extends AbstractSeed
      */
     public function run()
     {
-        $options = $this->adapter->getOptions();
-        exec("mysql -u {$options['user']} -p{$options['pass']} -h{$options['host']}  {$options['name']} < ".str_replace(".php",
-                ".sql", __FILE__));
+        $this->execute(file_get_contents(str_replace(".php",".sql", __FILE__)));
     }
 }
