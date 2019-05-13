@@ -12,15 +12,20 @@ namespace PureOSC\Admin;
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class Customers extends \Ease\Brick
+class AddressBook extends \Ease\Brick
 {
 
-    public function __construct($init, $optins = [])
+    /**
+     * 
+     * @param mixed $init
+     * @param array $options
+     */
+    public function __construct($init, $options = [])
     {
-        $this->takemyTable('customers');
-        $this->setkeyColumn('customers_id');
-        parent::__construct($init, $optins);
-        if (is_integer($init)) {
+        $this->takemyTable('address_book');
+        $this->setkeyColumn('address_book_id');
+        parent::__construct($init, $options);
+        if(is_integer($init)){
             $this->loadFromSQL($init);
         }
     }

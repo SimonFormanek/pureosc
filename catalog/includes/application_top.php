@@ -253,7 +253,7 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
 // create the shopping cart
 if (!tep_session_is_registered('cart') || !is_object($cart)) {
     tep_session_register('cart');
-    $cart = new ShoppingCart;
+    $cart = new ShoppingCart();
 }
 
 // include currencies class and create an instance
@@ -270,15 +270,8 @@ if (!tep_session_is_registered('language')) {
 }
 $force_language = $oPage->getRequestValue('language');
 
-if (isset($_SESSION['lng'])) {
-    $lng = $_SESSION['lng'];
-} else {
-    $lng = $_SESSION['lng'] = new language();
-}
-
-if($force_language){
-    $lng->set_language($force_language);
-}
+$lng = new language(empty($force_language) ? (defined('DEFAULT_LANGUAGE') ? constant('DEFAULT_LANGUAGE')
+        : 'en') : $force_language);
 
 
 $language     = $lng->language['directory'];

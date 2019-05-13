@@ -14,7 +14,7 @@ define('TABLE_HEADING_CUSTOMERS', 'Customers',true);
 define('TABLE_HEADING_ORDERS_ID', 'Order-No.',true);
 define('TABLE_HEADING_VOUCHER_VALUE', 'Voucher Value',true);
 define('TABLE_HEADING_DATE_PURCHASED', 'Date Purchased',true);
-define('_('Action')', 'Action',true);
+define('TABLE_HEADING_ACTION', 'Action',true);
 define('TEXT_REDEEM_COUPON_MESSAGE_HEADER', 'You recently purchased a Gift Voucher from our online store.' . "\n"
                                           . 'For security reasons this was not made immediately available to you.' . "\n"
                                           . 'However this amount has now been released. You can now visit our store' . "\n"

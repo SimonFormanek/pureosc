@@ -28,7 +28,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
     include('../../../oscconfig/dbconfigure.php');
 }
 
-require_once DIR_FS_CATALOG.'../vendor/autoload.php';
+require_once constant('DIR_FS_CATALOG').'../vendor/autoload.php';
 \Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
 
 // some code to solve compatibility issues
@@ -257,8 +257,7 @@ if (tep_not_null($tPath)) {
 
 
 // include the breadcrumb class and start the breadcrumb trail
-require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');
-$breadcrumb = new breadcrumb;
+$breadcrumb = new breadcrumb();
 
 $messageStack = new AdminMessageStack;
 $adminLog     = new PureOSC\CustomerLog();

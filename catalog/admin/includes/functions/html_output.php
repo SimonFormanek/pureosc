@@ -47,7 +47,7 @@ function tep_href_link($page = '', $parameters = '', $connection = 'SSL',
         $link = substr($link, 0, -1);
 
 // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
-    if (($add_session_id === true) && (SESSION_FORCE_COOKIE_USE == 'False')) {
+    if (($add_session_id === true) && (defined('SESSION_FORCE_COOKIE_USE') && (constant('SESSION_FORCE_COOKIE_USE') == 'False'))) {
         if (tep_not_null($SID)) {
             $_sid = $SID;
         } elseif (( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL

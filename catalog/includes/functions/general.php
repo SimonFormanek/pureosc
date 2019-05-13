@@ -72,6 +72,25 @@ function tep_parse_input_field_data($data, $parse)
 {
     return strtr(trim($data), $parse);
 }
+/**
+ * short_words_typography czech languagee typography
+ * 
+ * @author PureHTML
+ * 
+ * @param int    $languages_id Current Language
+ * 
+ * @return string with added &nbsp;
+ */
+function short_words_typography($data)
+{
+    if ( setlocale(0,'0') == 'cs_CZ' ) { //TODO: Fix to lang name/code
+        foreach (['a', 'u', 'i', 'k', 's', 'v', 'z', 'U', 'A', 'I', 'K', 'O', 'S',
+        'V', 'Z'] as $word) {
+            $data = str_replace(' '.$word.' ', ' '.$word.'&nbsp;', $data);
+        }
+    }
+    return $data;
+}
 
 function tep_output_string($string, $translate = false, $protected = false)
 {

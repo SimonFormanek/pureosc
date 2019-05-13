@@ -174,14 +174,10 @@ class gpwebpayTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @covers gpwebpay::output_error
-     * @todo   Implement testOutput_error().
      */
     public function testOutput_error()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this->object->output_error();
     }
 
     /**

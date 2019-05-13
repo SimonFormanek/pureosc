@@ -41,7 +41,7 @@ class Adresar extends \FlexiPeeHP\Adresar
                 $customerData)) {
             $adresarData['nazev'] = $customerData['customers_firstname'].' '.$customerData['customers_lastname'];
 
-            $kodSource = $customerData['customers_lastname'].$customerData['customers_firstname'];
+            $kodSource = empty($customerData['customers_lastname'].$customerData['customers_firstname']) ? $customerData['customers_id'] : $customerData['customers_lastname'].$customerData['customers_firstname'];
 
             $firstContactData = empty($customerData['customers_id']) ? [] : $this->getFirstContact($customerData['customers_id']);
             if (count($firstContactData)) {
@@ -119,4 +119,6 @@ class Adresar extends \FlexiPeeHP\Adresar
     {
         return $this->takeData($this->convertOscData($sqlDataArray));
     }
+   
+  
 }

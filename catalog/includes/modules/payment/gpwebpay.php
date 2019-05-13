@@ -81,8 +81,7 @@ class gpwebpay
      * 
      * @return 
      */
-    public static function processGpWebPayResponse($response, $order_id = null)
-    {
+    public static function processGpWebPayResponse($response, $order_id = null) {
         global $order, $cart, $cartID;
         $result = $response['PRCODE'];
         switch ($result) {
@@ -108,13 +107,11 @@ class gpwebpay
         return $result;
     }
 
-    function javascript_validation()
-    {
+    function javascript_validation() {
         return false;
     }
 
-    function selection()
-    {
+    function selection() {
         global $cart_gpwebpay_Standard_ID;
 
         if (tep_session_is_registered('cart_gpwebpay_Standard_ID')) {
@@ -140,8 +137,7 @@ class gpwebpay
                     'field' => '<a href="http://www.gpwebpay.cz/"><img src="images/gpwebpay.png"></a>')));
     }
 
-    function pre_confirmation_check()
-    {
+    function pre_confirmation_check() {
         global $cartID, $cart;
 
         if (empty($cart->cartID)) {
@@ -153,8 +149,7 @@ class gpwebpay
         }
     }
 
-    function confirmation()
-    {
+    function confirmation() {
         global $cartID, $cart_gpwebpay_Standard_ID, $customer_id, $languages_id, $order, $order_total_modules;
 
         if (tep_session_is_registered('cartID')) {
@@ -346,8 +341,7 @@ class gpwebpay
      * 
      * @return string
      */
-    function process_button()
-    {
+    function process_button() {
         global $customer_id, $order, $sendto, $currency, $cart_gpwebpay_Standard_ID, $shipping, $order_total_modules;
 
         list( $cartId, $orderId ) = explode('-', $cart_gpwebpay_Standard_ID);
@@ -478,8 +472,7 @@ class gpwebpay
         return $process_button_string;
     }
 
-    function before_process()
-    {
+    function before_process() {
         global $customer_id, $order, $order_totals, $sendto, $billto, $languages_id, $payment, $currencies, $cart, $cart_gpwebpay_Standard_ID;
         global $$payment;
         $order_id          = substr($cart_gpwebpay_Standard_ID,
@@ -492,8 +485,7 @@ class gpwebpay
             $o_stat            = tep_db_fetch_array($my_status_query);
             $current_status_id = (int) $o_stat['orders_status'];
         }
-        if (($current_status_id == MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID)
-            || ($current_status_id == $delivered_status)) {
+        if (($current_status_id == MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID) || ($current_status_id == $delivered_status)) {
             $update_status = false;
         }
         if ($update_status) {
@@ -535,8 +527,7 @@ class gpwebpay
 
         for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
 // Stock Update - Joao Correia
-            if ((MODULE_PAYMENT_GPWEBPAY_DECREASE_STOCK_ON_CREATION == 'True') && (STOCK_LIMITED
-                == 'true')) {
+            if ((MODULE_PAYMENT_GPWEBPAY_DECREASE_STOCK_ON_CREATION == 'True') && (STOCK_LIMITED == 'true')) {
                 if (DOWNLOAD_ENABLED == 'true') {
                     $stock_query_raw     = "SELECT products_quantity, pad.products_attributes_filename
                                 FROM ".TABLE_PRODUCTS." p
@@ -691,8 +682,7 @@ class gpwebpay
      * 
      * @link http://gist.github.com/119517
      */
-    static function convertToAscii($string)
-    {
+    static function convertToAscii($string) {
 // Replace Single Curly Quotes
         $search[]  = chr(226).chr(128).chr(152);
         $replace[] = "'";
@@ -725,18 +715,15 @@ class gpwebpay
         return $string;
     }
 
-    function after_process()
-    {
+    function after_process() {
         return false;
     }
 
-    function output_error()
-    {
+    function output_error() {
         return false;
     }
 
-    function check()
-    {
+    function check() {
         if (!isset($this->_check)) {
             $check_query  = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_GPWEBPAY_STATUS'");
             $this->_check = tep_db_num_rows($check_query);
@@ -744,8 +731,7 @@ class gpwebpay
         return $this->_check;
     }
 
-    function set_order_status($order_status, $set_to_public)
-    {
+    function set_order_status($order_status, $set_to_public) {
         $status_id   = 0;
         $check_query = tep_db_query("select orders_status_id from ".TABLE_ORDERS_STATUS." where orders_status_name = '".$order_status."' limit 1");
         if (tep_db_num_rows($check_query) < 1) {
@@ -770,8 +756,7 @@ class gpwebpay
         return $status_id;
     }
 
-    function install()
-    {
+    function install() {
         $created_status_id     = $this->set_order_status('Processing [gpwebpay]',
             true);
         $sum_too_low_status_id = $this->set_order_status('Sum too low [gpwebpay]',
@@ -807,15 +792,13 @@ class gpwebpay
 //        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('"._('Signing Check error message')."', 'MODULE_PAYMENT_GPWEBPAY_SIGNING_STATUS', 'False', '', '6', '".$sort_order++."', 'gpwebpay::getSigningErrorMessage' , ','gpwebpay::getSigningErrorMessage('");
     }
 
-    function remove()
-    {
+    function remove() {
         tep_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key in ('".implode("', '",
                 $this->keys())."')");
         tep_db_query("delete from ".TABLE_ORDERS_STATUS." where orders_status_name like '%[gpwebpay]%'");
     }
 
-    function keys()
-    {
+    function keys() {
 //'MODULE_PAYMENT_GPWEBPAY_ID', 
         return array('MODULE_PAYMENT_GPWEBPAY_STATUS', 'MODULE_PAYMENT_GPWEBPAY_GATEWAY_SERVER',
             'MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID', 'MODULE_PAYMENT_GPWEBPAY_SECRET_KEY',
@@ -829,8 +812,7 @@ class gpwebpay
     }
 
 // format prices without currency formatting
-    function format_raw($number, $currency_code = '', $currency_value = '')
-    {
+    function format_raw($number, $currency_code = '', $currency_value = '') {
         global $currencies, $currency;
 
         if (empty($currency_code) || !$this->is_set($currency_code)) {
@@ -849,8 +831,7 @@ class gpwebpay
 //
 // calculate gpwebpay MD5 for invoice creation
 //
-    function calcGpwebpayMd5Key($order)
-    {
+    function calcGpwebpayMd5Key($order) {
 
         $sk   = MODULE_PAYMENT_GPWEBPAY_SECRET_KEY;
         $q    = http_build_query(array("merchant_id" => $order['merchant_id'],
@@ -869,8 +850,7 @@ class gpwebpay
      * 
      * @return string
      */
-    public static function getSigningErrorMessage()
-    {
+    public static function getSigningErrorMessage() {
         $success = 'OK';
         $signer  = new \AdamStipak\Webpay\Signer(
             constant('MODULE_PAYMENT_GPWEBPAY_SECRET_KEY'),

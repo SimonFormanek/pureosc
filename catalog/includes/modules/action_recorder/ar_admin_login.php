@@ -22,8 +22,8 @@ class ar_admin_login
 
     function ar_admin_login()
     {
-        $this->title       =  MODULE_ACTION_RECORDER_ADMIN_LOGIN_TITLE;
-        $this->description = MODULE_ACTION_RECORDER_ADMIN_LOGIN_DESCRIPTION;
+        $this->title       = _('Administration Tool Login');
+        $this->description = _('Record usage of Administration Tool logins.');
 
         if ($this->check()) {
             $this->minutes  = (int) MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES;

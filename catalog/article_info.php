@@ -39,7 +39,9 @@ require(DIR_WS_INCLUDES . 'template_top.php');
       <div style="float:left"><h1><?php echo $articles_name; ?></h1></div>
       <?php if (tep_not_null($article_info['articles_image']) && file_exists(DIR_WS_IMAGES . 'article_manager_uploads/' . $article_info['articles_image'])) { ?>
         <div style="float:right"><?php
-            echo tep_image(DIR_WS_IMAGES . 'article_manager_uploads/' . $article_info['articles_image'], 'img-responsive thumbnail group list-group-image')
+                echo tep_image(DIR_WS_IMAGES.'article_manager_uploads/'.$article_info['articles_image'],
+                    $article_info['articles_name'], ARTICLES_IMAGE_WIDTH,
+                    ARTICLES_IMAGE_HEIGHT);
             ?></div>
       <?php } ?>
   </div>

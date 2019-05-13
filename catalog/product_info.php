@@ -23,10 +23,11 @@ require_once('includes/application_top.php');
 if (!isset($_GET['products_id'])) {
     tep_redirect(tep_href_link(FILENAME_DEFAULT));
 }
+$products_id = $_REQUEST['products_id'];
 
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_PRODUCT_INFO);
 
-$product_check_query = tep_db_query("select count(*) as total from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd where p.products_status = '1' and p.products_id = '".(int) $_GET['products_id']."' and pd.products_id = p.products_id and pd.language_id = '".(int) $languages_id."'");
+$product_check_query = tep_db_query("select count(*) as total from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd where p.products_status = '1' and p.products_id = '".$products_id."' and pd.products_id = p.products_id and pd.language_id = '".(int) $languages_id."'");
 $product_check       = tep_db_fetch_array($product_check_query);
 
 require(DIR_WS_INCLUDES.'template_top.php');

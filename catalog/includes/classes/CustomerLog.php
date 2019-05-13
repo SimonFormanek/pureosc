@@ -52,11 +52,12 @@ class CustomerLog extends \Ease\Brick
     /**
      * Log An event
      * 
-     * @param string $question
-     * @param string $answer
-     * @param string $venue 
-     * @param int    $customers_id
-     * @param int    $administrators_id
+     * @param string $question          What is Subject of change
+     * @param string $answer            Which change
+     * @param string $venue             Location of change name
+     * @param string $extId             Url of change
+     * @param int    $customers_id      Affected Customer
+     * @param int    $administrators_id Acting administrator
      * 
      * @return boolean success
      */
@@ -103,9 +104,9 @@ class CustomerLog extends \Ease\Brick
     public function setCustomerID($customers_id)
     {
         if (empty($customers_id) && isset($_SESSION['customers_id'])) {
-            $customers_id       = $_SESSION['customers_id'];
-            $this->customers_id = $customers_id;
+            $customers_id = $_SESSION['customers_id'];
         }
+        $this->customers_id = $customers_id;
     }
 
     /**
@@ -132,15 +133,19 @@ class CustomerLog extends \Ease\Brick
      * @param array  $newData
      * @param string $tableName
      * @param int    $recordID
-     * @param arrays $columns
+     * @param array  $columns
      */
     public function logMySQLChange($originalData, $newData, $tableName,
                                    $recordID, $columns)
     {
         foreach ($columns as $columnName) {
             if ($originalData[$columnName] != $newData[$columnName]) {
-                $this->logEvent($columnName, 'update', null,
-                    self::sqlUri($tableName, current($originalData), $columnName));
+                $this->logEvent(
+                    $columnName,
+                    self::recognizeOperation($columnName, $originalData,
+                        $newData), null,
+                    self::sqlUri($tableName, current($originalData), $columnName)
+                );
             }
         }
     }
@@ -185,9 +190,36 @@ class CustomerLog extends \Ease\Brick
     {
         foreach ($columns as $columnName) {
             if ($originalData[$columnName] != $flexibee->getDataValue($columnName)) {
-                $this->logEvent($columnName, 'update', null,
+                $this->logEvent($columnName, $flexibee->getLastOperationType(), null,
                     $flexibee->getApiURL().'#'.$columnName);
             }
         }
+    }
+
+    /**
+     * Compare Old and New data to recoginze Operation type
+     * 
+     * @param string $columnName
+     * @param array $originalData
+     * @param array $newData
+     * 
+     * @return string update|insert|delete
+     */
+    static public function recognizeOperation($columnName, array $originalData,
+                                              array $newData)
+    {
+        if (array_key_exists($columnName, $newData) && array_key_exists($columnName,
+                $originalData)) {
+            $operation = 'update '.$newData[$columnName];
+        }
+        if (array_key_exists($columnName, $newData) && !array_key_exists($columnName,
+                $originalData)) {
+            $operation = 'insert '.$newData[$columnName];
+        }
+        if (!array_key_exists($columnName, $newData) && array_key_exists($columnName,
+                $originalData)) {
+            $operation = 'delete';
+        }
+        return $operation;
     }
 }

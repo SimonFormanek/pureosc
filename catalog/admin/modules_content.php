@@ -22,7 +22,8 @@ $modules_installed = (tep_not_null(MODULE_CONTENT_INSTALLED) ? explode(';',
         MODULE_CONTENT_INSTALLED) : array());
 $modules           = array('installed' => array(), 'new' => array());
 
-$file_extension = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
+$file_extension = substr($_SERVER['PHP_SELF'],
+    strrpos($_SERVER['PHP_SELF'], '.'));
 
 if ($maindir = @dir(DIR_FS_CATALOG_MODULES.'content/')) {
     while ($group = $maindir->read()) {
@@ -179,7 +180,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
         <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-                    <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
+                    <td class="pageHeading" align="right"><?php
+                        echo tep_draw_separator('pixel_trans.gif',
     HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT);
 ?></td>
                     <?php

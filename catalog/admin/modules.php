@@ -24,7 +24,6 @@ $module_type               = $cfgModules->get($set, 'code');
 $module_directory          = $cfgModules->get($set, 'directory');
 $module_language_directory = $cfgModules->get($set, 'language_directory');
 $module_key                = $cfgModules->get($set, 'key');
-;
 define('HEADING_TITLE', $cfgModules->get($set, 'title'));
 $template_integration      = $cfgModules->get($set, 'template_integration');
 
@@ -240,6 +239,8 @@ if ($dir             = @dir($module_directory)) {
                                         ?>&nbsp;</td>
                         </tr>
                         <?php
+                    } else {
+                        echo  '<div class="error">Error lading class <strong>'. $class .'</strong></div>' ;
                     }
                 }
 
