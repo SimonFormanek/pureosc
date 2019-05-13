@@ -123,24 +123,32 @@ function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL',
         global $languages_id;
         $seo_urls = new SEO_URL($languages_id);
     }
-    if ($page == constant('FILENAME_PRODUCT_INFO') && constant('PRODUCTS_CANONICAL_TYPE') == 'manufacturer'){
-      preg_match('~products_id=(\d+)~', $parameters, $myid );
-      $products_id = str_replace('products_id=', '', $myid[0]);
-      $manufacturers_id_query = tep_db_query("SELECT manufacturers_id FROM " . TABLE_PRODUCTS . " WHERE products_id=" . $products_id);
-      $manufacturers_id = tep_db_fetch_array($manufacturers_id_query);
-      $manufacturers_name_query = tep_db_query("SELECT manufacturers_name from " . TABLE_MANUFACTURERS . " WHERE manufacturers_id = " . $manufacturers_id['manufacturers_id']);
-      $manufacturers_name = tep_db_fetch_array($manufacturers_name_query);
-      $manufacturer = preg_replace('/(-[a-z])*$/','',remove_accents($manufacturers_name['manufacturers_name']));
-      $newlink = '/' . $manufacturer . '/' . preg_replace('~.*/~', '', preg_replace('~.*xslashx~', '', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
+    if ($page == constant('FILENAME_PRODUCT_INFO') && defined('PRODUCTS_CANONICAL_TYPE')
+        && constant('PRODUCTS_CANONICAL_TYPE') == 'manufacturer') {
+        preg_match('~products_id=(\d+)~', $parameters, $myid);
+        $products_id              = str_replace('products_id=', '', $myid[0]);
+        $manufacturers_id_query   = tep_db_query("SELECT manufacturers_id FROM ".TABLE_PRODUCTS." WHERE products_id=".$products_id);
+        $manufacturers_id         = tep_db_fetch_array($manufacturers_id_query);
+        $manufacturers_name_query = tep_db_query("SELECT manufacturers_name from ".TABLE_MANUFACTURERS." WHERE manufacturers_id = ".$manufacturers_id['manufacturers_id']);
+        $manufacturers_name       = tep_db_fetch_array($manufacturers_name_query);
+        $manufacturer             = preg_replace('/(-[a-z])*$/', '',
+            remove_accents($manufacturers_name['manufacturers_name']));
+        $newlink                  = '/'.$manufacturer.'/'.preg_replace('~.*/~',
+                '',
+                preg_replace('~.*xslashx~', '',
+                    $seo_urls->href_link($page, $parameters, $connection,
+                        $add_session_id)));
     } else {
-      $newlink = preg_replace('~.*/~', '/', preg_replace('~.*xslashx~', '/', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
-      }
-      //ORIG:   return $seo_urls->href_link($page, $parameters, $connection, $add_session_id);
-      return str_replace('xslashx', '/',
+        $newlink = preg_replace('~.*/~', '/',
+            preg_replace('~.*xslashx~', '/',
+                $seo_urls->href_link($page, $parameters, $connection,
+                    $add_session_id)));
+    }
+    //ORIG:   return $seo_urls->href_link($page, $parameters, $connection, $add_session_id);
+    return str_replace('xslashx', '/',
         preg_replace('/-[p|c|m|pi|a|au|by|f|fc|fri|fra|i|links|n|nc|nri|nra|pm|po|pr|pri|t]-[0-9|_]*\.html/',
             '', $newlink
-            ));
-
+    ));
 }
 
 ////
@@ -195,9 +203,9 @@ function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '',
         } // end for
         // End create subdirectory and .htaccess.	
 
-        
+
         $attributes = array('alt' => $alt, 'width' => $width, 'height' => $height);
-        $image='';
+        $image      = '';
         if (tep_not_null($width) && tep_not_null($height)) {
             $image .= ' width="'.tep_output_string($width).'" height="'.tep_output_string($height).'"';
         }
@@ -216,7 +224,7 @@ function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '',
             $bs_parameters .= ' '.$parameters;
         }
 
-        $imager           = new Image_Helper(array('src' => $src,
+        $imager          = new Image_Helper(array('src' => $src,
             'attributes' => $attributes,
             'parameters' => $bs_parameters,
             'default_missing_image' => DIR_WS_IMAGES.'no_image_available_150_150.gif',
@@ -656,7 +664,10 @@ function tep_navbar_search($btnclass = 'btn-default', $description = true)
 }
 
 // strip paragraph ckeditor fix
-function strip_p($txt){
-$txt =  str_replace('</P>','',(str_replace('<P>','', (str_replace('</p>','', str_replace('<p>','', $txt))))));
- return $txt;
+function strip_p($txt)
+{
+    $txt = str_replace('</P>', '',
+        (str_replace('<P>', '',
+            (str_replace('</p>', '', str_replace('<p>', '', $txt))))));
+    return $txt;
 }

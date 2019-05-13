@@ -274,8 +274,8 @@ if (tep_not_null($tPath)) {
 }
 /* * ** END ARTICLE MANAGER *** */
 
-\Ease\Shared::instanced()->webPage(new Ease\WebPage());
-
+$oPage = new \PureOSC\ui\WebPage();
+\Ease\Shared::instanced()->webPage($oPage);
 
 // include the breadcrumb class and start the breadcrumb trail
 require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');

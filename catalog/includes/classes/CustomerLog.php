@@ -12,7 +12,7 @@ namespace PureOSC;
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class CustomerLog extends \Ease\Brick
+class CustomerLog extends Engine
 {
     /**
      * Administrator invoked
@@ -30,7 +30,10 @@ class CustomerLog extends \Ease\Brick
      * Default venue
      * @var string 
      */
-    public $venue = null;
+    public $venue        = null;
+    public $myTable      = 'gdpr_log';
+    public $myKeyColumn  = 'id';
+    public $createColumn = 'timestamp';
 
     /**
      * Log Customer events
@@ -190,8 +193,8 @@ class CustomerLog extends \Ease\Brick
     {
         foreach ($columns as $columnName) {
             if ($originalData[$columnName] != $flexibee->getDataValue($columnName)) {
-                $this->logEvent($columnName, $flexibee->getLastOperationType(), null,
-                    $flexibee->getApiURL().'#'.$columnName);
+                $this->logEvent($columnName, $flexibee->getLastOperationType(),
+                    null, $flexibee->getApiURL().'#'.$columnName);
             }
         }
     }
@@ -221,5 +224,91 @@ class CustomerLog extends \Ease\Brick
             $operation = 'delete';
         }
         return $operation;
+    }
+    /**
+     * Search resuts targeting to  here
+     * @var string 
+     */
+    public $keyword = 'gdprlog';
+
+    public function translate()
+    {
+        $this->subject = _('Gdpr Log');
+        parent::translate();
+    }
+
+    public function columns($columns = [])
+    {
+
+//CREATE TABLE `gdpr_log` (
+//  `id` int(11) NOT NULL,
+//  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+//  `customers_id` int(11) NOT NULL COMMENT 'affected customer id',
+//  `administrators_id` int(11) NOT NULL DEFAULT '0' COMMENT 'admin user id',
+//  `venue` varchar(255) NOT NULL COMMENT 'place of occurence. ex: user profile page',
+//  `question` varchar(255) NOT NULL COMMENT 'ex: agree with newsletter sending',
+//  `answer` varchar(255) NOT NULL COMMENT 'ex: yes',
+//  `extid` varchar(255) NOT NULL COMMENT 'ex: mysql://localhost/table/column#line',
+//  `predecessor` varchar(255) DEFAULT NULL COMMENT 'checksum of previous record - blockchain glue'
+//) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='gdpr protocol';       
+
+        return parent::columns([
+                ['name' => 'customers_id', 'type' => 'text', 'label' => _('affected client')],
+                ['name' => 'administrators_id', 'type' => 'text', 'label' => _('admin user')],
+                ['name' => 'venue', 'type' => 'text', 'label' => _('place of occurence')],
+                ['name' => 'question', 'type' => 'text', 'label' => _('question')],
+                ['name' => 'answer', 'type' => 'text', 'label' => _('answer')],
+                ['name' => 'extid', 'type' => 'text', 'label' => _('extid')],
+                ['name' => 'predecessor', 'type' => 'text', 'label' => _('predecessor'),
+                    'hidden' => true],
+                ['name' => 'client_name', 'type' => 'text', 'column' => 'LTRIM(CONCAT(client.SURNAME, \' \', client.NAME, \' \', IFNULL(client.TITLE,"") ))',
+                    'label' => _('Customer Name'), 'hidden' => true],
+                ['name' => 'admin_name', 'type' => 'text', 'column' => 'CONCAT(administrators.SURNAME, \' \',administrators.NAME)',
+                    'label' => _('Admin Name'), 'hidden' => true],
+        ]);
+    }
+
+    /**
+     * 
+     * @return  \Envms\FluentPDO
+     */
+    public function listingQuery()
+    {
+        return $this->getFluentPDO()->from($this->myTable)
+                ->select('LTRIM(CONCAT(customers.customers_lastname, \' \', customers.customers_firstname)) AS client_name')
+                ->select('administrators.user_name AS admin_name')
+                ->leftJoin('customers ON '.$this->myTable.'.customers_id=customers.customers_id')
+                ->leftJoin('administrators ON '.$this->myTable.'.administrators_id=administrators.id');
+    }
+
+    /**
+     * @link https://datatables.net/examples/advanced_init/column_render.html 
+     * @return string Column rendering
+     */
+    public function columnDefs()
+    {
+        return '
+"columnDefs": [
+            {
+                "render": function ( data, type, row ) {
+                    return  "<a href=\"client.php?id=" + data +"\">" + row["client_name"] + "</a>";
+                },
+                "targets": 0
+            },
+            {
+                "render": function ( data, type, row ) {
+                    return  "<a href=\"administrators.php?id=" + data +"\">" + row["admin_name"] + "</a>";
+                },
+                "targets": 1
+            },
+            {
+                "render": function ( data, type, row ) {
+                    return  "<a href=\"calendar.php?datetime=" + data +"\">" + data + "</a>";
+                },
+                "targets": 6
+            }
+        ]            
+,
+';
     }
 }

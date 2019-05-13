@@ -594,7 +594,7 @@ if ($action == 'edit' || $action == 'update') { echo '
                         </tr>
 
                         <tr>
-                            <td class="main"><?php echo_('Vat number'); ?></td>
+                            <td class="main"><?php echo _('Vat number'); ?></td>
                             <td class="main">
                                 <?php
                                 if ($error === true) {
