@@ -46,7 +46,7 @@
       if (is_array($result) && !empty($result)) {
         $output = '<table border="0" width="100%" cellspacing="0" cellpadding="4">' .
                   '  <tr class="dataTableHeadingRow">' .
-                  '    <td class="dataTableHeadingContent">' . MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_TITLE . '</td>' .
+                  '    <td class="dataTableHeadingContent">' . _('Partner news') . '</td>' .
                   '  </tr>';
 
         foreach ($result as $p) {
@@ -56,7 +56,7 @@
         }
 
         $output .= '  <tr class="dataTableRow">' .
-                   '    <td class="dataTableContent" align="right" colspan="2"><a href="http://www.oscommerce.com/Services" target="_blank">' . MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_MORE_TITLE . '</a></td>' .
+                   '    <td class="dataTableContent" align="right" colspan="2"><a href="http://www.oscommerce.com/Services" target="_blank">' . _('More partner news') . '</a></td>' .
                    '  </tr>' .
                    '</table>';
       }

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-13 05:19+0200\n"
-"PO-Revision-Date: 2019-05-13 05:20+0200\n"
+"POT-Creation-Date: 2019-05-13 21:16+0200\n"
+"PO-Revision-Date: 2019-05-13 21:26+0200\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -37,7 +37,7 @@ msgstr "odeslat voucher"
 
 #: account.php:67
 msgid "Vouchers FAQ"
-msgstr ""
+msgstr "Často kladené otázky k voucherům"
 
 #: account_edit.php:138
 msgid "Changed by customer"
@@ -171,7 +171,7 @@ msgstr "Přidáno dne"
 
 #: admin/articles.php:1490 admin/categories.php:1604
 msgid "Go to"
-msgstr ""
+msgstr "Jdi na"
 
 #: admin/articles.php:1508 admin/banner_manager.php:405
 #: admin/categories.php:1627 admin/edit_orders.php:2068
@@ -197,11 +197,11 @@ msgstr "Obrázek pro galerie"
 
 #: admin/categories.php:1168
 msgid "HTML Replacement"
-msgstr ""
+msgstr "HTML náhrada"
 
 #: admin/categories.php:1625
 msgid "Categories / Products"
-msgstr ""
+msgstr "Kategorie / Produkty"
 
 #: admin/categories.php:1788 admin/categories.php:2082
 #: includes/modules/boxes/bm_categories.php:24
@@ -248,6 +248,10 @@ msgstr "Heslo"
 msgid "Password Confirmation"
 msgstr "Heslo znovu"
 
+#: admin/customers.php:597
+msgid "Vat number"
+msgstr "Dič"
+
 #: admin/customers.php:611 create_account.php:530
 msgid "Company number"
 msgstr "Ičo"
@@ -270,7 +274,7 @@ msgstr "FlexiBee synchronizace"
 
 #: admin/flexibeesync.php:59
 msgid "Already exists in database"
-msgstr ""
+msgstr "Již existuje v databázi"
 
 #: admin/flexibeesync.php:97
 msgid "FlexiBee server not connected."
@@ -314,8 +318,9 @@ msgid "Show the newest customers"
 msgstr "Zobraz nejnovější zákazníky"
 
 #: admin/includes/modules/dashboard/d_latest_addons.php:26
+#: admin/includes/modules/dashboard/d_latest_addons.php:44
 msgid "Latests Addons"
-msgstr ""
+msgstr "Nejnovější přádavky"
 
 #: admin/includes/modules/dashboard/d_latest_addons.php:27
 #, fuzzy
@@ -323,8 +328,9 @@ msgid "Show the latest osCommerce Add-Ons"
 msgstr "Zobraz poslední objednávky"
 
 #: admin/includes/modules/dashboard/d_latest_news.php:28
+#: admin/includes/modules/dashboard/d_latest_news.php:47
 msgid "Latest News"
-msgstr ""
+msgstr "Nejnovější zprávy"
 
 #: admin/includes/modules/dashboard/d_latest_news.php:29
 #, fuzzy
@@ -345,6 +351,7 @@ msgid "Total"
 msgstr "Celkem"
 
 #: admin/includes/modules/dashboard/d_partner_news.php:26
+#: admin/includes/modules/dashboard/d_partner_news.php:49
 msgid "Partner news"
 msgstr "Novinky partnerů"
 
@@ -352,6 +359,11 @@ msgstr "Novinky partnerů"
 #, fuzzy
 msgid "Show the lastest osCommerce Partner News"
 msgstr "Zobraz poslední objednávky"
+
+#: admin/includes/modules/dashboard/d_partner_news.php:59
+#, fuzzy
+msgid "More partner news"
+msgstr "Novinky partnerů"
 
 #: admin/includes/modules/dashboard/d_reviews.php:26
 #: admin/includes/modules/dashboard/d_reviews.php:40
@@ -403,6 +415,7 @@ msgid "Total Revenue"
 msgstr ""
 
 #: admin/includes/modules/dashboard/d_version_check.php:22
+#: admin/includes/modules/dashboard/d_version_check.php:55
 msgid "Version Check"
 msgstr ""
 
@@ -449,6 +462,137 @@ msgstr ""
 msgid "DB_SERVER not defined"
 msgstr ""
 
+#: includes/classes/CustomerLog.php:236
+msgid "Gdpr Log"
+msgstr "Gdpr Log"
+
+#: includes/classes/CustomerLog.php:256
+msgid "affected client"
+msgstr "dotčený klient"
+
+#: includes/classes/CustomerLog.php:257
+msgid "admin user"
+msgstr "administrátor"
+
+#: includes/classes/CustomerLog.php:258
+msgid "place of occurence"
+msgstr "Místo výskytu"
+
+#: includes/classes/CustomerLog.php:259
+msgid "question"
+msgstr "Otázka"
+
+#: includes/classes/CustomerLog.php:260
+msgid "answer"
+msgstr "odpověď"
+
+#: includes/classes/CustomerLog.php:261
+msgid "extid"
+msgstr "extid"
+
+#: includes/classes/CustomerLog.php:262
+msgid "predecessor"
+msgstr "Předchůdce"
+
+#: includes/classes/CustomerLog.php:265
+msgid "Customer Name"
+msgstr "Jméno klienta"
+
+#: includes/classes/CustomerLog.php:267
+msgid "Admin Name"
+msgstr "Jméno admina"
+
+#: includes/classes/Engine.php:154
+#, php-format
+msgid "New %s"
+msgstr "Nový %s"
+
+#: includes/classes/Engine.php:155
+#, php-format
+msgid "Edit %s"
+msgstr "Uprav %s"
+
+#: includes/classes/Engine.php:156
+#, php-format
+msgid "Remove %s"
+msgstr "Odstraň %s"
+
+#: includes/classes/Engine.php:157
+#, php-format
+msgid "Create new %s"
+msgstr "Vytvořit nový %s"
+
+#: includes/classes/Engine.php:158
+#, php-format
+msgid "Editing %s"
+msgstr "Upravuji %s"
+
+#: includes/classes/Engine.php:159
+#, php-format
+msgid "Removing %s"
+msgstr "Odstranit %s"
+
+#: includes/classes/Engine.php:160
+#, php-format
+msgid "Are you sure you wish to delete %%d row of %s ?"
+msgstr "Opravdu chcete  smazat %%d řádek z %s"
+
+#: includes/classes/Engine.php:201
+#, php-format
+msgid "Missing ColumnInfo name for %s/%s"
+msgstr "Chybějící informace o názvu sloupce pro %s/%s"
+
+#: includes/classes/Engine.php:205
+#, php-format
+msgid "Missing ColumnInfo type for %s/%s"
+msgstr "Chybějící typ slouce pro %s/%s"
+
+#: includes/classes/Engine.php:213
+#, fuzzy
+msgid "Id"
+msgstr "Id"
+
+#: includes/classes/Engine.php:220
+msgid "Updated"
+msgstr "Aktualizováno"
+
+#: includes/classes/Engine.php:226
+msgid "Created"
+msgstr "Vytvořeno"
+
+#: includes/classes/Engine.php:455
+#, php-format
+msgid "%s is not valid email"
+msgstr "%s není korektní email"
+
+#: includes/classes/Engine.php:483
+#, php-format
+msgid "A %s is required"
+msgstr "%s je vyžadováno"
+
+#: includes/classes/Engine.php:488
+#, php-format
+msgid "A %s is not unique"
+msgstr "%s je již použito"
+
+#: includes/classes/Engine.php:613
+#, php-format
+msgid "Field Type is not set for %s "
+msgstr "Typ sloupečku není nastaven pro %s"
+
+#: includes/classes/Engine.php:825
+#, php-format
+msgid "Column \"%s\" of %s without type definition"
+msgstr "Sloupec \"%s\" z %s bez definice typu"
+
+#: includes/classes/Engine.php:992
+msgid "Yes"
+msgstr "Ano"
+
+#: includes/classes/Engine.php:992
+msgid "No"
+msgstr "Ne"
+
 #: includes/classes/NewsletterConsentMailer.php:21
 msgid "Newsletter GDPR Consent"
 msgstr "GDPR Souhlas s odběrem novinek mailem"
@@ -465,6 +609,10 @@ msgstr "Chcete se přihlásit k odběru emailových novinek z %s ?"
 #: includes/classes/NewsletterConsentMailer.php:36
 msgid "Click here to Agree"
 msgstr "Klikněte zde pro vyjádření souhlasu"
+
+#: includes/classes/ui/DataTable.php:272
+msgid "All pages"
+msgstr "Všechny stránky"
 
 #: includes/modules/action_recorder/ar_admin_login.php:25
 #, fuzzy
@@ -516,7 +664,6 @@ msgstr ""
 
 #: includes/modules/boxes/bm_search.php:29
 #: includes/modules/boxes/bm_search.php:50
-#, fuzzy
 msgid "Search"
 msgstr "Hledat"
 
@@ -526,17 +673,14 @@ msgid "Show search field"
 msgstr "Zobraz vyhledávací tlačítko"
 
 #: includes/modules/boxes/bm_whats_new.php:29
-#, fuzzy
 msgid "What's New"
-msgstr "Novinky"
+msgstr "Co je nového ?"
 
 #: includes/modules/boxes/bm_whats_new.php:30
-#, fuzzy
 msgid "Show the newest products"
 msgstr "Zobraz nejnovější produkty"
 
 #: includes/modules/boxes/templates/search.php:2
-#, fuzzy
 msgid "Quick Find"
 msgstr "Rychlé hledání"
 
@@ -545,22 +689,18 @@ msgid "Use keywords to find the product you are looking for."
 msgstr ""
 
 #: includes/modules/boxes/templates/search.php:4
-#, fuzzy
 msgid "Advanced Search"
 msgstr "Rozšíření hledání"
 
 #: includes/modules/boxes/templates/whats_new.php:2
-#, fuzzy
 msgid "What's New?"
 msgstr "Co je nového ?"
 
 #: includes/modules/content/checkout_success/templates/thank_you.php:3
-#, fuzzy
 msgid "Thanks for shopping with us"
 msgstr "Děkujeme za vaši objednávku."
 
 #: includes/modules/content/checkout_success/templates/thank_you.php:6
-#, fuzzy
 msgid ""
 "Your order has been successfully processed! Your products will arrive at "
 "their destination within 2-5 working days."
@@ -569,17 +709,16 @@ msgstr ""
 "pracovní den."
 
 #: includes/modules/content/checkout_success/templates/thank_you.php:7
-#, fuzzy, php-format
+#, php-format
 msgid "You can view the status of your order any time in your account %s page."
 msgstr "Stav zpracování objednávky zobrazíte na stránce %s"
 
 #: includes/modules/content/checkout_success/templates/thank_you.php:8
-#, fuzzy
 msgid "View Orders"
 msgstr "Objednávky"
 
 #: includes/modules/content/checkout_success/templates/thank_you.php:10
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Please forward any questions you may have  <a class=\"btn btn-info\" role="
 "\"button\" href=\"%s\">Contact Us</a>"
@@ -792,7 +931,7 @@ msgid "Show the title block on the front page."
 msgstr ""
 
 #: includes/modules/content/front_page/templates/cm_fp_new_products.php:16
-#, fuzzy, php-format
+#, php-format
 msgid "New Products"
 msgstr "Nové produkty"
 
@@ -843,7 +982,7 @@ msgstr "Přihlašovací formulář"
 
 #: includes/modules/content/login/cm_login_form.php:28
 msgid "Show a login form on the login page"
-msgstr ""
+msgstr "Zobrazit přihlašovací formulář na přihlašovací stránce"
 
 #: includes/modules/content/login/cm_login_form.php:68
 msgid "Error: No match for E-Mail Address and/or Password."
@@ -851,14 +990,13 @@ msgstr "Chyba: Nesouhlasí E-Mailová adresa či Heslo."
 
 #: includes/modules/content/login/cm_pwa_login.php:25
 msgid "Login without Account Form"
-msgstr ""
+msgstr "Formulář přihlášení bez účtu"
 
 #: includes/modules/content/login/cm_pwa_login.php:26
 msgid "Show a PWA login form on the login page"
 msgstr ""
 
 #: includes/modules/content/login/templates/create_account_link.php:4
-#, fuzzy
 msgid "Create Account"
 msgstr "Vytvořit účet"
 
@@ -874,7 +1012,6 @@ msgid ""
 msgstr ""
 
 #: includes/modules/content/login/templates/login_form.php:4
-#, fuzzy
 msgid "Login"
 msgstr "Login"
 
@@ -921,7 +1058,6 @@ msgid "Show the categories menu in the navbar."
 msgstr ""
 
 #: includes/modules/content/navbar/cm_nb_settings.php:29
-#, fuzzy
 msgid "Navbar Settings"
 msgstr "Nastavení NavBaru"
 
@@ -1354,7 +1490,6 @@ msgid "View the orders I have made."
 msgstr "Nová objednávka uložena"
 
 #: includes/modules/pages/tp_account.php:39
-#, fuzzy
 msgid "E-Mail Notifications"
 msgstr "Emailové notifikace"
 
@@ -1485,9 +1620,6 @@ msgstr "p"
 
 #~ msgid "Returning Customer"
 #~ msgstr "Vážený zákazníku,"
-
-#~ msgid "Vat number"
-#~ msgstr "Dič"
 
 #~ msgid "Previous"
 #~ msgstr "Předchozí"
