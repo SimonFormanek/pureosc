@@ -4,11 +4,14 @@
 [![GitHub release](https://img.shields.io/github/release/SimonFormanek/pureosc.svg)](https://GitHub.com/SimonFormanek/pureosc/releases/)
 [![GitHub tag](https://img.shields.io/github/tag/SimonFormanek/pureosc.svg)](https://GitHub.com/SimonFormanek/pureosc/tags/)
 [![GitHub commits](https://img.shields.io/github/commits-since/SimonFormanek/pureosc/v1.0.0.svg)](https://GitHub.com/SimonFormanek/pureosc/commit/)
+[![GitHub forks](https://img.shields.io/github/forks/SimonFormanek/pureosc.svg)](https://github.com/SimonFormanek/pureosc/network)
 [![Github all releases](https://img.shields.io/github/downloads/SimonFormanek/pureosc/total.svg)](https://GitHub.com/SimonFormanek/pureosc/releases/)
-[![GitHub stars](https://img.shields.io/github/stars/SimonFormanek/pureosc.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/SimonFormanek/pureosc/stargazers/)
+[![GitHub stars](https://img.shields.io/github/stars/SimonFormanek/pureosc.svg)](https://github.com/SimonFormanek/pureosc/stargazers)
 [![GitHub watchers](https://img.shields.io/github/watchers/SimonFormanek/pureosc.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/SimonFormanek/pureosc/watchers/)
-[![GitHub issues](https://img.shields.io/github/issues/SimonFormanek/pureosc.svg)](https://GitHub.com/SimonFormanek/pureosc/issues/)
+[![GitHub issues](https://img.shields.io/github/issues/SimonFormanek/pureosc.svg)](https://github.com/SimonFormanek/pureosc/issues)
 [![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![GitHub license](https://img.shields.io/github/license/SimonFormanek/pureosc.svg)](https://github.com/SimonFormanek/pureosc/blob/pure/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/SimonFormanek/pureosc.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FSimonFormanek%2Fpureosc)
 
 PureOSC
 =======
