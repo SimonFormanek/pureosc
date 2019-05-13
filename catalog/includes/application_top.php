@@ -520,8 +520,9 @@ $oscTemplate = new oscTemplate();
 
 // include the who's online functions
 //PURE:moved to top require(DIR_WS_FUNCTIONS.'whos_online.php');
-tep_update_whos_online();
-
+if (GENERATOR_INSTANCE !='true'){
+	tep_update_whos_online();
+}
 // include the password crypto functions
 require(DIR_WS_FUNCTIONS.'password_funcs.php');
 
