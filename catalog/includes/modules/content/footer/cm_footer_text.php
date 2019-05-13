@@ -38,12 +38,11 @@ class cm_footer_text
 
     function execute()
     {
-        global $oscTemplate;
+        global $oscTemplate, $languages_id;
 
-        /*         * * Begin Article Manager *** */
-        $aLinks        = GetArticleLinsByTopic('Text');
-        /*         * * End Article Manager *** */
         $content_width = (int) MODULE_CONTENT_FOOTER_TEXT_CONTENT_WIDTH;
+          $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int) $languages_id . "'  AND information_id = '27'");
+          $information = tep_db_fetch_array($information_query);
         ob_start();
         include(DIR_WS_MODULES.'content/'.$this->group.'/templates/'.basename(__FILE__));
         $template      = ob_get_clean();

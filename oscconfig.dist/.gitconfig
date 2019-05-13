@@ -1,0 +1,39 @@
+[user]
+	email = ''
+	name = ''
+
+    [alias]
+      co = checkout
+      ci = commit
+      st = status
+      br = branch
+      hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+      type = cat-file -t
+      dump = cat-file -p
+      unstage = reset HEAD --
+      last = log -1 HEAD
+      files = diff-tree --no-commit-id --name-only -r 
+    [merge]
+#	extcmd = /usr/local/bin/mcdiff_wrapper.sh
+	tool = meld
+#	tool = mcdiff 
+[mergetool "meld"]
+    # Choose one of these 2 lines (not both!) explained below.
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+    
+[diff]
+#	extcmd = /usr/local/bin/mcdiff_wrapper.sh
+external = /usr/local/bin/diff_wrapper
+#	tool = meld
+#	tool = mcdiff
+[pager]
+	diff =
+	keepBackup = false
+    [core]
+	editor = mcedit
+	quotepath = off
+[push]
+	default = simple
+[difftool]
+	prompt = false

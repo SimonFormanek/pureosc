@@ -1,0 +1,9 @@
+#!/bin/bash
+#run arbitrary query 
+. ./dbconnect.sh
+if [[ ! $1 ]];then
+	echo "'run query i.e.: ./q SELECT configuration key, configuration_value FROM configuration WHERE configuration_key like \\'%SEO%\\'|grep URL"
+fi
+echo $@
+#exit
+mysql -h${H} -u${U} ${P} $D -e "$@"

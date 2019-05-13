@@ -1,32 +1,32 @@
 <?php
 define('CATALOG_DOMAIN', ''); //not empty !
-define('DIR_FS_MASTER_ROOT_DIR', '/var/www/'); //trailing slash YES, catalog subdir/catalog NO (!)
+define('DIR_FS_MASTER_ROOT_DIR', '/home/user/WWW/osc/'); //trailing slash YES, catalog subdir/catalog NO (!)
 define('SERVER_INSTANCE', 'admin'); // admin or empty for shop ???? TODO
 
 if ($_SERVER['REQUEST_SCHEME'] =='https') {
   $https = 'https';
-  define('ENABLE_SSL', true); // <------ need to bee configured
+  define('ENABLE_SSL', true);
   define('ENABLE_SSL_CATALOG', true);
 } else {
   $https = 'http';
-  define('ENABLE_SSL', false); // <------ need to bee configured
+  define('ENABLE_SSL', false);
   define('ENABLE_SSL_CATALOG', false);
 }
 define('HTTP_SERVER', $https . '://' . $_SERVER['HTTP_HOST']);
-define('HTTPS_SERVER', 'https://' . $_SERVER['HTTP_HOST']); // <------ need to bee configured
+define('HTTPS_SERVER', 'https://' . $_SERVER['HTTP_HOST']);
 define('HTTP_COOKIE_DOMAIN', '');
 define('HTTPS_COOKIE_DOMAIN', '');
 define('HTTP_COOKIE_PATH', '/admin');
 define('HTTPS_COOKIE_PATH', '/admin');
-define('HTTP_CATALOG_SERVER', 'http://' . CATALOG_DOMAIN); // <------ need to bee configured
-define('HTTPS_CATALOG_SERVER', 'https://' . CATALOG_DOMAIN); // <------ need to bee configured
-define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR . 'catalog/'); // <------ need to bee configured
+define('HTTP_CATALOG_SERVER', $https . '://' . CATALOG_DOMAIN);
+define('HTTPS_CATALOG_SERVER', $https . '://' . CATALOG_DOMAIN);
+define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR . 'catalog/');
 define('DIR_WS_ADMIN', '/admin/');
-define('DIR_WS_HTTPS_ADMIN', '/admin/'); // <------ need to bee configured SECURITY: obfuscation
-define('DIR_FS_ADMIN', DIR_FS_MASTER_ROOT_DIR . 'catalog/admin/'); //  <------ need to bee configured SECURITY: obfuscation
+define('DIR_WS_HTTPS_ADMIN', '/admin/');
+define('DIR_FS_ADMIN', DIR_FS_MASTER_ROOT_DIR . 'catalog/admin/');
 define('DIR_WS_CATALOG', '/');
 define('DIR_WS_HTTPS_CATALOG', '/');
-define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . '/catalog/'); // <------ need to bee configured
+define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . '/catalog/');
 define('DIR_WS_IMAGES', 'images/');
 define('DIR_WS_ICONS', DIR_WS_IMAGES . 'icons/');
 define('DIR_WS_CATALOG_IMAGES', DIR_WS_CATALOG . 'images/');

@@ -38,10 +38,7 @@ function tep_db_close($link = 'db_link')
 
 function tep_db_error($query, $errno, $error)
 {
-    if (defined('STORE_DB_TRANSACTIONS') && (STORE_DB_TRANSACTIONS == 'true')) {
-        error_log('ERROR: ['.$errno.'] '.$error."\n", 3,
-            STORE_PAGE_PARSE_TIME_LOG);
-    }
+        error_log('ERROR: ['.$errno.'] '. $error . "\n QUERY:" . $query, 3,  STORE_PAGE_PARSE_TIME_LOG);
     if (MYSQL_DEBUG == 'on') {
         die('<font color="#000000"><strong>'.$errno.' - '.$error.'<br /><br />'.$query.'<br /><br /><small><font color="#ff0000">[TEP STOP]</font></small><br /><br /></strong></font>');
     } else {

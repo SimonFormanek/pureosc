@@ -20,7 +20,7 @@
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
-require_once dirname(__DIR__).'/../vendor/autoload.php';
+require_once dirname( __DIR__ ).'/../vendor/autoload.php' ;
 
 // load server configuration parameters
 if (file_exists('includes/local/configure.php')) { // for developers
@@ -31,8 +31,8 @@ if (file_exists('includes/local/configure.php')) { // for developers
 }
 
 if (empty(constant('DB_SERVER'))) {
-    die(_('DB_SERVER not defined'));
-}
+    die( _('DB_SERVER not defined'));
+    }
 
 // some code to solve compatibility issues
 require(DIR_WS_FUNCTIONS.'compatibility.php');
@@ -44,7 +44,7 @@ date_default_timezone_set(defined('CFG_TIME_ZONE') ? CFG_TIME_ZONE : date_defaul
 $request_type = (getenv('HTTPS') == 'on') ? 'SSL' : 'NONSSL';
 
 // set php_self in the local scope
-$req                 = parse_url($_SERVER['SCRIPT_NAME']);
+$req      = parse_url($_SERVER['SCRIPT_NAME']);
 //PURE:NEW:PURE_SEO_URLS only if $_SERVER['PHP_SELF'] is empty...
 if (!($_SERVER['PHP_SELF']))
         $_SERVER['PHP_SELF'] = substr($req['path'],
@@ -81,7 +81,7 @@ tep_db_connect() or die('Unable to connect to database server!');
 // set the application parameters
 $configuration_query = tep_db_query('select configuration_key as cfgKey, configuration_value as cfgValue from '.TABLE_CONFIGURATION);
 while ($configuration       = tep_db_fetch_array($configuration_query)) {
-    if (defined($configuration['cfgKey'])) {
+    if(defined($configuration['cfgKey'])){
 //        echo sprintf( _('Configuration %s key alreay defined!'),$configuration['cfgKey']);
     } else {
         define($configuration['cfgKey'], $configuration['cfgValue']);
@@ -92,12 +92,12 @@ while ($configuration       = tep_db_fetch_array($configuration_query)) {
 // set the HTTP GET parameters manually if search_engine_friendly_urls is enabled
 if (SEARCH_ENGINE_FRIENDLY_URLS == 'true') {
     if (strlen(getenv('PATH_INFO')) > 1) {
-        $GET_array           = array();
+        $GET_array = array();
         $_SERVER['PHP_SELF'] = str_replace(getenv('PATH_INFO'), '',
             $_SERVER['PHP_SELF']);
-        $vars                = explode('/', substr(getenv('PATH_INFO'), 1));
+        $vars      = explode('/', substr(getenv('PATH_INFO'), 1));
         do_magic_quotes_gpc($vars);
-        $n                   = sizeof($vars);
+        $n         = sizeof($vars);
         for ($i = 0; $i < $n; $i++) {
             if (strpos($vars[$i], '[]')) {
                 $GET_array[substr($vars[$i], 0, -2)][] = $vars[$i + 1];
@@ -128,6 +128,8 @@ if (USE_CACHE == 'true') include(DIR_WS_FUNCTIONS.'cache.php');
 
 // define how the session functions will be used
 require(DIR_WS_FUNCTIONS.'sessions.php');
+//add whos_online
+require(DIR_WS_FUNCTIONS.'whos_online.php');
 
 // set the session name and save path
 tep_session_name('osCsid');
@@ -184,7 +186,7 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
         }
     }
 
-    if ($spider_flag === false) {
+    if ($spider_flag == false) {
         tep_session_start();
         $session_started = true;
     }
@@ -193,8 +195,8 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
     $session_started = true;
 }
 
-if (($session_started === true) && (PHP_VERSION >= 4.3) && function_exists('ini_get')
-    && (ini_get('register_globals') === false)) {
+if (($session_started == true) && (PHP_VERSION >= 4.3) && function_exists('ini_get')
+    && (ini_get('register_globals') == false)) {
     extract($_SESSION, EXTR_OVERWRITE + EXTR_REFS);
 }
 
@@ -209,7 +211,7 @@ $SID = (defined('SID') ? SID : '');
 
 // verify the ssl_session_id if the feature is enabled
 if (($request_type == 'SSL') && (SESSION_CHECK_SSL_SESSION_ID == 'True') && (ENABLE_SSL
-    === true) && ($session_started === true)) {
+    == true) && ($session_started == true)) {
     $ssl_session_id = getenv('SSL_SESSION_ID');
     if (!tep_session_is_registered('SSL_SESSION_ID')) {
         $SESSION_SSL_ID = $ssl_session_id;
@@ -249,11 +251,15 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
         tep_redirect(tep_href_link(FILENAME_LOGIN));
     }
 }
+//PURE:NEW:session ID became OTP token...
+    if (SESSION_RECREATE == 'True') {
+        tep_session_recreate();
+    }
 
 // create the shopping cart
 if (!tep_session_is_registered('cart') || !is_object($cart)) {
     tep_session_register('cart');
-    $cart = new ShoppingCart();
+    $cart = new ShoppingCart;
 }
 
 // include currencies class and create an instance
@@ -261,25 +267,6 @@ $currencies = new currencies();
 
 $oPage = new Ease\Page();
 
-// include the mail classes
-//pure:modified
-// set the language
-if (!tep_session_is_registered('language')) {
-    tep_session_register('language');
-    tep_session_register('languages_id');
-}
-$force_language = $oPage->getRequestValue('language');
-
-$lng = new language(empty($force_language) ? (defined('DEFAULT_LANGUAGE') ? constant('DEFAULT_LANGUAGE')
-        : 'en') : $force_language);
-
-
-$language     = $lng->language['directory'];
-$languages_id = $lng->language['id'];
-
-\Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
-
-//original version:
 // set the language
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (!tep_session_is_registered('language')) {
@@ -287,15 +274,49 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
         tep_session_register('languages_id');
     }
 
+    $lng = new language();
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);
     } else {
-        $lng->get_browser_language();
+      if (substr_count($_SERVER['HTTP_HOST'], '.') > 1) { //domain: en.example.org
+        $new_language_domain = preg_replace('/\..*/','',$_SERVER['HTTP_HOST']);
+        if ($new_language_domain == 'www') {
+          $new_language = (constant('DEFAULT_LANGUAGE'));
+				} else {
+					$new_language = $new_language_domain;
     }
 
+      //autodetect
+      //$browser_language = preg_replace('/,.*/','',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+      //if (preg_match('/^en/', $browser_language)){
+      //  $browser_language = 'en';
+      //}
+/*      
+$languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES'));
+       while ($languages_all = tep_db_fetch_array($languages_all_query)) {
+         if ($languages_all['code'] == $new_language_domain) {
+           $new_language = $new_language_domain;
+        }
+      }
+*/
+      }
+      if ($new_language){
+        $lng->set_language($new_language);
+      } else {
+        $lng->set_language(constant('DEFAULT_LANGUAGE'));
+      }
+    }  
+} else {
+    $lng = new language();
+  //$lng->set_language($_SESSION['language']);
+      $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
+      $language_code = tep_db_fetch_array($language_code_query);
+    $lng->set_language($language_code['code']);
+}
+
+\Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
-}
 
 // include the language translations
 $_system_locale_numeric = setlocale(LC_NUMERIC, 0);
@@ -333,7 +354,7 @@ $messageStack = new messageStack();
 // Shopping cart actions
 if (isset($_GET['action'])) {
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled
-    if ($session_started === false) {
+    if ($session_started == false) {
         tep_redirect(tep_href_link(FILENAME_COOKIE_USAGE));
     }
 
@@ -485,7 +506,7 @@ if (isset($_GET['action'])) {
 $oscTemplate = new oscTemplate();
 
 // include the who's online functions
-require(DIR_WS_FUNCTIONS.'whos_online.php');
+//PURE:moved to top require(DIR_WS_FUNCTIONS.'whos_online.php');
 tep_update_whos_online();
 
 // include the password crypto functions

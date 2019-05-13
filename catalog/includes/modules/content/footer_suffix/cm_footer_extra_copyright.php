@@ -38,15 +38,23 @@ class cm_footer_extra_copyright
 
     function execute()
     {
-        global $oscTemplate;
+        global $oscTemplate, $languages_id;
 
         $content_width = (int) MODULE_CONTENT_FOOTER_EXTRA_COPYRIGHT_CONTENT_WIDTH;
-
-        ob_start();
-        include(DIR_WS_MODULES.'content/'.$this->group.'/templates/copyright.php');
-        $template = ob_get_clean();
-
-        $oscTemplate->addContent($template, $this->group);
+          $information_query = tep_db_query("select information_title, information_description, information_id from " . TABLE_INFORMATION . " WHERE language_id = '" . (int) $languages_id . "'  AND information_id = '28'");
+          $information = tep_db_fetch_array($information_query);
+          
+          $copyYear = intval(preg_replace('/[^0-9.]/','',$information['information_title'])); 
+          $copyTitle = preg_replace('/[0-9.]/','',$information['information_title']); 
+        $curYear = date('Y'); // Keeps the second year updated
+        $template_content = $copyTitle;
+        //if ($curYear != $copyYear) {
+        $template_content .= $copyYear . (($copyYear != $curYear) ? '-' . $curYear : '');
+        //} else {
+//          $template_content .= $information['information_title'];
+  //      }
+        $template_content .= ' ' . strip_p($information['information_description']);
+        include(DIR_WS_MODULES.'content/'.$this->group.'/templates/'.basename(__FILE__));
     }
 
     function isEnabled()

@@ -1,5 +1,7 @@
 <?php
 /**
+TODO:SEO_REDIRECT - after set up see example we can turn on SEO_REDIRECT in configure.php
+
  * Ultimate SEO URLs Contribution - osCommerce MS-2.2
  *
  * Ultimate SEO URLs offers search engine optimized URLS for osCommerce
@@ -1756,7 +1758,6 @@ class SeoUrl
     function strip($string)
     {
         if (CHARSET == 'utf-8') {
-            $string = remove_accents($string);
             $string = iconv("UTF-8", "ASCII//TRANSLIT", $string);
         }
         if (is_array($this->attributes['SEO_CHAR_CONVERT_SET']))
@@ -2656,8 +2657,8 @@ class SeoUrl
                                 if ($fullID != $actualID && strpos($fullID.'.html',
                                         $actualPath) !== FALSE) { //enteed url is child of full path
                                     $url                      = $this->make_url($page,
-                                        $this->get_category_name($actualID),
-                                        'cPath', $fullID, '.html');
+                                    $this->get_category_name($actualID), '', '', '');
+//orig TODO:SEO_REDIRECT                                   $this->get_category_name($actualID), 'cPath', $fullID, '.html');
                                     $this->uri_parsed['path'] = $url; //reset the url
                                     $this->need_redirect      = true;
                                     $this->is_seopage         = true;
@@ -2785,7 +2786,8 @@ class SeoUrl
                         $pName = $cName.$this->strip($result['pName']);
                         if ($forceRedirect || ($pName !== substr($this->uri_parsed['path'],
                                 0, $pStart))) {
-                            $this->uri_parsed['path'] = $pName."-p-".$pID.".html";
+                            $this->uri_parsed['path'] = $pName;
+//orig                            $this->uri_parsed['path'] = $pName."-p-".$pID.".html";
                             $this->need_redirect      = true;
                             $this->do_redirect();
                         }
@@ -2836,7 +2838,9 @@ class SeoUrl
 
                         if ($forceRedirect || ($cName !== substr($this->uri_parsed['path'],
                                 0, $pStart))) {
-                            $this->uri_parsed['path'] = $cName."-c-".$cID.".html";
+                            $this->uri_parsed['path'] = $cName;
+// TODO:SEO_REDIRECT
+//orig:                          $this->uri_parsed['path'] = $cName."-c-".$cID.".html";
                             $this->need_redirect      = true;
                             $this->do_redirect();
                         }
@@ -2989,95 +2993,7 @@ class SeoUrl
     }
 # end function do_redirect        
 
-    function remove_accents($url)
-    {
-
-
-        $url = str_replace(' / ', '-', $url);
-        $url = str_replace(' ', '-', $url);
-
-        $url = strtr($url,
-            array(
-                'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e',
-                'ё' => 'jo', 'ж' => 'zh', 'з' => 'z', 'и' => 'i', 'й' => 'jj', 'к' => 'k',
-                'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r',
-                'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'kh', 'ц' => 'c',
-                'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shh', 'ъ' => '', 'ы' => 'y', 'ь' => '',
-                'э' => 'eh', 'ю' => 'ju', 'я' => 'ja',
-                'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D', 'Е' => 'E',
-                'Ё' => 'JO', 'Ж' => 'ZH', 'З' => 'Z', 'И' => 'I', 'Й' => 'JJ', 'К' => 'K',
-                'Л' => 'L', 'М' => 'M', 'Н' => 'N', 'О' => 'O', 'П' => 'P', 'Р' => 'R',
-                'С' => 'S', 'Т' => 'T', 'У' => 'U', 'Ф' => 'F', 'Х' => 'KH', 'Ц' => 'C',
-                'Ч' => 'CH', 'Ш' => 'SH', 'Щ' => 'SHH', 'Ъ' => '', 'Ы' => 'Y', 'Ь' => '',
-                'Э' => 'EH', 'Ю' => 'JU', 'Я' => 'JA',
-        ));
-
-
-        $url = mb_strtolower($url, 'UTF-8');
-        $url = str_replace('á', 'a', $url);
-        $url = str_replace('à', 'a', $url);
-        $url = str_replace('â', 'a', $url);
-        $url = str_replace('ã', 'a', $url);
-        $url = str_replace('ä', 'a', $url);
-        $url = str_replace('å', 'a', $url);
-        $url = str_replace('æ', 'ae', $url);
-        $url = str_replace('č', 'c', $url);
-        $url = str_replace('ç', 'c', $url);
-        $url = str_replace('ď', 'd', $url);
-        $url = str_replace('é', 'e', $url);
-        $url = str_replace('è', 'e', $url);
-        $url = str_replace('ê', 'e', $url);
-        $url = str_replace('ě', 'e', $url);
-        $url = str_replace('ë', 'e', $url);
-        $url = str_replace('í', 'i', $url);
-        $url = str_replace('ì', 'i', $url);
-        $url = str_replace('ľ', 'l', $url);
-        $url = str_replace('î', 'i', $url);
-        $url = str_replace('ï', 'i', $url);
-        $url = str_replace('ň', 'n', $url);
-        $url = str_replace('ñ', 'n', $url);
-        $url = str_replace('ò', 'o', $url);
-        $url = str_replace('ó', 'o', $url);
-        $url = str_replace('ô', 'o', $url);
-        $url = str_replace('õ', 'o', $url);
-        $url = str_replace('ö', 'o', $url);
-        $url = str_replace('ø', 'o', $url);
-//$url = str_replace('Ř','r',$url);
-        $url = str_replace('ř', 'r', $url);
-        $url = str_replace('š', 's', $url);
-        $url = str_replace('ť', 't', $url);
-        $url = str_replace('ú', 'u', $url);
-        $url = str_replace('ù', 'u', $url);
-        $url = str_replace('ù', 'u', $url);
-        $url = str_replace('ü', 'u', $url);
-        $url = str_replace('ú', 'u', $url);
-        $url = str_replace('ú', 'u', $url);
-        $url = str_replace('ů', 'u', $url);
-        $url = str_replace('ý', 'y', $url);
-        $url = str_replace('ž', 'z', $url);
-        $url = str_replace('`', '-', $url);
-        $url = str_replace('´', '-', $url);
-        $url = str_replace('\'', '-', $url);
-        $url = str_replace('!', '-', $url);
-        $url = str_replace('\.', '', $url); //UPD!!
-        $url = str_replace('?', '', $url);
-        $url = str_replace('(', '-', $url);
-        $url = str_replace(')', '-', $url);
-        $url = str_replace('"', '', $url);
-//$url = htmlentities($url); //convert all special chars to entities
-        $url = preg_replace("/&?[a-z0-9]+;/i", "NIC", $url); //remove all entities
-        $url = preg_replace('/-\\/-/', '-', $url); //UPD!
-        $url = preg_replace('/-\\//', '-', $url); //UPD!
-        $url = str_replace('---', '-', $url);
-        $url = str_replace('--', '-', $url);
-        $url = str_replace('--', '-', $url);
-        $url = str_replace(',', '', $url);
-        $url = preg_replace('/\\/\\//', '/', $url); //UPD!
-        $url = preg_replace('/-$/', '', $url); //UPD!
-        $url = preg_replace('/![a-z|0-9]/', '', $url);
-        return $url;
-    }
 }
 
-# end class
 
+# end class

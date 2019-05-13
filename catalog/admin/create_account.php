@@ -207,8 +207,6 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
         $adminLog->setCustomerID($customer_id);
         $adminLog->logMySQLChange([], $sql_data_array, 'customers',
             $customer_id, array_keys($sql_data_array));
-
-
         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
 
             $nazev = strlen($company) ? $company : $firstname.' '.$lastname;
@@ -266,11 +264,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
         tep_db_perform(TABLE_ADDRESS_BOOK, $sql_data_array);
 
         $address_id = tep_db_insert_id();
-        $adminLog->logMySQLChange([], $sql_data_array,
-            constant('TABLE_ADDRESS_BOOK'), $customer_id,
-            ['entry_firstname', 'entry_lastname', 'entry_vat_number', 'entry_company_number',
-                'customers_email_address', 'customers_telephone', 'entry_street_address',
-                'customers_newsletter']);
+                $adminLog->logMySQLChange([], $sql_data_array, constant('TABLE_ADDRESS_BOOK'),
+                    $customer_id, ['entry_firstname', 'entry_lastname', 'entry_vat_number', 'entry_company_number', 'customers_email_address', 'customers_telephone', 'entry_street_address', 'customers_newsletter']);
 
 
         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
@@ -606,8 +601,8 @@ echo tep_draw_form('create_account', 'create_account.php', '', 'post',
                 <label for="inputState" class="control-label col-sm-3"><?php echo ENTRY_STATE; ?></label>
                 <div class="col-sm-9">
                     <?php
-                    if ($process === true) {
-                        if ($entry_state_has_zones === true) {
+                    if ($process == true) {
+                        if ($entry_state_has_zones == true) {
                             $zones_array  = array();
                             $zones_query  = tep_db_query("select zone_name from ".TABLE_ZONES." where zone_country_id = '".(int) $country."' order by zone_name");
                             while ($zones_values = tep_db_fetch_array($zones_query)) {

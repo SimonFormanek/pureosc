@@ -455,3 +455,48 @@ define('ENTRY_VAT_NUMBER_TEXT_2', '', true);
 define('ENTRY_COMPANY_NUMBER', 'COMPANY ID:', true);
 define('ENTRY_COMPANY_NUMBER_TEXT_2', '', true);
 
+/**** BEGIN ARTICLE MANAGER ****/
+define('BOX_HEADING_ARTICLES', 'Články');
+define('BOX_ALL_ARTICLES', 'Všechny články');
+define('BOX_ALL_BLOG_ARTICLES', 'Všechny blogy');
+define('BOX_ARTICLE_SUBMIT', 'Odeslat článek');
+define('BOX_ARTICLE_TOPICS', 'Všechny kategorie');
+define('BOX_NEW_ARTICLES', 'Nový článek');
+define('TEXT_ARTICLE_SEARCH', 'Vyhledávání v článcích');
+define('TEXT_ARTICLE_SEARCH_STRING', 'hledat článek');
+define('TEXT_DISPLAY_NUMBER_OF_ARTICLES', 'Zobrazuji <b>%d</b> až <b>%d</b> (z <b>%d</b> článků)');
+define('TEXT_DISPLAY_NUMBER_OF_ARTICLES_NEW', 'Zobrazuji <b>%d</b> až <b>%d</b> (z <b>%d</b> nových článků)');
+define('TEXT_ARTICLES', 'Níže je seznam všech článků od nejnovějších k nejstarším.');
+define('TABLE_HEADING_AUTHOR', 'Autor');
+define('TABLE_HEADING_ABSTRACT', 'Shrnutí');
+define('TEXT_PXSELL_ARTICLES', 'Příbuzné články');
+define('BOX_HEADING_AUTHORS', 'Články podle autora');
+define('BOX_ARTICLES_BLOG_COMMENTS', 'Diskuse k článkům');
+define('NAVBAR_TITLE_DEFAULT', 'Články');
+define('BOX_RSS_ARTICLES', 'RSS Feed k článkům');
+define('BOX_UPCOMING_ARTICLES', 'Připravované články');
+define('BOX_HEADING_TELL_A_FRIEND', 'Poslat na e-mail');
+/**** END ARTICLE MANAGER ****/
+
+/*** Begin Header Tags SEO ***/
+define('BOX_HEADING_HEADERTAGS_TAGCLOUD', 'Populární vyhledávání');
+define('TEXT_SEE_MORE', 'více');
+define('TEXT_SEE_MORE_FULL', 'více o %s');
+define('HTS_OG_AVAILABLE_STOCK', 'Dostupnost skladem');
+define('HTS_OG_PRICE', 'Cena');
+/*** End Header Tags SEO ***/
+
+//pure
+define('HEADER_AUTHORS','AUTOŘI');
+define('HEADER_NEWS','AKTUALITY');
+define('HEADER_ABOUT_US','O NÁS');
+define('HEADER_CONTACT_US','KONTAKTY');
+define('HEADER_ADVANCED_SEARCH','podrobné vyhledávání');
+//DO NOT REMOVE - constants needed to static generator script --------------------------------------------------------->
+//manufacturers page
+define('MANUFACTURER','Manufacturer');
+define('MANUFACTURERS_LIST','Manufacturers list:');
+define('MANUFACTURERS','Manufacturers');
+
+//new products page
+define('PRODUCTS_NEW_PAGE','news');

@@ -1,0 +1,6 @@
+#!/bin/bash
+. ./dbconnect.sh
+if [[ ! $1 ]];then
+	echo 'Usage: ./confrm CONFIG_KEY'
+fi
+mysql -h${H} -u${U} ${P} $D -e "DELETE FROM configuration WHERE configuration_key='${1}'"

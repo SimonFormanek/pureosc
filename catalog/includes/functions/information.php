@@ -75,20 +75,22 @@ function tep_information_show_category($information_group_id = 1)
             }
 
             //Just for sitemap
+      /*TODO:dirtyHack:commented out
             $ul = false;
             for ($i = 1; $i < ($count_child + 1); $i++) {
                 if ($child_information[$i]['parent_info_id'] == $element['key']) {
-                    if ($ul === false) {
+                    if ($ul == false) {
                         $sitemapString .= '<ul>'."\n";
                         $ul            = true;
                     }
-                    $sitemapString .= '<li><a href="'.tep_href_link(FILENAME_INFORMATION,
-                            'info_id='.$child_information[$i]['child_info_id']).'">'.$information_tree[$child_information[$i]['child_info_id']]['info_title'].'</a></li>'."\n";
+          $sitemapString .= '<li><a href="' . tep_href_link(FILENAME_INFORMATION, 'info_id=' . $child_information[$i]['child_info_id']) . '">' . $information_tree[$child_information[$i]['child_info_id']]['info_title'] . '</a></li>' . "\n";
                 }
-                if (($i == $count_child) && ($ul === true)) {
+                if (($i == $count_child) && ($ul == true)) {
                     $sitemapString .= '</ul>'."\n";
                 }
             }
+       * 
+       */
             //End just for sitemap
             //Show children if they exist
             if (((isset($_GET['info_id'])) && ($_GET['info_id'] == $element['key']))

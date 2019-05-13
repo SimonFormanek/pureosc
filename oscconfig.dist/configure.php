@@ -1,16 +1,14 @@
 <?php
-
-define('DIR_FS_MASTER_ROOT_DIR', '/var/WWW/'); //trailing slash YES /catalog subdir NO (!)
+define('PRODUCTS_CANONICAL_TYPE','path'); //config: path / manufacturer
+define('DIR_FS_MASTER_ROOT_DIR', '/home/user/WWW/osc/'); //trailing slash YES /catalog subdir NO (!)
 define('MYSQL_DEBUG', 'on'); //on|off=default 'on' set only for DEVEL debug !!!
-define('BOOTSTRAP_LESS_DIR', 'nonexistent-dir'); // <------ need to bee configured
+define('BOOTSTRAP_LESS_DIR', 'DISABLEDbootstrap-3.3.7/less/'); //remove DISABLED
 define('SERVER_INSTANCE', 'admin'); //CONFIGURE: admin|shop <------ need to bee configured
+define('MAX_DISPLAY_SEARCH_RESULTS','30');
 define('GENERATOR_INSTANCE', 'true'); // set to 'true'for generator dir set 'false' for shop or admin  <------ need to bee configured ! ! !
-//  define('CSS_DEVEL_MODE','1');// empty =  NO
-//  define('SHOP_KEYS_PATH','/home/printondemand/shop_keys/'); //SECURITY WARNING: need to bee obfuscated 
-
-
 
 define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . 'catalog/');
+
 if ($_SERVER['REQUEST_SCHEME'] =='https') { 
   $https = 'https';
   define('ENABLE_SSL', true); // <------ need to bee configured
@@ -25,7 +23,7 @@ if (GENERATOR_INSTANCE == 'true') {
   define('USE_SEO_REDIRECT', 'false');
 } else {
   define('SESSION_FORCE_COOKIE_USE', 'False');
-  define('USE_SEO_REDIRECT', 'true'); //TODO: experimental: test all possible urls for 'true' othervise set to 'false'
+  define('USE_SEO_REDIRECT', 'false'); //final version: 'true' TODO: fix translations in includes/classes/SeoUrl.php
 }
 define('HTTPS_SERVER', HTTP_SERVER);
 define('HTTP_COOKIE_DOMAIN', $_SERVER['HTTP_HOST']);

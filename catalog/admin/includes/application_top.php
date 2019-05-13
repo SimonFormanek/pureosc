@@ -118,12 +118,33 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);
     } else {
-        $lng->get_browser_language();
+      $browser_language = preg_replace('/,.*/','',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+      if (preg_match('/^en/', $browser_language)){
+        $browser_language = 'en';
+      }
+      $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES'));
+       while ($languages_all = tep_db_fetch_array($languages_all_query)) {
+         if ($languages_all['code'] == $browser_language) {
+           $new_language = $browser_language;
+       }
+       }
+      if ($new_language){
+        $lng->set_language($new_language);
+      } else {
+        $lng->set_language(constant('DEFAULT_LANGUAGE'));
+      }
+    }  
+} else {
+    $lng = new language();
+  //$lng->set_language($_SESSION['language']);
+      $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
+      $language_code = tep_db_fetch_array($language_code_query);
+    $lng->set_language($language_code['code']);
     }
 
+\Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
-}
 
 // redirect to login page if administrator is not yet logged in
 if (!tep_session_is_registered('admin')) {
@@ -165,11 +186,11 @@ if (!tep_session_is_registered('admin')) {
     }
 
     /*     * * Altered for Alternative Administration System **
-      if ($redirect === true) {
+      if ($redirect == true) {
       tep_redirect(tep_href_link(FILENAME_LOGIN, (isset($redirect_origin['auth_user']) ? 'action=process' : '')));
       }
      */
-    if ($redirect === true) {
+    if ($redirect == true) {
         if (basename($current_page) == FILENAME_AAS) $sessionTimeout = true;
         else
                 tep_redirect(tep_href_link(FILENAME_LOGIN,
@@ -257,9 +278,12 @@ if (tep_not_null($tPath)) {
 
 
 // include the breadcrumb class and start the breadcrumb trail
-$breadcrumb = new breadcrumb();
+require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');
+$breadcrumb = new breadcrumb;
 
+if (isset($_SESSION['admin']['id'])) {
 $messageStack = new AdminMessageStack;
 $adminLog     = new PureOSC\CustomerLog();
 $adminLog->setAdministratorID($_SESSION['admin']['id']);
 
+}

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PureOSC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-30 05:45+0100\n"
-"PO-Revision-Date: 2019-01-30 05:46+0100\n"
+"POT-Creation-Date: 2019-05-13 05:19+0200\n"
+"PO-Revision-Date: 2019-05-13 05:20+0200\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -27,44 +27,44 @@ msgstr "Můj účet"
 msgid "Informations about my account"
 msgstr "Informace o mém účtu"
 
-#: account.php:58
+#: account.php:59
 msgid "Gift Coupon / Voucher"
 msgstr "Dárkový kupón / voucher"
 
-#: account.php:62
+#: account.php:63
 msgid "send voucher"
 msgstr "odeslat voucher"
 
-#: account.php:66
+#: account.php:67
 msgid "Vouchers FAQ"
 msgstr ""
 
-#: account_edit.php:136
+#: account_edit.php:138
 msgid "Changed by customer"
 msgstr "Změněno zákazníkem"
 
-#: account_edit.php:194 account_password.php:89 account_pwa.php:273
-#: admin/create_account.php:397 contact_us.php:97 create_account.php:408
+#: account_edit.php:196 account_password.php:89 account_pwa.php:273
+#: admin/create_account.php:401 contact_us.php:97 create_account.php:408
 #: ext/modules/content/account/set_password.php:80
 #: includes/modules/address_book_details.php:16 tell_a_friend.php:166
 msgid "Requied Information"
 msgstr "Vyžadovaná informace"
 
-#: account_edit.php:219 account_edit.php:234 account_edit.php:245
-#: account_edit.php:261 account_edit.php:277 account_edit.php:289
+#: account_edit.php:221 account_edit.php:236 account_edit.php:247
+#: account_edit.php:263 account_edit.php:279 account_edit.php:291
 #: account_password.php:100 account_password.php:112 account_password.php:124
 #: account_pwa.php:302 account_pwa.php:315 account_pwa.php:327
 #: account_pwa.php:342 account_pwa.php:357 account_pwa.php:401
 #: account_pwa.php:431 account_pwa.php:443 account_pwa.php:466
 #: account_pwa.php:470 account_pwa.php:475 account_pwa.php:491
-#: account_pwa.php:506 admin/create_account.php:428
-#: admin/create_account.php:441 admin/create_account.php:453
-#: admin/create_account.php:468 admin/create_account.php:484
-#: admin/create_account.php:545 admin/create_account.php:575
-#: admin/create_account.php:587 admin/create_account.php:610
-#: admin/create_account.php:614 admin/create_account.php:619
-#: admin/create_account.php:635 admin/create_account.php:653
-#: admin/create_account.php:698 admin/create_account.php:711
+#: account_pwa.php:506 admin/create_account.php:432
+#: admin/create_account.php:445 admin/create_account.php:457
+#: admin/create_account.php:472 admin/create_account.php:488
+#: admin/create_account.php:549 admin/create_account.php:579
+#: admin/create_account.php:591 admin/create_account.php:614
+#: admin/create_account.php:618 admin/create_account.php:623
+#: admin/create_account.php:639 admin/create_account.php:657
+#: admin/create_account.php:702 admin/create_account.php:715
 #: advanced_search.php:132 contact_us.php:106 contact_us.php:117
 #: contact_us.php:128 create_account.php:439 create_account.php:452
 #: create_account.php:464 create_account.php:479 create_account.php:495
@@ -86,9 +86,9 @@ msgstr "Vyžadovaná informace"
 msgid "Required"
 msgstr "Vyžadováno"
 
-#: account_edit.php:269 account_edit.php:274 account_pwa.php:352
-#: account_pwa.php:356 admin/create_account.php:478
-#: admin/create_account.php:482 admin/customers.php:522
+#: account_edit.php:271 account_edit.php:276 account_pwa.php:352
+#: account_pwa.php:356 admin/create_account.php:482
+#: admin/create_account.php:486 admin/customers.php:542
 #: admin/edit_orders.php:1194 admin/includes/modules/account_details.php:180
 #: admin/includes/modules/create_order_details.php:60 admin/orders.php:201
 #: create_account.php:489 create_account.php:493
@@ -119,8 +119,8 @@ msgstr "Již uhrazeno"
 msgid "XLS Invoice"
 msgstr "XLS Faktura"
 
-#: account_pwa.php:368 account_pwa.php:372 admin/create_account.php:499
-#: admin/create_account.php:503 admin/customers.php:564
+#: account_pwa.php:368 account_pwa.php:372 admin/create_account.php:503
+#: admin/create_account.php:507 admin/customers.php:583
 #: admin/edit_orders.php:1112 admin/edit_orders.php:1244
 #: admin/edit_orders.php:1355 admin/includes/modules/account_details.php:216
 #: admin/includes/modules/create_order_details.php:80 create_account.php:510
@@ -131,8 +131,8 @@ msgstr "XLS Faktura"
 msgid "Company Name"
 msgstr "Název firmy"
 
-#: account_pwa.php:378 account_pwa.php:382 admin/create_account.php:519
-#: admin/create_account.php:523 admin/edit_orders.php:1118
+#: account_pwa.php:378 account_pwa.php:382 admin/create_account.php:523
+#: admin/create_account.php:527 admin/edit_orders.php:1118
 #: admin/edit_orders.php:1250 admin/edit_orders.php:1361 create_account.php:520
 #: create_account.php:524 includes/modules/address_book_details.php:96
 #: includes/modules/address_book_details.php:102
@@ -145,14 +145,14 @@ msgstr "DIČ"
 #: admin/article_manager_blog_comments.php:434 admin/article_reviews.php:240
 #: admin/articles.php:1511 admin/articles_config.php:58 admin/authors.php:566
 #: admin/backup.php:367 admin/banner_manager.php:406 admin/cache.php:54
-#: admin/categories.php:1537 admin/configuration.php:57 admin/countries.php:72
+#: admin/categories.php:1629 admin/configuration.php:57 admin/countries.php:72
 #: admin/coupon_admin.php:198 admin/coupon_admin.php:817
-#: admin/currencies.php:236 admin/customers.php:868 admin/geo_zones.php:147
+#: admin/currencies.php:236 admin/customers.php:887 admin/geo_zones.php:147
 #: admin/geo_zones.php:234 admin/gv_queue.php:75 admin/gv_sent.php:31
 #: admin/languages.php:144 admin/manufacturers.php:142
 #: admin/mm_bulkmail.php:625 admin/mm_responsemail.php:320
-#: admin/mm_templates.php:234 admin/modules.php:150
-#: admin/modules_content.php:210 admin/modules_content.php:262
+#: admin/mm_templates.php:234 admin/modules.php:149
+#: admin/modules_content.php:212 admin/modules_content.php:264
 #: admin/newsletters.php:352 admin/orders.php:461 admin/orders_status.php:125
 #: admin/products_attributes.php:272 admin/products_attributes.php:474
 #: admin/products_attributes.php:644 admin/products_expected.php:38
@@ -162,19 +162,19 @@ msgid "Action"
 msgstr "Akce"
 
 #: admin/article_manager_blog_comments.php:518 admin/articles.php:1857
-#: admin/articles.php:1874 admin/authors.php:673 admin/categories.php:2056
-#: admin/categories.php:2095 admin/manufacturers.php:370 article_blog.php:118
-#: article_info.php:86
+#: admin/articles.php:1874 admin/authors.php:673 admin/categories.php:2152
+#: admin/categories.php:2191 admin/manufacturers.php:370 article_blog.php:118
+#: article_info.php:88
 #, php-format
 msgid "DATE ADDED"
 msgstr "Přidáno dne"
 
-#: admin/articles.php:1490 admin/categories.php:1512
+#: admin/articles.php:1490 admin/categories.php:1604
 msgid "Go to"
 msgstr ""
 
 #: admin/articles.php:1508 admin/banner_manager.php:405
-#: admin/categories.php:1535 admin/edit_orders.php:2068
+#: admin/categories.php:1627 admin/edit_orders.php:2068
 #: admin/edit_orders_ajax.php:745
 #: admin/includes/modules/dashboard/d_orders.php:46
 #: admin/includes/modules/dashboard/d_reviews.php:44 admin/mm_bulkmail.php:624
@@ -183,62 +183,72 @@ msgstr ""
 msgid "Status"
 msgstr "Status"
 
-#: admin/categories.php:879
+#: admin/categories.php:896
+msgid "WARNING: Canonical category AutoDetection"
+msgstr ""
+
+#: admin/categories.php:950
 msgid "Add new"
 msgstr "Přidat nový"
 
-#: admin/categories.php:1085
+#: admin/categories.php:1168
 msgid "image for Gallery"
 msgstr "Obrázek pro galerie"
 
-#: admin/categories.php:1085
+#: admin/categories.php:1168
 msgid "HTML Replacement"
 msgstr ""
 
-#: admin/categories.php:1533
+#: admin/categories.php:1625
 msgid "Categories / Products"
 msgstr ""
 
-#: admin/categories.php:1696 admin/categories.php:1986
+#: admin/categories.php:1788 admin/categories.php:2082
+#: includes/modules/boxes/bm_categories.php:24
 msgid "Categories"
 msgstr "Kategorie"
 
-#: admin/categories.php:1721
+#: admin/categories.php:1813
 msgid "New Category / Article"
 msgstr "Nová kategorie / článek"
 
-#: admin/categories.php:1766
+#: admin/categories.php:1858
 msgid "The Category name"
 msgstr "Nadpis kategorie"
 
-#: admin/categories.php:2088
+#: admin/categories.php:2184
 msgid "Open in FlexiBee"
 msgstr "Otevřít ve FlexiBee"
 
-#: admin/create_account.php:215
+#: admin/create_account.php:118
+msgid ""
+"Your E-Mail Address already exists in our records - please log in with the e-"
+"mail address or create an account with a different address."
+msgstr ""
+
+#: admin/create_account.php:217
 msgid "Created by admin"
 msgstr "Založeno administrátorem"
 
-#: admin/create_account.php:384
-#: includes/modules/content/login/templates/create_account_link.php:4
+#: admin/create_account.php:388
 msgid "New Customer"
 msgstr "Nový zákazník"
 
-#: admin/create_account.php:509 admin/create_account.php:513
+#: admin/create_account.php:513 admin/create_account.php:517
 #: create_account.php:534 create_account.php:536
 msgid "Company Number"
 msgstr "Ičo"
 
-#: admin/create_account.php:688 admin/create_account.php:692
-#: admin/create_account.php:696
+#: admin/create_account.php:692 admin/create_account.php:696
+#: admin/create_account.php:700
 msgid "Password"
 msgstr "Heslo"
 
-#: admin/create_account.php:705 admin/create_account.php:709
+#: admin/create_account.php:709 admin/create_account.php:713
 msgid "Password Confirmation"
 msgstr "Heslo znovu"
 
-#: admin/customers.php:592 create_account.php:530
+#: admin/customers.php:611 create_account.php:530
 msgid "Company number"
 msgstr "Ičo"
 
@@ -258,15 +268,19 @@ msgstr "Faktura"
 msgid "FlexiBee sync"
 msgstr "FlexiBee synchronizace"
 
-#: admin/flexibeesync.php:75
+#: admin/flexibeesync.php:59
+msgid "Already exists in database"
+msgstr ""
+
+#: admin/flexibeesync.php:97
 msgid "FlexiBee server not connected."
 msgstr "FlexiBee server není připojen"
 
-#: admin/flexibeesync.php:76
+#: admin/flexibeesync.php:98
 msgid "Please change  FlexiBee options"
 msgstr "Prosím změňte nastavení vašeho FlexiBee"
 
-#: admin/flexibeesync.php:76
+#: admin/flexibeesync.php:98
 msgid "Here"
 msgstr "Zde"
 
@@ -405,7 +419,7 @@ msgid "Cash Desk payment"
 msgstr "Platba na pokladně"
 
 #: checkout_process.php:343 includes/modules/payment/cash.php:346
-#: includes/modules/payment/gpwebpay.php:397
+#: includes/modules/payment/gpwebpay.php:402
 msgid "New order saved"
 msgstr "Nová objednávka uložena"
 
@@ -421,6 +435,15 @@ msgstr "Import z FlexiBee "
 #: ext/flexibee/FakturaVydana.php:96
 msgid "The Card holder canceled the payment"
 msgstr "The Card holder canceled the payment"
+
+#: ext/modules/content/header/store_search/content_searches.php:132
+#, fuzzy
+msgid "More products"
+msgstr "Nové knihy za %s"
+
+#: ext/modules/content/header/store_search/content_searches.php:172
+msgid "Not found -> advanced search"
+msgstr ""
 
 #: includes/application_top.php:34
 msgid "DB_SERVER not defined"
@@ -442,6 +465,15 @@ msgstr "Chcete se přihlásit k odběru emailových novinek z %s ?"
 #: includes/classes/NewsletterConsentMailer.php:36
 msgid "Click here to Agree"
 msgstr "Klikněte zde pro vyjádření souhlasu"
+
+#: includes/modules/action_recorder/ar_admin_login.php:25
+#, fuzzy
+msgid "Administration Tool Login"
+msgstr "Poslední přihlášení Administrátora"
+
+#: includes/modules/action_recorder/ar_admin_login.php:26
+msgid "Record usage of Administration Tool logins."
+msgstr ""
 
 #: includes/modules/action_recorder/ar_reset_password.php:25
 msgid "Customer Password Reset"
@@ -470,11 +502,157 @@ msgid "Date added"
 msgstr "Přidáno dne"
 
 #: includes/modules/boxes/bm_articles.php:24
+#: includes/modules/boxes/bm_articles.php:384
 msgid "Articles"
 msgstr "Články"
 
 #: includes/modules/boxes/bm_articles.php:25
 msgid "Show Article Manager Articles InfoBox"
+msgstr ""
+
+#: includes/modules/boxes/bm_categories.php:25
+msgid "Show the category navigation tree"
+msgstr ""
+
+#: includes/modules/boxes/bm_search.php:29
+#: includes/modules/boxes/bm_search.php:50
+#, fuzzy
+msgid "Search"
+msgstr "Hledat"
+
+#: includes/modules/boxes/bm_search.php:30
+#, fuzzy
+msgid "Show search field"
+msgstr "Zobraz vyhledávací tlačítko"
+
+#: includes/modules/boxes/bm_whats_new.php:29
+#, fuzzy
+msgid "What's New"
+msgstr "Novinky"
+
+#: includes/modules/boxes/bm_whats_new.php:30
+#, fuzzy
+msgid "Show the newest products"
+msgstr "Zobraz nejnovější produkty"
+
+#: includes/modules/boxes/templates/search.php:2
+#, fuzzy
+msgid "Quick Find"
+msgstr "Rychlé hledání"
+
+#: includes/modules/boxes/templates/search.php:4
+msgid "Use keywords to find the product you are looking for."
+msgstr ""
+
+#: includes/modules/boxes/templates/search.php:4
+#, fuzzy
+msgid "Advanced Search"
+msgstr "Rozšíření hledání"
+
+#: includes/modules/boxes/templates/whats_new.php:2
+#, fuzzy
+msgid "What's New?"
+msgstr "Co je nového ?"
+
+#: includes/modules/content/checkout_success/templates/thank_you.php:3
+#, fuzzy
+msgid "Thanks for shopping with us"
+msgstr "Děkujeme za vaši objednávku."
+
+#: includes/modules/content/checkout_success/templates/thank_you.php:6
+#, fuzzy
+msgid ""
+"Your order has been successfully processed! Your products will arrive at "
+"their destination within 2-5 working days."
+msgstr ""
+"Vaše objednávka byla úspěšně zpracována. Zboží bude expedováno nejbližší "
+"pracovní den."
+
+#: includes/modules/content/checkout_success/templates/thank_you.php:7
+#, fuzzy, php-format
+msgid "You can view the status of your order any time in your account %s page."
+msgstr "Stav zpracování objednávky zobrazíte na stránce %s"
+
+#: includes/modules/content/checkout_success/templates/thank_you.php:8
+#, fuzzy
+msgid "View Orders"
+msgstr "Objednávky"
+
+#: includes/modules/content/checkout_success/templates/thank_you.php:10
+#, fuzzy, php-format
+msgid ""
+"Please forward any questions you may have  <a class=\"btn btn-info\" role="
+"\"button\" href=\"%s\">Contact Us</a>"
+msgstr ""
+"Máte-li jakýkoli dotaz <a class=\"btn btn-info\" role=\"button\" href=\"%s"
+"\">Napište nám</a>"
+
+#: includes/modules/content/footer/cm_footer_account.php:34
+#: includes/modules/content/footer/cm_footer_contact_us.php:29
+#: includes/modules/content/footer/cm_footer_information_links.php:30
+#: includes/modules/content/footer/cm_footer_text.php:29
+#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:29
+#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:29
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:30
+#: includes/modules/content/front_page/cm_fp_message.php:30
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:24
+#: includes/modules/content/front_page/cm_fp_new_products.php:30
+#: includes/modules/content/front_page/cm_fp_text_main.php:30
+#: includes/modules/content/front_page/cm_fp_title.php:30
+#: includes/modules/content/front_page/cm_fp_upcoming_products.php:30
+#: includes/modules/content/header/cm_header_breadcrumb.php:30
+#: includes/modules/content/header/cm_header_buttons.php:29
+#: includes/modules/content/header/cm_header_headertags_pagetop.php:29
+#: includes/modules/content/header/cm_header_logo.php:29
+#: includes/modules/content/product_info/cm_pi_reviews.php:29
+#: includes/modules/header_tags/ht_pages_seo.php:30
+msgid "Content Width can be 12 or less per column per row"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_account.php:35
+#: includes/modules/content/footer/cm_footer_contact_us.php:30
+#: includes/modules/content/footer/cm_footer_information_links.php:31
+#: includes/modules/content/footer/cm_footer_text.php:30
+#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:30
+#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:30
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:31
+#: includes/modules/content/front_page/cm_fp_message.php:31
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:25
+#: includes/modules/content/front_page/cm_fp_new_products.php:31
+#: includes/modules/content/front_page/cm_fp_text_main.php:31
+#: includes/modules/content/front_page/cm_fp_title.php:31
+#: includes/modules/content/front_page/cm_fp_upcoming_products.php:31
+#: includes/modules/content/header/cm_header_breadcrumb.php:31
+#: includes/modules/content/header/cm_header_buttons.php:30
+#: includes/modules/content/header/cm_header_headertags_pagetop.php:30
+#: includes/modules/content/header/cm_header_logo.php:30
+#: includes/modules/content/product_info/cm_pi_reviews.php:30
+#: includes/modules/header_tags/ht_pages_seo.php:31
+msgid "12/12 = 100% width, 6/12 = 50% width, 4/12 = 33% width."
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_account.php:36
+#: includes/modules/content/footer/cm_footer_contact_us.php:31
+#: includes/modules/content/footer/cm_footer_information_links.php:32
+#: includes/modules/content/footer/cm_footer_text.php:31
+#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:31
+#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:31
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:32
+#: includes/modules/content/front_page/cm_fp_message.php:32
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:26
+#: includes/modules/content/front_page/cm_fp_new_products.php:32
+#: includes/modules/content/front_page/cm_fp_text_main.php:32
+#: includes/modules/content/front_page/cm_fp_title.php:32
+#: includes/modules/content/front_page/cm_fp_upcoming_products.php:32
+#: includes/modules/content/header/cm_header_breadcrumb.php:32
+#: includes/modules/content/header/cm_header_buttons.php:31
+#: includes/modules/content/header/cm_header_headertags_pagetop.php:31
+#: includes/modules/content/header/cm_header_logo.php:31
+#: includes/modules/content/product_info/cm_pi_reviews.php:31
+#: includes/modules/header_tags/ht_pages_seo.php:32
+msgid ""
+"Total of all columns in any one row must equal 12 (eg:  3 boxes of 4 columns "
+"each, 1 box of 12 columns and so on)"
 msgstr ""
 
 #: includes/modules/content/footer/cm_footer_contact_us.php:27
@@ -483,53 +661,6 @@ msgstr "Kontaktní informace"
 
 #: includes/modules/content/footer/cm_footer_contact_us.php:28
 msgid "Adds a Contact Us Block to the Footer Area of your site"
-msgstr ""
-
-#: includes/modules/content/footer/cm_footer_contact_us.php:29
-#: includes/modules/content/footer/cm_footer_information_links.php:30
-#: includes/modules/content/footer/cm_footer_text.php:29
-#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:29
-#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:29
-#: includes/modules/content/front_page/cm_fp_customer_greeting.php:30
-#: includes/modules/content/front_page/cm_fp_message.php:30
-#: includes/modules/content/front_page/cm_fp_new_products.php:30
-#: includes/modules/content/front_page/cm_fp_text_main.php:30
-#: includes/modules/content/front_page/cm_fp_title.php:30
-#: includes/modules/content/header/cm_header_breadcrumb.php:30
-#: includes/modules/header_tags/ht_pages_seo.php:30
-msgid "Content Width can be 12 or less per column per row"
-msgstr ""
-
-#: includes/modules/content/footer/cm_footer_contact_us.php:30
-#: includes/modules/content/footer/cm_footer_information_links.php:31
-#: includes/modules/content/footer/cm_footer_text.php:30
-#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:30
-#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:30
-#: includes/modules/content/front_page/cm_fp_customer_greeting.php:31
-#: includes/modules/content/front_page/cm_fp_message.php:31
-#: includes/modules/content/front_page/cm_fp_new_products.php:31
-#: includes/modules/content/front_page/cm_fp_text_main.php:31
-#: includes/modules/content/front_page/cm_fp_title.php:31
-#: includes/modules/content/header/cm_header_breadcrumb.php:31
-#: includes/modules/header_tags/ht_pages_seo.php:31
-msgid "12/12 = 100% width, 6/12 = 50% width, 4/12 = 33% width."
-msgstr ""
-
-#: includes/modules/content/footer/cm_footer_contact_us.php:31
-#: includes/modules/content/footer/cm_footer_information_links.php:32
-#: includes/modules/content/footer/cm_footer_text.php:31
-#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:31
-#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:31
-#: includes/modules/content/front_page/cm_fp_customer_greeting.php:32
-#: includes/modules/content/front_page/cm_fp_message.php:32
-#: includes/modules/content/front_page/cm_fp_new_products.php:32
-#: includes/modules/content/front_page/cm_fp_text_main.php:32
-#: includes/modules/content/front_page/cm_fp_title.php:32
-#: includes/modules/content/header/cm_header_breadcrumb.php:32
-#: includes/modules/header_tags/ht_pages_seo.php:32
-msgid ""
-"Total of all columns in any one row must equal 12 (eg:  3 boxes of 4 columns "
-"each, 1 box of 12 columns and so on)"
 msgstr ""
 
 #: includes/modules/content/footer/cm_footer_information_links.php:28
@@ -576,14 +707,6 @@ msgstr "Napište nám"
 msgid "Information"
 msgstr "Informace"
 
-#: includes/modules/content/footer/templates/cm_footer_text.php:3
-msgid "About Us"
-msgstr "O nás"
-
-#: includes/modules/content/footer/templates/cm_footer_text.php:4
-msgid "Footer Text"
-msgstr "Text patičiky"
-
 #: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:27
 msgid "Copyright Details"
 msgstr "Licenční detaily"
@@ -599,10 +722,6 @@ msgstr "Platební ikony"
 #: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:28
 msgid "Adds a Payment Icons Block to the Extra Footer Area of your site"
 msgstr "Přidá  blok platebních ikon do patičky vašich stránek"
-
-#: includes/modules/content/footer_suffix/templates/copyright.php:2
-msgid "Footer Text Body"
-msgstr "Text patičiky"
 
 #: includes/modules/content/front_page/cm_fp_carousel.php:28
 #, fuzzy
@@ -639,11 +758,11 @@ msgstr ""
 msgid "Show the new blog articles block on the front page."
 msgstr ""
 
-#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:48
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:51
 msgid "Blog"
 msgstr "Blog"
 
-#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:51
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:54
 msgid "Show all articles"
 msgstr "Více"
 
@@ -675,7 +794,7 @@ msgstr ""
 #: includes/modules/content/front_page/templates/cm_fp_new_products.php:16
 #, fuzzy, php-format
 msgid "New Products"
-msgstr "Nové knihy za %s"
+msgstr "Nové produkty"
 
 #: includes/modules/content/front_page/templates/cm_fp_new_products.php:31
 #: includes/modules/new_products.php:41
@@ -695,6 +814,20 @@ msgstr ""
 #, fuzzy
 msgid "Adds a Breadrcumb Trail into the Header Area of your site."
 msgstr "Přidá vyhledávací políčko do patičky vašich stránek"
+
+#: includes/modules/content/header/cm_header_search.php:28
+msgid "Header Search Bar"
+msgstr ""
+
+#: includes/modules/content/header/cm_header_search.php:29
+#, fuzzy
+msgid "Adds your Header Search Bar into the Navbar Area of your site."
+msgstr "Přidá vyhledávací políčko do patičky vašich stránek"
+
+#: includes/modules/content/header/cm_header_search.php:144
+#: includes/modules/content/navbar/cm_nb_store_search.php:149
+msgid "Site search"
+msgstr "Vyhledávání"
 
 #: includes/modules/content/login/cm_create_account_link.php:27
 msgid "Create Account Link"
@@ -724,6 +857,11 @@ msgstr ""
 msgid "Show a PWA login form on the login page"
 msgstr ""
 
+#: includes/modules/content/login/templates/create_account_link.php:4
+#, fuzzy
+msgid "Create Account"
+msgstr "Vytvořit účet"
+
 #: includes/modules/content/login/templates/create_account_link.php:6
 msgid "I am a new customer."
 msgstr "Jsem nový zákazník"
@@ -736,8 +874,9 @@ msgid ""
 msgstr ""
 
 #: includes/modules/content/login/templates/login_form.php:4
-msgid "Returning Customer"
-msgstr "Vážený zákazníku,"
+#, fuzzy
+msgid "Login"
+msgstr "Login"
 
 #: includes/modules/content/login/templates/login_form.php:6
 msgid "I am a returning customer."
@@ -755,12 +894,39 @@ msgstr "Nákup bez registrace"
 msgid "Purchase without creating user account."
 msgstr ""
 
+#: includes/modules/content/navbar/cm_nb_account.php:29
+#, fuzzy
+msgid "Navbar Account"
+msgstr "Můj účet"
+
+#: includes/modules/content/navbar/cm_nb_account.php:30
+msgid "Show the account menu in the navbar."
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_cart.php:29
+#, fuzzy
+msgid "Navbar Cart"
+msgstr "Menu kategorií navbaru"
+
+#: includes/modules/content/navbar/cm_nb_cart.php:30
+msgid "Show the shopping cart menu in the navbar."
+msgstr ""
+
 #: includes/modules/content/navbar/cm_nb_categories.php:29
 msgid "Navbar Categories Menu"
 msgstr "Menu kategorií navbaru"
 
 #: includes/modules/content/navbar/cm_nb_categories.php:30
 msgid "Show the categories menu in the navbar."
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_settings.php:29
+#, fuzzy
+msgid "Navbar Settings"
+msgstr "Nastavení NavBaru"
+
+#: includes/modules/content/navbar/cm_nb_settings.php:30
+msgid "Show the settings menu in the navbar."
 msgstr ""
 
 #: includes/modules/content/navbar/cm_nb_store_search.php:29
@@ -770,10 +936,6 @@ msgstr ""
 #: includes/modules/content/navbar/cm_nb_store_search.php:30
 msgid "Adds your Store Search Bar into the Navbar Area of your site."
 msgstr "Přidá vyhledávací políčko do patičky vašich stránek"
-
-#: includes/modules/content/navbar/cm_nb_store_search.php:149
-msgid "Site search"
-msgstr "Vyhledávání"
 
 #: includes/modules/content/navbar/templates/cm_nb_account.php:23
 msgid "Log Off"
@@ -864,6 +1026,15 @@ msgstr ""
 #: includes/modules/content/navigation/templates/navbar.php:113
 msgid "VIEW CART"
 msgstr "Košík"
+
+#: includes/modules/content/product_info/cm_pi_reviews.php:27
+#, fuzzy
+msgid "Product Reviews"
+msgstr "Název produktu"
+
+#: includes/modules/content/product_info/cm_pi_reviews.php:28
+msgid " Show review block on the product info page."
+msgstr ""
 
 #: includes/modules/header_tags/ht_article_meta.php:25
 msgid "Article Meta"
@@ -1183,8 +1354,9 @@ msgid "View the orders I have made."
 msgstr "Nová objednávka uložena"
 
 #: includes/modules/pages/tp_account.php:39
+#, fuzzy
 msgid "E-Mail Notifications"
-msgstr ""
+msgstr "Emailové notifikace"
 
 #: includes/modules/pages/tp_account.php:41
 msgid "Subscribe or unsubscribe from newsletters."
@@ -1210,39 +1382,39 @@ msgstr "Platba na dřevo"
 msgid "Completed [cash]"
 msgstr "Hotovo [hotově]"
 
-#: includes/modules/payment/gpwebpay.php:43
+#: includes/modules/payment/gpwebpay.php:41
 msgid "GP WebPay"
 msgstr "GP WebPay"
 
-#: includes/modules/payment/gpwebpay.php:44
+#: includes/modules/payment/gpwebpay.php:42
 msgid "Card Payment"
 msgstr "Platba Kartou"
 
-#: includes/modules/payment/gpwebpay.php:45
+#: includes/modules/payment/gpwebpay.php:43
 msgid "GP WebPay Payment"
 msgstr "GP WebPay Platba"
 
-#: includes/modules/payment/gpwebpay.php:455
+#: includes/modules/payment/gpwebpay.php:460
 msgid "Payment failed"
 msgstr "Platba selhala"
 
-#: includes/modules/payment/gpwebpay.php:766
+#: includes/modules/payment/gpwebpay.php:772
 msgid "Your secret key"
 msgstr "Váš tajný klíč"
 
-#: includes/modules/payment/gpwebpay.php:766
+#: includes/modules/payment/gpwebpay.php:772
 msgid "Your secret key (supplied by gpwebpay)"
 msgstr "Váš tajný klíč (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:767
+#: includes/modules/payment/gpwebpay.php:773
 msgid "Your secret key password (supplied by gpwebpay)"
 msgstr "heslo vašeho tajného klíče  (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:768
+#: includes/modules/payment/gpwebpay.php:774
 msgid "Your public key (supplied by gpwebpay)"
 msgstr "váš veřejný klíč (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:868
+#: includes/modules/payment/gpwebpay.php:874
 msgid "Testing payment"
 msgstr "Testovací platba"
 
@@ -1282,11 +1454,11 @@ msgstr "Souhlas k odběru mailových novinek byl přijat"
 msgid "Newsletter subscription consent was not accepted"
 msgstr "Souhlas k odběru mailových novinek nebyl přijat"
 
-#: product_info.php:39
+#: product_info.php:40
 msgid "Product not found"
 msgstr "Produkt nenalezen"
 
-#: product_info.php:259
+#: product_info.php:260
 msgid "Options"
 msgstr "Možnosti"
 
@@ -1301,6 +1473,18 @@ msgstr "citace"
 #: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
 msgid "p"
 msgstr "p"
+
+#~ msgid "About Us"
+#~ msgstr "O nás"
+
+#~ msgid "Footer Text"
+#~ msgstr "Text patičiky"
+
+#~ msgid "Footer Text Body"
+#~ msgstr "Text patičiky"
+
+#~ msgid "Returning Customer"
+#~ msgstr "Vážený zákazníku,"
 
 #~ msgid "Vat number"
 #~ msgstr "Dič"

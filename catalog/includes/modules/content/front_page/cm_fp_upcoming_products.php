@@ -129,6 +129,7 @@ class cm_fp_upcoming_products
         where 
           to_days(products_date_available) > to_days(now())
           and pd.language_id = '".(int) $languages_id."'
+          AND p.products_status =1
         order by 
           ".MODULE_CONTENT_FRONT_PAGE_UPCOMING_PRODUCTS_FIELD." ".MODULE_CONTENT_FRONT_PAGE_UPCOMING_PRODUCTS_DIRECTION." 
         limit 

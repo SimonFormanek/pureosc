@@ -36,7 +36,7 @@ function tep_href_link_original($page = '', $parameters = '',
                                 $connection = 'NONSSL', $add_session_id = true,
                                 $search_engine_safe = true)
 {
-    global $request_type, $session_started, $SID;
+    global $request_type, $session_started;
 
     $page = tep_output_string($page);
 
@@ -115,7 +115,7 @@ function tep_href_link_original($page = '', $parameters = '',
 function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL',
                        $add_session_id = true, $search_engine_safe = true)
 {
-    global $seo_urls;
+    global $seo_urls, $languages_id;
     if (!is_object($seo_urls)) {
 
 
@@ -123,14 +123,24 @@ function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL',
         global $languages_id;
         $seo_urls = new SEO_URL($languages_id);
     }
-//   return $seo_urls->href_link($page, $parameters, $connection, $add_session_id);
-//   return preg_replace('/-[c|p|t|a|au]-[0-9]*\.html/','', $seo_urls->href_link($page, $parameters, $connection, $add_session_id));
-//   return str_replace('xslashx','/',preg_replace('/-[c|p|t|a|au]-[0-9]*.html/','', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
-    return str_replace('xslashx', '/',
+    if ($page == constant('FILENAME_PRODUCT_INFO') && constant('PRODUCTS_CANONICAL_TYPE') == 'manufacturer'){
+      preg_match('~products_id=(\d+)~', $parameters, $myid );
+      $products_id = str_replace('products_id=', '', $myid[0]);
+      $manufacturers_id_query = tep_db_query("SELECT manufacturers_id FROM " . TABLE_PRODUCTS . " WHERE products_id=" . $products_id);
+      $manufacturers_id = tep_db_fetch_array($manufacturers_id_query);
+      $manufacturers_name_query = tep_db_query("SELECT manufacturers_name from " . TABLE_MANUFACTURERS . " WHERE manufacturers_id = " . $manufacturers_id['manufacturers_id']);
+      $manufacturers_name = tep_db_fetch_array($manufacturers_name_query);
+      $manufacturer = preg_replace('/(-[a-z])*$/','',remove_accents($manufacturers_name['manufacturers_name']));
+      $newlink = '/' . $manufacturer . '/' . preg_replace('~.*/~', '', preg_replace('~.*xslashx~', '', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
+    } else {
+      $newlink = preg_replace('~.*/~', '/', preg_replace('~.*xslashx~', '/', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
+      }
+      //ORIG:   return $seo_urls->href_link($page, $parameters, $connection, $add_session_id);
+      return str_replace('xslashx', '/',
         preg_replace('/-[p|c|m|pi|a|au|by|f|fc|fri|fra|i|links|n|nc|nri|nra|pm|po|pr|pri|t]-[0-9|_]*\.html/',
-            '',
-            $seo_urls->href_link($page, $parameters, $connection,
-                $add_session_id)));
+            '', $newlink
+            ));
+
 }
 
 ////
@@ -643,4 +653,10 @@ function tep_navbar_search($btnclass = 'btn-default', $description = true)
     $search_link .= tep_hide_session_id().'</form>';
 
     return $search_link;
+}
+
+// strip paragraph ckeditor fix
+function strip_p($txt){
+$txt =  str_replace('</P>','',(str_replace('<P>','', (str_replace('</p>','', str_replace('<p>','', $txt))))));
+ return $txt;
 }

@@ -96,5 +96,6 @@ yandeximages
 yeti
 yodaobot
 youdaobot
+wget
 zealbot
 zyborg

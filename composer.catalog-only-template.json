@@ -1,0 +1,35 @@
+{
+    "name": "vendor/pureosc",
+    "description": "Description of project pureosc.",
+    "authors": [
+        {
+            "name": "PureHTML",
+            "email": "pureosc@purehtml.cz"
+        }
+    ],
+    "require": {
+        "ext-gettext": "*",
+        "ext-intl": "*",
+        "spoje.net/flexipeehp": "dev-master",
+        "vitexsoftware/ease-framework": "dev-master",
+        "vitexsoftware/flexipeehp-bricks": "dev-master",
+        "league/commonmark": "dev-master",
+        "dompdf/dompdf": "dev-master",
+        "adamstipak/webpay-php": "dev-master",
+        "phpmailer/phpmailer": "^6.0",
+        "ckeditor/ckeditor": "dev-master",
+        "meyfa/php-svg": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "PureOSC\\": "catalog/includes/classes/",
+            "PureOSC\\flexibee\\": "catalog/ext/flexibee/",
+        },
+        "classmap": ["catalog/includes/classes/", "catalog/includes/modules/"]
+    },
+        "scripts": {
+        "post-install-cmd": "make install",
+        "post-update": "make install"
+    }
+
+}
