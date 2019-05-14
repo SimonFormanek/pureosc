@@ -38,7 +38,12 @@ class AdminSplitPageResults
         $reviews_count       = tep_db_fetch_array($reviews_count_query);
         $query_num_rows      = $reviews_count['total'];
 
-        $num_pages = ceil($query_num_rows / $max_rows_per_page);
+        if ($query_num_rows) {
+            $num_pages = ceil($query_num_rows / $max_rows_per_page);
+        } else {
+            $num_pages = 0;
+        }
+
         if ($current_page_number > $num_pages) {
             $current_page_number = $num_pages;
         }
@@ -50,7 +55,7 @@ class AdminSplitPageResults
                            $current_page_number, $parameters = '',
                            $page_name = 'page')
     {
-         
+
 
         if (tep_not_null($parameters) && (substr($parameters, -1) != '&'))
                 $parameters .= '&';
@@ -64,7 +69,7 @@ class AdminSplitPageResults
         }
 
         if ($num_pages > 1) {
-            $display_links = tep_draw_form('pages','', 'get');
+            $display_links = tep_draw_form('pages', '', 'get');
 
             if ($current_page_number > 1) {
                 $display_links .= '<a href="'.tep_href_link($_SERVER['PHP_SELF'],

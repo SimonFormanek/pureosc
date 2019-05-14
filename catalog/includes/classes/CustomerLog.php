@@ -313,5 +313,39 @@ class CustomerLog extends Engine {
 ,
 ';
   }
+  
+  public function getAllForDataTable($conditions = [])
+  {
+      $data = parent::getAllForDataTable($conditions);
+      
+      if(isset($data['data'])){
+
+          $this->cryptor->setPrivateKey( file_get_contents(DIR_FS_MASTER_ROOT_DIR.'oscconfig/keys/privateKey.asc'));
+          
+          foreach ($data['data'] as $rowId => $rowValues) {
+              if(!empty($rowValues['answer']) && strstr($rowValues['answer'],' ')){
+                  $answer = explode(' ', $rowValues['answer']);
+                  $operation = $answer[0];    
+                  $crypttext = $answer[1];    
+                  switch ($operation) {
+                      case 'insert':
+                      case 'update':
+                          
+                          $decrypted = $this->cryptor->decrypt($crypttext);
+                          if(!is_null($decrypted)){
+                              $data['data'][$rowId]['answer'] = _($operation).' '.$decrypted;
+                          }
+                          break;
+
+                      default:
+                          break;
+                  }                      
+                      
+              }
+          }
+      }
+          
+      return $data;
+  }
 
 }
