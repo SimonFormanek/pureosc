@@ -18,7 +18,8 @@
         "adamstipak/webpay-php": "*",
         "phpmailer/phpmailer": "^6.0",
         "ckeditor/ckeditor": "dev-master",
-        "envms/fluentpdo": "^1.1"
+        "envms/fluentpdo": "^1.1",
+        "purehtml/purecrypto": "dev-master"
     },
     "autoload": {
         "psr-4": {
