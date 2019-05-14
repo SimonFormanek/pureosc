@@ -19,4 +19,5 @@ class WebPage extends \Ease\WebPage
      * @var string path or url 
      */
       public $jqueryJavaScript    = null;
+      public $bootstrapThemeCSS  = null;
 }
