@@ -671,3 +671,27 @@ function strip_p($txt)
             (str_replace('</p>', '', str_replace('<p>', '', $txt))))));
     return $txt;
 }
+
+//european accented chars
+$accented .= '¡¿';
+$accented .= 'ÄäÀàÁáÂâÃãÅåǍǎĄąĂăÆæĀā';
+$accented .= 'ÇçĆćĈĉČč';
+$accented .= 'ĎđĐďð';
+$accented .= 'ÈèÉéÊêËëĚěĘęĖėĒē';
+$accented .= 'ĜĝĢģĞğ';
+$accented .= 'Ĥĥ';
+$accented .= 'ÌìÍíÎîÏïıĪīĮį';
+$accented .= 'Ĵĵ';
+$accented .= 'Ķķ';
+$accented .= 'ĹĺĻļŁłĽľ';
+$accented .= 'ÑñŃńŇňŅņ';
+$accented .= 'ÖöÒòÓóÔôÕõŐőØøŒœ';
+$accented .= 'ŔŕŘř';
+$accented .= 'ẞßŚśŜŝŞşŠšȘș';
+$accented .= 'ŤťŢţÞþȚț';
+$accented .= 'ÜüÙùÚúÛûŰűŨũŲųŮůŪū';
+$accented .= 'Ŵŵ';
+$accented .= 'ÝýŸÿŶŷ';
+$accented .= 'ŹźŽžŻż';
+$european_accented_chars = $accented;
+$safe_search_whitelisted_chars = '/[^A-Za-z0-9_ -' . $european_accented_chars . ']/;

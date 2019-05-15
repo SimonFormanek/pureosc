@@ -57,6 +57,8 @@ $security_pro = new Fwr_Media_Security_Pro();
 //$security_pro->addExclusion( 'some_file.php' );
 $security_pro->addExclusion('advanced_search_result.php');
 $security_pro->addExclusion('advanced_search.php');
+$security_pro->addExclusion('article_manager_search_result.php');
+
 $security_pro->cleanse($_SERVER['PHP_SELF']);
 /* * * EOF alteration for Security Pro 11 ** */
 

@@ -14,8 +14,9 @@
 require('includes/application_top.php');
 
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ARTICLE_MANAGER_SEARCH_RESULT);
-
-$searchFor = preg_replace('/[^A-Za-z0-9_ -]/', '', $_GET['article_keywords']);
+//TODO:all used languages
+$searchFor = preg_replace($safe_search_whitelisted_chars, '', $_GET['article_keywords']);
+//$searchFor = preg_replace('/[^A-Za-z0-9_ -]/', '', $_GET['article_keywords']);
 
 $articles_query = tep_db_query("select * from ".TABLE_ARTICLES." a left join ".TABLE_ARTICLES_DESCRIPTION." ad on a.articles_id = ad.articles_id where a.articles_status = 1 and ( ad.articles_name LIKE '%".$searchFor."%' or ad.articles_description LIKE '%".$searchFor."%' ) and language_id = ".(int) $languages_id);
 
