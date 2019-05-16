@@ -91,17 +91,17 @@ class oscTemplate {
             $class = basename($module, '.php');
 
             if (!class_exists($class)) {
-              if (file_exists(DIR_WS_LANGUAGES . $language . '/modules/' . $group . '/' . $module)) {
-                include(DIR_WS_LANGUAGES . $language . '/modules/' . $group . '/' . $module);
-              }
-
-              if (file_exists(DIR_WS_MODULES . $group . '/' . $module)) {
+              if (file_exists(DIR_WS_MODULES.$group.'/'.$module)) {
                 include(DIR_WS_MODULES . $group . '/' . $module);
               }
             }
+            if (file_exists(DIR_WS_LANGUAGES.$language.'/modules/'.$group.'/'.$module)) {
+              include(DIR_WS_LANGUAGES.$language.'/modules/'.$group.'/'.$module);
+              file_put_contents('/tmp/module.log','cesta:'.(DIR_WS_LANGUAGES.$language.'/modules/'.$group.'/'.$module),FILE_APPEND);
+           }
 
-            if (class_exists($class)) {
-              $mb = new $class();
+              if (class_exists($class)) {
+                $mb = new $class();
 
               if ($mb->isEnabled()) {
                 $mb->execute();
