@@ -403,6 +403,7 @@ class gpwebpay
                     'success');
             } else {
                 echo 'FlexiBee Errorek!!! Objednávka se neuložila';
+                $varSym    = intval(str_replace('-', '', $cart_gpwebpay_Standard_ID));
             }
         } else {
             $orderCode = null;
@@ -442,7 +443,7 @@ class gpwebpay
         ];
 
         $gpwpcurrency = $currconvert[$currency];
-        $successUrl   = tep_href_link(constant('FILENAME_CHECKOUT_PROCESS'), '',
+        $successUrl   = constant('HTTPS_SERVER').tep_href_link(constant('FILENAME_CHECKOUT_PROCESS'), 'payment=done',
             'SSL');
 
 

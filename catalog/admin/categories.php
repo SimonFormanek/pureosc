@@ -1766,7 +1766,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                 }
 
                                 $cPath_back = '';
-                                if (sizeof($cPath_array) > 0) {
+                                if (!empty($cPath_array)) {
                                     for ($i = 0, $n = sizeof($cPath_array)
                                         - 1; $i < $n; $i++) {
                                         if (empty($cPath_back)) {
@@ -1786,8 +1786,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                         <table border="0" width="100%" cellspacing="0" cellpadding="2">
                                             <tr>
                                                 <td class="smallText"><?php echo _('Categories') . '&nbsp;' . $categories_count . '<br />' . TEXT_PRODUCTS . '&nbsp;' . $products_count; ?></td>
-                                                <td align="right" class="smallText"><?php if (sizeof($cPath_array)
-                                                        > 0) echo tep_draw_button(IMAGE_BACK,
+                                                <td align="right" class="smallText"><?php if (!empty($cPath_array)) echo tep_draw_button(IMAGE_BACK,
                                                         'triangle-1-w',
                                                         tep_href_link(FILENAME_CATEGORIES,
                                                             $cPath_back . 'cID=' . $current_category_id));
