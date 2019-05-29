@@ -51,7 +51,7 @@ class paypoint_secpay
         if (($this->enabled === true) && ((int) MODULE_PAYMENT_PAYPOINT_SECPAY_ZONE
             > 0)) {
             $check_flag  = false;
-            $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_PAYPOINT_SECPAY_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
+            $check_query = tep_db_query("select zone_id from ".constant('TABLE_ZONES_TO_GEO_ZONES')." where geo_zone_id = '".MODULE_PAYMENT_PAYPOINT_SECPAY_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
             while ($check       = tep_db_fetch_array($check_query)) {
                 if ($check['zone_id'] < 1) {
                     $check_flag = true;

@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 require('includes/application_top.php');
 
 $class = $oPage->getRequestValue('class');

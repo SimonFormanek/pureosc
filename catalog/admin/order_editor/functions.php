@@ -54,7 +54,7 @@ function oe_js_zone_list($country, $form, $field, $id, $id2)
 //kept the tep_ prefix here as the Low Order Fee module uses this function 
 function tep_get_tax_description($class_id, $country_id, $zone_id)
 {
-    $tax_query = tep_db_query("select tax_description from ".TABLE_TAX_RATES." tr left join ".TABLE_ZONES_TO_GEO_ZONES." za on (tr.tax_zone_id = za.geo_zone_id) left join ".TABLE_GEO_ZONES." tz on (tz.geo_zone_id = tr.tax_zone_id) where (za.zone_country_id is null or za.zone_country_id = '0' or za.zone_country_id = '".(int) $country_id."') and (za.zone_id is null or za.zone_id = '0' or za.zone_id = '".(int) $zone_id."') and tr.tax_class_id = '".(int) $class_id."' order by tr.tax_priority");
+    $tax_query = tep_db_query("select tax_description from ".TABLE_TAX_RATES." tr left join ".constant('TABLE_ZONES_TO_GEO_ZONES')." za on (tr.tax_zone_id = za.geo_zone_id) left join ".TABLE_GEO_ZONES." tz on (tz.geo_zone_id = tr.tax_zone_id) where (za.zone_country_id is null or za.zone_country_id = '0' or za.zone_country_id = '".(int) $country_id."') and (za.zone_id is null or za.zone_id = '0' or za.zone_id = '".(int) $zone_id."') and tr.tax_class_id = '".(int) $class_id."' order by tr.tax_priority");
     if (tep_db_num_rows($tax_query)) {
         $tax_description = '';
         while ($tax             = tep_db_fetch_array($tax_query)) {

@@ -24,10 +24,10 @@ if ($messageStack->size > 0) {
     </tr>
     <tr class="headerBar">
         <td class="headerBarContent">&nbsp;&nbsp;<?php
-            echo '<a href="'.tep_href_link(FILENAME_DEFAULT).'" class="headerLink">'.HEADER_TITLE_ADMINISTRATION.'</a> &nbsp;|&nbsp; <a href="'.tep_catalog_href_link().'" class="headerLink">'.HEADER_TITLE_ONLINE_CATALOG.'</a> &nbsp;|&nbsp; <a href="' .tep_href_link(FILENAME_STATIC_GENERATOR_RESET) . '" class="headerLink">' . HEADER_TITLE_STATIC_GENERATOR_RESET .'</a>';
+            echo '<a href="'.tep_href_link(constant('FILENAME_DEFAULT')).'" class="headerLink">'.HEADER_TITLE_ADMINISTRATION.'</a> &nbsp;|&nbsp; <a href="'.tep_catalog_href_link().'" class="headerLink">'.HEADER_TITLE_ONLINE_CATALOG.'</a> &nbsp;|&nbsp; <a href="'.tep_href_link(constant('FILENAME_STATIC_GENERATOR_RESET')).'" class="headerLink">'._('Static generator reset').'</a>';
 
             if (tep_session_is_registered('admin')) {
-                if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+                if (defined('USE_FLEXIBEE') && constant('USE_FLEXIBEE') == 'true') {
                     echo ' | FlexiBee '.new \Ease\Html\SpanTag(new \FlexiPeeHP\ui\StatusInfoBox(),
                         ['style' => 'color: white']);
                 }

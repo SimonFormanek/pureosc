@@ -579,7 +579,7 @@ class ShoppingCart
                 if (preg_match('/^GIFT/', $gv_result['products_model'])) {
                     $no_count = true;
                 }
-                if (NO_COUNT_ZERO_WEIGHT == 1) {
+                if (defined('NO_COUNT_ZERO_WEIGHT') && constant('NO_COUNT_ZERO_WEIGHT') == 1) {
                     $gv_query  = tep_db_query("select products_weight from ".TABLE_PRODUCTS." where products_id = '".tep_get_prid($products_id)."'");
                     $gv_result = tep_db_fetch_array($gv_query);
                     if ($gv_result['products_weight'] <= MINIMUM_WEIGHT) {

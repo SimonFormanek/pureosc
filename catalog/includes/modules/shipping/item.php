@@ -20,16 +20,19 @@ class item
         global $order;
 
         $this->code        = 'item';
-        $this->title       =  MODULE_SHIPPING_ITEM_TEXT_TITLE;
-        $this->description = MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION;
-        $this->sort_order  = MODULE_SHIPPING_ITEM_SORT_ORDER;
+        $this->title       = _('Per Item');
+        $this->description = _('Per Item');
+        $this->sort_order  = defined('MODULE_SHIPPING_ITEM_SORT_ORDER') ? constant('MODULE_SHIPPING_ITEM_SORT_ORDER')
+                : '';
         $this->icon        = '';
-        $this->tax_class   = MODULE_SHIPPING_ITEM_TAX_CLASS;
-        $this->enabled     = ((MODULE_SHIPPING_ITEM_STATUS == 'True') ? true : false);
+        $this->tax_class   = defined('MODULE_SHIPPING_ITEM_TAX_CLASS') ? constant('MODULE_SHIPPING_ITEM_TAX_CLASS')
+                : '';
+        $this->enabled     = defined('MODULE_SHIPPING_ITEM_STATUS') && constant('MODULE_SHIPPING_ITEM_STATUS')
+            == 'True';
 
         if (($this->enabled === true) && ((int) MODULE_SHIPPING_ITEM_ZONE > 0)) {
             $check_flag  = false;
-            $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_SHIPPING_ITEM_ZONE."' and zone_country_id = '".$order->delivery['country']['id']."' order by zone_id");
+            $check_query = tep_db_query("select zone_id from ".constant('TABLE_ZONES_TO_GEO_ZONES')." where geo_zone_id = '".MODULE_SHIPPING_ITEM_ZONE."' and zone_country_id = '".$order->delivery['country']['id']."' order by zone_id");
             while ($check       = tep_db_fetch_array($check_query)) {
                 if ($check['zone_id'] < 1) {
                     $check_flag = true;
