@@ -67,7 +67,7 @@ class moneybookers_ngp extends moneybookers
         } elseif (($this->enabled === true) && ((int) MODULE_PAYMENT_MONEYBOOKERS_NGP_ZONE
             > 0)) {
             $check_flag  = false;
-            $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_MONEYBOOKERS_NGP_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
+            $check_query = tep_db_query("select zone_id from ".constant('TABLE_ZONES_TO_GEO_ZONES')." where geo_zone_id = '".MODULE_PAYMENT_MONEYBOOKERS_NGP_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
             while ($check       = tep_db_fetch_array($check_query)) {
                 if ($check['zone_id'] < 1) {
                     $check_flag = true;
@@ -122,7 +122,7 @@ class moneybookers_ngp extends moneybookers
 
             $country_query = tep_db_query("select countries_id from ".TABLE_COUNTRIES." where countries_iso_code_2 = 'DE' or countries_iso_code_2 = 'GB'");
             while ($country       = tep_db_fetch_array($country_query)) {
-                tep_db_query("insert into ".TABLE_ZONES_TO_GEO_ZONES." values (null, '".(int) $country['countries_id']."', 0, '".(int) $zone_id."', null, now())");
+                tep_db_query("insert into ".constant('TABLE_ZONES_TO_GEO_ZONES')." values (null, '".(int) $country['countries_id']."', 0, '".(int) $zone_id."', null, now())");
             }
         }
 

@@ -41,7 +41,8 @@ if (tep_not_null($action)) {
             break;
         case 'install':
         case 'remove':
-            $file_extension = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
+            $file_extension = substr($_SERVER['PHP_SELF'],
+                strrpos($_SERVER['PHP_SELF'], '.'));
             $class          = basename($_GET['module']);
             if (file_exists($module_directory.$class.$file_extension)) {
                 include($module_directory.$class.$file_extension);
@@ -90,7 +91,8 @@ $modules_installed   = (defined($module_key) ? explode(';',
         constant($module_key)) : array());
 $new_modules_counter = 0;
 
-$file_extension  = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
+$file_extension  = substr($_SERVER['PHP_SELF'],
+    strrpos($_SERVER['PHP_SELF'], '.'));
 $directory_array = array();
 if ($dir             = @dir($module_directory)) {
     while ($file = $dir->read()) {
@@ -181,6 +183,10 @@ if ($dir             = @dir($module_directory)) {
                                             'api_version' => (isset($module->api_version)
                                                 ? $module->api_version : null));
 
+                                        if (isset($module->icon)) {
+                                            $module_info['icon'] = $module->icon;
+                                        }
+
                                         $module_keys = $module->keys();
 
                                         $keys_extra = array();
@@ -240,7 +246,7 @@ if ($dir             = @dir($module_directory)) {
                         </tr>
                         <?php
                     } else {
-                        echo  '<div class="error">Error lading class <strong>'. $class .'</strong></div>' ;
+                        echo '<div class="error">Error lading class <strong>'.$class.'</strong></div>';
                     }
                 }
 
@@ -284,6 +290,10 @@ if ($dir             = @dir($module_directory)) {
         <?php
         $heading  = array();
         $contents = array();
+        if (isset($mInfo->icon)) {
+            $heading[] = ['text' => tep_image($mInfo->icon)];
+        }
+
 
         switch ($action) {
             case 'edit':

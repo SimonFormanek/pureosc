@@ -121,12 +121,15 @@ class zones2
     function zones2()
     {
         $this->code        = 'zones2';
-        $this->title       =  MODULE_SHIPPING_ZONES2_TEXT_TITLE;
-        $this->description = MODULE_SHIPPING_ZONES2_TEXT_DESCRIPTION;
-        $this->sort_order  = MODULE_SHIPPING_ZONES2_SORT_ORDER;
+        $this->title       = _('Zone Based Express Shipping Rates');
+        $this->description = _('Zone Based Rates Express');
+        $this->sort_order  = defined('MODULE_SHIPPING_ZONES2_SORT_ORDER') ? constant('MODULE_SHIPPING_ZONES2_SORT_ORDER')
+                : '';
         $this->icon        = '';
-        $this->tax_class   = MODULE_SHIPPING_ZONES2_TAX_CLASS;
-        $this->enabled     = ((MODULE_SHIPPING_ZONES2_STATUS == 'True') ? true : false);
+        $this->tax_class   = defined('MODULE_SHIPPING_ZONES2_TAX_CLASS') ? constant('MODULE_SHIPPING_ZONES2_TAX_CLASS')
+                : '';
+        $this->enabled     = defined('MODULE_SHIPPING_ZONES2_STATUS') && constant('MODULE_SHIPPING_ZONES2_STATUS')
+            == 'True';
 
         // CUSTOMIZE THIS SETTING FOR THE NUMBER OF ZONES NEEDED
         $this->num_zones = 3;

@@ -67,7 +67,7 @@ class moneybookers_vsa extends moneybookers
         } elseif (($this->enabled === true) && ((int) MODULE_PAYMENT_MONEYBOOKERS_VSA_ZONE
             > 0)) {
             $check_flag  = false;
-            $check_query = tep_db_query("select zone_id from ".TABLE_ZONES_TO_GEO_ZONES." where geo_zone_id = '".MODULE_PAYMENT_MONEYBOOKERS_VSA_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
+            $check_query = tep_db_query("select zone_id from ".constant('TABLE_ZONES_TO_GEO_ZONES')." where geo_zone_id = '".MODULE_PAYMENT_MONEYBOOKERS_VSA_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
             while ($check       = tep_db_fetch_array($check_query)) {
                 if ($check['zone_id'] < 1) {
                     $check_flag = true;
@@ -124,7 +124,7 @@ class moneybookers_vsa extends moneybookers
             if (tep_db_num_rows($country_query)) {
                 $country = tep_db_fetch_array($country_query);
 
-                tep_db_query("insert into ".TABLE_ZONES_TO_GEO_ZONES." values (null, '".(int) $country['countries_id']."', 0, '".(int) $zone_id."', null, now())");
+                tep_db_query("insert into ".constant('TABLE_ZONES_TO_GEO_ZONES')." values (null, '".(int) $country['countries_id']."', 0, '".(int) $zone_id."', null, now())");
             }
         }
 
