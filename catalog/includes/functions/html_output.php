@@ -694,4 +694,5 @@ $accented .= 'Ŵŵ';
 $accented .= 'ÝýŸÿŶŷ';
 $accented .= 'ŹźŽžŻż';
 $european_accented_chars = $accented;
-$safe_search_whitelisted_chars = '/[^A-Za-z0-9_ -' . $european_accented_chars . ']/;
+$safe_search_whitelisted_chars = '/[^A-Za-z0-9_ -' . $european_accented_chars . ']/';
+
