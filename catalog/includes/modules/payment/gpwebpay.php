@@ -489,7 +489,7 @@ class gpwebpay
             strpos($cart_gpwebpay_Standard_ID, '-') + 1);
         $my_status_query   = tep_db_query("select orders_status from ".TABLE_ORDERS." where orders_id = '".$order_id."'"); // TODO: fix PB to add all params"' and customers_id = '" . (int)$HTTP_POST_VARS['custom'] . "'");
         $current_status_id = 0;
-        $delivered_status  = 3;
+        $delivered_status  = 108;
         $update_status     = true;
         if (tep_db_num_rows($my_status_query) > 0) {
             $o_stat            = tep_db_fetch_array($my_status_query);
@@ -512,7 +512,7 @@ class gpwebpay
                 case 0:
                 default:
 
-                    $order_status_id = (int) DEFAULT_ORDERS_STATUS_ID;
+                    $order_status_id = (int) 108;//sim: nastavil jsem vyrizeno ORIG: $order_status_id = (int) DEFAULT_ORDERS_STATUS_ID; 
                     tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
 
                     break;
