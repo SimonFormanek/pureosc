@@ -106,7 +106,7 @@ function tep_get_path($current_category_id = '')
     if ($current_category_id == '') {
         $cPath_new = implode('_', $cPath_array);
     } else {
-        if (sizeof($cPath_array) == 0) {
+        if (empty($cPath_array)) {
             $cPath_new = $current_category_id;
         } else {
             $cPath_new           = '';

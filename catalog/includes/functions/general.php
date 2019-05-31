@@ -458,7 +458,7 @@ function tep_add_tax($price, $tax)
 // Calculates Tax rounding the result
 function tep_calculate_tax($price, $tax)
 {
-    return $price * $tax / 100;
+    return floatval($price) * $tax / 100;
 }
 
 ////

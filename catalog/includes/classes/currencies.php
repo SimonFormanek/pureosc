@@ -46,7 +46,7 @@ class currencies
 
         if (empty($currency_type)) $currency_type = $currency;
 
-        if ($calculate_currency_value === true) {
+            if ($calculate_currency_value === true) {
             $rate          = (tep_not_null($currency_value)) ? $currency_value : $this->currencies[$currency_type]['value'];
             $format_string = $this->currencies[$currency_type]['symbol_left'].number_format(tep_round($number
                         * $rate,
@@ -69,7 +69,7 @@ class currencies
     {
         global $currency;
 
-        return tep_add_tax($products_price, $products_tax) * $quantity;
+        return tep_add_tax(floatval($products_price), $products_tax) * $quantity;
     }
 
     function is_set($code)
@@ -93,7 +93,6 @@ class currencies
 
     function display_price($products_price, $products_tax, $quantity = 1)
     {
-        return $this->format($this->calculate_price($products_price,
-                    $products_tax, $quantity));
+        return $this->format($this->calculate_price($products_price,   $products_tax, $quantity));
     }
 }

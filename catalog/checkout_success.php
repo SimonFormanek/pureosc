@@ -85,12 +85,11 @@ if (!isset($_REQUEST['PRCODE']) || ($_REQUEST['PRCODE'] == 0)) {
                         $invoice->getRecordIdent());
             }
             $invoiceNum = $invoice->getRecordID();
-            
-            
+
+
             echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&report-name=slozenkaA$$SUM&id='.$invoiceNum.'&embed=true'.'">'._('print cheque').'</a>';
             echo '<a class="btn btn-success btn-xs" role="button" href="'.'getpdf.php?evidence=faktura-vydana&id='.$invoiceNum.'&embed=true'.'">'._('PDF Invoice').'</a>';
             echo '<a class="btn btn-success btn-xs" role="button" href="'.'getisdoc.php?evidence=faktura-vydana&id='.$invoiceNum.'&embed=true'.'">'._('ISDOC Invoice').'</a>';
-            
         } else {
             
         }
@@ -107,9 +106,9 @@ if (!isset($_REQUEST['PRCODE']) || ($_REQUEST['PRCODE'] == 0)) {
 <div class="contentContainer">
     <div class="buttonSet">
         <div class="text-right"><?php
-            echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right',
-                null, 'primary', null, 'btn-success');
-            ?></div>
+    echo tep_draw_button(IMAGE_BUTTON_CONTINUE, 'fa fa-angle-right', null,
+        'primary', null, 'btn-success');
+    ?></div>
     </div>
 </div>
 

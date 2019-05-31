@@ -2179,7 +2179,7 @@ class SEO_URL
         foreach ($foo as $index => $value) {
             switch (true) {
                 case ( strlen($value) <= $limit ):
-                    continue;
+                    break;
                 default:
                     $container[] = $value;
                     break;
