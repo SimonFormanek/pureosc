@@ -41,9 +41,21 @@ class cm_cs_thank_you
 
     function execute()
     {
-        global $oscTemplate;
-
-        ob_start();
+        global $oscTemplate, $order_id;
+				$status_query = tep_db_query("SELECT orders_status from " . TABLE_ORDERS . " WHERE orders_id='" . (int) $order_id . "'");
+				$status = tep_db_fetch_array($status_query);
+        if ($status['orders_status'] == 110) {
+				  $response_success_status_message = MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_ERROR_TIMEOUT;
+        } elseif ( 
+          ($status['orders_status'] == 3) ||
+          ($status['orders_status'] == 107) ||
+          ($status['orders_status'] == 107) || 
+          ($status['orders_status'] > 108) ){				
+				  $response_success_status_message = MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_ERROR_TECHNICAL_COMMON;
+				} else {
+				  $response_success_status_message = MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_SUCCESS;
+        }				
+				ob_start();
         include(DIR_WS_MODULES.'content/'.$this->group.'/templates/thank_you.php');
         $template = ob_get_clean();
 

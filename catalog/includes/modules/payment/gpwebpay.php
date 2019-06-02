@@ -489,7 +489,7 @@ class gpwebpay
             strpos($cart_gpwebpay_Standard_ID, '-') + 1);
         $my_status_query   = tep_db_query("select orders_status from ".TABLE_ORDERS." where orders_id = '".$order_id."'"); // TODO: fix PB to add all params"' and customers_id = '" . (int)$HTTP_POST_VARS['custom'] . "'");
         $current_status_id = 0;
-        $delivered_status  = 108;
+        $delivered_status  = 101;
         $update_status     = true;
         if (tep_db_num_rows($my_status_query) > 0) {
             $o_stat            = tep_db_fetch_array($my_status_query);
@@ -504,17 +504,35 @@ class gpwebpay
 
             switch (self::processGpWebPayResponse($_REQUEST, $order_id)) {
                 case 50:
-                case 14:
-                    tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));
-                    exit();
-//Duplicate payment
+//                case 14:
+                $order->info['order_status'] = 114;
+                tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order->info['order_status']."', last_modified = now() where orders_id = '".(int) $order_id."'");
+								tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));  
+								exit;
+
                     break;
                 case 0:
-                default:
-
-                    $order_status_id = (int) 108;//sim: nastavil jsem vyrizeno ORIG: $order_status_id = (int) DEFAULT_ORDERS_STATUS_ID; 
+                    $order_status_id = (int) MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID;
                     tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+										break;
+                case 35:
+                    $order_status_id = (int) 110; //session expired
+                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+										break;
+                case 17:
+                    $order_status_id = (int) 111; //Amount to deposit exceeds approved amount
+                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+										break;
+                case 1000:
+                    $order_status_id = (int) 112; //Technical Problem
+                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+										break;
 
+                default:
+                    $order_status_id = (int) 109;//Unknow OSC Error
+                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                    tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));
+                    exit();
                     break;
             }
 
