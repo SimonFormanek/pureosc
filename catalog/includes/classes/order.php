@@ -159,7 +159,7 @@ class order
 
         $this->content_type     = $cart->get_content_type();
         /*         * * Altered for CCGV **
-          if ( ($this->content_type != 'virtual') && ($sendto === false) ) {
+          if ( ($this->content_type != 'virtual') && ($sendto == false) ) {
           $sendto = $customer_default_address_id;
           }
          */
@@ -328,14 +328,14 @@ class order
             $this->products[$index] = array('qty' => $products[$i]['quantity'],
                 'name' => $products[$i]['name'],
                 'model' => $products[$i]['model'],
-                'tax' => tep_get_tax_rate($products[$i]['tax_class_id'],
+                'tax' => tep_get_tax_rate($products[$i]['tax_class_id']), //tep_round(tep_get_tax_rate($products[$i]['tax_class_id']), 0), 
                     $tax_address['entry_country_id'],
-                    $tax_address['entry_zone_id']),
+                    $tax_address['entry_zone_id'],
                 'tax_description' => tep_get_tax_description($products[$i]['tax_class_id'],
                     $tax_address['entry_country_id'],
                     $tax_address['entry_zone_id']),
                 'price' => $products[$i]['price'],
-                'final_price' => $products[$i]['price'] + $cart->attributes_price($products[$i]['id']),
+                'final_price' => tep_round( str_replace(',', '.', (string)($products[$i]['price'] + $cart->attributes_price($products[$i]['id']))), 4),
                 'weight' => $products[$i]['weight'],
                 'id' => $products[$i]['id']);
 
@@ -359,8 +359,16 @@ class order
             /*             * * Altered for CCGV **
               $shown_price = $currencies->calculate_price($this->products[$index]['final_price'], $this->products[$index]['tax'], $this->products[$index]['qty']);
              */
-            $shown_price = tep_add_tax($this->products[$index]['final_price'],
-                    $this->products[$index]['tax']) * $this->products[$index]['qty'];
+             
+            //$shown_price = str_replace(',','.', tep_add_tax($this->products[$index]['final_price'], $this->products[$index]['tax']) * $this->products[$index]['qty']);
+            
+             $shown_price = tep_round( str_replace(',','.', ( $c = tep_add_tax( ( $a = $this->products[$index]['final_price'] ),
+                    ( $b = $this->products[$index]['tax'] )) ) * ( $d = $this->products[$index]['qty'] )), 4); 
+                    
+//PURE:DEBUG:SMAZAT             logarr(['@shown_price', $a, $b, $c, $d, $shown_price, '@products', $this->products]);
+
+            
+            
             /*             * * EOF alterations for CCGV ** */
 
             $this->info['subtotal'] += $shown_price;
