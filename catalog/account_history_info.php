@@ -49,7 +49,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 ?>
 
 <div class="page-header">
-    <h1><?php echo HEADING_TITLE; ?></h1>
+    <h1><?php echo _('Order info'); ?></h1>
 </div>
 
 <div class="contentContainer">
@@ -58,7 +58,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
         <div class="panel panel-default">
             <div class="panel-heading"><strong><?php
-                    echo sprintf(HEADING_ORDER_NUMBER, $_GET['order_id']).' <span class="badge pull-right">'.$order->info['orders_status'].'</span>';
+                    echo sprintf(_('Order #%s'), $_GET['order_id']).' <span class="badge pull-right">'.$order->info['orders_status'].'</span>';
                     ?></strong></div>
             <div class="panel-body">
 
@@ -67,16 +67,16 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     if (sizeof($order->info['tax_groups']) > 1) {
                         ?>
                         <tr>
-                            <td colspan="2"><strong><?php echo HEADING_PRODUCTS; ?></strong></td>
-                            <td align="right"><strong><?php echo HEADING_TAX; ?></strong></td>
-                            <td align="right"><strong><?php echo HEADING_TOTAL; ?></strong></td>
+                            <td colspan="2"><strong><?php echo _('Products'); ?></strong></td>
+                            <td align="right"><strong><?php echo _('Tax'); ?></strong></td>
+                            <td align="right"><strong><?php echo _('Total'); ?></strong></td>
                         </tr>
                         <?php
                     } else {
                         ?>
                         <tr>
-                            <td colspan="2"><strong><?php echo HEADING_PRODUCTS; ?></strong></td>
-                            <td align="right"><strong><?php echo HEADING_TOTAL; ?></strong></td>
+                            <td colspan="2"><strong><?php echo _('Products'); ?></strong></td>
+                            <td align="right"><strong><?php echo _('Total'); ?></strong></td>
                         </tr>
                         <?php
                     }
@@ -123,139 +123,115 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
 
             <div class="panel-footer">
-                <span class="pull-right hidden-xs"><?php echo HEADING_ORDER_TOTAL.' '.$order->info['total']; ?></span><?php echo HEADING_ORDER_DATE.' '.tep_date_long($order->info['date_purchased']); ?>
+                <span class="pull-right hidden-xs"><?php echo _('Total').' '.$order->info['total']; ?></span><?php echo HEADING_ORDER_DATE.' '.tep_date_long($order->info['date_purchased']); ?>
             </div>
         </div>
     </div>
 
     <div class="clearfix"></div>
 
-    <div class="row">
-        <?php
-        if ($order->delivery != false) {
-            ?>
-            <div class="col-sm-4">
-                <div class="panel panel-info">
-                    <div class="panel-heading"><?php echo '<strong>'.HEADING_DELIVERY_ADDRESS.'</strong>'; ?></div>
-                    <div class="panel-body">
-                        <?php
-                        echo tep_address_format($order->delivery['format_id'],
-                            $order->delivery, 1, ' ', '<br />');
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <?php
+    <?php
+    $orderInfoRow = new Ease\TWB\Row();
+
+    if ($order->delivery !== false) {
+        $orderInfoRow->addColumn(4,
+            new Ease\TWB\Panel(_('Delivery Address'), 'info',
+                tep_address_format($order->delivery['format_id'],
+                    $order->delivery, 1, ' ', '<br />')));
+    }
+
+    $orderInfoRow->addColumn(4,
+        new Ease\TWB\Panel(_('Billing Address'), 'warning',
+            tep_address_format($order->billing['format_id'], $order->billing, 1,
+                ' ', '<br />')));
+
+
+    if ($order->info['shipping_method']) {
+        $orderInfoRow->addColumn(4,
+            new Ease\TWB\Panel(_('Shipping Method'), 'info',
+                $order->info['shipping_method']));
+    }
+
+
+    $paymentRow = new \Ease\TWB\Row();
+
+    $oPage = new Ease\TWB\WebPage();
+    Ease\Shared::webPage($oPage);
+
+    if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (floatval($invoice->getDataValue('zbyvaUhradit'))) {
+            $paymentInfo = new Ease\TWB\Panel(_('Payment Method'), 'warning');
+            $paymentInfo->addItem($order->info['payment_method']);
+            $paymentInfo->addItem('<p>'._('QR Payment').':'.'</p>');
+            $paymentInfo->addItem(new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
+                    $invoice->getRecordIdent()));
+        } else {
+            $docId = 'ext:orders:'.$_GET['order_id'];
+
+            $paymentInfo = new Ease\TWB\Panel(_('Payment method'), 'success');
+
+            $paymentInfo->addItem(new Ease\Html\H3Tag(_('Already settled')));
+            $paymentInfo->addItem(new Ease\TWB\LinkButton('getpdf.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
+                    _('PDF Invoice'), 'success'));
+            $paymentInfo->addItem(new Ease\TWB\LinkButton('getisdoc.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
+                    _('ISDOC Invoice'), 'success'));
+            $paymentInfo->addItem(new Ease\TWB\LinkButton('getxls.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
+                    _('XLS Invoice'), 'success'));
         }
-        ?>
-        <div class="col-sm-4">
-            <div class="panel panel-warning">
-                <div class="panel-heading"><?php echo '<strong>'.HEADING_BILLING_ADDRESS.'</strong>'; ?></div>
-                <div class="panel-body">
-                    <?php
-                    echo tep_address_format($order->billing['format_id'],
-                        $order->billing, 1, ' ', '<br />');
-                    ?>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <?php
-            if ($order->info['shipping_method']) {
-                ?>
-                <div class="panel panel-info">
-                    <div class="panel-heading"><?php echo '<strong>'.HEADING_SHIPPING_METHOD.'</strong>'; ?></div>
-                    <div class="panel-body">
-                        <?php echo $order->info['shipping_method']; ?>
-                    </div>
-                </div>
-                <?php
-            }
+    } else {
+        $paymentInfo = new Ease\TWB\Panel(constant('HEADING_PAYMENT_METHOD'),
+            'warning', $order->info['payment_method']);
+    }
 
-            if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+    
+//    $paymentInfo->addItem( new \PureOSC\ui\QRFaktura($order) );
+//    $paymentRow->addColumn(12, $paymentInfo);
 
-                $oPage = new Ease\TWB\WebPage();
-
-                Ease\Shared::webPage($oPage);
-
-                Ease\TWB\Part::twBootstrapize();
-                if (floatval($invoice->getDataValue('zbyvaUhradit'))) {
-                    $paymentInfo = new Ease\TWB\Panel(constant('HEADING_PAYMENT_METHOD'),
-                        'warning');
-                    $paymentInfo->addItem($order->info['payment_method']);
-                    $paymentInfo->addItem('<p>'._('QR Payment').':'.'</p>');
-                    $paymentInfo->addItem(new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),
-                            $invoice->getRecordIdent()));
-                } else {
-                    $docId = 'ext:orders:'.$_GET['order_id'];
-
-                    $paymentInfo = new Ease\TWB\Panel(constant('HEADING_PAYMENT_METHOD'),
-                        'success');
-
-                    $paymentInfo->addItem(new Ease\Html\H3Tag(_('Already settled')));
-                    $paymentInfo->addItem(new Ease\TWB\LinkButton('getpdf.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
-                            _('PDF Invoice'), 'success'));
-                    $paymentInfo->addItem(new Ease\TWB\LinkButton('getisdoc.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
-                            _('ISDOC Invoice'), 'success'));
-                    $paymentInfo->addItem(new Ease\TWB\LinkButton('getxls.php?evidence=faktura-vydana&id='.$docId.'&embed=true',
-                            _('XLS Invoice'), 'success'));
-                }
-            } else {
-                $paymentInfo = new Ease\TWB\Panel(constant('HEADING_PAYMENT_METHOD'),
-                    'warning', $order->info['payment_method']);
-            }
-
-
-            echo $paymentInfo;
-            ?>
-
-        </div>
-
-
-    </div>
+    echo $orderInfoRow;
+    echo $paymentRow;
+    ?>
 
     <hr>
 
-    <h2><?php echo HEADING_ORDER_HISTORY; ?></h2>
+    <h2><?php echo _('Order History'); ?></h2>
 
     <div class="clearfix"></div>
 
     <div class="contentText">
         <ul class="timeline">
-            <?php
-            $statuses_query = tep_db_query("select os.orders_status_name, osh.date_added, osh.comments from ".TABLE_ORDERS_STATUS." os, ".TABLE_ORDERS_STATUS_HISTORY." osh where osh.orders_id = '".(int) $_GET['order_id']."' and osh.orders_status_id = os.orders_status_id and os.language_id = '".(int) $languages_id."' and os.public_flag = '1' order by osh.date_added");
-            while ($statuses       = tep_db_fetch_array($statuses_query)) {
-                echo '<li>';
-                echo '  <div class="timeline-badge"><i class="fa fa-check-square-o"></i></div>';
-                echo '  <div class="timeline-panel">';
-                echo '    <div class="timeline-heading">';
-                echo '      <p class="pull-right"><small class="text-muted"><i class="fa fa-clock-o"></i> '.tep_date_short($statuses['date_added']).'</small></p><h2 class="timeline-title">'.$statuses['orders_status_name'].'</h2>';
-                echo '    </div>';
-                echo '    <div class="timeline-body">';
-                echo '      <p>'.(empty($statuses['comments']) ? '&nbsp;' : '<blockquote>'.nl2br(tep_output_string_protected($statuses['comments'])).'</blockquote>').'</p>';
-                echo '    </div>';
-                echo '  </div>';
-                echo '</li>';
-            }
-            ?>
+<?php
+$statuses_query = tep_db_query("select os.orders_status_name, osh.date_added, osh.comments from ".TABLE_ORDERS_STATUS." os, ".TABLE_ORDERS_STATUS_HISTORY." osh where osh.orders_id = '".(int) $_GET['order_id']."' and osh.orders_status_id = os.orders_status_id and os.language_id = '".(int) $languages_id."' and os.public_flag = '1' order by osh.date_added");
+while ($statuses       = tep_db_fetch_array($statuses_query)) {
+    echo '<li>';
+    echo '  <div class="timeline-badge"><i class="fa fa-check-square-o"></i></div>';
+    echo '  <div class="timeline-panel">';
+    echo '    <div class="timeline-heading">';
+    echo '      <p class="pull-right"><small class="text-muted"><i class="fa fa-clock-o"></i> '.tep_date_short($statuses['date_added']).'</small></p><h2 class="timeline-title">'.$statuses['orders_status_name'].'</h2>';
+    echo '    </div>';
+    echo '    <div class="timeline-body">';
+    echo '      <p>'.(empty($statuses['comments']) ? '&nbsp;' : '<blockquote>'.nl2br(tep_output_string_protected($statuses['comments'])).'</blockquote>').'</p>';
+    echo '    </div>';
+    echo '  </div>';
+    echo '</li>';
+}
+?>
         </ul>
     </div>
 
-    <?php
-    if (DOWNLOAD_ENABLED == 'true') include(DIR_WS_MODULES.'downloads.php');
-    ?>
+<?php
+if (DOWNLOAD_ENABLED == 'true') include(DIR_WS_MODULES.'downloads.php');
+?>
 
     <div class="clearfix"></div>
     <div class="buttonSet">
-        <?php
-        echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
-            tep_href_link(FILENAME_ACCOUNT_HISTORY,
-                tep_get_all_get_params(array('order_id')), 'SSL'));
-        ?>
+<?php
+echo tep_draw_button(IMAGE_BUTTON_BACK, 'fa fa-angle-left',
+    tep_href_link(FILENAME_ACCOUNT_HISTORY,
+        tep_get_all_get_params(array('order_id')), 'SSL'));
+?>
     </div>
 </div>
 
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
