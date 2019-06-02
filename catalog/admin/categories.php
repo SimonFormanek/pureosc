@@ -50,8 +50,9 @@ $discount = (isset($_POST['products_discount']) ? $_POST['products_discount'] : 
 
 // Ultimate SEO URLs v2.2d
 // If the action will affect the cache entries
-if (preg_match("/(insert|update|setflag)/i", $action))
+if (preg_match("/(insert|update|setflag)/i", $action)) {
     include_once('includes/reset_seo_cache.php');
+}
 
 if (tep_not_null($action)) {
 
@@ -727,7 +728,7 @@ if ($action == 'new_product') {
         } else $discount = 0; 
     }
 
-    $manufacturers_array = [['id' => '', 'text' => TEXT_NONE]];
+    $manufacturers_array = [];
     $manufacturers_query = tep_db_query("select manufacturers_id, manufacturers_name from " . TABLE_MANUFACTURERS . " order by manufacturers_name");
     while ($manufacturers = tep_db_fetch_array($manufacturers_query)) {
         $manufacturers_array[] = ['id' => $manufacturers['manufacturers_id'],
@@ -944,10 +945,10 @@ if ($action == 'new_product') {
                         ?>
                         <tr>
                             <td class="main"><?php echo TEXT_PRODUCTS_MANUFACTURER; ?></td>
-                            <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '24', '15') . '&nbsp;' . tep_draw_pull_down_menu('manufacturers_id',
-                                        $manufacturers_array, $pInfo->manufacturers_id); ?>
-                                <?php echo '<a href='. tep_href_link( 'manufacturers.php?page=0&mID=&action=new' ) .'><i class="fa fa-plus"></i>'._('Add new').'</a>'; ?>
+                            <td class="main">
+                                <?php echo tep_draw_separator('pixel_trans.gif',
+                                        '24', '15') . '&nbsp;' . tep_draw_pull_down_menu('manufacturers_id',$manufacturers_array, $pInfo->manufacturers_id);
+                                 echo '<a href='. tep_href_link( 'manufacturers.php?page=0&mID=&action=new' ) .'><i class="fa fa-plus"></i>'._('Add new').'</a>'; ?>
                             </td>
                         </tr>
                         <tr>
@@ -1013,7 +1014,7 @@ if ($action == 'new_product') {
                         
                         
                     <tr bgcolor="#ebebff">
-                        <td class="main"><?php echo TEXT_PRODUCTS_DISCOUNT; ?></td>
+                        <td class="main"><?php echo _('Discount'); ?></td>
                         <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
                                     '24', '15') . '&nbsp;' . tep_draw_input_field('products_discount', 
                                     (($form_action=='update_product') ? (string)$discount : DEFAULT_DISCOUNT)); ?>%</td>
@@ -1691,11 +1692,11 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                 }
 
                                 $products_count = 0;
-                                if (isset($_GET['search'])) {
-                                    $products_query = tep_db_query("select p.products_id, pd.products_name, p.products_quantity, p.products_image, p.products_price, p.products_date_added, p.products_last_modified, p.products_date_available, p.products_status, p2c.categories_id, p.products_custom_date, p.products_sort_order from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c," . TABLE_MANUFACTURERS . " m where p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "' and p.products_id = p2c.products_id AND p.manufacturers_id = m.manufacturers_id and pd.products_name like '%" . tep_db_input($search) . "%' order by " . PRODUCT_LIST_DEFAULT_SORT_ORDER);
-                                } else {
-                                    $products_query = tep_db_query("SELECT p.products_id, pd.products_name, p.products_quantity, p.products_image, p.products_price, p.products_date_added, p.products_last_modified, p.products_date_available, p.products_status, p.products_custom_date, p.products_sort_order FROM " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c," . TABLE_MANUFACTURERS . " m WHERE p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "' and p.products_id = p2c.products_id and p2c.categories_id = '" . (int)$current_category_id . "' AND p.manufacturers_id = m.manufacturers_id ORDER BY " . PRODUCT_LIST_DEFAULT_SORT_ORDER);
-                                }
+                                    if (isset($_GET['search'])) {
+                                        $products_query = tep_db_query("select p.products_id, pd.products_name, p.products_quantity, p.products_image, p.products_price, p.products_date_added, p.products_last_modified, p.products_date_available, p.products_status, p2c.categories_id, p.products_custom_date, p.products_sort_order from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c," . TABLE_MANUFACTURERS . " m where p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "' and p.products_id = p2c.products_id AND p.manufacturers_id = m.manufacturers_id and pd.products_name like '%" . tep_db_input($search) . "%' order by " . PRODUCT_LIST_DEFAULT_SORT_ORDER);
+                                    } else {
+                                        $products_query = tep_db_query("SELECT p.products_id, pd.products_name, p.products_quantity, p.products_image, p.products_price, p.products_date_added, p.products_last_modified, p.products_date_available, p.products_status, p.products_custom_date, p.products_sort_order FROM " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c," . TABLE_MANUFACTURERS . " m WHERE p.products_id = pd.products_id and pd.language_id = '" . (int)$languages_id . "' and p.products_id = p2c.products_id and p2c.categories_id = '" . (int)$current_category_id . "' AND p.manufacturers_id = m.manufacturers_id ORDER BY " . PRODUCT_LIST_DEFAULT_SORT_ORDER);
+                                    }
                                 while ($products = tep_db_fetch_array($products_query)) {
                                     $products_count++;
                                     $rows++;

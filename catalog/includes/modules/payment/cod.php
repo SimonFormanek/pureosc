@@ -24,8 +24,8 @@ class cod
         global $order;
 
         $this->code         = 'cod';
-        $this->title        = MODULE_PAYMENT_COD_TEXT_TITLE;
-        $this->description  = MODULE_PAYMENT_COD_TEXT_DESCRIPTION;
+        $this->title        = _('Cash on Delivery');
+        $this->description  = _('Cash on Delivery');
         $this->sort_order   = defined('MODULE_PAYMENT_COD_SORT_ORDER') ? MODULE_PAYMENT_COD_SORT_ORDER
                 : 0;
         $this->enabled      = defined('MODULE_PAYMENT_COD_STATUS') && (MODULE_PAYMENT_COD_STATUS
