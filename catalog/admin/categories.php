@@ -838,13 +838,15 @@ if ($action == 'new_product') {
                 <?php
                 echo '<a href="' . tep_href_link(FILENAME_CATEGORIES,
                         'cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID']
-                            : '') . '&action=new_product&#meta-edit') . '">' . GOTO_META_ANCHOR . '</a>&nbsp;';
-                echo tep_draw_button(IMAGE_SAVE, 'disk',
+                            : '') . '&action=new_product&#meta-edit') . '">' . 
+                            GOTO_META_ANCHOR . '</a>&nbsp;';
+/*                echo tep_draw_button(IMAGE_SAVE, 'disk',
                         null, 'primary') . tep_draw_button(IMAGE_CANCEL,
                         'close',
                         tep_href_link(FILENAME_CATEGORIES,
                             'cPath=' . $cPath . (isset($_GET['pID'])
                                 ? '&pID=' . $_GET['pID'] : ''))) . '&nbsp;';
+*/
                 ?></td>
         </tr>
         <tr>
@@ -2165,9 +2167,9 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                                   $canonical_cPath = tep_db_fetch_array($canonical_cPath_query);
                                                   $cPath = $canonical_cPath['categories_id'];
                                                 }
-                                                $buttons = tep_draw_button(IMAGE_EDIT, 'document',
+                                                $buttons = str_replace('<a ', '<a accesskey="' . ACCESSKEY_SELECT .'" ', tep_draw_button(IMAGE_EDIT, 'document',
                                                 tep_href_link(FILENAME_CATEGORIES,
-                                                    'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product')) . tep_draw_button(IMAGE_DELETE,
+                                                    'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product'))) . tep_draw_button(IMAGE_DELETE,
                                                 'trash',
                                                 tep_href_link(FILENAME_CATEGORIES,
                                                     'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=delete_product')) . tep_draw_button(IMAGE_MOVE,
