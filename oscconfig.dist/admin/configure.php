@@ -1,7 +1,11 @@
 <?php
 define('CATALOG_DOMAIN', ''); //not empty !
-define('DIR_FS_MASTER_ROOT_DIR', '/home/user/WWW/osc/'); //trailing slash YES, catalog subdir/catalog NO (!)
+define('DIR_FS_MASTER_ROOT_DIR', '/home/user/WWW/'); //trailing slash YES, catalog subdir/catalog NO (!)
 define('SERVER_INSTANCE', 'admin'); // admin or empty for shop ???? TODO
+define('OSC_DIR','osc/'); 
+define('SERVER_INSTANCE', 'admin'); // admin or empty for shop ???? TODO
+define('MAX_DISPLAY_SEARCH_RESULTS','12'); // > procucts count for all Products on one Page (controversal option)
+define('SESSION_FORCE_COOKIE_USE', 'True');
 
 if ($_SERVER['REQUEST_SCHEME'] =='https') {
   $https = 'https';
@@ -20,13 +24,13 @@ define('HTTP_COOKIE_PATH', '/admin');
 define('HTTPS_COOKIE_PATH', '/admin');
 define('HTTP_CATALOG_SERVER', $https . '://' . CATALOG_DOMAIN);
 define('HTTPS_CATALOG_SERVER', $https . '://' . CATALOG_DOMAIN);
-define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR . 'catalog/');
+define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR . OSC_DIR . 'catalog/');
 define('DIR_WS_ADMIN', '/admin/');
 define('DIR_WS_HTTPS_ADMIN', '/admin/');
-define('DIR_FS_ADMIN', DIR_FS_MASTER_ROOT_DIR . 'catalog/admin/');
+define('DIR_FS_ADMIN', DIR_FS_MASTER_ROOT_DIR . OSC_DIR . 'catalog/admin/');
 define('DIR_WS_CATALOG', '/');
 define('DIR_WS_HTTPS_CATALOG', '/');
-define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . '/catalog/');
+define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . OSC_DIR . '/catalog/');
 define('DIR_WS_IMAGES', 'images/');
 define('DIR_WS_ICONS', DIR_WS_IMAGES . 'icons/');
 define('DIR_WS_CATALOG_IMAGES', DIR_WS_CATALOG . 'images/');
@@ -38,7 +42,7 @@ define('DIR_WS_MODULES', DIR_WS_INCLUDES . 'modules/');
 define('DIR_WS_LANGUAGES', DIR_WS_INCLUDES . 'languages/');
 define('DIR_WS_CATALOG_LANGUAGES', DIR_WS_CATALOG . 'includes/languages/');
 define('DIR_FS_CATALOG_LANGUAGES', DIR_FS_CATALOG . 'includes/languages/');
-define('DIR_FS_CATALOG_IMAGES', DIR_FS_MASTER_ROOT_DIR . 'catalog/images/');
+define('DIR_FS_CATALOG_IMAGES', DIR_FS_MASTER_ROOT_DIR . OSC_DIR . 'catalog/images/');
 define('DIR_FS_CATALOG_MODULES', DIR_FS_CATALOG . 'includes/modules/');
 define('DIR_FS_BACKUP', DIR_FS_ADMIN . '../../data/backups/');
 define('DIR_FS_DOWNLOAD', DIR_FS_CATALOG . 'download/');
