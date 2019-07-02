@@ -496,7 +496,7 @@ function tep_draw_button($title = null, $icon = null, $link = null,
             $button .= ' target="_blank"';
         }
     } else {
-        $button .= '<button accesskey="s" id="tdb'.$button_counter.'" type="'.tep_output_string($params['type']).'"';
+        $button .= '<button accesskey="' . ACCESSKEY_SAVE . '" id="tdb'.$button_counter.'" type="'.tep_output_string($params['type']).'"';
     }
 
     if (isset($params['params'])) {
