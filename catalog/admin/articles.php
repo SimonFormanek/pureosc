@@ -327,6 +327,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'getversion') {
           if (isset($_POST['articles_date_available']) && tep_not_null($_POST['articles_date_available'])) {
             $insert_sql_data = array('articles_date_added' => tep_db_prepare_input($_POST['articles_date_available']));
           } else {
+          
+            $sql_data_array['articles_date_available'] = 'now()';
             $insert_sql_data = array('articles_date_added' => 'now()');
           }
           $sql_data_array = array_merge($sql_data_array,
@@ -837,6 +839,13 @@ if (isset($_GET['action']) && ($_GET['action'] == 'new_topic_ACD' || $_GET['acti
                             $article_query = tep_db_query("select ad.articles_name, ad.articles_description, a.articles_image, ad.articles_url, ad.articles_head_desc_tag, a.articles_id, a.articles_date_added, a.articles_last_modified, date_format(a.articles_date_available, '%Y-%m-%d') as articles_date_available, a.articles_status, a.articles_is_blog, a.articles_sort_order, a.authors_id from " . TABLE_ARTICLES . " a, " . TABLE_ARTICLES_DESCRIPTION . " ad where a.articles_id = '" . (int) $_GET['aID'] . "' and a.articles_id = ad.articles_id and ad.language_id = '" . (int) $languages_id . "'");
                             $article = tep_db_fetch_array($article_query);
 
+                            $ptp = tep_parse_topic_path($_GET['tPath']);
+                            $t = $ptp[count($ptp)-1]; 
+                            $cQ = tep_db_query("SELECT canonical FROM ".TABLE_ARTICLES_TO_TOPICS." WHERE articles_id = ".$_GET['aID']." AND topics_id = ".$t); 
+                            $cA = tep_db_fetch_array($cQ); 
+                            
+                            $article['canonical'] = ($cA['canonical'] > 0) ? 1: 0;
+
                             $aInfo->objectInfo($article);
                           } elseif (tep_not_null($_POST)) {
                             $aInfo->objectInfo($_POST);
@@ -881,6 +890,8 @@ if (isset($_GET['action']) && ($_GET['action'] == 'new_topic_ACD' || $_GET['acti
                               $blog_out_status = false;
                           }
                           ?>
+                          
+<!--                          
                   <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
                   <script language="JavaScript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
                   <script language="javascript">
@@ -888,6 +899,9 @@ if (isset($_GET['action']) && ($_GET['action'] == 'new_topic_ACD' || $_GET['acti
                       var dateAvailable = new ctlSpiffyCalendarBox("dateAvailable", "new_article", "articles_date_available", "btnDate1", "<?php echo $aInfo->articles_date_available; ?>", scBTNMODE_CUSTOMBLUE);
   -->
                   </script>
+-->                  
+                  
+                  
                   <?php
                   echo tep_draw_form('new_article',
                     FILENAME_ARTICLES,
@@ -924,7 +938,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'new_topic_ACD' || $_GET['acti
                                   <tr>
                                       <td class="main"><?php echo TEXT_ARTICLES_CANONICAL; ?></td>
                                       <td class="main"><?php
-                              $isChk = $pInfo->canonical > 0 ? true : false;
+                              $isChk = $aInfo->canonical > 0 ? true : false;
                               $ro = false;
                               $wrn = false;
                               if (!$isChk) { //navrh samoopravy chybejicich
@@ -976,7 +990,25 @@ if (isset($_GET['action']) && ($_GET['action'] == 'new_topic_ACD' || $_GET['acti
                                   </tr>
                                   <tr>
                                       <td class="smallText"><?php echo TEXT_ARTICLES_DATE_AVAILABLE; ?><br><small>(YYYY-MM-DD)</small></td>
-                                      <td class="smallText" align="left"><script language="javascript">dateAvailable.writeControl(); dateAvailable.dateFormat = "yyyy-MM-dd";</script></td>
+                                      <td class="smallText" align="left">
+
+<!--                                      
+                                      <script language="javascript">
+                                      dateAvailable.writeControl(); dateAvailable.dateFormat = "yyyy-MM-dd";
+                                      
+                                      </script>
+-->                                      
+
+<?php echo tep_draw_input_field('articles_date_available', $aInfo->articles_date_available, 'id="articles_date_available"') . ' <small>(YYYY-MM-DD)</small>'; ?>
+
+<script type="text/javascript">
+$('#articles_date_available').datepicker({
+  dateFormat: 'yy-mm-dd'
+});
+</script>
+
+
+                                      </td>
                                   </tr>
                                   <tr>
                                       <td colspan="2"><?php
@@ -1229,7 +1261,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'new_topic_ACD' || $_GET['acti
 
                                           echo tep_draw_form($form_action, FILENAME_ARTICLES,
                                             'tPath=' . $tPath . (isset($_GET['aID']) ? '&aID=' . $_GET['aID'] : '') . '&action=' . $form_action,
-                                            'post', 'enctype="multipart/form-data"');
+                                            'post', 'enctype="multipart/form-data" id="preform"');
 
                                           $languages = tep_get_languages();
                                           for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
@@ -1401,6 +1433,12 @@ if (isset($_GET['action']) && ($_GET['action'] == 'new_topic_ACD' || $_GET['acti
                         ?></td>
                         </tr>
                     </table></form>
+                    
+                    <script type="text/javascript"> 
+                    //ojeb preview - preskocit
+                    document.getElementById('preform').submit();
+                    </script>
+                    
                                 <?php
                               }
                             } else {
