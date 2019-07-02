@@ -71,8 +71,7 @@ if (tep_not_null($action)) {
                 //pure:new cache reset
                 if ($_GET['flag'] == '0') {
                     //deleting product need full reset
-                    tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
-                    tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
+                    tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE section='all'");
                 } else {
                     tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached = 0 WHERE products_id = " . $_GET['pID']);
                     tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached_admin = 0 WHERE products_id = " . $_GET['pID']);
