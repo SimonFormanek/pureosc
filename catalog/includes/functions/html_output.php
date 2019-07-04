@@ -36,8 +36,7 @@ function tep_href_link_original($page = '', $parameters = '',
                                 $connection = 'NONSSL', $add_session_id = true,
                                 $search_engine_safe = true)
 {
-    global $request_type, $session_started;
-
+		global $request_type, $session_started, $SID;
     $page = tep_output_string($page);
 
     if (!tep_not_null($page)) {
