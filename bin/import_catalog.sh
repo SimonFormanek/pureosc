@@ -115,7 +115,8 @@ ALTER TABLE products_description ADD   cached_admin int(1) DEFAULT '0';
 #PRODUCTS_TO_CATEGORIES #####################################################
 ALTER TABLE products_to_categories ADD  canonical int(1) DEFAULT NULL;
 ALTER TABLE products_to_categories ADD linked tinyint(1) NOT NULL DEFAULT 0;
-
+### set all products_to_categories canonical
+update products_to_categories set canonical=1;
 
 
 MYSQLCMD

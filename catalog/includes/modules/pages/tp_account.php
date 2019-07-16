@@ -86,5 +86,3 @@ class tp_account
         $oscTemplate->addContent($output, $this->group);
     }
 }
-
-?>

@@ -59,9 +59,11 @@ if ($argv[2] == 'admin') {
 }
 require('includes/application_top.php');
 //echo config vars
-echo 'GENERATOR_FORCE_UPDATE_ALL: ' . GENERATOR_FORCE_UPDATE_ALL . "\n";
-echo '$_SERVER[REQUEST_SCHEME]: ' . $_SERVER['REQUEST_SCHEME'] . "\n";
-echo '$_SERVER[HTTP_HOST]: ' . $_SERVER['HTTP_HOST'] . "\n";
+if ($debug_level > 2){
+  echo 'GENERATOR_FORCE_UPDATE_ALL: ' . GENERATOR_FORCE_UPDATE_ALL . "\n";
+  echo '$_SERVER[REQUEST_SCHEME]: ' . $_SERVER['REQUEST_SCHEME'] . "\n";
+  echo '$_SERVER[HTTP_HOST]: ' . $_SERVER['HTTP_HOST'] . "\n";
+}
 //TODO: bude tady neco??????
 //require('admin/'. DIR_WS_FUNCTIONS . 'cli.php');
 //TODO: presunout /languages/LANG/static.php do DTB config
@@ -88,6 +90,9 @@ $context    = stream_context_create(array(
 //exit if lockfile exists, exis or create lock
 $minute = date("Hi");
 //if (SERVER_INSTANCE =='shop') {
+if (!file_exists('../../cronlock')) {
+  mkdir('../../cronlock', 0777);
+}
 if (file_exists('../../cronlock/'.$argv['1'].'.'.$argv['2'])) {
 //TODO: if lock wait too long send error message and restart
     $oldlock = file_get_contents('../../cronlock/'.$argv['1'].'.'.$argv['2']);
@@ -95,18 +100,28 @@ if (file_exists('../../cronlock/'.$argv['1'].'.'.$argv['2'])) {
     echo '$oldlock:'.$oldlock."\n";
     echo '$_SERVER[\'REQUEST_TIME\']:'.$_SERVER['REQUEST_TIME']."\n";
     if ($oldlock > $_SERVER['REQUEST_TIME']) {
-        echo 'EXITING: lockfile EXISTS!'."\n";
+        echo 'Lockfile Exists, Exiting!'."\n";
         exit;
     } else {
+       echo 'Err: GeneratorTimeout, Exiting'."\n";
+       mail(WEBMASTER_EMAIL,
+         'Err: GeneratorTimeout ' . HTTPS_COOKIE_DOMAIN,
+         'Static Export CANCELLED!');
         unlink('../../cronlock/'.$argv['1'].'.'.$argv['2']);
-        $error = 1;
-        echo "ALERT:lock removed\n";
+        echo "ERROR: Lock Timeout, unlocked killall????\n";
+        sleep(2);
+        echo 'killing croncache & writecache';
+        shell_exec("killall croncache.php;killall writecache.php");
+        exit;
     }
 } else {
     file_put_contents('../../cronlock/'.$argv['1'].'.'.$argv['2'],
         $_SERVER['REQUEST_TIME']);
 }
 //TODO:move to configure.php
+if (!file_exists('../../crontime')) {
+  mkdir('../../crontime', 0777);
+}
 if (!file_exists('../../crontime/'.$argv['1'].'.'.$argv['2']))
         file_put_contents('../../crontime/'.$argv['1'].'.'.$argv['2'], '0301');
 $crontime = (int) file_get_contents('../../crontime/'.$argv['1'].'.'.$argv['2']);
@@ -606,7 +621,7 @@ if ($update_all == 'true')
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE language_id = ".$lng['languages_id']);
 */
 //GENERATING_ALL_ALL if UPDATE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-echo 'updated status:'.$updated."\n";
+if ($debug_level > 2) {echo 'updated status:'.$updated."\n";}
 if ($updated == 1) {
 
 if (GENERATE_MANUFACTURERS_INDEX == 'true') {
@@ -828,14 +843,13 @@ if (GENERATE_HOMEPAGE == 'true') {
     $output = filtr($output);
 //    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html', stripslashes($output), 644); 
     file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html.gz', gzencode(stripslashes($output)), 644); 
-/*            if (!preg_match("/<\/html>/", gzdecode(file_get_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html.gz')))) {
+            if (!preg_match("/<\/html>/", gzdecode(file_get_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html.gz')))) {
               $error = 1;
               echo "Error: HomePage \n";
             } else {
 //set cached_flag 1 for information constants
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE information_group_id != ". $information_group_id ." AND language_id = ".$lng['languages_id']);
-
-}*/
+}
 } //end GENERATE_HOMEPAGE
     /*
       //RSYNC <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -868,17 +882,14 @@ if (GENERATE_HOMEPAGE == 'true') {
     } else {
         echo 'Rsync to Eshop ERROR code:'.$error."\n";
         mail(WEBMASTER_EMAIL,
-            'rsync ERROR! Static Export CANCELLED: '.HTTPS_COOKIE_DOMAIN,
+            'ERR:' . $error . ' ' . HTTPS_COOKIE_DOMAIN,
             'Static Export CANCELLED!');
     }
 } //end $updated == 1
 
 unlink('../../cronlock/'.$argv['1'].'.'.$argv['2']);
-if ($error == 1)
-        mail(WEBMASTER_EMAIL, 'Rsync eshop ERROR  '.HTTPS_COOKIE_DOMAIN,
-        'Hard reset lock timeout');
 
-echo "DONE: ".date("Y/m/d H:i"), "\n";
+if ($debug_level > 0) {echo "DONE: ".date("Y/m/d H:i"), "\n";}
 
 function filtr ($output) {
 
@@ -890,7 +901,7 @@ return $output;
 }
 
 $time2 = microtime(true);
-echo "script execution time: ".($time2 - $time1) . "\n"; //value in seconds
+if ($debug_level > 2)echo "script execution time: ".($time2 - $time1) . "\n"; //value in seconds
 exit;
 /*
 uzitecne funkce:

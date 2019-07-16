@@ -33,9 +33,12 @@ class AccessKeysConfig extends AbstractMigration
     public function change()
     {
         $this->execute("
+DELETE FROM configuration WHERE configuration_key = 'ACCESSKEY_SAVE';
 				insert into configuration (configuration_title, configuration_key, configuration_value,   configuration_description, configuration_group_id, sort_order,  last_modified, date_added)  
 					values 
 				('Access Key Save', 'ACCESSKEY_SAVE', 's', 'Letter, default: s', '1', '9999', NOW(), NOW());
+
+DELETE FROM configuration WHERE configuration_key = 'ACCESSKEY_SELECT';
 				insert into configuration (configuration_title, configuration_key, configuration_value,   configuration_description, configuration_group_id, sort_order,  last_modified, date_added)  
 					values 
 				('Access Key Select', 'ACCESSKEY_SELECT', 'x', 'Letter, default: x', '1', '9999', NOW(), NOW());
