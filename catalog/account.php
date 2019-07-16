@@ -10,14 +10,17 @@
   Released under the GNU General Public License
  */
 
+
+//define('NAVBAR_TITLE', _('My Account'));
+//define('HEADING_TITLE', _('Informations about my account'));
+
 require_once('includes/application_top.php');
 
 if (!tep_session_is_registered('customer_id')) {
     $navigation->set_snapshot();
     tep_redirect(tep_href_link(FILENAME_LOGIN, '', 'SSL'));
 }
-
-require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ACCOUNT);
+require(constant('DIR_WS_LANGUAGES').$language.'/'.constant('FILENAME_ACCOUNT'));
 
 $breadcrumb->add(NAVBAR_TITLE, tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
 
@@ -40,7 +43,9 @@ if ($messageStack->size('account') > 0) {
         <?php
         echo $oscTemplate->getContent('account');
         ?>
-        <?php /*         * * Altered for CCGV ** */ ?>
+        <?php /*         * * Altered for CCGV ** */
+        if(defined(CCGV_ENABLED) && (CCGV_ENABLED == 'true')) {
+         ?>
         <h2><?php echo GIFT_VOUCHER_COUPON; ?></h2>
         <div class="contentText">
             <?php
@@ -60,8 +65,9 @@ if ($messageStack->size('account') > 0) {
                 <li><span class="ui-icon ui-icon-heart accountLinkListEntry"></span><?php
                     echo '<a href="'.tep_href_link(FILENAME_GV_FAQ, '', 'SSL').'">'.CCGV_FAQ.'</a>';
                     ?></li>  
-            </ul>
-            <?php /*             * * EOF alteration for CCGV ** */ ?>
+                </ul>
+<!--            </div>-->
+<?php } /* * * EOF alteration for CCGV ** */ ?>
         </div>
     </div>
 </div>
@@ -69,4 +75,4 @@ if ($messageStack->size('account') > 0) {
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+
