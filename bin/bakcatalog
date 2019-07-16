@@ -1,0 +1,6 @@
+#!/bin/bash
+DATE=`date +%y-%m-%d-%T|sed 's/:/_/g'`
+. ./dbconnect.sh
+if [[ ! -d dbbackup ]];then mkdir dbbackup;fi
+mysqldump --opt -h${H} -u${U} ${P} $D products_attributes products_attributes_download products_options products_options_values products_options_values_to_products_options products products_description products_to_categories categories categories_description manufacturers manufacturers_info specials |gzip > dbbackup/catalog-${DATE}.sql.gz
+echo $1-${DATE}.sql.gz

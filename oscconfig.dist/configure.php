@@ -1,6 +1,6 @@
 <?php
 //LANG dependent START 
-define('DIR_FS_MASTER_ROOT_DIR', '/home/user/WWW.admin/'); //admin config: '/home/user/WWW.admin/' english: /home/user/WWW.en/
+define('DIR_FS_MASTER_ROOT_DIR', 'XDIRFSMASTERROOTDIRX/'); //admin config: '/home/user/WWW/' english: /home/user/WWW.en/
 if (!defined('DEFAULT_CURRENCY')) {
   define('DEFAULT_CURRENCY','CZK');
 }
@@ -8,17 +8,15 @@ if (!defined('DEFAULT_LANGUAGE')) {
   define('DEFAULT_LANGUAGE','cs');
 }
 //LANG dependent END
-define('PRODUCTS_CANONICAL_TYPE','path');//config: path / manufacturer
-if (!defined('OSC_DIR')) {
-	define('OSC_DIR','osc/');
-}
+define('PRODUCTS_CANONICAL_TYPE','path'); //config: path / manufacturer
+if (!defined('OSC_DIR')) {define('OSC_DIR','osc/');}
 define('CONFIG_DIR','oscconfig/'); 
 define('MYSQL_DEBUG', 'on'); //on|off=default 'on' set only for DEVEL debug !!!
 define('BOOTSTRAP_LESS_DIR', 'DISABLEDbootstrap-3.3.7/less/'); // <------ need to bee configured
 if (!defined('SERVER_INSTANCE')) {
 	define('SERVER_INSTANCE', 'admin'); //CONFIGURE: admin|shop <------ need to bee configured
 }
-define('MAX_DISPLAY_SEARCH_RESULTS','30');
+if (!defined('MAX_DISPLAY_SEARCH_RESULTS')) {define('MAX_DISPLAY_SEARCH_RESULTS','30');}
 define('GENERATOR_INSTANCE', 'true'); // set to 'true'for generator dir set 'false' for shop or admin  <------ need to bee configured ! ! !
 
 define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . OSC_DIR . 'catalog/');
