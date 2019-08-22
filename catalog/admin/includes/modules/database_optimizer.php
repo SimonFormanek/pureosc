@@ -29,6 +29,7 @@ foreach ($optionsArray as $option) { //build these to keep coding similar to cro
             case TEXT_DO_PRODUCT_NOTIFICATIONS: $config['notifications'] = DATABASE_OPTIMIZER_PRODUCT_NOTIFICATIONS; $optionSelected = true; break;
             case TEXT_DO_ORDERS_CC:      $config['orders_cc']     = DATABASE_OPTIMIZER_ORDERS_CC;     $optionSelected = true; break;
             case TEXT_DO_ORPHAN_ADDR_BOOK: $config['orphan_addr_book'] = DATABASE_OPTIMIZER_ORPHAN_ADDR_BOOK; $optionSelected = true; break;
+            case TEXT_DO_ORPHAN_ORDERS:   $config['orphan_orders'] = DATABASE_OPTIMIZER_ORPHAN_ORDERS; $optionSelected = true; break;
             case TEXT_DO_ORPHAN_PRODUCTS: $config['orphan_products'] = DATABASE_OPTIMIZER_ORPHAN_PRODUCTS; $optionSelected = true; break;
             case TEXT_DO_SESSIONS:       $config['sessions']      = DATABASE_OPTIMIZER_SESSIONS;      $optionSelected = true; break;
             case TEXT_DO_SUPERTRACKER:   $config['supertracker']  = DATABASE_OPTIMIZER_SUPERTRACKER;  $optionSelected = true; break;

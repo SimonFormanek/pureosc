@@ -1,5 +1,5 @@
 <?php
-define('DO_HEADING', '<div style="text-align:center;  font-size:14px; font-weight:bold; padding-bottom:10px; ">Need an Addon</div>');
+define('DO_HEADING', '<div style="text-align:center; font-size:14px; font-weight:bold; padding-bottom:10px; white-space:nowrap; ">Need an Addon</div>');
 
 define('DO_TEXT_MAIN', '
 <div class="section_block_line">

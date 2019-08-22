@@ -36,6 +36,7 @@ define('TEXT_DO_CUSTOMERS_OLD', 'Remove Old Customers');
 define('TEXT_DO_PRODUCT_NOTIFICATIONS', 'Remove Product Notifications');
 define('TEXT_DO_ORDERS_CC', 'Remove CC Numbers');
 define('TEXT_DO_ORPHAN_ADDR_BOOK', 'Remove Orphan Address Book Entries');
+define('TEXT_DO_ORPHAN_ORDERS', 'Remove Orphan Orders');
 define('TEXT_DO_ORPHAN_PRODUCTS', 'Remove Orphan Products');
 define('TEXT_DO_SESSIONS', 'Remove Sessions');
 define('TEXT_DO_SUPERTRACKER', 'Remove SuperTracker');
@@ -47,6 +48,7 @@ define('TEXT_EXPLAIN_CUSTOMERS_OLD', '<span style="color:#dd0000;">Removes entri
 define('TEXT_EXPLAIN_PRODUCT_NOTIFICATIONS', 'Removes entries from the products notification table when the customer and/or product no longer exist.');
 define('TEXT_EXPLAIN_ORDERS_CC', '<span style="color:#dd0000;">Removes credit card numbers from the orders table based on the configuration setting.</span>');
 define('TEXT_EXPLAIN_ORPHAN_ADDR_BOOK', 'Removes entries from the address book table that are not related to a customer.');
+define('TEXT_EXPLAIN_ORPHAN_ORDERS', 'Removes orders when the customer for the order no longer exists. See <span style="font-weight:bold;color:#ff0000">WARNING</span> in Instructions above.');
 define('TEXT_EXPLAIN_ORPHAN_PRODUCTS', 'Removes products that do not have an entry in the products_to_categories table.');
 define('TEXT_EXPLAIN_SESSIONS', 'Removes entries from the sessions table based on the configuration setting.');
 define('TEXT_EXPLAIN_SUPERTRACKER', 'Removes entries from the SuperTracker table based on the configuration setting.');
@@ -58,16 +60,18 @@ $optionsArray = array(array('option' => TEXT_DO_ANALYZE, 'post' => (str_replace(
                       array('option' => TEXT_DO_PRODUCT_NOTIFICATIONS, 'post' => (str_replace(" ", "_", TEXT_DO_PRODUCT_NOTIFICATIONS)), 'explain' => TEXT_EXPLAIN_PRODUCT_NOTIFICATIONS),
                       array('option' => TEXT_DO_ORDERS_CC, 'post' => (str_replace(" ", "_", TEXT_DO_ORDERS_CC)), 'explain' => TEXT_EXPLAIN_ORDERS_CC),
                       array('option' => TEXT_DO_ORPHAN_ADDR_BOOK, 'post' => (str_replace(" ", "_", TEXT_DO_ORPHAN_ADDR_BOOK)), 'explain' => TEXT_EXPLAIN_ORPHAN_ADDR_BOOK),
+                      array('option' => TEXT_DO_ORPHAN_ORDERS, 'post' => (str_replace(" ", "_", TEXT_DO_ORPHAN_ORDERS)), 'explain' => TEXT_EXPLAIN_ORPHAN_ORDERS),
                       array('option' => TEXT_DO_ORPHAN_PRODUCTS, 'post' => (str_replace(" ", "_", TEXT_DO_ORPHAN_PRODUCTS)), 'explain' => TEXT_EXPLAIN_ORPHAN_PRODUCTS),
                       array('option' => TEXT_DO_SESSIONS, 'post' => (str_replace(" ", "_", TEXT_DO_SESSIONS)), 'explain' => TEXT_EXPLAIN_SESSIONS)
                  );
-
-//$db_query = tep_db_query("SHOW TABLES LIKE 'supertracker'"); 
-//if (tep_db_num_rows($db_query) && ! isset($_GET['reset'])) { 
+/*
+PURE TODO:
+$db_query = tep_db_query("SHOW TABLES LIKE 'supertracker'"); */
+if (tep_db_num_rows($db_query) && ! isset($_GET['reset'])) { 
     $optionsArray[] =  array('option' => TEXT_DO_SUPERTRACKER, 'post' => (str_replace(" ", "_", TEXT_DO_SUPERTRACKER)), 'explain' => TEXT_EXPLAIN_SUPERTRACKER);
 //}
-//$db_query = tep_db_query("SHOW TABLES LIKE 'user_tracking'"); 
-//if (tep_db_num_rows($db_query) && ! isset($_GET['reset'])) { 
+/*$db_query = tep_db_query("SHOW TABLES LIKE 'user_tracking'"); 
+if (tep_db_num_rows($db_query) && ! isset($_GET['reset'])) { */
     $optionsArray[] =  array('option' => TEXT_DO_USER_TRACKING, 'post' => (str_replace(" ", "_", TEXT_DO_USER_TRACKING)), 'explain' => TEXT_EXPLAIN_USER_TRACKING);
 //}
 define('ERROR_DB_FAILURE', 'There is a problem with the database. This page will not work.');

@@ -13,9 +13,7 @@ $message = 'Store database has been optimized.';
 $subject = 'Database %s has been optimized';
 $verbose = true;  //show results
 /*************** DON"T EDIT BELOW HERE UNLESS YOU UNDERSTAND THE CONSEQUENCES ********************/
-//require('includes/configure.php');
-require('../../../oscconfig/admin/configure.php');
-require('../../../oscconfig/dbconfigure.php');
+require('includes/configure.php');
 require('includes/filenames.php');
 require('includes/database_tables.php');
 require('includes/functions/database.php');
@@ -42,6 +40,7 @@ while ($loadconfig = tep_db_fetch_array($config_query)) {
         case 'DATABASE_OPTIMIZER_PRODUCT_NOTIFICATIONS': $config['notifications'] = $loadconfig['configuration_value']; break;
         case 'DATABASE_OPTIMIZER_ORDERS_CC':     $config['orders_cc'] = $loadconfig['configuration_value']; break;
         case 'DATABASE_OPTIMIZER_ORPHAN_ADDR_BOOK': $config['orphan_addr_book'] = $loadconfig['configuration_value']; break;
+        case 'DATABASE_OPTIMIZER_ORPHAN_ORDERS': $config['orphan_orders'] = $loadconfig['configuration_value']; break;
         case 'DATABASE_OPTIMIZER_ORPHAN_PRODUCTS': $config['orphan_products'] = $loadconfig['configuration_value']; break;
         case 'DATABASE_OPTIMIZER_SESSIONS':      $config['sessions'] = $loadconfig['configuration_value']; break;
         case 'DATABASE_OPTIMIZER_USER_TRACKING': $config['usertracking'] = $loadconfig['configuration_value']; break;

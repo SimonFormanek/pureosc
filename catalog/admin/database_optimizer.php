@@ -21,7 +21,7 @@
       require('includes/languages/' . $language . '/version_checker.php');
       require('includes/functions/version_checker.php');
       $contribPath = 'http://addons.oscommerce.com/info/4441';
-      $currentVersion = 'Database Optimizer V 1.6';
+      $currentVersion = 'Database Optimizer V 1.7';
       $contribName = 'Database Optimizer V';
       $versionStatus = '';
   }
@@ -139,7 +139,7 @@ table.BorderedBoxWhite {border: ridge #ddd 3px; background-color: #fff; }
         </table></td>
        </tr>
        <tr>
-        <td class="do_small tt"><div style="float:right; margin-bottom:10px; color:sienna; text-align:center"><?php echo TEXT_HELP; ?>
+        <td class="do_small tt"><div style="float:right; margin-bottom:10px; color:sienna; text-align:center"><?php echo TEXT_HELP; ?></div></td>
        </tr>
       </table></td>
      </tr>
@@ -151,9 +151,9 @@ table.BorderedBoxWhite {border: ridge #ddd 3px; background-color: #fff; }
        <tr>
         <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
          <tr>
-          <td align="right"><?php echo tep_draw_form('database_optimizer', 'database_optimizer.php', '', 'post') . tep_draw_hidden_field('action_run_optimizer', 'process'); ?></td>
+          <td align="right"><?php echo tep_draw_form('database_optimizer', 'database_optimizer.php', '', 'post') . tep_draw_hidden_field('action_run_optimizer', 'process'); ?>
            <tr>
-            <td><table border="0" width="100%" border="0" cellspacing="0" cellpadding="2">
+            <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
                 <tr>
                   <td><input type="checkbox" name="toggle_boxes" onclick="return ToggleBoxes('<?php echo count($optionsArray); ?>');"> </td>
                 </tr>
@@ -161,7 +161,7 @@ table.BorderedBoxWhite {border: ridge #ddd 3px; background-color: #fff; }
                 $idx = 0;
                 foreach ($optionsArray as $option) { ?>
                 <tr>
-                  <td><input type="checkbox" name="<?php echo $option['post']; ?>" id="<?php echo 'opt_' . $idx; ?>"; /></td>
+                  <td><input type="checkbox" name="<?php echo $option['post']; ?>" id="<?php echo 'opt_' . $idx; ?>" /></td>
                   <td class="smallText"><?php echo $option['option']; ?></td>
                   <td class="smallText"><?php echo $option['explain']; ?></td>
                 </tr>
@@ -169,7 +169,7 @@ table.BorderedBoxWhite {border: ridge #ddd 3px; background-color: #fff; }
             </table></td>
            </tr>
            <tr>
-             <td><table border="0" width="40%" border="0" cellspacing="0" cellpadding="2">
+             <td><table border="0" width="40%" cellspacing="0" cellpadding="2">
                <tr>
                  <td align="center"><?php echo tep_image_submit('button_update.gif', IMAGE_UPDATE);?></td>
                </tr>

@@ -40,6 +40,16 @@ value in the settings.
 </li><br>
 
 <li>
+<b>Truncate Customers Orders</b> - This option is used by the Remove Customers Old code to determine how to handle
+old customers with orders. 
+<ul>
+<li>Opt A: Delete customer but leave orders.</li>
+<li>Opt B: Delete customer and orders.</li>
+<li>Opt C: Skip customers with orders.</li>
+</ul>
+</li><br>
+
+<li>
 <b>Product Notifications</b> - The products notification table contains customer and product ID\'s. This option
 verifies that both of those exist for each entry. If not, the entry is deleted. Since one or both no longer
 exist, having such an entry is meaningless since there is no way to use it.
@@ -52,6 +62,13 @@ days in the settings high enough so that credit card numbers you may need are no
 
 <li>
 <b>Orphan Address Book</b> - This option will remove entries in the address book table that are no longer associated with a customer.
+</li><br>
+
+<li>
+<b>Orphan Orders</b> - This option will remove any order where the customer of the order no longer exists. 
+<span style="font-weight:bold;color:#ff0000">WARNING:</span> This option does 
+not check if the order was placed with the use of an addon like Purchase Without Account. So if such an addon is installed 
+in the shop and you do not want such orders deleted, do not use this option.
 </li><br>
 
 <li>

@@ -20,13 +20,15 @@
             tep_db_query("update database_optimizer set customers_last_update = now()");
             
         }        
-        /*********************** REMOVE OLD CUSTOMERS *****************************/
+        
+        /*********************** REMOVE OLD CUSTOMERS WITH ORDERS *****************************/
         if (! empty($config['customers_old']) && $config['customers_old'] < $daysLastRan) {
             $dateCustomers = date("Y-m-d", time() - ($config['customers_old'] * 86400));
             $wasUpdated = true;
             $message .= "\r\n" . 'Customers (old) tables were trimmed.';
             
-            $id_query = tep_db_query("select customers_info_id from customers_info WHERE customers_info_number_of_logons = 0 and customers_info_date_account_created < '" . $dateCustomers . "'" );
+            $id_query = tep_db_query("select customers_info_id from customers_info WHERE customers_info_date_account_created < '" . $dateCustomers . "'" );
+            
             if (tep_db_num_rows($id_query) > 0) {  
                 $custStr = '';
                 $custRemoved = 0;
@@ -38,7 +40,7 @@
                
                     if (tep_db_num_rows($orders_query)) {               
                         switch (DATABASE_OPTIMIZER_CUSTOMERS_ORDERS) {
-                            case 'Oot A': break; //delete customers and leave orders
+                            case 'Opt A': break; //delete customers and leave orders
                             case 'Opt B': while ($orders = tep_db_fetch_array($orders_query)) {
                                               $orderStr .= " orders_id = '" . (int)$orders['orders_id'] . "' or ";  
                                               $orderRemoved++;
@@ -146,6 +148,7 @@
             tep_db_query("update orders set cc_number = '' where date_purchased > '" . $dateOrder . "'");     //clear the sessions table of entries greater than time in the settings
             tep_db_query("update database_optimizer set orders_last_update = now()");
         }
+        
         /********************** REMOVE ORPHANS FROM ADDRESS BOOK TABLE *************************/
         if (! empty($config['orphan_addr_book']) && $config['orphan_addr_book'] < $daysLastRan) {
             $dateOrder = date("Y-m-d", time() - ($config['orphan_addr_book'] * 86400));
@@ -154,7 +157,45 @@
             tep_db_query("update orders set cc_number = '' where date_purchased > '" . $dateOrder . "'");     //clear the sessions table of entries greater than time in the settings
             tep_db_query("DELETE FROM address_book where NOT EXISTS (select 1 FROM customers where customers_id = address_book.customers_id)");
             tep_db_query("update database_optimizer set orphan_addr_book_last_update = now()");
+        }
+
+        /********************** REMOVE ORPHAN ORDERS *************************/
+        if (! empty($config['orphan_orders']) && $config['orphan_orders'] < $daysLastRan) {
+            
+            $dateOrder = date("Y-m-d", time() - ($config['orphan_orders'] * 86400));
+            $db_query = tep_db_query("select orders_id from orders where date_purchased < '" .  $dateOrder . "'");
+            $db = tep_db_fetch_array($db_query);
+            $rows = (tep_db_num_rows($db_query) < 200 ? tep_db_num_rows($db_query) : 200);
+            $idStr = array();
+            $idCtr = 0;
+            $tmpCtr = 0;
+            
+            while ($db = tep_db_fetch_array($db_query)) {
+                 if ($tmpCtr > $rows) {
+                     $idCtr++;
+                     $tmpCtr = 0;
+                 }    
+                 $idStr[$idCtr] .= (int)$db['orders_id'] .',';
+                 $tmpCtr++;
+            }
+            
+            $str = '';
+            foreach ($idStr as $item) {   
+                 $str = substr($item, 0, -1);
+                 $where = " where orders_id in (" . $str . ")";
+                 
+                 tep_db_query("delete from orders " . $where);
+                 tep_db_query("delete from orders_products " . $where);
+                 tep_db_query("delete from orders_products_attributes " . $where);
+                 tep_db_query("delete from orders_status_history " . $where);
+                 tep_db_query("delete from orders_total " . $where);
+            }         
+                   
+            $wasUpdated = true;
+            $text = (tep_db_num_rows($db_query) > 1 ? 'orders' : 'order');
+            $message .= "\r\n" . 'Orphan orders were removed. ( ' . tep_db_num_rows($db_query) . ' ' . $text . ' removed. )';
         }        
+        
         /********************** REMOVE ORPHANS FROM PRODUCTS TABLE *************************/
         if (! empty($config['orphan_products']) && $config['orphan_products'] < $daysLastRan) {
             $wasUpdated = true;
@@ -169,12 +210,13 @@
         }          
         /*********************** REMOVE FROM SESSION TABLES *****************************/
         if (! empty($config['sessions']) && $config['sessions'] < $daysLastRan) {
-            $secondsSessions = $config['sessions'] * 86400;
+            $secondsSessions = time() - (int)($config['sessions'] * 86400);
             $wasUpdated = true;
             $message .= "\r\n" . 'Sessions table was trimmed.';
-            tep_db_query("delete from sessions where expiry > '" . $secondsSessions . "'");     //clear the sessions table of entries greater than time in the settings
+            tep_db_query("delete from sessions where expiry < '" . $secondsSessions . "'");     //clear the sessions table of entries greater than time in the settings
             tep_db_query("update database_optimizer set sessions_last_update = now()");
         }
+        
         /*********************** REMOVE FROM SUPERTRACKER *****************************/
         if (! empty($config['supertracker']) && $config['supertracker'] < $daysLastRan) {
             $dateEntry = date("Y-m-d", time() - ($config['supertracker'] * 86400));
