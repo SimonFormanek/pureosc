@@ -42,4 +42,4 @@ echo -n "DB Password: "; read DBSERVERPASSWORD
 sed -i "s/XDBSERVERPASSWORDX/${DBSERVERPASSWORD}/" ../../oscconfig/dbconfigure.php
 
 
-echo "* * * * * cd ${DIRFSMASTERROOTDIR}admin/ && /usr/bin/nice -n 10 /usr/bin/ionice -c2 -n7 ./croncache.php css"|crontab
+echo -e "* * * * * cd ${DIRFSMASTERROOTDIR}admin/ && /usr/bin/nice -n 10 /usr/bin/ionice -c2 -n7 ./croncache.php css\n15 00 * * *  cd ${DIRFSMASTERROOTDIR}admin/ && /usr/bin/nice -n 19 /usr/bin/ionice -c2 -n7 ./database_optimizer_cron.php"|crontab
