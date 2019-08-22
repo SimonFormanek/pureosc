@@ -66,8 +66,8 @@ $optionsArray = array(array('option' => TEXT_DO_ANALYZE, 'post' => (str_replace(
                  );
 /*
 PURE TODO:
-$db_query = tep_db_query("SHOW TABLES LIKE 'supertracker'"); */
-if (tep_db_num_rows($db_query) && ! isset($_GET['reset'])) { 
+$db_query = tep_db_query("SHOW TABLES LIKE 'supertracker'");/
+if (tep_db_num_rows($db_query) && ! isset($_GET['reset'])) {*/ 
     $optionsArray[] =  array('option' => TEXT_DO_SUPERTRACKER, 'post' => (str_replace(" ", "_", TEXT_DO_SUPERTRACKER)), 'explain' => TEXT_EXPLAIN_SUPERTRACKER);
 //}
 /*$db_query = tep_db_query("SHOW TABLES LIKE 'user_tracking'"); 
