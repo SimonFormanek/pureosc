@@ -16,7 +16,7 @@ define('HEADING_TITLE', 'Vaše osobní údaje', true);
 define('HEADING_TITLE_SUCCESS', 'Vaše objednávka byla úspěšně zpracována.', true);
 define('TITLE_PLEASE_SELECT', 'Prosím vyberte: ', true);
 define('TEXT_ORIGIN_LOGIN',
-    'POZNÁMKA: Pokud v našem obchodě máte účet přihlaste se <a href="%s"><u>přihlášení</u></a>.',
+    'POZNÁMKA: Pokud v našem obchodě máte účet <a href="%s"><u>přihlaste se</u></a>.',
     true);
 define('TEXT_SUCCESS',
     'Vaše objednávka byla úspěšně zpracována. Zboží bude expedováno nejbližší pracovní den.',

@@ -157,7 +157,7 @@ switch ($action) {
         if (isset($_POST['information_title']))
                 $sql_data_array['information_title']       = tep_db_prepare_input($_POST['information_title'][$language_id]);
         if (isset($_POST['information_description']))
-                $sql_data_array['information_description'] = tep_db_prepare_input($_POST['information_description'][$language_id]);
+                $sql_data_array['information_description'] = editor_img_fix(tep_db_prepare_input($_POST['information_description'][$language_id]));
 
         tep_db_perform(TABLE_INFORMATION, $sql_data_array);
 
@@ -180,7 +180,7 @@ switch ($action) {
             if (isset($_POST['information_title']))
                     $sql_data_array['information_title']       = tep_db_prepare_input($_POST['information_title'][$language_id]);
             if (isset($_POST['information_description']))
-                    $sql_data_array['information_description'] = tep_db_prepare_input($_POST['information_description'][$language_id]);
+                    $sql_data_array['information_description'] = editor_img_fix(tep_db_prepare_input($_POST['information_description'][$language_id]));
 
             if (count($sql_data_array) > 1) {
                 if (tep_db_perform(TABLE_INFORMATION, $sql_data_array)) {
@@ -210,7 +210,7 @@ switch ($action) {
                 if (isset($_POST['information_title']))
                         $sql_data_array['information_title']       = tep_db_prepare_input($_POST['information_title'][$language_id]);
                 if (isset($_POST['information_description']))
-                        $sql_data_array['information_description'] = tep_db_prepare_input($_POST['information_description'][$language_id]);
+                        $sql_data_array['information_description'] = editor_img_fix(tep_db_prepare_input($_POST['information_description'][$language_id]));
 
                 if (count($sql_data_array) > 0) {
                     $sql_data_array['information_group_id'] = tep_db_prepare_input($gID);

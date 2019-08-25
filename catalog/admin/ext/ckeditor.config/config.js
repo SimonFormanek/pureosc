@@ -13,6 +13,7 @@ CKEDITOR.editorConfig = function(config) {
         {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
         {name: 'editing', groups: ['find', 'selection']},
         {name: 'links'},
+        {name: 'insert'},
         {name: 'document', groups: ['mode', 'document', 'doctools']},
         {name: 'others'},
         {name: 'tools'},

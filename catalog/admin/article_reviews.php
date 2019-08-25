@@ -281,7 +281,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                             'page='.$_GET['page'].'&rID='.$reviews['reviews_id'].'&action=preview').'">'.tep_image(DIR_WS_ICONS.'preview.gif',
                                                             ICON_PREVIEW).'</a>&nbsp;'.tep_get_articles_name($reviews['articles_id']);
                                                         ?></td>
-                                                <td class="dataTableContent" align="right"><?php echo tep_image(HTTP_CATALOG_SERVER.DIR_WS_CATALOG_IMAGES.'stars_'.$reviews['reviews_rating'].'.gif'); ?></td>
+                                                <td class="dataTableContent" align="right"><?php echo tep_image(HTTP_CATALOG_ADMIN_SERVER.DIR_WS_CATALOG_IMAGES.'stars_'.$reviews['reviews_rating'].'.gif'); ?></td>
                                                 <td class="dataTableContent" align="right"><?php echo tep_date_short($reviews['date_added']); ?></td>
                                                 <td class="dataTableContent" align="center"><?php
                                                 echo $reviews['approved'] == 1 ? tep_image(DIR_WS_IMAGES.'icon_status_green.gif',
@@ -351,7 +351,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     if (tep_not_null($rInfo->last_modified))
                                             $contents[] = array('text' => TEXT_INFO_LAST_MODIFIED.' '.tep_date_short($rInfo->last_modified));
                                     $contents[] = array('text' => '<br>'.TEXT_INFO_REVIEW_AUTHOR.' '.$rInfo->customers_name);
-                                    $contents[] = array('text' => TEXT_INFO_REVIEW_RATING.' '.tep_image(HTTP_CATALOG_SERVER.DIR_WS_CATALOG_IMAGES.'stars_'.$rInfo->reviews_rating.'.gif'));
+                                    $contents[] = array('text' => TEXT_INFO_REVIEW_RATING.' '.tep_image(HTTP_CATALOG_ADMIN_SERVER.DIR_WS_CATALOG_IMAGES.'stars_'.$rInfo->reviews_rating.'.gif'));
                                     $contents[] = array('text' => TEXT_INFO_REVIEW_READ.' '.$rInfo->reviews_read);
                                     $contents[] = array('text' => '<br>'.TEXT_INFO_REVIEW_SIZE.' '.$rInfo->reviews_text_size.' bytes');
                                     $contents[] = array('text' => '<br>'.TEXT_INFO_ARTICLES_AVERAGE_RATING.' '.number_format($rInfo->average_rating,

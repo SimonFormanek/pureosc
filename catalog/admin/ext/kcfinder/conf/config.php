@@ -1,4 +1,7 @@
 <?php
+//pure:new configured with extra images dir inside images
+// 'uploadDir' => DIR_FS_CATALOG . 'images/' <- remove
+  require('../../../../../oscconfig/admin/configure.php');
 
 /** This file is part of KCFinder project
   *
@@ -16,9 +19,6 @@
    even if you are using session configuration.
    See http://kcfinder.sunhater.com/install for setting descriptions */
 
-//pure:new require PURE modified configure.php
-require('../../../../oscconfig/admin/configure.php');
-// DIR_WS_CATALOG_IMAGES
 return array(
 
 
@@ -28,7 +28,7 @@ return array(
     'disabled' => $_SESSION['KCFINDER']['disabled'], //pure:new added for cookies auth
 
     'uploadURL' => '',
-    'uploadDir' => DIR_FS_MASTER_ROOT_DIR,
+    'uploadDir' => DIR_FS_CATALOG . 'images/',
     'theme' => "default",
 
     'types' => array(
@@ -49,7 +49,7 @@ return array(
 
     'imageDriversPriority' => "imagick gmagick gd",
     'jpegQuality' => 90,
-    'thumbsDir' => "images/.thumbs",
+    'thumbsDir' => "images/.kcthumbs",
 
     'maxImageWidth' => 0,
     'maxImageHeight' => 0,

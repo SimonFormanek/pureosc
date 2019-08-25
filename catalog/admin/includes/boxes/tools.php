@@ -32,6 +32,11 @@ $cl_box_groups[] = [
             'link' => tep_href_link(FILENAME_BACKUP)
         ],
         [
+        'code' => 'database_optimizer.php',
+        'title' => BOX_TOOLS_DATABASE_OPTIMIZER,
+        'link' => tep_href_link('database_optimizer.php')
+      	],
+        [
             'code' => FILENAME_BANNER_MANAGER,
             'title' => BOX_TOOLS_BANNER_MANAGER,
             'link' => tep_href_link(FILENAME_BANNER_MANAGER)

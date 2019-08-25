@@ -81,6 +81,8 @@ if (tep_not_null($action)) {
             if (USE_CACHE == 'true') {
                 tep_reset_cache_block('manufacturers');
             }
+                    tep_db_query("UPDATE " . TABLE_MANUFACTURERS_INFO . " SET cached = 0 WHERE manufacturers_id = " . (int) $manufacturers_id);
+                    tep_db_query("UPDATE " . TABLE_MANUFACTURERS_INFO . " SET cached_admin = 0 WHERE manufacturers_id = " . (int) $manufacturers_id);
 
             tep_redirect(tep_href_link(FILENAME_MANUFACTURERS,
                     (isset($_GET['page']) ? 'page='.$_GET['page'].'&' : '').'mID='.$manufacturers_id));
@@ -112,6 +114,8 @@ if (tep_not_null($action)) {
             if (USE_CACHE == 'true') {
                 tep_reset_cache_block('manufacturers');
             }
+            //pure:static full reset TODO: reset only affected products
+            tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE section='all'");
 
             tep_redirect(tep_href_link(FILENAME_MANUFACTURERS,
                     'page='.$_GET['page']));
