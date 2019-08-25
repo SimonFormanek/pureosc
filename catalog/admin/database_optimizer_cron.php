@@ -13,7 +13,9 @@ $message = 'Store database has been optimized.';
 $subject = 'Database %s has been optimized';
 $verbose = true;  //show results
 /*************** DON"T EDIT BELOW HERE UNLESS YOU UNDERSTAND THE CONSEQUENCES ********************/
-require('includes/configure.php');
+//require('includes/configure.php');
+require('../../../oscconfig/admin/configure.php');
+require('../../../oscconfig/dbconfigure.php');
 require('includes/filenames.php');
 require('includes/database_tables.php');
 require('includes/functions/database.php');
