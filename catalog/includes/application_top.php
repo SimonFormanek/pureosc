@@ -78,7 +78,19 @@ require(DIR_WS_INCLUDES.'database_tables.php');
 require(DIR_WS_FUNCTIONS.'database.php');
 
 // make a connection to the database... now
-tep_db_connect() or die('Unable to connect to database server!');
+if (!tep_db_connect()){
+//	tep_mail(STORE_OWNER, WEBMASTER_EMAIL, 'err:',             $enquiry, $name, $email_address);
+       mail(WEBMASTER_EMAIL,
+         'DB con. ERR:' . HTTPS_COOKIE_DOMAIN,
+         'Database connection Error');
+$apacheuser = posix_getpwuid(posix_getuid());
+        error_log('Database connection Error' . "\n" . date("Y-m-d h:i:s") . "\n\n", 3,  $apacheuser['dir'] . DATABASE_ERRORS_LOG);
+
+
+	header('Location: /' . FILENAME_DB_ERROR);
+	//header('Location: '.$url);
+	exit;
+}
 
 // set the application parameters
 $configuration_query = tep_db_query('select configuration_key as cfgKey, configuration_value as cfgValue from '.TABLE_CONFIGURATION);

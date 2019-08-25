@@ -30,4 +30,6 @@ define('GENERATE_ARTICLES', 'true');
 define('GENERATE_INFORMATION', 'true');
 define('GENERATE_MANUFACTURERS_INDEX', 'true');
 define('GENERATE_PRODUCTS_NEW_PAGE', 'true');
+define('GENERATE_DB_ERROR','true');
+define('GENERATE_ROBOTS_TXT','true');
 define('GENERATE_HOMEPAGE','true');
