@@ -267,8 +267,6 @@ if (!tep_session_is_registered('cart') || !is_object($cart)) {
 // include currencies class and create an instance
 $currencies = new currencies();
 
-$oPage = new Ease\Page();
-
 // set the language
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (!tep_session_is_registered('language')) {
@@ -316,7 +314,7 @@ $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUA
     $lng->set_language($language_code['code']);
 }
 
-\Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
+\Ease\Locale::singleton  ($lng->language['locale'], '../i18n','pureosc');
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
 
@@ -649,9 +647,5 @@ require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
 
-\Ease\Shared::instanced()->webPage($oPage);
-
 $userLog = new PureOSC\CustomerLog();
 
-$oUser = new Ease\Anonym();
-\Ease\Shared::instanced()->user($oUser);

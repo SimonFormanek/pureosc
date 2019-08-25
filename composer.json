@@ -19,7 +19,8 @@
         "ckeditor/ckeditor": "*",
         "envms/fluentpdo": "^1.1",
         "purehtml/purecrypto": "dev-master",
-        "blahasoft/qrfaktura": "dev-master"
+        "blahasoft/qrfaktura": "dev-master",
+        "vitexsoftware/ease-fluentpdo": "dev-master"
     },
     "autoload": {
         "psr-4": {

@@ -22,14 +22,8 @@ use DataTables\Editor,
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class Engine extends \Ease\Brick
+class Engine extends \Ease\SQL\Engine
 {
-    /**
-     *
-     * @var \Envms\FluentPDO\Query 
-     */
-    public $fluent = null;
-
     /**
      * Filter results by
      * @var array 
@@ -101,7 +95,6 @@ class Engine extends \Ease\Brick
      */
     public function __construct($init = null, $filter = [])
     {
-        parent::__construct();
         if (is_numeric($init)) {
             $this->loadFromSQL($init);
         } elseif (is_array($init)) {
@@ -114,17 +107,7 @@ class Engine extends \Ease\Brick
         }
     }
 
-    public function takemyTable($myTable)
-    {
-        if (is_null($this->subject)) {
-            $this->subject = $myTable;
-        }
-        if (is_null($this->keyword)) {
-            $this->keyword = $myTable;
-        }
-        return parent::takemyTable($myTable);
-    }
-
+ 
     /**
      * Set page where to work wiht one row detail
      * 
@@ -1101,7 +1084,7 @@ class Engine extends \Ease\Brick
             $_SESSION['feedCache'][get_class($this)] = $this->feedSelectize([]);
         } else {
             $_SESSION['feedCache'][get_class($saver->engine)] = $saver->engine->feedSelectize([
-]);
+                ]);
         }
         return $saver;
     }
