@@ -1,4 +1,8 @@
 <?php
+
+use Ease\Html\SpanTag;
+use FlexiPeeHP\ui\TWB\StatusInfoBox;
+
 /*
   $Id$
 
@@ -28,7 +32,7 @@ if ($messageStack->size > 0) {
 
             if (tep_session_is_registered('admin')) {
                 if (defined('USE_FLEXIBEE') && constant('USE_FLEXIBEE') == 'true') {
-                    echo ' | FlexiBee '.new \Ease\Html\SpanTag(new \FlexiPeeHP\ui\StatusInfoBox(),
+                    echo ' | FlexiBee '.new SpanTag(new StatusInfoBox(),
                         ['style' => 'color: white']);
                 }
             }

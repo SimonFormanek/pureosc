@@ -1,20 +1,20 @@
 all: 	 fresh dbreset upgrade
 
 clean:
-	phinx seed:run -s Reset -c ./phinx-adapter.php
+	vendor/bin/phinx seed:run -s Reset -c ./phinx-adapter.php
 
 adminreset:
-	phinx seed:run -s ResetAdmin -c ./phinx-adapter.php
+	vendor/bin/phinx seed:run -s ResetAdmin -c ./phinx-adapter.php
 dbreset:
-	phinx seed:run -s Oscommerce -c ./phinx-adapter.php
-	phinx migrate -c ./phinx-adapter.php
+	vendor/bin/phinx seed:run -s Oscommerce -c ./phinx-adapter.php
+	vendor/bin/phinx migrate -c ./phinx-adapter.php
 	
 newphinx:
 	read -p "Enter CamelCase migration name : " migname ; phinx create $$migname -c ./phinx-adapter.php
 
 fresh:
 	composer update
-	phinx migrate -c ./phinx-adapter.php
+	vendor/bin/phinx migrate -c ./phinx-adapter.php
 
 production:
 	composer update -a -o --no-dev
