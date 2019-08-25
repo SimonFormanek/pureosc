@@ -10,9 +10,8 @@
     "require": {
         "ext-gettext": "*",
         "ext-intl": "*",
-        "spoje.net/flexipeehp": "dev-master",
-        "vitexsoftware/ease-framework": "dev-master",
-        "vitexsoftware/flexipeehp-bricks": "dev-master",
+        "spoje.net/flexibee": "dev-master",
+        "vitexsoftware/flexibee-bricks": "dev-master",
         "league/commonmark": "*",
         "dompdf/dompdf": "dev-master",
         "adamstipak/webpay-php": "*",

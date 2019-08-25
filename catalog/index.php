@@ -1,9 +1,4 @@
 <?php
-if (!isset($_COOKIE['osCsid']) && file_exists('index.html') && empty($_GET)) {
-//TODO!!! if((int)ERROR_DB_CONNECT > 0) include 'error_header.html';
-    include('index.html');
-    exit;
-}
 
 /*
   $Id$
