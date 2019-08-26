@@ -49,8 +49,6 @@ class Adresar extends \FlexiPeeHP\Adresar
 
             $firstContactData = empty($customerData['customers_id']) ? [] : $this->getFirstContact($customerData['customers_id']);
             if (count($firstContactData)) {
-                $kodSource            = $adresarData['nazev'] = $firstContactData['entry_company'];
-
                 $adresarData['ic']    = $firstContactData['entry_company_number'];
                 $adresarData['dic']   = $firstContactData['entry_company_tax_id'];
                 $adresarData['ulice'] = $firstContactData['entry_street_address'];
@@ -58,7 +56,6 @@ class Adresar extends \FlexiPeeHP\Adresar
                 $adresarData['psc']   = $firstContactData['entry_postcode'];
                 $adresarData['stat']  = $this->oscCountryCode($firstContactData['entry_country_id']);
             }
-            $adresarData['kod'] = \FlexiPeeHP\FlexiBeeRO::uncode($this->getKod($kodSource));
         }
 
         if (array_key_exists('entry_company', $customerData)) {
@@ -87,9 +84,7 @@ class Adresar extends \FlexiPeeHP\Adresar
             $adresarData['dic'] = $customerData['entry_vat_number'];
         }
 
-        if (empty(trim($adresarData['nazev']))) {
-            $adresarData['nazev'] = $adresarData['kod'];
-        }
+
 
         return $adresarData;
     }

@@ -7,7 +7,7 @@ namespace PureOSC;
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class NewsletterConsentMailer extends \Ease\Mailer
+class NewsletterConsentMailer extends \Ease\HtmlMailer
 {
     public $customer_id    = null;
     public $customer_email = null;

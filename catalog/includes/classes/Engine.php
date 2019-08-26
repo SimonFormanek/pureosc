@@ -95,6 +95,9 @@ class Engine extends \Ease\SQL\Engine
      */
     public function __construct($init = null, $filter = [])
     {
+        $this->setUp();
+        $this->getFluentPDO();
+
         if (is_numeric($init)) {
             $this->loadFromSQL($init);
         } elseif (is_array($init)) {
@@ -107,7 +110,6 @@ class Engine extends \Ease\SQL\Engine
         }
     }
 
- 
     /**
      * Set page where to work wiht one row detail
      * 
@@ -363,18 +365,6 @@ class Engine extends \Ease\SQL\Engine
             $id = $this->getMyKey();
         }
         return $this->listingQuery()->where($this->getMyTable().'.id='.$id)->execute()->fetch();
-    }
-
-    /**
-     * SQL Builder
-     * @return \Envms\FluentPDO
-     */
-    public function getFluentPDO()
-    {
-        if (!is_object($this->fluent)) {
-            $this->fluent = new \FluentPDO($this->dblink->sqlLink);
-        }
-        return $this->fluent;
     }
 
     /**

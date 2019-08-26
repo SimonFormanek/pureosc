@@ -106,7 +106,7 @@ function tep_catalog_admin_href_link($page = '', $parameters = '',
             $link = constant('HTTPS_CATALOG_ADMIN_SERVER').(defined('DIR_WS_HTTPS_CATALOG') ? constant('DIR_WS_HTTPS_CATALOG')
                     : constant('DIR_WS_CATALOG'));
         } else {
-            $link = constant('HTTP_CATALOG_ADMIN_SERVER').constant('DIR_WS_CATALOG');
+            $link = (defined('HTTP_CATALOG_ADMIN_SERVER') ? constant('HTTP_CATALOG_ADMIN_SERVER') : '') .constant('DIR_WS_CATALOG');
         }
     } else {
         die('</td></tr></table></td></tr></table><br /><br /><font color="#ff0000"><strong>Error!</strong></font><br /><br /><strong>Unable to determine connection method on a link!<br /><br />Known methods: NONSSL SSL<br /><br />Function used:<br /><br />tep_href_link(\''.$page.'\', \''.$parameters.'\', \''.$connection.'\')</strong>');
@@ -524,7 +524,7 @@ function tep_draw_button($title = null, $icon = null, $link = null,
             $button .= ' target="_blank"';
         }
     } else {
-        $button .= '<button accesskey="' . ACCESSKEY_SAVE . '" id="tdb'.$button_counter.'" type="'.tep_output_string($params['type']).'"';
+        $button .= '<button '. (defined('ACCESSKEY_SAVE') ? 'accesskey="'. constant('ACCESSKEY_SAVE').'"' : '' ) .' id="tdb'.$button_counter.'" type="'.tep_output_string($params['type']).'"';
     }
 
     if (isset($params['params'])) {

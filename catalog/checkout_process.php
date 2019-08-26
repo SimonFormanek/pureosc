@@ -1,4 +1,8 @@
 <?php
+
+use Ease\Shared;
+use FlexiPeeHP\FlexiBeeRO;
+use PureOSC\flexibee\FakturaVydana;
 /*
   $Id$
 
@@ -115,7 +119,7 @@ $sql_data_array = array('customers_id' => $customer_id,
     'customers_country' => $order->customer['country']['title'],
     'customers_telephone' => $order->customer['telephone'],
     'customers_email_address' => $order->customer['email_address'],
-    'customers_address_format_id' => $order->customer['format_id'],
+    'customers_address_format_id' => intval($order->customer['format_id']),
     'delivery_name' => trim($order->delivery['firstname'].' '.$order->delivery['lastname']),
     'delivery_company' => $order->delivery['company'],
     'delivery_street_address' => $order->delivery['street_address'],
@@ -126,7 +130,7 @@ $sql_data_array = array('customers_id' => $customer_id,
     'delivery_postcode' => $order->delivery['postcode'],
     'delivery_state' => $order->delivery['state'],
     'delivery_country' => $order->delivery['country']['title'],
-    'delivery_address_format_id' => $order->delivery['format_id'],
+    'delivery_address_format_id' => intval($order->delivery['format_id']),
     'billing_name' => $order->billing['firstname'].' '.$order->billing['lastname'],
     'billing_company' => $order->billing['company'],
     'billing_street_address' => $order->billing['street_address'],
@@ -137,7 +141,7 @@ $sql_data_array = array('customers_id' => $customer_id,
     'billing_postcode' => $order->billing['postcode'],
     'billing_state' => $order->billing['state'],
     'billing_country' => $order->billing['country']['title'],
-    'billing_address_format_id' => $order->billing['format_id'],
+    'billing_address_format_id' => intval($order->billing['format_id']),
     'payment_method' => $order->info['payment_method'],
     /*     * * Altered for Order Editor ** */
     'shipping_module' => $shipping['id'],
@@ -163,7 +167,7 @@ for ($i = 0, $n = sizeof($order_totals); $i < $n; $i++) {
     tep_db_perform(TABLE_ORDERS_TOTAL, $sql_data_array);
 }
 
-$customer_notification = (SEND_EMAILS == 'true') ? '1' : '0';
+$customer_notification = ( constant('SEND_EMAILS')  == 'true') ? '1' : '0';
 $sql_data_array        = array('orders_id' => $insert_id,
     'orders_status_id' => $order->info['order_status'],
     'date_added' => 'now()',
@@ -299,7 +303,7 @@ $order_total_modules->apply_credit(); // CCGV
 
 if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
 
-    $invoice = new PureOSC\flexibee\FakturaVydana(['typDokl' => FlexiPeeHP\FlexiBeeRO::code('FAKTURA')]);
+    $invoice = new FakturaVydana(['typDokl' => FlexiBeeRO::code('FAKTURA')]);
 
     foreach ($order_total_modules->process() as $orderTotalRow) {
         switch ($orderTotalRow['code']) {
@@ -340,7 +344,7 @@ if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
         $varSym    = $invoice->getDataValue('varSym');
         $orderCode = $invoice->getRecordID();
         $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
-        \Ease\Shared::instanced()->addStatusMessage(_('New order saved').$invoice,
+        Shared::instanced()->addStatusMessage(_('New order saved').$invoice,
             'success');
     } else {
         echo 'FlexiBee Errorek';

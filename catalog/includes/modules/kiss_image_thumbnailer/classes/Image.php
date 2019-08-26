@@ -358,7 +358,7 @@ class Image
         }
         // EOF added for watermark support
         // BOF sharpen filter
-        if (KISSIT_SHARPEN_THUMBNAIL != 'none') {
+        if (defined('KISSIT_SHARPEN_THUMBNAIL') && (constant('KISSIT_SHARPEN_THUMBNAIL')  != 'none')) {
             $info       = pathinfo($this->_filename);
             $image_name = $info['basename'];
             if (strpos($image_name, 'no_image') === false) {

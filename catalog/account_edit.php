@@ -25,7 +25,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     if (ACCOUNT_GENDER == 'true')
             $gender        = tep_db_prepare_input($_POST['gender']);
     $firstname     = tep_db_prepare_input($_POST['firstname']);
-    $lastname      = tep_db_prepare_input($_POST['lastname']);    
+    $lastname      = tep_db_prepare_input($_POST['lastname']);
     if (ACCOUNT_DOB == 'true') $dob           = tep_db_prepare_input($_POST['dob']);
     $email_address = tep_db_prepare_input($_POST['email_address']);
     $telephone     = tep_db_prepare_input($_POST['telephone']);
@@ -59,7 +59,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
                 intval(substr(tep_date_raw($dob), 4, 2)),
                 intval(substr(tep_date_raw($dob), 6, 2)),
                 intval(substr(tep_date_raw($dob), 0, 4))
-                )))) {
+            )))) {
             $error = true;
 
             $messageStack->add('account_edit', ENTRY_DATE_OF_BIRTH_ERROR);

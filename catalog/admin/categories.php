@@ -389,17 +389,20 @@ if (tep_not_null($action)) {
             }
             $sql_data_array = ['products_quantity' => (int)tep_db_prepare_input($_POST['products_quantity']),
                 'products_model' => tep_db_prepare_input($_POST['products_model']),
-                'products_price' => tep_db_prepare_input($_POST['products_price']),
-                'products_date_available' => $products_date_available,
+                'products_price' => str_replace(',','.', tep_db_prepare_input($_POST['products_price'])),
                 'products_weight' => (float)tep_db_prepare_input($_POST['products_weight']),
-                'products_status' => tep_db_prepare_input($_POST['products_status']),
-                'products_tax_class_id' => tep_db_prepare_input($_POST['products_tax_class_id']),
+                'products_status' => (int)(tep_db_prepare_input($_POST['products_status'])),
+                'products_tax_class_id' => (int)tep_db_prepare_input($_POST['products_tax_class_id']),
                 'manufacturers_id' => (int)tep_db_prepare_input($_POST['manufacturers_id']),
                 'product_template' => (int)tep_db_prepare_input($_POST['product_template']),
-                'products_custom_date' => tep_db_prepare_input($_POST['products_custom_date']),
+                'products_custom_date' => empty($_POST['products_custom_date']) ?  date('Y-m-d')   : tep_db_prepare_input($_POST['products_custom_date']),
                 'products_sort_order' => (int)tep_db_prepare_input($_POST['products_sort_order'])
             ];
 
+            if($products_date_available){
+               $sql_data_array['products_date_available']  = $products_date_available;
+            }
+            
             $products_image = new upload('products_image');
             $products_image->set_destination(DIR_FS_CATALOG_IMAGES);
             if ($products_image->parse() && $products_image->save()) {
@@ -1273,7 +1276,7 @@ if ($action == 'new_product') {
                                             <td><?php
                                                 if (tep_not_null(tep_get_products_name($pInfo->products_id,
                                                     $languages[$i]['id']))) {
-                                                    if (ADD_MANUFACTURER_SEO_TITLE
+                                                    if ( defined('ADD_MANUFACTURER_SEO_TITLE')
                                                         == 'true'
                                                         && (tep_not_null($pInfo->manufacturers_id))
                                                         && (tep_not_null(tep_get_products_name($pInfo->products_id,

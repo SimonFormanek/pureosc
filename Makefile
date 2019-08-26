@@ -8,6 +8,9 @@ adminreset:
 dbreset:
 	vendor/bin/phinx seed:run -s Oscommerce -c ./phinx-adapter.php
 	vendor/bin/phinx migrate -c ./phinx-adapter.php
+
+demodata: dbreset
+	cd bin ; ./import_catalog.sh
 	
 newphinx:
 	read -p "Enter CamelCase migration name : " migname ; phinx create $$migname -c ./phinx-adapter.php

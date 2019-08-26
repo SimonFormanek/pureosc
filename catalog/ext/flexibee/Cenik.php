@@ -17,11 +17,11 @@ class Cenik extends \FlexiPeeHP\Cenik
 
     use \Ease\SQL\Orm;
     public $nameColumn = 'nazev';
+    public $myTable = 'products';
 
     public function __construct($init = null, $options = array())
     {
         parent::__construct($init, $options);
-        $this->takemyTable('products');
     }
 
     public function convertOscData($productData, $lang = 'cs')

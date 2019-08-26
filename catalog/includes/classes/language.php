@@ -108,4 +108,12 @@ class language
     {
         return $this->language = $this->catalog_languages[Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE'])];
     }
+
+    public function getLanuguageNameByID($languageId)
+    {
+        $langsById = \Ease\Functions::reindexArrayBy($this->catalog_languages,
+                'id');
+        return array_key_exists($languageId, $langsById) ? $langsById[$languageId]['name']
+                : null;
+    }
 }

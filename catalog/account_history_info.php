@@ -64,7 +64,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
                 <table border="0" width="100%" cellspacing="0" cellpadding="2" class="table-hover order_confirmation">
                     <?php
-                    if (sizeof($order->info['tax_groups']) > 1) {
+                    if (!empty($order->info['tax_groups'])) {
                         ?>
                         <tr>
                             <td colspan="2"><strong><?php echo _('Products'); ?></strong></td>
@@ -156,7 +156,6 @@ require(DIR_WS_INCLUDES.'template_top.php');
     $paymentRow = new \Ease\TWB\Row();
 
     $oPage = new Ease\TWB\WebPage();
-    Ease\Shared::webPage($oPage);
 
     if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
         if (floatval($invoice->getDataValue('zbyvaUhradit'))) {
