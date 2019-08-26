@@ -1,0 +1,12 @@
+table.BorderedBox {border: ridge #CCFFCC 3px; background-color: #ddd; }
+table.BorderedBoxWhite {border: ridge #CCFFCC 3px; background-color: #CCFFCC; }
+.BorderedBoxLight {border: ridge #CCFFCC 3px; background-color: #eee; }
+tr.Header { background-color: #CCFFCC; }
+.ds_small { font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight:bold }
+div.active_special_bkgnd_yes { background-color:#FFFF33; } /*highlight active specials */
+div.active_special_bkgnd_no { background-color:#fff; }
+div.rowLine { border:1px solid #D5FFA8 } /* add a line beneath each row */
+div.section_row {float:left; width:200px; padding-top:0px; border:2px dashed yellow}
+div.section_column a:link {float:left; width:90px; padding-left:4px; color:#A0522D; text-align:center;}
+div.shadow { width:100px; height:16px; background-color:yellow; box-shadow: 10px 10px 5px #888888; padding:6px 0px 0px}
+                  

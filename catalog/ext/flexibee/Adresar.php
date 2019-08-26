@@ -16,12 +16,16 @@ class Adresar extends \FlexiPeeHP\Adresar
 {
 
     use \Ease\SQL\Orm;
+    use \Ease\RecordKey;
+    
     public $nameColumn = 'nazev';
+
+    public $myTable = 'customers';
+
 
     public function __construct($init = null, $options = array())
     {
         parent::__construct($init, $options);
-        $this->takemyTable('customers');
     }
 
     public function convertOscData($customerData)
@@ -45,8 +49,6 @@ class Adresar extends \FlexiPeeHP\Adresar
 
             $firstContactData = empty($customerData['customers_id']) ? [] : $this->getFirstContact($customerData['customers_id']);
             if (count($firstContactData)) {
-                $kodSource            = $adresarData['nazev'] = $firstContactData['entry_company'];
-
                 $adresarData['ic']    = $firstContactData['entry_company_number'];
                 $adresarData['dic']   = $firstContactData['entry_company_tax_id'];
                 $adresarData['ulice'] = $firstContactData['entry_street_address'];
@@ -54,7 +56,6 @@ class Adresar extends \FlexiPeeHP\Adresar
                 $adresarData['psc']   = $firstContactData['entry_postcode'];
                 $adresarData['stat']  = $this->oscCountryCode($firstContactData['entry_country_id']);
             }
-            $adresarData['kod'] = \FlexiPeeHP\FlexiBeeRO::uncode($this->getKod($kodSource));
         }
 
         if (array_key_exists('entry_company', $customerData)) {
@@ -83,16 +84,17 @@ class Adresar extends \FlexiPeeHP\Adresar
             $adresarData['dic'] = $customerData['entry_vat_number'];
         }
 
-        if (empty(trim($adresarData['nazev']))) {
-            $adresarData['nazev'] = $adresarData['kod'];
-        }
+
 
         return $adresarData;
     }
 
     public function getFirstContact($customerId)
     {
-        $contactRaw = $this->dblink->queryToArray('SELECT * FROM address_book WHERE customers_id='.$customerId.' LIMIT 1');
+        
+        
+        
+        $contactRaw = (new  \Ease\SQL\Engine(null,['myTable'=>'address_book']))->listingQuery()->orderBy('customers_lastname,customers_firstname')->where('customers_id',$customerId)->fetch();
         return empty($contactRaw) ? [] : current($contactRaw);
     }
 

@@ -422,3 +422,4 @@ define('BOX_HEADER_TAGS_TEST', 'Test');
 /*** End Header Tags SEO ***/
 
 
+define('BOX_TOOLS_DATABASE_OPTIMIZER', 'Database Optimizer');

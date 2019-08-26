@@ -457,4 +457,4 @@ define('BOX_HEADER_TAGS_SOCIAL', 'Sociální sítě', true);
 define('BOX_HEADER_TAGS_TEST', 'Test', true);
 /*** End Header Tags SEO ***/
 
-define('ENTRY_COMPANY_NUMBER','IČO');
+define('ENTRY_COMPANY_NUMBER','IČO');define('BOX_TOOLS_DATABASE_OPTIMIZER', 'Database Optimizer');

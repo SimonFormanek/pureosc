@@ -1,8 +1,16 @@
 <?php
-define('CATALOG_DOMAIN', ''); //not empty !
-define('DIR_FS_MASTER_ROOT_DIR', '/home/user/WWW/osc/'); //trailing slash YES, catalog subdir/catalog NO (!)
-define('SERVER_INSTANCE', 'admin'); // admin or empty for shop ???? TODO
-
+//TODO: future ver define('CATALOG_DOMAIN', 'XCATALOGDOMAINX'); //TODO: www.eshop.cz Need changed: eshop.cz + dynamicaly en,fr,de added
+define('CATALOG_DOMAIN', 'XCSDOMAINX');
+define('CATALOG_ADMIN_DOMAIN', 'XADMINDOMAINX'); //new!!!!!!!
+define('DIR_FS_MASTER_ROOT_DIR', 'XDIRFSMASTERROOTDIRX/'); //trailing slash YES, catalog subdir/catalog NO (!)
+if (!defined('OSC_DIR')) {define('OSC_DIR','osc/');}
+if (!defined('SERVER_INSTANCE')) {define('SERVER_INSTANCE', 'admin');} // admin or empty for shop ???? TODO
+if (!defined('MAX_DISPLAY_SEARCH_RESULTS')) {define('MAX_DISPLAY_SEARCH_RESULTS','30');} // > procucts count for all Products on one Page (controversal option)
+define('SESSION_FORCE_COOKIE_USE', 'True');
+if (!isset($_SERVER['REQUEST_SCHEME'])){
+  $_SERVER['REQUEST_SCHEME'] ='https';
+  $_SERVER['HTTP_HOST'] = CATALOG_DOMAIN;
+}
 if ($_SERVER['REQUEST_SCHEME'] =='https') {
   $https = 'https';
   define('ENABLE_SSL', true);
@@ -13,20 +21,22 @@ if ($_SERVER['REQUEST_SCHEME'] =='https') {
   define('ENABLE_SSL_CATALOG', false);
 }
 define('HTTP_SERVER', $https . '://' . $_SERVER['HTTP_HOST']);
-define('HTTPS_SERVER', 'https://' . $_SERVER['HTTP_HOST']);
+define('HTTPS_SERVER', $https . '://' . $_SERVER['HTTP_HOST']);
 define('HTTP_COOKIE_DOMAIN', '');
 define('HTTPS_COOKIE_DOMAIN', '');
 define('HTTP_COOKIE_PATH', '/admin');
 define('HTTPS_COOKIE_PATH', '/admin');
 define('HTTP_CATALOG_SERVER', $https . '://' . CATALOG_DOMAIN);
 define('HTTPS_CATALOG_SERVER', $https . '://' . CATALOG_DOMAIN);
-define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR . 'catalog/');
+define('HTTP_CATALOG_ADMIN_SERVER', $https . '://' . CATALOG_ADMIN_DOMAIN);
+define('HTTPS_CATALOG_ADMIN_SERVER', $https . '://' . CATALOG_ADMIN_DOMAIN);
+define('DIR_FS_DOCUMENT_ROOT', DIR_FS_MASTER_ROOT_DIR . OSC_DIR . 'catalog/');
 define('DIR_WS_ADMIN', '/admin/');
 define('DIR_WS_HTTPS_ADMIN', '/admin/');
-define('DIR_FS_ADMIN', DIR_FS_MASTER_ROOT_DIR . 'catalog/admin/');
+define('DIR_FS_ADMIN', DIR_FS_MASTER_ROOT_DIR . OSC_DIR . 'catalog/admin/');
 define('DIR_WS_CATALOG', '/');
 define('DIR_WS_HTTPS_CATALOG', '/');
-define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . '/catalog/');
+define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . OSC_DIR . '/catalog/');
 define('DIR_WS_IMAGES', 'images/');
 define('DIR_WS_ICONS', DIR_WS_IMAGES . 'icons/');
 define('DIR_WS_CATALOG_IMAGES', DIR_WS_CATALOG . 'images/');
@@ -38,7 +48,7 @@ define('DIR_WS_MODULES', DIR_WS_INCLUDES . 'modules/');
 define('DIR_WS_LANGUAGES', DIR_WS_INCLUDES . 'languages/');
 define('DIR_WS_CATALOG_LANGUAGES', DIR_WS_CATALOG . 'includes/languages/');
 define('DIR_FS_CATALOG_LANGUAGES', DIR_FS_CATALOG . 'includes/languages/');
-define('DIR_FS_CATALOG_IMAGES', DIR_FS_MASTER_ROOT_DIR . 'catalog/images/');
+define('DIR_FS_CATALOG_IMAGES', DIR_FS_MASTER_ROOT_DIR . OSC_DIR . 'catalog/images/');
 define('DIR_FS_CATALOG_MODULES', DIR_FS_CATALOG . 'includes/modules/');
 define('DIR_FS_BACKUP', DIR_FS_ADMIN . '../../data/backups/');
 define('DIR_FS_DOWNLOAD', DIR_FS_CATALOG . 'download/');

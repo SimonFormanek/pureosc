@@ -7,11 +7,12 @@
             "email": "pureosc@purehtml.cz"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "ext-gettext": "*",
         "ext-intl": "*",
         "spoje.net/flexibee": "dev-master",
-        "vitexsoftware/flexibee-bricks": "dev-master",
+        "vitexsoftware/flexibee-bricks": "* dev-master",
         "league/commonmark": "*",
         "dompdf/dompdf": "dev-master",
         "adamstipak/webpay-php": "*",
@@ -19,7 +20,9 @@
         "ckeditor/ckeditor": "*",
         "envms/fluentpdo": "^1.1",
         "purehtml/purecrypto": "dev-master",
-        "blahasoft/qrfaktura": "dev-master"
+        "blahasoft/qrfaktura": "dev-master",
+        "vitexsoftware/ease-fluentpdo": "dev-master",
+        "vitexsoftware/ease-twbootstrap-widgets-flexibee": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -40,8 +43,6 @@
             "make upgrade"
         ]
     },
-
-    "minimum-stability": "dev",
     "prefer-stable": false,
     "require-dev": {
         "robmorgan/phinx": "*",

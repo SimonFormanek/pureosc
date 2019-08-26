@@ -1,4 +1,13 @@
 <?php
+
+use Ease\Html\ATag;
+use Ease\Html\H1Tag;
+use Ease\Html\UlTag;
+use Ease\TWB\Container;
+use FlexiPeeHP\FlexiBeeRO;
+use FlexiPeeHP\ui\TWB\StatusInfoBox;
+use PureOSC\flexibee\Adresar;
+
 /*
   $Id$
 
@@ -25,16 +34,16 @@ switch ($action) {
 require(DIR_WS_INCLUDES.'template_top.php');
 
 
-$checker2 = new FlexiPeeHP\ui\StatusInfoBox();
+$checker2 = new StatusInfoBox();
 
 
 
-$container = new Ease\TWB\Container(new \Ease\Html\H1Tag(_('FlexiBee sync')));
+$container = new Container(new H1Tag(_('FlexiBee sync')));
 
 $container->addItem($checker2);
 
 if ($checker2->connected()) {
-    $adresar   = new PureOSC\flexibee\Adresar();
+    $adresar   = new Adresar();
     $adresar->logBanner('PureOSC Sync');
     $kontakter = new PureOSC\flexibee\Kontakt();
     $ids       = $adresar->getAllFromFlexibee(['typVztahuK' => 'typVztahu.odberDodav']);
@@ -45,7 +54,7 @@ if ($checker2->connected()) {
                     $addressData['external-ids'][0])] = $addressData['external-ids'][0];
         }
     }
-    $list = new Ease\Html\UlTag();
+    $list = new UlTag();
 //foreach ($ids as $idinfo) {
 //    $sql_data_array = array('customers_firstname' => $firstname,
 //        'customers_lastname' => $lastname,
@@ -54,42 +63,42 @@ if ($checker2->connected()) {
 //    $list->addItemSmart(implode(':', $idinfo));
 //}
 
-    foreach ($adresar->dblink->queryToArray("select * FROM customers ORDER BY customers_lastname,customers_firstname") as $customerData) {
+    foreach ((new Ease\SQL\Engine(null, ['myTable' => 'customers']))->listingQuery()->orderBy('customers_lastname,customers_firstname')->fetchAll() as $customerData) {
         if (array_key_exists($customerData['customers_id'], $inFlexiBee)) {
             $adresar->addStatusMessage(_('Already exists in database').$customerData['customers_id']);
         } else {
-            
-            if(!empty($customerData['customers_anonym'])){
+
+            if (!empty($customerData['customers_anonym'])) {
                 continue; //Do not import anonymous user
             }
-        $adresar->setData($adresar->convertOscData($customerData), true);
+            $adresar->setData($adresar->convertOscData($customerData), true);
             $adresar->setDataValue('typVztahuK', 'typVztahu.odberatel');
             $adresar->setDataValue('id',
                 'ext:customers:'.$customerData['customers_id']);
-        if ($adresar->sync()) {
-            $adresar->addStatusMessage($adresar->getApiURL().' '.FlexiPeeHP\FlexiBeeRO::uncode($adresar->getRecordCode()),
-                'success');
+            if ($adresar->sync()) {
+                $adresar->addStatusMessage($adresar->getApiURL().' '.FlexiBeeRO::uncode($adresar->getRecordCode()),
+                    'success');
 
-            $addresses = $adresar->getContacts($customerData['customers_id']);
-            foreach ($addresses as $kontakt) {
+                $addresses = $adresar->getContacts($customerData['customers_id']);
+                foreach ($addresses as $kontakt) {
                     $kontakter->setData($kontakter->convertOscData($kontakt),
                         true);
-                $kontakter->setDataValue('id',
-                    'ext:contact:'.$kontakt['address_book_id']);
+                    $kontakter->setDataValue('id',
+                        'ext:contact:'.$kontakt['address_book_id']);
                     $kontakter->setDataValue('kod', $kontakt['address_book_id']);
 
                     $kontakter->setDataValue('firma',
                         'ext:customers:'.$customerData['customers_id']);
-                $kontakter->setDataValue('stat',
-                    $adresar->oscCountryCode($kontakt['entry_country_id']));
+                    $kontakter->setDataValue('stat',
+                        $adresar->oscCountryCode($kontakt['entry_country_id']));
 
                     if ($kontakter->insertToFlexiBee()) {
-                    $kontakter->addStatusMessage($kontakter->getApiURL().' '.FlexiPeeHP\FlexiBeeRO::uncode($kontakter->getRecordCode()),
-                        'success');
+                        $kontakter->addStatusMessage($kontakter->getApiURL().' '.FlexiBeeRO::uncode($kontakter->getRecordCode()),
+                            'success');
+                    }
                 }
-            }
-            $list->addItemSmart(new Ease\Html\ATag($adresar->getApiURL(),
-                    $adresar->getRecordIdent()));
+                $list->addItemSmart(new ATag($adresar->getApiURL(),
+                        $adresar->getRecordIdent()));
             }
         }
     }
@@ -100,6 +109,7 @@ if ($checker2->connected()) {
 
 $container->addItem($list);
 echo $container;
+echo \Ease\WebPage::singleton()->getStatusMessagesAsHtml();
 
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');

@@ -55,7 +55,6 @@ class CustomerLog extends Engine {
     $this->setVenue($venue);
     $this->setCustomerID($customers_id);
     $this->setAdministratorID(empty($administrators_id) ? 0 : $administrators_id );
-    $this->takemyTable('user_log');
     $this->setEncryption(1);
   }
 

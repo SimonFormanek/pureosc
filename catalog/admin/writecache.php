@@ -1,5 +1,9 @@
 #!/usr/bin/php -q
 <?php
+function cache_reset($group) {
+            tep_db_query("DELETE FROM cache WHERE cache_name = 'seo_urls_v2_" . $group . "'");
+            tep_db_query("UPDATE configuration SET configuration_value='false' WHERE configuration_key='SEO_URLS_CACHE_RESET'");
+}
 chdir('../');
 $error = 0;
 $_SERVER['HTTP_ACCEPT_LANGUAGE'] = $argv[1];
@@ -49,15 +53,17 @@ if (file_exists('../../oscconfig/static.php')) {
     exit;
 }
 if ($argv[2] == 'admin') {
-    $chdir_dest_dir = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG;
+    $chdir_dest_dir = RSYNC_LOCAL_DEST_PATH . DIR_FS_RELATIVE_CATALOG;
 } else {
-    $chdir_dest_dir = RSYNC_REMOTE_DEST_DIR . OSC_DIR . DIR_FS_RELATIVE_CATALOG;
+    $chdir_dest_dir = RSYNC_REMOTE_DEST_DIR . DIR_FS_RELATIVE_CATALOG;
 }
 require('includes/application_top.php');
 //echo config vars
-echo 'GENERATOR_FORCE_UPDATE_ALL: ' . GENERATOR_FORCE_UPDATE_ALL . "\n";
-echo '$_SERVER[REQUEST_SCHEME]: ' . $_SERVER['REQUEST_SCHEME'] . "\n";
-echo '$_SERVER[HTTP_HOST]: ' . $_SERVER['HTTP_HOST'] . "\n";
+if ($debug_level > 2){
+  echo 'GENERATOR_FORCE_UPDATE_ALL: ' . GENERATOR_FORCE_UPDATE_ALL . "\n";
+  echo '$_SERVER[REQUEST_SCHEME]: ' . $_SERVER['REQUEST_SCHEME'] . "\n";
+  echo '$_SERVER[HTTP_HOST]: ' . $_SERVER['HTTP_HOST'] . "\n";
+}
 //TODO: bude tady neco??????
 //require('admin/'. DIR_WS_FUNCTIONS . 'cli.php');
 //TODO: presunout /languages/LANG/static.php do DTB config
@@ -84,6 +90,9 @@ $context    = stream_context_create(array(
 //exit if lockfile exists, exis or create lock
 $minute = date("Hi");
 //if (SERVER_INSTANCE =='shop') {
+if (!file_exists('../../cronlock')) {
+  mkdir('../../cronlock', 0777);
+}
 if (file_exists('../../cronlock/'.$argv['1'].'.'.$argv['2'])) {
 //TODO: if lock wait too long send error message and restart
     $oldlock = file_get_contents('../../cronlock/'.$argv['1'].'.'.$argv['2']);
@@ -91,18 +100,28 @@ if (file_exists('../../cronlock/'.$argv['1'].'.'.$argv['2'])) {
     echo '$oldlock:'.$oldlock."\n";
     echo '$_SERVER[\'REQUEST_TIME\']:'.$_SERVER['REQUEST_TIME']."\n";
     if ($oldlock > $_SERVER['REQUEST_TIME']) {
-        echo 'EXITING: lockfile EXISTS!'."\n";
+        echo 'Lockfile Exists, Exiting!'."\n";
         exit;
     } else {
+       echo 'Err: GeneratorTimeout, Exiting'."\n";
+       mail(WEBMASTER_EMAIL,
+         'Err: GeneratorTimeout ' . HTTPS_COOKIE_DOMAIN,
+         'Static Export CANCELLED!');
         unlink('../../cronlock/'.$argv['1'].'.'.$argv['2']);
-        $error = 1;
-        echo "ALERT:lock removed\n";
+        echo "ERROR: Lock Timeout, unlocked killall????\n";
+        sleep(2);
+        echo 'killing croncache & writecache';
+        shell_exec("killall croncache.php;killall writecache.php");
+        exit;
     }
 } else {
     file_put_contents('../../cronlock/'.$argv['1'].'.'.$argv['2'],
         $_SERVER['REQUEST_TIME']);
 }
 //TODO:move to configure.php
+if (!file_exists('../../crontime')) {
+  mkdir('../../crontime', 0777);
+}
 if (!file_exists('../../crontime/'.$argv['1'].'.'.$argv['2']))
         file_put_contents('../../crontime/'.$argv['1'].'.'.$argv['2'], '0301');
 $crontime = (int) file_get_contents('../../crontime/'.$argv['1'].'.'.$argv['2']);
@@ -198,6 +217,8 @@ if (PRODUCTS_CANONICAL_TYPE == 'path') {
 }
     while ($products = tep_db_fetch_array($products_query)) {
         if (tep_db_num_rows($products_query)) {
+          cache_reset('PRODUCTS');
+
             //select only products from active categories (sort_order > 0):
             if (PRODUCTS_CANONICAL_TYPE == 'path') {
             if (SERVER_INSTANCE == 'shop') {
@@ -239,7 +260,17 @@ if (PRODUCTS_CANONICAL_TYPE == 'path') {
                 shell_exec('mkdir -p '.$newpath);
             }
             if (PRODUCTS_CANONICAL_TYPE == 'path') { 
-            $output      = "<\?php
+      $hta_content = 'RewriteEngine On
+      RewriteBase /
+      RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
+			RewriteRule ^$ /product_info.php?cPath='.tep_get_category_path($canonical_category['categories_id']).'&products_id='.$products['products_id'] . '&language=' . $_GET['language'] . ' [QSA,L]
+			RewriteCond %{QUERY_STRING} (.*)=(.*) [NC]
+			RewriteRule ^$ /product_info.php?cPath='.tep_get_category_path($canonical_category['categories_id']).'&products_id='.$products['products_id'] . '&language=' . $_GET['language'] . ' [QSA,L]
+			';
+     file_put_contents($newpath . '.htaccess', $hta_content, 644);
+
+/*            
+            <\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
 \$_GET['cPath']='".tep_get_category_path($canonical_category['categories_id'])."';
@@ -250,6 +281,7 @@ exit;
 }
 ?>
 ";
+*/
 } else {
             $output      = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
@@ -271,11 +303,11 @@ exit;
             curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
             curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
             curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-            $output      .= curl_exec($curl_handle);
+            $output      = curl_exec($curl_handle);
             curl_close($curl_handle);
     $output = filtr($output);
-            file_put_contents($newpath . 'index.php', stripslashes($output), 644);
-            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
+            file_put_contents($newpath . 'index.html.gz', gzencode(stripslashes($output), 9), 644);
+            if (preg_match("/<\/html>/", gzdecode(file_get_contents($newpath . 'index.html.gz')))) {
               tep_db_query("UPDATE ".TABLE_PRODUCTS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE products_id = ".$products['products_id']." AND language_id = ".$lng['languages_id']);
               $updated     = 1;
             } else {
@@ -285,8 +317,8 @@ exit;
         }
     }
 } //end GENERATE_PRODUCTS
-if (GENERATE_CATEGORIES == 'true') {
 
+if (GENERATE_CATEGORIES == 'true') {
 if ($debug_level > 2) echo "GENERATING CATEGORIES\n";
 $categories_query = tep_db_query("SELECT c.categories_id, cd.categories_name FROM ".TABLE_CATEGORIES." c,  ".TABLE_CATEGORIES_DESCRIPTION." cd 
     WHERE cd.categories_id = c.categories_id 
@@ -295,6 +327,7 @@ $categories_query = tep_db_query("SELECT c.categories_id, cd.categories_name FRO
     AND sort_order > 0");
 while ($categories       = tep_db_fetch_array($categories_query)) {
     if (tep_db_num_rows($categories_query)) {
+    	  cache_reset('CATEGORIES');
         if ($debug_level > 2)
                 echo 'cPath:'.tep_get_category_path($categories['categories_id'])."\n";
         $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_RELATIVE_CATALOG.str_replace(HTTP_SERVER, '',
@@ -304,7 +337,16 @@ while ($categories       = tep_db_fetch_array($categories_query)) {
         if (!is_dir($newpath)) {
             shell_exec('mkdir -p '.$newpath);
         }
-        $output      = "<\?php
+      $hta_content = 'RewriteEngine On
+      RewriteBase /
+      RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
+			RewriteRule ^$ /index.php?cPath='.tep_get_category_path($categories['categories_id']) . '&language=' . $_GET['language'] . ' [QSA,L]
+			RewriteCond %{QUERY_STRING} (.*)=(.*) [NC]
+			RewriteRule ^$ /index.php?cPath='.tep_get_category_path($categories['categories_id']) . '&language=' . $_GET['language'] . ' [QSA,L]
+			';
+     file_put_contents($newpath . '.htaccess', $hta_content, 644);
+
+/*        $output      = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
 \$_GET['cPath']='".tep_get_category_path($categories['categories_id'])."';
@@ -314,7 +356,7 @@ exit;
 }
 ?>
 ";
-        //create static
+*/        //create static
         $curl_handle = curl_init();
 //		curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/product_info.php?products_id=' . $products['products_id']);
 //			curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/index.php?cPath=1');
@@ -325,11 +367,11 @@ exit;
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-        $output      .= curl_exec($curl_handle);
+        $output      = curl_exec($curl_handle);
         curl_close($curl_handle);
     $output = filtr($output);
-        file_put_contents($newpath.'index.php', stripslashes($output), 644);
-            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
+            file_put_contents($newpath . 'index.html.gz', gzencode(stripslashes($output), 9), 644);
+            if (preg_match("/<\/html>/", gzdecode(file_get_contents($newpath . 'index.html.gz')))) {
               tep_db_query("UPDATE ".TABLE_CATEGORIES_DESCRIPTION." SET ".$cached_flag." = 1 WHERE categories_id = ".$categories['categories_id']." AND language_id = ".$lng['languages_id']);
               $updated     = 1;
             } else {
@@ -342,22 +384,35 @@ exit;
 
 if (GENERATE_MANUFACTURERS == 'true') {
 
-  if ($debug_level>2) "GENERATING_MANUFACTURERS\n";
+  if ($debug_level>2) echo "GENERATING_MANUFACTURERS\n";
   $manufacturers_query = tep_db_query("SELECT m.manufacturers_id, manufacturers_name  FROM " . TABLE_MANUFACTURERS . " m, " . TABLE_MANUFACTURERS_INFO . " mi
   WHERE
   m.manufacturers_id = mi.manufacturers_id
   AND mi." . $cached_flag . " = 0
   AND languages_id = '" . $lng['languages_id']. "'");
+
   while ($manufacturers = tep_db_fetch_array($manufacturers_query)) {
   if (tep_db_num_rows($manufacturers_query)) {
+  if ($debug_level > 2) echo "RESETTING MANUFACTURERS\n";
+//TODO:    cache_reset('MANUFACTURERS'); //TODO: cache error zustane stara verze (cache disabled)
 //  $newpath = preg_replace('/(-[a-z])*$/','',remove_accents($manufacturers['manufacturers_name']));
       $newpath = RSYNC_LOCAL_DEST_PATH.OSC_DIR.DIR_FS_RELATIVE_CATALOG.str_replace(HTTP_SERVER, '',
                 tep_href_link(FILENAME_DEFAULT,
                     'manufacturers_id='.$manufacturers['manufacturers_id']))."/";
+echo '2>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' . $newpath . "\n";
         if (!is_dir($newpath)) {
             shell_exec('mkdir -p '.$newpath);
         }
   
+      $hta_content = 'RewriteEngine On
+      RewriteBase /
+      RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
+			RewriteRule ^$ /index.php?manufacturers_id=' . $manufacturers['manufacturers_id'] . '&language=' . $_GET['language'] . ' [QSA,L]
+			RewriteCond %{QUERY_STRING} (.*)=(.*) [NC]
+			RewriteRule ^$ /index.php?manufacturers_id=' . $manufacturers['manufacturers_id'] . '&language=' . $_GET['language'] . ' [QSA,L]
+			';
+     file_put_contents($newpath . '.htaccess', $hta_content, 644);
+/*
         $output      = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
@@ -368,7 +423,7 @@ exit;
 }
 ?>
 ";
-
+*/
             //create static
             $curl_handle = curl_init();
             curl_setopt($curl_handle, CURLOPT_URL,
@@ -378,11 +433,11 @@ exit;
             curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
             curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
             curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-            $output      .= curl_exec($curl_handle);
+            $output      = curl_exec($curl_handle);
             curl_close($curl_handle);
-            $output = filtr($output);
-            file_put_contents($newpath.'index.php', stripslashes($output), 644);
-            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
+    				$output = filtr($output);
+            file_put_contents($newpath . 'index.html.gz', gzencode(stripslashes($output), 9), 644);
+            if (preg_match("/<\/html>/", gzdecode(file_get_contents($newpath . 'index.html.gz')))) {
               tep_db_query("UPDATE " . TABLE_MANUFACTURERS_INFO . " SET " . $cached_flag . " = 1 WHERE manufacturers_id = " . $manufacturers['manufacturers_id'] . " AND languages_id = " . $lng['languages_id']);
               $updated     = 1;
             } else {
@@ -405,7 +460,16 @@ while ($topics       = tep_db_fetch_array($topics_query)) {
         if (!is_dir($newpath)) {
             shell_exec('mkdir -p '. $newpath);
         }
-        $output      = "<\?php
+      $hta_content = 'RewriteEngine On
+      RewriteBase /
+      RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
+			RewriteRule ^$ /articles.php?cPath='.tep_get_topic_path($topics['topics_id']) . '&language=' . $_GET['language'] . ' [QSA,L]
+			RewriteCond %{QUERY_STRING} (.*)=(.*) [NC]
+			RewriteRule ^$ /articles.php?cPath='.tep_get_topic_path($topics['topics_id']) . '&language=' . $_GET['language'] . ' [QSA,L]
+			';
+     file_put_contents($newpath . '.htaccess', $hta_content, 644);
+
+/*        $output      = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
 \$_GET['tPath']=".$topics['topics_id'].";
@@ -415,7 +479,8 @@ exit;
 }
 ?>
 ";
-        //create static
+*/  
+      //create static
         $curl_handle = curl_init();
         curl_setopt($curl_handle, CURLOPT_URL,
             HTTP_SERVER.'/'.FILENAME_ARTICLES.'?tPath='.$topics['topics_id'] . '&language=' . $_GET['language']);
@@ -423,11 +488,11 @@ exit;
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-        $output      .= curl_exec($curl_handle);
+        $output      = curl_exec($curl_handle);
         curl_close($curl_handle);
     $output = filtr($output);
-            file_put_contents($newpath.'index.php', stripslashes($output), 644); //Missing?!
-            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
+            file_put_contents($newpath . 'index.html.gz', gzencode(stripslashes($output), 9), 644);
+            if (preg_match("/<\/html>/", gzdecode(file_get_contents($newpath . 'index.html.gz')))) {
         tep_db_query("UPDATE ".TABLE_TOPICS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE topics_id = ".$topics['topics_id']." AND language_id = ".$lng['languages_id']);
               $updated     = 1;
             } else {
@@ -457,7 +522,15 @@ while ($articles       = tep_db_fetch_array($articles_query)) {
         if (!is_dir($newpath)) {
             shell_exec('mkdir -p '.$newpath);
         }
-        $output      = "<\?php
+      $hta_content = 'RewriteEngine On
+      RewriteBase /
+      RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
+			RewriteRule ^$ /article_info.php?articles_id ='. $articles['articles_id'] . '&language=' . $_GET['language'] . ' [QSA,L]
+			RewriteCond %{QUERY_STRING} (.*)=(.*) [NC]
+			RewriteRule ^$ /article_info.php?articles_id=' . $articles['articles_id'] . '&language=' . $_GET['language'] . ' [QSA,L]
+			';
+     file_put_contents($newpath . '.htaccess', $hta_content, 644);
+/*        $output      = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
 \$_GET['articles_id']=".$articles['articles_id'].";
@@ -467,6 +540,7 @@ exit;
 }
 ?>
 ";
+*/
         //create static
         $curl_handle = curl_init();
         curl_setopt($curl_handle, CURLOPT_URL,
@@ -475,13 +549,11 @@ exit;
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-        $output      .= curl_exec($curl_handle);
+        $output      = curl_exec($curl_handle);
         curl_close($curl_handle);
     $output = filtr($output);
-        file_put_contents($newpath.'index.php', stripslashes($output), 644);
-
-
-            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
+            file_put_contents($newpath . 'index.html.gz', gzencode(stripslashes($output), 9), 644);
+            if (preg_match("/<\/html>/", gzdecode(file_get_contents($newpath . 'index.html.gz')))) {
               tep_db_query("UPDATE ".TABLE_ARTICLES_DESCRIPTION." SET ".$cached_flag." = 1 WHERE articles_id = ".$articles['articles_id']." AND language_id = ".$lng['languages_id']);
               $updated     = 1;
             } else {
@@ -503,7 +575,15 @@ while ($information       = tep_db_fetch_array($information_query)) {
         if (!is_dir($newpath)) {
             shell_exec('mkdir -p '.$newpath);
         }
-        $output      = "<\?php
+      $hta_content = 'RewriteEngine On
+      RewriteBase /
+      RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
+			RewriteRule ^$ /information.php?info_id='.$categories['categories_id'] . '&language=' . $_GET['language'] . ' [QSA,L]
+			RewriteCond %{QUERY_STRING} (.*)=(.*) [NC]
+			RewriteRule ^$ /information.php?info_id='. $information['information_id'] . '&language=' . $_GET['language'] . ' [QSA,L]
+			';
+     file_put_contents($newpath . '.htaccess', $hta_content, 644);
+/*        $output      = "<\?php
 if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
 chdir('".$chdir_dest_dir."');
 \$_GET['info_id']=".$information['information_id'].";
@@ -513,6 +593,7 @@ exit;
 }
 ?>
 ";
+*/
         //create static
         $curl_handle = curl_init();
         curl_setopt($curl_handle, CURLOPT_URL,
@@ -521,12 +602,11 @@ exit;
         curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-        $output      .= curl_exec($curl_handle);
+        $output      = curl_exec($curl_handle);
         curl_close($curl_handle);
-    $output = filtr($output);
-        file_put_contents($newpath.'index.php', stripslashes($output), 644);
-
-            if (preg_match("/<\/html>/", file_get_contents($newpath . 'index.php'))) {
+    		$output = filtr($output);
+            file_put_contents($newpath . 'index.html.gz', gzencode(stripslashes($output), 9), 644);
+            if (preg_match("/<\/html>/", gzdecode(file_get_contents($newpath . 'index.html.gz')))) {
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE information_id = ".$information['information_id']." AND language_id = ".$lng['languages_id']);
               $updated     = 1;
             } else {
@@ -541,13 +621,14 @@ if ($update_all == 'true')
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE language_id = ".$lng['languages_id']);
 */
 //GENERATING_ALL_ALL if UPDATE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-echo 'updated status:'.$updated."\n";
+if ($debug_level > 2) {echo 'updated status:'.$updated."\n";}
 if ($updated == 1) {
 
+if (GENERATE_MANUFACTURERS_INDEX == 'true') {
 if ($debug_level > 2)      echo 'Generating Manufacturers index' . "\n";
-$newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remove_accents(constant('MANUFACTURERS'));
+$newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remove_accents(constant('MANUFACTURERS')) . '/';
 
-    $output      = '';
+/*
       $output = "<\?php
       if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
       chdir('" . $chdir_dest_dir . "');
@@ -557,9 +638,19 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remo
       }
       ?>
       ";
+*/
         if (!is_dir($newpath)) {
             shell_exec('mkdir -p '.$newpath);
         }
+      $hta_content = 'RewriteEngine On
+      RewriteBase /
+      RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
+			RewriteRule ^$ /manufacturers_index.php&language=' . $_GET['language'] . ' [QSA,L]
+			RewriteCond %{QUERY_STRING} (.*)=(.*) [NC]
+			RewriteRule ^$ /manufacturers_index.php&language=' . $_GET['language'] . ' [QSA,L]
+			';
+     file_put_contents($newpath . '.htaccess', $hta_content, 644);
+
     //create static
     $curl_handle = curl_init();
     curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_MANUFACTURERS_INDEX . '?language=' . $_GET['language']);
@@ -567,18 +658,23 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remo
     curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
     curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-    $output      .= curl_exec($curl_handle);
+    $output      = curl_exec($curl_handle);
     curl_close($curl_handle);
     $output = filtr($output);
-    file_put_contents($newpath . '/' . 'index.php', stripslashes($output), 644);
-            if (!preg_match("/<\/html>/", file_get_contents($newpath . '/index.php'))) {
+            file_put_contents($newpath . 'index.html.gz', gzencode(stripslashes($output), 9), 644);
+            if (preg_match("/<\/html>/", gzdecode(file_get_contents($newpath . 'index.html.gz')))) {
+//              tep_db_query("UPDATE ".TABLE_PRODUCTS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE products_id = ".$products['products_id']." AND language_id = ".$lng['languages_id']);
+              }else {
               $error = 1;
+              echo "Error: GENERATE_MANUFACTURERS_INDEX \n";
+
             }
+} //end GENERATE_MANUFACTURERS_INDEX
 
+if (GENERATE_PRODUCTS_NEW_PAGE == 'true') {
 if ($debug_level > 2)      echo 'Generating New Products All Page' . "\n";
-$newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . remove_accents(constant('PRODUCTS_NEW_PAGE'));
-
-    $output      = '';
+$newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . remove_accents(constant('PRODUCTS_NEW_PAGE')) . '/';
+/*
       $output = "<\?php
       if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
       chdir('" . $chdir_dest_dir . "');
@@ -588,10 +684,19 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
       }
       ?>
       ";
+*/
         if (!is_dir($newpath)) {
         if ($debug_level > 2) echo 'mkdir:' . $newpath . "\n";
             shell_exec('mkdir -p '.$newpath);
         }
+      $hta_content = 'RewriteEngine On
+      RewriteBase /
+      RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
+			RewriteRule ^$ /products_new.php&language=' . $_GET['language'] . ' [QSA,L]
+			RewriteCond %{QUERY_STRING} (.*)=(.*) [NC]
+			RewriteRule ^$ /products_new.php&language=' . $_GET['language'] . ' [QSA,L]
+			';
+     file_put_contents($newpath . '.htaccess', $hta_content, 644);
     //create static
     $curl_handle = curl_init();
     curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER . '/' . FILENAME_PRODUCTS_NEW . '?language=' . $_GET['language']);
@@ -599,15 +704,18 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
     curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
     curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-    $output      .= curl_exec($curl_handle);
+    $output      = curl_exec($curl_handle);
     curl_close($curl_handle);
     $output = filtr($output);
-    file_put_contents($newpath . '/' . 'index.php', stripslashes($output), 644);
-            if (!preg_match("/<\/html>/", file_get_contents($newpath . '/index.php'))) {
+            file_put_contents($newpath . 'index.html.gz', gzencode(stripslashes($output), 9), 644);
+            if (preg_match("/<\/html>/", gzdecode(file_get_contents($newpath . 'index.html.gz')))) {
+//              tep_db_query("UPDATE ".TABLE_PRODUCTS_DESCRIPTION." SET ".$cached_flag." = 1 WHERE products_id = ".$products['products_id']." AND language_id = ".$lng['languages_id']);
+              $updated     = 1;
+            } else {
               $error = 1;
               echo "Error: New Products All Page \n";
-            }
-
+		}
+} //end GENERATE_PRODUCTS_NEW_PAGE
 
 /*
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -696,9 +804,10 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
      */
 
 
+if (GENERATE_HOMEPAGE == 'true') {
 
-    echo GENERATING_HOMEPAGE."\n"; //<<<<<<<<<<<<<<<<<<<<
-    $output      = '';
+    echo 'GENERATING HOMEPAGE'."\n"; //------------------------------------------------
+//    $output      = '';
     /* SMAZAT?
       $output = "<\?php
       if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){
@@ -711,25 +820,37 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
       ";
      */
     //create static
+      $hta_content = 'RewriteEngine On
+      RewriteBase /
+      RewriteCond %{HTTP_COOKIE} osCsid=(.*) [NC]
+			RewriteRule ^$ /index.php?language=' . $_GET['language'] . ' [QSA,L]
+			RewriteCond %{QUERY_STRING} (.*)=(.*) [NC]
+			RewriteRule ^$ /index.php?language=' . $_GET['language'] . ' [QSA,L]
+			';
+//     unlink(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/.htaccess');
+    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/.htaccess', $hta_content, 644);
+
+
+
     $curl_handle = curl_init();
     curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER.'/index.php?language=' . $_GET['language']);
     curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
     curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
     curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-    $output      .= curl_exec($curl_handle);
+    $output      = curl_exec($curl_handle);
     curl_close($curl_handle);
     $output = filtr($output);
-    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html', stripslashes($output), 644);
-            if (!preg_match("/<\/html>/", file_get_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html'))) {
+//    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html', stripslashes($output), 644); 
+    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html.gz', gzencode(stripslashes($output)), 644); 
+            if (!preg_match("/<\/html>/", gzdecode(file_get_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/index.html.gz')))) {
               $error = 1;
               echo "Error: HomePage \n";
             } else {
 //set cached_flag 1 for information constants
         tep_db_query("UPDATE ".TABLE_INFORMATION." SET ".$cached_flag." = 1 WHERE information_group_id != ". $information_group_id ." AND language_id = ".$lng['languages_id']);
-
 }
-
+} //end GENERATE_HOMEPAGE
     /*
       //RSYNC <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       //now is finished
@@ -744,38 +865,31 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
         if (RSYNCLOGGING == 'true') {
             shell_exec('rsync -av --exclude-from  '. DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' >> ' . REPLICATION_LOG_DIR.HTTPS_COOKIE_DOMAIN . '_rsync_import_ALL.osclog  2>&1');
         } else {
-            shell_exec('rsync -av --exclude-from  '. DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR  . ' --delete --delete-excluded');
+            shell_exec('rsync -av --exclude-from  '. DIR_FS_CONFIG . 'exclude_local.txt ' . RSYNC_LOCAL_SRC_PATH . OSC_DIR . ' ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR);
         }
 
 
         if (RSYNC_TO_REMOTE == 1 && $argv[2] == 'shop') {
-/*
+
             foreach ($remoteservers_arr as &$remoteserver) {
-                                shell_exec('rsync --chmod=D755,F644 -ave   ssh --protocol=29 --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete --delete-excluded');
-                if ($debug_level > 2) echo('rsync --chmod=D755,F644 -ave   ssh --protocol=29  --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . OSC_DIR . ' --delete --delete-excluded');
+                                shell_exec('rsync --chmod=D755,F644 -ave   ssh --protocol=29 --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . ' --delete --delete-excluded');
+                if ($debug_level > 2) echo('rsync --chmod=D755,F644 -ave   ssh --protocol=29  --exclude catalog/admin ' . RSYNC_LOCAL_DEST_PATH . OSC_DIR . ' ' . $remoteserver . ':' . RSYNC_REMOTE_DEST_DIR . ' --delete --delete-excluded');
             }
-*/
 //orig    shell_exec('~/rsync_eshop.sh >> ' . REPLICATION_LOG_DIR . HTTPS_COOKIE_DOMAIN . '_rsync_export.osclog  2>&1');
 //	shell_exec("composer --no-dev --optimize-autoloader update");
-	die("docker build -t purehtml/" . remove_accents(STORE_NAME) . " -t purehtml/" . remove_accents(STORE_NAME) . ":`git rev-parse --short HEAD` " . RSYNC_LOCAL_DEST_PATH . OSC_DIR);
-	
-
-
+//	die("docker build -t purehtml/" . remove_accents(STORE_NAME) . " -t purehtml/" . remove_accents(STORE_NAME) . ":`git rev-parse --short HEAD` " . RSYNC_LOCAL_DEST_PATH . OSC_DIR);
         }
     } else {
         echo 'Rsync to Eshop ERROR code:'.$error."\n";
         mail(WEBMASTER_EMAIL,
-            'rsync ERROR! Static Export CANCELLED: '.HTTPS_COOKIE_DOMAIN,
+            'ERR:' . $error . ' ' . HTTPS_COOKIE_DOMAIN,
             'Static Export CANCELLED!');
     }
 } //end $updated == 1
 
 unlink('../../cronlock/'.$argv['1'].'.'.$argv['2']);
-if ($error == 1)
-        mail(WEBMASTER_EMAIL, 'Rsync eshop ERROR  '.HTTPS_COOKIE_DOMAIN,
-        'Hard reset lock timeout');
 
-echo "DONE: ".date("Y/m/d H:i"), "\n";
+if ($debug_level > 0) {echo "DONE: ".date("Y/m/d H:i"), "\n";}
 
 function filtr ($output) {
 
@@ -787,7 +901,7 @@ return $output;
 }
 
 $time2 = microtime(true);
-echo "script execution time: ".($time2 - $time1) . "\n"; //value in seconds
+if ($debug_level > 2)echo "script execution time: ".($time2 - $time1) . "\n"; //value in seconds
 exit;
 /*
 uzitecne funkce:

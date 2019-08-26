@@ -20,7 +20,7 @@
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
-require_once dirname( __DIR__ ).'/../vendor/autoload.php' ;
+require_once dirname(__DIR__).'/../vendor/autoload.php';
 
 // load server configuration parameters
 if (file_exists('includes/local/configure.php')) { // for developers
@@ -31,8 +31,8 @@ if (file_exists('includes/local/configure.php')) { // for developers
 }
 
 if (empty(constant('DB_SERVER'))) {
-    die( _('DB_SERVER not defined'));
-    }
+    die(_('DB_SERVER not defined'));
+}
 
 // some code to solve compatibility issues
 require(DIR_WS_FUNCTIONS.'compatibility.php');
@@ -44,7 +44,7 @@ date_default_timezone_set(defined('CFG_TIME_ZONE') ? CFG_TIME_ZONE : date_defaul
 $request_type = (getenv('HTTPS') == 'on') ? 'SSL' : 'NONSSL';
 
 // set php_self in the local scope
-$req      = parse_url($_SERVER['SCRIPT_NAME']);
+$req                 = parse_url($_SERVER['SCRIPT_NAME']);
 //PURE:NEW:PURE_SEO_URLS only if $_SERVER['PHP_SELF'] is empty...
 if (!($_SERVER['PHP_SELF']))
         $_SERVER['PHP_SELF'] = substr($req['path'],
@@ -83,7 +83,7 @@ tep_db_connect() or die('Unable to connect to database server!');
 // set the application parameters
 $configuration_query = tep_db_query('select configuration_key as cfgKey, configuration_value as cfgValue from '.TABLE_CONFIGURATION);
 while ($configuration       = tep_db_fetch_array($configuration_query)) {
-    if(defined($configuration['cfgKey'])){
+    if (defined($configuration['cfgKey'])) {
 //        echo sprintf( _('Configuration %s key alreay defined!'),$configuration['cfgKey']);
     } else {
         define($configuration['cfgKey'], $configuration['cfgValue']);
@@ -94,12 +94,12 @@ while ($configuration       = tep_db_fetch_array($configuration_query)) {
 // set the HTTP GET parameters manually if search_engine_friendly_urls is enabled
 if (SEARCH_ENGINE_FRIENDLY_URLS == 'true') {
     if (strlen(getenv('PATH_INFO')) > 1) {
-        $GET_array = array();
+        $GET_array           = array();
         $_SERVER['PHP_SELF'] = str_replace(getenv('PATH_INFO'), '',
             $_SERVER['PHP_SELF']);
-        $vars      = explode('/', substr(getenv('PATH_INFO'), 1));
+        $vars                = explode('/', substr(getenv('PATH_INFO'), 1));
         do_magic_quotes_gpc($vars);
-        $n         = sizeof($vars);
+        $n                   = sizeof($vars);
         for ($i = 0; $i < $n; $i++) {
             if (strpos($vars[$i], '[]')) {
                 $GET_array[substr($vars[$i], 0, -2)][] = $vars[$i + 1];
@@ -254,9 +254,9 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
     }
 }
 //PURE:NEW:session ID became OTP token...
-    if (SESSION_RECREATE == 'True') {
-        tep_session_recreate();
-    }
+if (SESSION_RECREATE == 'True') {
+    tep_session_recreate();
+}
 
 // create the shopping cart
 if (!tep_session_is_registered('cart') || !is_object($cart)) {
@@ -266,8 +266,6 @@ if (!tep_session_is_registered('cart') || !is_object($cart)) {
 
 // include currencies class and create an instance
 $currencies = new currencies();
-
-$oPage = new Ease\Page();
 
 // set the language
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
@@ -280,45 +278,45 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);
     } else {
-      if (substr_count($_SERVER['HTTP_HOST'], '.') > 1) { //domain: en.example.org
+        if (substr_count($_SERVER['HTTP_HOST'], '.') > 1) { //domain: en.example.org
         $new_language_domain = preg_replace('/\..*/','',$_SERVER['HTTP_HOST']);
-        if ($new_language_domain == 'www') {
-          $new_language = (constant('DEFAULT_LANGUAGE'));
-				} else {
-					$new_language = $new_language_domain;
-    }
+            if ($new_language_domain == 'www') {
+                $new_language = (constant('DEFAULT_LANGUAGE'));
+            } else {
+                $new_language = $new_language_domain;
+            }
 
-      //autodetect
-      //$browser_language = preg_replace('/,.*/','',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
-      //if (preg_match('/^en/', $browser_language)){
-      //  $browser_language = 'en';
-      //}
-/*      
-$languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES'));
-       while ($languages_all = tep_db_fetch_array($languages_all_query)) {
-         if ($languages_all['code'] == $new_language_domain) {
-           $new_language = $new_language_domain;
+            //autodetect
+            //$browser_language = preg_replace('/,.*/','',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            //if (preg_match('/^en/', $browser_language)){
+            //  $browser_language = 'en';
+            //}
+            /*
+              $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES'));
+              while ($languages_all = tep_db_fetch_array($languages_all_query)) {
+              if ($languages_all['code'] == $new_language_domain) {
+              $new_language = $new_language_domain;
+              }
+              }
+             */
         }
-      }
-*/
-      }
-      if ($new_language){
-        $lng->set_language($new_language);
-      } else {
-        $lng->set_language(constant('DEFAULT_LANGUAGE'));
-      }
-    }  
+        if ($new_language) {
+            $lng->set_language($new_language);
+        } else {
+            $lng->set_language(constant('DEFAULT_LANGUAGE'));
+        }
+    }
 } else {
     $lng = new language();
   //$lng->set_language($_SESSION['language']);
       $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
-      $language_code = tep_db_fetch_array($language_code_query);
+    $language_code       = tep_db_fetch_array($language_code_query);
     $lng->set_language($language_code['code']);
 }
 
-\Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
-    $language     = $lng->language['directory'];
-    $languages_id = $lng->language['id'];
+\Ease\Locale::singleton($lng->language['locale'], '../i18n', 'pureosc');
+$language     = $lng->language['directory'];
+$languages_id = $lng->language['id'];
 
 // include the language translations
 $_system_locale_numeric = setlocale(LC_NUMERIC, 0);
@@ -509,8 +507,8 @@ $oscTemplate = new oscTemplate();
 
 // include the who's online functions
 //PURE:moved to top require(DIR_WS_FUNCTIONS.'whos_online.php');
-if (GENERATOR_INSTANCE !='true'){
-	tep_update_whos_online();
+if (GENERATOR_INSTANCE != 'true') {
+    tep_update_whos_online();
 }
 // include the password crypto functions
 require(DIR_WS_FUNCTIONS.'password_funcs.php');
@@ -649,9 +647,5 @@ require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
 
-\Ease\Shared::instanced()->webPage($oPage);
-
 $userLog = new PureOSC\CustomerLog();
 
-$oUser = new Ease\Anonym();
-\Ease\Shared::instanced()->user($oUser);

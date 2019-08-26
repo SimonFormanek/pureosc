@@ -29,7 +29,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
 }
 
 require_once constant('DIR_FS_CATALOG').'../vendor/autoload.php';
-\Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
+\Ease\Locale::singleton(null, '../i18n','pureosc');
 
 // some code to solve compatibility issues
 require(DIR_WS_FUNCTIONS.'compatibility.php');
@@ -142,7 +142,9 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     $lng->set_language($language_code['code']);
     }
 
-\Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
+    
+    \Ease\Locale::singleton()->useLocale($lng->language['locale']);
+    
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
 
@@ -275,7 +277,6 @@ if (tep_not_null($tPath)) {
 /* * ** END ARTICLE MANAGER *** */
 
 $oPage = new \PureOSC\ui\WebPage();
-\Ease\Shared::instanced()->webPage($oPage);
 
 // include the breadcrumb class and start the breadcrumb trail
 require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');

@@ -1,0 +1,6 @@
+#!/bin/bash
+DATE=`date +%y-%m-%d-%T|sed 's/:/_/g'`
+. ./dbconnect.sh
+if [[ ! -d dbbackup ]];then mkdir dbbackup;fi
+mysqldump --opt -h${H} -u${U} ${P} $D |gzip > dbbackup/$D-${DATE}.sql.gz
+echo $1-${DATE}.sql.gz

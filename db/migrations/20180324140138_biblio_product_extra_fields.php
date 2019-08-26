@@ -30,18 +30,19 @@ class BiblioProductExtraFields extends AbstractMigration
     {
         $table = $this->table('products');
 
-        foreach (['products_biblio_isbn',
-        'products_biblio_isbn_pdf',
-        'products_biblio_isbn_epub',
-        'products_biblio_isbn_mobi',
-        'products_biblio_pages_count',
-        'products_biblio_bindings',
-        'products_biblio_book_size',
-        'products_biblio_publication_year'] as $columnToCreate) {
+        foreach (['products_biblio_isbn' => '',
+        'products_biblio_isbn_pdf' => '',
+        'products_biblio_isbn_epub' => '',
+        'products_biblio_isbn_mobi' => '',
+        'products_biblio_pages_count' => '',
+        'products_biblio_bindings' => '',
+        'products_biblio_book_size' => '',
+        'products_biblio_publication_year' => ''] as $columnToCreate => $defaultValue) {
             if (!$table->hasColumn($columnToCreate)) {
 
                 $table
-                    ->addColumn($columnToCreate, 'string')
+                    ->addColumn($columnToCreate, 'string',
+                        ['default' => $defaultValue])
                     ->save();
             }
         }

@@ -1,9 +1,9 @@
 <?php
 //  define('MULTI_DATABASE','false'); //true if defined multiple databases
-define('DB_SERVER', 'localhost');
-define('DB_DATABASE', 'pureosc');
-define('DB_SERVER_USERNAME', 'root');
-define('DB_SERVER_PASSWORD', '');
+define('DB_SERVER', 'XDBSERVERX');
+define('DB_DATABASE', 'XDBDATABASEX');
+define('DB_SERVER_USERNAME', 'XDBSERVERUSERNAMEX');
+define('DB_SERVER_PASSWORD', 'XDBSERVERPASSWORDX');
 
 
 //EasePHP Framework

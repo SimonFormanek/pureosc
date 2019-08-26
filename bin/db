@@ -1,0 +1,4 @@
+#!/bin/bash
+. ./dbconnect.sh
+mysql  -h${H} -u${U} ${P} $D < $1
+

@@ -303,3 +303,4 @@ define('ERROR_FILETYPE_NOT_ALLOWED', 'Chyba: Typ poslaného súboru nie je povol
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Súbor bol úspešne uložený.');
 define('WARNING_NO_FILE_UPLOADED', 'Upozornenie: Žiadny súbor nebol poslaný.');
 ?>
+define('BOX_TOOLS_DATABASE_OPTIMIZER', 'Database Optimizer');

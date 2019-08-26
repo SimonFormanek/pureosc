@@ -5,7 +5,7 @@ define('DIR_FS_ADMIN', dirname(getcwd()).'/catalog/admin');
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
-\Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
+\Ease\Locale::singleton('cs_CZ', '../i18n', 'pureosc');
 
 define('TITLE', 'TEST TITLE');
 define('MYSQL_DEBUG', 'on');
@@ -50,10 +50,9 @@ define('DIR_WS_MODULES', $dirPrefix.'catalog/includes/modules/');
 
 tep_db_connect();
 
+$db = new Ease\SQL\Engine(null, ['myTable' => 'configuration']);
 
-$db = \Ease\Shared::db();
-
-foreach ($db->queryToArray('select configuration_key, configuration_value from configuration') as $config) {
+foreach ($db->getColumnsFromSQL(['configuration_key', 'configuration_value']) as $config) {
     define($config['configuration_key'], $config['configuration_value']);
     //echo $config['configuration_key'].':'.$config['configuration_value']."\n";
 }
