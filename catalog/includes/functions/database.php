@@ -39,7 +39,7 @@ function tep_db_close($link = 'db_link')
 function tep_db_error($query, $errno, $error)
 {
 $apacheuser = posix_getpwuid(posix_getuid());
-        error_log('ERROR: ['.$errno.'] '. $error . "\nQUERY:" . $query . "\n" . date("Y-m-d H:i:s") . "\n\n", 3,  $apacheuser['dir'] . DATABASE_ERRORS_LOG);
+        error_log('ERROR: ['.$errno.'] '. $error . "\nQUERY:" . $query . "\n" . 'script: ' . $_SERVER['REQUEST_URI'] . "\n" .date("Y-m-d H:i:s") . "\n\n", 3,  $apacheuser['dir'] . DATABASE_ERRORS_LOG);
                mail(WEBMASTER_EMAIL,
          'DB con. ERR:' . HTTPS_COOKIE_DOMAIN,
          'Database connection Error');
@@ -50,6 +50,7 @@ $apacheuser = posix_getpwuid(posix_getuid());
         die('<font color="#000000"><strong>'.$errno.' - '.$error.'<br /><br />'.$query.'<br /><br /><small><font color="#ff0000">[TEP STOP]</font></small><br /><br /></strong></font>');
     } else {
         die('<font color="#000000"><strong>Mysql Error<br /></strong></font>');
+
     }
 }
 

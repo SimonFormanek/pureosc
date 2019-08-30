@@ -83,12 +83,9 @@ if (!tep_db_connect()){
        mail(WEBMASTER_EMAIL,
          'DB con. ERR:' . HTTPS_COOKIE_DOMAIN,
          'Database connection Error');
-$apacheuser = posix_getpwuid(posix_getuid());
-        error_log('Database connection Error' . "\n" . date("Y-m-d h:i:s") . "\n\n", 3,  $apacheuser['dir'] . DATABASE_ERRORS_LOG);
-
-
+				$apacheuser = posix_getpwuid(posix_getuid());
+        error_log('Database connection Error' . "\n" . date("Y-m-d H:i:s") . "\n\n", 3,  $apacheuser['dir'] . DATABASE_ERRORS_LOG);
 	header('Location: /' . FILENAME_DB_ERROR);
-	//header('Location: '.$url);
 	exit;
 }
 
@@ -266,7 +263,8 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
     }
 }
 //PURE:NEW:session ID became OTP token...
-    if (SESSION_RECREATE == 'True') {
+//TODO:original version WHY?    if (SESSION_RECREATE == 'True') {
+ if (SESSION_RECREATE == 'True' && $session_started == true) {
         tep_session_recreate();
     }
 

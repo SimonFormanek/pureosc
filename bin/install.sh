@@ -2,7 +2,6 @@
 rm -rf ../../oscconfig/
 cp -r ../oscconfig.dist ../../oscconfig
 
-
 DIRFSMASTERROOTDIR="/home/`whoami`/WWW"
 read -e -i "$DIRFSMASTERROOTDIR" -p "Root Dir (NO final slash): " input
 DIRFSMASTERROOTDIR="${input:-$DIRFSMASTERROOTDIR}"
@@ -42,4 +41,4 @@ echo -n "DB Password: "; read DBSERVERPASSWORD
 sed -i "s/XDBSERVERPASSWORDX/${DBSERVERPASSWORD}/" ../../oscconfig/dbconfigure.php
 
 
-echo -e "* * * * * cd ${DIRFSMASTERROOTDIR}admin/ && /usr/bin/nice -n 10 /usr/bin/ionice -c2 -n7 ./croncache.php css\n15 00 * * *  cd ${DIRFSMASTERROOTDIR}admin/ && /usr/bin/nice -n 19 /usr/bin/ionice -c2 -n7 ./database_optimizer_cron.php"|crontab
+echo -e "#* * * * * cd ${DIRFSMASTERROOTDIR}admin/ && /usr/bin/nice -n 10 /usr/bin/ionice -c2 -n7 ./croncache.php css\n15 00 * * *  cd ${DIRFSMASTERROOTDIR}admin/ && /usr/bin/nice -n 19 /usr/bin/ionice -c2 -n7 ./database_optimizer_cron.php"|crontab
