@@ -42,13 +42,8 @@ class cm_modular_navbar
         if (defined('MODULE_CONTENT_INSTALLED') && tep_not_null(MODULE_CONTENT_INSTALLED)) {
             $navbar_array = explode(';', MODULE_CONTENT_INSTALLED);
 
-            $navBar = new \Ease\TWB4\Navbar(defined('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_LOGO_ENABLED')
-                && (constant('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_LOGO_ENABLED')
-                == 'True') ? new \Ease\Html\ATag(constant('DIR_WS_CATALOG'),
-                    new \Ease\Html\ImgTag(constant('DIR_WS_IMAGES').constant('STORE_LOGO'),
-                        constant('STORE_NAME'))) : null, BOOTSTRAP_CONTAINER,
-                ['class' => 'navbar-expand-lg navbar-light bg-light']);
-
+            $navigation_left  = array();
+            $navigation_right = array();
 
             foreach ($navbar_array as $navbar_element) {
                 $dir = substr($navbar_element, 0, 6);
@@ -56,17 +51,16 @@ class cm_modular_navbar
                     $class = substr($navbar_element, 7);
 
                     if (!class_exists($class)) {
-                        //TODO: Depricted. Use autoload and gettext now 
                         include_once DIR_WS_LANGUAGES.$language.'/modules/content/navbar/'.$class.'.php';
                         include_once DIR_WS_MODULES.'content/navbar/'.$class.'.php';
                     }
 
                     $navbar_class = new $class();
-                    
+
                     if ($navbar_class->isEnabled() && $navbar_class->side === 'left') {
-                        $navBar->addMenuItem($navbar_class->getOutput());
+                        $navigation_left[] = $navbar_class->getOutput();
                     } elseif ($navbar_class->isEnabled() && $navbar_class->side === 'right') {
-                        $navBar->addMenuItem($navbar_class->getOutput(), 'right');
+                        $navigation_right[] = $navbar_class->getOutput();
                     }
                 }
             }

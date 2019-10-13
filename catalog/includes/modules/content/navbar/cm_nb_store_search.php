@@ -45,10 +45,12 @@ class cm_nb_store_search
             (MODULE_NAVIGATION_BAR_STORE_SEARCH_FUNCTIONS == 'Descriptions'));
 
         // define typeahead scripts
-        \PureOSC\ui\WebPage::singleton()->includeJavaScript(tep_href_link('ext/bootstrap-plugins/typeahead/bootstrap3-typeahead.min.js',
-                null, $request_type));
-        \PureOSC\ui\WebPage::singleton()->includeJavaScript(tep_href_link('ext/modules/content/navbar/store_search/content_searches.min.js',
-                null, $request_type));
+        $script = '<script src="'.tep_href_link('ext/bootstrap-plugins/typeahead/bootstrap3-typeahead.min.js',
+                null, $request_type).'"></script>';
+//orig      $script .= '<script src="' . tep_href_link('ext/modules/content/header/store_search/content_searches.min.js', null, $request_type) . '"></script>';
+        $script .= '<script src="'.tep_href_link('ext/modules/content/navbar/store_search/content_searches.min.js',
+                null, $request_type).'"></script>';
+        $oscTemplate->addBlock($script, 'footer_scripts');
 
         ob_start();
         include DIR_WS_MODULES.'content/navbar/templates/'.basename(__FILE__);
@@ -164,8 +166,7 @@ function cm_nb_store_search_show_pages($text)
 
 function cm_nb_store_search_pages($values, $key)
 {
-    $file_extension = substr($_SERVER['PHP_SELF'],
-        strrpos($_SERVER['PHP_SELF'], '.'));
+    $file_extension = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '.'));
     $files_array    = array();
     if ($dir            = @dir(DIR_FS_CATALOG)) {
         while ($file = $dir->read()) {

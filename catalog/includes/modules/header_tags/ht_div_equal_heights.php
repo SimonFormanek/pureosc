@@ -64,7 +64,7 @@ EOD;
 
 
             if (in_array(basename($_SERVER['PHP_SELF']), $pages_array)) {
-             //   $oscTemplate->addBlock($output, $this->group);
+                $oscTemplate->addBlock($output, $this->group);
             }
         }
     }

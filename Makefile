@@ -39,10 +39,6 @@ upgrade:
 		cp -r vendor/ckeditor/ckeditor/contents.css catalog/admin/ext/ckeditor
 		cp -r vendor/ckeditor/ckeditor/styles.js catalog/admin/ext/ckeditor
 		cp catalog/admin/ext/ckeditor.config/config.js catalog/admin/ext/ckeditor/config.js
-		rm -rf catalog/ext/bootstrap/*
-		cp -r vendor/twbs/bootstrap/dist/* catalog/ext/bootstrap
-		cp vendor/components/jquery/jquery.slim.min.js catalog/ext/jquery/jquery.slim.min.js
-		cp vendor/components/jquery/jquery.min.js catalog/ext/jquery/jquery.min.js
 #		cp -r vendor/ckeditor/ckeditor/assets catalog/admin/ext/ckeditor
 
 lang:

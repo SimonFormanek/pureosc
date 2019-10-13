@@ -1,7 +1,7 @@
 <?php
 
 use Ease\Html\SpanTag;
-use FlexiPeeHP\ui\TWB4\StatusInfoBox;
+use FlexiPeeHP\ui\TWB\StatusInfoBox;
 
 /*
   $Id$
@@ -38,7 +38,7 @@ if ($messageStack->size > 0) {
             }
             ?></td>
         <td class="headerBarContent" align="right"><?php
-            echo (tep_session_is_registered('admin') ? _('Logged in as').': '.$admin['username'].' (<a href="'.tep_href_link(FILENAME_LOGIN,
+            echo (tep_session_is_registered('admin') ? 'Logged in as: '.$admin['username'].' (<a href="'.tep_href_link(FILENAME_LOGIN,
                     'action=logoff').'" class="headerLink">Logoff</a>)' : '');
             ?>&nbsp;&nbsp;</td>
     </tr>

@@ -1,7 +1,4 @@
 <?php
-
-use Ease\Locale;
-use PHPMailer\PHPMailer\PHPMailer;
 /*
   $Id$
 
@@ -32,7 +29,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
 }
 
 require_once constant('DIR_FS_CATALOG').'../vendor/autoload.php';
-Locale::singleton(null, '../i18n','pureosc');
+\Ease\Locale::singleton(null, '../i18n','pureosc');
 
 // some code to solve compatibility issues
 require(DIR_WS_FUNCTIONS.'compatibility.php');
@@ -146,7 +143,7 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     }
 
     
-    Locale::singleton()->useLocale($lng->language['locale']);
+    \Ease\Locale::singleton()->useLocale($lng->language['locale']);
     
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
@@ -224,7 +221,7 @@ require(DIR_WS_FUNCTIONS.'validations.php');
 
 // initialize the message stack for output messages
 $messageStack = new AdminMessageStack();
-$phpMail = new PHPMailer();
+$phpMail = new \PHPMailer\PHPMailer\PHPMailer();
 
 
 
@@ -279,6 +276,7 @@ if (tep_not_null($tPath)) {
 }
 /* * ** END ARTICLE MANAGER *** */
 
+$oPage = new \PureOSC\ui\WebPage();
 
 // include the breadcrumb class and start the breadcrumb trail
 require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');

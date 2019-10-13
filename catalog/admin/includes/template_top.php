@@ -11,16 +11,14 @@
  */
 ?>
 <!DOCTYPE html>
-<html <?php
-echo HTML_PARAMS;
-?>>
+<html <?php echo HTML_PARAMS; ?>>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
         <meta name="robots" content="noindex,nofollow">
         <title><?php echo STORE_NAME.' - '.TITLE; ?></title>
         <base href="<?php
-echo ($request_type == 'SSL') ? HTTPS_SERVER.DIR_WS_HTTPS_ADMIN : HTTP_SERVER.DIR_WS_ADMIN;
-?>" />
+        echo ($request_type == 'SSL') ? HTTPS_SERVER.DIR_WS_HTTPS_ADMIN : HTTP_SERVER.DIR_WS_ADMIN;
+        ?>" />
         <!--[if IE]><script type="text/javascript" src="<?php
         echo tep_catalog_admin_href_link('ext/flot/excanvas.min.js', '', 'SSL');
         ?>"></script><![endif]-->
@@ -29,35 +27,33 @@ echo ($request_type == 'SSL') ? HTTPS_SERVER.DIR_WS_HTTPS_ADMIN : HTTP_SERVER.DI
             '', 'SSL');
         ?>">
         <script type="text/javascript" src="<?php
-        echo tep_catalog_admin_href_link('ext/jquery/jquery-1.11.1.min.js', '',
-            'SSL');
+              echo tep_catalog_admin_href_link('ext/jquery/jquery-1.11.1.min.js', '',
+                  'SSL');
         ?>"></script>
         <script type="text/javascript" src="<?php
-        echo tep_catalog_admin_href_link('ext/jquery/ui/jquery-ui-1.10.4.min.js',
-            '', 'SSL');
+              echo tep_catalog_admin_href_link('ext/jquery/ui/jquery-ui-1.10.4.min.js',
+                  '', 'SSL');
         ?>"></script>
 
-<?php
-if (tep_not_null(JQUERY_DATEPICKER_I18N_CODE)) {
-    ?>
+        <?php
+        if (tep_not_null(JQUERY_DATEPICKER_I18N_CODE)) {
+            ?>
             <script type="text/javascript" src="<?php
-            echo tep_catalog_admin_href_link('ext/jquery/ui/i18n/jquery.ui.datepicker-'.JQUERY_DATEPICKER_I18N_CODE.'.js',
-                '', 'SSL');
-            ?>"></script>
+        echo tep_catalog_admin_href_link('ext/jquery/ui/i18n/jquery.ui.datepicker-'.JQUERY_DATEPICKER_I18N_CODE.'.js',
+            '', 'SSL');
+        ?>"></script>
             <script type="text/javascript">
                 $.datepicker.setDefaults($.datepicker.regional['<?php echo JQUERY_DATEPICKER_I18N_CODE; ?>']);
             </script>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
 
         <script type="text/javascript" src="<?php
-        echo tep_catalog_admin_href_link('ext/flot/jquery.flot.min.js', '',
-            'SSL');
+        echo tep_catalog_admin_href_link('ext/flot/jquery.flot.min.js', '', 'SSL');
         ?>"></script>
         <script type="text/javascript" src="<?php
-        echo tep_catalog_admin_href_link('ext/flot/jquery.flot.time.min.js', '',
-            'SSL');
+        echo tep_catalog_admin_href_link('ext/flot/jquery.flot.time.min.js', '', 'SSL');
         ?>"></script>
         <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
         <script type="text/javascript" src="includes/general.js"></script>
@@ -84,11 +80,11 @@ if (tep_not_null(JQUERY_DATEPICKER_I18N_CODE)) {
 // the closing brace here forms part of the php code block above
         } //if you decide to leave out the php code block above then comment or remove this too
 
-        if (PureOSC\ui\WebPage::singleton()->cascadeStyles) {
-            echo \Ease\Html\HeadTag::getStylesRendered(PureOSC\ui\WebPage::singleton()->cascadeStyles);
+        if (Ease\Shared::instanced()->cascadeStyles) {
+            echo \Ease\Html\HeadTag::getStylesRendered(Ease\Shared::instanced()->cascadeStyles);
         }
-        if (PureOSC\ui\WebPage::singleton()->javaScripts) {
-            echo \Ease\Html\HeadTag::getScriptsRendered(PureOSC\ui\WebPage::singleton()->javaScripts);
+        if (Ease\Shared::instanced()->javaScripts) {
+            echo \Ease\Html\HeadTag::getScriptsRendered(Ease\Shared::instanced()->javaScripts);
         }
         ?>
     </head>

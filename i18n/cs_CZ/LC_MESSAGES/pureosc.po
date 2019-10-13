@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 09:32+0200\n"
-"PO-Revision-Date: 2019-08-26 09:34+0200\n"
+"POT-Creation-Date: 2019-08-25 23:12+0200\n"
+"PO-Revision-Date: 2019-08-25 23:15+0200\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: \n"
 "Language: cs_CZ\n"
@@ -296,17 +296,13 @@ msgstr "Ičo"
 msgid "Cash payment"
 msgstr "Platba hotově"
 
-#: admin/flexibeecash.php:55
+#: admin/flexibeecash.php:56
 msgid "Payment"
 msgstr "Platba"
 
-#: admin/flexibeecash.php:60
+#: admin/flexibeecash.php:61
 msgid "Invoice"
 msgstr "Faktura"
-
-#: admin/flexibeecash.php:66
-msgid "Invoice does nont exists"
-msgstr ""
 
 #: admin/flexibeesync.php:41
 msgid "FlexiBee sync"
@@ -476,7 +472,7 @@ msgstr "tisk složenky"
 msgid "Cash Desk payment"
 msgstr "Platba na pokladně"
 
-#: checkout_process.php:347 includes/modules/payment/cash.php:346
+#: checkout_process.php:343 includes/modules/payment/cash.php:346
 #: includes/modules/payment/gpwebpay.php:410
 msgid "New order saved"
 msgstr "Nová objednávka uložena"
@@ -485,12 +481,12 @@ msgstr "Nová objednávka uložena"
 msgid "Company Number2"
 msgstr "DIČ"
 
-#: ext/flexibee/Cenik.php:89 ext/flexibee/FakturaVydana.php:38
+#: ext/flexibee/Cenik.php:89 ext/flexibee/FakturaVydana.php:43
 #: ext/flexibee/Strom.php:45
 msgid "FlexiBee import"
 msgstr "Import z FlexiBee "
 
-#: ext/flexibee/FakturaVydana.php:92
+#: ext/flexibee/FakturaVydana.php:97
 msgid "The Card holder canceled the payment"
 msgstr "The Card holder canceled the payment"
 
@@ -661,7 +657,7 @@ msgstr "Všechny stránky"
 
 #: includes/classes/ui/QRFaktura.php:23
 msgid "QR Invoice"
-msgstr "QR Faktura"
+msgstr ""
 
 #: includes/modules/action_recorder/ar_admin_login.php:25
 #, fuzzy
@@ -681,8 +677,9 @@ msgid "Record usage of customer password resets"
 msgstr ""
 
 #: includes/modules/action_recorder/ar_tell_a_friend.php:24
+#, fuzzy
 msgid "Tell A Friend"
-msgstr "Dpopruč příteli"
+msgstr "Dpopruč příteli %s"
 
 #: includes/modules/action_recorder/ar_tell_a_friend.php:25
 msgid "Record usage of the Tell A Friend feature."
@@ -1265,7 +1262,7 @@ msgstr ""
 
 #: includes/modules/header_tags/ht_google_analytics.php:26
 msgid "Add Google Analytics to the shop"
-msgstr "ui"
+msgstr ""
 
 #: includes/modules/header_tags/ht_grid_list_view.php:26
 msgid "Grid List Javascript (jQuery)"

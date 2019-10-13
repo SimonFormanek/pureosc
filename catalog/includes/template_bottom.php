@@ -39,14 +39,10 @@ if ($oscTemplate->hasBlocks('boxes_column_right')) {
 
 </div> <!-- bodyWrapper //-->
 
-<?php
-require(DIR_WS_INCLUDES.'footer.php');
+<?php require(DIR_WS_INCLUDES.'footer.php'); ?>
 
-if (PureOSC\ui\WebPage::singleton()->javaScripts) {
-    echo \Ease\Html\HeadTag::getScriptsRendered(PureOSC\ui\WebPage::singleton()->javaScripts);
-}
-echo $oscTemplate->getBlocks('footer_scripts');
-?>
+<script src="ext/bootstrap/js/bootstrap.min.js"></script>
+<?php echo $oscTemplate->getBlocks('footer_scripts'); ?>
 
 </body>
 </html>

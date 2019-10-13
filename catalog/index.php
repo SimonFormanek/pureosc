@@ -21,8 +21,6 @@
 
 require_once('includes/application_top.php');
 
-
-
 // the following cPath references come from application_top.php
 $category_depth = 'top';
 //Information Pages Unlimited PURE:NEW: added DefaultPage TITLE, DESCRIPTION, KEYWORDS

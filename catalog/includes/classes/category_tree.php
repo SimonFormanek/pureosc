@@ -8,7 +8,7 @@
  */
 class category_tree
 {
-    protected $_data                   = array();
+    protected $_data = array();
     var $root_category_id           = 0,
         $max_level                  = 0,
         $root_start_string          = '',
