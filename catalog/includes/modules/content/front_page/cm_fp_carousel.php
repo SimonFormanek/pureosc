@@ -208,8 +208,8 @@ class cm_fp_carousel
         global $oscTemplate;
 
         // Set the JavaScript to load in the footer
-        $add_scripts = '  <script src="ext/jquery/slideshow/jquery.easing.1.3.js"></script>'.PHP_EOL;
-        $add_scripts .= '  <script src="ext/jquery/slideshow/jquery.imagesloaded.js"></script>'.PHP_EOL;
+//        $add_scripts = '  <script src="ext/jquery/slideshow/jquery.easing.1.3.js"></script>'.PHP_EOL;
+//        $add_scripts .= '  <script src="ext/jquery/slideshow/jquery.imagesloaded.js"></script>'.PHP_EOL;
         $add_scripts .= '  <script src="ext/jquery/slideshow/slideshow.js"></script>'.PHP_EOL;
         $add_scripts .= '	 <script type="text/javascript">
         $(document).ready(function() {

@@ -1,6 +1,7 @@
 build:
   nodes:
     pureosc:
+        php: 7.3.0
         services:
             mariadb: latest          
         dependencies:

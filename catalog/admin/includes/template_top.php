@@ -80,12 +80,10 @@
 // the closing brace here forms part of the php code block above
         } //if you decide to leave out the php code block above then comment or remove this too
 
-        if (Ease\Shared::instanced()->cascadeStyles) {
-            echo \Ease\Html\HeadTag::getStylesRendered(Ease\Shared::instanced()->cascadeStyles);
+        if (PureOSC\ui\WebPage::singleton()->cascadeStyles) {
+            echo \Ease\Html\HeadTag::getStylesRendered(PureOSC\ui\WebPage::singleton()->cascadeStyles);
         }
-        if (Ease\Shared::instanced()->javaScripts) {
-            echo \Ease\Html\HeadTag::getScriptsRendered(Ease\Shared::instanced()->javaScripts);
-        }
+       
         ?>
     </head>
     <body>

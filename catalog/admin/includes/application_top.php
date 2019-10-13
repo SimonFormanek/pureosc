@@ -1,4 +1,6 @@
 <?php
+use Ease\Locale as Loc;
+use PHPMailer\PHPMailer\PHPMailer;
 /*
   $Id$
 
@@ -29,7 +31,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
 }
 
 require_once constant('DIR_FS_CATALOG').'../vendor/autoload.php';
-\Ease\Locale::singleton(null, '../i18n','pureosc');
+Loc::singleton(null, '../i18n','pureosc');
 
 // some code to solve compatibility issues
 require(DIR_WS_FUNCTIONS.'compatibility.php');
@@ -143,7 +145,7 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     }
 
     
-    \Ease\Locale::singleton()->useLocale($lng->language['locale']);
+    Loc::singleton()->useLocale($lng->language['locale']);
     
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
@@ -221,7 +223,7 @@ require(DIR_WS_FUNCTIONS.'validations.php');
 
 // initialize the message stack for output messages
 $messageStack = new AdminMessageStack();
-$phpMail = new \PHPMailer\PHPMailer\PHPMailer();
+$phpMail = new PHPMailer();
 
 
 

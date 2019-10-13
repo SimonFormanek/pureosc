@@ -1,6 +1,6 @@
 {
-    "name": "vendor/pureosc",
-    "description": "Description of project pureosc.",
+    "name": "purehtml/pureosc",
+    "description": "Oscommerce  fork by PureHTML",
     "authors": [
         {
             "name": "PureHTML",
@@ -22,7 +22,9 @@
         "purehtml/purecrypto": "dev-master",
         "blahasoft/qrfaktura": "dev-master",
         "vitexsoftware/ease-fluentpdo": "dev-master",
-        "vitexsoftware/ease-twbootstrap-widgets-flexibee": "dev-master"
+        "vitexsoftware/ease-twbootstrap4-widgets-flexibee": "dev-master",
+        "twbs/bootstrap": "4.3.1",
+        "components/jquery": "3.3.1"
     },
     "autoload": {
         "psr-4": {

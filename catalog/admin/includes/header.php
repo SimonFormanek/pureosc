@@ -1,7 +1,7 @@
 <?php
 
 use Ease\Html\SpanTag;
-use FlexiPeeHP\ui\TWB\StatusInfoBox;
+use FlexiPeeHP\ui\TWB4\StatusInfoBox;
 
 /*
   $Id$

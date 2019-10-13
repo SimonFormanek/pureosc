@@ -46,8 +46,8 @@ class cm_nb_categories
         $OSCOM_CategoryTree->setCategoryPath($cPath, '<strong>', '</strong>');
         $OSCOM_CategoryTree->setSpacerString('&nbsp;&nbsp;', 1);
 
-        $OSCOM_CategoryTree->setParentGroupString('<ul class="dropdown-menu">',
-            '</ul>', true);
+        $OSCOM_CategoryTree->setParentGroupString('<div class="dropdown-menu" aria-labelledby="categoriesmenu" >',
+            '</div>', true);
 
         $category_tree = $OSCOM_CategoryTree->getTree();
 

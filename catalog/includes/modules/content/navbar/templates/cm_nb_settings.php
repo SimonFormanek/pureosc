@@ -15,11 +15,11 @@
 <?php
 if (substr(basename($_SERVER['PHP_SELF']), 0, 8) != 'checkout') {
     ?>
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navsettings" role="button" href="#"><?php
             echo '<i class="fa fa-cog"></i><span class="hidden-sm"> ' . _('Lng/CCY') . '</span> <span class="caret"></span>';
             ?></a>
-        <ul class="dropdown-menu">
+        <div class="dropdown-menu" aria-labelledby="navsettings" >
             <li class="text-center text-muted bg-primary"><?php
                 echo sprintf(
                         '<abbr title="' . _('Selected Language') . '">' . _('L:') . '</abbr> %s <abbr title="' . _('Selected Currency') . '">' . _('C:') . '</abbr> %s'
@@ -32,20 +32,20 @@ if (substr(basename($_SERVER['PHP_SELF']), 0, 8) != 'checkout') {
                 $lng = new language();
             }
             if (count($lng->catalog_languages) > 1) {
-                echo '<li class="divider"></li>';
+                echo '<div class="dropdown-divider"></li>';
                 reset($lng->catalog_languages);
                 foreach ($lng->catalog_languages as $key => $value) {
-                    echo '<li><a href="' . tep_href_link(basename($_SERVER['PHP_SELF']), tep_get_all_get_params(array('language', 'currency')) . 'language=' . $key, $request_type) . '">' . tep_image(DIR_WS_LANGUAGES . $value['directory'] . '/images/' . $value['image'], $value['name'], null, null, null, false) . ' ' . $value['name'] . '</a></li>';
+                    echo '<a class="dropdown-item" href="' . tep_href_link(basename($_SERVER['PHP_SELF']), tep_get_all_get_params(array('language', 'currency')) . 'language=' . $key, $request_type) . '">' . tep_image(DIR_WS_LANGUAGES . $value['directory'] . '/images/' . $value['image'], $value['name'], null, null, null, false) . ' ' . $value['name'] . '</a>';
                 }
             }
             // currencies
             if (isset($currencies) && is_object($currencies) && (count($currencies->currencies) > 1)) {
-                echo '<li class="divider"></li>';
+                echo '<div class="dropdown-divider"></li>';
                 reset($currencies->currencies);
                 $currencies_array = array();
                 foreach ($currencies->currencies as $key => $value) {
                     $currencies_array[] = array('id' => $key, 'text' => $value['title']);
-                    echo '<li><a href="' . tep_href_link(basename($_SERVER['PHP_SELF']), tep_get_all_get_params(array('language', 'currency')) . 'currency=' . $key, $request_type) . '">' . $value['title'] . '</a></li>';
+                    echo '<a class="dropdown-item" href="' . tep_href_link(basename($_SERVER['PHP_SELF']), tep_get_all_get_params(array('language', 'currency')) . 'currency=' . $key, $request_type) . '">' . $value['title'] . '</a>';
                 }
             }
             ?>

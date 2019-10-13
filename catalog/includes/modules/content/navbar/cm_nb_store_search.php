@@ -45,12 +45,10 @@ class cm_nb_store_search
             (MODULE_NAVIGATION_BAR_STORE_SEARCH_FUNCTIONS == 'Descriptions'));
 
         // define typeahead scripts
-        $script = '<script src="'.tep_href_link('ext/bootstrap-plugins/typeahead/bootstrap3-typeahead.min.js',
-                null, $request_type).'"></script>';
-//orig      $script .= '<script src="' . tep_href_link('ext/modules/content/header/store_search/content_searches.min.js', null, $request_type) . '"></script>';
-        $script .= '<script src="'.tep_href_link('ext/modules/content/navbar/store_search/content_searches.min.js',
-                null, $request_type).'"></script>';
-        $oscTemplate->addBlock($script, 'footer_scripts');
+        \PureOSC\ui\WebPage::singleton()->includeJavaScript(tep_href_link('ext/bootstrap-plugins/typeahead/bootstrap3-typeahead.min.js',
+                null, $request_type));
+        \PureOSC\ui\WebPage::singleton()->includeJavaScript(tep_href_link('ext/modules/content/navbar/store_search/content_searches.min.js',
+                null, $request_type));
 
         ob_start();
         include DIR_WS_MODULES.'content/navbar/templates/'.basename(__FILE__);

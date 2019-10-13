@@ -8,38 +8,11 @@
   Copyright (c) 2016 James C Keebaugh
 
   Released under the GNU General Public License
- */
+ */ 
 ?>
 <!-- Start cm_modular_navbar -->
-<nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
-    <div class="<?php echo BOOTSTRAP_CONTAINER; ?>">
-        <div class="navbar-header"><?php if (constant('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_LOGO_ENABLED')
-    == 'True')
-        echo '<a class="fl navbar_logo" href="' .  tep_href_link('/'). '"><img src="'.DIR_WS_IMAGES.STORE_LOGO.'" title="'.STORE_NAME.'"></a>';
-?>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-core-nav">
-                <span class="sr-only"><?php echo HEADER_TOGGLE_NAV; ?></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-navbar-collapse-core-nav">
-            <ul class="nav navbar-nav">
                 <?php
-                foreach ($navigation_left as $left_nav_item) {
-                    echo $left_nav_item;
-                }
+$navBar->finalize();
+echo $navBar;
                 ?>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <?php
-                foreach ($navigation_right as $right_nav_item) {
-                    echo $right_nav_item;
-                }
-                ?>
-            </ul>
-        </div>
-    </div>
-</nav>
 <!-- End cm_modular_navbar -->

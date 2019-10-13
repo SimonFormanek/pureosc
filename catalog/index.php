@@ -1,5 +1,4 @@
 <?php
-
 /*
   $Id$
 
@@ -111,8 +110,8 @@ if ($category_depth == 'nested') {
 
             <br />
 
-            <?php 
-            include(DIR_WS_MODULES.FILENAME_NEW_PRODUCTS); 
+            <?php
+            include(DIR_WS_MODULES.FILENAME_NEW_PRODUCTS);
             ?>
 
         </div>
@@ -120,19 +119,19 @@ if ($category_depth == 'nested') {
 
     <?php
 } elseif ($category_depth == 'products' || (isset($_GET['manufacturers_id']) && !empty($_GET['manufacturers_id']))) {
-/* TODO: not work for manufacturers
-    //PURE:NEW:inactive_category: if sort_order < 1 -> redirect to Index
-    //TODO: MORE AI PLEASE .... starting realistic with: go to parent category
-    if (SERVER_INSTANCE != 'admin') {
-        $inactive_query = tep_db_query("SELECT sort_order FROM ".TABLE_CATEGORIES." WHERE categories_id = ".(int) $current_category_id);
-        $inactive       = tep_db_fetch_array($inactive_query);
-//  	echo "sort_order: " . $inactive['sort_order'] . "\n";
-        if ($inactive['sort_order'] == 0) {
-            tep_redirect(tep_href_link(FILENAME_DEFAULT, '', 'NONSSL'));
-            exit;
-        }
-    }
-*/
+    /* TODO: not work for manufacturers
+      //PURE:NEW:inactive_category: if sort_order < 1 -> redirect to Index
+      //TODO: MORE AI PLEASE .... starting realistic with: go to parent category
+      if (SERVER_INSTANCE != 'admin') {
+      $inactive_query = tep_db_query("SELECT sort_order FROM ".TABLE_CATEGORIES." WHERE categories_id = ".(int) $current_category_id);
+      $inactive       = tep_db_fetch_array($inactive_query);
+      //  	echo "sort_order: " . $inactive['sort_order'] . "\n";
+      if ($inactive['sort_order'] == 0) {
+      tep_redirect(tep_href_link(FILENAME_DEFAULT, '', 'NONSSL'));
+      exit;
+      }
+      }
+     */
 // create column list
     $define_list = array('PRODUCT_LIST_MODEL' => PRODUCT_LIST_MODEL,
         'PRODUCT_LIST_NAME' => PRODUCT_LIST_NAME,
