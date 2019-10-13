@@ -46,12 +46,11 @@ class cm_nb_categories
         $OSCOM_CategoryTree->setCategoryPath($cPath, '<strong>', '</strong>');
         $OSCOM_CategoryTree->setSpacerString('&nbsp;&nbsp;', 1);
 
-        $OSCOM_CategoryTree->setParentGroupString('<ul class="dropdown-menu">',
-            '</ul>', true);
+        $OSCOM_CategoryTree->setParentGroupString('<div class="dropdown-menu">',
+            '</div>', true);
 
         $category_tree = $OSCOM_CategoryTree->getTree();
 
-        ob_start();
         include DIR_WS_MODULES.'content/navbar/templates/'.basename(__FILE__);
         $template = ob_get_clean();
 

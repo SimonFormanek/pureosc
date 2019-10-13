@@ -1,4 +1,6 @@
 <?php
+
+use Ease\Locale;
 /*
   $Id$
 
@@ -314,7 +316,7 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     $lng->set_language($language_code['code']);
 }
 
-\Ease\Locale::singleton($lng->language['locale'], '../i18n', 'pureosc');
+Locale::singleton($lng->language['locale'], '../i18n', 'pureosc');
 $language     = $lng->language['directory'];
 $languages_id = $lng->language['id'];
 
