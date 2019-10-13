@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
+<nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation" style="color: #fff" >
     <div class="<?php echo BOOTSTRAP_CONTAINER; ?>">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-core-nav">

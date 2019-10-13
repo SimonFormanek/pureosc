@@ -13,18 +13,20 @@
 
 <!-- Start cm_nb_cart -->
 <li class="nav-item dropdown">
-    <?php if ($cart->count_contents() > 0) { ?>
-        <a class="nav-link dropdown-toggle" role="button" id="cartmenu" href="#"><?php
-        echo '<i class="fa fa-shopping-cart"></i> '.sprintf(_('%s item(s)'),
-            $cart->count_contents()).' <span class="caret"></span> ';
-        ?></a>
+    <?php
+    if ($cart->count_contents() > 0) {
+        ?>
+        <a class="nav-link dropdown-toggle" role="button" id="cartmenu" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
+            echo '<i class="fa fa-shopping-cart"></i> '.sprintf(_('%s item(s)'),
+                $cart->count_contents()).' <span class="caret"></span> ';
+            ?></a>
         <div class="dropdown-menu" aria-labelledby="cartmenu">
             <a class="dropdown-item" href="<?php echo tep_href_link(FILENAME_SHOPPING_CART); ?>"><?php
-        echo sprintf(_('%s item(s)'), $cart->count_contents()).
-        ', '.$currencies->format($cart->show_total());
-        ?></a></li>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="<?php echo tep_href_link(FILENAME_SHOPPING_CART); ?>"><?php echo _('View cart'); ?></a>
+                echo sprintf(_('%s item(s)'), $cart->count_contents()).
+                ', '.$currencies->format($cart->show_total());
+                ?></a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="<?php echo tep_href_link(FILENAME_SHOPPING_CART); ?>"><?php echo _('View cart'); ?></a>
 
     </div>
     </li>
@@ -33,7 +35,7 @@
 
 <?php } else { ?>
 
-    <a class="nav-link  dropdown-toggle" id="cartmenu" role="button" href="#"><i class="fa fa-shopping-cart"></i> <?php echo _('0 items'); ?></a>
+    <a class="nav-link  dropdown-toggle" id="cartmenu" role="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-shopping-cart"></i> <?php echo _('0 items'); ?></a>
     <ul class="dropdown-menu" aria-labelledby="cartmenu" >
         <a class="dropdown-item" href="<?php echo tep_href_link(FILENAME_SHOPPING_CART); ?>"><?php echo _('View Cart'); ?></a>
     </ul>

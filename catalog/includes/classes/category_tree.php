@@ -81,7 +81,7 @@ class category_tree
                     $link_title = $category['name'];
                 }
 
-                $result .= '<a href="'.tep_href_link(FILENAME_DEFAULT,
+                $result .= '<a class="dropdown-item" href="'.tep_href_link(FILENAME_DEFAULT,
                         'cPath='.$category_link).'">';
                 $result .= str_repeat($this->spacer_string,
                     $this->spacer_multiplier * $level);

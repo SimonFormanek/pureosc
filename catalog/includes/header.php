@@ -12,7 +12,9 @@
 ?>
 
 <div class="modular-header">
-    <?php echo $oscTemplate->getContent('header'); ?>
+    <?php 
+    echo $oscTemplate->getContent('header'); 
+    ?>
 </div>
 
 <div class="clearfix"></div>

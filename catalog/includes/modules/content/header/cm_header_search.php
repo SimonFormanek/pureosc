@@ -44,9 +44,9 @@ class cm_header_search {
       (MODULE_NAVIGATION_BAR_STORE_SEARCH_FUNCTIONS == 'Descriptions'));
 
     // define typeahead scripts
-    $script = '<script src="ext/bootstrap-plugins/typeahead/bootstrap3-typeahead.min.js"></script>';
-//orig      $script .= '<script src="' . tep_href_link('ext/modules/content/header/store_search/content_searches.min.js', null, $request_type) . '"></script>';
-    $script .= '<script src="ext/modules/content/header/store_search/content_searches.min.js"></script>';
+//    $script = '<script src="ext/bootstrap-plugins/typeahead/bootstrap3-typeahead.min.js"></script>';
+////orig      $script .= '<script src="' . tep_href_link('ext/modules/content/header/store_search/content_searches.min.js', null, $request_type) . '"></script>';
+//    $script .= '<script src="ext/modules/content/header/store_search/content_searches.min.js"></script>';
     $oscTemplate->addBlock($script, 'footer_scripts');
 
     ob_start();

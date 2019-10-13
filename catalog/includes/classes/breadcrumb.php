@@ -37,19 +37,19 @@ class breadcrumb
     function trail($separator = NULL)
     {
         $pos          = 1;
-        $trail_string = '<ol  itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">';
+        $trail_string = '<nav aria-label="breadcrumb"><ol  itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">';
 
         for ($i = 0, $n = sizeof($this->_trail); $i < $n; $i++) {
             if (isset($this->_trail[$i]['link']) && tep_not_null($this->_trail[$i]['link'])) {
-                $trail_string .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="'.$this->_trail[$i]['link'].'" itemprop="item"><span itemprop="name">'.$this->_trail[$i]['title'].'</span></a>';
+                $trail_string .= '<li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="'.$this->_trail[$i]['link'].'" itemprop="item">'.$this->_trail[$i]['title'].'</a>';
             } else {
-                $trail_string .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name">'.$this->_trail[$i]['title'].'</span>';
+                $trail_string .= '<li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name">'.$this->_trail[$i]['title'].'</span>';
             }
             $trail_string .= '<meta itemprop="position" content="'.(int) $pos.'" /></li>'.PHP_EOL;
             $pos++;
         }
 
-        $trail_string .= '</ol>';
+        $trail_string .= '</ol></nav>';
 
         return $trail_string;
     }
