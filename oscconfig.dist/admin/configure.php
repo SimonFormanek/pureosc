@@ -1,4 +1,13 @@
 <?php
+//LANG dependent START 
+if (!defined('DEFAULT_CURRENCY')) {
+  define('DEFAULT_CURRENCY','CZK');
+}
+if (!defined('DEFAULT_LANGUAGE')) {
+  define('DEFAULT_LANGUAGE','cs');
+}
+//LANG dependent END
+
 //TODO: future ver define('CATALOG_DOMAIN', 'XCATALOGDOMAINX'); //TODO: www.eshop.cz Need changed: eshop.cz + dynamicaly en,fr,de added
 define('CATALOG_DOMAIN', 'XCSDOMAINX');
 define('CATALOG_ADMIN_DOMAIN', 'XADMINDOMAINX'); //new!!!!!!!
