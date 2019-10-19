@@ -1,0 +1,5 @@
+[ ] @ready
+====== Splitting a subfolder out into a new repository ======
+Created Sunday 18 October 2015
+
+https://help.github.com/articles/splitting-a-subfolder-out-into-a-new-repository/

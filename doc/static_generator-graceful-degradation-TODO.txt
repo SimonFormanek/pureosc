@@ -1,0 +1,9 @@
+if (!$cookie) {
+if ($cookie && $database_connect == true) {
+  redirect to dynamic version
+  exit;
+} else {
+  include error header
+}
+//static_page contents: ?>
+<html>

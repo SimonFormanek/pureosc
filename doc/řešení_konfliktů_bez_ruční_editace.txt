@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.26
+Creation-Date: Unknown
+Modification-Date: 1
+
+[ ] @ready
+====== řešení konfliktů bez ruční editace ======
+
+Když vznikne konflikt po git merge, je třeba ruční editace. Ale někdy prostě vím, že jedna verze je dobrá a druhá je špatná, ale git to neví a udělá do souborů svoje značky pro obě verze. 
+Řešením je udělat checkout naší (**ours**) nebo cizí (**theirs**) verze souboru:
+'''
+git checkout --theirs soubor
+git checkout --ours soubor
+'''
+
+
+
+==== hromadné řešení ====
+nadu změněné soubory 
+	''grep -lr '<<<<<<<' .''
+a hromadně je opravím moje/cizí:
+	''grep -lr '<<<<<<<' . | xargs git checkout --ours''
+	''grep -lr '<<<<<<<' . | xargs git checkout --theirs''
+
+zdroj: https://rtcamp.com/tutorials/git/git-resolve-merge-conflicts/

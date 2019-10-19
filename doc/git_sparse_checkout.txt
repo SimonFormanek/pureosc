@@ -1,0 +1,37 @@
+[ ] @ready
+====== git sparse checkout ======
+
+'''
+su - user
+mkdir shop
+cd shop
+git --bare init
+git init --bare --shared
+[edit] hooks/post-receive
+
+chmod 700 hooks/post-receive
+echo 'catalog/' > info/sparse-checkout
+echo '!catalog/admin/' >> info/sparse-checkout
+'''
+
+
+... potom uživatele znesvéprávníme viz: [[git-shell]]
+
+... a můžeme do jeho adresáře posílat 
+'''
+git remote add web e:/home/voknoviny/voknoviny.git
+git push web +master:refs/heads/master
+'''
+
+viz: [[bezpečný mechanismus pro posílání hotových webů na hloupý veřejný webserver]]
+
+TODO:
+tohle je blbe, proc vetev...
+'''
+git push web +master:refs/heads/master
+'''
+nejak takle:
+'''
+git push web +voknoviny:refs/heads/master
+'''
+

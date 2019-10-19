@@ -1,0 +1,9 @@
+[ ] @ready
+====== zálohování git repozitáře ======
+
+Opravdu jednduché zálohování Git repozitáře:
+
+'''
+    git clone --mirror URL (adresář)
+'''
+    

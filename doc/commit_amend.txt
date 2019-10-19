@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.26
+Creation-Date: Unknown
+Modification-Date: 1
+
+[ ] @ready
+====== commit amend ======
+
+Když něco zapomenu přidat do commitu, tak mohu pro pořádek opravit předchozí commit a přidat do něc to, na co jsem zapemněl.
+	''git commit --amend -m "komentar vceten zapomenuteho"''
+
+Pomocí //amend// mohu i jednoduše opravit komentář k commitu (commit se zkopíruje na konec historie s novým komentářem)
+	''git commit --amend -c <ID commitu>''
+POZOR:
+==== Push po commit --amend nefunguje ====
+git si myslí, že musíme nejdřív udělat pull, takže musíme dát:
+'''
+git push --force
+'''
+

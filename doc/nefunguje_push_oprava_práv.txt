@@ -1,0 +1,14 @@
+[ ] @ready
+====== nefunguje push oprava práv ======
+Created Thursday 22 October 2015
+
+někdy je nutné zpřístupnit repozitář pro zápis všem userům, nejenom skupině...
+'''
+find . -type d -exec chmod 777 {} \; 
+find . -type f -exec chmod 666 {} \;
+'''
+ 
+
+http://stackoverflow.com/questions/6448242/git-push-error-insufficient-permission-for-adding-an-object-to-repository-datab
+
+http://stackoverflow.com/questions/1918524/error-pushing-to-github-insufficient-permission-for-adding-an-object-to-reposi

@@ -1,0 +1,10 @@
+Makefile                                                                     |    4 +-
+ catalog/admin/categories.php                                                 |    5 +-
+ catalog/admin/includes/header.php                                            |    2 +-
+ catalog/includes/modules/payment/braintree_cc.php                            |  997 -----------------------
+ catalog/includes/modules/payment/chronopay.php                               |  615 --------------
+ catalog/includes/modules/payment/gpwebpay.php                                |    3 +-
+ composer.json                                                                |   11 +-
+ 687 files changed, 1836 insertions(+), 3328 deletions(-)
+ delete mode 100644 catalog/includes/modules/payment/braintree_cc.php
+ delete mode 100644 catalog/includes/modules/payment/chronopay.php
