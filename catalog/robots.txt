@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /db_error.html
+Disallow: /db_error.php
+Disallow: /includes/
+Disallow: /banned_ip.php

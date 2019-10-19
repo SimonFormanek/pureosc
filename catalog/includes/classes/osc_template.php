@@ -140,10 +140,14 @@ class oscTemplate {
       if (file_exists(DIR_WS_LANGUAGES . $language . '/modules/content/' . $group . '/' . $module . '.php')) {
         include(DIR_WS_LANGUAGES . $language . '/modules/content/' . $group . '/' . $module . '.php');
       }
+                    if(class_exists($module)){
       $mb = new $module();
       if ($mb->isEnabled()) {
         $mb->execute();
       }
+                    } else {
+                        \Ease\Shared::singleton()->addStatusMessage( sprintf('attempt to load  %s %s ', $group, $module) ,'warning');
+                    }
     }
 
     if (class_exists('tp_' . $group)) {

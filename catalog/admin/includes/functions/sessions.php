@@ -66,7 +66,7 @@ if (STORE_SESSIONS == 'mysql') {
 
 function tep_session_start()
 {
-    global $_GET, $_POST, $HTTP_COOKIE_VARS;
+    global $_GET, $_POST, $_COOKIE;
 
     $sane_session_id = true;
 
@@ -88,14 +88,14 @@ function tep_session_start()
         }
     }
 
-    if (isset($HTTP_COOKIE_VARS[tep_session_name()])) {
+    if (isset($_COOKIE[tep_session_name()])) {
         if (preg_match('/^[a-zA-Z0-9,-]+$/',
-                $HTTP_COOKIE_VARS[tep_session_name()]) === false) {
+                $_COOKIE[tep_session_name()]) === false) {
             $session_data = session_get_cookie_params();
 
             setcookie(tep_session_name(), '', time() - 42000,
                 $session_data['path'], $session_data['domain']);
-            unset($HTTP_COOKIE_VARS[tep_session_name()]);
+            unset($_COOKIE[tep_session_name()]);
 
             $sane_session_id = false;
         }
@@ -172,14 +172,14 @@ function tep_session_close()
 
 function tep_session_destroy()
 {
-    global $HTTP_COOKIE_VARS;
+    global $_COOKIE;
 
-    if (isset($HTTP_COOKIE_VARS[tep_session_name()])) {
+    if (isset($_COOKIE[tep_session_name()])) {
         $session_data = session_get_cookie_params();
 
         setcookie(tep_session_name(), '', time() - 42000, $session_data['path'],
             $session_data['domain']);
-        unset($HTTP_COOKIE_VARS[tep_session_name()]);
+        unset($_COOKIE[tep_session_name()]);
     }
 
     return session_destroy();

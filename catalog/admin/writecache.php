@@ -803,6 +803,23 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . rem
       fclose($hta_file);
      */
 
+if (GENERATE_DB_ERROR == 'true') {
+    echo 'GENERATING ERROR PAGE'."\n"; //------------------------------------------------
+    $curl_handle = curl_init();
+    curl_setopt($curl_handle, CURLOPT_URL, HTTP_SERVER.'/' . FILENAME_DB_ERROR_PHP . '?language=' . $_GET['language']);
+    curl_setopt($curl_handle, CURLOPT_USERPWD, WGET_USER.":".WGET_PASSWORD);
+    curl_setopt($curl_handle, CURLOPT_USERAGENT, 'wget');
+    curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
+    curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+    $output      = curl_exec($curl_handle);
+    curl_close($curl_handle);
+    $output = filtr($output);
+    file_put_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . FILENAME_DB_ERROR, stripslashes($output), 644); 
+            if (!preg_match("/<\/html>/", file_get_contents(RSYNC_LOCAL_DEST_PATH.OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . FILENAME_DB_ERROR))) {
+              $error = 1;
+              echo "Error: HomePage \n";
+            }
+}
 
 if (GENERATE_HOMEPAGE == 'true') {
 

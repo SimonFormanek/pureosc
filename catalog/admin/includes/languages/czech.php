@@ -426,6 +426,9 @@ define('BOX_TOOLS_MAIL_MANAGER', 'Mail Manager', true);
 // BOF Order Maker
 define('TABLE_HEADING_EDIT_ORDERS', 'Změnit objednávku', true);
 define('TEXT_IMAGE_CREATE', 'Vytvořit objednávku', true);
+define('TEXT_INFO_CUSTOMER_SERVICE_ID', 'Vloženo:', true);
+define('IMAGE_CREATE_ORDER', 'Vytvořit novou objednávku', true);
+define('BOX_CUSTOMERS_CREATE_ORDER', 'Vytvořit objednávku', true);
 // EOF Order Maker
 // BOF Create Account 
 define('BOX_CUSTOMERS_CREATE_ACCOUNT', 'Vytvořit zákazníka', true);
@@ -457,4 +460,5 @@ define('BOX_HEADER_TAGS_SOCIAL', 'Sociální sítě', true);
 define('BOX_HEADER_TAGS_TEST', 'Test', true);
 /*** End Header Tags SEO ***/
 
-define('ENTRY_COMPANY_NUMBER','IČO');define('BOX_TOOLS_DATABASE_OPTIMIZER', 'Database Optimizer');
+define('ENTRY_COMPANY_NUMBER','IČO');
+define('BOX_TOOLS_DATABASE_OPTIMIZER', 'Database Optimizer');

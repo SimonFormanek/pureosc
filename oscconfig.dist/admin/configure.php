@@ -61,13 +61,8 @@ define('WEBMASTER_EMAIL', '00420602604992@sms.cz.o2.com');
 define('USE_PCONNECT', 'false');
 define('STORE_SESSIONS', 'mysql');
 define('CFG_TIME_ZONE', 'Europe/Prague'); // <------ need to bee configured
-//SMAZAT? new_products stripe generator (catgories.php)
+//TODO-opravit aby fungovalo z DB  new_products stripe generator (catgories.php)
 $imgWidth = 110;
 $imgWidthSmall = 64;
-//unused:$imgFixedHeight = 190; //vyska obr pro tapetu
-//unused:$imgFixedHeightSmall = 110; //vyska obr pro tapetu MALY
-//define('DEFAULT_PRODUCT_TEMPLATE','2'); //1 = product 2 = arricle
-
-//  define('SHOP_KEYS_PATH','/home/printondemand/shop_keys/'); //SECURITY WARNING: need to bee obfuscated 
-//  define('ADMIN_PRIVATE_KEYS_PATH','/home/printondemand/admin_private_keys/'); //SECURITY WARNING: on production environement save keys on removable media
-//  define('DB_SERVER_USERNAME_PREFIX','os'); //2 chars
+//Path to DB Error log, assumed HOME of apache user
+define('DATABASE_ERRORS_LOG','/logs/db_error.log');

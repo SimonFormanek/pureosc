@@ -46,7 +46,7 @@ function tep_href_link_original($page = '', $parameters = '',
     if ($connection == 'NONSSL') {
         $link = HTTP_SERVER.DIR_WS_HTTP_CATALOG;
     } elseif ($connection == 'SSL') {
-        if (ENABLE_SSL == true) {
+        if (ENABLE_SSL === true) {
             $link = HTTPS_SERVER.DIR_WS_HTTPS_CATALOG;
         } else {
             $link = HTTP_SERVER.DIR_WS_HTTP_CATALOG;
@@ -67,12 +67,12 @@ function tep_href_link_original($page = '', $parameters = '',
         $link = substr($link, 0, -1);
 
 // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
-    if (($add_session_id == true) && ($session_started == true) && (SESSION_FORCE_COOKIE_USE
+    if (($add_session_id === true) && ($session_started === true) && (SESSION_FORCE_COOKIE_USE
         == 'False')) {
         if (tep_not_null($SID)) {
             $_sid = $SID;
         } elseif (( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL
-            == true) ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') )) {
+            === true) ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') )) {
             if (HTTP_COOKIE_DOMAIN != HTTPS_COOKIE_DOMAIN) {
                 $_sid = tep_session_name().'='.tep_session_id();
             }
@@ -86,7 +86,7 @@ function tep_href_link_original($page = '', $parameters = '',
     while (strpos($link, '&&') !== false)
         $link = str_replace('&&', '&', $link);
 
-    if ((SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe == true)) {
+    if ((SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe === true)) {
         $link = str_replace('?', '/', $link);
         $link = str_replace('&', '/', $link);
         $link = str_replace('=', '/', $link);
@@ -127,10 +127,24 @@ function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL',
       $products_id = str_replace('products_id=', '', $myid[0]);
       $manufacturers_id_query = tep_db_query("SELECT manufacturers_id FROM " . TABLE_PRODUCTS . " WHERE products_id=" . $products_id);
       $manufacturers_id = tep_db_fetch_array($manufacturers_id_query);
-      $manufacturers_name_query = tep_db_query("SELECT manufacturers_name from " . TABLE_MANUFACTURERS . " WHERE manufacturers_id = " . $manufacturers_id['manufacturers_id']);
-      $manufacturers_name = tep_db_fetch_array($manufacturers_name_query);
-      $manufacturer = preg_replace('/(-[a-z])*$/','',remove_accents($manufacturers_name['manufacturers_name']));
-      $newlink = '/' . $manufacturer . '/' . preg_replace('~.*/~', '', preg_replace('~.*xslashx~', '', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
+      if ($manufacturers_id['manufacturers_id'] > 0 ) {
+        $manufacturers_name_query = tep_db_query("SELECT manufacturers_name from " . TABLE_MANUFACTURERS . " WHERE manufacturers_id = " . $manufacturers_id['manufacturers_id']);
+        $manufacturers_name = tep_db_fetch_array($manufacturers_name_query);
+        $manufacturer = preg_replace('/(-[a-z])*$/','',remove_accents(tep_repair_authors_name_url($manufacturers_name['manufacturers_name']))); 
+      }
+      $product = tep_db_query("SELECT products_name FROM " . TABLE_PRODUCTS_DESCRIPTION . " WHERE products_id = ".$products_id." AND language_id = ".$languages_id);
+      $product = tep_db_fetch_array($product);
+      $product = remove_accents($product['products_name']);
+      
+//      $product = preg_replace('/(-[a-z])*$/','',remove_accents($product)); ???????????
+      
+      $newlink = '/' . $manufacturer . '/' . $product; 
+      //.  $seo_urls->href_link($page, $parameters, $connection, $add_session_id); 
+      $newlink = $seo_urls->add_sid($newlink, $add_session_id, $connection, ((strpos($newlink, '?')===false)?'?':'&'));
+      
+      //. preg_replace('~.*/~', '', 
+//        preg_replace('~.*xslashx~', '', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
+      
     } else {
 //      $newlink = preg_replace('~.*/~', '/', preg_replace('~.*xslashx~', '/', $seo_urls->href_link($page, $parameters, $connection, $add_session_id)));
 $newlink = $seo_urls->href_link($page, $parameters, $connection, $add_session_id); 
@@ -175,7 +189,7 @@ function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '',
             $thumbs_dir .= $thumbs_dir_paths[$i].'/';
             if (!is_dir($thumbs_dir)) {
                 if (!mkdir($thumbs_dir, 0777)) {
-                    echo $thumbs_dir;
+                    \Ease\Shared::singleton()->addStatusMessage( _( 'Cannot crete thumbnails directory' ).': ' . $thumbs_dir  );
                 }
             }
             // create .htacces protection like in main image dir
@@ -345,7 +359,7 @@ function tep_draw_form($name, $action, $method = 'post', $parameters = '',
 
     $form .= '>';
 
-    if (($tokenize == true) && isset($sessiontoken)) {
+    if (($tokenize === true) && isset($sessiontoken)) {
         $form .= '<input type="hidden" name="formid" value="'.tep_output_string($sessiontoken).'" />';
     }
 
@@ -362,7 +376,7 @@ function tep_draw_input_field($name, $value = '', $parameters = '',
 
     $field = '<input type="'.tep_output_string($type).'" name="'.tep_output_string($name).'"';
 
-    if (($reinsert_value == true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
+    if (($reinsert_value === true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($_POST[$name]) && is_string($_POST[$name])) )) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
             $value = stripslashes($_GET[$name]);
@@ -404,7 +418,7 @@ function tep_draw_selection_field($name, $type, $value = '', $checked = false,
     if (tep_not_null($value))
             $selection .= ' value="'.tep_output_string($value).'"';
 
-    if (($checked == true) || (isset($_GET[$name]) && is_string($_GET[$name]) && (($_GET[$name]
+    if (($checked === true) || (isset($_GET[$name]) && is_string($_GET[$name]) && (($_GET[$name]
         == 'on') || (stripslashes($_GET[$name]) == $value))) || (isset($_POST[$name])
         && is_string($_POST[$name]) && (($_POST[$name] == 'on') || (stripslashes($_POST[$name])
         == $value)))) {
@@ -450,7 +464,7 @@ function tep_draw_textarea_field($name, $wrap, $width, $height, $text = '',
 
     $field .= '>';
 
-    if (($reinsert_value == true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
+    if (($reinsert_value === true) && ( (isset($_GET[$name]) && is_string($_GET[$name]))
         || (isset($_POST[$name]) && is_string($_POST[$name])) )) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
             $field .= tep_output_string_protected(stripslashes($_GET[$name]));
@@ -498,7 +512,7 @@ function tep_hide_session_id()
 {
     global $session_started, $SID;
 
-    if (($session_started == true) && tep_not_null($SID)) {
+    if (($session_started === true) && tep_not_null($SID)) {
         return tep_draw_hidden_field(tep_session_name(), tep_session_id());
     }
 }
@@ -654,9 +668,34 @@ function tep_navbar_search($btnclass = 'btn-default', $description = true)
 
     return $search_link;
 }
+//truncate string to $limit words
+function shorter($text,$limit) {
+  $words = preg_split('/\s+/', $text);
+  $count = count(preg_split('/\s+/', $text));
+  if ($count > ($limit * 2)) {
+    $text = NULL;
+    for ($i = 0; $i < $limit; $i++)
+      $text .= $words[$i] . ' ';
+    $text .= '...';
+  }
+  return $text;
+}
+
+function get_products_canonical($products_id) {
+  $canonical_category_query = tep_db_query("SELECT categories_id FROM products_to_categories WHERE canonical=1 AND products_id=" . $products_id);
+  $canonical_category = tep_db_fetch_array($canonical_category_query);
+  return $canonical_category['categories_id'];
+}
 
 // strip paragraph ckeditor fix
 function strip_p($txt){
 $txt =  str_replace('</P>','',(str_replace('<P>','', (str_replace('</p>','', str_replace('<p>','', $txt))))));
  return $txt;
+}
+function anchors ($txt, $url){
+$url = remove_accents($url);
+$txt =          preg_replace('/#fn/',  $url  . '#fn', $txt);
+$txt =          preg_replace('/#fb/',  $url  . '#fb', $txt);
+$txt =          preg_replace('/#TOC/',  $url  . '#TOC', $txt); 
+return $txt;
 }

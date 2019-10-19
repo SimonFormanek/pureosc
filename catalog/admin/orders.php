@@ -23,7 +23,7 @@
 require('includes/application_top.php');
 
 
-$currencies = new AdminCurrencies();
+$currencies = new \PureOSC\Admin\AdminCurrencies();
 
 $orders_statuses     = array();
 $orders_status_array = array();

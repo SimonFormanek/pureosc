@@ -44,7 +44,9 @@ function tep_db_error($query, $errno, $error)
         $logger->write('['.$errno.'] '.$error, 'ERROR');
     }
 
-    die('<font color="#000000"><strong>'.$errno.' - '.$error.'<br /><br />'.$query.'<br /><br /><small><font color="#ff0000">[TEP STOP]</font></small><br /><br /></strong></font>');
+    trigger_error($errno.' - '.$error);
+    
+    die('<font color="#000000"><strong>'.$query.'<br /><br /><small><font color="#ff0000">[TEP STOP]</font></small><br /><br /></strong></font>');
 }
 
 function tep_db_query($query, $link = 'db_link')

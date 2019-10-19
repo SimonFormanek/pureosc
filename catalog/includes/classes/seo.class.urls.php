@@ -2164,10 +2164,12 @@ class SEO_URL
 
     /**
      * Function to return the short word filtered string
+     * 
      * @author Bobby Easland
      * @version 1.0
      * @param string $str
      * @param integer $limit
+     * 
      * @return string Short word filtered
      */
     function short_name($str, $limit = 3)

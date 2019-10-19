@@ -3,7 +3,9 @@
 use Ease\Html\ATag;
 use Ease\Html\H1Tag;
 use Ease\Html\UlTag;
+use Ease\SQL\Engine;
 use Ease\TWB\Container;
+use Ease\WebPage;
 use FlexiPeeHP\FlexiBeeRO;
 use FlexiPeeHP\ui\TWB\StatusInfoBox;
 use PureOSC\flexibee\Adresar;
@@ -63,7 +65,7 @@ if ($checker2->connected()) {
 //    $list->addItemSmart(implode(':', $idinfo));
 //}
 
-    foreach ((new Ease\SQL\Engine(null, ['myTable' => 'customers']))->listingQuery()->orderBy('customers_lastname,customers_firstname')->fetchAll() as $customerData) {
+    foreach ((new Engine(null, ['myTable' => 'customers']))->listingQuery()->orderBy('customers_lastname,customers_firstname')->fetchAll() as $customerData) {
         if (array_key_exists($customerData['customers_id'], $inFlexiBee)) {
             $adresar->addStatusMessage(_('Already exists in database').$customerData['customers_id']);
         } else {
@@ -109,7 +111,7 @@ if ($checker2->connected()) {
 
 $container->addItem($list);
 echo $container;
-echo \Ease\WebPage::singleton()->getStatusMessagesAsHtml();
+echo WebPage::singleton()->getStatusMessagesAsHtml();
 
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');

@@ -20,6 +20,7 @@
 // Start the clock for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
+define('SESSION_FORCE_COOKIE_USE', 'False');
 // load server configuration parameters
 if (file_exists('includes/local/configure.php')) { // for developers
     include('includes/local/configure.php');
@@ -62,8 +63,9 @@ define('CURRENCY_SERVER_BACKUP', 'xe');
 // include the database functions
 require(DIR_WS_FUNCTIONS.'database.php');
 
+global $db_link;
 // make a connection to the database... now
-tep_db_connect() or die('Unable to connect to database server!');
+$db_link = tep_db_connect() or die('Unable to connect to database server!');
 
 // set application wide parameters
 $configuration_query = tep_db_query('select configuration_key as cfgKey, configuration_value as cfgValue from '.TABLE_CONFIGURATION);
@@ -188,11 +190,11 @@ if (!tep_session_is_registered('admin')) {
     }
 
     /*     * * Altered for Alternative Administration System **
-      if ($redirect == true) {
+      if ($redirect === true) {
       tep_redirect(tep_href_link(FILENAME_LOGIN, (isset($redirect_origin['auth_user']) ? 'action=process' : '')));
       }
      */
-    if ($redirect == true) {
+    if ($redirect === true) {
         if (basename($current_page) == FILENAME_AAS) $sessionTimeout = true;
         else
                 tep_redirect(tep_href_link(FILENAME_LOGIN,
@@ -279,8 +281,7 @@ if (tep_not_null($tPath)) {
 $oPage = new \PureOSC\ui\WebPage();
 
 // include the breadcrumb class and start the breadcrumb trail
-require(DIR_FS_CATALOG.'includes/classes/breadcrumb.php');
-$breadcrumb = new breadcrumb;
+$breadcrumb = new breadcrumb();
 
 if (isset($_SESSION['admin']['id'])) {
 $messageStack = new AdminMessageStack;

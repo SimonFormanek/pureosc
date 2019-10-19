@@ -79,3 +79,5 @@ define('FLEXIBEE_COMPANY', 'purehtml');
 define('EASE_LOGGER', 'syslog');
 define('EASE_APPNAME', 'pureosc');
 //define('SEO_ENABLED','false'); //uncommnent for debug only 
+//Path to DB Error log, assumed HOME of apache user
+define('DATABASE_ERRORS_LOG','/logs/db_error.log');

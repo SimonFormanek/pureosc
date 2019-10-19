@@ -1797,3 +1797,58 @@ function tep_get_category_path($category_id)
 
     return $cPath;
 }
+function get_parents($categId, $what='') {
+
+global $languages_id;
+
+$paramStr=''; $urlStr=''; $catId=$categId; $breadStr=''; $idx=0;
+
+    do {
+    $qStr = "SELECT c.parent_id, cd.categories_name FROM ".TABLE_CATEGORIES." c, ".TABLE_CATEGORIES_DESCRIPTION
+. " cd WHERE c.categories_id=".$catId." AND cd.categories_id=".$catId." AND cd.language_id=".$languages_id;
+    //echo $qStr . "\n";
+    $category_zero_query = tep_db_fetch_array( tep_db_query($qStr) );
+
+    //echo "return: '" . var_export($category_zero_query, true)."'\n";
+    $parent = $category_zero_query['parent_id'];
+    $url = $category_zero_query['categories_name'];
+    if($idx > 0) {
+        $paramStr = ($catId . '_') . $paramStr;
+        $urlStr = ($url . '/') . $urlStr;
+        $breadStr = ($url . '&nbsp;&raquo;&nbsp;') . $breadStr;
+    } else {
+        $paramStr = $catId;
+        $urlStr = $url;
+        $breadStr = $url;
+    }
+    //echo "paramStr: '".$paramStr."'\n";
+    $catId = $parent;
+    $idx++;
+
+    } while($category_zero_query['parent_id'] > 0);
+
+//$outUrl = remove_accents_clean_url_breadcrumb('/'.$urlStr.'/');
+$outUrl = remove_accents('/'.$urlStr.'/');
+if(substr($outUrl, -1) != '/') $outUrl = $outUrl . '/';
+
+$ret = array('cpath'=>$paramStr, 'url'=>$outUrl, 'chleba'=>$breadStr);
+
+if($what == '') return $ret;
+else return $ret[$what];
+
+}
+//------------------------------------------------------------------------------------------
+
+
+/**
+ * Translation Wrapper
+ * 
+ * @param string $constant Namae of localisation constant (defined in includes/laguages)
+ * @param string $gettText gettext provided fallback value
+ * 
+ * @return string
+ */
+function  __( string $constant, string $gettText){
+    return defined($constant) ? constant($constant) : $gettText ;
+}
+
