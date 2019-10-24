@@ -10,6 +10,7 @@
   Released under the GNU General Public License
  */
 
+namespace PureOSC;
 ////
 // Class to handle currencies
 // TABLES: currencies

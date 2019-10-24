@@ -1,4 +1,5 @@
 <?php
+namespace PureOSC;
 /*
   $Id: cm_nb_categories_full.php, v1.0.1 20160322 Kymation$
 
@@ -26,14 +27,14 @@ class cm_nb_categories_full
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       =  MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_TITLE;
-        $this->description = MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_DESCRIPTION;
+        $this->title       =  __('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_TITLE',_('Categories'));
+        $this->description = __('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_DESCRIPTION',_('Categories'));
 
-        if (defined('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_STATUS')) {
-            $this->sort_order = MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_SORT_ORDER;
-            $this->enabled    = (MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_STATUS == 'True');
-            $this->side       = ((MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_CONTENT_PLACEMENT
-                === 'left') ? 'left' : 'right');
+        if (\cfg('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_STATUS')) {
+            $this->sort_order = \cfg('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_SORT_ORDER');
+            $this->enabled    = \cfg('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_STATUS') == 'True';
+            $this->side       = \cfg('MODULE_CONTENT_NAVBAR_CATEGORIES_FULL_CONTENT_PLACEMENT')
+                === 'left' ? 'left' : 'right';
         }
     }
 

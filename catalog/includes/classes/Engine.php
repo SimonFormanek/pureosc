@@ -24,6 +24,9 @@ use DataTables\Editor,
  */
 class Engine extends \Ease\SQL\Engine
 {
+    
+    use \Ease\SQL\Orm;
+    
     /**
      * Filter results by
      * @var array 
@@ -96,7 +99,7 @@ class Engine extends \Ease\SQL\Engine
     public function __construct($init = null, $filter = [])
     {
         $this->setUp();
-        $this->getFluentPDO();
+        parent::__construct($init, $filter);
 
         if (is_numeric($init)) {
             $this->loadFromSQL($init);

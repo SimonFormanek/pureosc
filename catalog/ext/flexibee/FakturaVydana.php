@@ -19,6 +19,11 @@ class FakturaVydana extends \FlexiPeeHP\FakturaVydana
     public $nameColumn = 'nazev';
     public $myTable = 'orders';
     
+    public function __construct($init = null, $options = array())
+    {
+        parent::__construct($init, $options);
+        $this->takemyTable('orders');
+    }
     
     public function convertOscData($orderData)
     {

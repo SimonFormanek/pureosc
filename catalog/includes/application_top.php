@@ -18,6 +18,62 @@
   Released under the GNU General Public License
  */
 namespace PureOSC;
+
+use breadcrumb;
+use Ease\Anonym;
+use Ease\Locale;
+use Ease\Shared;
+use language;
+use oscTemplate;
+use PureOSC\ui\WebPage;
+use const CFG_TIME_ZONE;
+use const DEFAULT_CURRENCY;
+use const DIR_WS_FUNCTIONS;
+use const DIR_WS_HTTP_CATALOG;
+use const DIR_WS_HTTPS_CATALOG;
+use const DIR_WS_INCLUDES;
+use const DIR_WS_LANGUAGES;
+use const ENABLE_SSL;
+use const FILENAME_ARTICLE_INFO;
+use const FILENAME_ARTICLES;
+use const FILENAME_COOKIE_USAGE;
+use const FILENAME_DEFAULT;
+use const FILENAME_LOGIN;
+use const FILENAME_PRODUCT_INFO;
+use const FILENAME_SHOPPING_CART;
+use const FILENAME_SSL_CHECK;
+use const GENERATOR_INSTANCE;
+use const HEADER_TITLE_TOP;
+use const HTTP_COOKIE_DOMAIN;
+use const HTTP_COOKIE_PATH;
+use const HTTP_SERVER;
+use const HTTPS_COOKIE_DOMAIN;
+use const HTTPS_COOKIE_PATH;
+use const SESSION_FORCE_COOKIE_USE;
+use function do_magic_quotes_gpc;
+use function tep_db_connect;
+use function tep_db_fetch_array;
+use function tep_db_num_rows;
+use function tep_db_query;
+use function tep_get_all_get_params;
+use function tep_get_ip_address;
+use function tep_get_product_path;
+use function tep_get_products_name;
+use function tep_get_uprid;
+use function tep_has_product_attributes;
+use function tep_href_link;
+use function tep_not_null;
+use function tep_parse_category_path;
+use function tep_rand;
+use function tep_redirect;
+use function tep_session_destroy;
+use function tep_session_id;
+use function tep_session_is_registered;
+use function tep_session_name;
+use function tep_session_register;
+use function tep_session_save_path;
+use function tep_session_start;
+use function tep_setcookie;
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
@@ -264,7 +320,7 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
 // create the shopping cart
 if (!tep_session_is_registered('cart') || !is_object($cart)) {
     tep_session_register('cart');
-    $cart = new ShoppingCart;
+    $cart = new \ShoppingCart();
 }
 
 // include currencies class and create an instance
@@ -312,14 +368,14 @@ $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUA
       }
     }  
 } else {
-    $lng = new \language();
+    $lng = new language();
   //$lng->set_language($_SESSION['language']);
       $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
       $language_code = tep_db_fetch_array($language_code_query);
     $lng->set_language($language_code['code']);
 }
 
-\Ease\Locale::singleton($lng->language['locale'], '../i18n', 'pureosc');
+Locale::singleton($lng->language['locale'], '../i18n', 'pureosc');
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
 
@@ -351,7 +407,7 @@ if (!tep_session_is_registered('currency') || isset($_GET['currency']) || ( (USE
 // navigation history
 if (!tep_session_is_registered('navigation') || !is_object($navigation)) {
     tep_session_register('navigation');
-    $navigation = new navigationHistory;
+    $navigation = new \navigationHistory();
 }
 $navigation->add_current_page();
 
@@ -570,7 +626,7 @@ if (tep_not_null($cPath)) {
     $current_category_id = 0;
 }
 
-$breadcrumb = new \breadcrumb;
+$breadcrumb = new breadcrumb;
 
 $breadcrumb->add(HEADER_TITLE_TOP, HTTP_SERVER);
 $breadcrumb->add(HEADER_TITLE_CATALOG, tep_href_link(FILENAME_DEFAULT));
@@ -675,9 +731,9 @@ require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
 
-\Ease\Shared::instanced()->webPage($oPage);
+WebPage::singleton($oPage);
 
-$userLog = new CustomerLog(null, $customer_id);
+$userLog = CustomerLog::singleton( new CustomerLog(null, $customer_id) );
 
-$oUser = new \Ease\Anonym();
-\Ease\Shared::instanced()->user($oUser);
+$oUser = new Anonym();
+Shared::instanced()->user($oUser);

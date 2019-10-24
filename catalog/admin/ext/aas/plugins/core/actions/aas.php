@@ -1603,7 +1603,7 @@ switch($item_post){
 			$attributes_values_array=array();	
 			$attributes = tep_db_query("select pa.* from " . TABLE_PRODUCTS_ATTRIBUTES . " pa, " . TABLE_PRODUCTS_OPTIONS . " po WHERE pa.options_id=".$attribute_value['options_id']." AND po.language_id='".$lid."' AND pa.options_id=po.products_options_id AND products_id=".$attribute_value['products_id']." order by ".$orderBy." ".$ascDesc);
 			
-			if(tep_db_num_rows($attributes)<=0) die('All option values are No availble');					
+			if(tep_db_num_rows($attributes)<=0) die('All option values are No available');					
 			while($attributes_values = tep_db_fetch_array($attributes)) $attributes_values_array[$attributes_values['options_values_id']][]=$attributes_values;
     
     ?>  

@@ -22,6 +22,7 @@ class Strom extends \FlexiPeeHP\Strom
     public function __construct($init = null, $options = array())
     {
         parent::__construct($init, $options);
+        $this->takemyTable('categories');
         $this->setDataValue('strom', self::code('STR_CEN'));
     }
 

@@ -21,6 +21,7 @@ class Cenik extends \FlexiPeeHP\Cenik
 
     public function __construct($init = null, $options = array())
     {
+        $this->takemyTable('products');
         parent::__construct($init, $options);
     }
 

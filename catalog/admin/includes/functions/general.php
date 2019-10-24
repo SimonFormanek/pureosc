@@ -66,7 +66,7 @@ function tep_parse_input_field_data($data, $parse)
     return strtr(trim($data), $parse);
 }
 
-function tep_output_string($string, $translate = false, $protected = false)
+function tep_output_string(string $string, $translate = false, $protected = false)
 {
     if ($protected === true) {
         return htmlspecialchars($string);
@@ -309,7 +309,7 @@ function tep_values_name($values_id)
 function tep_info_image($image, $alt, $width = '', $height = '')
 {
     if (tep_not_null($image) && (file_exists(DIR_FS_CATALOG_IMAGES.$image))) {
-        $image = tep_image(HTTP_CATALOG_ADMIN_SERVER.DIR_WS_CATALOG_IMAGES.$image,
+        $image = tep_image(HTTP_CATALOG_SERVER.DIR_WS_CATALOG_IMAGES.$image,
             $alt, $width, $height);
     } else {
         $image = TEXT_IMAGE_NONEXISTENT;
@@ -612,12 +612,12 @@ function tep_get_products_name($product_id, $language_id = 0)
     return $product['products_name'];
 }
 
-function tep_get_products_description($product_id, $language_id)
+function tep_get_products_description($product_id, $language_id, $suffix=false)
 {
-    $product_query = tep_db_query("select products_description from ".TABLE_PRODUCTS_DESCRIPTION." where products_id = '".(int) $product_id."' and language_id = '".(int) $language_id."'");
+    $product_query = tep_db_query("SELECT products_description".($suffix ? ((substr($suffix,0,1)=='_')?$suffix:('_'.$suffix)) : '' ) . " AS prodesc FROM ".TABLE_PRODUCTS_DESCRIPTION." WHERE products_id = '".(int) $product_id."' and language_id = '".(int) $language_id."'");
     $product       = tep_db_fetch_array($product_query);
 
-    return $product['products_description'];
+    return $product['prodesc'];
 }
 
 function tep_get_products_url($product_id, $language_id)
@@ -2158,4 +2158,27 @@ function remove_accents($url)
 
     $url = preg_replace('/-$/', '', $url);
     return $url;
+}
+/**
+ * Translation Wrapper
+ * 
+ * @param string $constant Namae of localisation constant (defined in includes/laguages)
+ * @param string $gettText gettext provided fallback value
+ * 
+ * @return string
+ */
+function  __( string $constant, string $gettText){
+    return defined($constant) ? constant($constant) : $gettText ;
+}
+
+/**
+ * Configuration wrapper
+ * 
+ * @param string $constant
+ * 
+ * @return string|\Exception
+ */
+function cfg(string $constant)
+{
+    return defined($constant) ? constant($constant) : new \Exception(sprintf( _('Configuration key %s not defined'),$constant));
 }

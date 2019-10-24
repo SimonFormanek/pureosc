@@ -10,6 +10,8 @@
   Released under the GNU General Public License
  */
 
+namespace PureOSC;
+
 class cm_modular_navbar
 {
     public $version     = '1.0.1';
@@ -51,8 +53,9 @@ class cm_modular_navbar
                     $class = substr($navbar_element, 7);
 
                     if (!class_exists($class)) {
-                        include_once DIR_WS_LANGUAGES.$language.'/modules/content/navbar/'.$class.'.php';
-                        include_once DIR_WS_MODULES.'content/navbar/'.$class.'.php';
+                        if(file_exists()){
+                            include_once cfg('DIR_WS_LANGUAGES').$language.'/modules/content/navbar/'.$class.'.php';
+                        }
                     }
 
                     $navbar_class = new $class();
