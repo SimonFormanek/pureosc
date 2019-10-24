@@ -1,20 +1,23 @@
 all: 	 fresh dbreset upgrade
 
 clean:
-	phinx seed:run -s Reset -c ./phinx-adapter.php
+	vendor/bin/phinx seed:run -s Reset -c ./phinx-adapter.php
 
 adminreset:
-	phinx seed:run -s ResetAdmin -c ./phinx-adapter.php
+	vendor/bin/phinx seed:run -s ResetAdmin -c ./phinx-adapter.php
 dbreset:
-	phinx seed:run -s Oscommerce -c ./phinx-adapter.php
-	phinx migrate -c ./phinx-adapter.php
-	
+	vendor/bin/phinx seed:run -s Oscommerce -c ./phinx-adapter.php
+	vendor/bin/phinx migrate  -c ./phinx-adapter.php
+
 newphinx:
-	read -p "Enter CamelCase migration name : " migname ; phinx create $$migname -c ./phinx-adapter.php
+	read -p "Enter CamelCase migration name : " migname ; vendor/bin/phinx create $$migname -c ./phinx-adapter.php
+
+migrate:
+	vendor/bin/phinx migrate -c ./phinx-adapter.php
 
 fresh:
 	composer update
-	phinx migrate -c ./phinx-adapter.php
+	vendor/bin/phinx migrate -c ./phinx-adapter.php
 
 production:
 	composer update -a -o --no-dev
@@ -28,6 +31,7 @@ upgrade:
 		rm -rf catalog/admin/ext/ckeditor
 		mkdir catalog/admin/ext/ckeditor
 		cp -r vendor/ckeditor/ckeditor/adapters catalog/admin/ext/ckeditor
+		cp -r vendor/ckeditor/ckeditor/assets catalog/admin/ext/ckeditor
 		cp -r vendor/ckeditor/ckeditor/lang catalog/admin/ext/ckeditor
 		cp -r vendor/ckeditor/ckeditor/plugins catalog/admin/ext/ckeditor
 		cp -r vendor/ckeditor/ckeditor/skins catalog/admin/ext/ckeditor
@@ -36,7 +40,6 @@ upgrade:
 		cp -r vendor/ckeditor/ckeditor/contents.css catalog/admin/ext/ckeditor
 		cp -r vendor/ckeditor/ckeditor/styles.js catalog/admin/ext/ckeditor
 		cp catalog/admin/ext/ckeditor.config/config.js catalog/admin/ext/ckeditor/config.js
-#		cp -r vendor/ckeditor/ckeditor/assets catalog/admin/ext/ckeditor
 
 lang:
 	find . -iname "*.php" | xargs xgettext --from-code=utf-8  -n  --language=PHP --add-comments=TRANSLATORS --add-comments=translators: --force-po -o i18n/pureosc.pot
@@ -63,10 +66,10 @@ css:
 
 drun:
 	docker volume create pureosc_config
-	docker run -d -p 9999:9000 -v /var/run/docker.sock:/var/run/docker.sock -v pureosc_config:/var/www/oscconfig purehtml/admintst
+	docker run -d -p 9999:9000 -v /var/run/docker.sock:/var/run/docker.sock -v pureosc_config:/var/www/oscconfig purehtml/pureosc
 
 dimage:
-	docker build -t purehtml/admintst -t purehtml/admintst:`git rev-parse --short HEAD` .
-
+	composer --no-dev --optimize-autoloader update
+	docker build -t purehtml/pureosc -t purehtml/pureosc:`git rev-parse --short HEAD` .
 	
 	

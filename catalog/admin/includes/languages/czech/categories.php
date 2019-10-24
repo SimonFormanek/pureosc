@@ -144,6 +144,3 @@ define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Error: Category cannot be moved 
 //pure:NEW show all products categories, set canonical
 define('SAVE_NEW_CANONICAL','Uložit');
 define('SET_CANONICAL_TITLE','Změnit kanonickou (hlavní) kategorii');
-  
-define('SAVE_NEW_CANONICAL','Uložit');
-define('SET_CANONICAL_TITLE','Změnit kanonickou kategorii');

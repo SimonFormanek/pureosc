@@ -1,10 +1,10 @@
 <?php
 
-
 use Phinx\Migration\AbstractMigration;
 
-class ConfigSessionForceCookieUseTrue extends AbstractMigration
+class MariaDb103 extends AbstractMigration
 {
+
     /**
      * Change Method.
      *
@@ -32,15 +32,14 @@ class ConfigSessionForceCookieUseTrue extends AbstractMigration
      */
     public function change()
     {
-        $this->execute("
-        DELETE FROM configuration WHERE configuration_key='SESSION_FORCE_COOKIE_USE';
-				insert into configuration (configuration_title, configuration_key, configuration_value,   configuration_description, configuration_group_id, sort_order,  last_modified, date_added)  
-					values 
-				('Force session cookies', 'SESSION_FORCE_COOKIE_USE', 'True', 'Set to False to alow SID', '1', '1099', NOW(), NOW());
-        
-				
-
-        ");
-
+        $table = $this->table('products_description');
+        $table->changeColumn('products_description_slozeni', 'text',
+                ['default' => '', 'limit' => 'TEXT_LONG'])
+            ->changeColumn('products_description_novinka', 'text',
+                ['default' => '', 'limit' => 'TEXT_LONG'])
+            ->changeColumn('products_head_keywords_tag', 'text',
+                ['default' => '', 'limit' => 'TEXT_LONG'])
+            ->changeColumn('products_head_desc_tag', 'text',
+                ['default' => '', 'limit' => 'TEXT_LONG'])->save();
     }
 }
