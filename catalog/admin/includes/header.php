@@ -22,6 +22,8 @@ if ($messageStack->size > 0) {
 
 $pageTop = new \Ease\TWB\Navbar('topmenu', new \Ease\Html\ImgTag(DIR_WS_IMAGES . 'store_logo.png', _('Store logo'), ['height' => 20]), ['class' => 'navbar-inverse']);
 
+$pageTop->addMenuItem( new \Ease\Html\PTag( _('PureOSC Online Merchant'). 'v.' .tep_get_version(), ['class'=>'navbar-text'] ) );
+
 $pageTop->addMenuItem(new \Ease\TWB\LinkButton(tep_href_link(cfg('FILENAME_DEFAULT')), __('HEADER_TITLE_ADMINISTRATION', _('Administration')), 'inverse'));
 
 $pageTop->addMenuItem(new \Ease\TWB\LinkButton(tep_catalog_href_link(), __('HEADER_TITLE_ONLINE_CATALOG', _('Catalog')), 'inverse'));
@@ -29,7 +31,6 @@ $pageTop->addMenuItem(new \Ease\TWB\LinkButton(tep_catalog_href_link(), __('HEAD
 $pageTop->addMenuItem(new \Ease\TWB\LinkButton(tep_href_link(cfg('FILENAME_STATIC_GENERATOR_RESET')), _('Static generator reset'), 'inverse'));
 
 
-//'PureOSC Online Merchant v'.tep_get_version())
 
 if (tep_session_is_registered('admin')) {
 

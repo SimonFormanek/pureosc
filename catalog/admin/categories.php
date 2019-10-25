@@ -488,7 +488,7 @@ if($action == 'setexclude') {
                $sql_data_array['products_date_available']  = $products_date_available;
             }
             
-            $products_image = new upload('products_image');
+            $products_image = new \upload('products_image');
             $products_image->set_destination(DIR_FS_CATALOG_IMAGES);
             if ($products_image->parse() && $products_image->save()) {
                 $sql_data_array['products_image'] = tep_db_prepare_input($products_image->filename);
