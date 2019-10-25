@@ -30,7 +30,7 @@ if(tep_session_is_registered('customer_is_guest')) {
     		
 //define placeholders
 $placeholders=array('$storeurl', '$storename','$storeemail','$customername','$customeremail','$emailsubject', '$orderno', '$orderdate', '$statusnewhtml', '$statusnewtxt', '$comments', '$invoiceurl', '$separator');
-$values=array(HTTP_CATALOG_SERVER,STORE_NAME,STORE_OWNER_EMAIL_ADDRESS, $name, $email_address, EMAIL_TEXT_SUBJECT, $order_no , $order_date, $status_newhtml , $status_newtxt, $comments, $invoice_url, EMAIL_SEPARATOR);
+$values=array(HTTP_CATALOG_SERVER,STORE_NAME,STORE_OWNER_EMAIL_ADDRESS, $name, $email_address, EMAIL_TEXT_SUBJECT, $order_no , $order_date, $status_newhtml , $status_newtxt, $comments, $invoice_url, cfg('EMAIL_SEPARATOR'));
 $output_content_html=str_replace($placeholders, $values, $output_content_html);
 $output_content_txt=str_replace($placeholders, $values, $output_content_txt);
 

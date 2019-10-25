@@ -13,7 +13,7 @@ demodata: dbreset
 	cd bin ; ./import_catalog.sh
 	
 newphinx:
-	read -p "Enter CamelCase migration name : " migname ; phinx create $$migname -c ./phinx-adapter.php
+	read -p "Enter CamelCase migration name : " migname ; vendor/bin/phinx create $$migname -c ./phinx-adapter.php
 
 fresh:
 	composer update

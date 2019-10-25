@@ -515,7 +515,7 @@ class moneybookers
 
 // lets start with the email confirmation
             $email_order = STORE_NAME."\n".
-                EMAIL_SEPARATOR."\n".
+                cfg('EMAIL_SEPARATOR')."\n".
                 EMAIL_TEXT_ORDER_NUMBER.' '.$order_id."\n".
                 EMAIL_TEXT_INVOICE_URL.' '.tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO,
                     'order_id='.$order_id, 'SSL', false)."\n".
@@ -524,9 +524,9 @@ class moneybookers
                 $email_order .= tep_db_output($order->info['comments'])."\n\n";
             }
             $email_order .= EMAIL_TEXT_PRODUCTS."\n".
-                EMAIL_SEPARATOR."\n".
+                cfg('EMAIL_SEPARATOR')."\n".
                 $products_ordered.
-                EMAIL_SEPARATOR."\n";
+                cfg('EMAIL_SEPARATOR')."\n";
 
             for ($i = 0, $n = sizeof($order_totals); $i < $n; $i++) {
                 $email_order .= strip_tags($order_totals[$i]['title']).' '.strip_tags($order_totals[$i]['text'])."\n";
@@ -534,17 +534,17 @@ class moneybookers
 
             if ($order->content_type != 'virtual') {
                 $email_order .= "\n".EMAIL_TEXT_DELIVERY_ADDRESS."\n".
-                    EMAIL_SEPARATOR."\n".
+                    cfg('EMAIL_SEPARATOR')."\n".
                     tep_address_label($customer_id, $sendto, 0, '', "\n")."\n";
             }
 
             $email_order .= "\n".EMAIL_TEXT_BILLING_ADDRESS."\n".
-                EMAIL_SEPARATOR."\n".
+                cfg('EMAIL_SEPARATOR')."\n".
                 tep_address_label($customer_id, $billto, 0, '', "\n")."\n\n";
 
             if (is_object($$payment)) {
                 $email_order   .= EMAIL_TEXT_PAYMENT_METHOD."\n".
-                    EMAIL_SEPARATOR."\n";
+                    cfg('EMAIL_SEPARATOR')."\n";
                 $payment_class = $$payment;
                 $email_order   .= $payment_class->title."\n\n";
                 if ($payment_class->email_footer) {

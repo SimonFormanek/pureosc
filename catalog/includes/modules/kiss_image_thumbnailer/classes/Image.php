@@ -368,7 +368,7 @@ class Image
         // EOF sharpen filter
 
         $this->_image = $new_image;
-        if (KISSIT_APPLY_BACKGROUND == 'true' && $this->_take_resize_dimensions_as_absolute) {
+        if (cfg('KISSIT_APPLY_BACKGROUND') == 'true' && $this->_take_resize_dimensions_as_absolute) {
             // the image has scaled badly we need to add a background
             $info       = pathinfo($this->_filename);
             $image_name = $info['basename'];

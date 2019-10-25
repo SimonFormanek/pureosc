@@ -91,7 +91,7 @@ class phgpwebpay
         switch ($result) {
             case 50: //Payment Canceled
                 $order->info['order_status'] = 105;
-                tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order->info['order_status']."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                tep_db_query("update ".cfg('TABLE_ORDERS')." set orders_status = '".$order->info['order_status']."', last_modified = now() where orders_id = '".(int) $order_id."'");
                 break;
             case 14: //Payment ID Duplicity
 //                if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
@@ -124,15 +124,15 @@ class phgpwebpay
             $order_id = substr($cart_gpwebpay_Standard_ID,
                 strpos($cart_gpwebpay_Standard_ID, '-') + 1);
 
-            $check_query = tep_db_query('select orders_id from '.TABLE_ORDERS_STATUS_HISTORY.' where orders_id = "'.(int) $order_id.'" limit 1');
+            $check_query = tep_db_query('select orders_id from '.cfg('TABLE_ORDERS_STATUS_HISTORY').' where orders_id = "'.(int) $order_id.'" limit 1');
 
             if (tep_db_num_rows($check_query) < 1) {
-                tep_db_query('delete from '.TABLE_ORDERS.' where orders_id = "'.(int) $order_id.'"');
-                tep_db_query('delete from '.TABLE_ORDERS_TOTAL.' where orders_id = "'.(int) $order_id.'"');
-                tep_db_query('delete from '.TABLE_ORDERS_STATUS_HISTORY.' where orders_id = "'.(int) $order_id.'"');
-                tep_db_query('delete from '.TABLE_ORDERS_PRODUCTS.' where orders_id = "'.(int) $order_id.'"');
-                tep_db_query('delete from '.TABLE_ORDERS_PRODUCTS_ATTRIBUTES.' where orders_id = "'.(int) $order_id.'"');
-                tep_db_query('delete from '.TABLE_ORDERS_PRODUCTS_DOWNLOAD.' where orders_id = "'.(int) $order_id.'"');
+                tep_db_query('delete from '.cfg('TABLE_ORDERS').' where orders_id = "'.(int) $order_id.'"');
+                tep_db_query('delete from '.cfg('TABLE_ORDERS_TOTAL').' where orders_id = "'.(int) $order_id.'"');
+                tep_db_query('delete from '.cfg('TABLE_ORDERS_STATUS_HISTORY').' where orders_id = "'.(int) $order_id.'"');
+                tep_db_query('delete from '.cfg('TABLE_ORDERS_PRODUCTS').' where orders_id = "'.(int) $order_id.'"');
+                tep_db_query('delete from '.cfg('TABLE_ORDERS_PRODUCTS_ATTRIBUTES').' where orders_id = "'.(int) $order_id.'"');
+                tep_db_query('delete from '.cfg('TABLE_ORDERS_PRODUCTS_DOWNLOAD').' where orders_id = "'.(int) $order_id.'"');
 
                 tep_session_unregister('cart_gpwebpay_Standard_ID');
             }
@@ -167,20 +167,20 @@ class phgpwebpay
                 $order_id = substr($cart_gpwebpay_Standard_ID,
                     strpos($cart_gpwebpay_Standard_ID, '-') + 1);
 
-                $curr_check = tep_db_query("select currency from ".TABLE_ORDERS." where orders_id = '".(int) $order_id."'");
+                $curr_check = tep_db_query("select currency from ".cfg('TABLE_ORDERS')." where orders_id = '".(int) $order_id."'");
                 $curr       = tep_db_fetch_array($curr_check);
 
                 if (($curr['currency'] != $order->info['currency']) || ($cartID != substr($cart_gpwebpay_Standard_ID,
                         0, strlen($cartID)))) {
-                    $check_query = tep_db_query('select orders_id from '.TABLE_ORDERS_STATUS_HISTORY.' where orders_id = "'.(int) $order_id.'" limit 1');
+                    $check_query = tep_db_query('select orders_id from '.cfg('TABLE_ORDERS_STATUS_HISTORY').' where orders_id = "'.(int) $order_id.'" limit 1');
 
                     if (tep_db_num_rows($check_query) < 1) {
-                        tep_db_query('delete from '.TABLE_ORDERS.' where orders_id = "'.(int) $order_id.'"');
-                        tep_db_query('delete from '.TABLE_ORDERS_TOTAL.' where orders_id = "'.(int) $order_id.'"');
-                        tep_db_query('delete from '.TABLE_ORDERS_STATUS_HISTORY.' where orders_id = "'.(int) $order_id.'"');
-                        tep_db_query('delete from '.TABLE_ORDERS_PRODUCTS.' where orders_id = "'.(int) $order_id.'"');
-                        tep_db_query('delete from '.TABLE_ORDERS_PRODUCTS_ATTRIBUTES.' where orders_id = "'.(int) $order_id.'"');
-                        tep_db_query('delete from '.TABLE_ORDERS_PRODUCTS_DOWNLOAD.' where orders_id = "'.(int) $order_id.'"');
+                        tep_db_query('delete from '.cfg('TABLE_ORDERS').' where orders_id = "'.(int) $order_id.'"');
+                        tep_db_query('delete from '.cfg('TABLE_ORDERS_TOTAL').' where orders_id = "'.(int) $order_id.'"');
+                        tep_db_query('delete from '.cfg('TABLE_ORDERS_STATUS_HISTORY').' where orders_id = "'.(int) $order_id.'"');
+                        tep_db_query('delete from '.cfg('TABLE_ORDERS_PRODUCTS').' where orders_id = "'.(int) $order_id.'"');
+                        tep_db_query('delete from '.cfg('TABLE_ORDERS_PRODUCTS_ATTRIBUTES').' where orders_id = "'.(int) $order_id.'"');
+                        tep_db_query('delete from '.cfg('TABLE_ORDERS_PRODUCTS_DOWNLOAD').' where orders_id = "'.(int) $order_id.'"');
                     }
 
                     $insert_order = true;
@@ -289,8 +289,8 @@ class phgpwebpay
                             < $n2; $j++) {
                             if (DOWNLOAD_ENABLED == 'true') {
                                 $attributes_query = "select popt.products_options_name, poval.products_options_values_name, pa.options_values_price, pa.price_prefix, pad.products_attributes_maxdays, pad.products_attributes_maxcount , pad.products_attributes_filename
-                                       from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_OPTIONS_VALUES." poval, ".TABLE_PRODUCTS_ATTRIBUTES." pa
-                                       left join ".TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD." pad
+                                       from ".cfg('TABLE_PRODUCTS_OPTIONS')." popt, ".cfg('TABLE_PRODUCTS_OPTIONS_VALUES')." poval, ".cfg('TABLE_PRODUCTS_ATTRIBUTES')." pa
+                                       left join ".cfg('TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD')." pad
                                        on pa.products_attributes_id=pad.products_attributes_id
                                        where pa.products_id = '".$order->products[$i]['id']."'
                                        and pa.options_id = '".$order->products[$i]['attributes'][$j]['option_id']."'
@@ -301,7 +301,7 @@ class phgpwebpay
                                        and poval.language_id = '".$languages_id."'";
                                 $attributes       = tep_db_query($attributes_query);
                             } else {
-                                $attributes = tep_db_query("select popt.products_options_name, poval.products_options_values_name, pa.options_values_price, pa.price_prefix from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_OPTIONS_VALUES." poval, ".TABLE_PRODUCTS_ATTRIBUTES." pa where pa.products_id = '".$order->products[$i]['id']."' and pa.options_id = '".$order->products[$i]['attributes'][$j]['option_id']."' and pa.options_id = popt.products_options_id and pa.options_values_id = '".$order->products[$i]['attributes'][$j]['value_id']."' and pa.options_values_id = poval.products_options_values_id and popt.language_id = '".$languages_id."' and poval.language_id = '".$languages_id."'");
+                                $attributes = tep_db_query("select popt.products_options_name, poval.products_options_values_name, pa.options_values_price, pa.price_prefix from ".cfg('TABLE_PRODUCTS_OPTIONS')." popt, ".cfg('TABLE_PRODUCTS_OPTIONS_VALUES')." poval, ".cfg('TABLE_PRODUCTS_ATTRIBUTES')." pa where pa.products_id = '".$order->products[$i]['id']."' and pa.options_id = '".$order->products[$i]['attributes'][$j]['option_id']."' and pa.options_id = popt.products_options_id and pa.options_values_id = '".$order->products[$i]['attributes'][$j]['value_id']."' and pa.options_values_id = poval.products_options_values_id and popt.language_id = '".$languages_id."' and poval.language_id = '".$languages_id."'");
                             }
                             $attributes_values = tep_db_fetch_array($attributes);
 
@@ -438,13 +438,13 @@ class phgpwebpay
 
         $process_button_string = '';
 
-        $signer = new Signer(
+        $signer = new \AdamStipak\Webpay\Signer(
             constant('MODULE_PAYMENT_GPWEBPAY_SECRET_KEY'),
             constant('MODULE_PAYMENT_GPWEBPAY_SECRET_KEY_PASSWORD'),
             constant('MODULE_PAYMENT_GPWEBPAY_PUBLIC_KEY')      // Path of public key.
         );
 
-        $api = new Api(
+        $api = new \AdamStipak\Webpay\Api(
             constant('MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID'), // Merchant number.
             $this->form_action_url, // URL of webpay.
             $signer            // instance of \AdamStipak\Webpay\Signer.
@@ -469,10 +469,13 @@ class phgpwebpay
         $request = new PaymentRequest($varSym, intval($totalPrice),
             $gpwpcurrency, 1, $successUrl, $varSym);
 
-        $request->setDescription(self::convertToAscii(\Ease\Sand::rip($products_info)));
+        $request->setDescription(self::convertToAscii(\Ease\Functions::rip($products_info)));
         $request->setMerchantNumber(constant('MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID'));
         try {
             $parameters = $api->createPaymentParam($request);
+            
+            \PureOSC\CustomerLog::singleton()->logPaymentEvent($parameters);
+            
             foreach ($parameters as $key => $value) {
                 $process_button_string .= tep_draw_hidden_field($key, $value);
             }
@@ -498,7 +501,7 @@ class phgpwebpay
         global $$payment;
         $order_id          = substr($cart_gpwebpay_Standard_ID,
             strpos($cart_gpwebpay_Standard_ID, '-') + 1);
-        $my_status_query   = tep_db_query("select orders_status from ".TABLE_ORDERS." where orders_id = '".$order_id."'"); // TODO: fix PB to add all params"' and customers_id = '" . (int)$HTTP_POST_VARS['custom'] . "'");
+        $my_status_query   = tep_db_query("select orders_status from ".cfg('TABLE_ORDERS')." where orders_id = '".$order_id."'"); // TODO: fix PB to add all params"' and customers_id = '" . (int)$HTTP_POST_VARS['custom'] . "'");
         $current_status_id = 0;
         $delivered_status  = 101;
         $update_status     = true;
@@ -517,30 +520,35 @@ class phgpwebpay
                 case 50:
 //                case 14:
                     $order->info['order_status'] = 114;
-                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order->info['order_status']."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                    tep_db_query("update ".cfg('TABLE_ORDERS')." set orders_status = '".$order->info['order_status']."', last_modified = now() where orders_id = '".(int) $order_id."'");
                     tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));
                     exit;
                     break;
                 case 0:
-                    $order_status_id             = (int) MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID;
-                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                    $order_status_id             = (int) cfg('MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID');
+                    tep_db_query("update ". cfg('TABLE_ORDERS')." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
                     break;
                 case 35:
                     $order_status_id             = (int) 110; //session expired
-                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                    tep_db_query("update ".cfg('TABLE_ORDERS')." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
                     break;
                 case 17:
                     $order_status_id             = (int) 111; //Amount to deposit exceeds approved amount
-                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                    tep_db_query("update ".cfg('TABLE_ORDERS')." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
                     break;
                 case 1000:
+                case 1001:
+                case 1002:
+                case 1003:
+                case 1004:
                     $order_status_id             = (int) 112; //Technical Problem
-                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                    tep_db_query("update ".cfg('TABLE_ORDERS')." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                    \PureOSC\CustomerLog::singleton()->logPaymentFailure($_GET);
                     break;
 
                 default:
                     $order_status_id = (int) 109; //Unknow OSC Error
-                    tep_db_query("update ".TABLE_ORDERS." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
+                    tep_db_query("update ".cfg('TABLE_ORDERS')." set orders_status = '".$order_status_id."', last_modified = now() where orders_id = '".(int) $order_id."'");
                     tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));
                     exit();
                     break;
@@ -570,10 +578,10 @@ class phgpwebpay
                 == 'true')) {
                 if (DOWNLOAD_ENABLED == 'true') {
                     $stock_query_raw     = "SELECT products_quantity, pad.products_attributes_filename
-                                FROM ".TABLE_PRODUCTS." p
-                                LEFT JOIN ".TABLE_PRODUCTS_ATTRIBUTES." pa
+                                FROM ".cfg('TABLE_PRODUCTS')." p
+                                LEFT JOIN ".cfg('TABLE_PRODUCTS_ATTRIBUTES')." pa
                                 ON p.products_id=pa.products_id
-                                LEFT JOIN ".TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD." pad
+                                LEFT JOIN ".cfg('TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD')." pad
                                 ON pa.products_attributes_id=pad.products_attributes_id
                                 WHERE p.products_id = '".tep_get_prid($order->products[$i]['id'])."'";
                     // Will work with only one option for downloadable products
@@ -584,7 +592,7 @@ class phgpwebpay
                     }
                     $stock_query = tep_db_query($stock_query_raw);
                 } else {
-                    $stock_query = tep_db_query("select products_quantity from ".TABLE_PRODUCTS." where products_id = '".tep_get_prid($order->products[$i]['id'])."'");
+                    $stock_query = tep_db_query("select products_quantity from ".cfg('TABLE_PRODUCTS')." where products_id = '".tep_get_prid($order->products[$i]['id'])."'");
                 }
                 if (tep_db_num_rows($stock_query) > 0) {
                     $stock_values = tep_db_fetch_array($stock_query);
@@ -594,14 +602,14 @@ class phgpwebpay
                     } else {
                         $stock_left = $stock_values['products_quantity'];
                     }
-                    tep_db_query("update ".TABLE_PRODUCTS." set products_quantity = '".$stock_left."' where products_id = '".tep_get_prid($order->products[$i]['id'])."'");
+                    tep_db_query("update ".cfg('TABLE_PRODUCTS')." set products_quantity = '".$stock_left."' where products_id = '".tep_get_prid($order->products[$i]['id'])."'");
                     if (($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false')) {
-                        tep_db_query("update ".TABLE_PRODUCTS." set products_status = '0' where products_id = '".tep_get_prid($order->products[$i]['id'])."'");
+                        tep_db_query("update ".cfg('TABLE_PRODUCTS')." set products_status = '0' where products_id = '".tep_get_prid($order->products[$i]['id'])."'");
                     }
                 }
             } // Decrease stock ended
             // Update products_ordered (for bestsellers list)
-            tep_db_query("update ".TABLE_PRODUCTS." set products_ordered = products_ordered + ".sprintf('%d',
+            tep_db_query("update ".cfg('TABLE_PRODUCTS')." set products_ordered = products_ordered + ".sprintf('%d',
                     $order->products[$i]['qty'])." where products_id = '".tep_get_prid($order->products[$i]['id'])."'");
 
             //------insert customer choosen option to order--------
@@ -613,8 +621,8 @@ class phgpwebpay
                     < $n2; $j++) {
                     if (DOWNLOAD_ENABLED == 'true') {
                         $attributes_query = "select popt.products_options_name, poval.products_options_values_name, pa.options_values_price, pa.price_prefix, pad.products_attributes_maxdays, pad.products_attributes_maxcount , pad.products_attributes_filename
-                                   from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_OPTIONS_VALUES." poval, ".TABLE_PRODUCTS_ATTRIBUTES." pa
-                                   left join ".TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD." pad
+                                   from ".cfg('TABLE_PRODUCTS_OPTIONS')." popt, ".cfg('TABLE_PRODUCTS_OPTIONS_VALUES')." poval, ".cfg('TABLE_PRODUCTS_ATTRIBUTES')." pa
+                                   left join ".cfg('TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD')." pad
                                    on pa.products_attributes_id=pad.products_attributes_id
                                    where pa.products_id = '".$order->products[$i]['id']."'
                                    and pa.options_id = '".$order->products[$i]['attributes'][$j]['option_id']."'
@@ -625,7 +633,7 @@ class phgpwebpay
                                    and poval.language_id = '".$languages_id."'";
                         $attributes       = tep_db_query($attributes_query);
                     } else {
-                        $attributes = tep_db_query("select popt.products_options_name, poval.products_options_values_name, pa.options_values_price, pa.price_prefix from ".TABLE_PRODUCTS_OPTIONS." popt, ".TABLE_PRODUCTS_OPTIONS_VALUES." poval, ".TABLE_PRODUCTS_ATTRIBUTES." pa where pa.products_id = '".$order->products[$i]['id']."' and pa.options_id = '".$order->products[$i]['attributes'][$j]['option_id']."' and pa.options_id = popt.products_options_id and pa.options_values_id = '".$order->products[$i]['attributes'][$j]['value_id']."' and pa.options_values_id = poval.products_options_values_id and popt.language_id = '".$languages_id."' and poval.language_id = '".$languages_id."'");
+                        $attributes = tep_db_query("select popt.products_options_name, poval.products_options_values_name, pa.options_values_price, pa.price_prefix from ".cfg('TABLE_PRODUCTS_OPTIONS')." popt, ".cfg('TABLE_PRODUCTS_OPTIONS_VALUES')." poval, ".cfg('TABLE_PRODUCTS_ATTRIBUTES')." pa where pa.products_id = '".$order->products[$i]['id']."' and pa.options_id = '".$order->products[$i]['attributes'][$j]['option_id']."' and pa.options_id = popt.products_options_id and pa.options_values_id = '".$order->products[$i]['attributes'][$j]['value_id']."' and pa.options_values_id = poval.products_options_values_id and popt.language_id = '".$languages_id."' and poval.language_id = '".$languages_id."'");
                     }
                     $attributes_values = tep_db_fetch_array($attributes);
 
@@ -644,7 +652,7 @@ class phgpwebpay
 
         // lets start with the email confirmation
         $email_order = STORE_NAME."\n".
-            EMAIL_SEPARATOR."\n".
+            cfg('EMAIL_SEPARATOR')."\n".
             EMAIL_TEXT_ORDER_NUMBER.' '.$order_id."\n".
             EMAIL_TEXT_INVOICE_URL.' '.tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO,
                 'order_id='.$order_id, 'SSL', false)."\n".
@@ -653,27 +661,27 @@ class phgpwebpay
             $email_order .= tep_db_output($order->info['comments'])."\n\n";
         }
         $email_order .= EMAIL_TEXT_PRODUCTS."\n".
-            EMAIL_SEPARATOR."\n".
+            cfg('EMAIL_SEPARATOR')."\n".
             $products_ordered.
-            EMAIL_SEPARATOR."\n";
+            cfg('EMAIL_SEPARATOR')."\n";
 
         for ($i = 0, $n = sizeof($order_totals); $i < $n; $i++) {
             $email_order .= strip_tags($order_totals[$i]['title']).' '.strip_tags($order_totals[$i]['text'])."\n";
         }
 
         if ($order->content_type != 'virtual') {
-            $email_order .= "\n".EMAIL_TEXT_DELIVERY_ADDRESS."\n".
-                EMAIL_SEPARATOR."\n".
+            $email_order .= "\n".cfg('EMAIL_TEXT_DELIVERY_ADDRESS')."\n".
+                cfg('EMAIL_SEPARATOR')."\n".
                 tep_address_label($customer_id, $sendto, 0, '', "\n")."\n";
         }
 
-        $email_order .= "\n".EMAIL_TEXT_BILLING_ADDRESS."\n".
-            EMAIL_SEPARATOR."\n".
+        $email_order .= "\n".cfg('EMAIL_TEXT_BILLING_ADDRESS')."\n".
+            cfg('EMAIL_SEPARATOR')."\n".
             tep_address_label($customer_id, $billto, 0, '', "\n")."\n\n";
 
         if (is_object($$payment)) {
-            $email_order   .= EMAIL_TEXT_PAYMENT_METHOD."\n".
-                EMAIL_SEPARATOR."\n";
+            $email_order   .= cfg('EMAIL_TEXT_PAYMENT_METHOD')."\n".
+                cfg('EMAIL_SEPARATOR')."\n";
             $payment_class = $$payment;
             $email_order   .= $payment_class->title."\n\n";
             if ($payment_class->email_footer) {
@@ -769,7 +777,7 @@ class phgpwebpay
     function check()
     {
         if (!isset($this->_check)) {
-            $check_query  = tep_db_query("select configuration_value from ".TABLE_CONFIGURATION." where configuration_key = 'MODULE_PAYMENT_GPWEBPAY_STATUS'");
+            $check_query  = tep_db_query("select configuration_value from ".cfg('TABLE_CONFIGURATION')." where configuration_key = 'MODULE_PAYMENT_GPWEBPAY_STATUS'");
             $this->_check = tep_db_num_rows($check_query);
         }
         return $this->_check;
@@ -778,20 +786,20 @@ class phgpwebpay
     function set_order_status($order_status, $set_to_public)
     {
         $status_id   = 0;
-        $check_query = tep_db_query("select orders_status_id from ".TABLE_ORDERS_STATUS." where orders_status_name = '".$order_status."' limit 1");
+        $check_query = tep_db_query("select orders_status_id from ".cfg('TABLE_ORDERS_STATUS')." where orders_status_name = '".$order_status."' limit 1");
         if (tep_db_num_rows($check_query) < 1) {
-            $status_query = tep_db_query("select max(orders_status_id) as status_id from ".TABLE_ORDERS_STATUS);
+            $status_query = tep_db_query("select max(orders_status_id) as status_id from ".cfg('TABLE_ORDERS_STATUS'));
             $status       = tep_db_fetch_array($status_query);
             $status_id    = $status['status_id'] + 1;
             $languages    = tep_get_languages();
-            $flags_query  = tep_db_query("describe ".TABLE_ORDERS_STATUS." public_flag");
+            $flags_query  = tep_db_query("describe ".cfg('TABLE_ORDERS_STATUS')." public_flag");
             if (tep_db_num_rows($flags_query) == 1) {
                 foreach ($languages as $lang) {
-                    tep_db_query("insert into ".TABLE_ORDERS_STATUS." (orders_status_id, language_id, orders_status_name, public_flag) values ('".$status_id."', '".$lang['id']."', "."'".$order_status."', 1)");
+                    tep_db_query("insert into ".cfg('TABLE_ORDERS_STATUS')." (orders_status_id, language_id, orders_status_name, public_flag) values ('".$status_id."', '".$lang['id']."', "."'".$order_status."', 1)");
                 }
             } else {
                 foreach ($languages as $lang) {
-                    tep_db_query("insert into ".TABLE_ORDERS_STATUS." (orders_status_id, language_id, orders_status_name) values ('".$status_id."', '".$lang['id']."', "."'".$order_status."')");
+                    tep_db_query("insert into ".cfg('TABLE_ORDERS_STATUS')." (orders_status_id, language_id, orders_status_name) values ('".$status_id."', '".$lang['id']."', "."'".$order_status."')");
                 }
             }
         } else {
@@ -811,38 +819,38 @@ class phgpwebpay
             true);
 
         $sort_order = 0;
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable gpwebpay on your webshop?', 'MODULE_PAYMENT_GPWEBPAY_STATUS', 'False', '', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Gateway Server', 'MODULE_PAYMENT_GPWEBPAY_GATEWAY_SERVER', 'Production', 'Use the testing or production gateway server for transactions', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'Production\', \'Test\'), ', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Your merchant id', 'MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID', '', 'Your merchant unique identifier (supplied by gpwebpay)', '6', '".$sort_order++."', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable gpwebpay on your webshop?', 'MODULE_PAYMENT_GPWEBPAY_STATUS', 'False', '', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Gateway Server', 'MODULE_PAYMENT_GPWEBPAY_GATEWAY_SERVER', 'Production', 'Use the testing or production gateway server for transactions', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'Production\', \'Test\'), ', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Your merchant id', 'MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID', '', 'Your merchant unique identifier (supplied by gpwebpay)', '6', '".$sort_order++."', now())");
 
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('".__('Your secret key')."', 'MODULE_PAYMENT_GPWEBPAY_SECRET_KEY', '', '".__('Your secret key (supplied by gpwebpay)')."', '6', '".$sort_order++."', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Your secret key password', 'MODULE_PAYMENT_GPWEBPAY_SECRET_KEY_PASSWORD', '', '".__('Your secret key password (supplied by gpwebpay)')."', '6', '".$sort_order++."', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Your public key', 'MODULE_PAYMENT_GPWEBPAY_PUBLIC_KEY', '', '".__('Your public key (supplied by gpwebpay)')."', '6', '".$sort_order++."', now())");
-
-
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Flow Layout', 'MODULE_PAYMENT_GPWEBPAY_FLOW_LAYOUT', 'multi_page', 'Layout for the buyer flow', '6', '".$sort_order++."', now())");
-
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Decrease stock on payment creation', 'MODULE_PAYMENT_GPWEBPAY_DECREASE_STOCK_ON_CREATION', 'False', 'Do you want to decrease stock upon payment creation?', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Debug E-Mail Address', 'MODULE_PAYMENT_GPWEBPAY_DEBUG_EMAIL', '', 'All parameters of an Invalid IPN notification will be sent to this email address if one is entered.', '6', '".$sort_order++."', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('".__('Your secret key')."', 'MODULE_PAYMENT_GPWEBPAY_SECRET_KEY', '', '".__('Your secret key (supplied by gpwebpay)')."', '6', '".$sort_order++."', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Your secret key password', 'MODULE_PAYMENT_GPWEBPAY_SECRET_KEY_PASSWORD', '', '".__('Your secret key password (supplied by gpwebpay)')."', '6', '".$sort_order++."', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Your public key', 'MODULE_PAYMENT_GPWEBPAY_PUBLIC_KEY', '', '".__('Your public key (supplied by gpwebpay)')."', '6', '".$sort_order++."', now())");
 
 
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_GPWEBPAY_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '".$sort_order++."', 'tep_get_zone_class_title', 'tep_cfg_pull_down_zone_classes(', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Flow Layout', 'MODULE_PAYMENT_GPWEBPAY_FLOW_LAYOUT', 'multi_page', 'Layout for the buyer flow', '6', '".$sort_order++."', now())");
 
-        //tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('E-Mail Address', 'MODULE_PAYMENT_GPWEBPAY_ID', '', 'The gpwebpay seller e-mail address to accept payments for', '6', '4', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_GPWEBPAY_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '".$sort_order++."', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Decrease stock on payment creation', 'MODULE_PAYMENT_GPWEBPAY_DECREASE_STOCK_ON_CREATION', 'False', 'Do you want to decrease stock upon payment creation?', '6', '".$sort_order++."', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Debug E-Mail Address', 'MODULE_PAYMENT_GPWEBPAY_DEBUG_EMAIL', '', 'All parameters of an Invalid IPN notification will be sent to this email address if one is entered.', '6', '".$sort_order++."', now())");
 
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay Acknowledged Order Status', 'MODULE_PAYMENT_GPWEBPAY_CREATE_ORDER_STATUS_ID', '".$created_status_id."', 'Set the status of orders made with this payment module to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay sum too low Order Status', 'MODULE_PAYMENT_GPWEBPAY_SUM_TOO_LOW_ORDER_STATUS_ID', '".$sum_too_low_status_id."', 'Set the status of orders which are paid with insufficient fund (sum too low) to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
-        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay Completed Order Status', 'MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID', '".$completed_status_id."', 'Set the status of orders which are confirmed as paid (approved) to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
 
-//        tep_db_query("insert into ".TABLE_CONFIGURATION." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('"._('Signing Check error message')."', 'MODULE_PAYMENT_GPWEBPAY_SIGNING_STATUS', 'False', '', '6', '".$sort_order++."', 'gpwebpay::getSigningErrorMessage' , ','gpwebpay::getSigningErrorMessage('");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_GPWEBPAY_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '".$sort_order++."', 'tep_get_zone_class_title', 'tep_cfg_pull_down_zone_classes(', now())");
+
+        //tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('E-Mail Address', 'MODULE_PAYMENT_GPWEBPAY_ID', '', 'The gpwebpay seller e-mail address to accept payments for', '6', '4', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_GPWEBPAY_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '".$sort_order++."', now())");
+
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay Acknowledged Order Status', 'MODULE_PAYMENT_GPWEBPAY_CREATE_ORDER_STATUS_ID', '".$created_status_id."', 'Set the status of orders made with this payment module to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay sum too low Order Status', 'MODULE_PAYMENT_GPWEBPAY_SUM_TOO_LOW_ORDER_STATUS_ID', '".$sum_too_low_status_id."', 'Set the status of orders which are paid with insufficient fund (sum too low) to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
+        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set gpwebpay Completed Order Status', 'MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID', '".$completed_status_id."', 'Set the status of orders which are confirmed as paid (approved) to this value', '6', '".$sort_order++."', 'tep_cfg_pull_down_order_statuses(', 'tep_get_order_status_name', now())");
+
+//        tep_db_query("insert into ".cfg('TABLE_CONFIGURATION')." (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('"._('Signing Check error message')."', 'MODULE_PAYMENT_GPWEBPAY_SIGNING_STATUS', 'False', '', '6', '".$sort_order++."', 'gpwebpay::getSigningErrorMessage' , ','gpwebpay::getSigningErrorMessage('");
     }
 
     function remove()
     {
-        tep_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key in ('".implode("', '",
+        tep_db_query("delete from ".cfg('TABLE_CONFIGURATION')." where configuration_key in ('".implode("', '",
                 $this->keys())."')");
-        tep_db_query("delete from ".TABLE_ORDERS_STATUS." where orders_status_name like '%[gpwebpay]%'");
+        tep_db_query("delete from ".cfg('TABLE_ORDERS_STATUS')." where orders_status_name like '%[gpwebpay]%'");
     }
 
     function keys()
@@ -903,32 +911,32 @@ class phgpwebpay
     public static function getSigningErrorMessage()
     {
         $success = 'OK';
-        $signer  = new \AdamStipak\Webpay\Signer(
+        $signer  = new Signer(
             constant('MODULE_PAYMENT_GPWEBPAY_SECRET_KEY'),
             constant('MODULE_PAYMENT_GPWEBPAY_SECRET_KEY_PASSWORD'),
             constant('MODULE_PAYMENT_GPWEBPAY_PUBLIC_KEY')      // Path of public key.
         );
 
-        $api = new \AdamStipak\Webpay\Api(
+        $api = new Api(
             constant('MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID'), // Merchant number.
             self::getServerURL(), // URL of webpay.
             $signer            // instance of \AdamStipak\Webpay\Signer.
         );
 
-        $successUrl = \Ease\WebPage::phpSelf();
+        $successUrl = WebPage::phpSelf();
 
         $varSym = time();
 
         $request = new PaymentRequest($varSym, $varSym, PaymentRequest::CZK, 1,
             $successUrl, $varSym);
 
-        $request->setDescription(self::convertToAscii(\Ease\Sand::rip(_('Testing payment'))));
+        $request->setDescription(self::convertToAscii(Sand::rip(__('Testing payment'))));
 
         try {
             $parameters = $api->createPaymentParam($request);
-        } catch (\AdamStipak\Webpay\SignerException $e) {
+        } catch (SignerException $e) {
             $success = $e->getMessage();
-            Ease\Shared::instanced()->addStatusMessage('GPWEBPAY: '.$success,
+            Shared::instanced()->addStatusMessage('GPWEBPAY: '.$success,
                 'error');
         }
         return $success;

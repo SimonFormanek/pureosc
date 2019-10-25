@@ -61,9 +61,9 @@ if ($_GET['action'] == 'process') {
         $gv_query    = tep_db_query("insert into ".TABLE_COUPON_EMAIL_TRACK." (coupon_id, customer_id_sent, sent_firstname, sent_lastname, emailed_to, date_sent) values ('".$insert_id."' ,'".$customer_id."', '".addslashes($gv_customer['customers_firstname'])."', '".addslashes($gv_customer['customers_lastname'])."', '".$_POST['email']."', now())");
 
         $gv_email = STORE_NAME."\n".
-            EMAIL_SEPARATOR."\n".
+            cfg('EMAIL_SEPARATOR')."\n".
             sprintf(EMAIL_GV_TEXT_HEADER, $currencies->format($_POST['amount']))."\n".
-            EMAIL_SEPARATOR."\n".
+            cfg('EMAIL_SEPARATOR')."\n".
             sprintf(EMAIL_GV_FROM, stripslashes($_POST['send_name']))."\n";
         if (isset($_POST['message'])) {
             $gv_email .= EMAIL_GV_MESSAGE."\n";

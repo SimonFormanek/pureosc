@@ -211,7 +211,7 @@ if (isset($action)) {
 
                     //Send text email
                     $email = STORE_NAME."\n".
-                        EMAIL_SEPARATOR."\n".
+                        cfg('EMAIL_SEPARATOR')."\n".
                         EMAIL_TEXT_ORDER_NUMBER.' '.(int) $oID."\n".
                         EMAIL_TEXT_INVOICE_URL.' '.tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO,
                             'order_id='.(int) $oID, 'SSL')."\n".
@@ -655,7 +655,7 @@ if (isset($action)) {
             }
 
             $Text_Billing_Adress = "\n".EMAIL_TEXT_BILLING_ADDRESS."\n".
-                EMAIL_SEPARATOR."\n".
+                cfg('EMAIL_SEPARATOR')."\n".
                 $order->billing['name']."\n";
             if ($order->billing['company']) {
                 $Text_Billing_Adress .= $order->billing['company']."\n";
@@ -673,7 +673,7 @@ if (isset($action)) {
             $Text_Billing_Adress   .= $order->billing['postcode']."\n".
                 $order->billing['country']."\n\n";
             $Text_Delivery_Address = "\n".EMAIL_TEXT_DELIVERY_ADDRESS."\n".
-                EMAIL_SEPARATOR."\n".
+                cfg('EMAIL_SEPARATOR')."\n".
                 $order->delivery['name']."\n";
             if ($order->delivery['company']) {
                 $Text_Delivery_Address .= $order->delivery['company']."\n";
@@ -770,15 +770,15 @@ if (isset($action)) {
             if ($standaard_email == 'true') {
                 //Build the standaard email
                 $email_order = STORE_NAME."\n".
-                    EMAIL_SEPARATOR."\n".
+                    cfg('EMAIL_SEPARATOR')."\n".
                     EMAIL_TEXT_ORDER_NUMBER.' '.(int) $oID."\n".
                     EMAIL_TEXT_INVOICE_URL.' '.tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO,
                         'order_id='.(int) $oID, 'SSL')."\n".
                     EMAIL_TEXT_DATE_MODIFIED.' '.strftime(DATE_FORMAT_LONG)."\n\n";
                 $email_order .= EMAIL_TEXT_PRODUCTS."\n".
-                    EMAIL_SEPARATOR."\n".
+                    cfg('EMAIL_SEPARATOR')."\n".
                     $products_ordered.
-                    EMAIL_SEPARATOR."\n";
+                    cfg('EMAIL_SEPARATOR')."\n";
 
                 for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) {
                     $email_order .= strip_tags($order->totals[$i]['title']).' '.strip_tags($order->totals[$i]['text'])."\n";
@@ -790,7 +790,7 @@ if (isset($action)) {
 
                 $email_order .= $Text_Billing_Adress;
                 $email_order .= EMAIL_TEXT_PAYMENT_METHOD."\n".
-                    EMAIL_SEPARATOR."\n";
+                    cfg('EMAIL_SEPARATOR')."\n";
                 $email_order .= $order->info['payment_method']."\n\n";
 
                 if (EMAIL_TEXT_FOOTER) {

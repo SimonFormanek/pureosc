@@ -6,11 +6,6 @@ class UserLog extends AbstractMigration
 {
     public $tableName = 'user_log';
 
-    public function up()
-    {
-        
-    }
-
     /**
      */
     public function change()
@@ -47,7 +42,7 @@ class UserLog extends AbstractMigration
         foreach ($columnsUsed as $columnUsed) {
             $columnsToChecksum[] = '`'.$columnUsed->getName().'`';
         }
-        $this->query('INSERT INTO user_log VALUES(0,NOW(),0,0,\'dbseed\',\'established\',\'yes\',\'none\',\'NULL\')');
+        $this->query('INSERT INTO '.$this->tableName.' VALUES(0,NOW(),0,0,\'dbseed\',\'established\',\'yes\',\'none\',\'NULL\')');
 
 //        $table->insert([
 //            'venue' => 'dbseed',
@@ -56,6 +51,8 @@ class UserLog extends AbstractMigration
 //            'extid' => 'none'
 //        ]);
 
+        
+        
 
         $this->execute("
 
@@ -95,18 +92,16 @@ END;
 
 
         $this->execute("
+ DROP TRIGGER IF EXISTS `".$this->tableName."_upd`;           
  CREATE TRIGGER ".$this->tableName."_upd BEFORE UPDATE ON ".$this->tableName." FOR EACH ROW
  SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Forbidden update ".$this->tableName." record';
 ");
 
         $this->execute("
+ DROP TRIGGER IF EXISTS `".$this->tableName."_del`;           
  CREATE TRIGGER ".$this->tableName."_del BEFORE DELETE ON ".$this->tableName." FOR EACH ROW
  SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Forbidden delete ".$this->tableName." record';
 ");
     }
 
-    public function down()
-    {
-        $this->exec('DROP FUNCTION IF EXISTS `row_checksum`');
-    }
 }

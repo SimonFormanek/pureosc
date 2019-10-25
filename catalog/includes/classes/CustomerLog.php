@@ -32,7 +32,7 @@ class CustomerLog extends Engine {
      * @var string 
      */
     public $venue = null;
-    public $myTable = 'gdpr_log';
+    public $myTable = 'user_log';
     public $myKeyColumn = 'id';
     public $createColumn = 'timestamp';
 
@@ -365,6 +365,17 @@ class CustomerLog extends Engine {
             }
         }
         return self::$instance;
+    }
+
+    /**
+     * Log GPWebPay Request
+     * 
+     * @param array $parameters
+     * 
+     * @return boolean success
+     */
+    public function logPaymentEvent(array $parameters) {
+        return $this->logEvent(_('GPWebPay Request Prepared'), json_encode($parameters), ui\WebPage::getUri() );
     }
 
 }

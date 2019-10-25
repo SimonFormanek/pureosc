@@ -274,7 +274,7 @@ if ($result == 'VERIFIED')
         // EOF content type fix by AlexStudio
         // $order variables have been changed from checkout_process to work with the variables from the function query () instead of cart () in the order class
         $email_order = STORE_NAME."\n".
-        EMAIL_SEPARATOR."\n".
+        cfg('EMAIL_SEPARATOR')."\n".
         EMAIL_TEXT_ORDER_NUMBER.' '.$_POST['order_id']."\n".
         EMAIL_TEXT_INVOICE_URL.' '.tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id='.$_POST['order_id'], 'SSL', false)."\n".
         EMAIL_TEXT_DATE_ORDERED.' '.strftime(DATE_FORMAT_LONG)."\n\n";
@@ -287,9 +287,9 @@ if ($result == 'VERIFIED')
         // EOF order comment fix by AlexStudio
         
         $email_order .= EMAIL_TEXT_PRODUCTS."\n".
-        EMAIL_SEPARATOR."\n".
+        cfg('EMAIL_SEPARATOR')."\n".
         $products_ordered.
-        EMAIL_SEPARATOR."\n";
+        cfg('EMAIL_SEPARATOR')."\n";
 
         for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++)
         {
@@ -300,17 +300,17 @@ if ($result == 'VERIFIED')
         {
             // EOF content type fix by AlexStudio
             $email_order .= "\n".EMAIL_TEXT_DELIVERY_ADDRESS."\n".
-            EMAIL_SEPARATOR."\n".
+            cfg('EMAIL_SEPARATOR')."\n".
             tep_address_format($order->delivery['format_id'], $order->delivery, 0, '', "\n")."\n";
         }
 
         $email_order .= "\n".EMAIL_TEXT_BILLING_ADDRESS."\n".
-        EMAIL_SEPARATOR."\n".
+        cfg('EMAIL_SEPARATOR')."\n".
         tep_address_format($order->billing['format_id'], $order->billing, 0, '', "\n")."\n\n";
         if (is_object($$payment))
         {
             $email_order .= EMAIL_TEXT_PAYMENT_METHOD."\n".
-            EMAIL_SEPARATOR."\n";
+            cfg('EMAIL_SEPARATOR')."\n";
             $payment_class = $$payment;
             $email_order .= $payment_class->title."\n\n";
             if ($payment_class->email_footer)

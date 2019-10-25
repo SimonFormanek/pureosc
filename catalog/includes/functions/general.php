@@ -1852,3 +1852,14 @@ function  __( string $constant, string $gettText){
     return defined($constant) ? constant($constant) : $gettText ;
 }
 
+/**
+ * Configuration wrapper
+ * 
+ * @param string $constant
+ * 
+ * @return string|\Exception
+ */
+function cfg(string $constant)
+{
+    return defined($constant) ? constant($constant) : new \Exception(sprintf( _('Configuration key %s not defined'),$constant));
+}

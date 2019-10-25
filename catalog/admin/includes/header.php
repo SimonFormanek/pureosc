@@ -1,7 +1,7 @@
 <?php
+namespace PureOSC\Admin;
 
 use Ease\Html\SpanTag;
-use FlexiPeeHP\ui\TWB\StatusInfoBox;
 
 /*
   $Id$
@@ -32,8 +32,8 @@ if ($messageStack->size > 0) {
 
             if (tep_session_is_registered('admin')) {
                 if (defined('USE_FLEXIBEE') && constant('USE_FLEXIBEE') == 'true') {
-                    echo ' | FlexiBee '.new SpanTag(new StatusInfoBox(),
-                        ['style' => 'color: white']);
+//                    echo ' | FlexiBee '.new SpanTag(new \FlexiPeeHP\ui\TWB\StatusInfoBox(),
+//                        ['style' => 'color: white']);
                 }
             }
             ?></td>

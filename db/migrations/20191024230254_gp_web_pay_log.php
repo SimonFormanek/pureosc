@@ -2,8 +2,8 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class AdministratorsAddPubkey extends AbstractMigration {
-
+class GpWebPayLog extends AbstractMigration
+{
     /**
      * Change Method.
      *
@@ -29,12 +29,9 @@ class AdministratorsAddPubkey extends AbstractMigration {
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change() {
-        $table = $this->table('administrators');
-        if (!$table->hasColumn('pubkey')) {
-            $table->addColumn('pubkey', 'string', ['after' => 'user_password', 'limit' => 1024])
-                    ->update();
-        }
+    public function change()
+    {
+        $table = $this->table('user_log');
+        $table->changeColumn('answer', 'text')->save();
     }
-
 }

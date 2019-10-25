@@ -12,7 +12,6 @@
         "ext-gettext": "*",
         "ext-intl": "*",
         "spoje.net/flexibee": "dev-master",
-        "vitexsoftware/flexibee-bricks": "* dev-master",
         "league/commonmark": "*",
         "dompdf/dompdf": "dev-master",
         "adamstipak/webpay-php": "*",
@@ -22,7 +21,8 @@
         "purehtml/purecrypto": "dev-master",
         "blahasoft/qrfaktura": "dev-master",
         "vitexsoftware/ease-fluentpdo": "dev-master",
-        "vitexsoftware/ease-twbootstrap-widgets-flexibee": "dev-master"
+        "vitexsoftware/ease-twbootstrap-widgets-flexibee": "dev-master",
+        "vitexsoftware/ease-html": "dev-master"
     },
     "autoload": {
         "psr-4": {
