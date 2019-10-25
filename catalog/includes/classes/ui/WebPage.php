@@ -12,7 +12,7 @@ namespace PureOSC\ui;
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class WebPage extends \Ease\WebPage
+class WebPage extends \Ease\TWB\WebPage
 {
     /**
      * Where to look for jquery script

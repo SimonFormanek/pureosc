@@ -1,5 +1,7 @@
 <?php
 
+namespace PureOSC\Admin;
+
 use Ease\Html\ATag;
 use Ease\Html\H1Tag;
 use Ease\Html\UlTag;
@@ -47,7 +49,7 @@ $container->addItem($checker2);
 if ($checker2->connected()) {
     $adresar   = new Adresar();
     $adresar->logBanner('PureOSC Sync');
-    $kontakter = new PureOSC\flexibee\Kontakt();
+    $kontakter = new \PureOSC\flexibee\Kontakt();
     $ids       = $adresar->getAllFromFlexibee(['typVztahuK' => 'typVztahu.odberDodav']);
 
     foreach ($ids as $addressData) {

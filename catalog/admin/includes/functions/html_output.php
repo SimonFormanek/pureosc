@@ -526,7 +526,7 @@ function tep_draw_button($title = null, $icon = null, $link = null,
     $button = '<span class="tdbLink">';
 
     if (($params['type'] == 'button') && isset($link)) {
-        $button .= '<a id="tdb'.$button_counter.'" href="'.$link.'"';
+        $button .= '<a class="btn  btn-default" id="tdb'.$button_counter.'" href="'.$link.'"';
 
         if (isset($params['newwindow'])) {
             $button .= ' target="_blank"';

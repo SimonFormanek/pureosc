@@ -15,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
         <meta name="robots" content="noindex,nofollow">
-        <title><?php echo STORE_NAME.' - '.TITLE; ?></title>
+        <title><?php echo cfg('STORE_NAME').' - '.cfg('TITLE'); ?></title>
         <base href="<?php
         echo ($request_type == 'SSL') ? HTTPS_SERVER.DIR_WS_HTTPS_ADMIN : HTTP_SERVER.DIR_WS_ADMIN;
         ?>" />
@@ -80,12 +80,9 @@
 // the closing brace here forms part of the php code block above
         } //if you decide to leave out the php code block above then comment or remove this too
 
-        if (Ease\Shared::instanced()->cascadeStyles) {
-            echo \Ease\Html\HeadTag::getStylesRendered(Ease\Shared::instanced()->cascadeStyles);
-        }
-        if (Ease\Shared::instanced()->javaScripts) {
-            echo \Ease\Html\HeadTag::getScriptsRendered(Ease\Shared::instanced()->javaScripts);
-        }
+            echo \Ease\Html\HeadTag::getStylesRendered(\PureOSC\ui\WebPage::singleton()->cascadeStyles);
+            echo \Ease\Html\HeadTag::getScriptsRendered(\PureOSC\ui\WebPage::singleton()->javaScripts);
+            
         ?>
     </head>
     <body>

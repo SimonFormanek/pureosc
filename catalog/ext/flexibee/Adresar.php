@@ -25,7 +25,6 @@ class Adresar extends \FlexiPeeHP\Adresar
 
     public function __construct($init = null, $options = array())
     {
-        $this->takemyTable('customers');
         parent::__construct($init, $options);
     }
 

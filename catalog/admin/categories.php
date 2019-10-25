@@ -948,7 +948,7 @@ if ($action == 'new_product') {
         'products_sort_order' => ''
     ];
 
-    $pInfo = new objectInfo($parameters);
+    $pInfo = new \objectInfo($parameters);
 
     if (isset($_GET['pID']) && empty($_POST)) {
 
@@ -1844,9 +1844,9 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                     <td class="smallText" align="right">
                                         <?php
                                         echo tep_draw_form('search',
-                                            FILENAME_CATEGORIES, '',
+                                            cfg('FILENAME_CATEGORIES'), '',
                                             'get');
-                                        echo HEADING_TITLE_SEARCH . ' ' . tep_draw_input_field('search');
+                                        echo __('HEADING_TITLE_SEARCH',_('Search')) . ' ' . tep_draw_input_field('search');
                                         echo tep_hide_session_id() . '</form>';
                                         ?>
                                     </td>
@@ -1914,7 +1914,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                         $cInfo_array = array_merge($categories,
                                             $category_childs,
                                             $category_products);
-                                        $cInfo = new objectInfo($cInfo_array);
+                                        $cInfo = new \objectInfo($cInfo_array);
                                     }
 
                                     if (isset($cInfo) && is_object($cInfo)
