@@ -662,7 +662,7 @@ $oPage = new ui\WebPage();
 
 \Ease\Shared::instanced()->webPage($oPage);
 
-$userLog = new CustomerLog(null, $customer_id);
+$userLog = new CustomerLog(null, isset($customer_id) ? $customer_id : null);
 
 $oUser = new \Ease\Anonym();
 \Ease\Shared::instanced()->user($oUser);

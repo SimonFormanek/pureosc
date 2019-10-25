@@ -1,1 +1,1 @@
-/home/dev1906/WWW/osc/db/seeds/demo.sql
+../db/seeds/demo.sql

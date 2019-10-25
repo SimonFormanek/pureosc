@@ -33,7 +33,7 @@ class ConfigDefaultManufacturer extends AbstractMigration
     public function change()
     {
       $this->execute("insert into manufacturers (manufacturers_name) VALUES ('Change this to Default')");
-      $this->execute("insert into manufacturers_info (manufacturers_id, languages_id) VALUES (1,1)");
-      $this->execute("insert into manufacturers_info (manufacturers_id, languages_id) VALUES (1,4)");
+      $this->execute("insert into manufacturers_info (manufacturers_id, languages_id, manufacturers_url) VALUES (1,1,'')");
+      $this->execute("insert into manufacturers_info (manufacturers_id, languages_id,manufacturers_url) VALUES (1,4,'')");
     }
 }

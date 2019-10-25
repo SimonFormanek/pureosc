@@ -365,8 +365,6 @@ define('PRODUCT_REMOVED', '%s has been removed from your Cart', true);
 // bootstrap helper
 define('MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION', '', true);
 
-// sorting product_listing module
-define('TEXT_SORT_BY', 'Sort By ', true);
 
 /*
  * ***********************************************************************

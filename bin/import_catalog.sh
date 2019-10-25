@@ -74,7 +74,6 @@ ALTER TABLE products ADD  products_biblio_publication_year varchar(255) COLLATE 
 ALTER TABLE products drop INDEX idx_products_date_added;
 
 ALTER TABLE products ADD KEY idx_products_date_available (products_date_available); 
-ALTER TABLE products ADD KEY idx_products_date_added (products_date_added);
 ALTER TABLE products ADD KEY idx_products_custom_date (products_custom_date);
 ALTER TABLE products ADD KEY idx_products_sort_order (products_sort_order);
 
@@ -111,6 +110,7 @@ ALTER TABLE products_description ADD products_head_sub_text text;
 ALTER TABLE products_description ADD products_head_breadcrumb_text  varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL;
 ALTER TABLE products_description ADD   cached int(1) DEFAULT '0';              
 ALTER TABLE products_description ADD   cached_admin int(1) DEFAULT '0';        
+ALTER TABLE products_description ADD products_alias varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '';
 
 #PRODUCTS_TO_CATEGORIES #####################################################
 ALTER TABLE products_to_categories ADD  canonical int(1) DEFAULT NULL;

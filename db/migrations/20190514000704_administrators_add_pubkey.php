@@ -33,7 +33,10 @@ class AdministratorsAddPubkey extends AbstractMigration
     public function change()
     {
      $table = $this->table('administrators');
+     $column = $table->hasColumn('pubkey');
+     if (!$column) {
         $table->addColumn('pubkey', 'string', ['after' => 'user_password', 'limit' => 1024])
               ->update();
+      }
     }
 }

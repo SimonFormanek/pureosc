@@ -33,11 +33,7 @@ class MariaDb103 extends AbstractMigration
     public function change()
     {
         $table = $this->table('products_description');
-        $table->changeColumn('products_description_slozeni', 'text',
-                ['default' => '', 'limit' => 'TEXT_LONG'])
-            ->changeColumn('products_description_novinka', 'text',
-                ['default' => '', 'limit' => 'TEXT_LONG'])
-            ->changeColumn('products_head_keywords_tag', 'text',
+        $table->changeColumn('products_head_keywords_tag', 'text',
                 ['default' => '', 'limit' => 'TEXT_LONG'])
             ->changeColumn('products_head_desc_tag', 'text',
                 ['default' => '', 'limit' => 'TEXT_LONG'])->save();
