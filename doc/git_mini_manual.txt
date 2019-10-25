@@ -1,0 +1,369 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.26
+Creation-Date: Unknown
+Modification-Date: Fri, 29 Mar 2019 04:09:29 +0100
+
+[ ] @ready
+====== git mini manual ======
+
+==== Git Book - manual: ====
+	https://git-scm.com/book/cs/v1/
+
+===== Vytvořte (upravte) si  ~/.gitconfig =====
+
+'''
+	[user]
+		name = Simon Formanek
+		email = mail@simonformanek.cz
+'''
+
+'''
+	[alias]
+	  co = checkout
+	  ci = commit
+	  st = status
+	  br = branch
+	  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	  type = cat-file -t
+	  dump = cat-file -p
+	  unstage = reset HEAD --
+	  last = log -1 HEAD
+	[merge]
+		tool = meld
+	[core]
+		editor = mcedit
+		#accented utf8 characters v nazvech nekonvertuje do entit
+'''
+
+'''
+''quotepath = off''
+    [diff]
+        tool = meld
+        keepBackup = false
+    [push]
+        default = simple
+'''
+
+
+**co, ci** - abych nemusel psát git checkout, git commit
+
+===== nový git =====
+
+==== Inicializace repozitáře v existujícím adresáři ====
+'''
+	git init
+'''
+
+
+==== git clone ====
+Klonuju hlavni devel OSC (musim udelat klic pro lokalniho usera do usera "f" na kna
+'''
+git clone f@kna:/git/pureosc.git osc
+'''
+
+'''
+git clone ssh://reflexe@aa:/home/reflexe/reflexe.git cilovy_lokalni_adresar_reflexe
+'''
+
+chci naklonovat jen jednu větev
+'''
+git clone -b branch_name --single-branch git://github/repository.git
+'''
+
+nebo inicializuju prázdnej repozitář
+'''
+git init 
+git fetch url-to-repo branchname:refs/remotes/origin/branchname
+'''
+
+
+===== práce se soubory v rámci větve =====
+==== git add ====
+přidám vše i smazané i nové
+'''
+git add -A
+'''
+
+přidám jen už jednou přidané (--update)
+
+'''
+git add -u
+'''
+
+==== git commit (zkratka: git co) ====
+commituju všechny změněné a smazané soubory, které jsou už v gitu
+'''
+git commit -a
+'''
+
+
+==== návrat k určité verzi souboru ====
+vrátím soubor.sh na verzi odpovídající hash
+'''
+git checkout (hash) soubor.sh
+'''
+
+
+zrušení necommitovaných změn 
+'''
+git checkout -- <soubor>
+'''
+
+smazání  souborů, nezahrnutých v gitu (untracked)
+'''
+git clean -df .
+'''
+
+nechci commitovat (zruší git add)
+'''
+	git reset HEAD <file>
+zkratka (.gitconfig) unstage
+'''
+
+zrušení merge (vracim se na stav pred commitem)
+'''
+	git reset --merge ORIG_HEAD
+'''
+
+zrušení merge nebo jinych uprav o 5 verzi dozadu
+'''
+	git reset --hard HEAD~5
+'''
+
+smazani souboru z gitu, ale nechám na disku soubor (třeba když chci přidat do .gitignore)
+'''
+	 rm --cached readme.txt - nechat soubor na disku
+'''
+
+zrušit všechny změny (první příkaz smaže nové soubory a druhý vrátí verzované soubory na HEAD)
+'''
+	git clean -fdx
+	git reset --hard
+'''
+
+
+==== vypsat verze souboru ====
+'''
+	git log -- file
+včetně změn jako diff
+	git log -p -- file
+'''
+
+==== vypsat soubory zahrnuté do commitu ====
+'''
+	git show --pretty="format:" --name-only HEAD
+'''
+
+  git diff --name-only HEAD@{0} HEAD@{1}
+nebo 
+  diff --name-only hash1 hash2
+
+==== porovnávání změn ====
+
+'''
+git diff soubor HEAD
+'''
+
+vypíše změny v souboru revize -2 HEAD 
+'''
+git diff HEAD~2 HEAD -- file.txt
+'''
+
+nebo na hash revize:
+
+'''
+git diff hash HEAD -- file.txt
+'''
+
+nebo nástrojem difftool (nutno definovat v .gitconfig)
+
+'''
+git difftool  54a5775 HEAD -- checkout_process.php
+http://stackoverflow.com/questions/3338126/how-to-diff-the-same-file-between-two-different-commits-on-the-same-branch
+'''
+
+vypíše všechny změněné soubory dané revize
+'''
+git diff-tree --no-commit-id --name-only -r hash_revize 
+'''
+
+==== git pull ====
+'''
+git rm
+'''
+
+stáhne a začlení změněné soubory
+
+když je konflikt:
+'''
+1 .	git mergetool soubor / ruční editace
+2. git commit
+[[řešení konfliktů bez ruční editace]]
+'''
+
+chci dělat pull ale nepřepsat si soubor .gitignore
+'''
+	git update-index --assume-unchanged .gitignore
+'''
+
+
+===== vzdálené repozitáře =====
+přidat
+'''
+git remote add nickname user@server/opt/repo.git
+'''
+
+jen stáhnout:
+'''
+git fetch
+'''
+
+stáhnout a začlenit:
+'''
+git pull
+'''
+
+stáhnu a moje zmeny jsou na konci..
+'''
+git pull --rebase origin master
+'''
+
+
+==== git remote - dotaz na vzdálené repozitáře ====
+'''
+	git remote show - vypíše všechny
+	git remote show master - více info o masterovi
+	git remote rename starej novej
+	git remote rm mrtvej
+'''
+
+
+==== tags ====
+pridavam prostou znacku jen kontrol soucet zmeny
+	''git tag ver10.1'' 
+
+git tag -s v1.5 -m 'my signed 1.5 tag'  - podepsana GPG
+git tag -a v1.5 -m 'annotovana 1.5 tag' - annotovana bez podpisu
+
+git tag -a v1.2 -m 'version 1.2' 9fceb02 - pridam znacku ke kontrolnimu souctu
+
+znacky se posilaj na server zvlastnim prikazem:
+git push origin [název značky] - jedna konkretni
+git push origin --tags - posilam vsechny
+
+==== větve ====
+vypíše větve které jsou lokálně k dispozici:
+	''git branch''
+vypíše (ne-)začleněné větve
+	''git branch --merged''
+	''git branch --no-merged''
+přepínání mezi větvemi
+	''git checkout moje_prac_větev''
+	''git checkout master''
+vytvořím větev a přepnu se do ní
+	''git checkout -b chyba53'' 
+(coz je git branch chyba53 + git checkout chyba53)
+
+zpracuju obsah pracovní větve a pak jí zlikviduju:
+	1. ''git checkout master''
+	2. ''git merge chyba53'' - začlení do hlavní větve
+	3. ''git branch -d chyba53'' - smažu větev
+
+vynutím smazání větve i když je nezačleněná 
+	''git branch -D chyba53'' 
+
+které větve jsou začleněné a které ne
+'''
+	git branch --merged
+	git branch --no-merged
+'''
+
+natáhnu změny z master do aktuální větve
+'''
+git merge master
+'''
+
+
+=== chci jen jeden soubor z jiné větve ===
+'''
+git checkout vetev -- path/to/file/file.php
+'''
+
+
+==== přejmenování větve ====
+nejsem v ní
+'''
+	git branch -m starej_nazev novej_nazev
+'''
+
+jsem v ní
+'''
+	git branch -m novej_nazev
+'''
+
+POZOR: jen když je jenom lokální
+
+'''
+viz http://stackoverflow.com/questions/6591213/how-do-you-rename-the-local-branch
+'''
+
+==== vzdálené větve ====
+když si naklonuju repository, mám jenom master takže ty ostatní si musím checkoutnout:
+'''
+	git checkout moje_prac_větev
+'''
+
+==== začlěnění vzdálené větve ====
+stáhnu si vzdálený server
+'''
+git fetch origin
+
+a začlením obsah větve **serverfix**
+
+	git merge origin/serverfix
+'''
+
+POZOR: když chci mít vzdálenou větev lokálně a chci aby byla tracking branch 
+'''
+git checkout -b serverfix origin/serverfix
+'''
+nebo 
+'''
+git checkout --track origin/serverfix
+'''
+
+a můžu jí lokálně přejmenovat na **sf**
+'''
+git checkout -b sf origin/serverfix
+'''
+
+POZOR: musím napřed fetch vzdálený server !!!
+'''
+git fetch origin
+'''
+
+odeslání lokální větve na server
+'''
+git push origin serverfix
+'''
+
+
+mazání vzdálené větve
+'''
+git push origin :badbranch
+'''
+
+smazat vzdálenou větev, když to nejde normálně
+'''
+git remote rm badbranch
+'''
+
+
+==== na serveru - založení vzdáleného bare git repo ====
+'''
+	ssh user@git.example.com
+	cd /opt/git/my_project.git
+	git init --bare --shared
+'''
+
+**shared** - je automaticky sdílený pro skupinu

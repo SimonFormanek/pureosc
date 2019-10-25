@@ -24,8 +24,8 @@ class DiscountSelector extends SelectTag
         $this->memberType = $mode;
         $this->memberId   = $memberId;
         parent::__construct($name,
-            array_merge(['' => _('None')], $this->loadItems()), $defaultValue,
-            $itemsIDs, $properties);
+            array_merge(['' => _('None')], $this->loadItems()), [],
+            [], $properties);
     }
 
     public function loadItems(): array

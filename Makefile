@@ -7,13 +7,13 @@ adminreset:
 	vendor/bin/phinx seed:run -s ResetAdmin -c ./phinx-adapter.php
 dbreset:
 	vendor/bin/phinx seed:run -s Oscommerce -c ./phinx-adapter.php
-	vendor/bin/phinx migrate -c ./phinx-adapter.php
-
-demodata: dbreset
-	cd bin ; ./import_catalog.sh
+	vendor/bin/phinx migrate  -c ./phinx-adapter.php
 	
 newphinx:
 	read -p "Enter CamelCase migration name : " migname ; vendor/bin/phinx create $$migname -c ./phinx-adapter.php
+
+migrate:
+	vendor/bin/phinx migrate -c ./phinx-adapter.php
 
 fresh:
 	composer update
@@ -56,7 +56,7 @@ doc:
 	apigen generate --source catalog --destination docs --title "PureOSC" --charset UTF-8 --access-levels public --access-levels protected --php --tree
 
 phpunit:
-	./vendor/bin/phpunit --colors --log-junit /tmp/nb-phpunit-log.xml --bootstrap tests/bootstrap.php --configuration /home/vitex/Projects/PureHTML/pureosc/tests/configuration.xml --coverage-clover /tmp/nb-phpunit-coverage.xml /usr/share/netbeans/php/phpunit/NetBeansSuite.php -- tests
+	phpunit --colors --log-junit /tmp/nb-phpunit-log.xml --bootstrap tests/bootstrap.php --configuration /home/vitex/Projects/PureHTML/pureosc/tests/configuration.xml --coverage-clover /tmp/nb-phpunit-coverage.xml /usr/share/netbeans/php/phpunit/NetBeansSuite.php -- --run=tests
 
 test:
 	codecept run
@@ -66,10 +66,11 @@ css:
 
 drun:
 	docker volume create pureosc_config
-	docker run -d -p 9999:9000 -v /var/run/docker.sock:/var/run/docker.sock -v pureosc_config:/var/www/oscconfig purehtml/admintst
+	docker run -d -p 9999:9000 -v /var/run/docker.sock:/var/run/docker.sock -v pureosc_config:/var/www/oscconfig purehtml/pureosc
 
 dimage:
-	docker build -t purehtml/admintst -t purehtml/admintst:`git rev-parse --short HEAD` .
+	composer --no-dev --optimize-autoloader update
+	docker build -t purehtml/pureosc -t purehtml/pureosc:`git rev-parse --short HEAD` .
 
 	
 	

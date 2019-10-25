@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.26
+Creation-Date: 1
+Modification-Date: 1
+
+[ ] @ready
+====== git commit old version ======
+Jak získat starší verzi souboru: zjistíme si HASH starší verze:
+'''
+git show HASH:admin/categories.php > old-categories.php
+'''
+

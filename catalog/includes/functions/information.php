@@ -58,6 +58,10 @@ function tep_information_show_category($information_group_id = 1)
 
     // Run through the $information_tree to find all pages
     foreach ($information_tree as $element) {
+      if (!array_key_exists('key', $element)) 
+      {
+        $element['key'] = null;
+      }
         if (!isset($information_tree[$element['key']]['parent_id']) || ($information_tree[$element['key']]['parent_id']
             == 0)) {
 
@@ -79,7 +83,7 @@ function tep_information_show_category($information_group_id = 1)
             $ul = false;
             for ($i = 1; $i < ($count_child + 1); $i++) {
                 if ($child_information[$i]['parent_info_id'] == $element['key']) {
-                    if ($ul == false) {
+                    if ($ul === false) {
                         $sitemapString .= '<ul>'."\n";
                         $ul            = true;
                     }

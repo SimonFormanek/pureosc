@@ -1,0 +1,6 @@
+[ ] @ready
+====== diakritika v názvech souborů ======
+
+	''git config --global core.quotepath off''
+global je pro vsechny repo, nebo zapsat do .gitconfig sekce [core]
+	''quotepath = off''

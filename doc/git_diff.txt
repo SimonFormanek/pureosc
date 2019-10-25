@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.26
+Creation-Date: 1
+Modification-Date: 1
+
+[ ] @ready
+====== git diff ======
+
+Zobrazit pouze změněné řádky:
+'''
+git diff -U0 | grep '^[+-]' | grep -Ev '^(--- a/|\+\+\+ b/)'
+'''

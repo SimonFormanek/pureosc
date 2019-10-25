@@ -47,3 +47,6 @@ Adwords: the URL may look like:
 apache log setup
 
 cron script?
+
+https://matomo.org/faq/log-analytics-tool/faq_16301/
+https://github.com/matomo-org/matomo-log-analytics/blob/master/import_logs.py

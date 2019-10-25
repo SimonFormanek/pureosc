@@ -1,0 +1,1 @@
+blockchain, facebook payments, vsechny dostupne kryptomeny. platebni brany v ruznych zemich. vlastni ukldani cisel karet.

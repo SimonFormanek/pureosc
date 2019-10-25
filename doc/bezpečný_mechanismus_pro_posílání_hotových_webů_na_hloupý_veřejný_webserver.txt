@@ -1,0 +1,60 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.26
+Creation-Date: Unknown
+Modification-Date: Tue, 29 Jan 2019 23:53:48 +0100
+
+[ ] @ready
+====== bezpečný mechanismus pro posílání hotových webů na hloupý veřejný webserver ======
+
+S pomocí [[git-shell|git shellu]] si snadno vytvoříme bezpečný webserver (nemá plný ssh přístup), který updatujem pomocí git 
+post-receive hooku:
+
+Vytvoříme adresář pro web:
+
+'''
+	$ mkdir /var/www/www.example.org
+'''
+
+uděláme si  empty repository
+	''git init --bare /var/www/www-example.git''
+Vytvoříme si hok:
+'''
+	cat > hooks/post-receive
+	#!/bin/sh
+	GIT_WORK_TREE=/var/www/www.example.org git checkout -f
+	chmod +x hooks/post-receive
+'''
+
+Přidáme vzdálený repos a nebo si ho uděláme dopředu a naklonujeme (namísto remote add...)
+bacha name+email musi bejt v repositari, nestaci
+git config user.name "someone"
+git config user.email "someone@someplace.com"
+
+
+'''
+	$ git remote add web ssh://server.example.org/home/ams/website.git
+	(git remote add ${REMOTENAME} ${REMOTEUSER}@${REMOTESERVER}:${REMOTEGITDIR})
+	$ git push web +master:refs/heads/master
+		git push --set-upstream ${REMOTENAME} master
+'''
+
+a už jenom posíláme:
+
+'''
+	git push web
+'''
+
+Pro post-receive hook jsem čerpal z tohohle návodu: http://toroid.org/ams/git-website-howto
+
+===== použití na webu admin -> eshop =====
+
+www-data se musí stát uživatelem, kterému patří web a git:
+1. visudo
+www-data        ALL=(git-user) NOPASSWD: /usr/local/bin/gitpushshop.sh
+www-data        ALL=(git-user) NOPASSWD: [[/usr/bin/git]]
+
+git-user =  majitel git repozitare
+
+2. spusteni skriptu z www - priklad:
+ shell_exec('sudo -u ' . $git_user . ' /usr/local/bin/gitpushshop.sh ' . $git_path);
+

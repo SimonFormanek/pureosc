@@ -1,0 +1,27 @@
+<pre>
+<h1>crypto TODO</h1>
+
+<h2>API</h2>
+
+volani crypt/decrypt musi byt jednotne, aby se dala pouzit jedna z konfiguraci pro 
+asymetric open ssl/vernam nebo nejaka dalsi, co si nekdo prida, ale ty dve pro zacatek 
+staci a jsou nutny
+
+<h2></h2>
+
+rozhodout, jak nakladat s paskou.
+
+1. pridavat do pasky nove soubory a promazavat [nulovat] stare
+
+2. jednou za mesic aktualizovat aktivni zaznamy na novou pasku a tu starou smazat
+   tahle varinata je narocnejsi na vypocet a spotrebu ciste pasky ale ma to vyhody:
+   * nemusim mit jako cryptot write pristup k pasce a nemu ji zkurvit
+   * celkova velikost pasky bude minimalni
+   jak si to predstavuju: 
+   1. v mesici se prinesou nove pasky a na novou pasku presifruji aktualni zakaznici
+   bud se bude muset shop na chvilku zastavit nbo se dotazovat na dve pasky behem 
+  konverze, je zsifrovanou uz na nove? check if not vemu si ze stare, pupdatuju na 
+  novou (ale kidne se da shop na 3 min shodit, az toho budem mit moc, budem to mit v 
+  cecku)
+   
+   

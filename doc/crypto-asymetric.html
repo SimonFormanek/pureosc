@@ -1,0 +1,54 @@
+dve poznosti
+a) vsechno rozsifrovat a ulozit do tmp tabulek nebo na disk nebo do session promenne
+docasna data budou sifrovana klicem prihlseni zivatele
+
+b) citliva data zobrazovat jen na pozadani a rosiforvat blbost
+
+
+jedinecny jednoupouzutelny session-token
+ten je vzdycky heslo pro pristi stranku
+data jsou vzdycky presifrovaana aby byla citelna jenom stimto jednou poslanym tokenem
+
+tep_recreate_session_id
+
+posílám klíč, kterým má být rozšifrováno
+ve skutečnosti posílám identifikátor klíče, který uložím do cookies
+nebo opravdu posílám v get parametru klíč
+
+append only
+
+vytvori se skutecny unixovy uzivatel
+jeho data se ulozi do soubru jen pro nej citelneho
+
+posle se heslo do mysql, kter plati pro danou session v danem okamziku
+
+menim heslo k soukromemu klici
+
+nejjednodussi?
+do lokalni session ulozim heslo do mysql
+
+nebudu muset moc asahovat do osc
+z tabulky customers_customers se presune zaznam do customers
+a zasifruje se heslem nebo vernamem a to heslo se ulozi do docasneho souboru, citelneho 
+jen pro uzivatele
+
+citlivé údaje se zapisují do lokální databáze
+
+hash hesla je heslo do mysql
+hash hesla se muze ulozit
+
+přihlášení má dvě úrovně: dám k dispozici soukromý klíč
+a pak ho pouzivam pri desifrovani, po skoncei ho smazu
+
+neeee jdnoduchost a elegance:
+odsifruju heslem zuviatele
+necham citelene po dobu session
+smazu po odhlaseni
+
+pri zalohovani se vyhyban tabulkam custmer_decrypted
+a uzivateli umoznim jne svoje radky 
+coz znamena, ze nema zadny pristup jinamú
+
+
+
+otp objednavka
