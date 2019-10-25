@@ -1,6 +1,7 @@
 {
-    "name": "vendor/pureosc",
-    "description": "Description of project pureosc.",
+    "name": "purehtml/pureosc",
+    "description": "Online Merchant - oScommerce fork",
+    "license": "GPL-2.0-only",
     "authors": [
         {
             "name": "PureHTML",

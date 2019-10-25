@@ -22,7 +22,7 @@ if ($messageStack->size > 0) {
 
 $pageTop = new \Ease\TWB\Navbar('topmenu', new \Ease\Html\ImgTag(DIR_WS_IMAGES . 'store_logo.png', _('Store logo'), ['height' => 20]), ['class' => 'navbar-inverse']);
 
-$pageTop->addMenuItem( new \Ease\Html\PTag( _('PureOSC Online Merchant'). 'v.' .tep_get_version(), ['class'=>'navbar-text'] ) );
+$pageTop->addMenuItem(new \Ease\Html\PTag(_('PureOSC Online Merchant') . 'v.' . tep_get_version(), ['class' => 'navbar-text']));
 
 $pageTop->addMenuItem(new \Ease\TWB\LinkButton(tep_href_link(cfg('FILENAME_DEFAULT')), __('HEADER_TITLE_ADMINISTRATION', _('Administration')), 'inverse'));
 
@@ -35,10 +35,10 @@ $pageTop->addMenuItem(new \Ease\TWB\LinkButton(tep_href_link(cfg('FILENAME_STATI
 if (tep_session_is_registered('admin')) {
 
     if (defined('USE_FLEXIBEE') && constant('USE_FLEXIBEE') == 'true') {
-        $pageTop->addMenuItem(new \FlexiPeeHP\ui\TWB\StatusInfoBox(),'right');
+        $pageTop->addMenuItem(new \FlexiPeeHP\ui\TWB\StatusInfoBox(), 'right');
     }
 
-    $pageTop->addDropDownMenu(sprintf(_('Logged in as: %s'), $admin['username']), [cfg('FILENAME_LOGIN') . '?action=logoff' => _('Logoff')],'right');
+    $pageTop->addDropDownMenu(sprintf(_('Logged in as: %s'), $admin['username']), [cfg('FILENAME_LOGIN') . '?action=logoff' => _('Logoff')], 'right');
 }
 
 

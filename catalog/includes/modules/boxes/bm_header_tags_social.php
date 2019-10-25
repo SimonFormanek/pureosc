@@ -40,7 +40,7 @@ class bm_header_tags_social
     {
         global $oscTemplate, $languages_id;
 
-        $align     = 'style="margin-left:auto; margin-right:auto; width:'.BOX_WIDTH.'px;"';
+        $align     = 'style="margin-left:auto; margin-right:auto; width:'.cfg('BOX_WIDTH').'px;"';
         $inInfoBox = true;
         echo 'call '.$inInfoBox.'<br>';
         include(DIR_WS_MODULES.'header_tags_social_bookmarks.php');

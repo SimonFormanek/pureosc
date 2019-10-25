@@ -18,6 +18,7 @@ require('includes/application_top.php');
 
 $currencies = new AdminCurrencies();
 
+try {
 
 //pure:NEW show all products categories, set canonical START
 //save canonical category and return back to category listing
@@ -685,7 +686,7 @@ if($action == 'setexclude') {
 
                 $pricelist->sync();
                 if (isset($_FILES['products_image'])) {
-                    FlexiPeeHP\Priloha::addAttachmentFromFile($pricelist,
+                    \FlexiPeeHP\Priloha::addAttachmentFromFile($pricelist,
                         DIR_FS_CATALOG_IMAGES . $_FILES['products_image']['name']);
                 }
             }
@@ -1160,9 +1161,12 @@ if ($action == 'new_product') {
                         <tr>
                             <td class="main"><?php echo __('TEXT_PRODUCTS_DATE_AVAILABLE',_('Date Availble')); ?></td>
                             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '24', '15') . '&nbsp;' . tep_draw_input_field('products_date_available',
-                                        $pInfo->products_date_available,
-                                        'id="products_date_available"class="hasDatepicker" ','date') . ' <small>(YYYY-MM-DD)</small>'; ?></td>
+                                        '24', '15') . '&nbsp;' . 
+                                    
+                                   $input = new \Ease\Html\InputDateTag('products_date_available',$pInfo->products_date_available,['id'=>'products_date_available'] );
+                                         
+                                        ?>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
@@ -1173,9 +1177,17 @@ if ($action == 'new_product') {
                         ?>
                         <tr>
                             <td class="main"><?php echo TEXT_PRODUCTS_CUSTOM_DATE; ?></td>
-                            <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '24', '15') . '&nbsp;' . tep_draw_input_field('products_custom_date',
-                                        $pInfo->products_custom_date, 'id="products_custom_date"') . ' <small>(YYYY-MM-DD)</small>'; ?></td>
+                            <td class="main"><?php
+                            
+                            
+                            
+                            
+                            echo tep_draw_separator('pixel_trans.gif','24', '15');
+
+
+                            echo  new \Ease\Html\InputDateTag('products_custom_date',$pInfo->products_date_available,['id'=>'products_custom_date'] );
+                            
+                          ?></td>
                         </tr>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
@@ -1187,9 +1199,10 @@ if ($action == 'new_product') {
                         <tr>
                             <td class="main"><?php echo TEXT_PRODUCTS_SORT_ORDER; ?></td>
                             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '24', '15') . '&nbsp;' . tep_draw_input_field('products_sort_order',
-                                        $pInfo->products_sort_order,
-                                        'id="products_sort_order"'); ?></td>
+                                        '24', '15') . '&nbsp;' . 
+                            new \Ease\Html\InputNumberTag('products_sort_order', $pInfo->products_sort_order, ['id'=>'products_sort_order']);
+             
+                            ?></td>
                         </tr>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
@@ -1971,7 +1984,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                         $reviews = tep_db_fetch_array($reviews_query);
                                         $pInfo_array = array_merge($products,
                                             $reviews);
-                                        $pInfo = new objectInfo($pInfo_array);
+                                        $pInfo = new \objectInfo($pInfo_array);
                                     }
 
                                     if (isset($pInfo) && is_object($pInfo)
@@ -2434,7 +2447,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                                     'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to'));
 
                                         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
-                                            $linker = new FlexiPeeHP\Cenik(null, ['offline' => true]);
+                                            $linker = new \FlexiPeeHP\Cenik(null, ['offline' => true]);
                                             $linker->setMyKey('ext:products:' . $_GET['pID']);
                                             $buttons .= tep_draw_button(_('Open in FlexiBee'),
                                                 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcyIgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICB3aWR0aD0iMTIwIgogICBoZWlnaHQ9IjEyMCIKICAgdmlld0JveD0iMCAwIDEyMCAxMjAiCiAgIHNvZGlwb2RpOmRvY25hbWU9ImZsZXhpYmVlLWxvZ28uc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIwLjkyLjEgcjE1MzcxIj48bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE4Ij48cmRmOlJERj48Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+PGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+PGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPjxkYzp0aXRsZT48L2RjOnRpdGxlPjwvY2M6V29yaz48L3JkZjpSREY+PC9tZXRhZGF0YT48ZGVmcwogICAgIGlkPSJkZWZzNiIgLz48c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjNjY2NjY2IgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgb2JqZWN0dG9sZXJhbmNlPSIxMCIKICAgICBncmlkdG9sZXJhbmNlPSIxMCIKICAgICBndWlkZXRvbGVyYW5jZT0iMTAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjEyODAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iOTU1IgogICAgIGlkPSJuYW1lZHZpZXc0IgogICAgIHNob3dncmlkPSJmYWxzZSIKICAgICBpbmtzY2FwZTp6b29tPSIxLjMzNjI2NzQiCiAgICAgaW5rc2NhcGU6Y3g9IjI0My42ODg2MyIKICAgICBpbmtzY2FwZTpjeT0iMzAuODg2NjY3IgogICAgIGlua3NjYXBlOndpbmRvdy14PSIwIgogICAgIGlua3NjYXBlOndpbmRvdy15PSIzMiIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9ImcxMCIgLz48ZwogICAgIGlkPSJnMTAiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpbmtzY2FwZTpsYWJlbD0iaW5rX2V4dF9YWFhYWFgiCiAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMS4zMzMzMzMzLDAsMCwtMS4zMzMzMzMzLDAsMTIwKSI+PGcKICAgICAgIGlkPSJnNDU0MSIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMTIuMjUyOTgsMjEuMzI4MDY2KSI+PHBhdGgKICAgICAgICAgZD0iTSAxNzAuODY4LDAgMTg0LjI0NiwyMy4xNjE3IDE5Ny42MTcsMCBaIgogICAgICAgICBzdHlsZT0iZmlsbDojZjlhZTJkO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDowLjEiCiAgICAgICAgIGlkPSJwYXRoMjIiCiAgICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiIC8+PHBhdGgKICAgICAgICAgZD0ibSAxNzAuODY4LDAgLTEzLjM3NSwyMy4xNjE3IGggMjYuNzUzIHoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiNkMjhiMjU7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjAuMSIKICAgICAgICAgaWQ9InBhdGgyNCIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz48cGF0aAogICAgICAgICBkPSJtIDE1Ny40OTMsMjMuMTYxNyAxMy4zNzUsMjMuMTY4IDEzLjM3OCwtMjMuMTY4IHoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM5MzYzMjc7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjAuMSIKICAgICAgICAgaWQ9InBhdGgyNiIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz48cGF0aAogICAgICAgICBkPSJNIDE3MC44NjgsNDYuMzI5NyBIIDE0NC4xMjEgTCAxMTcuMzY1LDAgaCAyNi43NTYgbCAyNi43NDcsNDYuMzI5NyIKICAgICAgICAgc3R5bGU9ImZpbGw6Izc2N2E3YztmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MC4xIgogICAgICAgICBpZD0icGF0aDI4IgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPjwvZz48L2c+PC9zdmc+',
@@ -2515,3 +2528,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
 
 require(DIR_WS_INCLUDES . 'template_bottom.php');
 require(DIR_WS_INCLUDES . 'application_bottom.php');
+
+} catch ( \Exception $e ) {
+    echo $e->getMessage();
+}

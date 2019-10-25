@@ -81,8 +81,6 @@
         } //if you decide to leave out the php code block above then comment or remove this too
 
             echo \Ease\Html\HeadTag::getStylesRendered(\PureOSC\ui\WebPage::singleton()->cascadeStyles);
-            echo \Ease\Html\HeadTag::getScriptsRendered(\PureOSC\ui\WebPage::singleton()->javaScripts);
-            
         ?>
     </head>
     <body>

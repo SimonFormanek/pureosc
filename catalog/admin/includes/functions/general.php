@@ -2180,5 +2180,10 @@ function  __( string $constant, string $gettText){
  */
 function cfg(string $constant)
 {
+//    if(!defined($constant)){
+//        throw new \Exception(sprintf( _('Configuration key %s not defined'), $constant ) );
+//    }
+//    return  constant($constant);
     return defined($constant) ? constant($constant) : new \Exception(sprintf( _('Configuration key %s not defined'),$constant));
+    
 }

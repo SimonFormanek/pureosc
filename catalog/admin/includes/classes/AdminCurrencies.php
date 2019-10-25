@@ -44,8 +44,12 @@ class AdminCurrencies
      * @return string
      */
     function format($number, $calculate_currency_value = true,
-                    $currency_type = DEFAULT_CURRENCY, $currency_value = '')
+                    $currency_type = null, $currency_value = '')
     {
+        if(is_null($currency_type)){
+            $currency_type = cfg('DEFAULT_CURRENCY');
+        }
+        
         if ($calculate_currency_value) {
             $rate          = ($currency_value) ? $currency_value : $this->currencies[$currency_type]['value'];
             $format_string = $this->currencies[$currency_type]['symbol_left'].number_format($number
