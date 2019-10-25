@@ -17,6 +17,9 @@
 
   Released under the GNU General Public License
  */
+
+namespace PureOSC;
+
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
@@ -52,13 +55,12 @@ if (!($_SERVER['PHP_SELF']))
 
 /* * * Altered for Security Pro r11 ** */
 
-$security_pro = new Fwr_Media_Security_Pro();
+$security_pro = new \Fwr_Media_Security_Pro();
 // If you need to exclude a file from cleansing then you can add it like below
 //$security_pro->addExclusion( 'some_file.php' );
 $security_pro->addExclusion('advanced_search_result.php');
 $security_pro->addExclusion('advanced_search.php');
 $security_pro->addExclusion('article_manager_search_result.php');
-
 $security_pro->cleanse($_SERVER['PHP_SELF']);
 /* * * EOF alteration for Security Pro 11 ** */
 
@@ -139,7 +141,8 @@ if (USE_CACHE == 'true') include(DIR_WS_FUNCTIONS.'cache.php');
 
 // define how the session functions will be used
 require(DIR_WS_FUNCTIONS.'sessions.php');
-//add whos_online
+
+// include the who's online functions
 require(DIR_WS_FUNCTIONS.'whos_online.php');
 
 // set the session name and save path
@@ -263,7 +266,6 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
     }
 }
 //PURE:NEW:session ID became OTP token...
-//TODO:original version WHY?    if (SESSION_RECREATE == 'True') {
  if (SESSION_RECREATE == 'True' && $session_started == true) {
         tep_session_recreate();
     }
@@ -271,22 +273,20 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
 // create the shopping cart
 if (!tep_session_is_registered('cart') || !is_object($cart)) {
     tep_session_register('cart');
-    $cart = new ShoppingCart;
+    $cart = new \ShoppingCart;
 }
 
 // include currencies class and create an instance
-$currencies = new currencies();
+$currencies = new \currencies();
 
-$oPage = new Ease\Page();
-
-// set the language
+$oPage = new ui\WebPage();
+//set the language
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (!tep_session_is_registered('language')) {
         tep_session_register('language');
         tep_session_register('languages_id');
     }
-
-    $lng = new language();
+    $lng = new \language();
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);
     } else {
@@ -312,21 +312,20 @@ $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUA
       }
 */
       }
-      if ($new_language){
+      if (isset($new_language)){
         $lng->set_language($new_language);
       } else {
         $lng->set_language(constant('DEFAULT_LANGUAGE'));
       }
     }  
 } else {
-    $lng = new language();
+    $lng = new \language();
   //$lng->set_language($_SESSION['language']);
       $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
       $language_code = tep_db_fetch_array($language_code_query);
     $lng->set_language($language_code['code']);
 }
-
-\Ease\Shared::initializeGetText('pureosc', $lng->language['locale'], '../i18n');
+\Ease\Locale::singleton($lng->language['locale'], '../i18n', 'pureosc');
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
 
@@ -358,11 +357,11 @@ if (!tep_session_is_registered('currency') || isset($_GET['currency']) || ( (USE
 // navigation history
 if (!tep_session_is_registered('navigation') || !is_object($navigation)) {
     tep_session_register('navigation');
-    $navigation = new navigationHistory;
+    $navigation = new \navigationHistory;
 }
 $navigation->add_current_page();
 
-$messageStack = new messageStack();
+$messageStack = new \messageStack();
 // Shopping cart actions
 if (isset($_GET['action'])) {
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled
@@ -515,7 +514,7 @@ if (isset($_GET['action'])) {
     }
 }
 
-$oscTemplate = new oscTemplate();
+$oscTemplate = new \oscTemplate();
 
 // include the who's online functions
 //PURE:moved to top require(DIR_WS_FUNCTIONS.'whos_online.php');
@@ -554,7 +553,7 @@ if (tep_not_null($cPath)) {
     $current_category_id = 0;
 }
 
-$breadcrumb = new breadcrumb;
+$breadcrumb = new \breadcrumb;
 
 $breadcrumb->add(HEADER_TITLE_TOP, HTTP_SERVER);
 $breadcrumb->add(HEADER_TITLE_CATALOG, tep_href_link(FILENAME_DEFAULT));
@@ -659,9 +658,11 @@ require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
 
+$oPage = new ui\WebPage();
+
 \Ease\Shared::instanced()->webPage($oPage);
 
-$userLog = new PureOSC\CustomerLog();
+$userLog = new CustomerLog(null, $customer_id);
 
-$oUser = new Ease\Anonym();
+$oUser = new \Ease\Anonym();
 \Ease\Shared::instanced()->user($oUser);
