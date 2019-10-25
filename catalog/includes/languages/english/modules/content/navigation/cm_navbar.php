@@ -35,6 +35,5 @@
   define('HEADER_ACCOUNT_REGISTER', '<i class="fa fa-pencil"></i> Register',true);
   define('HEADER_CART_HAS_CONTENTS', '%s item(s), %s',true);
   define('HEADER_CART_VIEW_CART', 'View Cart',true);
-  define('HEADER_CART_CHECKOUT', '<i class="fa fa-angle-right"></i> Checkout',true);
   define('USER_LOCALIZATION', '<abbr title="Selected Language">L:</abbr> %s <abbr title="Selected Currency">C:</abbr> %s',true);
 

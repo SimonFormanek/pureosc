@@ -317,7 +317,6 @@ define('HEADER_ACCOUNT_PASSWORD', 'Heslo',true);
 define('HEADER_ACCOUNT_REGISTER', '<i class="glyphicon glyphicon-pencil"></i> Registrace',true);
 define('HEADER_CART_HAS_CONTENTS', '%s item(s), %s',true);
 define('HEADER_CART_VIEW_CART', 'Košík',true);
-define('HEADER_CART_CHECKOUT', '<i class="glyphicon glyphicon-chevron-right"></i> Pokladna',true);
 define('USER_LOCALIZATION', '<abbr title="Vybraný jazyk">L:</abbr> %s <abbr title="Vybraná měna">C:</abbr> %s',true);
 
 // CCGV
@@ -383,7 +382,6 @@ define('HTS_OG_PRICE', 'Cena');
 define('HEADER_AUTHORS','AUTOŘI');
 define('HEADER_NEWS','AKTUALITY');
 define('HEADER_ABOUT_US','O NÁS');
-define('HEADER_CONTACT_US','KONTAKTY');
 define('HEADER_ADVANCED_SEARCH','podrobné vyhledávání');
 //DO NOT REMOVE - constants needed to static generator script --------------------------------------------------------->
 //manufacturers page

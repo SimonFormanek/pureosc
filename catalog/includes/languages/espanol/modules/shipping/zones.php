@@ -10,7 +10,6 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_SHIPPING_ZONES_TEXT_TITLE', 'Tarifas por Zona',true);
 define('MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION', 'Tarifas basadas en Zonas',true);
 define('MODULE_SHIPPING_ZONES_TEXT_WAY', 'Envío a',true);
 define('MODULE_SHIPPING_ZONES_TEXT_UNITS', 'lb(s)',true);

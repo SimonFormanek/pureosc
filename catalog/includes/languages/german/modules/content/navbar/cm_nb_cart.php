@@ -17,4 +17,3 @@
   define('HEADER_CART_NO_CONTENTS', '<i class="fa fa-shopping-cart"></i> 0 <span class="hidden-lg hidden-md hidden-sm">items</span>');
   define('HEADER_CART_HAS_CONTENTS', '%s <span class="hidden-lg hidden-md hidden-sm">item(s)</span>, %s');
   define('HEADER_CART_VIEW_CART', 'View Cart');
-  define('HEADER_CART_CHECKOUT', '<i class="fa fa-angle-right"></i> Checkout');

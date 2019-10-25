@@ -10,7 +10,6 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_SHIPPING_ZONES_TEXT_TITLE', 'Zone Based Shipping Rates');
 define('MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION', 'The module allows you to set different shipping rates for several zones, defined as a country list. Postage is calculated based on weight or price.');
 define('MODULE_SHIPPING_ZONES_TEXT_WAY', 'Ground'); //no longer used
 define('MODULE_SHIPPING_ZONES_TEXT_UNITS', 'kg(s)');

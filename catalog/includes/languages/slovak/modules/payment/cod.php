@@ -10,6 +10,5 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_PAYMENT_COD_TEXT_TITLE', 'Dobierka');
   define('MODULE_PAYMENT_COD_TEXT_DESCRIPTION', 'Dobierka');
 ?>

@@ -417,8 +417,6 @@ define('HEADER_ACCOUNT_REGISTER',
     '<i class="glyphicon glyphicon-pencil"></i> Register', true);
 define('HEADER_CART_HAS_CONTENTS', '%s item(s), %s', true);
 define('HEADER_CART_VIEW_CART', 'View Cart', true);
-define('HEADER_CART_CHECKOUT',
-    '<i class="glyphicon glyphicon-chevron-right"></i> Checkout', true);
 define('USER_LOCALIZATION',
     '<abbr title="Selected Language">L:</abbr> %s <abbr title="Selected Currency">C:</abbr> %s',
     true);
@@ -490,7 +488,6 @@ define('HTS_OG_PRICE', 'Cena');
 define('HEADER_AUTHORS','AUTOŘI');
 define('HEADER_NEWS','AKTUALITY');
 define('HEADER_ABOUT_US','O NÁS');
-define('HEADER_CONTACT_US','KONTAKTY');
 define('HEADER_ADVANCED_SEARCH','podrobné vyhledávání');
 //DO NOT REMOVE - constants needed to static generator script --------------------------------------------------------->
 //manufacturers page
