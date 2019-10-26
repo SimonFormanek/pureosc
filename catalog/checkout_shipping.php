@@ -82,8 +82,7 @@ $total_count  = $cart->count_contents();
 
 $shipping_modules = new shipping();
 
-if (defined('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING') && (MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING
-    == 'true')) {
+if (cfg('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING') == 'true') {
     $pass = false;
 
     switch (MODULE_ORDER_TOTAL_SHIPPING_DESTINATION) {
@@ -104,7 +103,7 @@ if (defined('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING') && (MODULE_ORDER_TOTAL_
 
     $free_shipping = false;
 
-    if (($pass === true) && ($order->info['total'] >= MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)) {
+    if (($pass === true) && ($order->info['total'] >= cfg('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER'))) {
         $free_shipping = true;
 
         include(DIR_WS_LANGUAGES.$language.'/modules/order_total/ot_shipping.php');
@@ -155,12 +154,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
             }
         }
     } else {
-        if (defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES
-            == 'False')) {
+        if (cfg('SHIPPING_ALLOW_UNDEFINED_ZONES') == 'False') {
             tep_session_unregister('shipping');
         } else {
             $shipping = false;
-            tep_redirect(tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
+            tep_redirect(tep_href_link(cfg('FILENAME_CHECKOUT_PAYMENT'), '', 'SSL'));
         }
     }
 }
@@ -178,12 +176,11 @@ if (!tep_session_is_registered('shipping') || ( tep_session_is_registered('shipp
 
 require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_CHECKOUT_SHIPPING);
 
-if (defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES
-    == 'False') && !tep_session_is_registered('shipping') && ($shipping === false)) {
-    $messageStack->add_session('checkout_address',
-        ERROR_NO_SHIPPING_AVAILABLE_TO_SHIPPING_ADDRESS);
-    tep_redirect(tep_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'));
-}
+//if (cfg('SHIPPING_ALLOW_UNDEFINED_ZONES')  == 'False' && !tep_session_is_registered('shipping') && ($shipping === false)) {
+//    $messageStack->add_session('checkout_address',
+//        __('ERROR_NO_SHIPPING_AVAILABLE_TO_SHIPPING_ADDRESS',_('No  shiping availble to shipping address')));
+//    tep_redirect(tep_href_link(cfg('FILENAME_CHECKOUT_SHIPPING_ADDRESS'), '', 'SSL'));
+//}
 
 $breadcrumb->add(NAVBAR_TITLE_1,
     tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));

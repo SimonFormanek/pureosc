@@ -10,7 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_PAYMENT_COD_TEXT_TITLE', 'Platba na dobírku (Cash on Delivery)',true);
   define('MODULE_PAYMENT_COD_TEXT_DESCRIPTION', 'Platba na dobírku',true);
 
   define('MODULE_PAYMENT_COD_STATUS_TITLE','Aktivovat modul COD');

@@ -32,7 +32,10 @@ class PureCryptoAdminKey extends AbstractMigration
     public function change()
     {
        $users = $this->table('administrators');
+     $column = $users->hasColumn('pubkey');
+     if (!$column) {
         $users->addColumn('pubkey', 'text', ['limit' => \Phinx\Db\Adapter\MysqlAdapter::TEXT_MEDIUM])
             ->save();
     }
+  }
 }

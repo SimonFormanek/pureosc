@@ -61,6 +61,7 @@ function tep_information_show_category($information_group_id = 1)
       if (!array_key_exists('key', $element)) 
       {
         $element['key'] = null;
+        $information_tree[$element['key']] = null;
       }
         if (!isset($information_tree[$element['key']]['parent_id']) || ($information_tree[$element['key']]['parent_id']
             == 0)) {

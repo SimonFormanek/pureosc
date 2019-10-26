@@ -10,7 +10,6 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_SHIPPING_ZONES_TEXT_TITLE', 'Pásmové tarify');
 define('MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION', 'Pásmové tarify');
 define('MODULE_SHIPPING_ZONES_TEXT_WAY', 'Dodávka do');
 define('MODULE_SHIPPING_ZONES_TEXT_UNITS', 'lb(s)');

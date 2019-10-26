@@ -19,6 +19,8 @@
 
 require_once('includes/application_top.php');
 
+$_SESSION['JAVASCRIPT_ACTIVE'] = $_GET['js'] == 'active';
+
 // if the customer is not logged on, redirect them to the login page
 if (!tep_session_is_registered('customer_id')) {
     $navigation->set_snapshot(array('mode' => 'SSL', 'page' => FILENAME_CHECKOUT_PAYMENT));
@@ -90,7 +92,7 @@ $shipping_modules = new shipping($shipping);
  */
 // Stock Check
 $any_out_of_stock = false;
-if (STOCK_CHECK == 'true') {
+if (cfg('STOCK_CHECK') == 'true') {
     for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
         if (tep_check_stock($order->products[$i]['id'],
             $order->products[$i]['qty'])) {
@@ -98,8 +100,8 @@ if (STOCK_CHECK == 'true') {
         }
     }
     // Out of Stock
-    if ((STOCK_ALLOW_CHECKOUT != 'true') && ($any_out_of_stock === true)) {
-        tep_redirect(tep_href_link(FILENAME_SHOPPING_CART));
+    if ((cfg('STOCK_ALLOW_CHECKOUT') != 'true') && ($any_out_of_stock === true)) {
+        tep_redirect(tep_href_link(cfg('FILENAME_SHOPPING_CART')));
     }
 }
 
@@ -127,7 +129,7 @@ if (isset($$payment->form_action_url)) {
     $form_action_url = tep_href_link(FILENAME_CHECKOUT_PROCESS, '', 'SSL');
 }
 
-echo tep_draw_form('checkout_confirmation', $form_action_url, 'post');
+echo tep_draw_form('checkout_confirmation', $form_action_url, 'post','onsubmit="orderConfirmed();"');
 ?>
 
     <div class="contentContainer">

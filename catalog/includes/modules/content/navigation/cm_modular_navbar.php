@@ -10,7 +10,6 @@
   Released under the GNU General Public License
  */
 
-namespace PureOSC;
 
 class cm_modular_navbar
 {

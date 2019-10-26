@@ -32,7 +32,7 @@ class ht_article_title {
     function execute() {
         global $oscTemplate, $_GET, $languages_id, $article_check;
 
-        if ((basename($_SERVER['PHP_SELF']) == FILENAME_ARTICLE_INFO) || (basename($_SERVER['PHP_SELF']) == FILENAME_ARTICLE_BLOG)) {
+        if ((basename($_SERVER['PHP_SELF']) == cfg('FILENAME_ARTICLE_INFO')) || (basename($_SERVER['PHP_SELF']) == cfg('FILENAME_ARTICLE_BLOG'))) {
             if (isset($_GET['articles_id'])) {
                 $article_info_query = tep_db_query("select ad.articles_name from " . TABLE_ARTICLES . " a, " . TABLE_ARTICLES_DESCRIPTION . " ad where a.articles_status = '1' and a.articles_id = '" . (int) $_GET['articles_id'] . "' and ad.articles_id = a.articles_id and ad.language_id = '" . (int) $languages_id . "'");
                 $article_info = tep_db_fetch_array($article_info_query);

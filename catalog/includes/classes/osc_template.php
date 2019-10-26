@@ -78,8 +78,8 @@ class oscTemplate {
     function buildBlocks() {
         global $language;
 
-        if (defined('TEMPLATE_BLOCK_GROUPS') && tep_not_null(TEMPLATE_BLOCK_GROUPS)) {
-            $tbgroups_array = explode(';', TEMPLATE_BLOCK_GROUPS);
+        if (cfg('TEMPLATE_BLOCK_GROUPS')) {
+            $tbgroups_array = explode(';', cfg('TEMPLATE_BLOCK_GROUPS'));
 
             foreach ($tbgroups_array as $group) {
                 $module_key = 'MODULE_' . strtoupper($group) . '_INSTALLED';
@@ -89,15 +89,8 @@ class oscTemplate {
 
                     foreach ($modules_array as $module) {
                         $class = basename($module, '.php');
-
-                        if (!class_exists($class)) {
-                            if (file_exists(DIR_WS_MODULES . $group . '/' . $module)) {
-                                include(DIR_WS_MODULES . $group . '/' . $module);
-                            }
-                        }
-                        if (file_exists(DIR_WS_LANGUAGES . $language . '/modules/' . $group . '/' . $module)) {
-                            include(DIR_WS_LANGUAGES . $language . '/modules/' . $group . '/' . $module);
-                            file_put_contents('/tmp/module.log', 'cesta:' . (DIR_WS_LANGUAGES . $language . '/modules/' . $group . '/' . $module), FILE_APPEND);
+                        if (file_exists(cfg('DIR_WS_LANGUAGES') . $language . '/modules/' . $group . '/' . $module)) {
+                            include(cfg('DIR_WS_LANGUAGES') . $language . '/modules/' . $group . '/' . $module);
                         }
 
                         if (class_exists($class)) {
@@ -129,7 +122,7 @@ class oscTemplate {
         }
 
         if (class_exists('tp_' . $group)) {
-            $template_page_class = 'tp_' . $group;
+            $template_page_class = '\tp_' . $group;
             $template_page = new $template_page_class();
             $template_page->prepare();
         }
@@ -162,7 +155,7 @@ class oscTemplate {
     function getContentModules($group) {
         $result = array();
 
-        foreach (explode(';', MODULE_CONTENT_INSTALLED) as $m) {
+        foreach (explode(';', cfg('MODULE_CONTENT_INSTALLED')) as $m) {
             $module = explode('/', $m, 2);
 
             if ($module[0] == $group) {

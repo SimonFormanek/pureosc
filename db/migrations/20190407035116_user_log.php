@@ -28,7 +28,7 @@ class UserLog extends AbstractMigration
                 ['comment' => 'place of occurence. ex: user profile page', 'null' => false])
             ->addColumn('question', 'string',
                 ['comment' => 'ex: agree with newsletter sending', 'null' => false])
-            ->addColumn('answer', 'string',
+            ->addColumn('answer', 'text',
                 ['comment' => 'ex: yes', 'null' => false])
             ->addColumn('extid', 'string',
                 ['comment' => 'ex: mysql://localhost/table/column#line', 'null' => false])

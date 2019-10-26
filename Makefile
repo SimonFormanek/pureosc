@@ -1,8 +1,5 @@
 all: 	 fresh dbreset upgrade
 
-clean:
-	vendor/bin/phinx seed:run -s Reset -c ./phinx-adapter.php
-
 adminreset:
 	vendor/bin/phinx seed:run -s ResetAdmin -c ./phinx-adapter.php
 dbreset:

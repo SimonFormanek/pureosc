@@ -28,22 +28,21 @@ class ipayment_cc
         $this->api_version = '2.0';
 
         $this->code         = 'ipayment_cc';
-        $this->title        = MODULE_PAYMENT_IPAYMENT_CC_TEXT_TITLE;
-        $this->public_title = MODULE_PAYMENT_IPAYMENT_CC_TEXT_PUBLIC_TITLE;
-        $this->description  = MODULE_PAYMENT_IPAYMENT_CC_TEXT_DESCRIPTION;
-        $this->sort_order   = MODULE_PAYMENT_IPAYMENT_CC_SORT_ORDER;
-        $this->enabled      = ((MODULE_PAYMENT_IPAYMENT_CC_STATUS == 'True') ? true
-                : false);
+        $this->title        = __('MODULE_PAYMENT_IPAYMENT_CC_TEXT_TITLE',_('Ipayment'));
+        $this->public_title = __('MODULE_PAYMENT_IPAYMENT_CC_TEXT_PUBLIC_TITLE',_('Ipayment'));
+        $this->description  = __('MODULE_PAYMENT_IPAYMENT_CC_TEXT_DESCRIPTION',_('Ipayment description'));
+        $this->sort_order   = cfg('MODULE_PAYMENT_IPAYMENT_CC_SORT_ORDER');
+        $this->enabled      = cfg('MODULE_PAYMENT_IPAYMENT_CC_STATUS') == 'True';
 
-        if ((int) MODULE_PAYMENT_IPAYMENT_CC_ORDER_STATUS_ID > 0) {
-            $this->order_status = MODULE_PAYMENT_IPAYMENT_CC_ORDER_STATUS_ID;
+        if (cfg('MODULE_PAYMENT_IPAYMENT_CC_ORDER_STATUS_ID')) {
+            $this->order_status = cfg('MODULE_PAYMENT_IPAYMENT_CC_ORDER_STATUS_ID');
         }
 
         $this->gateway_addresses = array('212.227.34.218', '212.227.34.219', '212.227.34.220');
 
         if (is_object($order)) $this->update_status();
 
-        $this->form_action_url = 'https://ipayment.de/merchant/'.MODULE_PAYMENT_IPAYMENT_CC_ID.'/processor/2.0/';
+        $this->form_action_url = 'https://ipayment.de/merchant/'. cfg('MODULE_PAYMENT_IPAYMENT_CC_ID').'/processor/2.0/';
     }
 
 // class methods

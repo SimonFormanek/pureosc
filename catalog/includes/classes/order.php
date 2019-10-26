@@ -243,7 +243,7 @@ class order
                 'entry_zone_id' => $shipping_address['entry_zone_id']);
         }
 
-        $this->info = array('order_status' => DEFAULT_ORDERS_STATUS_ID,
+        $this->info = array('order_status' => cfg('DEFAULT_ORDERS_STATUS_ID'),
             'currency' => $currency,
             'currency_value' => $currencies->currencies[$currency]['value'],
             'payment_method' => $payment,
@@ -377,7 +377,7 @@ class order
 
             $products_tax             = $this->products[$index]['tax'];
             $products_tax_description = $this->products[$index]['tax_description'];
-            if (DISPLAY_PRICE_WITH_TAX == 'true') {
+            if (cfg('DISPLAY_PRICE_WITH_TAX') == 'true') {
                 $this->info['tax'] += $shown_price - ($shown_price / (($products_tax
                     < 10) ? "1.0".str_replace('.', '', $products_tax) : "1.".str_replace('.',
                         '', $products_tax)));

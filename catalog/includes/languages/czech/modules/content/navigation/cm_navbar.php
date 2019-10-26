@@ -35,6 +35,5 @@
   define('HEADER_ACCOUNT_REGISTER', '<i class="glyphicon glyphicon-pencil"></i> Registrace',true);
   define('HEADER_CART_HAS_CONTENTS', '%s kusů, %s',true);
   define('HEADER_CART_VIEW_CART', 'Zobrazit košík',true);
-  define('HEADER_CART_CHECKOUT', '<i class="glyphicon glyphicon-chevron-right"></i> Pokladna',true);
   define('USER_LOCALIZATION', '<abbr title="Vybraný jazyk">L:</abbr> %s <abbr title="Vybraná měna">C:</abbr> %s',true);
 

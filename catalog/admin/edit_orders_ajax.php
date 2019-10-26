@@ -30,7 +30,7 @@ include(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ORDERS_EDIT);
 
 // Include currencies class
 
-$currencies = new AdminCurrencies();
+$currencies = new \PureOSC\Admin\AdminCurrencies();
 
 //$action 
 //all variables are sent by $_GET only or by $_POST only, never together
@@ -470,7 +470,7 @@ if ($action == 'reload_totals') {
 
                                         echo '                    <td align="right" class="dataTableContent"><input name="update_totals['.$i.'][title]" value="'.trim($order->totals[$i]['title']).'" readonly="readonly"></td>'."\n";
 
-                                        if ($order->info['currency'] != DEFAULT_CURRENCY)
+                                        if ($order->info['currency'] != cfg('DEFAULT_CURRENCY'))
                                                 echo '                    <td class="dataTableContent">&nbsp;</td>'."\n";
                                         echo '                    <td align="right" class="dataTableContent" nowrap>'.$order->totals[$i]['text'].'<input name="update_totals['.$i.'][value]" type="hidden" value="'.number_format($order->totals[$i]['value'],
                                             2, '.', '').'"><input name="update_totals['.$i.'][class]" type="hidden" value="'.$order->totals[$i]['class'].'"></td>'."\n".
@@ -491,7 +491,7 @@ if ($action == 'reload_totals') {
                                         echo '                    <td align="right" class="dataTableContent"><input name="update_totals['.$i.'][title]" id="'.$id.'[title]" value="'.trim($order->totals[$i]['title']).'"  onChange="obtainTotals()"></td>'."\n".
                                         '                    <td align="right" class="dataTableContent"><input name="update_totals['.$i.'][value]" id="'.$id.'[value]" value="'.@number_format($order->totals[$i]['value'],
                                             2, '.', '').'" size="6"  onChange="obtainTotals()"><input name="update_totals['.$i.'][class]" type="hidden" value="'.$order->totals[$i]['class'].'"><input name="update_totals['.$i.'][id]" type="hidden" value="'.$shipping_module_id.'" id="'.$id.'[id]"></td>'."\n";
-                                        if ($order->info['currency'] != DEFAULT_CURRENCY)
+                                        if ($order->info['currency'] != cfg('DEFAULT_CURRENCY'))
                                                 echo '                    <td align="right" class="dataTableContent" nowrap>'.$order->totals[$i]['text'].'</td>'."\n";
                                         echo '                  </tr>'."\n";
                                     }

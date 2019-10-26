@@ -85,16 +85,16 @@ class CustomerLog extends Engine {
      * 
      * @return boolean success
      */
-    public function logEvent($question, $answer, $venue = null, $extId = 'none',
+    public function logEvent($question, $answer, $venue = null, $extId = '',
             $customers_id = null, $administrators_id = null) {
         return $this->insertToSQL([
                     'customers_id' => empty($customers_id) ? $this->customers_id : $customers_id,
                     'customers_id' => empty($customers_id) ? $this->customers_id : $customers_id,
                     'administrators_id' => empty($administrators_id) ? $this->administrators_id : $administrators_id,
-                    'venue' => empty($venue) ? $this->venue : $venue,
-                    'question' => $question,
-                    'answer' => $answer,
-                    'extid' => $extId
+                    'venue' => empty($venue) ? $this->venue : substr($venue,0,254 ) ,
+                    'question' => strval($question),
+                    'answer' => strval($answer),
+                    'extid' => strval($extId)
                 ]) == 1;
     }
 
@@ -368,14 +368,24 @@ class CustomerLog extends Engine {
     }
 
     /**
-     * Log GPWebPay Request
      * 
      * @param array $parameters
      * 
      * @return boolean success
      */
-    public function logPaymentEvent(array $parameters) {
-        return $this->logEvent(_('GPWebPay Request Prepared'), json_encode($parameters), ui\WebPage::getUri() );
+    
+    /**
+     * Log GPWebPay Request
+     * 
+     * @param array  $parameters
+     * @param int    $customers_id
+     * @param string $event         Force Log Row 
+     * @param string $extId externa id for logg row
+     * 
+     * @return boolean
+     */
+    public function logPaymentEvent(array $parameters, $customers_id = null, $event = null,$extId = null) {
+        return $this->logEvent( $event ? $event : _('GPWebPay Request Prepared'), json_encode($parameters), ui\WebPage::getUri(), $extId , $customers_id );
     }
 
 }

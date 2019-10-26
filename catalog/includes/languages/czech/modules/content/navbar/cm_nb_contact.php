@@ -13,5 +13,5 @@
   define('MODULE_CONTENT_NAVBAR_CONTACT_TITLE', 'Navbar Napište nám', true);
   define('MODULE_CONTENT_NAVBAR_CONTACT_DESCRIPTION', 'Zobrazit Napište nám v navigační liště.', true);
 
-  define('HEADER_CONTACT_US', '<i class="fa fa-envelope"></i><span class="hidden-sm"> Napište nám</span>', true);
+//  define('HEADER_CONTACT_US', '<i class="fa fa-envelope"></i><span class="hidden-sm"> Napište nám</span>', true);
 

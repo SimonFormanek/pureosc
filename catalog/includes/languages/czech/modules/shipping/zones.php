@@ -10,7 +10,6 @@
   Released under the GNU General Public License
 */
 
-define('MODULE_SHIPPING_ZONES_TEXT_TITLE', 'Zóny (Zone Based Shipping Rates)');
 define('MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION', 'Modul umožǔje nastavit různou výši poštovného pro několik zón, definovaných jako seznam zemí. Poštovné se počítá na základě váhy nebo ceny.');
 define('MODULE_SHIPPING_ZONES_TEXT_WAY', 'Ground'); //no longer used
 define('MODULE_SHIPPING_ZONES_TEXT_UNITS', 'kg');

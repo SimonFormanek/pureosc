@@ -19,61 +19,12 @@
  */
 namespace PureOSC;
 
-use breadcrumb;
 use Ease\Anonym;
-use Ease\Locale;
 use Ease\Shared;
-use language;
-use oscTemplate;
+use Mail_sendmail;
 use PureOSC\ui\WebPage;
-use const CFG_TIME_ZONE;
-use const DEFAULT_CURRENCY;
-use const DIR_WS_FUNCTIONS;
-use const DIR_WS_HTTP_CATALOG;
-use const DIR_WS_HTTPS_CATALOG;
-use const DIR_WS_INCLUDES;
-use const DIR_WS_LANGUAGES;
-use const ENABLE_SSL;
-use const FILENAME_ARTICLE_INFO;
-use const FILENAME_ARTICLES;
-use const FILENAME_COOKIE_USAGE;
-use const FILENAME_DEFAULT;
-use const FILENAME_LOGIN;
-use const FILENAME_PRODUCT_INFO;
-use const FILENAME_SHOPPING_CART;
-use const FILENAME_SSL_CHECK;
-use const GENERATOR_INSTANCE;
-use const HEADER_TITLE_TOP;
-use const HTTP_COOKIE_DOMAIN;
-use const HTTP_COOKIE_PATH;
-use const HTTP_SERVER;
-use const HTTPS_COOKIE_DOMAIN;
-use const HTTPS_COOKIE_PATH;
-use const SESSION_FORCE_COOKIE_USE;
-use function do_magic_quotes_gpc;
-use function tep_db_connect;
-use function tep_db_fetch_array;
-use function tep_db_num_rows;
-use function tep_db_query;
-use function tep_get_all_get_params;
-use function tep_get_ip_address;
-use function tep_get_product_path;
-use function tep_get_products_name;
-use function tep_get_uprid;
-use function tep_has_product_attributes;
-use function tep_href_link;
-use function tep_not_null;
-use function tep_parse_category_path;
-use function tep_rand;
-use function tep_redirect;
-use function tep_session_destroy;
-use function tep_session_id;
-use function tep_session_is_registered;
-use function tep_session_name;
-use function tep_session_register;
-use function tep_session_save_path;
-use function tep_session_start;
-use function tep_setcookie;
+
+
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
@@ -135,9 +86,16 @@ require(DIR_WS_INCLUDES.'database_tables.php');
 require(DIR_WS_FUNCTIONS.'database.php');
 
 // make a connection to the database... now
-global $db_link;
-
-$db_link = tep_db_connect() or die('Unable to connect to database server!');
+if (!tep_db_connect()){
+//	tep_mail(STORE_OWNER, WEBMASTER_EMAIL, 'err:',             $enquiry, $name, $email_address);
+       mail(WEBMASTER_EMAIL,
+         'DB con. ERR:' . HTTPS_COOKIE_DOMAIN,
+         'Database connection Error');
+				$apacheuser = posix_getpwuid(posix_getuid());
+        error_log('Database connection Error' . "\n" . date("Y-m-d H:i:s") . "\n\n", 3,  $apacheuser['dir'] . DATABASE_ERRORS_LOG);
+	header('Location: /' . FILENAME_DB_ERROR);
+	exit;
+}
 
 // set the application parameters
 $configuration_query = tep_db_query('select configuration_key as cfgKey, configuration_value as cfgValue from '.TABLE_CONFIGURATION);
@@ -189,7 +147,7 @@ if (USE_CACHE == 'true') include(DIR_WS_FUNCTIONS.'cache.php');
 
 // define how the session functions will be used
 require(DIR_WS_FUNCTIONS.'sessions.php');
-//add whos_online
+// include the who's online functions
 require(DIR_WS_FUNCTIONS.'whos_online.php');
 
 // set the session name and save path
@@ -313,14 +271,15 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
     }
 }
 //PURE:NEW:session ID became OTP token...
-    if (SESSION_RECREATE == 'True' && $session_started == true) {
+//TODO:original version WHY?    if (SESSION_RECREATE == 'True') {
+ if (SESSION_RECREATE == 'True' && $session_started == true) {
         tep_session_recreate();
     }
 
 // create the shopping cart
 if (!tep_session_is_registered('cart') || !is_object($cart)) {
     tep_session_register('cart');
-    $cart = new \ShoppingCart();
+    $cart = new \ShoppingCart;
 }
 
 // include currencies class and create an instance
@@ -335,7 +294,7 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
         tep_session_register('languages_id');
     }
 
-    $lng = new language();
+    $lng = new \language();
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);
     } else {
@@ -361,21 +320,21 @@ $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUA
       }
 */
       }
-      if ($new_language){
+      if (isset($new_language)){
         $lng->set_language($new_language);
       } else {
         $lng->set_language(constant('DEFAULT_LANGUAGE'));
       }
     }  
 } else {
-    $lng = new language();
+    $lng = new \language();
   //$lng->set_language($_SESSION['language']);
       $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
       $language_code = tep_db_fetch_array($language_code_query);
     $lng->set_language($language_code['code']);
 }
 
-Locale::singleton($lng->language['locale'], '../i18n', 'pureosc');
+\Ease\Locale::singleton($lng->language['locale'], '../i18n', 'pureosc');
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
 
@@ -407,7 +366,7 @@ if (!tep_session_is_registered('currency') || isset($_GET['currency']) || ( (USE
 // navigation history
 if (!tep_session_is_registered('navigation') || !is_object($navigation)) {
     tep_session_register('navigation');
-    $navigation = new \navigationHistory();
+    $navigation = new \navigationHistory;
 }
 $navigation->add_current_page();
 
@@ -474,29 +433,6 @@ if (isset($_GET['action'])) {
             tep_redirect(tep_href_link($goto,
                     tep_get_all_get_params($parameters)));
             break;
-      // customer adds a products from the quick_shop page      
-      case 'add_products' : if (isset($_POST['products_id']) && is_array($_POST['products_id'])) {
-
-        while($product = each($_POST['products_id'])) { 
-          $pozice=$product['key']; //prdel("\tpozice=".$pozice."\n");
-          if(! $product_quantity = $_POST['cart_quantity'][$pozice]) continue; 
-                               
-          $products_id = $product['value'];
-
-          $attributes = isset($_POST['id'][$pozice]) ? $_POST['id'][$pozice] : '';
-
-          if(strlen($attributes)) {
-            $cart->add_cart($products_id, $dq = $cart->get_quantity(tep_get_uprid($products_id, $attributes)) + $product_quantity, array(1 => $attributes)); 
-
-          } else $cart->add_cart($products_id,$product_quantity);
-
-        }
-
-      } 
-      
-      tep_redirect(tep_href_link($goto, tep_get_all_get_params($parameters), 'NONSSL')); 
-      
-      break;
         // customer removes a product from their shopping cart
         case 'remove_product' : if (isset($_GET['products_id'])) {
                 $cart->remove($_GET['products_id']);
@@ -626,7 +562,7 @@ if (tep_not_null($cPath)) {
     $current_category_id = 0;
 }
 
-$breadcrumb = new breadcrumb;
+$breadcrumb = new \breadcrumb;
 
 $breadcrumb->add(HEADER_TITLE_TOP, HTTP_SERVER);
 $breadcrumb->add(HEADER_TITLE_CATALOG, tep_href_link(FILENAME_DEFAULT));
@@ -730,10 +666,11 @@ if (isset($_GET['articles_id'])) {
 require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
+$oPage = new WebPage();
 
 WebPage::singleton($oPage);
 
-$userLog = CustomerLog::singleton( new CustomerLog(null, $customer_id) );
+$userLog = new CustomerLog(null, isset($customer_id) ? $customer_id : null);
 
 $oUser = new Anonym();
 Shared::instanced()->user($oUser);
