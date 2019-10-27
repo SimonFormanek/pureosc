@@ -525,13 +525,13 @@ class phgpwebpay {
   url: "order_confirmed.php?id='.$orderId.'",
   data: ' . json_encode($parameters) . ',
 }).done(function() {
-    alert( "success" );
+//    alert( "success" );
   })
   .fail(function() {
-    alert( "error" );
+//    alert( "error" );
   })
   .always(function() {
-    alert( "complete" );
+//    alert( "complete" );
   });
 return true;
 } ');

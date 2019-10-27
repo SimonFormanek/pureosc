@@ -298,7 +298,7 @@ $order_total_modules->apply_credit(); // CCGV
 
 if (cfg('USE_FLEXIBEE')) {
 
-    $invoice = new FakturaVydana(['typDokl' => FlexiBeeRO::code('FAKTURA'), 'varSym' => $order_id,'id'=>'ext:orders:'.$order_id]);
+    $invoice = new FakturaVydana(['typDokl' => FlexiBeeRO::code('FAKTURA'), 'varSym' => $order_id, 'id' => 'ext:orders:' . $order_id]);
 
     foreach ($order_total_modules->process() as $orderTotalRow) {
         switch ($orderTotalRow['code']) {
@@ -339,8 +339,7 @@ if (cfg('USE_FLEXIBEE')) {
         $varSym = $invoice->getDataValue('varSym');
         $orderCode = $invoice->getRecordID();
         $invoice->insertToFlexiBee(['id' => $invoice->getRecordID(), 'stavMailK' => 'stavMail.odeslat']);
-        Shared::instanced()->addStatusMessage(_('New order saved') . $invoice,
-                'success');
+        Shared::instanced()->addStatusMessage(_('New order saved') . $invoice, 'success');
     } else {
         echo 'FlexiBee Errorek';
     }
@@ -351,9 +350,9 @@ if (cfg('USE_FLEXIBEE')) {
 
 // lets start with the email confirmation
 $email_order = EMAIL_HEADER_TXT . "\n\n" .
-        STORE_NAME . "\n" .
+        cfg('STORE_NAME') . "\n" .
         cfg('EMAIL_SEPARATOR') . "\n" .
-        EMAIL_TEXT_ORDER_NUMBER . ' ' . $varSym . "\n";
+        __('EMAIL_TEXT_ORDER_NUMBER', _('Variable symbol')) . ' ' . $varSym . "\n";
 /* * * Altered for PWA ** 				 
   EMAIL_TEXT_INVOICE_URL . ' ' . tep_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $insert_id, 'SSL', false) . "\n" .
   EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n\n";
@@ -398,7 +397,7 @@ if (is_object($$payment)) {
     }
 }
 //pure:new customers mail and phone:
-if (ORDER_SEND_CUSTOMERS_EMAIL_PHONE == 'true') {
+if (cfg('ORDER_SEND_CUSTOMERS_EMAIL_PHONE') == 'true') {
     $email_order .= "\n";
     $email_order .= CUSTOMERS_E_MAIL . $order->customer['email_address'] . "\n";
     $email_order .= CUSTOMERS_PHONE . $order->customer['telephone'] . "\n\n";
