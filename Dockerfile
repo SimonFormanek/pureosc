@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -my wget gnupg \
 && curl -ssL -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
 && sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list' \
 && apt-get update \
-&& apt-get -y install  php7.1-fpm php7.1-mysqli php7.1-mbstring php7.1-curl php7.1-intl php7.1-gd php7.1-xml locales-all ssmtp bash \
-&& sed -i '/listen =/c\listen = 9000' /etc/php/7.1/fpm/pool.d/www.conf
+&& apt-get -y install  php7.3-fpm php7.3-mysqli php7.3-mbstring php7.3-curl php7.3-intl php7.3-gd php7.3-xml locales-all ssmtp bash \
+&& sed -i '/listen =/c\listen = 9000' /etc/php/7.3/fpm/pool.d/www.conf
 
 #RUN apt-get update &&     apt-get install -y composer &&     apt-get clean
 #RUN apt-get -y install htop strace net-tools mc 
@@ -28,7 +28,7 @@ COPY .docker/oscconfig/ /var/www/oscconfig
 #CMD ["/bin/bash"]
 
 RUN chown www-data /var/www/html/catalog/images -R \
-&& echo "#!/bin/bash\n/etc/init.d/php7.1-fpm start && bash" >> /run.sh \
+&& echo "#!/bin/bash\n/etc/init.d/php7.3-fpm start && bash" >> /run.sh \
 && chmod a+x /run.sh
 
 

@@ -671,6 +671,3 @@ $oPage = new WebPage();
 WebPage::singleton($oPage);
 
 $userLog = new CustomerLog(null, isset($customer_id) ? $customer_id : null);
-
-$oUser = new Anonym();
-Shared::instanced()->user($oUser);

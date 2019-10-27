@@ -42,11 +42,9 @@ if ($cart->count_contents() < 1) {
 //if (!tep_session_is_registered('shipping') || !tep_session_is_registered('sendto')) {
 //    tep_redirect(tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
 //}
-
 //if ((tep_not_null(MODULE_PAYMENT_INSTALLED)) && (!tep_session_is_registered('payment'))) {
 //    tep_redirect(tep_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
 //}
-
 // avoid hack attempts during the checkout procedure by checking the internal cartID
 if (isset($cart->cartID) && tep_session_is_registered('cartID')) {
     if ($cart->cartID != $cartID) {
@@ -61,7 +59,7 @@ include(DIR_WS_LANGUAGES . $language . '/' . FILENAME_CHECKOUT_PROCESS);
 if ($credit_covers) {
     $payment = ''; // CCGV
 }
-    /*     * * EOF alteration for CCGV ** */
+/* * * EOF alteration for CCGV ** */
 $payment_modules = new payment($payment);
 
 // load the selected shipping module
@@ -111,7 +109,7 @@ $sql_data_array = array('customers_id' => $customer_id,
     'customers_company' => $order->customer['company'],
     'customers_street_address' => $order->customer['street_address'],
     'customers_vat_number' => $order->customer['vat_number'],
-    'customers_company_number' => int($order->customer['company_number']),
+    'customers_company_number' => intval($order->customer['company_number']),
     'customers_suburb' => $order->customer['suburb'],
     'customers_city' => $order->customer['city'],
     'customers_postcode' => $order->customer['postcode'],
@@ -184,8 +182,8 @@ $total_tax = 0; // CCGV
 
 for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
 // Stock Update - Joao Correia
-    if (STOCK_LIMITED == 'true') {
-        if (DOWNLOAD_ENABLED == 'true') {
+    if (cfg('STOCK_LIMITED') == 'true') {
+        if (cfg('DOWNLOAD_ENABLED') == 'true') {
             $stock_query_raw = "SELECT products_quantity, pad.products_attributes_filename 
                             FROM " . TABLE_PRODUCTS . " p
                             LEFT JOIN " . TABLE_PRODUCTS_ATTRIBUTES . " pa
@@ -298,18 +296,19 @@ for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
 $order_total_modules->apply_credit(); // CCGV
 /* * * EOF alteration for CCGV ** */
 
-if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+if (cfg('USE_FLEXIBEE')) {
 
-    $invoice = new FakturaVydana(['typDokl' => FlexiBeeRO::code('FAKTURA')]);
+    $invoice = new FakturaVydana(['typDokl' => FlexiBeeRO::code('FAKTURA'), 'varSym' => $order_id,'id'=>'ext:orders:'.$order_id]);
 
     foreach ($order_total_modules->process() as $orderTotalRow) {
         switch ($orderTotalRow['code']) {
             case 'ot_shipping':
-                if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+                if (cfg('USE_FLEXIBEE')) {
                     $invoice->addArrayToBranch([
                         'nazev' => $orderTotalRow['title'],
                         'mnozMj' => 1,
                         'cenaMj' => $orderTotalRow['value'],
+                        'typCenyDphK' => 'typCeny.sDph',
                         'typPolozkyK' => 'typPolozky.obecny'
                             ], 'polozkyDokladu');
                 }
@@ -336,7 +335,6 @@ if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
                 ], 'polozkyDokladu');
     }
 
-    $invoice->setDataValue('id', 'ext:orders:' . $order_id);
     if ($invoice->sync()) {
         $varSym = $invoice->getDataValue('varSym');
         $orderCode = $invoice->getRecordID();
