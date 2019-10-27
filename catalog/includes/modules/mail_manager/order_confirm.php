@@ -46,7 +46,7 @@ $placeholders        = array('$storeurl', '$storename', '$storeemail', '$separat
     '$paymethodhead', '$paymentmethod', '$ccardtype', '$ordercomments', '$totaltext',
     'subtotaltext', '$ordertotal');
 $values              = array(HTTP_SERVER, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS,
-    EMAIL_SEPARATOR, $order_no, $order_date, $invoice_url, EMAIL_TEXT_PRODUCTS, $products_ordered,
+    cfg('EMAIL_SEPARATOR'), $order_no, $order_date, $invoice_url, EMAIL_TEXT_PRODUCTS, $products_ordered,
     EMAIL_TEXT_DELIVERY_ADDRESS, $delivery_address, EMAIL_TEXT_BILLING_ADDRESS, $billing_address,
     EMAIL_TEXT_PAYMENT_METHOD, $paymentmethod, $ccardtype, $order_comments, EMAIL_TEXT_TOTAL,
     EMAIL_TEXT_SUBTOTAL, $mm_ordertotal);

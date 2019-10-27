@@ -1,4 +1,5 @@
 <?php
+use PureOSC\Admin\AdminCurrencies;
 /*
   $Id: coupon_admin.php,v 0.01 2014/08/10 17:56:34 Melanie Shepherd aka mommaroodles
   osCommerce, Open Source E-Commerce Solutions
@@ -932,11 +933,11 @@ switch ($_GET['action']) {
                                         'cancel').'</a>'
                                 );
                             } else {
-                                $prod_details = NONE;
+                                $prod_details = _('none');
                                 if ($cInfo->restrict_to_products) {
                                     $prod_details = '<a href="listproducts.php?cid='.$cInfo->coupon_id.'" target="_blank" onclick="window.open(\'listproducts.php?cid='.$cInfo->coupon_id.'\', \'Valid_Categories\', \'scrollbars=yes,resizable=yes,menubar=yes,width=600,height=600\'); return false">View</a>';
                                 }
-                                $cat_details = NONE;
+                                $cat_details = _('none');
                                 if ($cInfo->restrict_to_categories) {
                                     $cat_details = '<a href="listcategories.php?cid='.$cInfo->coupon_id.'" target="_blank" onclick="window.open(\'listcategories.php?cid='.$cInfo->coupon_id.'\', \'Valid_Categories\', \'scrollbars=yes,resizable=yes,menubar=yes,width=600,height=600\'); return false">View</a>';
                                 }

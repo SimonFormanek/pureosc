@@ -25,11 +25,10 @@ class moneyorder
         global $order;
 
         $this->code        = 'moneyorder';
-        $this->title       =  MODULE_PAYMENT_MONEYORDER_TEXT_TITLE;
-        $this->description = MODULE_PAYMENT_MONEYORDER_TEXT_DESCRIPTION;
-        $this->sort_order  = MODULE_PAYMENT_MONEYORDER_SORT_ORDER;
-        $this->enabled     = ((MODULE_PAYMENT_MONEYORDER_STATUS == 'True') ? true
-                : false);
+        $this->title       =  __('MODULE_PAYMENT_MONEYORDER_TEXT_TITLE',_('Cash on Delivery'));
+        $this->description = __('MODULE_PAYMENT_MONEYORDER_TEXT_DESCRIPTION',_('Money order'));
+        $this->sort_order  = cfg('MODULE_PAYMENT_MONEYORDER_SORT_ORDER');
+        $this->enabled     = cfg('MODULE_PAYMENT_MONEYORDER_STATUS') == 'True';
 
         if ((int) MODULE_PAYMENT_MONEYORDER_ORDER_STATUS_ID > 0) {
             $this->order_status = MODULE_PAYMENT_MONEYORDER_ORDER_STATUS_ID;

@@ -243,7 +243,7 @@ class order
                 'entry_zone_id' => $shipping_address['entry_zone_id']);
         }
 
-        $this->info = array('order_status' => DEFAULT_ORDERS_STATUS_ID,
+        $this->info = array('order_status' => cfg('DEFAULT_ORDERS_STATUS_ID'),
             'currency' => $currency,
             'currency_value' => $currencies->currencies[$currency]['value'],
             'payment_method' => $payment,
@@ -330,9 +330,9 @@ class order
             $this->products[$index] = array('qty' => $products[$i]['quantity'],
                 'name' => $products[$i]['name'],
                 'model' => $products[$i]['model'],
-                'tax' => tep_get_tax_rate($products[$i]['tax_class_id']), //tep_round(tep_get_tax_rate($products[$i]['tax_class_id']), 0), 
+                'tax' => tep_get_tax_rate($products[$i]['tax_class_id'],
                     $tax_address['entry_country_id'],
-                    $tax_address['entry_zone_id'],
+                    $tax_address['entry_zone_id']),
                 'tax_description' => tep_get_tax_description($products[$i]['tax_class_id'],
                     $tax_address['entry_country_id'],
                     $tax_address['entry_zone_id']),
@@ -377,7 +377,7 @@ class order
 
             $products_tax             = $this->products[$index]['tax'];
             $products_tax_description = $this->products[$index]['tax_description'];
-            if (DISPLAY_PRICE_WITH_TAX == 'true') {
+            if (cfg('DISPLAY_PRICE_WITH_TAX') == 'true') {
                 $this->info['tax'] += $shown_price - ($shown_price / (($products_tax
                     < 10) ? "1.0".str_replace('.', '', $products_tax) : "1.".str_replace('.',
                         '', $products_tax)));

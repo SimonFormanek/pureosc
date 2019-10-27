@@ -3,832 +3,1630 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 17:41+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2019-08-25 23:16+0200\n"
+"PO-Revision-Date: 2019-08-25 23:18+0200\n"
+"Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
+"Language-Team: \n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: ../../../catalog\n"
+"X-Poedit-SearchPath-0: .\n"
 
-# sss
-#: admin/create_account.php:214 catalog/admin/create_account.php:214
-msgid "Created by admin"
-msgstr "Created by admin"
+#: account_edit.php:138
+msgid "Changed by customer"
+msgstr "Changed by customer"
 
-#: admin/create_account.php:368 catalog/admin/create_account.php:368
-msgid "New Customer"
-msgstr "New Customer"
-
-#: admin/create_account.php:381 catalog/account_edit.php:151
-#: catalog/account_password.php:89 catalog/account_pwa.php:273
-#: catalog/admin/create_account.php:381 catalog/contact_us.php:96
-#: catalog/create_account.php:420
-#: catalog/ext/modules/content/account/set_password.php:80
-#: catalog/includes/modules/address_book_details.php:16
-#: catalog/tell_a_friend.php:166 catalog/account_edit.php:151
-#: catalog/account_password.php:89
-#: catalog/includes/modules/address_book_details.php:16
-#: catalog/account_pwa.php:273
-#: catalog/ext/modules/content/account/set_password.php:80
-#: catalog/contact_us.php:96 catalog/create_account.php:420
-#: catalog/tell_a_friend.php:166
+#: account_edit.php:196 account_password.php:89 account_pwa.php:273
+#: admin/create_account.php:401 contact_us.php:97 create_account.php:408
+#: ext/modules/content/account/set_password.php:80
+#: includes/modules/address_book_details.php:16 tell_a_friend.php:166
 msgid "Requied Information"
 msgstr "Requied Information"
 
-#: admin/create_account.php:412 admin/create_account.php:425
-#: admin/create_account.php:437 admin/create_account.php:452
-#: admin/create_account.php:468 admin/create_account.php:529
-#: admin/create_account.php:559 admin/create_account.php:571
-#: admin/create_account.php:594 admin/create_account.php:598
-#: admin/create_account.php:603 admin/create_account.php:619
-#: admin/create_account.php:637 admin/create_account.php:682
-#: admin/create_account.php:695 catalog/account_edit.php:172
-#: catalog/account_edit.php:185 catalog/account_edit.php:194
-#: catalog/account_edit.php:208 catalog/account_edit.php:222
-#: catalog/account_edit.php:232 catalog/account_password.php:100
-#: catalog/account_password.php:112 catalog/account_password.php:124
-#: catalog/account_pwa.php:301 catalog/account_pwa.php:314
-#: catalog/account_pwa.php:326 catalog/account_pwa.php:341
-#: catalog/account_pwa.php:356 catalog/account_pwa.php:400
-#: catalog/account_pwa.php:430 catalog/account_pwa.php:442
-#: catalog/account_pwa.php:465 catalog/account_pwa.php:469
-#: catalog/account_pwa.php:474 catalog/account_pwa.php:490
-#: catalog/account_pwa.php:505 catalog/admin/create_account.php:412
-#: catalog/admin/create_account.php:425 catalog/admin/create_account.php:437
-#: catalog/admin/create_account.php:452 catalog/admin/create_account.php:468
-#: catalog/admin/create_account.php:529 catalog/admin/create_account.php:559
-#: catalog/admin/create_account.php:571 catalog/admin/create_account.php:594
-#: catalog/admin/create_account.php:598 catalog/admin/create_account.php:603
-#: catalog/admin/create_account.php:619 catalog/admin/create_account.php:637
-#: catalog/admin/create_account.php:682 catalog/admin/create_account.php:695
-#: catalog/advanced_search.php:132 catalog/contact_us.php:105
-#: catalog/contact_us.php:116 catalog/contact_us.php:127
-#: catalog/create_account.php:451 catalog/create_account.php:464
-#: catalog/create_account.php:476 catalog/create_account.php:491
-#: catalog/create_account.php:507 catalog/create_account.php:568
-#: catalog/create_account.php:598 catalog/create_account.php:610
-#: catalog/create_account.php:633 catalog/create_account.php:637
-#: catalog/create_account.php:642 catalog/create_account.php:658
-#: catalog/create_account.php:676 catalog/create_account.php:721
-#: catalog/create_account.php:734
-#: catalog/ext/modules/content/account/set_password.php:87
-#: catalog/ext/modules/content/account/set_password.php:95
-#: catalog/includes/modules/address_book_details.php:41
-#: catalog/includes/modules/address_book_details.php:54
-#: catalog/includes/modules/address_book_details.php:62
-#: catalog/includes/modules/address_book_details.php:107
-#: catalog/includes/modules/address_book_details.php:136
-#: catalog/includes/modules/address_book_details.php:146
-#: catalog/includes/modules/address_book_details.php:188
-#: catalog/password_forgotten.php:127 catalog/password_reset.php:128
-#: catalog/password_reset.php:139 catalog/product_reviews_write.php:169
-#: catalog/tell_a_friend.php:177 catalog/tell_a_friend.php:188
-#: catalog/tell_a_friend.php:203 catalog/tell_a_friend.php:214
-#: catalog/tell_a_friend.php:229 catalog/advanced_search.php:132
-#: catalog/account_edit.php:172 catalog/account_edit.php:185
-#: catalog/account_edit.php:194 catalog/account_edit.php:208
-#: catalog/account_edit.php:222 catalog/account_edit.php:232
-#: catalog/password_reset.php:128 catalog/password_reset.php:139
-#: catalog/account_password.php:100 catalog/account_password.php:112
-#: catalog/account_password.php:124 catalog/password_forgotten.php:127
-#: catalog/includes/modules/address_book_details.php:41
-#: catalog/includes/modules/address_book_details.php:54
-#: catalog/includes/modules/address_book_details.php:62
-#: catalog/includes/modules/address_book_details.php:107
-#: catalog/includes/modules/address_book_details.php:136
-#: catalog/includes/modules/address_book_details.php:146
-#: catalog/includes/modules/address_book_details.php:188
-#: catalog/account_pwa.php:301 catalog/account_pwa.php:314
-#: catalog/account_pwa.php:326 catalog/account_pwa.php:341
-#: catalog/account_pwa.php:356 catalog/account_pwa.php:400
-#: catalog/account_pwa.php:430 catalog/account_pwa.php:442
-#: catalog/account_pwa.php:465 catalog/account_pwa.php:469
-#: catalog/account_pwa.php:474 catalog/account_pwa.php:490
-#: catalog/account_pwa.php:505
-#: catalog/ext/modules/content/account/set_password.php:87
-#: catalog/ext/modules/content/account/set_password.php:95
-#: catalog/contact_us.php:105 catalog/contact_us.php:116
-#: catalog/contact_us.php:127 catalog/create_account.php:451
-#: catalog/create_account.php:464 catalog/create_account.php:476
-#: catalog/create_account.php:491 catalog/create_account.php:507
-#: catalog/create_account.php:568 catalog/create_account.php:598
-#: catalog/create_account.php:610 catalog/create_account.php:633
-#: catalog/create_account.php:637 catalog/create_account.php:642
-#: catalog/create_account.php:658 catalog/create_account.php:676
-#: catalog/create_account.php:721 catalog/create_account.php:734
-#: catalog/tell_a_friend.php:177 catalog/tell_a_friend.php:188
-#: catalog/tell_a_friend.php:203 catalog/tell_a_friend.php:214
-#: catalog/tell_a_friend.php:229 catalog/product_reviews_write.php:169
+#: account_edit.php:221 account_edit.php:236 account_edit.php:247
+#: account_edit.php:263 account_edit.php:279 account_edit.php:291
+#: account_password.php:100 account_password.php:112 account_password.php:124
+#: account_pwa.php:302 account_pwa.php:315 account_pwa.php:327
+#: account_pwa.php:342 account_pwa.php:357 account_pwa.php:401
+#: account_pwa.php:431 account_pwa.php:443 account_pwa.php:466
+#: account_pwa.php:470 account_pwa.php:475 account_pwa.php:491
+#: account_pwa.php:506 admin/create_account.php:432
+#: admin/create_account.php:445 admin/create_account.php:457
+#: admin/create_account.php:472 admin/create_account.php:488
+#: admin/create_account.php:549 admin/create_account.php:579
+#: admin/create_account.php:591 admin/create_account.php:614
+#: admin/create_account.php:618 admin/create_account.php:623
+#: admin/create_account.php:639 admin/create_account.php:657
+#: admin/create_account.php:702 admin/create_account.php:715
+#: advanced_search.php:132 contact_us.php:106 contact_us.php:117
+#: contact_us.php:128 create_account.php:439 create_account.php:452
+#: create_account.php:464 create_account.php:479 create_account.php:495
+#: create_account.php:556 create_account.php:586 create_account.php:598
+#: create_account.php:621 create_account.php:625 create_account.php:630
+#: create_account.php:646 create_account.php:664 create_account.php:709
+#: create_account.php:722 ext/modules/content/account/set_password.php:87
+#: ext/modules/content/account/set_password.php:95
+#: includes/modules/address_book_details.php:46
+#: includes/modules/address_book_details.php:63
+#: includes/modules/address_book_details.php:75
+#: includes/modules/address_book_details.php:134
+#: includes/modules/address_book_details.php:169
+#: includes/modules/address_book_details.php:182
+#: includes/modules/address_book_details.php:235 password_forgotten.php:127
+#: password_reset.php:128 password_reset.php:139 product_reviews_write.php:173
+#: tell_a_friend.php:177 tell_a_friend.php:188 tell_a_friend.php:203
+#: tell_a_friend.php:214 tell_a_friend.php:229
 msgid "Required"
 msgstr "Required"
 
-#: admin/create_account.php:483 admin/create_account.php:487
-#: admin/customers.php:552 admin/edit_orders.php:1089
-#: admin/edit_orders.php:1206 admin/edit_orders.php:1312
-#: admin/includes/modules/account_details.php:202
-#: admin/includes/modules/create_order_details.php:71
-#: catalog/account_pwa.php:367 catalog/account_pwa.php:371
-#: catalog/admin/create_account.php:483 catalog/admin/create_account.php:487
-#: catalog/admin/customers.php:552 catalog/admin/edit_orders.php:1089
-#: catalog/admin/edit_orders.php:1206 catalog/admin/edit_orders.php:1312
-#: catalog/admin/includes/modules/account_details.php:202
-#: catalog/admin/includes/modules/create_order_details.php:71
-#: catalog/create_account.php:522 catalog/create_account.php:526
-#: catalog/includes/modules/address_book_details.php:72
-#: catalog/includes/modules/address_book_details.php:75
-#: catalog/includes/modules/checkout_new_address.php:70
-#: catalog/includes/modules/checkout_new_address.php:73
-#: catalog/includes/modules/address_book_details.php:72
-#: catalog/includes/modules/address_book_details.php:75
-#: catalog/includes/modules/checkout_new_address.php:70
-#: catalog/includes/modules/checkout_new_address.php:73
-#: catalog/account_pwa.php:367 catalog/account_pwa.php:371
-#: catalog/create_account.php:522 catalog/create_account.php:526
-msgid "Company Name"
-msgstr "Company Name"
+#: account_edit.php:271 account_edit.php:276 account_pwa.php:352
+#: account_pwa.php:356 admin/create_account.php:482
+#: admin/create_account.php:486 admin/customers.php:542
+#: admin/edit_orders.php:1194 admin/includes/modules/account_details.php:180
+#: admin/includes/modules/create_order_details.php:60 admin/orders.php:201
+#: create_account.php:489 create_account.php:493
+#: includes/modules/content/login/templates/login_form.php:11
+#: password_forgotten.php:120 password_forgotten.php:124
+msgid "E-Mail Address"
+msgstr "E-Mail Address"
 
-#: admin/create_account.php:493 admin/create_account.php:497
-#: catalog/admin/create_account.php:493 catalog/admin/create_account.php:497
-msgid "Company Number"
-msgstr "Company Number"
-
-#: admin/create_account.php:503 admin/create_account.php:507
-#: admin/edit_orders.php:1094 admin/edit_orders.php:1211
-#: admin/edit_orders.php:1317 catalog/account_pwa.php:377
-#: catalog/account_pwa.php:381 catalog/admin/create_account.php:503
-#: catalog/admin/create_account.php:507 catalog/admin/edit_orders.php:1094
-#: catalog/admin/edit_orders.php:1211 catalog/admin/edit_orders.php:1317
-#: catalog/create_account.php:532 catalog/create_account.php:536
-#: catalog/includes/modules/address_book_details.php:80
-#: catalog/includes/modules/address_book_details.php:83
-#: catalog/includes/modules/checkout_new_address.php:78
-#: catalog/includes/modules/checkout_new_address.php:81
-#: catalog/includes/modules/address_book_details.php:80
-#: catalog/includes/modules/address_book_details.php:83
-#: catalog/includes/modules/checkout_new_address.php:78
-#: catalog/includes/modules/checkout_new_address.php:81
-#: catalog/account_pwa.php:377 catalog/account_pwa.php:381
-#: catalog/create_account.php:532 catalog/create_account.php:536
-msgid "Vat Number"
-msgstr "Vat Number"
-
-#: admin/create_account.php:672 admin/create_account.php:676
-#: admin/create_account.php:680 catalog/admin/create_account.php:672
-#: catalog/admin/create_account.php:676 catalog/admin/create_account.php:680
-msgid "Password"
-msgstr "Password"
-
-#: admin/create_account.php:689 admin/create_account.php:693
-#: catalog/admin/create_account.php:689 catalog/admin/create_account.php:693
-msgid "Password Confirmation"
-msgstr "Password Confirmation"
-
-#: admin/customers.php:566 catalog/admin/customers.php:566
-msgid "Vat number"
-msgstr "Vat number"
-
-#: admin/customers.php:580 catalog/admin/customers.php:580
-#: catalog/create_account.php:542 catalog/create_account.php:542
-msgid "Company number"
-msgstr "Company number"
-
-#: admin/flexibeesync.php:27 catalog/admin/flexibeesync.php:27
-msgid "FlexiBee sync"
-msgstr "FlexiBee sync"
-
-#: catalog/account_history.php:79 catalog/checkout_success.php:84
-#: catalog/checkout_success.php:84 catalog/account_history.php:79
+#: account_history.php:81 account_history_info.php:174 admin/orders.php:157
+#: checkout_success.php:91
 msgid "PDF Invoice"
 msgstr "PDF Invoice"
 
-#: catalog/account_history.php:82 catalog/checkout_success.php:86
-#: catalog/checkout_success.php:86 catalog/account_history.php:82
+#: account_history.php:82 account_history_info.php:176 admin/orders.php:158
+#: checkout_success.php:92
 msgid "ISDOC Invoice"
 msgstr "ISDOC Invoice"
 
-#: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Cenik.php:38
-#: catalog/ext/flexibee/FakturaVydana.php:42 catalog/ext/flexibee/Strom.php:44
-#: catalog/ext/flexibee/FakturaVydana.php:42
-#: catalog/ext/flexibee/Adresar.php:38 catalog/ext/flexibee/Strom.php:44
-#: catalog/ext/flexibee/Cenik.php:42
-msgid "FlexiBee import"
-msgstr "FlexiBee import"
+#: account_history_info.php:52
+msgid "Order info"
+msgstr "Order info"
 
-#: catalog/getisdoc.php:26 catalog/getpdf.php:31
-#: vendor/vitexsoftware/flexipeehp-bricks/src/getpdf.php:36
-#: vendor/vitexsoftware/flexipeehp-bricks/src/gethtml.php:53
-#: catalog/getpdf.php:31 catalog/getisdoc.php:26
+#: account_history_info.php:61
+#, php-format
+msgid "Order #%s"
+msgstr "Order #%s"
+
+#: account_history_info.php:70 account_history_info.php:78
+#: includes/modules/content/navbar/templates/cm_nb_categories.php:16
+#: includes/modules/content/navbar/templates/cm_nb_categories_full.php:17
+msgid "Products"
+msgstr "Products"
+
+#: account_history_info.php:71
+msgid "Tax"
+msgstr "Tax"
+
+#: account_history_info.php:72 account_history_info.php:79
+#: account_history_info.php:126
+#: admin/includes/modules/dashboard/d_orders.php:44
+msgid "Total"
+msgstr "Total"
+
+#: account_history_info.php:138
+msgid "Delivery Address"
+msgstr "Delivery Address"
+
+#: account_history_info.php:144
+msgid "Billing Address"
+msgstr "Billing Address"
+
+#: account_history_info.php:151
+msgid "Shipping Method"
+msgstr "Shipping Method"
+
+#: account_history_info.php:162
+msgid "Payment Method"
+msgstr "Payment Method"
+
+#: account_history_info.php:164 checkout_success.php:84
+msgid "QR Payment"
+msgstr "QR Payment"
+
+#: account_history_info.php:170
+msgid "Payment method"
+msgstr "Payment method"
+
+#: account_history_info.php:172
+msgid "Already settled"
+msgstr "Already settled"
+
+#: account_history_info.php:178
+msgid "XLS Invoice"
+msgstr "XLS Invoice"
+
+#: account_history_info.php:195
+msgid "Order History"
+msgstr "Order History"
+
+#: account_pwa.php:368 account_pwa.php:372 admin/create_account.php:503
+#: admin/create_account.php:507 admin/customers.php:583
+#: admin/edit_orders.php:1112 admin/edit_orders.php:1244
+#: admin/edit_orders.php:1355 admin/includes/modules/account_details.php:216
+#: admin/includes/modules/create_order_details.php:80 create_account.php:510
+#: create_account.php:514 includes/modules/address_book_details.php:85
+#: includes/modules/address_book_details.php:90
+#: includes/modules/checkout_new_address.php:79
+#: includes/modules/checkout_new_address.php:83
+msgid "Company Name"
+msgstr "Company Name"
+
+#: account_pwa.php:378 account_pwa.php:382 admin/create_account.php:523
+#: admin/create_account.php:527 admin/edit_orders.php:1118
+#: admin/edit_orders.php:1250 admin/edit_orders.php:1361 create_account.php:520
+#: create_account.php:524 includes/modules/address_book_details.php:96
+#: includes/modules/address_book_details.php:102
+#: includes/modules/checkout_new_address.php:89
+#: includes/modules/checkout_new_address.php:93
+msgid "Vat Number"
+msgstr "Vat Number"
+
+#: admin/action_recorder.php:139 admin/administrators.php:275
+#: admin/article_manager_blog_comments.php:434 admin/article_reviews.php:240
+#: admin/articles.php:1549 admin/articles_config.php:58 admin/authors.php:566
+#: admin/backup.php:367 admin/banner_manager.php:406 admin/cache.php:54
+#: admin/categories.php:1634 admin/configuration.php:57 admin/countries.php:72
+#: admin/coupon_admin.php:198 admin/coupon_admin.php:817
+#: admin/currencies.php:236 admin/customers.php:887 admin/geo_zones.php:147
+#: admin/geo_zones.php:234 admin/gv_queue.php:75 admin/gv_sent.php:31
+#: admin/languages.php:144 admin/manufacturers.php:146
+#: admin/mm_bulkmail.php:625 admin/mm_responsemail.php:320
+#: admin/mm_templates.php:234 admin/modules.php:151
+#: admin/modules_content.php:212 admin/modules_content.php:264
+#: admin/newsletters.php:352 admin/orders.php:461 admin/orders_status.php:125
+#: admin/products_attributes.php:272 admin/products_attributes.php:474
+#: admin/products_attributes.php:644 admin/products_expected.php:38
+#: admin/reviews.php:394 admin/specials.php:191 admin/tax_classes.php:68
+#: admin/tax_rates.php:76 admin/version_check.php:121 admin/zones.php:72
+msgid "Action"
+msgstr "Action"
+
+#: admin/article_manager_blog_comments.php:518 admin/articles.php:1895
+#: admin/articles.php:1912 admin/authors.php:673 admin/categories.php:2156
+#: admin/categories.php:2195 admin/manufacturers.php:374 article_blog.php:118
+#: article_info.php:88
+#, php-format
+msgid "DATE ADDED"
+msgstr "DATE ADDED"
+
+#: admin/articles.php:1528 admin/categories.php:1609
+msgid "Go to"
+msgstr "Go to"
+
+#: admin/articles.php:1546 admin/banner_manager.php:405
+#: admin/categories.php:1632 admin/edit_orders.php:2068
+#: admin/edit_orders_ajax.php:745
+#: admin/includes/modules/dashboard/d_orders.php:46
+#: admin/includes/modules/dashboard/d_reviews.php:44 admin/mm_bulkmail.php:624
+#: admin/mm_responsemail.php:319 admin/newsletters.php:351 admin/orders.php:340
+#: admin/orders.php:460 admin/reviews.php:392 admin/specials.php:190
+#, fuzzy
+msgid "Status"
+msgstr "Status message add test"
+
+#: admin/categories.php:901
+msgid "WARNING: Canonical category AutoDetection"
+msgstr "WARNING: Canonical category AutoDetection"
+
+#: admin/categories.php:955
+msgid "Add new"
+msgstr "Add new"
+
+#: admin/categories.php:1021
+msgid "Discount"
+msgstr "Discount"
+
+#: admin/categories.php:1173
+msgid "image for Gallery"
+msgstr "image for Gallery"
+
+#: admin/categories.php:1173
+msgid "HTML Replacement"
+msgstr ""
+
+#: admin/categories.php:1630
+msgid "Categories / Products"
+msgstr ""
+
+#: admin/categories.php:1793 admin/categories.php:2086
+#: includes/modules/boxes/bm_categories.php:24
+msgid "Categories"
+msgstr ""
+
+#: admin/categories.php:1817
+msgid "New Category / Article"
+msgstr ""
+
+#: admin/categories.php:1862
+msgid "The Category name"
+msgstr ""
+
+#: admin/categories.php:2188
+msgid "Open in FlexiBee"
+msgstr ""
+
+#: admin/create_account.php:118
+msgid ""
+"Your E-Mail Address already exists in our records - please log in with the e-"
+"mail address or create an account with a different address."
+msgstr ""
+
+# sss
+#: admin/create_account.php:217
+msgid "Created by admin"
+msgstr "Created by admin"
+
+#: admin/create_account.php:388
+msgid "New Customer"
+msgstr "New Customer"
+
+#: admin/create_account.php:513 admin/create_account.php:517
+#: create_account.php:534 create_account.php:536
+#: includes/modules/checkout_new_address.php:98
+#: includes/modules/checkout_new_address.php:102
+msgid "Company Number"
+msgstr "Company Number"
+
+#: admin/create_account.php:692 admin/create_account.php:696
+#: admin/create_account.php:700
+msgid "Password"
+msgstr "Password"
+
+#: admin/create_account.php:709 admin/create_account.php:713
+msgid "Password Confirmation"
+msgstr "Password Confirmation"
+
+#: admin/customers.php:597
+msgid "Vat number"
+msgstr "Vat number"
+
+#: admin/customers.php:611 create_account.php:530
+msgid "Company number"
+msgstr "Company number"
+
+#: admin/flexibeecash.php:26
+msgid "Cash payment"
+msgstr ""
+
+#: admin/flexibeecash.php:56
+#, fuzzy
+msgid "Payment"
+msgstr "we confirm receipt of payment %s %s on %s "
+
+#: admin/flexibeecash.php:61
+#, fuzzy
+msgid "Invoice"
+msgstr "Invoice locked: skipping process"
+
+#: admin/flexibeesync.php:41
+msgid "FlexiBee sync"
+msgstr "FlexiBee sync"
+
+#: admin/flexibeesync.php:68
+msgid "Already exists in database"
+msgstr ""
+
+#: admin/flexibeesync.php:106
+msgid "FlexiBee server not connected."
+msgstr ""
+
+#: admin/flexibeesync.php:107
+msgid "Please change  FlexiBee options"
+msgstr ""
+
+#: admin/flexibeesync.php:107
+#, fuzzy
+msgid "Here"
+msgstr "Click here to Agree"
+
+#: admin/getpdf.php:39 getisdoc.php:35 getpdf.php:39 getxls.php:35
 msgid "Wrong call"
 msgstr "Wrong call"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:21
-#: catalog/includes/classes/NewsletterConsentMailer.php:21
+#: admin/includes/header.php:31
+msgid "Static generator reset"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_admin_logins.php:28
+#: admin/includes/modules/dashboard/d_admin_logins.php:42
+msgid "Last Administrator Logins"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_admin_logins.php:29
+msgid "Show the last successful and failed administrator logins"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_admin_logins.php:43
+#: admin/includes/modules/dashboard/d_customers.php:42
+#: admin/includes/modules/dashboard/d_orders.php:45
+#: admin/includes/modules/dashboard/d_reviews.php:41
+msgid "Date"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_customers.php:28
+#: admin/includes/modules/dashboard/d_customers.php:41
+msgid "Customers"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_customers.php:29
+msgid "Show the newest customers"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_latest_addons.php:26
+#: admin/includes/modules/dashboard/d_latest_addons.php:44
+msgid "Latests Addons"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_latest_addons.php:27
+msgid "Show the latest osCommerce Add-Ons"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_latest_news.php:28
+#: admin/includes/modules/dashboard/d_latest_news.php:47
+msgid "Latest News"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_latest_news.php:29
+msgid "Show latest Oscommerce News"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_orders.php:28
+#: admin/includes/modules/dashboard/d_orders.php:43
+msgid "Orders"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_orders.php:29
+msgid "Show the latest orders"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_partner_news.php:26
+#: admin/includes/modules/dashboard/d_partner_news.php:49
+msgid "Partner news"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_partner_news.php:27
+msgid "Show the lastest osCommerce Partner News"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_partner_news.php:59
+msgid "More partner news"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_reviews.php:26
+#: admin/includes/modules/dashboard/d_reviews.php:40
+msgid "Reviews"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_reviews.php:27
+msgid "Show the latest reviews"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_reviews.php:42
+msgid "Reviewer"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_reviews.php:43
+msgid "Rating"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_security_checks.php:28
+msgid "Security Checks"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_security_checks.php:29
+msgid "Run security checks"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_total_customers.php:28
+msgid "Total Customers Chart (last 30 days)"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_total_customers.php:29
+msgid "Show the total customers chart of the last 30 days"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_total_customers.php:62
+msgid "Total Customers"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_total_revenue.php:28
+msgid "Total Revenue Chart (last 30 days)"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_total_revenue.php:29
+msgid "Show the total revenue chart of the last 30 days"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_total_revenue.php:61
+msgid "Total Revenue"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_version_check.php:22
+#: admin/includes/modules/dashboard/d_version_check.php:55
+msgid "Version Check"
+msgstr ""
+
+#: admin/includes/modules/dashboard/d_version_check.php:23
+msgid "Show the version check results"
+msgstr ""
+
+#: admin/login.php:119
+#, php-format
+msgid "Error saving private key to %s"
+msgstr ""
+
+#: admin/orders.php:156 admin/orders.php:616 checkout_success.php:90
+msgid "print cheque"
+msgstr ""
+
+#: admin/orders.php:616 admin/orders.php:624
+msgid "Cash Desk payment"
+msgstr ""
+
+#: checkout_process.php:343 includes/modules/payment/cash.php:346
+#: includes/modules/payment/gpwebpay.php:410
+msgid "New order saved"
+msgstr ""
+
+#: create_account.php:535
+msgid "Company Number2"
+msgstr ""
+
+#: ext/flexibee/Cenik.php:89 ext/flexibee/FakturaVydana.php:43
+#: ext/flexibee/Strom.php:45
+msgid "FlexiBee import"
+msgstr "FlexiBee import"
+
+#: ext/flexibee/FakturaVydana.php:97
+msgid "The Card holder canceled the payment"
+msgstr ""
+
+#: ext/modules/content/header/store_search/content_searches.php:132
+msgid "More products"
+msgstr ""
+
+#: ext/modules/content/header/store_search/content_searches.php:172
+msgid "Not found -> advanced search"
+msgstr ""
+
+#: includes/application_top.php:34
+msgid "DB_SERVER not defined"
+msgstr ""
+
+#: includes/classes/CustomerLog.php:240
+msgid "Gdpr Log"
+msgstr ""
+
+#: includes/classes/CustomerLog.php:259
+msgid "affected client"
+msgstr ""
+
+#: includes/classes/CustomerLog.php:260
+msgid "admin user"
+msgstr ""
+
+#: includes/classes/CustomerLog.php:261
+msgid "place of occurence"
+msgstr ""
+
+#: includes/classes/CustomerLog.php:262
+msgid "question"
+msgstr ""
+
+#: includes/classes/CustomerLog.php:263
+msgid "answer"
+msgstr ""
+
+#: includes/classes/CustomerLog.php:264
+msgid "extid"
+msgstr ""
+
+#: includes/classes/CustomerLog.php:265
+msgid "predecessor"
+msgstr ""
+
+#: includes/classes/CustomerLog.php:268
+msgid "Customer Name"
+msgstr ""
+
+#: includes/classes/CustomerLog.php:270
+msgid "Admin Name"
+msgstr ""
+
+#: includes/classes/Engine.php:139
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: includes/classes/Engine.php:140
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: includes/classes/Engine.php:141
+#, php-format
+msgid "Remove %s"
+msgstr ""
+
+#: includes/classes/Engine.php:142
+#, php-format
+msgid "Create new %s"
+msgstr ""
+
+#: includes/classes/Engine.php:143
+#, php-format
+msgid "Editing %s"
+msgstr ""
+
+#: includes/classes/Engine.php:144
+#, php-format
+msgid "Removing %s"
+msgstr ""
+
+#: includes/classes/Engine.php:145
+#, php-format
+msgid "Are you sure you wish to delete %%d row of %s ?"
+msgstr ""
+
+#: includes/classes/Engine.php:186
+#, php-format
+msgid "Missing ColumnInfo name for %s/%s"
+msgstr ""
+
+#: includes/classes/Engine.php:190
+#, php-format
+msgid "Missing ColumnInfo type for %s/%s"
+msgstr ""
+
+#: includes/classes/Engine.php:198
+#, fuzzy
+msgid "Id"
+msgstr "Edit External ID numbers"
+
+#: includes/classes/Engine.php:205
+#, fuzzy
+msgid "Updated"
+msgstr "Record was not updated"
+
+#: includes/classes/Engine.php:211
+#, fuzzy
+msgid "Created"
+msgstr "Created"
+
+#: includes/classes/Engine.php:428
+#, php-format
+msgid "%s is not valid email"
+msgstr ""
+
+#: includes/classes/Engine.php:456
+#, php-format
+msgid "A %s is required"
+msgstr ""
+
+#: includes/classes/Engine.php:461
+#, php-format
+msgid "A %s is not unique"
+msgstr ""
+
+#: includes/classes/Engine.php:586
+#, php-format
+msgid "Field Type is not set for %s "
+msgstr ""
+
+#: includes/classes/Engine.php:798
+#, php-format
+msgid "Column \"%s\" of %s without type definition"
+msgstr ""
+
+#: includes/classes/Engine.php:965
+#, fuzzy
+msgid "Yes"
+msgstr "Yes"
+
+#: includes/classes/Engine.php:965
+msgid "No"
+msgstr ""
+
+#: includes/classes/NewsletterConsentMailer.php:21
 msgid "Newsletter GDPR Consent"
 msgstr "Newsletter GDPR Consent"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:22
-#: catalog/includes/classes/NewsletterConsentMailer.php:22
+#: includes/classes/NewsletterConsentMailer.php:22
 msgid "Dear Customer"
 msgstr "Dear Customer"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:30
-#: catalog/includes/classes/NewsletterConsentMailer.php:30
+#: includes/classes/NewsletterConsentMailer.php:30
 #, php-format
 msgid "Would you like to subsribe to newsletter updates from %s ?"
 msgstr "Would you like to subsribe to newsletter updates from %s ?"
 
-#: catalog/includes/classes/NewsletterConsentMailer.php:36
-#: catalog/includes/classes/NewsletterConsentMailer.php:36
+#: includes/classes/NewsletterConsentMailer.php:36
 msgid "Click here to Agree"
 msgstr "Click here to Agree"
 
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:24
+#: includes/classes/ui/DataTable.php:272
+msgid "All pages"
+msgstr ""
+
+#: includes/classes/ui/QRFaktura.php:23
+msgid "QR Invoice"
+msgstr ""
+
+#: includes/modules/action_recorder/ar_admin_login.php:25
+msgid "Administration Tool Login"
+msgstr ""
+
+#: includes/modules/action_recorder/ar_admin_login.php:26
+msgid "Record usage of Administration Tool logins."
+msgstr ""
+
+#: includes/modules/action_recorder/ar_reset_password.php:25
+msgid "Customer Password Reset"
+msgstr ""
+
+#: includes/modules/action_recorder/ar_reset_password.php:26
+msgid "Record usage of customer password resets"
+msgstr ""
+
+#: includes/modules/action_recorder/ar_tell_a_friend.php:24
+msgid "Tell A Friend"
+msgstr ""
+
+#: includes/modules/action_recorder/ar_tell_a_friend.php:25
+msgid "Record usage of the Tell A Friend feature."
+msgstr ""
+
+#: includes/modules/article_listing.php:44
+#: includes/modules/articles_upcoming.php:43
+msgid "Topic"
+msgstr ""
+
+#: includes/modules/article_listing.php:63
+msgid "Date added"
+msgstr ""
+
+#: includes/modules/boxes/bm_articles.php:24
+#: includes/modules/boxes/bm_articles.php:384
+msgid "Articles"
+msgstr ""
+
+#: includes/modules/boxes/bm_articles.php:25
+msgid "Show Article Manager Articles InfoBox"
+msgstr ""
+
+#: includes/modules/boxes/bm_categories.php:25
+msgid "Show the category navigation tree"
+msgstr ""
+
+#: includes/modules/boxes/bm_search.php:29
+#: includes/modules/boxes/bm_search.php:50
+#, fuzzy
+msgid "Search"
+msgstr "Search"
+
+#: includes/modules/boxes/bm_search.php:30
+msgid "Show search field"
+msgstr ""
+
+#: includes/modules/boxes/bm_whats_new.php:29
+msgid "What's New"
+msgstr ""
+
+#: includes/modules/boxes/bm_whats_new.php:30
+msgid "Show the newest products"
+msgstr ""
+
+#: includes/modules/boxes/templates/search.php:2
+msgid "Quick Find"
+msgstr ""
+
+#: includes/modules/boxes/templates/search.php:4
+msgid "Use keywords to find the product you are looking for."
+msgstr ""
+
+#: includes/modules/boxes/templates/search.php:4
+msgid "Advanced Search"
+msgstr ""
+
+#: includes/modules/boxes/templates/whats_new.php:2
+msgid "What's New?"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_account.php:34
+#: includes/modules/content/footer/cm_footer_contact_us.php:29
+#: includes/modules/content/footer/cm_footer_information_links.php:30
+#: includes/modules/content/footer/cm_footer_text.php:29
+#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:29
+#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:29
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:30
+#: includes/modules/content/front_page/cm_fp_message.php:30
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:24
+#: includes/modules/content/front_page/cm_fp_new_products.php:30
+#: includes/modules/content/front_page/cm_fp_text_main.php:30
+#: includes/modules/content/front_page/cm_fp_title.php:30
+#: includes/modules/content/front_page/cm_fp_upcoming_products.php:30
+#: includes/modules/content/header/cm_header_breadcrumb.php:30
+#: includes/modules/content/header/cm_header_buttons.php:29
+#: includes/modules/content/header/cm_header_headertags_pagetop.php:29
+#: includes/modules/content/header/cm_header_logo.php:29
+#: includes/modules/content/product_info/cm_pi_reviews.php:29
+#: includes/modules/header_tags/ht_pages_seo.php:30
+msgid "Content Width can be 12 or less per column per row"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_account.php:35
+#: includes/modules/content/footer/cm_footer_contact_us.php:30
+#: includes/modules/content/footer/cm_footer_information_links.php:31
+#: includes/modules/content/footer/cm_footer_text.php:30
+#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:30
+#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:30
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:31
+#: includes/modules/content/front_page/cm_fp_message.php:31
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:25
+#: includes/modules/content/front_page/cm_fp_new_products.php:31
+#: includes/modules/content/front_page/cm_fp_text_main.php:31
+#: includes/modules/content/front_page/cm_fp_title.php:31
+#: includes/modules/content/front_page/cm_fp_upcoming_products.php:31
+#: includes/modules/content/header/cm_header_breadcrumb.php:31
+#: includes/modules/content/header/cm_header_buttons.php:30
+#: includes/modules/content/header/cm_header_headertags_pagetop.php:30
+#: includes/modules/content/header/cm_header_logo.php:30
+#: includes/modules/content/product_info/cm_pi_reviews.php:30
+#: includes/modules/header_tags/ht_pages_seo.php:31
+msgid "12/12 = 100% width, 6/12 = 50% width, 4/12 = 33% width."
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_account.php:36
+#: includes/modules/content/footer/cm_footer_contact_us.php:31
+#: includes/modules/content/footer/cm_footer_information_links.php:32
+#: includes/modules/content/footer/cm_footer_text.php:31
+#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:31
+#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:31
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:32
+#: includes/modules/content/front_page/cm_fp_message.php:32
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:26
+#: includes/modules/content/front_page/cm_fp_new_products.php:32
+#: includes/modules/content/front_page/cm_fp_text_main.php:32
+#: includes/modules/content/front_page/cm_fp_title.php:32
+#: includes/modules/content/front_page/cm_fp_upcoming_products.php:32
+#: includes/modules/content/header/cm_header_breadcrumb.php:32
+#: includes/modules/content/header/cm_header_buttons.php:31
+#: includes/modules/content/header/cm_header_headertags_pagetop.php:31
+#: includes/modules/content/header/cm_header_logo.php:31
+#: includes/modules/content/product_info/cm_pi_reviews.php:31
+#: includes/modules/header_tags/ht_pages_seo.php:32
+msgid ""
+"Total of all columns in any one row must equal 12 (eg:  3 boxes of 4 columns "
+"each, 1 box of 12 columns and so on)"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_contact_us.php:27
+msgid "Contact Us Details"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_contact_us.php:28
+msgid "Adds a Contact Us Block to the Footer Area of your site"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_information_links.php:28
+msgid "Information Links Block"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_information_links.php:29
+msgid "Adds Information Links Block to the Footer Area of your site"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_text.php:27
+msgid "Text Block"
+msgstr ""
+
+#: includes/modules/content/footer/cm_footer_text.php:28
+msgid "Adds a Text Block to the Footer Area of your site"
+msgstr ""
+
+#: includes/modules/content/footer/templates/cm_footer_account.php:3
+msgid "Customer Services"
+msgstr ""
+
+#: includes/modules/content/footer/templates/cm_footer_contact_us.php:3
+msgid "How To Contact Us"
+msgstr ""
+
+#: includes/modules/content/footer/templates/cm_footer_contact_us.php:7
+#, fuzzy
+msgid "Phone"
+msgstr "Invalid phone number"
+
+#: includes/modules/content/footer/templates/cm_footer_contact_us.php:7
+msgid "P"
+msgstr ""
+
+#: includes/modules/content/footer/templates/cm_footer_contact_us.php:8
+#, fuzzy
+msgid "Email"
+msgstr "Email"
+
+#: includes/modules/content/footer/templates/cm_footer_contact_us.php:16
+msgid "Contact Us"
+msgstr ""
+
+#: includes/modules/content/footer/templates/cm_footer_information_links.php:3
+#, fuzzy
+msgid "Information"
+msgstr "Add contact information"
+
+#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:27
+msgid "Copyright Details"
+msgstr ""
+
+#: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:28
+msgid "Adds a Copyright Block to the Extra Footer Area of your site"
+msgstr ""
+
+#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:27
+msgid "Payment Icons"
+msgstr ""
+
+#: includes/modules/content/footer_suffix/cm_footer_extra_icons.php:28
+msgid "Adds a Payment Icons Block to the Extra Footer Area of your site"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_carousel.php:28
+msgid "Front Page Carousel Banners"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_carousel.php:29
+msgid ""
+"Adds a carousel to the front page with banner images set in the Banner "
+"Manager."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:28
+msgid "Front Page Customer Greeting"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_customer_greeting.php:29
+msgid "Show the customer greeting block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_message.php:28
+msgid "Front Page Messages"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_message.php:29
+msgid "Show the messages block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:22
+msgid "Front Page New Blog Articles"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:23
+msgid "Show the new blog articles block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:51
+msgid "Blog"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_blog_articles.php:54
+msgid "Show all articles"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_products.php:28
+msgid "Front Page New Products"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_new_products.php:29
+msgid "Show the new products block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_text_main.php:28
+msgid "Front Page Main Text"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_text_main.php:29
+msgid "Show the main text block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_title.php:28
+msgid "Front Page Title"
+msgstr ""
+
+#: includes/modules/content/front_page/cm_fp_title.php:29
+msgid "Show the title block on the front page."
+msgstr ""
+
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:16
+#, php-format
+msgid "New Products"
+msgstr ""
+
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:39
+#: includes/modules/new_products.php:41
+msgid "View"
+msgstr ""
+
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:41
+#: includes/modules/new_products.php:43
+msgid "Buy"
+msgstr ""
+
+#: includes/modules/content/header/cm_header_breadcrumb.php:27
+msgid "Breadrcumb"
+msgstr ""
+
+#: includes/modules/content/header/cm_header_breadcrumb.php:28
+msgid "Adds a Breadrcumb Trail into the Header Area of your site."
+msgstr ""
+
+#: includes/modules/content/header/cm_header_search.php:28
+msgid "Header Search Bar"
+msgstr ""
+
+#: includes/modules/content/header/cm_header_search.php:29
+msgid "Adds your Header Search Bar into the Navbar Area of your site."
+msgstr ""
+
+#: includes/modules/content/header/cm_header_search.php:144
+#: includes/modules/content/navbar/cm_nb_store_search.php:149
+msgid "Site search"
+msgstr ""
+
+#: includes/modules/content/login/cm_create_account_link.php:27
+msgid "Create Account Link"
+msgstr ""
+
+#: includes/modules/content/login/cm_create_account_link.php:28
+msgid "Show a create account container on the login page"
+msgstr ""
+
+#: includes/modules/content/login/cm_login_form.php:27
+msgid "Login Form"
+msgstr ""
+
+#: includes/modules/content/login/cm_login_form.php:28
+msgid "Show a login form on the login page"
+msgstr ""
+
+#: includes/modules/content/login/cm_login_form.php:68
+msgid "Error: No match for E-Mail Address and/or Password."
+msgstr ""
+
+#: includes/modules/content/login/cm_pwa_login.php:25
+msgid "Login without Account Form"
+msgstr ""
+
+#: includes/modules/content/login/cm_pwa_login.php:26
+msgid "Show a PWA login form on the login page"
+msgstr ""
+
+#: includes/modules/content/login/templates/create_account_link.php:4
+msgid "Create Account"
+msgstr ""
+
+#: includes/modules/content/login/templates/create_account_link.php:6
+msgid "I am a new customer."
+msgstr ""
+
+#: includes/modules/content/login/templates/create_account_link.php:7
+#, php-format
+msgid ""
+"By creating an account at %s you will be able to shop faster, be up to date "
+"on an orders status, and keep track of the orders you have previously made."
+msgstr ""
+
+#: includes/modules/content/login/templates/login_form.php:4
+#, fuzzy
+msgid "Login"
+msgstr "Login"
+
+#: includes/modules/content/login/templates/login_form.php:6
+msgid "I am a returning customer."
+msgstr ""
+
+#: includes/modules/content/login/templates/login_form.php:24
+msgid "Password forgotten? Click here."
+msgstr ""
+
+#: includes/modules/content/login/templates/pwa_login.php:4
+msgid "Purchase without account"
+msgstr ""
+
+#: includes/modules/content/login/templates/pwa_login.php:6
+msgid "Purchase without creating user account."
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_account.php:29
+msgid "Navbar Account"
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_account.php:30
+msgid "Show the account menu in the navbar."
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_cart.php:29
+msgid "Navbar Cart"
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_cart.php:30
+msgid "Show the shopping cart menu in the navbar."
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_categories.php:29
+msgid "Navbar Categories Menu"
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_categories.php:30
+msgid "Show the categories menu in the navbar."
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_settings.php:29
+msgid "Navbar Settings"
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_settings.php:30
+msgid "Show the settings menu in the navbar."
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_store_search.php:29
+msgid "Navbar Store Search Bar"
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_store_search.php:30
+msgid "Adds your Store Search Bar into the Navbar Area of your site."
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:18
+#: includes/modules/content/navbar/templates/cm_nb_account.php:32
+msgid "My Account"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:23
+msgid "Log Off"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:25
+msgid "Log In"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:28
+msgid "Register"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:35
+msgid "My Orders"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:36
+msgid "My Address Book"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_account.php:39
+msgid "My Password"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:18
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:23
+#, php-format
+msgid "%s item(s)"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:27
+msgid "View cart"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:31
+#: includes/modules/content/navigation/templates/navbar.php:119
+msgid "Checkout"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:35
+#: includes/modules/content/navigation/templates/navbar.php:121
+msgid "0 items"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_cart.php:37
+msgid "View Cart"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_settings.php:20
+msgid "Lng/CCY"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_settings.php:25
+#, php-format
+msgid "Selected Language"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_settings.php:25
+#, php-format
+msgid "L:"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_settings.php:25
+#, php-format
+msgid "Selected Currency"
+msgstr ""
+
+#: includes/modules/content/navbar/templates/cm_nb_settings.php:25
+#, php-format
+msgid "C:"
+msgstr ""
+
+#: includes/modules/content/navigation/cm_modular_navbar.php:28
+msgid "Modular Navigation Bar"
+msgstr ""
+
+#: includes/modules/content/navigation/cm_modular_navbar.php:29
+msgid "Show the Modular Navigation Bar on your site."
+msgstr ""
+
+#: includes/modules/content/navigation/templates/navbar.php:113
+msgid "VIEW CART"
+msgstr ""
+
+#: includes/modules/content/product_info/cm_pi_reviews.php:27
+msgid "Product Reviews"
+msgstr ""
+
+#: includes/modules/content/product_info/cm_pi_reviews.php:28
+msgid " Show review block on the product info page."
+msgstr ""
+
+#: includes/modules/header_tags/ht_article_meta.php:25
+msgid "Article Meta"
+msgstr ""
+
+#: includes/modules/header_tags/ht_article_meta.php:26
+msgid ""
+"Add the META elements defined when setting up the article, to the header of "
+"the article page"
+msgstr ""
+"Add the META elements defined when setting up the article, to the header of "
+"the article page"
+
+#: includes/modules/header_tags/ht_article_title.php:23
+msgid "Article Title"
+msgstr "Article Title"
+
+#: includes/modules/header_tags/ht_article_title.php:24
+msgid "Add the title of the current article to the page title"
+msgstr "Add the title of the current article to the page title"
+
+#: includes/modules/header_tags/ht_canonical.php:25
+msgid "Canonical Header Links"
+msgstr ""
+
+#: includes/modules/header_tags/ht_canonical.php:26
+msgid "Add header canonical links to category and product pages"
+msgstr "Add header canonical links to category and product pages"
+
+#: includes/modules/header_tags/ht_category_meta.php:24
+msgid "Category Meta"
+msgstr "Category Meta"
+
+#: includes/modules/header_tags/ht_category_meta.php:25
+msgid ""
+"Add the META elements defined when setting up the category, to the "
+"underlying code of the category page.  Good for SEO."
+msgstr ""
+
+#: includes/modules/header_tags/ht_category_title.php:24
+msgid "Category title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_category_title.php:25
+msgid "Add the title of the current category to the page title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_datepicker_jquery.php:24
+msgid "JQuery Datepicker"
+msgstr ""
+
+#: includes/modules/header_tags/ht_datepicker_jquery.php:25
+msgid "Add JQuery Datepicker to Header"
+msgstr ""
+
+#: includes/modules/header_tags/ht_div_equal_heights.php:24
+msgid "Equal Height Divs (jQuery)"
+msgstr ""
+
+#: includes/modules/header_tags/ht_div_equal_heights.php:25
+msgid ""
+"Add Equal Heights javascript to specified pages, which solves a potential "
+"problem in grid layouts"
+msgstr ""
+
+#: includes/modules/header_tags/ht_google_adwords_conversion.php:24
+msgid "Google AdWords Conversion Tracking"
+msgstr ""
+
+#: includes/modules/header_tags/ht_google_adwords_conversion.php:25
+msgid "Add Google AdWords Conversion Tracking to the Checkout Success page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_google_analytics.php:25
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#: includes/modules/header_tags/ht_google_analytics.php:26
+msgid "Add Google Analytics to the shop"
+msgstr ""
+
+#: includes/modules/header_tags/ht_grid_list_view.php:26
+msgid "Grid List Javascript (jQuery)"
+msgstr ""
+
+#: includes/modules/header_tags/ht_grid_list_view.php:27
+msgid ""
+"Add Grid List javascript to specified pages, which invokes a Grid/List view "
+"for product lists"
+msgstr ""
+
+#: includes/modules/header_tags/ht_mailchimp_360.php:28
+msgid "MailChimp E-Commerce 360"
+msgstr ""
+
+#: includes/modules/header_tags/ht_mailchimp_360.php:29
+msgid "Visit MailChimp Website"
+msgstr ""
+
+#: includes/modules/header_tags/ht_mailchimp_360.php:30
+msgid ""
+"Using the above link to signup at MailChimp grants osCommerce a small "
+"financial bonus for referring a customer."
+msgstr ""
+
+#: includes/modules/header_tags/ht_mailchimp_360.php:31
+msgid ""
+"The MailChimp E-Commerce 360 module measures the ROI of your MailChimp e-"
+"mail campaigns"
+msgstr ""
+
+#: includes/modules/header_tags/ht_manufacturer_meta.php:28
+msgid "Manufacturer Meta"
+msgstr ""
+
+#: includes/modules/header_tags/ht_manufacturer_meta.php:29
+msgid ""
+"Add the META elements defined when setting up the manufacturer, to the "
+"header of the manufacturer page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_manufacturer_title.php:29
+msgid "Manufacturer Title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_manufacturer_title.php:30
+msgid "Add the title of the current manufacturer to the page title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_noscript.php:26
+msgid "No Script Message"
+msgstr ""
+
+#: includes/modules/header_tags/ht_noscript.php:27
+msgid "Shows a message to the user if they are browsing with javascript off."
+msgstr ""
+
+#: includes/modules/header_tags/ht_noscript.php:37
+msgid "JavaScript seems to be disabled in your browser."
+msgstr ""
+
+#: includes/modules/header_tags/ht_noscript.php:37
+msgid ""
+"You must have JavaScript enabled in your browser to utilize the "
+"functionality of this website."
+msgstr ""
+
+#: includes/modules/header_tags/ht_noscript.php:37
+msgid "Click here for instructions on enabling javascript in your browser"
+msgstr ""
+
+#: includes/modules/header_tags/ht_opensearch.php:28
+msgid "OpenSearch"
+msgstr ""
+
+#: includes/modules/header_tags/ht_opensearch.php:29
+msgid "Allow the browser to search the shop via OpenSearch"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_meta.php:28
+msgid "Pages Meta"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_meta.php:29
+msgid ""
+"Add the META elements defined when editing the pages (eg: specials.php), to "
+"the header of the page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_seo.php:28
+msgid "SEO - Pages"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_seo.php:29
+msgid ""
+"Add the SEO element defined when editing the pages (eg: specials.php), to "
+"the header of the page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_seo.php:44
+msgid " | "
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_title.php:28
+msgid "Pages Title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_pages_title.php:29
+msgid ""
+"Add the TITLE element defined when editing the pages (eg: specials.php), to "
+"the header of the page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_colorbox.php:24
+msgid "Colorbox Script"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_colorbox.php:25
+msgid "Add Colorbox Script to specified pages"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_meta.php:28
+msgid "Product Meta"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_meta.php:29
+msgid ""
+"Add the META elements defined when setting up the product, to the header of "
+"the product page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_opengraph.php:28
+msgid "Product Open Graph Meta Tags"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_opengraph.php:29
+msgid ""
+"Add Open Graph Meta Tags to your product info pages, this is good for "
+"Facebook and for Pinterest Rich Pins."
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_opengraph.php:85
+msgid "stock"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_opengraph.php:85
+msgid "oos"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_title.php:27
+msgid "Product Title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_product_title.php:28
+msgid "Add the title of the current product to the page title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_robot_control.php:28
+msgid "Robot Control"
+msgstr ""
+
+#: includes/modules/header_tags/ht_robot_control.php:29
+msgid "Take control of your pages abstracts in the Search Engine Result Pages."
+msgstr ""
+
+#: includes/modules/header_tags/ht_robot_control.php:30
+msgid "Helper Page"
+msgstr ""
+
+#: includes/modules/header_tags/ht_robot_noindex.php:29
+msgid "Robot NoIndex"
+msgstr ""
+
+#: includes/modules/header_tags/ht_robot_noindex.php:30
+msgid "Add robot noindex tags to specified pages"
+msgstr ""
+
+#: includes/modules/header_tags/ht_table_click_jquery.php:28
+msgid "Table Row Click jQuery"
+msgstr ""
+
+#: includes/modules/header_tags/ht_table_click_jquery.php:29
+msgid "Add Table Row Click jQuery to specified pages"
+msgstr ""
+
+#: includes/modules/header_tags/ht_topic_title.php:28
+msgid "Topic Title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_topic_title.php:29
+msgid "Add the title of the current topic to the page title"
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:28
+msgid "Twitter Product Card"
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:29
+msgid "Add Twitter Product Card tags to your product information pages."
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:88
+msgid "Pre-Order"
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:91
+msgid "In Stock"
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:92
+msgid "BUY NOW"
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:94
+msgid "Out of Stock"
+msgstr ""
+
+#: includes/modules/header_tags/ht_twitter_product_card.php:95
+msgid "CONTACT US"
+msgstr ""
+
+#: includes/modules/payment/cash.php:25
+msgid "Cash"
+msgstr ""
+
+#: includes/modules/payment/cash.php:26
+msgid "Cash desk payment"
+msgstr ""
+
+#: includes/modules/payment/cash.php:27
+msgid "Cash on table"
+msgstr ""
+
+#: includes/modules/payment/cash.php:598
+msgid "Completed [cash]"
+msgstr ""
+
+#: includes/modules/payment/cod.php:27 includes/modules/payment/cod.php:28
+msgid "Cash on Delivery"
+msgstr ""
+
+#: includes/modules/payment/gpwebpay.php:41
+msgid "GP WebPay"
+msgstr ""
+
+#: includes/modules/payment/gpwebpay.php:43
+msgid "Card Payment"
+msgstr ""
+
+#: includes/modules/payment/gpwebpay.php:44
+msgid "GP WebPay Payment"
+msgstr ""
+
+#: includes/modules/payment/gpwebpay.php:469
+msgid "Payment failed"
+msgstr ""
+
+#: includes/modules/payment/gpwebpay.php:808
+msgid "Your secret key"
+msgstr ""
+
+#: includes/modules/payment/gpwebpay.php:808
+msgid "Your secret key (supplied by gpwebpay)"
+msgstr ""
+
+#: includes/modules/payment/gpwebpay.php:809
+msgid "Your secret key password (supplied by gpwebpay)"
+msgstr ""
+
+#: includes/modules/payment/gpwebpay.php:810
+msgid "Your public key (supplied by gpwebpay)"
+msgstr ""
+
+#: includes/modules/payment/gpwebpay.php:915
+msgid "Testing payment"
+msgstr ""
+
+#: includes/modules/product_listing.php:51
+msgid "Sort by"
+msgstr ""
+
+#: includes/modules/shipping/flat.php:23 includes/modules/shipping/flat.php:24
+msgid "Flat Rate"
+msgstr ""
+
+#: includes/modules/shipping/item.php:23 includes/modules/shipping/item.php:24
+msgid "Per Item"
+msgstr ""
+
+#: includes/modules/shipping/table.php:23
+#: includes/modules/shipping/table.php:24
+msgid "Table Rate"
+msgstr ""
+
+#: includes/modules/shipping/usps.php:26
+msgid "United States Postal Service"
+msgstr ""
+
+#: includes/modules/shipping/usps.php:27
+msgid ""
+"United States Postal Service<br /><br />You will need to have registered an "
+"account with USPS at http://www.uspsprioritymail.com/et_regcert.html to use "
+"this module<br /><br />USPS expects you to use pounds as weight measure for "
+"your products."
+msgstr ""
+
+#: includes/modules/shipping/zones2.php:124
+msgid "Zone Based Express Shipping Rates"
+msgstr ""
+
+#: includes/modules/shipping/zones2.php:125
+msgid "Zone Based Rates Express"
+msgstr ""
+
+#: includes/modules/social_bookmarks/sb_google_buzz.php:24
 msgid "Google Buzz"
 msgstr "Google Buzz"
 
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:25
+#: includes/modules/social_bookmarks/sb_google_buzz.php:25
 msgid "Share on Google Buzz"
 msgstr "Share on Google Buzz"
 
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
-#: catalog/includes/modules/social_bookmarks/sb_google_buzz.php:26
+#: includes/modules/social_bookmarks/sb_google_buzz.php:26
 msgid "Share products on Google Buzz."
 msgstr "Share products on Google Buzz."
 
-#: catalog/newsletterconfirm.php:31 catalog/newsletterconfirm.php:31
+#: newsletterconfirm.php:31
 msgid "Newsletter Consent"
 msgstr "Newsletter Consent"
 
-#: catalog/newsletterconfirm.php:37 catalog/newsletterconfirm.php:37
+#: newsletterconfirm.php:37
 msgid "Consent Recieved"
 msgstr "Consent Recieved"
 
-#: catalog/newsletterconfirm.php:37 catalog/newsletterconfirm.php:37
+#: newsletterconfirm.php:37
 msgid "Consent not recieved"
 msgstr "Consent not recieved"
 
-#: catalog/newsletterconfirm.php:44 catalog/newsletterconfirm.php:44
+#: newsletterconfirm.php:42
 msgid "Newsletter subscription consent was accepted"
 msgstr "Newsletter subscription consent was accepted"
 
-#: catalog/newsletterconfirm.php:44 catalog/newsletterconfirm.php:44
+#: newsletterconfirm.php:43
 msgid "Newsletter subscription consent was not accepted"
 msgstr "Newsletter subscription consent was not accepted"
 
-#: catalog/tell_a_friend.php:148
-#, php-format
-msgid "Tell a friend about %s"
-msgstr "Tell a friend about %s"
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Mailer.php:316
-#, php-format
-msgid "Message %s was sent to %s"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Mailer.php:319
-#, php-format
-msgid "Message %s, for %s was not sent because of %s"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Page.php:233
-msgid "Sign in first please"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/SQL/PDO.php:163
-msgid "Unimplemented Database type"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/SQL/Orm.php:241
-msgid "UpdateToSQL: Missing data"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:282
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:285
-msgid " not an folder. Current directory:"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:292
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:295
-msgid " not an readable folder. Current directory:"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:302
-#: vendor/vitexsoftware/ease-framework/src/Ease/Logger/ToFile.php:305
-msgid " not an writeable folder. Current directory:"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Carousel.php:116
-msgid "Previous"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Carousel.php:127
-msgid "Next"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Modal.php:70
-msgid "Close"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Modal.php:73
-msgid "Save"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/Navbar.php:70
-msgid "Switch navigation"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/TWB/StatusMessages.php:19
-msgid "Click to hide messages"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:222
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:209
-msgid "missing login"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:227
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:214
-msgid "missing password"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:247
-msgid "invalid password"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:254
-#, php-format
-msgid "user %s does not exist"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:272
-msgid "Sign in denied by administrator"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:290
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:250
-#, php-format
-msgid "Sign in %s all ok"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/src/Ease/User.php:473
-msgid "Odhlášení proběhlo uspěšně"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:56
-msgid "Status message add test"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:80
-msgid "Stavové zprávy jsou mazány"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:125
-msgid "Windows Files conversion"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/tests/src/Ease/AtomTest.php:130
-msgid "Unix File Conversion"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:15
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:18
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:15
-msgid "debug"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:16
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:19
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:16
-msgid "info"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:17
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:20
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:17
-msgid "success"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:18
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:21
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:18
-msgid "warning"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:19
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:22
-#: vendor/vitexsoftware/ease-framework/Examples/StatusMessages.php:19
-msgid "error"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:21
-msgid "Example Web Page"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/WebPage.php:23
-msgid "Status messages"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:16
-msgid "Ul One"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:17
-msgid "Ul Two"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:18
-msgid "Ul Three"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:21
-msgid "Ol One"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:22
-msgid "Ol Two"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/listings.php:23
-msgid "Ol Three"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Modal.php:13
-msgid "Modal Example"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Modal.php:17
-msgid "caution"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:20
-msgid "Homepage"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:21
-msgid "LinkQuick"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:24
-msgid "System"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:26
-msgid "Settings"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:27
-msgid "Shutdown"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:32
-msgid "Informace"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:34
-msgid "System log"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/classes/AppMenu.php:35
-msgid "Hosting"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:16
-msgid "Twitter Bootstrap"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/WebPage.php:24
-msgid "Back to examples"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:20
-#, php-format
-msgid "You enter: %s as text."
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:23
-msgid "Please enter any text"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:28
-#, php-format
-msgid "You enter: %s as number."
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:31
-msgid "Please enter any number"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:36
-msgid "Text"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:37
-msgid "Default text"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:37
-msgid "Text hint"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:39
-msgid "Number"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/Form.php:40
-msgid "Number hint"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/TWB/twbtabs.php:18
-msgid "Twitter bootrstrap Tabs Example"
-msgstr ""
-
-#: vendor/vitexsoftware/ease-framework/Examples/index.php:16
-#: vendor/vitexsoftware/ease-framework/Examples/index.php:18
-msgid "Ease Framework - Usage examples"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/src/zalozUcetniObdobiOdDo.php:23
-#, php-format
-msgid "%s already exists."
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/ui/StatusInfoBox.php:44
-#: vendor/spoje.net/flexipeehp/src/demo.php:34
-msgid "Chyba komunikace"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/ui/RecordTypeSelect.php:33
-msgid "Undefined"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/ui/DownloadInvoiceButton.php:26
-#, php-format
-msgid "Download Your %s"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:52
-msgid "Getting clients"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:56
-#, php-format
-msgid "%s Clients Found"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:57
-msgid "Getting debts"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:70
-#, php-format
-msgid "%s Debts Found"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:95
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:98
-#, php-format
-msgid "Clear %s Remind labels"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:114
-#, php-format
-msgid "%d clients to remind process"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:120
-#, php-format
-msgid "(%d / %d) #%s code: %s %s "
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:153
-msgid "Invoice locked: skipping process"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:206
-#, php-format
-msgid "Invoice %s remind %s date saved"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:209
-#, php-format
-msgid "Invoice %s remind %s date save failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:215
-msgid "Remind send disbled"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:218
-#, php-format
-msgid "Remind %d already sent"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:222
-msgid "No debts to remind"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:231
-#, php-format
-msgid "Invoice %s locked again"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:234
-#, php-format
-msgid "Invoice %s locking failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:312
-msgid "Remind was not sent"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominac.php:316
-#, php-format
-msgid "Set Label %s "
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:72
-#, php-format
-msgid "Change version %s already processed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:103
-#, php-format
-msgid "Handler Class %s does not exist"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:125
-msgid "Empty WebHook request"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:149
-msgid "Last Processed Change ID Saving Failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:153
-#, php-format
-msgid "Last Processed Change ID #%s Saved"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/HookReciever.php:172
-msgid "Last Processed Change ID Loading Failed"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:225
-#, php-format
-msgid "Multiplete ContactID"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Customer.php:228
-msgid "Using the first one"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominka.php:83
-#, php-format
-msgid ""
-"%s \n"
-"\n"
-"-----------------------\n"
-" celkem za %s,-"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/Upominka.php:93
-#, php-format
-msgid "Klient %s nema email %s !!!"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/PotvrzeniUhrady.php:26
-msgid "Dear customer,"
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/PotvrzeniUhrady.php:27
-#, php-format
-msgid "we confirm receipt of payment %s %s on %s "
-msgstr ""
-
-#: vendor/vitexsoftware/flexipeehp-bricks/FlexiPeeHP/Bricks/PotvrzeniUhrady.php:34
-msgid "Confirmation of receipt of invoice payment"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Hooks.php:44
-msgid "Url allready registered"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Status.php:75
-msgid "Status has no relations"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Changes.php:102
-msgid "Changes has no relations"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FakturaVydana.php:184
-msgid "Unsupported $income parameter type"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FlexiBeeRW.php:530
-#, php-format
-msgid "Unsupported action %s for evidence %s"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/FlexiBeeRO.php:2008
-msgid "ID requied to get record relations "
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Company.php:213
-msgid "Company has no relations"
+#: product_info.php:40
+msgid "Product not found"
 msgstr ""
 
-#: vendor/spoje.net/flexipeehp/src/FlexiPeeHP/Priloha.php:129
-#, php-format
-msgid "Attagment %s does no exist"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:8
-msgid "FlexiBee Connection Test"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:20
-msgid "FlexiBee server info"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:52
-msgid "ChangesApi Povoleno"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:53
-msgid "ChangesAPI povoleno"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/src/demo.php:55
-msgid "ChangesAPI zakázáno"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/testing/src/FlexiPeeHP/FakturaVydanaTest.php:64
-msgid "Invoice settle error"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/testing/src/FlexiPeeHP/FakturaVydanaTest.php:95
-msgid "Invoice match error"
-msgstr ""
+#: product_info.php:260
+msgid "Options"
+msgstr "Options"
 
-#: vendor/spoje.net/flexipeehp/Examples/InvoiceLockUnlock.php:46
-#, php-format
-msgid "Invoice %s lock switched"
+#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+msgid "align"
 msgstr ""
 
-#: vendor/spoje.net/flexipeehp/Examples/InvoiceLockUnlock.php:49
-#, php-format
-msgid "Invoice %s lock switch failed"
+#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+msgid "blockquote"
 msgstr ""
 
-#: vendor/spoje.net/flexipeehp/Examples/AttachmentSaveToFile.php:24
-#, php-format
-msgid "Attachment %s was saved"
+#: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
+msgid "p"
 msgstr ""
 
-#: vendor/spoje.net/flexipeehp/Examples/AttachmentSaveToFile.php:28
-msgid "Invoice without attachment"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/SendReminders.php:49
-#, php-format
-msgid "Overdue invoice: %s"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/SendReminders.php:50
-#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:72
-#, php-format
-msgid "Please pay %s,-"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:70
-#, php-format
-msgid "Overdue invoice: %s - %s days"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/FindOverdueInvoices.php:81
-#, php-format
-msgid "Message sent: %s to %s"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/sendInvoiceByMail.php:34
-msgid "Invoice was sent"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/sendInvoiceByMail.php:36
-msgid "Mailer does not work"
-msgstr ""
-
-#: vendor/spoje.net/flexipeehp/Examples/InvoiceCopy.php:55
-#, php-format
-msgid "Invoice copy from %s to id:%s done"
-msgstr ""
+#~ msgid "Tell a friend about %s"
+#~ msgstr "Tell a friend about %s"

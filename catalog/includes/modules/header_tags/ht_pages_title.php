@@ -37,8 +37,8 @@ class ht_pages_title {
     function execute() {
         global $oscTemplate;
 
-        if ((defined('META_SEO_TITLE')) && (strlen(META_SEO_TITLE) > 0)) {
-            $oscTemplate->setTitle(tep_output_string(META_SEO_TITLE) . ', ' . $oscTemplate->getTitle());
+        if (cfg('META_SEO_TITLE')) {
+            $oscTemplate->setTitle(tep_output_string(cfg('META_SEO_TITLE')) . ', ' . $oscTemplate->getTitle());
         }
     }
 

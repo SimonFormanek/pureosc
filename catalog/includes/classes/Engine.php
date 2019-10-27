@@ -22,14 +22,11 @@ use DataTables\Editor,
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class Engine extends \Ease\Brick
+class Engine extends \Ease\SQL\Engine
 {
-    /**
-     *
-     * @var \Envms\FluentPDO\Query 
-     */
-    public $fluent = null;
-
+    
+    use \Ease\SQL\Orm;
+    
     /**
      * Filter results by
      * @var array 
@@ -101,7 +98,9 @@ class Engine extends \Ease\Brick
      */
     public function __construct($init = null, $filter = [])
     {
-        parent::__construct();
+        $this->setUp();
+        parent::__construct($init, $filter);
+
         if (is_numeric($init)) {
             $this->loadFromSQL($init);
         } elseif (is_array($init)) {
@@ -112,17 +111,6 @@ class Engine extends \Ease\Brick
         if (is_null($this->detailPage)) {
             $this->setDetailPage();
         }
-    }
-
-    public function takemyTable($myTable)
-    {
-        if (is_null($this->subject)) {
-            $this->subject = $myTable;
-        }
-        if (is_null($this->keyword)) {
-            $this->keyword = $myTable;
-        }
-        return parent::takemyTable($myTable);
     }
 
     /**
@@ -380,18 +368,6 @@ class Engine extends \Ease\Brick
             $id = $this->getMyKey();
         }
         return $this->listingQuery()->where($this->getMyTable().'.id='.$id)->execute()->fetch();
-    }
-
-    /**
-     * SQL Builder
-     * @return \Envms\FluentPDO
-     */
-    public function getFluentPDO()
-    {
-        if (!is_object($this->fluent)) {
-            $this->fluent = new \FluentPDO($this->dblink->sqlLink);
-        }
-        return $this->fluent;
     }
 
     /**
@@ -1101,7 +1077,7 @@ class Engine extends \Ease\Brick
             $_SESSION['feedCache'][get_class($this)] = $this->feedSelectize([]);
         } else {
             $_SESSION['feedCache'][get_class($saver->engine)] = $saver->engine->feedSelectize([
-]);
+                ]);
         }
         return $saver;
     }

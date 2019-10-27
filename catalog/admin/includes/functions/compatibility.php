@@ -32,21 +32,21 @@ function do_magic_quotes_gpc(&$ar)
 if (PHP_VERSION >= 4.1) {
     $_GET              = & $_GET;
     $_POST             = & $_POST;
-    $HTTP_COOKIE_VARS  = & $_COOKIE;
+    $_COOKIE  = & $_COOKIE;
     $HTTP_SESSION_VARS = & $_SESSION;
     $HTTP_POST_FILES   = & $_FILES;
     $HTTP_SERVER_VARS  = & $_SERVER;
 } else {
     if (!is_array($_GET)) $_GET             = array();
     if (!is_array($_POST)) $_POST            = array();
-    if (!is_array($HTTP_COOKIE_VARS)) $HTTP_COOKIE_VARS = array();
+    if (!is_array($_COOKIE)) $_COOKIE = array();
 }
 
 // handle magic_quotes_gpc turned off.
 if (!get_magic_quotes_gpc()) {
     do_magic_quotes_gpc($_GET);
     do_magic_quotes_gpc($_POST);
-    do_magic_quotes_gpc($HTTP_COOKIE_VARS);
+    do_magic_quotes_gpc($_COOKIE);
 }
 
 // set default timezone if none exists (PHP 5.3 throws an E_WARNING)

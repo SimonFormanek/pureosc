@@ -249,7 +249,7 @@ if (tep_not_null($action)) {
                 }
 
                 $adminLog->logMySQLChange($customerator->getData(), $sql_data_array, 'customers',
-                    $customers_id, ['nentry_firstname', 'entry_lastname', 'entry_vat_number', 'entry_company_number', 'customers_email_address', 'customers_telephone', 'entry_street_address', 'customers_newsletter']);
+                    $customers_id, ['entry_firstname', 'entry_lastname', 'entry_vat_number', 'entry_company_number', 'customers_email_address', 'customers_telephone', 'entry_street_address', 'customers_newsletter']);
 
                 tep_redirect(tep_href_link(FILENAME_CUSTOMERS,
                     tep_get_all_get_params(array('cID', 'action')) . 'cID=' . $customers_id));

@@ -13,28 +13,28 @@
 
 class ht_article_meta {
 
-    var $code = 'ht_article_meta';
-    var $group = 'header_tags';
-    var $title;
-    var $description;
-    var $sort_order;
-    var $enabled = false;
+    public $code = 'ht_article_meta';
+    public $group = 'header_tags';
+    public $title;
+    public $description;
+    public $sort_order;
+    public $enabled = false;
 
     function __construct() {
 
         $this->title = _('Article Meta');
         $this->description = _('Add the META elements defined when setting up the article, to the header of the article page');
 
-        if (defined('MODULE_HEADER_TAGS_ARTICLE_META_STATUS')) {
-            $this->sort_order = constant('MODULE_HEADER_TAGS_ARTICLE_META_SORT_ORDER');
-            $this->enabled = (constant('MODULE_HEADER_TAGS_ARTICLE_META_STATUS') == 'True');
+        if (cfg('MODULE_HEADER_TAGS_ARTICLE_META_STATUS')) {
+            $this->sort_order = cfg('MODULE_HEADER_TAGS_ARTICLE_META_SORT_ORDER');
+            $this->enabled = cfg('MODULE_HEADER_TAGS_ARTICLE_META_STATUS') == 'True';
         }
     }
 
     function execute() {
         global $oscTemplate, $languages_id, $article_check;
         $meta_show = '';
-        if ((basename($_SERVER['PHP_SELF']) == FILENAME_ARTICLE_INFO) || (basename($_SERVER['PHP_SELF']) == FILENAME_ARTICLE_BLOG)) {
+        if ((basename($_SERVER['PHP_SELF']) == cfg('FILENAME_ARTICLE_INFO')) || (basename($_SERVER['PHP_SELF']) == cfg('FILENAME_ARTICLE_BLOG'))) {
             if (isset($_GET['articles_id'])) {
                 if ($article_check['total'] > 0) {
                     $meta_info_query = tep_db_query("select ad.articles_head_desc_tag from " . TABLE_ARTICLES . " a, " . TABLE_ARTICLES_DESCRIPTION . " ad where  a.articles_id = '" . (int) $_GET['articles_id'] . "' and ad.articles_id = a.articles_id and ad.language_id = '" . (int) $languages_id . "'");

@@ -19,14 +19,14 @@
     var $enabled = false;    
     
     function __construct() {
-      $this->title = MODULE_NAVBAR_LANGUAGES_TITLE;
-      $this->description = MODULE_NAVBAR_LANGUAGES_DESCRIPTION;
+      $this->title = __('MODULE_NAVBAR_LANGUAGES_TITLE',_('Languages'));
+      $this->description = __('MODULE_NAVBAR_LANGUAGES_DESCRIPTION',_('Language Chooser'));
 
-      if ( defined('MODULE_NAVBAR_LANGUAGES_STATUS') ) {
-        $this->sort_order = MODULE_NAVBAR_LANGUAGES_SORT_ORDER;
-        $this->enabled = (MODULE_NAVBAR_LANGUAGES_STATUS == 'True');
+      if ( cfg('MODULE_NAVBAR_LANGUAGES_STATUS') ) {
+        $this->sort_order = cfg('MODULE_NAVBAR_LANGUAGES_SORT_ORDER');
+        $this->enabled = cfg('MODULE_NAVBAR_LANGUAGES_STATUS') == 'True';
         
-        switch (MODULE_NAVBAR_LANGUAGES_CONTENT_PLACEMENT) {
+        switch (cfg('MODULE_NAVBAR_LANGUAGES_CONTENT_PLACEMENT')) {
           case 'Home':
           $this->group = 'navbar_modules_home';
           break;
@@ -57,7 +57,7 @@
     }
 
     function check() {
-      return defined('MODULE_NAVBAR_LANGUAGES_STATUS');
+      return cfg('MODULE_NAVBAR_LANGUAGES_STATUS');
     }
 
     function install() {

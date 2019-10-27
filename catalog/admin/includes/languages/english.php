@@ -462,6 +462,9 @@ define('BOX_TOOLS_MAIL_MANAGER', 'Mail Manager', true);
 // BOF Order Maker
 define('TABLE_HEADING_EDIT_ORDERS', 'To modify the order', true);
 define('TEXT_IMAGE_CREATE', 'Create Order', true);
+define('TEXT_INFO_CUSTOMER_SERVICE_ID', 'Entered by:', true);
+define('IMAGE_CREATE_ORDER', 'Create New Order', true);
+define('BOX_CUSTOMERS_CREATE_ORDER', 'Create Order', true);
 // EOF Order Maker
 // BOF Create Account 
 define('BOX_CUSTOMERS_CREATE_ACCOUNT', 'Create Customer', true);

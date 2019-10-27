@@ -1,18 +1,18 @@
 {
-    "name": "vendor/pureosc",
-    "description": "Description of project pureosc.",
+    "name": "purehtml/pureosc",
+    "description": "Online Merchant - oScommerce fork",
+    "license": "GPL-2.0-only",
     "authors": [
         {
             "name": "PureHTML",
             "email": "pureosc@purehtml.cz"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "ext-gettext": "*",
         "ext-intl": "*",
-        "spoje.net/flexipeehp": "dev-master",
-        "vitexsoftware/ease-framework": "dev-master",
-        "vitexsoftware/flexipeehp-bricks": "dev-master",
+        "spoje.net/flexibee": "dev-master",
         "league/commonmark": "*",
         "dompdf/dompdf": "dev-master",
         "adamstipak/webpay-php": "*",
@@ -20,7 +20,10 @@
         "ckeditor/ckeditor": "*",
         "envms/fluentpdo": "^1.1",
         "purehtml/purecrypto": "dev-master",
-        "blahasoft/qrfaktura": "dev-master"
+        "blahasoft/qrfaktura": "dev-master",
+        "vitexsoftware/ease-fluentpdo": "dev-master",
+        "vitexsoftware/ease-twbootstrap-widgets-flexibee": "dev-master",
+        "vitexsoftware/ease-html": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -41,8 +44,6 @@
             "make upgrade"
         ]
     },
-
-    "minimum-stability": "dev",
     "prefer-stable": false,
     "require-dev": {
         "robmorgan/phinx": "*",

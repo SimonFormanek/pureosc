@@ -1,39 +1,30 @@
 <?php
 
-
 use Phinx\Migration\AbstractMigration;
 
-class ConfigDefaultManufacturer extends AbstractMigration
-{
+class ConfigDefaultManufacturer extends AbstractMigration {
+
     /**
-     * Change Method.
-     *
-     * Write your reversible migrations using this method.
-     *
-     * More information on writing migrations is available here:
-     * http://docs.phinx.org/en/latest/migrations.html#the-abstractmigration-class
-     *
-     * The following commands can be used in this method and Phinx will
-     * automatically reverse them when rolling back:
-     *
-     *    createTable
-     *    renameTable
-     *    addColumn
-     *    addCustomColumn
-     *    renameColumn
-     *    addIndex
-     *    addForeignKey
-     *
-     * Any other destructive changes will result in an error when trying to
-     * rollback the migration.
-     *
-     * Remember to call "create()" or "update()" and NOT "save()" when working
-     * with the Table class.
+     * Migrate Up.
      */
-    public function change()
-    {
-      $this->execute("insert into manufacturers (manufacturers_name) VALUES ('Change this to Default')");
-      $this->execute("insert into manufacturers_info (manufacturers_id, languages_id, manufacturers_url) VALUES (1,1,'')");
-      $this->execute("insert into manufacturers_info (manufacturers_id, languages_id,manufacturers_url) VALUES (1,4,'')");
+    public function up() {
+
+
+        $stmt = $this->query('SELECT * FROM manufacturers'); // returns PDOStatement
+        if (empty($stmt->fetchAll())) {
+
+            $table = $this->table('manufacturers');
+            $table->insert(['manufacturers_id' => 1, 'manufacturers_name' => _('Default manufacturer')]);
+            $table->saveData();
+
+            $table = $this->table('manufacturers_info');
+            $table->insert([
+                'manufacturers_id' => 1,
+                'manufacturers_url' => '',
+                'languages_id' => 4,
+                'manufacturers_description' => _('Only manufacturer yet')]);
+            $table->saveData();
+        }
     }
+
 }

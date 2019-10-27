@@ -13,7 +13,12 @@
 
 </div>
 
-<?php require(DIR_WS_INCLUDES.'footer.php'); ?>
+<?php require(DIR_WS_INCLUDES.'footer.php');
+
+
+echo \Ease\Html\HeadTag::getScriptsRendered(\PureOSC\ui\WebPage::singleton()->javaScripts);
+
+?>
 
 <br />
 

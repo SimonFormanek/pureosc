@@ -2,12 +2,12 @@
 <?php
 define('EASE_LOGGER', 'console|syslog');
 chdir('../../');
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 \Ease\Shared::initializeGetText('pureosc', 'cs_CZ', '../i18n');
 \Ease\Shared::instanced()->webPage(new \Ease\Page());
 
-require('../oscconfig/flexibee.php');
-require('../oscconfig/dbconfigure.php');
+require('../../oscconfig/configure.php');
+require('../../oscconfig/dbconfigure.php');
 
 $lngSql = "SELECT languages_id FROM languages WHERE code='cs'";
 
@@ -20,6 +20,18 @@ foreach ($products as $progress => $productData) {
     if ($cenik->sync()) {
         $cenik->addStatusMessage(($progress + 1).'/'.count($products).':'.$cenik->getApiURL().' '.FlexiPeeHP\FlexiBeeRO::uncode($cenik->getRecordCode()),
             'success');
+        $imagePath = constant('DIR_FS_CATALOG_IMAGES').$productData['products_image'];
+
+        if (file_exists($imagePath)) {
+            $cenik->addStatusMessage(sprintf(_('Image attach %s'),
+                    $productData['products_image']),
+                \FlexiPeeHP\Priloha::addAttachmentFromFile($cenik, $imagePath) ? 'success'
+                        : 'warning' );
+        }
+
+//        $images = $cenik->dblink->queryToArray("select * FROM  products_images WHERE products_id= ".$productData['products_id']." )");
+//        $cenik->addStatusMessage(count($images).' images to import');
+//        foreach ($images as $imageData) {               }
     }
 }
 

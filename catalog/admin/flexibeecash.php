@@ -51,18 +51,20 @@ if ($invoice->getDataCount()) {
     } else {
         //   echo 'platba již existuje';
     }
+
+    echo '<h3>'._('Payment')."</h3>";
+
+    echo new \Ease\Html\DivTag(new \FlexiPeeHP\ui\EmbedResponsivePDF($casher),
+        ['style' => 'width: 600px']);
+
+    echo '<h3>'._('Invoice')."</h3>";
+
+
+    echo new \Ease\Html\DivTag(new \FlexiPeeHP\ui\EmbedResponsivePDF($invoice),
+        ['style' => 'width: 600px']);
+} else {
+    $invoice->addStatusMessages(_('Invoice does nont exists'), 'error');
 }
-
-echo '<h3>'._('Payment')."</h3>";
-
-echo new \Ease\Html\DivTag(new \FlexiPeeHP\ui\EmbedResponsivePDF($casher),
-    ['style' => 'width: 600px']);
-
-echo '<h3>'._('Invoice')."</h3>";
-
-
-echo new \Ease\Html\DivTag(new \FlexiPeeHP\ui\EmbedResponsivePDF($invoice),
-    ['style' => 'width: 600px']);
 
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');

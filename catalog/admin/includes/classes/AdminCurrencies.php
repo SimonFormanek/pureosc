@@ -10,6 +10,7 @@
   Released under the GNU General Public License
  */
 
+namespace PureOSC\Admin;
 ////
 // Class to handle currencies
 // TABLES: currencies
@@ -43,8 +44,12 @@ class AdminCurrencies
      * @return string
      */
     function format($number, $calculate_currency_value = true,
-                    $currency_type = DEFAULT_CURRENCY, $currency_value = '')
+                    $currency_type = null, $currency_value = '')
     {
+        if(is_null($currency_type)){
+            $currency_type = cfg('DEFAULT_CURRENCY');
+        }
+        
         if ($calculate_currency_value) {
             $rate          = ($currency_value) ? $currency_value : $this->currencies[$currency_type]['value'];
             $format_string = $this->currencies[$currency_type]['symbol_left'].number_format($number
@@ -54,7 +59,7 @@ class AdminCurrencies
                     $this->currencies[$currency_type]['thousands_point']).$this->currencies[$currency_type]['symbol_right'];
 // if the selected currency is in the european euro-conversion and the default currency is euro,
 // the currency will displayed in the national currency and euro currency
-            if ((DEFAULT_CURRENCY == 'EUR') && ($currency_type == 'DEM' || $currency_type
+            if ((cfg('DEFAULT_CURRENCY') == 'EUR') && ($currency_type == 'DEM' || $currency_type
                 == 'BEF' || $currency_type == 'LUF' || $currency_type == 'ESP' || $currency_type
                 == 'FRF' || $currency_type == 'IEP' || $currency_type == 'ITL' || $currency_type
                 == 'NLG' || $currency_type == 'ATS' || $currency_type == 'PTE' || $currency_type

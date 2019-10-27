@@ -17,13 +17,13 @@ class FakturaVydana extends \FlexiPeeHP\FakturaVydana
 
     use \Ease\SQL\Orm;
     public $nameColumn = 'nazev';
-
+    public $myTable = 'orders';
+    
     public function __construct($init = null, $options = array())
     {
         parent::__construct($init, $options);
-        $this->takemyTable('orders');
     }
-
+    
     public function convertOscData($orderData)
     {
         $invoiceData['id'] = 'ext:osc:'.$orderData['orders_id'];

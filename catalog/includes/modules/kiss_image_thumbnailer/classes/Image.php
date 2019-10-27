@@ -358,7 +358,7 @@ class Image
         }
         // EOF added for watermark support
         // BOF sharpen filter
-        if (KISSIT_SHARPEN_THUMBNAIL != 'none') {
+        if (defined('KISSIT_SHARPEN_THUMBNAIL') && (constant('KISSIT_SHARPEN_THUMBNAIL')  != 'none')) {
             $info       = pathinfo($this->_filename);
             $image_name = $info['basename'];
             if (strpos($image_name, 'no_image') === false) {
@@ -368,7 +368,7 @@ class Image
         // EOF sharpen filter
 
         $this->_image = $new_image;
-        if (KISSIT_APPLY_BACKGROUND == 'true' && $this->_take_resize_dimensions_as_absolute) {
+        if (cfg('KISSIT_APPLY_BACKGROUND') == 'true' && $this->_take_resize_dimensions_as_absolute) {
             // the image has scaled badly we need to add a background
             $info       = pathinfo($this->_filename);
             $image_name = $info['basename'];

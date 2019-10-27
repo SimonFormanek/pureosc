@@ -63,7 +63,7 @@ $payment_class = $payment_class->email_footer;
 
 //define placeholders
 $placeholders=array('$storeurl', '$storename','$storeemail','$separator','$orderno','$orderdate','$invoiceurl','$productsorderedhead','$productsordered','$deliveryaddresshead','$deliveryaddress','$billingaddresshead', '$billingaddress', '$paymethodhead', '$paymentmethod', '$ccardtype','$ordercomments','$totaltext','subtotaltext', '$ordertotal');
-$values=array(HTTP_SERVER,STORE_NAME,STORE_OWNER_EMAIL_ADDRESS,EMAIL_SEPARATOR, $order_no,$order_date, $invoice_url,EMAIL_TEXT_PRODUCTS,$products_ordered, EMAIL_TEXT_DELIVERY_ADDRESS,$delivery_address, EMAIL_TEXT_BILLING_ADDRESS, $billing_address, EMAIL_TEXT_PAYMENT_METHOD, $paymentmethod, $ccardtype, $order_comments, EMAIL_TEXT_TOTAL, EMAIL_TEXT_SUBTOTAL, $mm_ordertotal);
+$values=array(HTTP_SERVER,STORE_NAME,STORE_OWNER_EMAIL_ADDRESS,cfg('EMAIL_SEPARATOR'), $order_no,$order_date, $invoice_url,EMAIL_TEXT_PRODUCTS,$products_ordered, EMAIL_TEXT_DELIVERY_ADDRESS,$delivery_address, EMAIL_TEXT_BILLING_ADDRESS, $billing_address, EMAIL_TEXT_PAYMENT_METHOD, $paymentmethod, $ccardtype, $order_comments, EMAIL_TEXT_TOTAL, EMAIL_TEXT_SUBTOTAL, $mm_ordertotal);
 $output_content_html=str_replace($placeholders, $values, $output_content_html);
 $output_content_txt=str_replace($placeholders, $values, $output_content_txt);
 

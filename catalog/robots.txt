@@ -2,6 +2,4 @@ User-agent: *
 Disallow: /db_error.html
 Disallow: /db_error.php
 Disallow: /includes/
-Disallow: /heureka/
 Disallow: /banned_ip.php
-#Sitemap: https://www.yinyang.cz/sitemap.txt

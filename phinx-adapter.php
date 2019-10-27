@@ -25,20 +25,23 @@ if (file_exists('../oscconfig/dbconfigure.php')) {
     define('DB_PASSWORD', constant('DB_SERVER_PASSWORD'));
     define('DB_USERNAME', constant('DB_SERVER_USERNAME'));
     define('DB_TYPE', 'mysql');
-    \Ease\Shared::db( new \Ease\SQL\PDO() );
+   
 }
+
+$eng = new Ease\SQL\Engine();
+
 
 return array('environments' =>
     array(
         'default_database' => 'development',
         'development' => array(
-            'name' => \Ease\Shared::db()->database,
-            'connection' => \Ease\Shared::db()->sqlLink
+            'name' => $eng->database,
+            'connection' => $eng->getPdo()
         ),
         'default_database' => 'production',
         'production' => array(
-            'name' => \Ease\Shared::db()->database,
-            'connection' => \Ease\Shared::db()->sqlLink
+            'name' => $eng->database,
+            'connection' => $eng->getPdo()
         ),
     ),
     'paths' => [

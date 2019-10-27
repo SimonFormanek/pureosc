@@ -34,9 +34,9 @@ define('MY_ORDERS_VIEW', 'Zobrazit všechny mé objednávky.', true);
 
 define('EMAIL_NOTIFICATIONS_TITLE', 'E-Mail Notifications', true);
 define('EMAIL_NOTIFICATIONS_NEWSLETTERS',
-    'Nastavit zasílání newsletterů.', true);
+    'Subscribe or unsubscribe from newsletters.', true);
 define('EMAIL_NOTIFICATIONS_PRODUCTS',
-    'Nastavit můj seznam sledovaných produktů.', true);
+    'View or change my product notification list.', true);
 /*
  * ***********************************************************************
  * ************* Custom Filenames can be defined below here **************

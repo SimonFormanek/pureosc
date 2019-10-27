@@ -18,6 +18,7 @@ define('TEXT_DATE_ADDED', 'bylo přidáno do katalogu %s.', true);
 define('TEXT_DATE_AVAILABLE',
     '<font color="#ff0000">bude v prodeji od %s.</font>', true);
 define('TEXT_ALSO_PURCHASED_PRODUCTS', 'Zákazníci zároveň koupili také:', true);
+define('TEXT_RELATED_PRODUCTS', 'Související produkty:', true);
 define('TEXT_PRODUCT_OPTIONS', 'možnosti:', true);
 define('TEXT_CLICK_TO_ENLARGE', 'klikněte pro zvětšení', true);
 ?>

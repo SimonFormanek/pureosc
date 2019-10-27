@@ -13,10 +13,12 @@
   Released under the GNU General Public License
  */
 
+namespace PureOSC\Admin;
 require('includes/application_top.php');
 
 $currencies = new AdminCurrencies();
 
+try {
 
 //pure:NEW show all products categories, set canonical START
 //save canonical category and return back to category listing
@@ -56,6 +58,77 @@ if (preg_match("/(insert|update|setflag)/i", $action)) {
 
 if (tep_not_null($action)) {
 
+$oQ = tep_db_query("SELECT DISTINCT products_options_id AS id FROM products_options");
+while($oA = tep_db_fetch_array($oQ)) {
+
+$id = $oA['id'];
+
+if(isset($_POST['newactive_'.$id])) if($_POST['newactive_'.$id] != 'nic') {
+//prdel("NOVY ATRIBUT '".$_POST['newactive']."' - POST: ".var_export($_POST, true)."\nGET: ".var_export($_GET, true)."\n");
+$cQ = tep_db_query("SELECT products_options_values_color AS color FROM ".TABLE_PRODUCTS_OPTIONS_VALUES." WHERE products_options_values_id = " . $_POST['newactive_'.$id] . " AND language_id = " . $languages_id); 
+
+if(tep_db_num_rows($cQ) > 0) {
+  $cA = tep_db_fetch_array($cQ); 
+  $c = $cA['color'];
+} else $c = '';
+
+$qok = tep_db_query($pq = "INSERT INTO " . TABLE_PRODUCTS_ATTRIBUTES . " SET products_id=" . $_GET['pID'] . ", options_id=".$id.", options_values_id=" . $_POST['newactive_'.$id] . ", options_values_price=1.00, price_prefix='+', options_values_color = '".$c."', products_options_sort_order=1, options_values_active=1");
+
+if(isset($_POST['newactive_'.$id])) unset($_POST['newactive_'.$id]);
+
+//$hs = 'Location: categories.php?' . tep_get_all_get_params(array('action')) . 'action=new_product';
+$hs = 'categories.php?' . tep_get_all_get_params(array('action')) . 'action=new_product';
+tep_redirect($hs);
+}  
+
+}
+//}
+
+
+if(! tep_session_is_registered('langexcl')) { 
+  
+  $langexcl = array();
+  if(isset($_COOKIE['langexcl'])) { 
+    $langA = explode(',', $_COOKIE['langexcl']); 
+    foreach($langA as $lV) { 
+      $expl = explode('=>', $lV);
+      if(isset($expl[1])) $langexcl[$expl[0]] = $expl[1];
+    }
+  }
+  
+  tep_session_register('langexcl');
+}
+
+if(! tep_session_is_registered('shopexcl')) { 
+
+  $shopexcl = isset($_COOKIE['shopexcl']) ? $_COOKIE['shopexcl'] : '';
+  tep_session_register('shopexcl');
+}
+
+
+if($action == 'setexclude') {
+  $langexcl = array();
+  for($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+    if(! isset($_POST['exclude'][$i])) $langexcl[$languages[$i]['code']] = 1;
+    else unset($_POST['exclude'][$i]);
+  }
+  
+  if(count($langexcl) >= count($languages)) $langexcl = array('sk' => 1); //myslet za debily a bez js
+
+  $langCook = '';
+  foreach($langexcl as $lK => $lV) $langCook .= $lK . '=>' . $lV . ',';
+  setcookie('langexcl', $langCook, time()+(60*60*24*3650));
+  
+  $shopexcl = '';
+  foreach(array('yi', 'hau') as $s) {
+    if(! isset($_POST['exclude_'.$s])) { if($shopexcl == '') $shopexcl = $s; }
+    else unset($_POST['exclude_'.$s]);
+  }
+  
+  setcookie('shopexcl', $shopexcl, time()+(60*60*24*3650));
+  
+  tep_redirect('categories.php?' . tep_get_all_get_params(array('action')) . 'action=new_product');
+}
     switch ($action) {
         case 'setflag':
             if (($_GET['flag'] == '0') || ($_GET['flag'] == '1')) {
@@ -63,7 +136,7 @@ if (tep_not_null($action)) {
                     tep_set_product_status($_GET['pID'], $_GET['flag']);
                 }
 
-                if (USE_CACHE == 'true') {
+                if (cfg('USE_CACHE') == 'true') {
                     tep_reset_cache_block('categories');
                     tep_reset_cache_block('also_purchased');
                 }
@@ -71,7 +144,8 @@ if (tep_not_null($action)) {
                 //pure:new cache reset
                 if ($_GET['flag'] == '0') {
                     //deleting product need full reset
-                    tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE section='all'");
+                    tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
+                    tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
                 } else {
                     tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached = 0 WHERE products_id = " . $_GET['pID']);
                     tep_db_query("UPDATE " . TABLE_PRODUCTS_DESCRIPTION . " SET cached_admin = 0 WHERE products_id = " . $_GET['pID']);
@@ -82,7 +156,7 @@ if (tep_not_null($action)) {
                     }
                 }
             }
-            tep_redirect(tep_href_link(FILENAME_CATEGORIES,
+            tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'),
                 'cPath=' . $_GET['cPath'] . '&pID=' . $_GET['pID']));
             break;
         case 'insert_category':
@@ -142,14 +216,14 @@ if (tep_not_null($action)) {
                 }
             }
 
-            $categories_image = new upload('categories_image');
+            $categories_image = new \upload('categories_image');
             $categories_image->set_destination(DIR_FS_CATALOG_IMAGES);
 
             if ($categories_image->parse() && $categories_image->save()) {
                 tep_db_query("update " . TABLE_CATEGORIES . " set categories_image = '" . tep_db_input($categories_image->filename) . "' where categories_id = '" . (int)$categories_id . "'");
             }
 
-            if (USE_CACHE == 'true') {
+            if (cfg('USE_CACHE') == 'true') {
                 tep_reset_cache_block('categories');
                 tep_reset_cache_block('also_purchased');
             }
@@ -157,6 +231,10 @@ if (tep_not_null($action)) {
             tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
             tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
 
+            if($_POST['discount_id']){
+                $coupouner = new Coupon((int)$_POST['discount_id']);
+                $coupouner->assignCategory((int)$categories_id);
+            }
 
             if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
                 $strom = new \PureOSC\flexibee\Strom();
@@ -183,10 +261,10 @@ if (tep_not_null($action)) {
 
             //pure:new redirect back to edit
             if (tep_not_null(tep_db_insert_id())) {
-                tep_redirect(tep_href_link(FILENAME_CATEGORIES,
+                tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'),
                     'cPath=' . $cPath . '&cID=' . $categories_id . '&action=edit_category'));
             } else {
-                tep_redirect(tep_href_link(FILENAME_CATEGORIES,
+                tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'),
                     'cPath=' . $cPath . '&cID=' . $categories_id));
             }
             break;
@@ -248,12 +326,12 @@ if (tep_not_null($action)) {
                 }
             }
 
-            if (USE_CACHE == 'true') {
+            if (cfg('USE_CACHE') == 'true') {
                 tep_reset_cache_block('categories');
                 tep_reset_cache_block('also_purchased');
             }
 
-            tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath));
+            tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'), 'cPath=' . $cPath));
             break;
         case 'delete_product_confirm':
             if (isset($_POST['products_id']) && isset($_POST['product_categories'])
@@ -273,7 +351,7 @@ if (tep_not_null($action)) {
                 }
             }
 
-            if (USE_CACHE == 'true') {
+            if (cfg('USE_CACHE') == 'true') {
                 tep_reset_cache_block('categories');
                 tep_reset_cache_block('also_purchased');
             }
@@ -291,12 +369,12 @@ if (tep_not_null($action)) {
                     if (tep_db_num_rows($still_exists_query) > 1) {
                         $messageStack->add_session(ERROR_CANONICAL_DELETED,
                             'error');
-                        tep_redirect(tep_href_link(FILENAME_CATEGORIES,
+                        tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'),
                             tep_get_path($still_exists['categories_id']) . '&pID=' . (int)$product_id . '&action=set_canonical'));
                     }
                 }
             }
-            tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath));
+            tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'), 'cPath=' . $cPath));
             break;
         case 'set_canonical_confirm':
             if (isset($_POST['set_canonical']) && (isset($_POST['products_id']))) {
@@ -304,7 +382,7 @@ if (tep_not_null($action)) {
                 tep_db_query("UPDATE " . TABLE_PRODUCTS_TO_CATEGORIES . " SET canonical = 1 WHERE products_id = " . $_POST['products_id'] . " AND categories_id=" . $_POST['set_canonical']);
             }
 //exit;
-            tep_redirect(tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath));
+            tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'), 'cPath=' . $cPath));
             break;
         case 'move_category_confirm':
             if (isset($_POST['categories_id']) && ($_POST['categories_id'] != $_POST['move_to_category_id'])) {
@@ -318,17 +396,17 @@ if (tep_not_null($action)) {
                     $messageStack->add_session(ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT,
                         'error');
 
-                    tep_redirect(tep_href_link(FILENAME_CATEGORIES,
+                    tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'),
                         'cPath=' . $cPath . '&cID=' . $categories_id));
                 } else {
                     tep_db_query("update " . TABLE_CATEGORIES . " set parent_id = '" . (int)$new_parent_id . "', last_modified = now() where categories_id = '" . (int)$categories_id . "'");
 
-                    if (USE_CACHE == 'true') {
+                    if (cfg('USE_CACHE') == 'true') {
                         tep_reset_cache_block('categories');
                         tep_reset_cache_block('also_purchased');
                     }
 
-                    tep_redirect(tep_href_link(FILENAME_CATEGORIES,
+                    tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'),
                         'cPath=' . $new_parent_id . '&cID=' . $categories_id));
                 }
             }
@@ -363,12 +441,12 @@ if (tep_not_null($action)) {
                     'uzel' => 'ext:categories:' . $new_parent_id]);
             }
 
-            if (USE_CACHE == 'true') {
+            if (cfg('USE_CACHE') == 'true') {
                 tep_reset_cache_block('categories');
                 tep_reset_cache_block('also_purchased');
             }
 
-            tep_redirect(tep_href_link(FILENAME_CATEGORIES,
+            tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'),
                 'cPath=' . $new_parent_id . '&pID=' . $products_id));
             break;
         case 'insert_product':
@@ -381,13 +459,21 @@ if (tep_not_null($action)) {
 
             //pure: make permanent, used for sorting $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
             
+            if($_POST['discount_id']){
+                $coupouner = new Coupon((int)$_POST['discount_id']);
+                $coupouner->assignProduct((int)$products_id);
+            }            
 
             //pure:new if empty product_template - use default
-            if ($_POST['product_template'] == '')
-                $_POST['product_template'] = DEFAULT_PRODUCT_TEMPLATE;
+            if ($_POST['product_template'] == '') {
+                $_POST['product_template'] = cfg('DEFAULT_PRODUCT_TEMPLATE');
+            }
             //dirtyHack: TODO:error manufacturer is empty => no product 
             if ($_POST['manufacturers_id'] == '') {
-              $_POST['manufacturers_id'] = constant('DEFAULT_MANUFACTURERS_ID');
+              $_POST['manufacturers_id'] = cfg('DEFAULT_MANUFACTURERS_ID');
+            }
+            if ($_POST['products_weight'] == '') {
+            	$_POST['products_weight'] = '1'; 
             }
             if (!isset($_GET['products_custom_date']))
               $_POST['products_custom_date'] = date('Y-m-d');
@@ -396,21 +482,29 @@ if (tep_not_null($action)) {
 
             $sql_data_array = ['products_quantity' => (int)tep_db_prepare_input($_POST['products_quantity']),
                 'products_model' => tep_db_prepare_input($_POST['products_model']),
-                'products_price' => tep_db_prepare_input($_POST['products_price']),
-                'products_date_available' => $products_date_available,
+                'products_price' => str_replace(',','.', tep_db_prepare_input($_POST['products_price'])),
                 'products_weight' => (float)tep_db_prepare_input($_POST['products_weight']),
-                'products_status' => tep_db_prepare_input($_POST['products_status']),
-                'products_tax_class_id' => tep_db_prepare_input($_POST['products_tax_class_id']),
+                'products_status' => (int)(tep_db_prepare_input($_POST['products_status'])),
+                'products_tax_class_id' => (int)tep_db_prepare_input($_POST['products_tax_class_id']),
                 'manufacturers_id' => (int)tep_db_prepare_input($_POST['manufacturers_id']),
                 'product_template' => (int)tep_db_prepare_input($_POST['product_template']),
-                'products_custom_date' => tep_db_prepare_input($_POST['products_custom_date']),
+                'products_custom_date' => empty($_POST['products_custom_date']) ?  date('Y-m-d')   : tep_db_prepare_input($_POST['products_custom_date']),
                 'products_sort_order' => (int)tep_db_prepare_input($_POST['products_sort_order'])
             ];
 
-            $products_image = new upload('products_image');
+            if($products_date_available){
+               $sql_data_array['products_date_available']  = $products_date_available;
+            }
+            
+            $products_image = new \upload('products_image');
             $products_image->set_destination(DIR_FS_CATALOG_IMAGES);
             if ($products_image->parse() && $products_image->save()) {
                 $sql_data_array['products_image'] = tep_db_prepare_input($products_image->filename);
+            } else if(isset($_POST['products_image_delete'])) { //chkbox Odstranit
+            
+              $sql_data_array['products_image'] = ''; 
+              
+              @unlink(DIR_FS_CATALOG_IMAGES.$_POST['products_image_name']);
             }
 
             if ($action == 'insert_product') {
@@ -532,9 +626,12 @@ if (tep_not_null($action)) {
                     $key, $matches)) {
 // Insert new large product images
                     $sql_data_array = ['products_id' => (int)$products_id,
-                        'htmlcontent' => tep_db_prepare_input($_POST['products_image_htmlcontent_new_' . $matches[1]])];
+                    'opt_id' => tep_db_prepare_input($_POST['products_image_opt_id_new_'.$matches[1]]), 
+                    'htmlcontent' => tep_db_prepare_input($_POST['products_image_htmlcontent_new_' . $matches[1]]), 
+                    'sort_order' => $_POST['products_image_sort_order_new_' . $matches[1]]
+                    ];
 
-                    $t = new upload($key);
+                    $t = new \upload($key);
                     $t->set_destination(DIR_FS_CATALOG_IMAGES);
                     if ($t->parse() && $t->save()) {
                         $pi_sort_order++;
@@ -596,7 +693,7 @@ if (tep_not_null($action)) {
 
                 $pricelist->sync();
                 if (isset($_FILES['products_image'])) {
-                    FlexiPeeHP\Priloha::addAttachmentFromFile($pricelist,
+                    \FlexiPeeHP\Priloha::addAttachmentFromFile($pricelist,
                         DIR_FS_CATALOG_IMAGES . $_FILES['products_image']['name']);
                 }
             }
@@ -648,7 +745,7 @@ if (tep_not_null($action)) {
                     $products_id = $dup_products_id;
                 }
 
-                if (USE_CACHE == 'true') {
+                if (cfg('USE_CACHE') == 'true') {
                     tep_reset_cache_block('categories');
                     tep_reset_cache_block('also_purchased');
                 }
@@ -657,7 +754,7 @@ if (tep_not_null($action)) {
                 tep_db_query("UPDATE " . TABLE_CATEGORIES_DESCRIPTION . " SET cached_admin = 0 WHERE categories_id = " . $categories_id);
             }
 
-            tep_redirect(tep_href_link(FILENAME_CATEGORIES,
+            tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'),
                 'cPath=' . $categories_id . '&pID=' . $products_id));
             break;
     }
@@ -673,6 +770,163 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
 }
 
 require(DIR_WS_INCLUDES . 'template_top.php');
+
+$tax_class_array = [['id' => '2', 'text' => 'Default 21%']];
+$tax_class_query = tep_db_query("select tax_class_id, tax_class_title from " . TABLE_TAX_CLASS . " order by tax_class_title");
+while ($tax_class = tep_db_fetch_array($tax_class_query)) {
+    $tax_class_array[] = ['id' => $tax_class['tax_class_id'],
+        'text' => $tax_class['tax_class_title']];
+}
+
+
+    ?>
+    <script type="text/javascript"><!--
+        var tax_rates = new Array();
+        <?php
+        
+        if(isset($_GET['pID'])) {
+          $tQ = tep_db_query("SELECT products_tax_class_id FROM products WHERE products_id = ".$_GET['pID']); 
+          if(tep_db_num_rows($tQ) > 0) {
+            $tA = tep_db_fetch_array($tQ);
+            echo 'var pTaxId = ' . $tA['products_tax_class_id'] . ';';
+          }
+        }
+        
+        for ($i = 0, $n = sizeof($tax_class_array); $i < $n; $i++) {
+            if ($tax_class_array[$i]['id'] > 0) {
+                echo 'tax_rates["' . $tax_class_array[$i]['id'] . '"] = ' . tep_get_tax_rate_value($tax_class_array[$i]['id']) . ';' . "\n";
+            }
+        }
+        ?>
+
+        function doRound(x, places) {
+                return parseFloat(Math.round(x)).toFixed(places);
+        }
+
+        
+        function doTrunc(x, places) { 
+        
+                x = parseFloat(x.toFixed(places));
+                var pre = 0, s = x.toString(); 
+                
+                pre = s.indexOf(".");
+                if(pre < 1) pre = s.length;
+        
+                if(s.indexOf(".9999") > 0) x += 0.0001;
+                if(s.indexOf(".0001") > 0) x -= 0.0001;
+
+                return parseFloat(x.toPrecision(pre + places));
+        }
+
+/*        
+        function getCoefficient(taxRate){
+            return taxRate / (100+taxRate);
+        }
+
+*/
+        
+        
+        function getTaxRate() {
+            var parameterVal = 0; 
+            
+            if(document.getElementById("tax_class_id")) {
+              var selected_value = parseInt(document.getElementById("tax_class_id").selectedIndex);
+              parameterVal = parseFloat(document.getElementById("tax_class_id")[selected_value].value);
+              
+            } else parameterVal = pTaxId;
+            
+            if ((parameterVal > 0) && (tax_rates[parameterVal] > 0)) {
+                return parseFloat(tax_rates[parameterVal]);
+            } else {
+                return 0;
+            }
+        }
+
+        
+        function updateGross() {
+            var taxRate = getTaxRate();
+            var grossValue = parseFloat(document.forms["new_product"].products_price.value);
+            if (taxRate > 0) {
+                grossValue = grossValue * ((taxRate / 100) + 1);
+            }
+
+            document.forms["new_product"].products_price_gross.value = doTrunc(grossValue, 4);
+        }
+
+        function updateNet() {
+            var taxRate = getTaxRate();
+            var netValue = parseFloat(document.forms["new_product"].products_price_gross.value);
+            if (taxRate > 0) {
+                netValue = netValue / ((taxRate / 100)+1 );
+            }
+
+            document.forms["new_product"].products_price.value = doTrunc(netValue, 4);
+        }
+
+
+function updateGrossOpt(idx) {
+//alert(idx);
+//  var taxRate = 21; //getTaxRate(); 
+  var taxRate = getTaxRate();
+
+var sName = "priceplustax[" + idx + "]"; var bezName = "price[" + idx + "]";
+//var grossValue = document.forms["new_product"][bezName].value;
+var grossValue = document.forms["new_product"]["price[" + idx + "]"].value;
+
+  if (taxRate > 0) {
+    grossValue = grossValue * ((taxRate / 100) + 1);
+  }
+
+  document.forms["new_product"][sName].value = doTrunc(grossValue, 4); 
+}
+
+function updateGrossOptId(id) {
+
+  var taxRate = getTaxRate();
+  
+  //document.getElementById("dbg").innerHTML += " prnet_"+id;
+  var grossValue = document.getElementById("prnet_"+id).value; 
+
+  if (taxRate > 0) {
+    grossValue = grossValue * ((taxRate / 100) + 1);
+  }
+
+  //document.getElementById("dbg").innerHTML += " | prgross_"+id + " || ";
+  
+  document.getElementById("prgross_"+id).value = doTrunc(grossValue, 4);
+}
+
+
+function updateNetOpt(idx) {
+  var taxRate = getTaxRate();
+
+  var sName = "priceplustax[" + idx + "]"; var bezName = "price[" + idx + "]";
+  var netValue = document.forms["new_product"][sName].value;
+
+  if (taxRate > 0) {
+    netValue = netValue / ((taxRate / 100) + 1);
+  }
+
+  document.forms["new_product"][bezName].value = doTrunc(netValue, 4); //doRound(netValue, 4);
+}
+
+
+function updateNetOptId(id) {
+
+  var taxRate = getTaxRate();
+  var netValue = document.getElementById("prgross_"+id).value; 
+
+  if (taxRate > 0) {
+    netValue = netValue / ((taxRate / 100) + 1);
+  }
+
+  document.getElementById("prnet_"+id).value = doTrunc(netValue, 4); //doRound(netValue, 4);
+} 
+
+
+//--></script>
+
+<?php
 
 if ($action == 'new_product') {
 
@@ -702,7 +956,7 @@ if ($action == 'new_product') {
         'products_sort_order' => ''
     ];
 
-    $pInfo = new objectInfo($parameters);
+    $pInfo = new \objectInfo($parameters);
 
     if (isset($_GET['pID']) && empty($_POST)) {
 
@@ -714,6 +968,7 @@ if ($action == 'new_product') {
         $product_images_query = tep_db_query("select id, image, htmlcontent, sort_order from " . TABLE_PRODUCTS_IMAGES . " where products_id = '" . (int)$product['products_id'] . "' order by sort_order");
         while ($product_images = tep_db_fetch_array($product_images_query)) {
             $pInfo->products_larger_images[] = ['id' => $product_images['id'],
+                'opt_id' => $product_images['opt_id'],
                 'image' => $product_images['image'],
                 'htmlcontent' => $product_images['htmlcontent'],
                 'sort_order' => $product_images['sort_order']];
@@ -734,7 +989,7 @@ if ($action == 'new_product') {
         } else $discount = 0; 
     }
 
-    $manufacturers_array = [];
+    $manufacturers_array = [['id' => '', 'text' => TEXT_NONE]];
     $manufacturers_query = tep_db_query("select manufacturers_id, manufacturers_name from " . TABLE_MANUFACTURERS . " order by manufacturers_name");
     while ($manufacturers = tep_db_fetch_array($manufacturers_query)) {
         $manufacturers_array[] = ['id' => $manufacturers['manufacturers_id'],
@@ -909,54 +1164,66 @@ if ($action == 'new_product') {
                     </tr>
 
 
-                    <?php if (DISPLAY_DATE_AVAILABLE == 'true') { ?>
+                    <?php if (cfg('DISPLAY_DATE_AVAILABLE') == 'true') { ?>
                         <tr>
-                            <td class="main"><?php echo TEXT_PRODUCTS_DATE_AVAILABLE; ?></td>
+                            <td class="main"><?php echo __('TEXT_PRODUCTS_DATE_AVAILABLE',_('Date Availble')); ?></td>
                             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '24', '15') . '&nbsp;' . tep_draw_input_field('products_date_available',
-                                        $pInfo->products_date_available,
-                                        'id="products_date_available"class="hasDatepicker" ','date') . ' <small>(YYYY-MM-DD)</small>'; ?></td>
+                                        '24', '15') . '&nbsp;' . 
+                                    
+                                   $input = new \Ease\Html\InputDateTag('products_date_available',$pInfo->products_date_available,['id'=>'products_date_available'] );
+                                         
+                                        ?>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
                                     '1', '10'); ?></td>
                         </tr>
                     <?php }
-                    if (DISPLAY_PRODUCTS_CUSTOM_DATE == 'true') {
+                    if (cfg('DISPLAY_PRODUCTS_CUSTOM_DATE') == 'true') {
                         ?>
                         <tr>
                             <td class="main"><?php echo TEXT_PRODUCTS_CUSTOM_DATE; ?></td>
-                            <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '24', '15') . '&nbsp;' . tep_draw_input_field('products_custom_date',
-                                        $pInfo->products_custom_date, 'id="products_custom_date"') . ' <small>(YYYY-MM-DD)</small>'; ?></td>
+                            <td class="main"><?php
+                            
+                            
+                            
+                            
+                            echo tep_draw_separator('pixel_trans.gif','24', '15');
+
+
+                            echo  new \Ease\Html\InputDateTag('products_custom_date',$pInfo->products_date_available,['id'=>'products_custom_date'] );
+                            
+                          ?></td>
                         </tr>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
                                     '1', '10'); ?></td>
                         </tr>
                     <?php }
-                    if (DISPLAY_PRODUCTS_SORT_ORDER == 'true') {
+                    if (cfg('DISPLAY_PRODUCTS_SORT_ORDER') == 'true') {
                         ?>
                         <tr>
                             <td class="main"><?php echo TEXT_PRODUCTS_SORT_ORDER; ?></td>
                             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
-                                        '24', '15') . '&nbsp;' . tep_draw_input_field('products_sort_order',
-                                        $pInfo->products_sort_order,
-                                        'id="products_sort_order"'); ?></td>
+                                        '24', '15') . '&nbsp;' . 
+                            new \Ease\Html\InputNumberTag('products_sort_order', $pInfo->products_sort_order, ['id'=>'products_sort_order']);
+             
+                            ?></td>
                         </tr>
                         <tr>
                             <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
                                     '1', '10'); ?></td>
                         </tr>
                     <?php }
-                    if (DISPLAY_PRODUCTS_MANUFACTURER == 'true') {
+                    if ( cfg('DISPLAY_PRODUCTS_MANUFACTURER') == 'true') {
                         ?>
                         <tr>
-                            <td class="main"><?php echo TEXT_PRODUCTS_MANUFACTURER; ?></td>
-                            <td class="main">
-                                <?php echo tep_draw_separator('pixel_trans.gif',
-                                        '24', '15') . '&nbsp;' . tep_draw_pull_down_menu('manufacturers_id',$manufacturers_array, $pInfo->manufacturers_id);
-                                 echo '<a href='. tep_href_link( 'manufacturers.php?page=0&mID=&action=new' ) .'><i class="fa fa-plus"></i>'._('Add new').'</a>'; ?>
+                            <td class="main"><?php echo __('TEXT_PRODUCTS_MANUFACTURER',_('Manufacturer')) ; ?></td>
+                            <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
+                                        '24', '15') . '&nbsp;' . tep_draw_pull_down_menu('manufacturers_id',
+                                        $manufacturers_array, $pInfo->manufacturers_id); ?>
+                                <?php echo '<a href='. tep_href_link( 'manufacturers.php?page=0&mID=&action=new' ) .'><i class="fa fa-plus"></i>'._('Add new').'</a>'; ?>
                             </td>
                         </tr>
                         <tr>
@@ -993,9 +1260,9 @@ if ($action == 'new_product') {
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
                                 '1', '10'); ?></td>
                     </tr>
-                    <?php if (DISPLAY_PRODUCTS_TAX_CLASS == 'true') { ?>
+                    <?php if (cfg('DISPLAY_PRODUCTS_TAX_CLASS') == 'true') { ?>
                         <tr bgcolor="#ebebff">
-                            <td class="main"><?php echo TEXT_PRODUCTS_TAX_CLASS; ?></td>
+                            <td class="main"><?php echo __('TEXT_PRODUCTS_TAX_CLASS',_('Tax Class')); ?></td>
                             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
                                         '24', '15') . '&nbsp;' . tep_draw_pull_down_menu('products_tax_class_id',
                                         $tax_class_array, $pInfo->products_tax_class_id,
@@ -1004,7 +1271,7 @@ if ($action == 'new_product') {
                     <?php } ?>
                     
                     <tr bgcolor="#ebebff">
-                        <td class="main"><?php echo TEXT_PRODUCTS_PRICE_NET; ?></td>
+                        <td class="main"><?php echo  __('TEXT_PRODUCTS_PRICE_NET',_('Price NET')); ?></td>
                         <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
                                     '24', '15') . '&nbsp;' . tep_draw_input_field('products_price',
                                     $pInfo->products_price,
@@ -1012,7 +1279,7 @@ if ($action == 'new_product') {
                     </tr>
 
                     
-                    <?php if (DISPLAY_PRODUCTS_TAX_CLASS == 'true') { ?>
+                    <?php if ( cfg('DISPLAY_PRODUCTS_TAX_CLASS')  == 'true') { ?>
                         <tr bgcolor="#ebebff">
                             <td class="main"><?php echo TEXT_PRODUCTS_PRICE_GROSS; ?></td>
                             <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
@@ -1041,7 +1308,7 @@ if ($action == 'new_product') {
                     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
                         ?>
                         <tr>
-                            <td class="main" valign="top"><?php if ($i == 0) echo TEXT_PRODUCTS_DESCRIPTION; ?></td>
+                            <td class="main" valign="top"><?php if ($i == 0) echo __('TEXT_PRODUCTS_DESCRIPTION',_('Description')); ?></td>
                             <td>
                                 <table border="0" cellspacing="0" cellpadding="0">
                                     <tr>
@@ -1280,7 +1547,7 @@ if ($action == 'new_product') {
                                             <td><?php
                                                 if (tep_not_null(tep_get_products_name($pInfo->products_id,
                                                     $languages[$i]['id']))) {
-                                                    if (ADD_MANUFACTURER_SEO_TITLE
+                                                    if ( defined('ADD_MANUFACTURER_SEO_TITLE')
                                                         == 'true'
                                                         && (tep_not_null($pInfo->manufacturers_id))
                                                         && (tep_not_null(tep_get_products_name($pInfo->products_id,
@@ -1597,9 +1864,9 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                     <td class="smallText" align="right">
                                         <?php
                                         echo tep_draw_form('search',
-                                            FILENAME_CATEGORIES, '',
+                                            cfg('FILENAME_CATEGORIES'), '',
                                             'get');
-                                        echo HEADING_TITLE_SEARCH . ' ' . tep_draw_input_field('search');
+                                        echo __('HEADING_TITLE_SEARCH',_('Search')) . ' ' . tep_draw_input_field('search');
                                         echo tep_hide_session_id() . '</form>';
                                         ?>
                                     </td>
@@ -1667,7 +1934,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                         $cInfo_array = array_merge($categories,
                                             $category_childs,
                                             $category_products);
-                                        $cInfo = new objectInfo($cInfo_array);
+                                        $cInfo = new \objectInfo($cInfo_array);
                                     }
 
                                     if (isset($cInfo) && is_object($cInfo)
@@ -1724,7 +1991,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                         $reviews = tep_db_fetch_array($reviews_query);
                                         $pInfo_array = array_merge($products,
                                             $reviews);
-                                        $pInfo = new objectInfo($pInfo_array);
+                                        $pInfo = new \objectInfo($pInfo_array);
                                     }
 
                                     if (isset($pInfo) && is_object($pInfo)
@@ -2001,7 +2268,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                     $contents[] = ['text' => '<br />' . sprintf(TEXT_DELETE_WARNING_PRODUCTS,
                                             $cInfo->products_count)];
                                 $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_DELETE,
-                                        'trash', null, 'primary') . tep_draw_button(IMAGE_CANCEL,
+                                        'trash', null, 'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                                         'close',
                                         tep_href_link(FILENAME_CATEGORIES,
                                             'cPath=' . $cPath . '&cID=' . $cInfo->categories_id))];
@@ -2010,7 +2277,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                 $heading[] = ['text' => '<strong>' . TEXT_INFO_HEADING_MOVE_CATEGORY . '</strong>'];
 
                                 $contents = ['form' => tep_draw_form('categories',
-                                        FILENAME_CATEGORIES,
+                                        cfg('FILENAME_CATEGORIES'),
                                         'action=move_category_confirm&cPath=' . $cPath) . tep_draw_hidden_field('categories_id',
                                         $cInfo->categories_id)];
                                 $contents[] = ['text' => sprintf(TEXT_MOVE_CATEGORIES_INTRO,
@@ -2019,16 +2286,16 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                         $cInfo->categories_name) . '<br />' . tep_draw_pull_down_menu('move_to_category_id',
                                         tep_get_category_tree(), $current_category_id)];
                                 $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_MOVE,
-                                        'arrow-4', null, 'primary') . tep_draw_button(IMAGE_CANCEL,
+                                        'arrow-4', null, 'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                                         'close',
-                                        tep_href_link(FILENAME_CATEGORIES,
+                                        tep_href_link(cfg('FILENAME_CATEGORIES'),
                                             'cPath=' . $cPath . '&cID=' . $cInfo->categories_id))];
                                 break;
                             case 'delete_product':
                                 $heading[] = ['text' => '<strong>' . TEXT_INFO_HEADING_DELETE_PRODUCT . '</strong>'];
 
                                 $contents = ['form' => tep_draw_form('products',
-                                        FILENAME_CATEGORIES,
+                                        cfg('FILENAME_CATEGORIES'),
                                         'action=delete_product_confirm&cPath=' . $cPath) . tep_draw_hidden_field('products_id',
                                         $pInfo->products_id)];
                                 $contents[] = ['text' => TEXT_DELETE_PRODUCT_INTRO];
@@ -2052,16 +2319,16 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
 
                                 $contents[] = ['text' => '<br />' . $product_categories_string];
                                 $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_DELETE,
-                                        'trash', null, 'primary') . tep_draw_button(IMAGE_CANCEL,
+                                        'trash', null, 'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                                         'close',
-                                        tep_href_link(FILENAME_CATEGORIES,
+                                        tep_href_link(cfg('FILENAME_CATEGORIES'),
                                             'cPath=' . $cPath . '&pID=' . $pInfo->products_id))];
                                 break;
                             case 'move_product':
                                 $heading[] = ['text' => '<strong>' . TEXT_INFO_HEADING_MOVE_PRODUCT . '</strong>'];
 
                                 $contents = ['form' => tep_draw_form('products',
-                                        FILENAME_CATEGORIES,
+                                        cfg('FILENAME_CATEGORIES'),
                                         'action=move_product_confirm&cPath=' . $cPath) . tep_draw_hidden_field('products_id',
                                         $pInfo->products_id)];
                                 $contents[] = ['text' => sprintf(TEXT_MOVE_PRODUCTS_INTRO,
@@ -2072,16 +2339,16 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                         $pInfo->products_name) . '<br />' . tep_draw_pull_down_menu('move_to_category_id',
                                         tep_get_category_tree(), $current_category_id)];
                                 $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_MOVE,
-                                        'arrow-4', null, 'primary') . tep_draw_button(IMAGE_CANCEL,
+                                        'arrow-4', null, 'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                                         'close',
-                                        tep_href_link(FILENAME_CATEGORIES,
+                                        tep_href_link(cfg('FILENAME_CATEGORIES'),
                                             'cPath=' . $cPath . '&pID=' . $pInfo->products_id))];
                                 break;
                             case 'copy_to':
                                 $heading[] = ['text' => '<strong>' . TEXT_INFO_HEADING_COPY_TO . '</strong>'];
 
                                 $contents = ['form' => tep_draw_form('copy_to',
-                                        FILENAME_CATEGORIES,
+                                        cfg('FILENAME_CATEGORIES'),
                                         'action=copy_to_confirm&cPath=' . $cPath) . tep_draw_hidden_field('products_id',
                                         $pInfo->products_id)];
                                 $contents[] = ['text' => TEXT_INFO_COPY_TO_INTRO];
@@ -2093,9 +2360,9 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                         'link', true) . ' ' . TEXT_COPY_AS_LINK . '<br />' . tep_draw_radio_field('copy_as',
                                         'duplicate') . ' ' . TEXT_COPY_AS_DUPLICATE];
                                 $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_COPY,
-                                        'copy', null, 'primary') . tep_draw_button(IMAGE_CANCEL,
+                                        'copy', null, 'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                                         'close',
-                                        tep_href_link(FILENAME_CATEGORIES,
+                                        tep_href_link(cfg('FILENAME_CATEGORIES'),
                                             'cPath=' . $cPath . '&pID=' . $pInfo->products_id))];
                                 break;
 
@@ -2104,7 +2371,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                 $heading[] = ['text' => '<strong>' . TEXT_INFO_HEADING_SET_CANONICAL_CATEGORY . '</strong>'];
 
                                 $contents = ['form' => tep_draw_form('products',
-                                        FILENAME_CATEGORIES,
+                                        cfg('FILENAME_CATEGORIES'),
                                         'action=set_canonical_confirm&cPath=' . $cPath) . tep_draw_hidden_field('products_id',
                                         $pInfo->products_id)];
                                 $contents[] = ['text' => TEXT_SET_CANONICAL_CATEGORY_INTRO];
@@ -2128,10 +2395,10 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                     -4);
 
                                 $contents[] = ['text' => '<br />' . $product_categories_string];
-                                $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_SAVE,
-                                        'disk', null, 'primary') . tep_draw_button(IMAGE_CANCEL,
+                                $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(cfg('IMAGE_SAVE'),
+                                        'disk', null, 'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                                         'close',
-                                        tep_href_link(FILENAME_CATEGORIES,
+                                        tep_href_link(cfg('FILENAME_CATEGORIES'),
                                             'cPath=' . $cPath . '&pID=' . $pInfo->products_id))];
                                 break;
 
@@ -2149,20 +2416,20 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                         $heading[] = ['text' => '<strong>' . $cInfo->categories_name . '</strong>'];
                                         $contents[] = ['align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT,
                                                 'document',
-                                                tep_href_link(FILENAME_CATEGORIES,
+                                                tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'cPath=' . $category_path_string . '&cID=' . $cInfo->categories_id . '&action=edit_category')) . tep_draw_button(IMAGE_DELETE,
                                                 'trash',
-                                                tep_href_link(FILENAME_CATEGORIES,
+                                                tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'cPath=' . $category_path_string . '&cID=' . $cInfo->categories_id . '&action=delete_category')) . tep_draw_button(IMAGE_MOVE,
                                                 'arrow-4',
-                                                tep_href_link(FILENAME_CATEGORIES,
+                                                tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'cPath=' . $category_path_string . '&cID=' . $cInfo->categories_id . '&action=move_category'))];
                                         $contents[] = ['text' => '<br />' . _('DATE ADDED') . ' ' . tep_date_short($cInfo->date_added)];
                                         if (tep_not_null($cInfo->last_modified))
                                             $contents[] = ['text' => TEXT_LAST_MODIFIED . ' ' . tep_date_short($cInfo->last_modified)];
                                         $contents[] = ['text' => '<br />' . tep_info_image($cInfo->categories_image,
-                                                $cInfo->categories_name, HEADING_IMAGE_WIDTH,
-                                                HEADING_IMAGE_HEIGHT) . '<br />' . $cInfo->categories_image];
+                                                $cInfo->categories_name, cfg('HEADING_IMAGE_WIDTH'),
+                                                cfg('HEADING_IMAGE_HEIGHT')) . '<br />' . $cInfo->categories_image];
                                         $contents[] = ['text' => '<br />' . TEXT_SUBCATEGORIES . ' ' . $cInfo->childs_count . '<br />' . TEXT_PRODUCTS . ' ' . $cInfo->products_count];
                                     } elseif (isset($pInfo) && is_object($pInfo)) { // product info box contents
                                         $heading[] = ['text' => '<strong>' . tep_get_products_name($pInfo->products_id,
@@ -2187,7 +2454,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                                     'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to'));
 
                                         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
-                                            $linker = new FlexiPeeHP\Cenik(null, ['offline' => true]);
+                                            $linker = new \FlexiPeeHP\Cenik(null, ['offline' => true]);
                                             $linker->setMyKey('ext:products:' . $_GET['pID']);
                                             $buttons .= tep_draw_button(_('Open in FlexiBee'),
                                                 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcyIgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICB3aWR0aD0iMTIwIgogICBoZWlnaHQ9IjEyMCIKICAgdmlld0JveD0iMCAwIDEyMCAxMjAiCiAgIHNvZGlwb2RpOmRvY25hbWU9ImZsZXhpYmVlLWxvZ28uc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIwLjkyLjEgcjE1MzcxIj48bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE4Ij48cmRmOlJERj48Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+PGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+PGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPjxkYzp0aXRsZT48L2RjOnRpdGxlPjwvY2M6V29yaz48L3JkZjpSREY+PC9tZXRhZGF0YT48ZGVmcwogICAgIGlkPSJkZWZzNiIgLz48c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjNjY2NjY2IgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgb2JqZWN0dG9sZXJhbmNlPSIxMCIKICAgICBncmlkdG9sZXJhbmNlPSIxMCIKICAgICBndWlkZXRvbGVyYW5jZT0iMTAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjEyODAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iOTU1IgogICAgIGlkPSJuYW1lZHZpZXc0IgogICAgIHNob3dncmlkPSJmYWxzZSIKICAgICBpbmtzY2FwZTp6b29tPSIxLjMzNjI2NzQiCiAgICAgaW5rc2NhcGU6Y3g9IjI0My42ODg2MyIKICAgICBpbmtzY2FwZTpjeT0iMzAuODg2NjY3IgogICAgIGlua3NjYXBlOndpbmRvdy14PSIwIgogICAgIGlua3NjYXBlOndpbmRvdy15PSIzMiIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9ImcxMCIgLz48ZwogICAgIGlkPSJnMTAiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpbmtzY2FwZTpsYWJlbD0iaW5rX2V4dF9YWFhYWFgiCiAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMS4zMzMzMzMzLDAsMCwtMS4zMzMzMzMzLDAsMTIwKSI+PGcKICAgICAgIGlkPSJnNDU0MSIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMTIuMjUyOTgsMjEuMzI4MDY2KSI+PHBhdGgKICAgICAgICAgZD0iTSAxNzAuODY4LDAgMTg0LjI0NiwyMy4xNjE3IDE5Ny42MTcsMCBaIgogICAgICAgICBzdHlsZT0iZmlsbDojZjlhZTJkO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDowLjEiCiAgICAgICAgIGlkPSJwYXRoMjIiCiAgICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiIC8+PHBhdGgKICAgICAgICAgZD0ibSAxNzAuODY4LDAgLTEzLjM3NSwyMy4xNjE3IGggMjYuNzUzIHoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiNkMjhiMjU7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjAuMSIKICAgICAgICAgaWQ9InBhdGgyNCIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz48cGF0aAogICAgICAgICBkPSJtIDE1Ny40OTMsMjMuMTYxNyAxMy4zNzUsMjMuMTY4IDEzLjM3OCwtMjMuMTY4IHoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM5MzYzMjc7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjAuMSIKICAgICAgICAgaWQ9InBhdGgyNiIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz48cGF0aAogICAgICAgICBkPSJNIDE3MC44NjgsNDYuMzI5NyBIIDE0NC4xMjEgTCAxMTcuMzY1LDAgaCAyNi43NTYgbCAyNi43NDcsNDYuMzI5NyIKICAgICAgICAgc3R5bGU9ImZpbGw6Izc2N2E3YztmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MC4xIgogICAgICAgICBpZD0icGF0aDI4IgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPjwvZz48L2c+PC9zdmc+',
@@ -2214,7 +2481,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
 
                                         //pure:NEW show all products categories, set canonical START
                                         $contents[] = ['text' => '<br /><b>' . SET_CANONICAL_TITLE . '</b><br />'];
-                                        $contents[] = ['text' => '<form action="' . FILENAME_CATEGORIES . '" method="POST">'];
+                                        $contents[] = ['text' => '<form action="' . cfg('FILENAME_CATEGORIES') . '" method="POST">'];
                                         $product_categories_string = '';
                                         $product_categories = tep_generate_category_path($pInfo->products_id,
                                             'product');
@@ -2252,7 +2519,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                         if ((tep_not_null($heading)) && (tep_not_null($contents))) {
                             echo '            <td width="50%" valign="top">' . "\n";
 
-                            $box = new box;
+                            $box = new \box;
                             echo $box->infoBox($heading, $contents);
 
                             echo '            </td>' . "\n";
@@ -2268,3 +2535,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
 
 require(DIR_WS_INCLUDES . 'template_bottom.php');
 require(DIR_WS_INCLUDES . 'application_bottom.php');
+
+} catch ( \Exception $e ) {
+    echo $e->getMessage();
+}

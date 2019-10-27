@@ -2,8 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CompanyNumber extends AbstractMigration
-{
+class CompanyNumber extends AbstractMigration {
 
     /**
      * Change Method.
@@ -26,45 +25,44 @@ class CompanyNumber extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change()
-    {
+    public function change() {
         if ($this->hasTable('address_book')) {
             $table = $this->table('address_book');
             if (!$table->hasColumn('entry_company_number')) {
                 $table->addColumn('entry_company_number', 'string', ['after' => 'entry_company'])
-                    ->save();
+                        ->save();
             }
             if (!$table->hasColumn('entry_vat_number')) {
                 $table->addColumn('entry_vat_number', 'string', ['after' => 'entry_company_number'])
-                    ->save();
+                        ->save();
             }
 
             $table = $this->table('orders');
-            $table
-            		->addColumn('customers_company_number', 'string',  ['after' => 'customers_company']) 
-                ->addColumn('delivery_company_number', 'string',  ['after' => 'delivery_company']) 
-                ->addColumn('billing_company_number', 'string',  ['after' => 'billing_company']) 
-								->save();
-								
-            $table
-            		->addColumn('customers_vat_number', 'string',  ['after' => 'customers_company_number']) 
-                ->addColumn('delivery_vat_number', 'string',  ['after' => 'delivery_company_number']) 
-                ->addColumn('billing_vat_number', 'string',  ['after' => 'billing_company_number']) 
-                ->save();
+            if (!$table->hasColumn('customers_company_number')) {
+                $table
+                        ->addColumn('customers_company_number', 'string', ['after' => 'customers_company', 'default' => ''])
+                        ->addColumn('delivery_company_number', 'string', ['after' => 'delivery_company'])
+                        ->addColumn('billing_company_number', 'string', ['after' => 'billing_company'])
+                        ->save();
+            }
 
-
-            
+            if (!$table->hasColumn('customers_vat_number')) {
+                $table
+                        ->addColumn('customers_vat_number', 'string', ['after' => 'customers_company_number'])
+                        ->addColumn('delivery_vat_number', 'string', ['after' => 'delivery_company_number'])
+                        ->addColumn('billing_vat_number', 'string', ['after' => 'billing_company_number'])
+                        ->save();
+            }
         } else {
 
             $table = $this->table('address_book_real');
             if (!$table->hasColumn('entry_company_number')) {
                 $table->addColumn('entry_company_number', 'string', ['after' => 'entry_company'])
-
-                    ->save();
+                        ->save();
             }
             if (!$table->hasColumn('entry_vat_number')) {
                 $table->addColumn('entry_vat_number', 'string', ['after' => 'entry_company_number'])
-                    ->save();
+                        ->save();
             }
 
 
@@ -94,18 +92,18 @@ DEFINER=`root`@`localhost`
 
 
             $table = $this->table('orders_real');
-							$table
-            		->addColumn('customers_company_number', 'string',  ['after' => 'customers_company']) 
-                ->addColumn('delivery_company_number', 'string',  ['after' => 'delivery_company']) 
-                ->addColumn('billing_company_number', 'string',  ['after' => 'billing_company']) 
-								->save();
-								
             $table
-            		->addColumn('customers_vat_number', 'string',  ['after' => 'customers_company_number']) 
-                ->addColumn('delivery_vat_number', 'string',  ['after' => 'delivery_company_number']) 
-                ->addColumn('billing_vat_number', 'string',  ['after' => 'billing_company_number']) 
-                ->save();
+                    ->addColumn('customers_company_number', 'string', ['after' => 'customers_company'])
+                    ->addColumn('delivery_company_number', 'string', ['after' => 'delivery_company'])
+                    ->addColumn('billing_company_number', 'string', ['after' => 'billing_company'])
+                    ->save();
 
+            $table
+                    ->addColumn('customers_vat_number', 'string', ['after' => 'customers_company_number'])
+                    ->addColumn('delivery_vat_number', 'string', ['after' => 'delivery_company_number'])
+                    ->addColumn('billing_vat_number', 'string', ['after' => 'billing_company_number'])
+                    ->save();
         }
     }
+
 }

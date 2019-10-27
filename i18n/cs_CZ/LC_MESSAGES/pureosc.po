@@ -1,43 +1,23 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: PureOSC\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-13 21:16+0200\n"
-"PO-Revision-Date: 2019-05-13 21:26+0200\n"
+"POT-Creation-Date: 2019-08-25 23:12+0200\n"
+"PO-Revision-Date: 2019-08-25 23:15+0200\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
-"Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
+"Language-Team: \n"
 "Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-Basepath: ../../../catalog\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SearchPath-0: .\n"
-
-#: account.php:14
-#: includes/modules/content/navbar/templates/cm_nb_account.php:18
-#: includes/modules/content/navbar/templates/cm_nb_account.php:32
-#: includes/modules/pages/tp_account.php:21
-msgid "My Account"
-msgstr "Můj účet"
-
-#: account.php:15
-msgid "Informations about my account"
-msgstr "Informace o mém účtu"
-
-#: account.php:59
-msgid "Gift Coupon / Voucher"
-msgstr "Dárkový kupón / voucher"
-
-#: account.php:63
-msgid "send voucher"
-msgstr "odeslat voucher"
-
-#: account.php:67
-msgid "Vouchers FAQ"
-msgstr "Často kladené otázky k voucherům"
 
 #: account_edit.php:138
 msgid "Changed by customer"
@@ -97,27 +77,77 @@ msgstr "Vyžadováno"
 msgid "E-Mail Address"
 msgstr "E-Mailová adresa"
 
-#: account_history.php:81 account_history_info.php:197 admin/orders.php:157
+#: account_history.php:81 account_history_info.php:174 admin/orders.php:157
 #: checkout_success.php:91
 msgid "PDF Invoice"
 msgstr "PDF Faktura"
 
-#: account_history.php:82 account_history_info.php:199 admin/orders.php:158
+#: account_history.php:82 account_history_info.php:176 admin/orders.php:158
 #: checkout_success.php:92
 msgid "ISDOC Invoice"
 msgstr "ISDOC Faktura"
 
-#: account_history_info.php:186 checkout_success.php:84
+#: account_history_info.php:52
+msgid "Order info"
+msgstr "Informace o objednávce"
+
+#: account_history_info.php:61
+#, fuzzy, php-format
+msgid "Order #%s"
+msgstr "Objednávka %s čeká na úhradu"
+
+#: account_history_info.php:70 account_history_info.php:78
+#: includes/modules/content/navbar/templates/cm_nb_categories.php:16
+#: includes/modules/content/navbar/templates/cm_nb_categories_full.php:17
+msgid "Products"
+msgstr "Produkty"
+
+#: account_history_info.php:71
+#, fuzzy
+msgid "Tax"
+msgstr "Daňový rezident mimo ČR"
+
+#: account_history_info.php:72 account_history_info.php:79
+#: account_history_info.php:126
+#: admin/includes/modules/dashboard/d_orders.php:44
+msgid "Total"
+msgstr "Celkem"
+
+#: account_history_info.php:138
+msgid "Delivery Address"
+msgstr ""
+
+#: account_history_info.php:144
+msgid "Billing Address"
+msgstr ""
+
+#: account_history_info.php:151
+msgid "Shipping Method"
+msgstr ""
+
+#: account_history_info.php:162
+msgid "Payment Method"
+msgstr ""
+
+#: account_history_info.php:164 checkout_success.php:84
 msgid "QR Payment"
 msgstr "QR Platba"
 
-#: account_history_info.php:195
+#: account_history_info.php:170
+msgid "Payment method"
+msgstr ""
+
+#: account_history_info.php:172
 msgid "Already settled"
 msgstr "Již uhrazeno"
 
-#: account_history_info.php:201
+#: account_history_info.php:178
 msgid "XLS Invoice"
 msgstr "XLS Faktura"
+
+#: account_history_info.php:195
+msgid "Order History"
+msgstr ""
 
 #: account_pwa.php:368 account_pwa.php:372 admin/create_account.php:503
 #: admin/create_account.php:507 admin/customers.php:583
@@ -143,15 +173,15 @@ msgstr "DIČ"
 
 #: admin/action_recorder.php:139 admin/administrators.php:275
 #: admin/article_manager_blog_comments.php:434 admin/article_reviews.php:240
-#: admin/articles.php:1511 admin/articles_config.php:58 admin/authors.php:566
+#: admin/articles.php:1549 admin/articles_config.php:58 admin/authors.php:566
 #: admin/backup.php:367 admin/banner_manager.php:406 admin/cache.php:54
-#: admin/categories.php:1629 admin/configuration.php:57 admin/countries.php:72
+#: admin/categories.php:1634 admin/configuration.php:57 admin/countries.php:72
 #: admin/coupon_admin.php:198 admin/coupon_admin.php:817
 #: admin/currencies.php:236 admin/customers.php:887 admin/geo_zones.php:147
 #: admin/geo_zones.php:234 admin/gv_queue.php:75 admin/gv_sent.php:31
-#: admin/languages.php:144 admin/manufacturers.php:142
+#: admin/languages.php:144 admin/manufacturers.php:146
 #: admin/mm_bulkmail.php:625 admin/mm_responsemail.php:320
-#: admin/mm_templates.php:234 admin/modules.php:149
+#: admin/mm_templates.php:234 admin/modules.php:151
 #: admin/modules_content.php:212 admin/modules_content.php:264
 #: admin/newsletters.php:352 admin/orders.php:461 admin/orders_status.php:125
 #: admin/products_attributes.php:272 admin/products_attributes.php:474
@@ -161,20 +191,20 @@ msgstr "DIČ"
 msgid "Action"
 msgstr "Akce"
 
-#: admin/article_manager_blog_comments.php:518 admin/articles.php:1857
-#: admin/articles.php:1874 admin/authors.php:673 admin/categories.php:2152
-#: admin/categories.php:2191 admin/manufacturers.php:370 article_blog.php:118
+#: admin/article_manager_blog_comments.php:518 admin/articles.php:1895
+#: admin/articles.php:1912 admin/authors.php:673 admin/categories.php:2156
+#: admin/categories.php:2195 admin/manufacturers.php:374 article_blog.php:118
 #: article_info.php:88
 #, php-format
 msgid "DATE ADDED"
 msgstr "Přidáno dne"
 
-#: admin/articles.php:1490 admin/categories.php:1604
+#: admin/articles.php:1528 admin/categories.php:1609
 msgid "Go to"
 msgstr "Jdi na"
 
-#: admin/articles.php:1508 admin/banner_manager.php:405
-#: admin/categories.php:1627 admin/edit_orders.php:2068
+#: admin/articles.php:1546 admin/banner_manager.php:405
+#: admin/categories.php:1632 admin/edit_orders.php:2068
 #: admin/edit_orders_ajax.php:745
 #: admin/includes/modules/dashboard/d_orders.php:46
 #: admin/includes/modules/dashboard/d_reviews.php:44 admin/mm_bulkmail.php:624
@@ -183,40 +213,44 @@ msgstr "Jdi na"
 msgid "Status"
 msgstr "Status"
 
-#: admin/categories.php:896
+#: admin/categories.php:901
 msgid "WARNING: Canonical category AutoDetection"
 msgstr ""
 
-#: admin/categories.php:950
+#: admin/categories.php:955
 msgid "Add new"
 msgstr "Přidat nový"
 
-#: admin/categories.php:1168
+#: admin/categories.php:1021
+msgid "Discount"
+msgstr ""
+
+#: admin/categories.php:1173
 msgid "image for Gallery"
 msgstr "Obrázek pro galerie"
 
-#: admin/categories.php:1168
+#: admin/categories.php:1173
 msgid "HTML Replacement"
 msgstr "HTML náhrada"
 
-#: admin/categories.php:1625
+#: admin/categories.php:1630
 msgid "Categories / Products"
 msgstr "Kategorie / Produkty"
 
-#: admin/categories.php:1788 admin/categories.php:2082
+#: admin/categories.php:1793 admin/categories.php:2086
 #: includes/modules/boxes/bm_categories.php:24
 msgid "Categories"
 msgstr "Kategorie"
 
-#: admin/categories.php:1813
+#: admin/categories.php:1817
 msgid "New Category / Article"
 msgstr "Nová kategorie / článek"
 
-#: admin/categories.php:1858
+#: admin/categories.php:1862
 msgid "The Category name"
 msgstr "Nadpis kategorie"
 
-#: admin/categories.php:2184
+#: admin/categories.php:2188
 msgid "Open in FlexiBee"
 msgstr "Otevřít ve FlexiBee"
 
@@ -236,6 +270,8 @@ msgstr "Nový zákazník"
 
 #: admin/create_account.php:513 admin/create_account.php:517
 #: create_account.php:534 create_account.php:536
+#: includes/modules/checkout_new_address.php:98
+#: includes/modules/checkout_new_address.php:102
 msgid "Company Number"
 msgstr "Ičo"
 
@@ -268,29 +304,33 @@ msgstr "Platba"
 msgid "Invoice"
 msgstr "Faktura"
 
-#: admin/flexibeesync.php:32
+#: admin/flexibeesync.php:41
 msgid "FlexiBee sync"
 msgstr "FlexiBee synchronizace"
 
-#: admin/flexibeesync.php:59
+#: admin/flexibeesync.php:68
 msgid "Already exists in database"
 msgstr "Již existuje v databázi"
 
-#: admin/flexibeesync.php:97
+#: admin/flexibeesync.php:106
 msgid "FlexiBee server not connected."
 msgstr "FlexiBee server není připojen"
 
-#: admin/flexibeesync.php:98
+#: admin/flexibeesync.php:107
 msgid "Please change  FlexiBee options"
 msgstr "Prosím změňte nastavení vašeho FlexiBee"
 
-#: admin/flexibeesync.php:98
+#: admin/flexibeesync.php:107
 msgid "Here"
 msgstr "Zde"
 
 #: admin/getpdf.php:39 getisdoc.php:35 getpdf.php:39 getxls.php:35
 msgid "Wrong call"
 msgstr "Špatné volání"
+
+#: admin/includes/header.php:31
+msgid "Static generator reset"
+msgstr ""
 
 #: admin/includes/modules/dashboard/d_admin_logins.php:28
 #: admin/includes/modules/dashboard/d_admin_logins.php:42
@@ -345,10 +385,6 @@ msgstr "Objednávky"
 #: admin/includes/modules/dashboard/d_orders.php:29
 msgid "Show the latest orders"
 msgstr "Zobraz poslední objednávky"
-
-#: admin/includes/modules/dashboard/d_orders.php:44
-msgid "Total"
-msgstr "Celkem"
 
 #: admin/includes/modules/dashboard/d_partner_news.php:26
 #: admin/includes/modules/dashboard/d_partner_news.php:49
@@ -423,6 +459,11 @@ msgstr ""
 msgid "Show the version check results"
 msgstr ""
 
+#: admin/login.php:119
+#, php-format
+msgid "Error saving private key to %s"
+msgstr ""
+
 #: admin/orders.php:156 admin/orders.php:616 checkout_success.php:90
 msgid "print cheque"
 msgstr "tisk složenky"
@@ -432,7 +473,7 @@ msgid "Cash Desk payment"
 msgstr "Platba na pokladně"
 
 #: checkout_process.php:343 includes/modules/payment/cash.php:346
-#: includes/modules/payment/gpwebpay.php:402
+#: includes/modules/payment/gpwebpay.php:410
 msgid "New order saved"
 msgstr "Nová objednávka uložena"
 
@@ -440,12 +481,12 @@ msgstr "Nová objednávka uložena"
 msgid "Company Number2"
 msgstr "DIČ"
 
-#: ext/flexibee/Cenik.php:89 ext/flexibee/FakturaVydana.php:42
-#: ext/flexibee/Strom.php:44
+#: ext/flexibee/Cenik.php:89 ext/flexibee/FakturaVydana.php:43
+#: ext/flexibee/Strom.php:45
 msgid "FlexiBee import"
 msgstr "Import z FlexiBee "
 
-#: ext/flexibee/FakturaVydana.php:96
+#: ext/flexibee/FakturaVydana.php:97
 msgid "The Card holder canceled the payment"
 msgstr "The Card holder canceled the payment"
 
@@ -462,134 +503,134 @@ msgstr ""
 msgid "DB_SERVER not defined"
 msgstr ""
 
-#: includes/classes/CustomerLog.php:236
+#: includes/classes/CustomerLog.php:240
 msgid "Gdpr Log"
 msgstr "Gdpr Log"
 
-#: includes/classes/CustomerLog.php:256
+#: includes/classes/CustomerLog.php:259
 msgid "affected client"
 msgstr "dotčený klient"
 
-#: includes/classes/CustomerLog.php:257
+#: includes/classes/CustomerLog.php:260
 msgid "admin user"
 msgstr "administrátor"
 
-#: includes/classes/CustomerLog.php:258
+#: includes/classes/CustomerLog.php:261
 msgid "place of occurence"
 msgstr "Místo výskytu"
 
-#: includes/classes/CustomerLog.php:259
+#: includes/classes/CustomerLog.php:262
 msgid "question"
 msgstr "Otázka"
 
-#: includes/classes/CustomerLog.php:260
+#: includes/classes/CustomerLog.php:263
 msgid "answer"
 msgstr "odpověď"
 
-#: includes/classes/CustomerLog.php:261
+#: includes/classes/CustomerLog.php:264
 msgid "extid"
 msgstr "extid"
 
-#: includes/classes/CustomerLog.php:262
+#: includes/classes/CustomerLog.php:265
 msgid "predecessor"
 msgstr "Předchůdce"
 
-#: includes/classes/CustomerLog.php:265
+#: includes/classes/CustomerLog.php:268
 msgid "Customer Name"
 msgstr "Jméno klienta"
 
-#: includes/classes/CustomerLog.php:267
+#: includes/classes/CustomerLog.php:270
 msgid "Admin Name"
 msgstr "Jméno admina"
 
-#: includes/classes/Engine.php:154
+#: includes/classes/Engine.php:139
 #, php-format
 msgid "New %s"
 msgstr "Nový %s"
 
-#: includes/classes/Engine.php:155
+#: includes/classes/Engine.php:140
 #, php-format
 msgid "Edit %s"
 msgstr "Uprav %s"
 
-#: includes/classes/Engine.php:156
+#: includes/classes/Engine.php:141
 #, php-format
 msgid "Remove %s"
 msgstr "Odstraň %s"
 
-#: includes/classes/Engine.php:157
+#: includes/classes/Engine.php:142
 #, php-format
 msgid "Create new %s"
 msgstr "Vytvořit nový %s"
 
-#: includes/classes/Engine.php:158
+#: includes/classes/Engine.php:143
 #, php-format
 msgid "Editing %s"
 msgstr "Upravuji %s"
 
-#: includes/classes/Engine.php:159
+#: includes/classes/Engine.php:144
 #, php-format
 msgid "Removing %s"
 msgstr "Odstranit %s"
 
-#: includes/classes/Engine.php:160
+#: includes/classes/Engine.php:145
 #, php-format
 msgid "Are you sure you wish to delete %%d row of %s ?"
 msgstr "Opravdu chcete  smazat %%d řádek z %s"
 
-#: includes/classes/Engine.php:201
+#: includes/classes/Engine.php:186
 #, php-format
 msgid "Missing ColumnInfo name for %s/%s"
 msgstr "Chybějící informace o názvu sloupce pro %s/%s"
 
-#: includes/classes/Engine.php:205
+#: includes/classes/Engine.php:190
 #, php-format
 msgid "Missing ColumnInfo type for %s/%s"
 msgstr "Chybějící typ slouce pro %s/%s"
 
-#: includes/classes/Engine.php:213
+#: includes/classes/Engine.php:198
 #, fuzzy
 msgid "Id"
 msgstr "Id"
 
-#: includes/classes/Engine.php:220
+#: includes/classes/Engine.php:205
 msgid "Updated"
 msgstr "Aktualizováno"
 
-#: includes/classes/Engine.php:226
+#: includes/classes/Engine.php:211
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: includes/classes/Engine.php:455
+#: includes/classes/Engine.php:428
 #, php-format
 msgid "%s is not valid email"
 msgstr "%s není korektní email"
 
-#: includes/classes/Engine.php:483
+#: includes/classes/Engine.php:456
 #, php-format
 msgid "A %s is required"
 msgstr "%s je vyžadováno"
 
-#: includes/classes/Engine.php:488
+#: includes/classes/Engine.php:461
 #, php-format
 msgid "A %s is not unique"
 msgstr "%s je již použito"
 
-#: includes/classes/Engine.php:613
+#: includes/classes/Engine.php:586
 #, php-format
 msgid "Field Type is not set for %s "
 msgstr "Typ sloupečku není nastaven pro %s"
 
-#: includes/classes/Engine.php:825
+#: includes/classes/Engine.php:798
 #, php-format
 msgid "Column \"%s\" of %s without type definition"
 msgstr "Sloupec \"%s\" z %s bez definice typu"
 
-#: includes/classes/Engine.php:992
+#: includes/classes/Engine.php:965
 msgid "Yes"
 msgstr "Ano"
 
-#: includes/classes/Engine.php:992
+#: includes/classes/Engine.php:965
 msgid "No"
 msgstr "Ne"
 
@@ -599,7 +640,7 @@ msgstr "GDPR Souhlas s odběrem novinek mailem"
 
 #: includes/classes/NewsletterConsentMailer.php:22
 msgid "Dear Customer"
-msgstr "Vážený zálazníku,"
+msgstr "Vážený zákazníku,"
 
 #: includes/classes/NewsletterConsentMailer.php:30
 #, php-format
@@ -613,6 +654,10 @@ msgstr "Klikněte zde pro vyjádření souhlasu"
 #: includes/classes/ui/DataTable.php:272
 msgid "All pages"
 msgstr "Všechny stránky"
+
+#: includes/classes/ui/QRFaktura.php:23
+msgid "QR Invoice"
+msgstr ""
 
 #: includes/modules/action_recorder/ar_admin_login.php:25
 #, fuzzy
@@ -674,7 +719,7 @@ msgstr "Zobraz vyhledávací tlačítko"
 
 #: includes/modules/boxes/bm_whats_new.php:29
 msgid "What's New"
-msgstr "Co je nového ?"
+msgstr "Novinky"
 
 #: includes/modules/boxes/bm_whats_new.php:30
 msgid "Show the newest products"
@@ -695,36 +740,6 @@ msgstr "Rozšíření hledání"
 #: includes/modules/boxes/templates/whats_new.php:2
 msgid "What's New?"
 msgstr "Co je nového ?"
-
-#: includes/modules/content/checkout_success/templates/thank_you.php:3
-msgid "Thanks for shopping with us"
-msgstr "Děkujeme za vaši objednávku."
-
-#: includes/modules/content/checkout_success/templates/thank_you.php:6
-msgid ""
-"Your order has been successfully processed! Your products will arrive at "
-"their destination within 2-5 working days."
-msgstr ""
-"Vaše objednávka byla úspěšně zpracována. Zboží bude expedováno nejbližší "
-"pracovní den."
-
-#: includes/modules/content/checkout_success/templates/thank_you.php:7
-#, php-format
-msgid "You can view the status of your order any time in your account %s page."
-msgstr "Stav zpracování objednávky zobrazíte na stránce %s"
-
-#: includes/modules/content/checkout_success/templates/thank_you.php:8
-msgid "View Orders"
-msgstr "Objednávky"
-
-#: includes/modules/content/checkout_success/templates/thank_you.php:10
-#, php-format
-msgid ""
-"Please forward any questions you may have  <a class=\"btn btn-info\" role="
-"\"button\" href=\"%s\">Contact Us</a>"
-msgstr ""
-"Máte-li jakýkoli dotaz <a class=\"btn btn-info\" role=\"button\" href=\"%s"
-"\">Napište nám</a>"
 
 #: includes/modules/content/footer/cm_footer_account.php:34
 #: includes/modules/content/footer/cm_footer_contact_us.php:29
@@ -935,12 +950,12 @@ msgstr ""
 msgid "New Products"
 msgstr "Nové produkty"
 
-#: includes/modules/content/front_page/templates/cm_fp_new_products.php:31
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:39
 #: includes/modules/new_products.php:41
 msgid "View"
 msgstr "Zobrazit"
 
-#: includes/modules/content/front_page/templates/cm_fp_new_products.php:32
+#: includes/modules/content/front_page/templates/cm_fp_new_products.php:41
 #: includes/modules/new_products.php:43
 msgid "Buy"
 msgstr "Koupit"
@@ -1073,6 +1088,11 @@ msgstr ""
 msgid "Adds your Store Search Bar into the Navbar Area of your site."
 msgstr "Přidá vyhledávací políčko do patičky vašich stránek"
 
+#: includes/modules/content/navbar/templates/cm_nb_account.php:18
+#: includes/modules/content/navbar/templates/cm_nb_account.php:32
+msgid "My Account"
+msgstr "Můj účet"
+
 #: includes/modules/content/navbar/templates/cm_nb_account.php:23
 msgid "Log Off"
 msgstr "Odhlášení"
@@ -1086,7 +1106,6 @@ msgid "Register"
 msgstr "Registrace"
 
 #: includes/modules/content/navbar/templates/cm_nb_account.php:35
-#: includes/modules/pages/tp_account.php:33
 msgid "My Orders"
 msgstr "Mé Objednávky"
 
@@ -1121,11 +1140,6 @@ msgstr "bez položek"
 #: includes/modules/content/navbar/templates/cm_nb_cart.php:37
 msgid "View Cart"
 msgstr "Ukaž Košík"
-
-#: includes/modules/content/navbar/templates/cm_nb_categories.php:16
-#: includes/modules/content/navbar/templates/cm_nb_categories_full.php:17
-msgid "Products"
-msgstr "Produkty"
 
 #: includes/modules/content/navbar/templates/cm_nb_settings.php:20
 msgid "Lng/CCY"
@@ -1471,36 +1485,6 @@ msgstr "Není skladem"
 msgid "CONTACT US"
 msgstr "Napište nám"
 
-#: includes/modules/pages/tp_account.php:23
-msgid "View or change my account information."
-msgstr ""
-
-#: includes/modules/pages/tp_account.php:26
-msgid "View or change entries in my address book."
-msgstr ""
-
-#: includes/modules/pages/tp_account.php:29
-#, fuzzy
-msgid "Change my account password."
-msgstr "Změněno zákazníkem"
-
-#: includes/modules/pages/tp_account.php:35
-#, fuzzy
-msgid "View the orders I have made."
-msgstr "Nová objednávka uložena"
-
-#: includes/modules/pages/tp_account.php:39
-msgid "E-Mail Notifications"
-msgstr "Emailové notifikace"
-
-#: includes/modules/pages/tp_account.php:41
-msgid "Subscribe or unsubscribe from newsletters."
-msgstr ""
-
-#: includes/modules/pages/tp_account.php:45
-msgid "View or change my product notification list."
-msgstr ""
-
 #: includes/modules/payment/cash.php:25
 msgid "Cash"
 msgstr "Hotovost"
@@ -1517,45 +1501,82 @@ msgstr "Platba na dřevo"
 msgid "Completed [cash]"
 msgstr "Hotovo [hotově]"
 
+#: includes/modules/payment/cod.php:27 includes/modules/payment/cod.php:28
+msgid "Cash on Delivery"
+msgstr ""
+
 #: includes/modules/payment/gpwebpay.php:41
 msgid "GP WebPay"
 msgstr "GP WebPay"
 
-#: includes/modules/payment/gpwebpay.php:42
+#: includes/modules/payment/gpwebpay.php:43
 msgid "Card Payment"
 msgstr "Platba Kartou"
 
-#: includes/modules/payment/gpwebpay.php:43
+#: includes/modules/payment/gpwebpay.php:44
 msgid "GP WebPay Payment"
 msgstr "GP WebPay Platba"
 
-#: includes/modules/payment/gpwebpay.php:460
+#: includes/modules/payment/gpwebpay.php:469
 msgid "Payment failed"
 msgstr "Platba selhala"
 
-#: includes/modules/payment/gpwebpay.php:772
+#: includes/modules/payment/gpwebpay.php:808
 msgid "Your secret key"
 msgstr "Váš tajný klíč"
 
-#: includes/modules/payment/gpwebpay.php:772
+#: includes/modules/payment/gpwebpay.php:808
 msgid "Your secret key (supplied by gpwebpay)"
 msgstr "Váš tajný klíč (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:773
+#: includes/modules/payment/gpwebpay.php:809
 msgid "Your secret key password (supplied by gpwebpay)"
 msgstr "heslo vašeho tajného klíče  (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:774
+#: includes/modules/payment/gpwebpay.php:810
 msgid "Your public key (supplied by gpwebpay)"
 msgstr "váš veřejný klíč (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:874
+#: includes/modules/payment/gpwebpay.php:915
 msgid "Testing payment"
 msgstr "Testovací platba"
 
 #: includes/modules/product_listing.php:51
 msgid "Sort by"
 msgstr "Řadit dle"
+
+#: includes/modules/shipping/flat.php:23 includes/modules/shipping/flat.php:24
+msgid "Flat Rate"
+msgstr ""
+
+#: includes/modules/shipping/item.php:23 includes/modules/shipping/item.php:24
+msgid "Per Item"
+msgstr ""
+
+#: includes/modules/shipping/table.php:23
+#: includes/modules/shipping/table.php:24
+msgid "Table Rate"
+msgstr ""
+
+#: includes/modules/shipping/usps.php:26
+msgid "United States Postal Service"
+msgstr ""
+
+#: includes/modules/shipping/usps.php:27
+msgid ""
+"United States Postal Service<br /><br />You will need to have registered an "
+"account with USPS at http://www.uspsprioritymail.com/et_regcert.html to use "
+"this module<br /><br />USPS expects you to use pounds as weight measure for "
+"your products."
+msgstr ""
+
+#: includes/modules/shipping/zones2.php:124
+msgid "Zone Based Express Shipping Rates"
+msgstr ""
+
+#: includes/modules/shipping/zones2.php:125
+msgid "Zone Based Rates Express"
+msgstr ""
 
 #: includes/modules/social_bookmarks/sb_google_buzz.php:24
 msgid "Google Buzz"
@@ -1609,56 +1630,49 @@ msgstr "citace"
 msgid "p"
 msgstr "p"
 
-#~ msgid "About Us"
-#~ msgstr "O nás"
+#~ msgid "Informations about my account"
+#~ msgstr "Informace o mém účtu"
 
-#~ msgid "Footer Text"
-#~ msgstr "Text patičiky"
+#~ msgid "Gift Coupon / Voucher"
+#~ msgstr "Dárkový kupón / voucher"
 
-#~ msgid "Footer Text Body"
-#~ msgstr "Text patičiky"
+#~ msgid "send voucher"
+#~ msgstr "odeslat voucher"
 
-#~ msgid "Returning Customer"
-#~ msgstr "Vážený zákazníku,"
+#~ msgid "Vouchers FAQ"
+#~ msgstr "Často kladené otázky k voucherům"
 
-#~ msgid "Previous"
-#~ msgstr "Předchozí"
+#~ msgid "Thanks for shopping with us"
+#~ msgstr "Děkujeme za vaši objednávku."
 
-#~ msgid "Next"
-#~ msgstr "Následující"
+#~ msgid ""
+#~ "Your order has been successfully processed! Your products will arrive at "
+#~ "their destination within 2-5 working days."
+#~ msgstr ""
+#~ "Vaše objednávka byla úspěšně zpracována. Zboží bude expedováno nejbližší "
+#~ "pracovní den."
 
-#~ msgid "... [more]"
-#~ msgstr "..."
+#~ msgid ""
+#~ "You can view the status of your order any time in your account %s page."
+#~ msgstr "Stav zpracování objednávky zobrazíte na stránce %s"
 
-#~ msgid "New Products For %s"
-#~ msgstr "New Products For %s"
+#~ msgid "View Orders"
+#~ msgstr "Objednávky"
 
-#~ msgid "MODULE_PAYMENT_POSTAL_ORDER_TEXT_TITLE"
-#~ msgstr "MODULE_PAYMENT_POSTAL_ORDER_TEXT_TITLE"
+#~ msgid ""
+#~ "Please forward any questions you may have  <a class=\"btn btn-info\" role="
+#~ "\"button\" href=\"%s\">Contact Us</a>"
+#~ msgstr ""
+#~ "Máte-li jakýkoli dotaz <a class=\"btn btn-info\" role=\"button\" href=\"%s"
+#~ "\">Napište nám</a>"
 
-#~ msgid "MODULE_PAYMENT_POSTAL_ORDER_TEXT_DESCRIPTION"
-#~ msgstr "MODULE_PAYMENT_POSTAL_ORDER_TEXT_DESCRIPTION"
+#, fuzzy
+#~ msgid "Change my account password."
+#~ msgstr "Změněno zákazníkem"
 
-#~ msgid "MODULE_PAYMENT_POSTAL_ORDER_SORT_ORDER"
-#~ msgstr "MODULE_PAYMENT_POSTAL_ORDER_SORT_ORDER"
+#, fuzzy
+#~ msgid "View the orders I have made."
+#~ msgstr "Nová objednávka uložena"
 
-#~ msgid "MODULE_PAYMENT_POSTAL_ORDER_TEXT_EMAIL_FOOTER"
-#~ msgstr "MODULE_PAYMENT_POSTAL_ORDER_TEXT_EMAIL_FOOTER"
-
-#~ msgid "Invoice #%s was matched with proforma #%s"
-#~ msgstr "Faktura #%s byla spárována se zálohou #%s"
-
-#~ msgid "Invoice #%s was not matched with proforma #%s "
-#~ msgstr "Fakrura #%s nebyla spárována se  zálohou #%s "
-
-#~ msgid "The cardholder canceled the payment"
-#~ msgstr "Držitel karty zrušil platbu"
-
-#~ msgid "Payment cancelled by card holder"
-#~ msgstr "Platba byla zrušena vlastníkem karty"
-
-#~ msgid "XSDOC Invoice"
-#~ msgstr "XSDOC Invoice"
-
-#~ msgid "GP WebPay Payment description"
-#~ msgstr "Popisek GP WebPay  platby"
+#~ msgid "E-Mail Notifications"
+#~ msgstr "Emailové notifikace"

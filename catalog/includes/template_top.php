@@ -21,15 +21,15 @@ if (!$oscTemplate->hasBlocks('boxes_column_right')) {
 }
 ?>
 <!DOCTYPE html>
-<html <?php echo HTML_PARAMS; ?>>
+<html <?php echo cfg('HTML_PARAMS'); ?>>
     <head>
-        <meta charset="<?php echo CHARSET; ?>">
+        <meta charset="<?php echo cfg('CHARSET'); ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?php echo tep_output_string_protected($oscTemplate->getTitle()); ?></title>
-        <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER : HTTP_SERVER).DIR_WS_CATALOG; ?>">
+        <base href="<?php echo (($request_type == 'SSL') ? cfg('HTTPS_SERVER') : cfg('HTTP_SERVER')) . cfg('DIR_WS_CATALOG'); ?>">
         <?php
-        if (defined('DIR_FS_MASTER_ROOT_DIR') && file_exists(constant('DIR_FS_MASTER_ROOT_DIR').constant('BOOTSTRAP_LESS_DIR'))) {
+        if (cfg('DIR_FS_MASTER_ROOT_DIR') && file_exists(cfg('DIR_FS_MASTER_ROOT_DIR') . cfg('BOOTSTRAP_LESS_DIR'))) {
             $bootstrap_extension = 'css';
         } else {
             $bootstrap_extension = 'min.css';
@@ -56,12 +56,13 @@ if (!$oscTemplate->hasBlocks('boxes_column_right')) {
 
         <?php echo $oscTemplate->getContent('navigation'); ?>
 
-        <div id="bodyWrapper" class="<?php echo BOOTSTRAP_CONTAINER; ?>">
+        <div id="bodyWrapper" class="<?php echo cfg('BOOTSTRAP_CONTAINER'); ?>">
             <div class="row">
 
-                <?php require(DIR_WS_INCLUDES.'header.php'); ?>
+                <?php
+                require(cfg('DIR_WS_INCLUDES') . 'header.php');
+                ?>
 
                 <div id="bodyContent" class="col-md-<?php echo $oscTemplate->getGridContentWidth(); ?> <?php
-                     echo ($oscTemplate->hasBlocks('boxes_column_left') ? 'col-md-push-'.$oscTemplate->getGridColumnWidth()
-                             : '');
+                     echo ($oscTemplate->hasBlocks('boxes_column_left') ? 'col-md-push-' . $oscTemplate->getGridColumnWidth() : '');
                      ?>">

@@ -30,7 +30,7 @@ include(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ORDERS_EDIT);
 
 // Include currencies class
 
-$currencies = new AdminCurrencies();
+$currencies = new \PureOSC\Admin\AdminCurrencies();
 
 //$action 
 //all variables are sent by $_GET only or by $_POST only, never together
@@ -470,7 +470,7 @@ if ($action == 'reload_totals') {
 
                                         echo '                    <td align="right" class="dataTableContent"><input name="update_totals['.$i.'][title]" value="'.trim($order->totals[$i]['title']).'" readonly="readonly"></td>'."\n";
 
-                                        if ($order->info['currency'] != DEFAULT_CURRENCY)
+                                        if ($order->info['currency'] != cfg('DEFAULT_CURRENCY'))
                                                 echo '                    <td class="dataTableContent">&nbsp;</td>'."\n";
                                         echo '                    <td align="right" class="dataTableContent" nowrap>'.$order->totals[$i]['text'].'<input name="update_totals['.$i.'][value]" type="hidden" value="'.number_format($order->totals[$i]['value'],
                                             2, '.', '').'"><input name="update_totals['.$i.'][class]" type="hidden" value="'.$order->totals[$i]['class'].'"></td>'."\n".
@@ -491,7 +491,7 @@ if ($action == 'reload_totals') {
                                         echo '                    <td align="right" class="dataTableContent"><input name="update_totals['.$i.'][title]" id="'.$id.'[title]" value="'.trim($order->totals[$i]['title']).'"  onChange="obtainTotals()"></td>'."\n".
                                         '                    <td align="right" class="dataTableContent"><input name="update_totals['.$i.'][value]" id="'.$id.'[value]" value="'.@number_format($order->totals[$i]['value'],
                                             2, '.', '').'" size="6"  onChange="obtainTotals()"><input name="update_totals['.$i.'][class]" type="hidden" value="'.$order->totals[$i]['class'].'"><input name="update_totals['.$i.'][id]" type="hidden" value="'.$shipping_module_id.'" id="'.$id.'[id]"></td>'."\n";
-                                        if ($order->info['currency'] != DEFAULT_CURRENCY)
+                                        if ($order->info['currency'] != cfg('DEFAULT_CURRENCY'))
                                                 echo '                    <td align="right" class="dataTableContent" nowrap>'.$order->totals[$i]['text'].'</td>'."\n";
                                         echo '                  </tr>'."\n";
                                     }
@@ -607,14 +607,14 @@ if ($action == 'insert_new_comment') {
             }
 // bof order editor 5_0_8			  
 //			  $email = STORE_NAME . "\n" .
-//			           EMAIL_SEPARATOR . "\n" . 
+//			           cfg('EMAIL_SEPARATOR') . "\n" . 
 //					   EMAIL_TEXT_ORDER_NUMBER . ' ' . $_GET['oID'] . "\n" . 
 //	                   EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $_GET['oID'], 'SSL') . "\n" . 
 //					   EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . 
 //					   sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$_GET['status']]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
 //BEGIN SEND HTML MAIL//			  
 //			  $email = STORE_NAME . "\n" .
-//			           EMAIL_SEPARATOR . "\n" . 
+//			           cfg('EMAIL_SEPARATOR') . "\n" . 
 //					   EMAIL_TEXT_ORDER_NUMBER . ' ' . (int)$oID . "\n" . 
 //                       EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
 //					   EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
@@ -646,7 +646,7 @@ if ($action == 'insert_new_comment') {
 
                     //Send text email
                     $email = STORE_NAME."\n".
-                        EMAIL_SEPARATOR."\n".
+                        cfg('EMAIL_SEPARATOR')."\n".
                         EMAIL_TEXT_ORDER_NUMBER.' '.$_GET['oID']."\n".
                         EMAIL_TEXT_INVOICE_URL.' '.tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO,
                             'order_id='.(int) $oID, 'SSL')."\n".
@@ -656,7 +656,7 @@ if ($action == 'insert_new_comment') {
             } else {  // send standaard email if html email is not installed
                 //Send text email
                 $email = STORE_NAME."\n".
-                    EMAIL_SEPARATOR."\n".
+                    cfg('EMAIL_SEPARATOR')."\n".
                     EMAIL_TEXT_ORDER_NUMBER.' '.$_GET['oID']."\n".
                     EMAIL_TEXT_INVOICE_URL.' '.tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO,
                         'order_id='.(int) $oID, 'SSL')."\n".
@@ -1031,7 +1031,7 @@ if ($action == 'new_order_email') {
     }
 
     $Text_Billing_Adress = "\n".EMAIL_TEXT_BILLING_ADDRESS."\n".
-        EMAIL_SEPARATOR."\n".
+        cfg('EMAIL_SEPARATOR')."\n".
         $order->billing['name']."\n";
     if ($order->billing['company']) {
         $Text_Billing_Adress .= $order->billing['company']."\n";
@@ -1049,7 +1049,7 @@ if ($action == 'new_order_email') {
 
 
     $Text_Delivery_Address = "\n".EMAIL_TEXT_DELIVERY_ADDRESS."\n".
-        EMAIL_SEPARATOR."\n".
+        cfg('EMAIL_SEPARATOR')."\n".
         $order->delivery['name']."\n";
     if ($order->delivery['company']) {
         $Text_Delivery_Address .= $order->delivery['company']."\n";
@@ -1146,16 +1146,16 @@ if ($action == 'new_order_email') {
     if ($standaard_email == 'true') {
         //Build the standaard email
         $email_order = STORE_NAME."\n".
-            EMAIL_SEPARATOR."\n".
+            cfg('EMAIL_SEPARATOR')."\n".
             EMAIL_TEXT_ORDER_NUMBER.' '.(int) $oID."\n".
             EMAIL_TEXT_INVOICE_URL.' '.tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO,
                 'order_id='.(int) $oID, 'SSL')."\n".
             EMAIL_TEXT_DATE_MODIFIED.' '.strftime(DATE_FORMAT_LONG)."\n\n";
 
         $email_order .= EMAIL_TEXT_PRODUCTS."\n".
-            EMAIL_SEPARATOR."\n".
+            cfg('EMAIL_SEPARATOR')."\n".
             $products_ordered.
-            EMAIL_SEPARATOR."\n";
+            cfg('EMAIL_SEPARATOR')."\n";
 
         for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) {
             $email_order .= strip_tags($order->totals[$i]['title']).' '.strip_tags($order->totals[$i]['text'])."\n";
@@ -1168,7 +1168,7 @@ if ($action == 'new_order_email') {
         $email_order .= $Text_Billing_Adress;
 
         $email_order .= EMAIL_TEXT_PAYMENT_METHOD."\n".
-            EMAIL_SEPARATOR."\n";
+            cfg('EMAIL_SEPARATOR')."\n";
         $email_order .= $order->info['payment_method']."\n\n";
 
 

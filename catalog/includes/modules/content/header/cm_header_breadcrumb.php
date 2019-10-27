@@ -31,9 +31,9 @@ class cm_header_breadcrumb
             '<p>'._('12/12 = 100% width, 6/12 = 50% width, 4/12 = 33% width.').'</p>'.
             '<p>'._('Total of all columns in any one row must equal 12 (eg:  3 boxes of 4 columns each, 1 box of 12 columns and so on)').'</p>'.'</div>';
 
-        if (defined('MODULE_CONTENT_HEADER_BREADCRUMB_STATUS')) {
-            $this->sort_order = MODULE_CONTENT_HEADER_BREADCRUMB_SORT_ORDER;
-            $this->enabled    = (MODULE_CONTENT_HEADER_BREADCRUMB_STATUS == 'True');
+        if (cfg('MODULE_CONTENT_HEADER_BREADCRUMB_STATUS')) {
+            $this->sort_order = cfg('MODULE_CONTENT_HEADER_BREADCRUMB_SORT_ORDER');
+            $this->enabled    = cfg('MODULE_CONTENT_HEADER_BREADCRUMB_STATUS') == 'True';
         }
     }
 
@@ -57,7 +57,7 @@ class cm_header_breadcrumb
 
     function check()
     {
-        return defined('MODULE_CONTENT_HEADER_BREADCRUMB_STATUS');
+        return cfg('MODULE_CONTENT_HEADER_BREADCRUMB_STATUS');
     }
 
     function install()

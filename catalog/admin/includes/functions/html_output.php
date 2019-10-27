@@ -47,7 +47,9 @@ function tep_href_link($page = '', $parameters = '', $connection = 'SSL',
         $link = substr($link, 0, -1);
 
 // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
-    if (($add_session_id === true) && (defined('SESSION_FORCE_COOKIE_USE') && (constant('SESSION_FORCE_COOKIE_USE') == 'False'))) {
+    if (($add_session_id === true) && (SESSION_FORCE_COOKIE_USE == 'False')) { 
+    
+        if(! isset($SID)) $SID = NULL;
         if (tep_not_null($SID)) {
             $_sid = $SID;
         } elseif (( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL
@@ -106,7 +108,7 @@ function tep_catalog_admin_href_link($page = '', $parameters = '',
             $link = constant('HTTPS_CATALOG_ADMIN_SERVER').(defined('DIR_WS_HTTPS_CATALOG') ? constant('DIR_WS_HTTPS_CATALOG')
                     : constant('DIR_WS_CATALOG'));
         } else {
-            $link = constant('HTTP_CATALOG_ADMIN_SERVER').constant('DIR_WS_CATALOG');
+            $link = (defined('HTTP_CATALOG_ADMIN_SERVER') ? constant('HTTP_CATALOG_ADMIN_SERVER') : '') .constant('DIR_WS_CATALOG');
         }
     } else {
         die('</td></tr></table></td></tr></table><br /><br /><font color="#ff0000"><strong>Error!</strong></font><br /><br /><strong>Unable to determine connection method on a link!<br /><br />Known methods: NONSSL SSL<br /><br />Function used:<br /><br />tep_href_link(\''.$page.'\', \''.$parameters.'\', \''.$connection.'\')</strong>');
@@ -314,7 +316,7 @@ function tep_draw_file_field($name, $required = false)
 ////
 // Output a selection field - alias function for tep_draw_checkbox_field() and tep_draw_radio_field()
 function tep_draw_selection_field($name, $type, $value = '', $checked = false,
-                                  $compare = '')
+                                  $compare = '', $attribs = '')
 {
     global $_GET, $_POST;
 
@@ -330,7 +332,7 @@ function tep_draw_selection_field($name, $type, $value = '', $checked = false,
         $selection .= ' checked="checked"';
     }
 
-    $selection .= ' />';
+    $selection .= (($attribs != '') ? (' ' . $attribs) : '') . ' />';
 
     return $selection;
 }
@@ -338,18 +340,18 @@ function tep_draw_selection_field($name, $type, $value = '', $checked = false,
 ////
 // Output a form checkbox field
 function tep_draw_checkbox_field($name, $value = '', $checked = false,
-                                 $compare = '')
+                                 $compare = '', $attribs = '')
 {
     return tep_draw_selection_field($name, 'checkbox', $value, $checked,
-        $compare);
+        $compare, $attribs);
 }
 
 ////
 // Output a form radio field
 function tep_draw_radio_field($name, $value = '', $checked = false,
-                              $compare = '')
+                              $compare = '', $attribs = '')
 {
-    return tep_draw_selection_field($name, 'radio', $value, $checked, $compare);
+    return tep_draw_selection_field($name, 'radio', $value, $checked, $compare, $attribs);
 }
 
 ////
@@ -474,18 +476,24 @@ function tep_draw_pull_down_menu($name, $values, $default = '',
         }
     }
 
-    for ($i = 0, $n = sizeof($values); $i < $n; $i++) {
-        $field .= '<option value="'.tep_output_string($values[$i]['id']).'"';
-        if ($default == $values[$i]['id']) {
+    if (is_array($values)) {
+        foreach ($values as $value) {
+            $field .= '<option value="'.tep_output_string($value['id']).'"';
+            if ($default == $value['id']) {
             $field .= ' selected="selected"';
         }
 
-        $field .= '>'.tep_output_string($values[$i]['text'],
+            if(is_array($value['text'])){
+                echo '';
+            }
+            
+            $field .= '>'.tep_output_string($value['text'],
                 array('"' => '&quot;', '\'' => '&#039;', '<' => '&lt;', '>' => '&gt;')).'</option>';
+        }
     }
     $field .= '</select>';
 
-    if ($required === true) $field .= TEXT_FIELD_REQUIRED;
+    if ($required === true) $field .= _('Text field requied');
 
     return $field;
 }
@@ -518,13 +526,13 @@ function tep_draw_button($title = null, $icon = null, $link = null,
     $button = '<span class="tdbLink">';
 
     if (($params['type'] == 'button') && isset($link)) {
-        $button .= '<a id="tdb'.$button_counter.'" href="'.$link.'"';
+        $button .= '<a class="btn  btn-default" id="tdb'.$button_counter.'" href="'.$link.'"';
 
         if (isset($params['newwindow'])) {
             $button .= ' target="_blank"';
         }
     } else {
-        $button .= '<button accesskey="' . ACCESSKEY_SAVE . '" id="tdb'.$button_counter.'" type="'.tep_output_string($params['type']).'"';
+        $button .= '<button '. (defined('ACCESSKEY_SAVE') ? 'accesskey="'. constant('ACCESSKEY_SAVE').'"' : '' ) .' id="tdb'.$button_counter.'" type="'.tep_output_string($params['type']).'"';
     }
 
     if (isset($params['params'])) {

@@ -31,10 +31,10 @@ class payment
     {
         global $payment, $language;
 
-        if (defined('MODULE_PAYMENT_INSTALLED') && tep_not_null(MODULE_PAYMENT_INSTALLED)) {
-            $this->modules = explode(';', MODULE_PAYMENT_INSTALLED);
+        if (cfg('MODULE_PAYMENT_INSTALLED')) {
+            $this->modules = explode(';', cfg('MODULE_PAYMENT_INSTALLED'));
 
-            $include_modules = array();
+            $include_modules = [];
 
             if ((tep_not_null($module)) && (in_array($module.'.'.substr($_SERVER['PHP_SELF'],
                         (strrpos($_SERVER['PHP_SELF'], '.') + 1)), $this->modules))) {

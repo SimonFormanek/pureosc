@@ -118,7 +118,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 <?php
 echo tep_draw_form('checkout_payment',
     tep_href_link(FILENAME_CHECKOUT_CONFIRMATION, '', 'SSL'), 'post',
-    'class="form-horizontal" onsubmit="return check_form();"', true);
+    'id="pchooser" class="form-horizontal" onsubmit="return check_form();"', true);
 ?>
 
 <div class="contentContainer">
@@ -331,7 +331,9 @@ echo tep_draw_form('checkout_payment',
 </div>
 
 </form>
-
+<script lang="javascript">
+    $('#pchooser').attr('action',$('#pchooser').attr('action') + "?js=active"  );
+</script>
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');

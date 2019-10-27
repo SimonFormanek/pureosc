@@ -17,8 +17,13 @@
 
   Released under the GNU General Public License
  */
-
 namespace PureOSC;
+
+use Ease\Anonym;
+use Ease\Shared;
+use Mail_sendmail;
+use PureOSC\ui\WebPage;
+
 
 // start the timer for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
@@ -61,6 +66,7 @@ $security_pro = new \Fwr_Media_Security_Pro();
 $security_pro->addExclusion('advanced_search_result.php');
 $security_pro->addExclusion('advanced_search.php');
 $security_pro->addExclusion('article_manager_search_result.php');
+
 $security_pro->cleanse($_SERVER['PHP_SELF']);
 /* * * EOF alteration for Security Pro 11 ** */
 
@@ -141,7 +147,6 @@ if (USE_CACHE == 'true') include(DIR_WS_FUNCTIONS.'cache.php');
 
 // define how the session functions will be used
 require(DIR_WS_FUNCTIONS.'sessions.php');
-
 // include the who's online functions
 require(DIR_WS_FUNCTIONS.'whos_online.php');
 
@@ -266,6 +271,7 @@ if (SESSION_CHECK_IP_ADDRESS == 'True') {
     }
 }
 //PURE:NEW:session ID became OTP token...
+//TODO:original version WHY?    if (SESSION_RECREATE == 'True') {
  if (SESSION_RECREATE == 'True' && $session_started == true) {
         tep_session_recreate();
     }
@@ -277,15 +283,17 @@ if (!tep_session_is_registered('cart') || !is_object($cart)) {
 }
 
 // include currencies class and create an instance
-$currencies = new \currencies();
+$currencies = new currencies();
 
-$oPage = new ui\WebPage();
-//set the language
+$oPage = new WebPage();
+
+// set the language
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (!tep_session_is_registered('language')) {
         tep_session_register('language');
         tep_session_register('languages_id');
     }
+
     $lng = new \language();
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);
@@ -325,6 +333,7 @@ $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUA
       $language_code = tep_db_fetch_array($language_code_query);
     $lng->set_language($language_code['code']);
 }
+
 \Ease\Locale::singleton($lng->language['locale'], '../i18n', 'pureosc');
     $language     = $lng->language['directory'];
     $languages_id = $lng->language['id'];
@@ -657,12 +666,11 @@ if (isset($_GET['articles_id'])) {
 require_once(DIR_WS_FUNCTIONS.'information.php');
 tep_information_define_constants();
 
+$oPage = new WebPage();
 
-$oPage = new ui\WebPage();
-
-\Ease\Shared::instanced()->webPage($oPage);
+WebPage::singleton($oPage);
 
 $userLog = new CustomerLog(null, isset($customer_id) ? $customer_id : null);
 
-$oUser = new \Ease\Anonym();
-\Ease\Shared::instanced()->user($oUser);
+$oUser = new Anonym();
+Shared::instanced()->user($oUser);

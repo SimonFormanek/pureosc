@@ -1,15 +1,17 @@
 #!/bin/bash
 #repare current osc structure of imported tables
 #firt you need dump
-. ./dbconnect.sh
 # dump: products_attributes products_attributes_download products_options products_options_values products_options_values_to_products_options products products_description products_to_categories categories categories_description manufacturers manufacturers_info specials           
 # address_book address_format  customers customers_info orders orders_products orders_products_attributes orders_products_download orders_status_history orders_total  
 
+CONN=`php -r 'require "../../oscconfig/dbconfigure.php" ; echo " -h" . constant("DB_SERVER") . " -u" . constant("DB_SERVER_USERNAME") . " -p" . constant("DB_SERVER_PASSWORD") . "  " . constant("DB_DATABASE") ; '`
+
+
 #read dump from file if ommitted import osCommerce demo catalog
 if [[ $1 ]];then F=$1;else F='demo.sql';fi
-mysql  -h${H} -u${U} ${P} $D < $F
+mysql ${CONN} < $F
 
-mysql -h${H} -u${U} ${P} $D << MYSQLCMD
+mysql ${CONN} << MYSQLCMD
 #use ${1};
 
 # CATEGORIES ###########################################

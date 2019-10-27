@@ -23,7 +23,7 @@
 require('includes/application_top.php');
 
 
-$currencies = new AdminCurrencies();
+$currencies = new \PureOSC\Admin\AdminCurrencies();
 
 $orders_statuses     = array();
 $orders_status_array = array();
@@ -65,7 +65,7 @@ if (tep_not_null($action)) {
                     }
                     $link  = $check_status['customers_guest'] != '1' ? EMAIL_TEXT_INVOICE_URL.' '.tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO,
                             'order_id='.$oID, 'SSL')."\n" : '';
-                    $email = STORE_NAME."\n".EMAIL_SEPARATOR."\n".EMAIL_TEXT_ORDER_NUMBER.' '.$oID."\n".$link.EMAIL_TEXT_DATE_ORDERED.' '.tep_date_long($check_status['date_purchased'])."\n\n".$notify_comments.sprintf(EMAIL_TEXT_STATUS_UPDATE,
+                    $email = STORE_NAME."\n".cfg('EMAIL_SEPARATOR')."\n".EMAIL_TEXT_ORDER_NUMBER.' '.$oID."\n".$link.EMAIL_TEXT_DATE_ORDERED.' '.tep_date_long($check_status['date_purchased'])."\n\n".$notify_comments.sprintf(EMAIL_TEXT_STATUS_UPDATE,
                             $orders_status_array[$status]);
 
                     /*                     * * Altered for Mail Manager **
