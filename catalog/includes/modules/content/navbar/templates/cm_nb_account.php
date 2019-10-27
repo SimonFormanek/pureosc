@@ -15,7 +15,7 @@
 <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php
         echo (tep_session_is_registered('customer_id')) ? sprintf('<i class="fa fa-user"></i> %s <span class="caret"></span>',
-                $customer_first_name) : '<i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> '._('My Account').'</span> <span class="caret"></span>';
+                isset($customer_first_name)) : '<i class="glyphicon glyphicon-user"></i><span class="hidden-sm"> '._('My Account').'</span> <span class="caret"></span>';
         ?></a>
     <ul class="dropdown-menu">
 

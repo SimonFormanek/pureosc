@@ -26,6 +26,7 @@ require(DIR_WS_LANGUAGES.$language.'/'.FILENAME_CREATE_ACCOUNT);
 $process = false;
 if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid'])
     && ($_POST['formid'] == $sessiontoken)) {
+  
     $process = true;
 
     if (ACCOUNT_GENDER == 'true') {
@@ -741,4 +742,5 @@ echo tep_draw_form('create_account',
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
+file_put_contents('/tmp/zzz', 'jsem tu');
 ?>

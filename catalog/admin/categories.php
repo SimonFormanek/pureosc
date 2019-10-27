@@ -453,6 +453,8 @@ if($action == 'setexclude') {
         case 'update_product':
             if (isset($_GET['pID']))
                 $products_id = tep_db_prepare_input($_GET['pID']);
+            if (!isset($_GET['products_date_available']))
+              $_POST['products_date_available'] = date('Y-m-d');
             $products_date_available = tep_db_prepare_input($_POST['products_date_available']);
 
             //pure: make permanent, used for sorting $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
@@ -473,6 +475,11 @@ if($action == 'setexclude') {
             if ($_POST['products_weight'] == '') {
             	$_POST['products_weight'] = '1'; 
             }
+            if (!isset($_GET['products_custom_date']))
+              $_POST['products_custom_date'] = date('Y-m-d');
+            if (!isset($_GET['products_price']))
+              $_POST['products_price'] = 0;
+
             $sql_data_array = ['products_quantity' => (int)tep_db_prepare_input($_POST['products_quantity']),
                 'products_model' => tep_db_prepare_input($_POST['products_model']),
                 'products_price' => str_replace(',','.', tep_db_prepare_input($_POST['products_price'])),
