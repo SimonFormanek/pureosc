@@ -619,7 +619,7 @@ if ($action == 'insert_new_comment') {
 //                       EMAIL_TEXT_INVOICE_URL . ' ' . tep_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$oID, 'SSL') . "\n" . 
 //					   EMAIL_TEXT_DATE_ORDERED . ' ' . tep_date_long($check_status['date_purchased']) . "\n\n" . sprintf(EMAIL_TEXT_STATUS_UPDATE, $orders_status_array[$status]) . $notify_comments . sprintf(EMAIL_TEXT_STATUS_UPDATE2);
 
-            if (FILENAME_EMAIL_STATUS !== 'FILENAME_EMAIL_STATUS') {
+            if (cfg('FILENAME_EMAIL_STATUS')) {
                 //Prepare variables for html email//
                 $Varlogo   = ''.VARLOGO.'';
                 $Vartable1 = ''.VARTABLE1.'';
@@ -637,7 +637,7 @@ if ($action == 'insert_new_comment') {
                 $Varstyle = ''.VARSTYLE.'';
 
                 //Check if HTML emails is set to true
-                if (EMAIL_USE_HTML == 'true') {
+                if (cfg('EMAIL_USE_HTML')) {
 
                     //Prepare HTML email
                     require(DIR_WS_MODULES.'email/html_orders.php');

@@ -25,9 +25,16 @@ for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
     }
 }
 
-$viewer = new \PureOSC\ui\DataTable(new \PureOSC\CustomerLog());
+$viewer = new ui\UserlogDataTable(new \PureOSC\CustomerLog());
 
 require(DIR_WS_INCLUDES.'template_top.php');
+?>
+<script lang="javascript">
+function stripslashes(str) {
+ return str.replace(/\\'/g,'\'').replace(/\"/g,'"').replace(/\\\\/g,'\\').replace(/\\0/g,'\0');
+}
+</script>
+<?php
 
 $viewer->finalize();
 

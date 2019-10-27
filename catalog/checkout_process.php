@@ -204,7 +204,7 @@ for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
         if (tep_db_num_rows($stock_query) > 0) {
             $stock_values = tep_db_fetch_array($stock_query);
 // do not decrement quantities if products_attributes_filename exists
-            if ((DOWNLOAD_ENABLED != 'true') || (!$stock_values['products_attributes_filename'])) {
+            if ((cfg('DOWNLOAD_ENABLED') != 'true') || (!$stock_values['products_attributes_filename'])) {
                 $stock_left = $stock_values['products_quantity'] - $order->products[$i]['qty'];
             } else {
                 $stock_left = $stock_values['products_quantity'];
