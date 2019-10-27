@@ -46,20 +46,45 @@ class cm_login_form {
             $customer_query = tep_db_query("select customers_id, customers_password from " . TABLE_CUSTOMERS . " where customers_email_address = '" . tep_db_input($email_address) . "' limit 1");
             if (!tep_db_num_rows($customer_query)) {
                 $error = true;
-            } else {
+            } else { //-------------------------------------- LOGIN ----------------------
                 $customer = tep_db_fetch_array($customer_query);
+                $custPass = $customer['customers_password']; 
+                $custId = $customer['customers_id']; 
+                
+//kdyz je hromadne zasifrovano, desifrovat                
+                $beRehash = false; 
+                if(strpos($custPass, 'CrYpTeD') === 0) { //je na zacatku, nesmi byt false
+                
+                  $custPass = substr($custPass, 7);
+                  
+                  $custPass = jsp_passless_decrypt($custPass);
+                  
+                  $beRehash = true; 
+                }
 
 // Check that password is good
-                if (!tep_validate_password($password, $customer['customers_password'])) {
-                    $error = true;
+                if (! tep_validate_password($password, $custPass)) { 
+                
+                    $error = true; //----------------------------vykopnout---------------
                 } else {
 // set $login_customer_id globally and perform post login code in catalog/login.php
-                    $login_customer_id = (int) $customer['customers_id'];
+                    $login_customer_id = (int) $custId;
+
+//nove (ciste) zahashovani hesla, pokud je jeste postaru a/nebo prave odsifrovane
+                    $info = password_get_info($custPass);
+                    if(($info['algo'] < 1) || $beRehash) { //unknown algo 
+
+                      tep_db_query("UPDATE " . TABLE_CUSTOMERS . " SET customers_password = '" . password_hash($password, PASSWORD_ARGON2ID) . "' WHERE customers_id = '" . (int) $custId . "'");
+//                      tep_db_query("UPDATE " . TABLE_CUSTOMERS . " SET customers_password = '" . password_hash($password, constant('HASH_ALGO')) . "' WHERE customers_id = '" . (int) $custId . "'");
+                    }
 
 // migrate old hashed password to new phpass password
+/*
                     if (tep_password_type($customer['customers_password']) != 'phpass') {
                         tep_db_query("update " . TABLE_CUSTOMERS . " set customers_password = '" . tep_encrypt_password($password) . "' where customers_id = '" . (int) $login_customer_id . "'");
                     }
+*/                    
+
                 }
             }
         }

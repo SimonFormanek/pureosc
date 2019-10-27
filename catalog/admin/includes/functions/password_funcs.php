@@ -16,6 +16,11 @@
 function tep_validate_password($plain, $encrypted)
 {
     if (tep_not_null($plain) && tep_not_null($encrypted)) {
+    
+        $info = password_get_info($encrypted);
+        if($info['algo'] > 0) return password_verify($plain, $encrypted);
+
+    
         if (tep_password_type($encrypted) == 'salt') {
             return tep_validate_old_password($plain, $encrypted);
         }

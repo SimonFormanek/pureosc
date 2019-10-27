@@ -71,13 +71,13 @@ if ($request_type == 'NONSSL') {
 }
 
 // include the list of project filenames
-require(DIR_WS_INCLUDES.'filenames.php');
+require(constant('DIR_WS_INCLUDES') . 'filenames.php');
 
 // include the list of project database tables
-require(DIR_WS_INCLUDES.'database_tables.php');
+require(constant('DIR_WS_INCLUDES') . 'database_tables.php');
 
 // include the database functions
-require(DIR_WS_FUNCTIONS.'database.php');
+require(constant('DIR_WS_FUNCTIONS').'database.php');
 
 // make a connection to the database... now
 if (!tep_db_connect()){

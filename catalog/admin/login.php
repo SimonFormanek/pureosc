@@ -44,10 +44,21 @@ if (tep_not_null($action)) {
                     $check = tep_db_fetch_array($check_query);
 
                     if (tep_validate_password($password, $check['user_password'])) {
+                    
+//migrate old hashed password ver2 = configurable
+                      $info = password_get_info($check['user_password']);
+                      if($info['algo'] < 1) { //unknown algo 
+//                        tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".password_hash($password, PASSWORD_ARGON2ID)."' where id = '".(int) $check['id']."'");
+                        tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".password_hash($password, PASSWORD_ARGON2ID)."' where id = '".(int) $check['id']."'");
+//TODO:                        tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".password_hash($password, constant('HASH_ALGO'))."' where id = '".(int) $check['id']."'");
+                      }
+                    
+/*                    
 // migrate old hashed password to new phpass password
                         if (tep_password_type($check['user_password']) != 'phpass') {
                             tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".tep_encrypt_password($password)."' where id = '".(int) $check['id']."'");
                         }
+*/
 
                         tep_session_register('admin');
 
@@ -120,8 +131,9 @@ if (tep_not_null($action)) {
                                 DIR_FS_MASTER_ROOT_DIR.'oscconfig/keys/privateKey.asc'));
                     }
 
-                    tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password,pubkey) values ('".tep_db_input($username)."', '".tep_db_input($password_encrypted)."', '".$adminCryptor->getPublicKey()."')");
-                }
+                      tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password,pubkey) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, PASSWORD_ARGON2ID))."', '".$adminCryptor->getPublicKey()."')");
+//TODO:                      tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password,pubkey) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, constant('HASH_ALGO')))."', '".$adminCryptor->getPublicKey()."')");
+                      }
             }
 
             tep_redirect(tep_href_link(FILENAME_LOGIN));
