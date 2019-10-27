@@ -20,7 +20,7 @@ class Coupon extends \Ease\SQL\Engine
     public function __construct($identifier = null, $options = array())
     {
         $this->myKeyColumn = 'coupon_id';
-        $this->takeMyTable($this->myTable);
+//        $this->takeMyTable($this->myTable);
         $this->dblink->setKeyColumn($this->myKeyColumn);
         $this->setkeyColumn($this->myKeyColumn);
         if(!is_null($identifier)) {

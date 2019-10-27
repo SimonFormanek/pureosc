@@ -30,11 +30,17 @@ class MariaDb103 extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change()
+
+   public function change()
     {
-        $table = $this->table('products_description');
-        $table
-            ->changeColumn('products_head_keywords_tag', 'text',['default' => '', 'limit' => 'TEXT_LONG'])
-            ->changeColumn('products_head_desc_tag', 'text',['default' => '', 'limit' => 'TEXT_LONG'])->save();
+        $this->execute("
+alter table products_description MODIFY products_head_keywords_tag text DEFAULT '';
+alter table products_description MODIFY products_head_desc_tag longtext DEFAULT '';
+
+   ");
+
     }
 }
+
+
+

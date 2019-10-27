@@ -1,4 +1,5 @@
 <?php
+define('MYSQL_DEBUG', 'on'); //on|off=default 'on' set only for DEVEL debug !!!
 //LANG dependent START 
 if (!defined('DEFAULT_CURRENCY')) {
   define('DEFAULT_CURRENCY','CZK');

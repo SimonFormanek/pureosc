@@ -482,13 +482,14 @@ if($action == 'setexclude') {
 
             $sql_data_array = ['products_quantity' => (int)tep_db_prepare_input($_POST['products_quantity']),
                 'products_model' => tep_db_prepare_input($_POST['products_model']),
-                'products_price' => str_replace(',','.', tep_db_prepare_input($_POST['products_price'])),
+                'products_price' => tep_db_prepare_input($_POST['products_price']),
+                'products_date_available' => is_null($products_date_available) ? (new \DateTime())->format('Y-m-d') : $products_date_available,
                 'products_weight' => (float)tep_db_prepare_input($_POST['products_weight']),
-                'products_status' => (int)(tep_db_prepare_input($_POST['products_status'])),
-                'products_tax_class_id' => (int)tep_db_prepare_input($_POST['products_tax_class_id']),
+                'products_status' =>  $_POST['products_status'] ? tep_db_prepare_input($_POST['products_status']) : 1,
+                'products_tax_class_id' => ($_POST['products_tax_class_id'] ? tep_db_prepare_input($_POST['products_tax_class_id']) : 0),
                 'manufacturers_id' => (int)tep_db_prepare_input($_POST['manufacturers_id']),
                 'product_template' => (int)tep_db_prepare_input($_POST['product_template']),
-                'products_custom_date' => empty($_POST['products_custom_date']) ?  date('Y-m-d')   : tep_db_prepare_input($_POST['products_custom_date']),
+                'products_custom_date' => empty($_POST['products_custom_date']) ? (new \DateTime())->format('Y-m-d')  : tep_db_prepare_input($_POST['products_custom_date']),
                 'products_sort_order' => (int)tep_db_prepare_input($_POST['products_sort_order'])
             ];
 
@@ -664,7 +665,7 @@ if($action == 'setexclude') {
                         $piArray) . ")");
             }
 
-            if (USE_CACHE == 'true') {
+            if (cfg('USE_CACHE') == 'true') {
                 tep_reset_cache_block('categories');
                 tep_reset_cache_block('also_purchased');
             }
@@ -694,16 +695,16 @@ if($action == 'setexclude') {
                 $pricelist->sync();
                 if (isset($_FILES['products_image'])) {
                     \FlexiPeeHP\Priloha::addAttachmentFromFile($pricelist,
-                        DIR_FS_CATALOG_IMAGES . $_FILES['products_image']['name']);
+                        cfg('DIR_FS_CATALOG_IMAGES') . $_FILES['products_image']['name']);
                 }
             }
 
 
             if (tep_not_null(tep_db_insert_id())) {
-                tep_redirect(tep_href_link(FILENAME_CATEGORIES,
+                tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'),
                     'cPath=' . $cPath . '&pID=' . $products_id . '&action=new_product&#meta-edit'));
             } else {
-                tep_redirect(tep_href_link(FILENAME_CATEGORIES,
+                tep_redirect(tep_href_link(cfg('FILENAME_CATEGORIES'),
                     'cPath=' . $cPath . '&pID=' . $products_id));
             }
             break;
@@ -1089,7 +1090,7 @@ if ($action == 'new_product') {
 
         //--></script>
     <?php echo tep_draw_form('new_product',
-        FILENAME_CATEGORIES,
+        cfg('FILENAME_CATEGORIES'),
         'cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID']
             : '') . '&action=' . $form_action,
         'post', 'enctype="multipart/form-data"'); ?>
@@ -1114,10 +1115,10 @@ if ($action == 'new_product') {
             <td>
                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td class="pageHeading"><?php echo sprintf(TEXT_NEW_PRODUCT,
+                        <td class="pageHeading"><?php echo sprintf( __('TEXT_NEW_PRODUCT', _('New product in %s')) ,
                                 tep_output_generated_category_path($current_category_id)); ?></td>
                         <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-                                HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+                                cfg('HEADING_IMAGE_WIDTH'), cfg('HEADING_IMAGE_HEIGHT')); ?></td>
                     </tr>
                 </table>
             </td>
@@ -1129,11 +1130,11 @@ if ($action == 'new_product') {
             <td>
                 <table border="0" cellspacing="0" cellpadding="2">
                     <tr>
-                        <td class="main"><?php echo TEXT_PRODUCTS_STATUS; ?></td>
+                        <td class="main"><?php echo __('TEXT_PRODUCTS_STATUS',_('Status')); ?></td>
                         <td class="main"><?php echo tep_draw_separator('pixel_trans.gif',
                                     '24', '15') . '&nbsp;' . tep_draw_radio_field('products_status',
-                                    '1', $in_status) . '&nbsp;' . TEXT_PRODUCT_AVAILABLE . '&nbsp;' . tep_draw_radio_field('products_status',
-                                    '0', $out_status) . '&nbsp;' . TEXT_PRODUCT_NOT_AVAILABLE; ?></td>
+                                    '1', $in_status) . '&nbsp;' . __('TEXT_PRODUCT_AVAILABLE',_('Availble'))  . '&nbsp;' . tep_draw_radio_field('products_status',
+                                    '0', $out_status) . '&nbsp;' .__('TEXT_PRODUCT_NOT_AVAILABLE',  _('Not Availble')); ?></td>
                     </tr>
                     <tr>
                         <td colspan="2"><?php echo tep_draw_separator('pixel_trans.gif',
@@ -1141,7 +1142,7 @@ if ($action == 'new_product') {
                     </tr>
 
                     <tr>
-                        <td class="main"><?php echo TEXT_PRODUCTS_CANONICAL; ?></td>
+                        <td class="main"><?php echo __('TEXT_PRODUCTS_CANONICAL',_('Canonical')); ?></td>
                         <td class="main"><?php
                             $isChk = $pInfo->canonical > 0 ? true : false;
                             $ro = false;
@@ -1152,7 +1153,9 @@ if ($action == 'new_product') {
                                     $isChk = true;
                                     $wrn = true;
                                 }
-                            } else $ro = true;
+                                } else {
+                                    $ro = true;
+                                }
 
                             echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;'
                                 . '<INPUT type="CHECKBOX" name="canonical" value="on"' . ($isChk
@@ -1305,6 +1308,8 @@ if ($action == 'new_product') {
                         </script>
                         <?php
                     }
+                    $pbe =  new ui\ProductEditorBlock( _('Choose discount campagin') , new ui\DiscountSelector('discount_id', $_GET['pID'] ,'product') );
+                    echo $pbe;
                     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
                         ?>
                         <tr>
@@ -1313,7 +1318,7 @@ if ($action == 'new_product') {
                                 <table border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td class="main"
-                                            valign="top"><?php echo tep_image(tep_catalog_admin_href_link(DIR_WS_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'],
+                                            valign="top"><?php echo tep_image(tep_catalog_href_link(cfg('DIR_WS_LANGUAGES') . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'],
                                                 '', 'SSL'),
                                                 $languages[$i]['name']); ?>&nbsp;
                                         </td>
@@ -1403,8 +1408,7 @@ if ($action == 'new_product') {
                                     $pi_counter++;
 
                                     echo '                <li id="piId' . $pi_counter . '" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s" style="float: right;"></span><a href="#" onclick="showPiDelConfirm(' . $pi_counter . ');return false;" class="ui-icon ui-icon-trash" style="float: right;"></a><strong>' . TEXT_PRODUCTS_LARGE_IMAGE . '</strong><br />' . tep_draw_file_field('products_image_large_' . $pi['id']) . '<br /><a href="' . HTTP_CATALOG_ADMIN_SERVER . DIR_WS_CATALOG_IMAGES . $pi['image'] . '" target="_blank">' . $pi['image'] . '</a><br /><br />' . TEXT_PRODUCTS_LARGE_IMAGE_HTML_CONTENT . '<br />' . tep_draw_textarea_field('products_image_htmlcontent_' . $pi['id'],
-                                            'soft', '70',
-                                            '3',
+                                            'soft', '70','3',
                                             $pi['htmlcontent']) . '</li>';
                                 }
                                 ?>
@@ -1518,10 +1522,10 @@ if ($action == 'new_product') {
                         <tr>
                             <td><?php echo NEW_PRODUCT_INSERTING; ?></td>
                             <td class="smallText"
-                                align="right"><?php echo TEXT_SAVE_NOW . '&nbsp;' . tep_draw_button(IMAGE_SAVE,
-                                        'disk', null, 'primary') . tep_draw_button(IMAGE_CANCEL,
+                                align="right"><?php echo TEXT_SAVE_NOW . '&nbsp;' . tep_draw_button(cfg('IMAGE_SAVE'),
+                                        'disk', null, 'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                                         'close',
-                                        tep_href_link(FILENAME_CATEGORIES,
+                                        tep_href_link(cfg('FILENAME_CATEGORIES'),
                                             'cPath=' . $cPath . (isset($_GET['pID'])
                                                 ? '&pID=' . $_GET['pID']
                                                 : ''))) . '&nbsp;'; ?></td>
@@ -1547,7 +1551,7 @@ if ($action == 'new_product') {
                                             <td><?php
                                                 if (tep_not_null(tep_get_products_name($pInfo->products_id,
                                                     $languages[$i]['id']))) {
-                                                    if ( defined('ADD_MANUFACTURER_SEO_TITLE')
+                                                    if (defined('ADD_MANUFACTURER_SEO_TITLE') && constant('ADD_MANUFACTURER_SEO_TITLE')
                                                         == 'true'
                                                         && (tep_not_null($pInfo->manufacturers_id))
                                                         && (tep_not_null(tep_get_products_name($pInfo->products_id,
@@ -1691,12 +1695,12 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
             <td class="smallText" align="right"><?php echo tep_draw_hidden_field('products_date_added',
                         (tep_not_null($pInfo->products_date_added)
                             ? $pInfo->products_date_added
-                            : date('Y-m-d'))) . tep_draw_button(IMAGE_SAVE,
+                            : date('Y-m-d'))) . tep_draw_button(cfg('IMAGE_SAVE'),
                         'disk',
                         null,
-                        'primary') . tep_draw_button(IMAGE_CANCEL,
+                        'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                         'close',
-                        tep_href_link(FILENAME_CATEGORIES,
+                        tep_href_link(cfg('FILENAME_CATEGORIES'),
                             'cPath=' . $cPath . (isset($_GET['pID'])
                                 ? '&pID=' . $_GET['pID']
                                 : ''))); ?></td>
@@ -1836,7 +1840,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
             $back_url_params = '';
         }
     } else {
-        $back_url = FILENAME_CATEGORIES;
+        $back_url = cfg('FILENAME_CATEGORIES');
         $back_url_params = 'cPath=' . $cPath . '&pID=' . $pInfo->products_id;
     }
     ?>
@@ -1857,7 +1861,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                     <tr>
                         <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
                         <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif',
-                                1, HEADING_IMAGE_HEIGHT); ?></td>
+                                1, cfg('HEADING_IMAGE_HEIGHT')); ?></td>
                         <td align="right">
                             <table border="0" width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
@@ -1875,7 +1879,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                     <td class="smallText" align="right">
                                         <?php
                                         echo tep_draw_form('goto',
-                                            FILENAME_CATEGORIES, '',
+                                            cfg('FILENAME_CATEGORIES'), '',
                                             'get');
                                         echo _('Go to') . ' ' . tep_draw_pull_down_menu('cPath',
                                                 tep_get_category_tree(),
@@ -1940,14 +1944,14 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                     if (isset($cInfo) && is_object($cInfo)
                                         && ($categories['categories_id']
                                             == $cInfo->categories_id)) {
-                                        echo '              <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(FILENAME_CATEGORIES,
+                                        echo '              <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                 tep_get_path($categories['categories_id'])) . '\'">' . "\n";
                                     } else {
-                                        echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(FILENAME_CATEGORIES,
+                                        echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                 'cPath=' . $cPath . '&cID=' . $categories['categories_id']) . '\'">' . "\n";
                                     }
                                     ?>
-                                    <td class="dataTableContent"><?php echo '<a href="' . tep_href_link(FILENAME_CATEGORIES,
+                                    <td class="dataTableContent"><?php echo '<a href="' . tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                 tep_get_path($categories['categories_id'])) . '">' . tep_image(DIR_WS_ICONS . 'folder.gif',
                                                 ICON_FOLDER) . '</a>&nbsp;<strong>' . $categories['categories_name'] . '</strong>'; ?></td>
                                     <td class="dataTableContent" align="center">&nbsp;</td>
@@ -1957,7 +1961,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                             echo tep_image(DIR_WS_IMAGES . 'icon_arrow_right.gif',
                                                 '');
                                         } else {
-                                            echo '<a href="' . tep_href_link(FILENAME_CATEGORIES,
+                                            echo '<a href="' . tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'cPath=' . $cPath . '&cID=' . $categories['categories_id']) . '">' . tep_image(DIR_WS_IMAGES . 'icon_info.gif',
                                                     IMAGE_ICON_INFO) . '</a>';
                                         } ?>&nbsp;
@@ -1997,14 +2001,14 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                     if (isset($pInfo) && is_object($pInfo)
                                         && ($products['products_id']
                                             == $pInfo->products_id)) {
-                                        echo '              <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(FILENAME_CATEGORIES,
+                                        echo '              <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                 'cPath=' . $cPath . '&pID=' . $products['products_id'] . '&action=new_product_preview') . '\'">' . "\n";
                                     } else {
-                                        echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(FILENAME_CATEGORIES,
+                                        echo '              <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                 'cPath=' . $cPath . '&pID=' . $products['products_id']) . '\'">' . "\n";
                                     }
                                     ?>
-                                    <td class="dataTableContent"><?php echo '<a href="' . tep_href_link(FILENAME_CATEGORIES,
+                                    <td class="dataTableContent"><?php echo '<a href="' . tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                 'cPath=' . $cPath . '&pID=' . $products['products_id'] . '&action=new_product_preview') . '">' . tep_image(DIR_WS_ICONS . 'preview.gif',
                                                 ICON_PREVIEW) . '</a>&nbsp;' . $products['products_name']; ?></td>
                                     <td class="dataTableContent" align="center">
@@ -2013,12 +2017,12 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                             == '1') {
                                             echo tep_image(DIR_WS_IMAGES . 'icon_status_green.gif',
                                                     IMAGE_ICON_STATUS_GREEN,
-                                                    10, 10) . '&nbsp;&nbsp;<a href="' . tep_href_link(FILENAME_CATEGORIES,
+                                                    10, 10) . '&nbsp;&nbsp;<a href="' . tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'action=setflag&flag=0&pID=' . $products['products_id'] . '&cPath=' . $cPath) . '">' . tep_image(DIR_WS_IMAGES . 'icon_status_red_light.gif',
                                                     IMAGE_ICON_STATUS_RED_LIGHT,
                                                     10, 10) . '</a>';
                                         } else {
-                                            echo '<a href="' . tep_href_link(FILENAME_CATEGORIES,
+                                            echo '<a href="' . tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'action=setflag&flag=1&pID=' . $products['products_id'] . '&cPath=' . $cPath) . '">' . tep_image(DIR_WS_IMAGES . 'icon_status_green_light.gif',
                                                     IMAGE_ICON_STATUS_GREEN_LIGHT,
                                                     10, 10) . '</a>&nbsp;&nbsp;' . tep_image(DIR_WS_IMAGES . 'icon_status_red.gif',
@@ -2032,7 +2036,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                             echo tep_image(DIR_WS_IMAGES . 'icon_arrow_right.gif',
                                                 '');
                                         } else {
-                                            echo '<a href="' . tep_href_link(FILENAME_CATEGORIES,
+                                            echo '<a href="' . tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'cPath=' . $cPath . '&pID=' . $products['products_id']) . '">' . tep_image(DIR_WS_IMAGES . 'icon_info.gif',
                                                     IMAGE_ICON_INFO) . '</a>';
                                         } ?>&nbsp;
@@ -2064,14 +2068,14 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                                 <td class="smallText"><?php echo _('Categories') . '&nbsp;' . $categories_count . '<br />' . TEXT_PRODUCTS . '&nbsp;' . $products_count; ?></td>
                                                 <td align="right" class="smallText"><?php if (!empty($cPath_array)) echo tep_draw_button(IMAGE_BACK,
                                                         'triangle-1-w',
-                                                        tep_href_link(FILENAME_CATEGORIES,
+                                                        tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                             $cPath_back . 'cID=' . $current_category_id));
                                                     if (!isset($_GET['search'])) echo tep_draw_button(IMAGE_NEW_CATEGORY,
                                                             'plus',
-                                                            tep_href_link(FILENAME_CATEGORIES,
+                                                            tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                                 'cPath=' . $cPath . '&action=new_category')) . tep_draw_button(IMAGE_NEW_PRODUCT,
                                                             'plus',
-                                                            tep_href_link(FILENAME_CATEGORIES,
+                                                            tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                                 'cPath=' . $cPath . '&action=new_product')); ?>&nbsp;
                                                 </td>
                                             </tr>
@@ -2088,7 +2092,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                 $heading[] = ['text' => '<strong>' . _('New Category / Article') . '</strong>'];
 
                                 $contents = ['form' => tep_draw_form('newcategory',
-                                    FILENAME_CATEGORIES,
+                                    cfg('FILENAME_CATEGORIES'),
                                     'action=insert_category&cPath=' . $cPath, 'post',
                                     'enctype="multipart/form-data"')];
                                 $contents[] = ['text' => TEXT_NEW_CATEGORY_INTRO];
@@ -2138,16 +2142,16 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                 $contents[] = ['text' => '<br />' . TEXT_CATEGORIES_SEO_DESCRIPTION . $category_seo_description_string];
                                 $contents[] = ['text' => '<br />' . TEXT_CATEGORIES_SEO_KEYWORDS . $category_seo_keywords_string];
                                 $contents[] = ['text' => '<br />' . TEXT_CATEGORIES_IMAGE . '<br />' . tep_draw_file_field('categories_image')];
-                                $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_SAVE,
-                                        'disk', null, 'primary') . tep_draw_button(IMAGE_CANCEL,
+                                $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(cfg('IMAGE_SAVE'),
+                                        'disk', null, 'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                                         'close',
-                                        tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath))];
+                                        tep_href_link(cfg('FILENAME_CATEGORIES'), 'cPath=' . $cPath))];
                                 break;
                             case 'edit_category':
                                 $heading[] = ['text' => '<strong>' . TEXT_INFO_HEADING_EDIT_CATEGORY . '</strong>'];
 
                                 $contents = ['form' => tep_draw_form('categories',
-                                        FILENAME_CATEGORIES,
+                                        cfg('FILENAME_CATEGORIES'),
                                         'action=update_category&cPath=' . $cPath, 'post',
                                         'enctype="multipart/form-data"') . tep_draw_hidden_field('categories_id',
                                         $cInfo->categories_id)];
@@ -2246,17 +2250,19 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                 $contents[] = ['text' => '<br />' . TEXT_EDIT_CATEGORIES_IMAGE . '<br />' . tep_draw_file_field('categories_image')];
                                 $contents[] = ['text' => '<br />' . TEXT_EDIT_SORT_ORDER . '<br />' . tep_draw_input_field('sort_order',
                                         $cInfo->sort_order, 'size="2"')];
-                                $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_SAVE,
-                                        'disk', null, 'primary') . tep_draw_button(IMAGE_CANCEL,
+                                $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(cfg('IMAGE_SAVE'),
+                                        'disk', null, 'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                                         'close',
-                                        tep_href_link(FILENAME_CATEGORIES,
+                                        tep_href_link(cfg('FILENAME_CATEGORIES'),
                                             'cPath=' . $cPath . '&cID=' . $cInfo->categories_id))];
+                                $contents[] = [  'text' =>   _('Assign all products to discount campagin').'<br /> ('._('Onetime tool').')' ];
+                                $contents[] = [  'text' =>   (new ui\DiscountSelector('discount_id', (int)$cInfo->categories_id ,'category'))->getRendered() ];
                                 break;
                             case 'delete_category':
                                 $heading[] = ['text' => '<strong>' . TEXT_INFO_HEADING_DELETE_CATEGORY . '</strong>'];
 
                                 $contents = ['form' => tep_draw_form('categories',
-                                        FILENAME_CATEGORIES,
+                                        cfg('FILENAME_CATEGORIES'),
                                         'action=delete_category_confirm&cPath=' . $cPath) . tep_draw_hidden_field('categories_id',
                                         $cInfo->categories_id)];
                                 $contents[] = ['text' => TEXT_DELETE_CATEGORY_INTRO];
@@ -2270,7 +2276,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                 $contents[] = ['align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_DELETE,
                                         'trash', null, 'primary') . tep_draw_button(cfg('IMAGE_CANCEL'),
                                         'close',
-                                        tep_href_link(FILENAME_CATEGORIES,
+                                        tep_href_link(cfg('FILENAME_CATEGORIES'),
                                             'cPath=' . $cPath . '&cID=' . $cInfo->categories_id))];
                                 break;
                             case 'move_category':
@@ -2441,17 +2447,17 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                                   $cPath = $canonical_cPath['categories_id'];
                                                 }
                                                 $buttons = str_replace('<a ', '<a accesskey="' . ACCESSKEY_SELECT .'" ', tep_draw_button(IMAGE_EDIT, 'document',
-                                                tep_href_link(FILENAME_CATEGORIES,
+                                                tep_href_link(cfg('FILENAME_CATEGORIES',
                                                     'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product'))) . tep_draw_button(IMAGE_DELETE,
                                                 'trash',
-                                                tep_href_link(FILENAME_CATEGORIES,
+                                                tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=delete_product')) . tep_draw_button(IMAGE_MOVE,
                                                 'arrow-4',
-                                                tep_href_link(FILENAME_CATEGORIES,
+                                                tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=move_product')) . tep_draw_button(IMAGE_COPY_TO,
                                                 'copy',
-                                                tep_href_link(FILENAME_CATEGORIES,
-                                                    'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to'));
+                                                tep_href_link(cfg('FILENAME_CATEGORIES'),
+                                                    'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to')));
 
                                         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
                                             $linker = new \FlexiPeeHP\Cenik(null, ['offline' => true]);

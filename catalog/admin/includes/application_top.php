@@ -21,7 +21,6 @@
 // Start the clock for the page parse time log
 define('PAGE_PARSE_START_TIME', microtime());
 
-define('SESSION_FORCE_COOKIE_USE', 'False');
 // load server configuration parameters
 if (file_exists('includes/local/configure.php')) { // for developers
     include('includes/local/configure.php');

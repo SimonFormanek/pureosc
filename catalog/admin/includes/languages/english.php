@@ -419,11 +419,14 @@ define('MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION',
 // Definition for SEO Header Tags Reloaded
 define('BOX_CUSTOMERS_ORDERS', 'Orders', true);
 define('PLACEHOLDER_COMMA_SEPARATION', 'Must, Be, Comma, Separated', true);
-// BOF Order Maker
-define('IMAGE_CREATE_ORDER', 'Create', true);
 define('BOX_CUSTOMERS_CREATE_ORDER', 'Create Order', true);
 define('IMAGE_DETAIL', 'Details', true);
-define('TEXT_INFO_CUSTOMER_SERVICE_ID', 'Created By:', true);
+define('TABLE_HEADING_EDIT_ORDERS', 'To modify the order', true);
+define('TEXT_IMAGE_CREATE', 'Create Order', true);
+//define('TEXT_INFO_CUSTOMER_SERVICE_ID', 'Entered by:', true);
+define('IMAGE_CREATE_ORDER', 'Create New Order', true);
+define('BOX_CUSTOMERS_CREATE_ORDER', 'Create Order', true);
+// EOF Order Maker
 
 // Alternative Administration System
 define('BOX_HEADING_AAS', 'A.A.S.', true);
@@ -459,13 +462,6 @@ define('BOX_MM_EMAIL', 'Send Email', true);
 define('BOX_MM_RESPONSEMAIL', 'Response Mail', true);
 define('BOX_TOOLS_MAIL_MANAGER', 'Mail Manager', true);
 
-// BOF Order Maker
-define('TABLE_HEADING_EDIT_ORDERS', 'To modify the order', true);
-define('TEXT_IMAGE_CREATE', 'Create Order', true);
-define('TEXT_INFO_CUSTOMER_SERVICE_ID', 'Entered by:', true);
-define('IMAGE_CREATE_ORDER', 'Create New Order', true);
-define('BOX_CUSTOMERS_CREATE_ORDER', 'Create Order', true);
-// EOF Order Maker
 // BOF Create Account 
 define('BOX_CUSTOMERS_CREATE_ACCOUNT', 'Create Customer', true);
 define('IMAGE_CONTINUE', 'Continue', true);

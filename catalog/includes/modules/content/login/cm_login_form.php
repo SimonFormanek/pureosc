@@ -46,7 +46,7 @@ class cm_login_form {
             $customer_query = tep_db_query("select customers_id, customers_password from " . TABLE_CUSTOMERS . " where customers_email_address = '" . tep_db_input($email_address) . "' limit 1");
             if (!tep_db_num_rows($customer_query)) {
                 $error = true;
-            } else { //-------------------------------------- LOGIN ----------------------
+            } else { 
                 $customer = tep_db_fetch_array($customer_query);
                 $custPass = $customer['customers_password']; 
                 $custId = $customer['customers_id']; 
@@ -65,7 +65,7 @@ class cm_login_form {
 // Check that password is good
                 if (! tep_validate_password($password, $custPass)) { 
                 
-                    $error = true; //----------------------------vykopnout---------------
+                    $error = true; 
                 } else {
 // set $login_customer_id globally and perform post login code in catalog/login.php
                     $login_customer_id = (int) $custId;
