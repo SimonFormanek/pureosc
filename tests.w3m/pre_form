@@ -1,0 +1,20 @@
+url http://dev1910.local/create_account.php
+form create_account http://dev1910.local/create_account.php
+text firstname Simon
+text lastname Formanek
+text email_address test2@simonformanek.cz
+text company PureHTML.cz
+text vat_number cz1111111
+text company_number 2222222
+text street_address 'Pod kastany 21'
+text city 'Praha 6'
+text postcode 16000
+text city Praha
+text country 'Czech Republic'
+text telephone 77777777
+text fax 888888888888
+checkbox newsletter 1 checked
+password password testshop
+password confirmation testshop
+
+url http://dev1910.local/admin/login.php
