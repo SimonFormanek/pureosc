@@ -11,12 +11,12 @@
  */
 
 foreach ($cl_box_groups as &$group) {
-    if ($group['heading'] == BOX_HEADING_MODULES) {
+    if ($group['heading'] == __('BOX_HEADING_MODULES',_('Modules'))) {
         $group['apps'][] = array('code' => 'modules_content.php',
-            'title' => MODULES_ADMIN_MENU_MODULES_CONTENT,
+            'title' => __('MODULES_ADMIN_MENU_MODULES_CONTENT',_('Content')),
             'link' => tep_href_link('modules_content.php'));
 
         break;
     }
 }
-?>
+

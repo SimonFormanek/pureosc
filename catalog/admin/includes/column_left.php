@@ -60,7 +60,15 @@ if (tep_session_is_registered('admin')) {
 
 
 
-    $boxesMenu = new \Ease\TWB\Navbar('boxmenu', '', ['id' => 'adminAppMenu']);
+    $boxesMenu = new \Ease\TWB\Navbar('boxmenu', '', ['id' => 'adminAppMenu', 'class' => 'navbar-fixed-bottom']);
+    
+    $searchForm = new \Ease\TWB\Form('menusearch', 'search.php', 'post', null, ['class' => 'navbar-form navbar-left', 'role' => 'search']);
+    $searchForm->addItem(new \Ease\Html\DivTag(new \Ease\Html\InputSearchTag('navsearch', '', ['placeholder' => _('Search')]), ['class' => 'form-group']));
+    $searchForm->addItem(new \Ease\TWB\SubmitButton( new \Ease\TWB\GlyphIcon('search') , 'default'));
+    $boxesMenu->addMenuItem($searchForm);
+
+    
+    
     foreach ($cl_box_groups as $groups) {
         $apps = [];
         foreach ($groups['apps'] as $app) {
@@ -68,6 +76,7 @@ if (tep_session_is_registered('admin')) {
         }
         $boxesMenu->addDropDownMenu($groups['heading'], $apps);
     }
+
 
     echo $boxesMenu;
 

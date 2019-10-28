@@ -11,38 +11,37 @@
  */
 
 $cl_box_groups[] = array(
-    'heading' => BOX_HEADING_CATALOG,
+    'heading' => __('BOX_HEADING_CATALOG',_('Catalog')),
     'apps' => array(
         array(
-            'code' => FILENAME_CATEGORIES,
-            'title' => BOX_CATALOG_CATEGORIES_PRODUCTS,
-            'link' => tep_href_link(FILENAME_CATEGORIES)
+            'code' => cfg('FILENAME_CATEGORIES'),
+            'title' =>  __('BOX_CATALOG_CATEGORIES_PRODUCTS',_('Categories/Products')),
+            'link' => tep_href_link(cfg('FILENAME_CATEGORIES'))
         ),
         array(
-            'code' => FILENAME_PRODUCTS_ATTRIBUTES,
-            'title' => BOX_CATALOG_CATEGORIES_PRODUCTS_ATTRIBUTES,
-            'link' => tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES)
+            'code' =>  cfg('FILENAME_PRODUCTS_ATTRIBUTES'),
+            'title' =>  __('BOX_CATALOG_CATEGORIES_PRODUCTS_ATTRIBUTES',_('Products Attributes')),
+            'link' => tep_href_link(cfg('FILENAME_PRODUCTS_ATTRIBUTES'))
         ),
         array(
-            'code' => FILENAME_MANUFACTURERS,
-            'title' => BOX_CATALOG_MANUFACTURERS,
-            'link' => tep_href_link(FILENAME_MANUFACTURERS)
+            'code' =>  cfg('FILENAME_MANUFACTURERS'),
+            'title' =>  __('BOX_CATALOG_MANUFACTURERS',_('Manufacturers')),
+            'link' => tep_href_link(cfg('FILENAME_MANUFACTURERS'))
         ),
         array(
-            'code' => FILENAME_REVIEWS,
-            'title' => BOX_CATALOG_REVIEWS,
-            'link' => tep_href_link(FILENAME_REVIEWS)
+            'code' =>  cfg('FILENAME_REVIEWS'),
+            'title' =>  __('BOX_CATALOG_REVIEWS',_('Reviews')),
+            'link' => tep_href_link(cfg('FILENAME_REVIEWS'))
         ),
         array(
-            'code' => FILENAME_SPECIALS,
-            'title' => BOX_CATALOG_SPECIALS,
-            'link' => tep_href_link(FILENAME_SPECIALS)
+            'code' =>  cfg('FILENAME_SPECIALS'),
+            'title' =>  __('BOX_CATALOG_SPECIALS',_('Specials')),
+            'link' => tep_href_link(cfg('FILENAME_SPECIALS'))
         ),
         array(
-            'code' => FILENAME_PRODUCTS_EXPECTED,
-            'title' => BOX_CATALOG_PRODUCTS_EXPECTED,
-            'link' => tep_href_link(FILENAME_PRODUCTS_EXPECTED)
+            'code' =>  cfg('FILENAME_PRODUCTS_EXPECTED'),
+            'title' =>  __('BOX_CATALOG_PRODUCTS_EXPECTED',_('Products expected')),
+            'link' => tep_href_link(cfg('FILENAME_PRODUCTS_EXPECTED'))
         )
     )
 );
-?>

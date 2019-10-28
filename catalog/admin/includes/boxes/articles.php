@@ -11,38 +11,38 @@
  */
 
 $cl_box_groups[] = array(
-    'heading' => BOX_HEADING_ARTICLES,
+    'heading' => __('BOX_HEADING_ARTICLES',_('Articles')),
     'apps' => array(
         array(
-            'code' => FILENAME_ARTICLES,
-            'title' => BOX_TOPICS_ARTICLES,
-            'link' => tep_href_link(FILENAME_ARTICLES)
+            'code' => cfg('FILENAME_ARTICLES'),
+            'title' => __('BOX_TOPICS_ARTICLES',_('Aricles')),
+            'link' => tep_href_link(cfg('FILENAME_ARTICLES'))
         ),
         array(
-            'code' => FILENAME_ARTICLES_CONFIG,
-            'title' => BOX_ARTICLES_CONFIG,
-            'link' => tep_href_link(FILENAME_ARTICLES_CONFIG)
+            'code' => cfg('FILENAME_ARTICLES_CONFIG'),
+            'title' => __('BOX_ARTICLES_CONFIG',_('Config')),
+            'link' => tep_href_link(cfg('FILENAME_ARTICLES_CONFIG'))
         ),
         array(
-            'code' => FILENAME_AUTHORS,
-            'title' => BOX_ARTICLES_AUTHORS,
-            'link' => tep_href_link(FILENAME_AUTHORS)
+            'code' => cfg('FILENAME_AUTHORS'),
+            'title' => __('BOX_ARTICLES_AUTHORS',_('Authors')),
+            'link' => tep_href_link(cfg('FILENAME_AUTHORS'))
         ),
         array(
-            'code' => FILENAME_ARTICLES_BLOG_COMMENTS,
-            'title' => BOX_ARTICLES_BLOG_COMMENTS,
-            'link' => tep_href_link(FILENAME_ARTICLES_BLOG_COMMENTS)
+            'code' =>  cfg('FILENAME_ARTICLES_BLOG_COMMENTS'),
+            'title' => __('BOX_ARTICLES_BLOG_COMMENTS',_('Comments')),
+            'link' => tep_href_link(cfg('FILENAME_ARTICLES_BLOG_COMMENTS'))
         ),
         array(
-            'code' => FILENAME_ARTICLE_REVIEWS,
-            'title' => BOX_ARTICLES_REVIEWS,
-            'link' => tep_href_link(FILENAME_ARTICLE_REVIEWS)
+            'code' =>  cfg('FILENAME_ARTICLE_REVIEWS'),
+            'title' => __('BOX_ARTICLES_REVIEWS',_('Reviews')),
+            'link' => tep_href_link(cfg('FILENAME_ARTICLE_REVIEWS'))
         ),
         array(
-            'code' => FILENAME_ARTICLES_XSELL,
-            'title' => BOX_ARTICLES_XSELL,
-            'link' => tep_href_link(FILENAME_ARTICLES_XSELL)
+            'code' =>  cfg('FILENAME_ARTICLES_XSELL'),
+            'title' => __('BOX_ARTICLES_XSELL',_('xSell')),
+            'link' => tep_href_link(cfg('FILENAME_ARTICLES_XSELL'))
         )
     )
 );
-?>
+
