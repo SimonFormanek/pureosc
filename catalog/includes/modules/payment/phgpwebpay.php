@@ -525,13 +525,13 @@ class phgpwebpay {
   url: "order_confirmed.php?id='.$orderId.'",
   data: ' . json_encode($parameters) . ',
 }).done(function() {
-    alert( "success" );
+//    alert( "success" );
   })
   .fail(function() {
-    alert( "error" );
+//    alert( "error" );
   })
   .always(function() {
-    alert( "complete" );
+//    alert( "complete" );
   });
 return true;
 } ');
@@ -578,7 +578,7 @@ return true;
             $o_stat = tep_db_fetch_array($my_status_query);
             $current_status_id = (int) $o_stat['orders_status'];
         }
-        if (($current_status_id == MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID) || ($current_status_id == $delivered_status)) {
+        if (($current_status_id == cfg('MODULE_PAYMENT_GPWEBPAY_COMP_ORDER_STATUS_ID')) || ($current_status_id == $delivered_status)) {
             $update_status = false;
         }
         if ($update_status) {
@@ -630,13 +630,13 @@ return true;
             $sql_data_array = array('orders_id' => $order_id,
                 'orders_status_id' => $order_status_id,
                 'date_added' => 'now()',
-                'customer_notified' => (SEND_EMAILS == 'true') ? '1' : '0',
+                'customer_notified' => (cfg('SEND_EMAILS') == 'true') ? '1' : '0',
                 'comments' => $order->info['comments']);
 
 
 
 
-            tep_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
+            tep_db_perform(cfg('TABLE_ORDERS_STATUS_HISTORY'), $sql_data_array);
         }
         // initialized for the email confirmation
         $products_ordered = '';
@@ -645,8 +645,8 @@ return true;
 
         for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
             // Stock Update - Joao Correia
-            if ((MODULE_PAYMENT_GPWEBPAY_DECREASE_STOCK_ON_CREATION == 'True') && (STOCK_LIMITED == 'true')) {
-                if (DOWNLOAD_ENABLED == 'true') {
+            if ((cfg('MODULE_PAYMENT_GPWEBPAY_DECREASE_STOCK_ON_CREATION') == 'True') && (cfg('STOCK_LIMITED') == 'true')) {
+                if (cfg('DOWNLOAD_ENABLED') == 'true') {
                     $stock_query_raw = "SELECT products_quantity, pad.products_attributes_filename
                                 FROM " . cfg('TABLE_PRODUCTS') . " p
                                 LEFT JOIN " . cfg('TABLE_PRODUCTS_ATTRIBUTES') . " pa

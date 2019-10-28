@@ -6,6 +6,8 @@
   Copyright (c) 2014 osCommerce
   Released under the GNU General Public License
  */
+
+namespace PureOSC\Admin;
 require('includes/application_top.php');
 
 $currencies = new AdminCurrencies();
@@ -43,7 +45,7 @@ if (($action == 'send_email_to_user') && isset($_POST['customers_email_address']
         $message        .= TEXT_OR_VISIT.HTTP_SERVER.DIR_WS_CATALOG.TEXT_ENTER_CODE."\n\n";
         $message        .= TEXT_SIGN_OFF."\n\n";
         //Let's build a message object using the email class
-        $mimemessage    = new email(array('X-Mailer: osCommerce'));
+        $mimemessage    = new \email(array('X-Mailer: osCommerce'));
         // Build the text version
         $text           = strip_tags($message);
         if (EMAIL_USE_HTML == 'true') {
