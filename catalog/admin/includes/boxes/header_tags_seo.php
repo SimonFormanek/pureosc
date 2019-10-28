@@ -11,38 +11,38 @@
  */
 
 $cl_box_groups[] = array(
-    'heading' => BOX_HEADING_HEADER_TAGS_SEO,
+    'heading' => __('BOX_HEADING_HEADER_TAGS_SEO',_('SEO Tags')),
     'apps' => array(
         array(
-            'code' => FILENAME_HEADER_TAGS_SEO,
-            'title' => BOX_HEADER_TAGS_ADD_A_PAGE,
-            'link' => tep_href_link(FILENAME_HEADER_TAGS_SEO)
+            'code' => cfg('FILENAME_HEADER_TAGS_SEO'),
+            'title' => __('BOX_HEADER_TAGS_ADD_A_PAGE',_('Add page')),
+            'link' => tep_href_link(cfg('FILENAME_HEADER_TAGS_SEO'))
         ),
         array(
-            'code' => FILENAME_HEADER_TAGS_SILO,
-            'title' => BOX_HEADER_TAGS_SILO,
-            'link' => tep_href_link(FILENAME_HEADER_TAGS_SILO)
+            'code' => cfg('FILENAME_HEADER_TAGS_SILO'),
+            'title' => __('BOX_HEADER_TAGS_SILO',_('Silo')),
+            'link' => tep_href_link(cfg('FILENAME_HEADER_TAGS_SILO'))
         ),
         array(
-            'code' => FILENAME_HEADER_TAGS_KEYWORDS,
-            'title' => BOX_HEADER_TAGS_KEYWORDS,
-            'link' => tep_href_link(FILENAME_HEADER_TAGS_KEYWORDS)
+            'code' => cfg('FILENAME_HEADER_TAGS_KEYWORDS'),
+            'title' => __('BOX_HEADER_TAGS_KEYWORDS',_('Keywords')),
+            'link' => tep_href_link(cfg('FILENAME_HEADER_TAGS_KEYWORDS'))
         ),
         array(
-            'code' => FILENAME_HEADER_TAGS_FILL_TAGS,
-            'title' => BOX_HEADER_TAGS_FILL_TAGS,
-            'link' => tep_href_link(FILENAME_HEADER_TAGS_FILL_TAGS)
+            'code' => cfg('FILENAME_HEADER_TAGS_FILL_TAGS'),
+            'title' => __('BOX_HEADER_TAGS_FILL_TAGS',_('Fill')),
+            'link' => tep_href_link(cfg('FILENAME_HEADER_TAGS_FILL_TAGS'))
         ),
         array(
-            'code' => FILENAME_HEADER_TAGS_SOCIAL,
-            'title' => BOX_HEADER_TAGS_SOCIAL,
-            'link' => tep_href_link(FILENAME_HEADER_TAGS_SOCIAL)
+            'code' => cfg('FILENAME_HEADER_TAGS_SOCIAL'),
+            'title' => __('BOX_HEADER_TAGS_SOCIAL',_('Social')),
+            'link' => tep_href_link(cfg('FILENAME_HEADER_TAGS_SOCIAL'))
         ),
         array(
-            'code' => FILENAME_HEADER_TAGS_TEST,
-            'title' => BOX_HEADER_TAGS_TEST,
-            'link' => tep_href_link(FILENAME_HEADER_TAGS_TEST)
+            'code' => cfg('FILENAME_HEADER_TAGS_TEST'),
+            'title' => __('BOX_HEADER_TAGS_TEST',_('Test')),
+            'link' => tep_href_link(cfg('FILENAME_HEADER_TAGS_TEST'))
         )
     )
 );
-?>
+

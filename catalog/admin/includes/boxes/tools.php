@@ -1,4 +1,5 @@
 <?php
+
 /*
   $Id$
 
@@ -19,85 +20,85 @@
  */
 
 $cl_box_groups[] = [
-    'heading' => BOX_HEADING_TOOLS,
+    'heading' => __('BOX_HEADING_TOOLS', _('Tools')),
     'apps' => [
         [
-            'code' => FILENAME_ACTION_RECORDER,
-            'title' => BOX_TOOLS_ACTION_RECORDER,
+            'code' => cfg('FILENAME_ACTION_RECORDER'),
+            'title' => __('BOX_TOOLS_ACTION_RECORDER',_('Action recorder')),
             'link' => tep_href_link(FILENAME_ACTION_RECORDER)
         ],
         [
-            'code' => FILENAME_BACKUP,
-            'title' => BOX_TOOLS_BACKUP,
+            'code' => cfg('FILENAME_BACKUP'),
+            'title' =>  __('BOX_TOOLS_BACKUP',_('Backup')),
             'link' => tep_href_link(FILENAME_BACKUP)
         ],
         [
-        'code' => 'database_optimizer.php',
-        'title' => BOX_TOOLS_DATABASE_OPTIMIZER,
-        'link' => tep_href_link('database_optimizer.php')
-      	],
+            'code' => 'database_optimizer.php',
+            'title' =>  __('BOX_TOOLS_DATABASE_OPTIMIZER',_('Database optimizer')),
+            'link' => tep_href_link('database_optimizer.php')
+        ],
         [
-            'code' => FILENAME_BANNER_MANAGER,
-            'title' => BOX_TOOLS_BANNER_MANAGER,
+            'code' => cfg('FILENAME_BANNER_MANAGER'),
+            'title' =>  __('BOX_TOOLS_BANNER_MANAGER',_('Banner manager')),
             'link' => tep_href_link(FILENAME_BANNER_MANAGER)
         ],
         [
-            'code' => FILENAME_CACHE,
-            'title' => BOX_TOOLS_CACHE,
+            'code' => cfg('FILENAME_CACHE'),
+            'title' =>  __('BOX_TOOLS_CACHE',_('Cache')),
             'link' => tep_href_link(FILENAME_CACHE)
         ],
         [
-            'code' => FILENAME_DEFINE_LANGUAGE,
-            'title' => BOX_TOOLS_DEFINE_LANGUAGE,
+            'code' => cfg('FILENAME_DEFINE_LANGUAGE'),
+            'title' =>  __('BOX_TOOLS_DEFINE_LANGUAGE',_('Define language')),
             'link' => tep_href_link(FILENAME_DEFINE_LANGUAGE)
         ],
         [
-            'code' => FILENAME_MAIL,
-            'title' => BOX_TOOLS_MAIL,
+            'code' => cfg('FILENAME_MAIL'),
+            'title' =>  __('BOX_TOOLS_MAIL',_('Tools Mail')),
             'link' => tep_href_link(FILENAME_MAIL)
         ],
         [
-            'code' => FILENAME_NEWSLETTERS,
-            'title' => BOX_TOOLS_NEWSLETTER_MANAGER,
+            'code' => cfg('FILENAME_NEWSLETTERS'),
+            'title' =>  __('BOX_TOOLS_NEWSLETTER_MANAGER',_('Newsletter nanager')),
             'link' => tep_href_link(FILENAME_NEWSLETTERS)
         ],
         [
-            'code' => FILENAME_SEC_DIR_PERMISSIONS,
-            'title' => BOX_TOOLS_SEC_DIR_PERMISSIONS,
+            'code' => cfg('FILENAME_SEC_DIR_PERMISSIONS'),
+            'title' =>  __('BOX_TOOLS_SEC_DIR_PERMISSIONS',_('Dir permissions')),
             'link' => tep_href_link(FILENAME_SEC_DIR_PERMISSIONS)
         ],
         [
-            'code' => FILENAME_SERVER_INFO,
-            'title' => BOX_TOOLS_SERVER_INFO,
+            'code' => cfg('FILENAME_SERVER_INFO'),
+            'title' =>  __('BOX_TOOLS_SERVER_INFO',_('Server Info')),
             'link' => tep_href_link(FILENAME_SERVER_INFO)
         ],
         [
-            'code' => FILENAME_VERSION_CHECK,
-            'title' => BOX_TOOLS_VERSION_CHECK,
+            'code' => cfg('FILENAME_VERSION_CHECK'),
+            'title' =>  __('BOX_TOOLS_VERSION_CHECK',_('Version check')),
             'link' => tep_href_link(FILENAME_VERSION_CHECK)
         ],
         /*         * * Altered for Database Check 1.4 ** */
         [
-            'code' => FILENAME_DATABASE_CHECK,
-            'title' => BOX_TOOLS_DATABASE_CHECK,
+            'code' => cfg('FILENAME_DATABASE_CHECK'),
+            'title' =>  __('BOX_TOOLS_DATABASE_CHECK',_('Database Checks')),
             'link' => tep_href_link(FILENAME_DATABASE_CHECK)
         ],
         /*         * * EOF alteration for Database Check 1.4 ** */
         /*         * * Altered for Mail Manager ** */
         [
-            'code' => FILENAME_MM_MAIL_MANAGER,
-            'title' => BOX_TOOLS_MAIL_MANAGER,
+            'code' => cfg('FILENAME_MM_MAIL_MANAGER'),
+            'title' =>  __('BOX_TOOLS_MAIL_MANAGER',_('Mail Manager')),
             'link' => tep_href_link(FILENAME_MM_MAIL_MANAGER)
         ],
         /*         * * EOF alterations for Mail Manager ** */
         [
-            'code' => FILENAME_WHOS_ONLINE,
-            'title' => BOX_TOOLS_WHOS_ONLINE,
+            'code' => cfg('FILENAME_WHOS_ONLINE'),
+            'title' =>  __('BOX_TOOLS_WHOS_ONLINE',_('Whois Online')),
             'link' => tep_href_link(FILENAME_WHOS_ONLINE)
         ],
         [
-            'code' => FILENAME_FLEXIBEE_SYNC,
-            'title' => BOX_TOOLS_FLEXIBEE_SYNC,
+            'code' => cfg('FILENAME_FLEXIBEE_SYNC'),
+            'title' =>  __('BOX_TOOLS_FLEXIBEE_SYNC',_('FlexiBee sync')),
             'link' => tep_href_link(FILENAME_FLEXIBEE_SYNC)
         ],
         [

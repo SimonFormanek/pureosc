@@ -11,25 +11,25 @@
  */
 
 $cl_box_groups[] = array(
-    'heading' => BOX_HEADING_CUSTOMERS,
+    'heading' => __('BOX_HEADING_CUSTOMERS',_('Customers')),
     'apps' => array(
         array(
-            'code' => FILENAME_CUSTOMERS,
-            'title' => BOX_CUSTOMERS_CUSTOMERS,
-            'link' => tep_href_link(FILENAME_CUSTOMERS)
+            'code' => cfg('FILENAME_CUSTOMERS'),
+            'title' => __('BOX_CUSTOMERS_CUSTOMERS',_('Customers')),
+            'link' => tep_href_link( cfg('FILENAME_CUSTOMERS'))
         ),
         /*         * * Altered for Manual Order Maker and Create Order ** */
         array(
-            'code' => FILENAME_CREATE_ACCOUNT,
-            'title' => BOX_CUSTOMERS_CREATE_ACCOUNT,
-            'link' => tep_href_link(FILENAME_CREATE_ACCOUNT)
+            'code' =>  cfg('FILENAME_CREATE_ACCOUNT'),
+            'title' => __('BOX_CUSTOMERS_CREATE_ACCOUNT',_('Create account')),
+            'link' => tep_href_link( cfg('FILENAME_CREATE_ACCOUNT'))
         ),
         array(
-            'code' => FILENAME_CREATE_ORDER,
-            'title' => BOX_CUSTOMERS_CREATE_ORDER,
-            'link' => tep_href_link(FILENAME_CREATE_ORDER)
+            'code' =>  cfg('FILENAME_CREATE_ORDER'),
+            'title' => __('BOX_CUSTOMERS_CREATE_ORDER',_('Create order')),
+            'link' => tep_href_link( cfg('FILENAME_CREATE_ORDER'))
         )
     /*     * * EOF for Manual Order Maker ** */
     )
 );
-?>
+

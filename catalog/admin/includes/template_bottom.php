@@ -10,7 +10,6 @@
   Released under the GNU General Public License
  */
 ?>
-
 </div>
 
 <?php require(DIR_WS_INCLUDES.'footer.php');
@@ -21,6 +20,11 @@ echo \Ease\Html\HeadTag::getScriptsRendered(\PureOSC\ui\WebPage::singleton()->ja
 ?>
 
 <br />
+<div><br /></div>
+<div><br /></div>
+<div><br /></div>
+<div><br /></div>
+<div><br /></div>
 
 </body>
 </html>

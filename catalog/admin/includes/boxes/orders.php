@@ -1,4 +1,5 @@
 <?php
+
 /*
   $Id$
 
@@ -11,20 +12,20 @@
  */
 
 $cl_box_groups[] = array(
-    'heading' => BOX_HEADING_ORDERS,
+    'heading' => __('BOX_HEADING_ORDERS', _('Orders')),
     'apps' => array(
         array(
-            'code' => FILENAME_ORDERS,
-            'title' => BOX_ORDERS_ORDERS,
-            'link' => tep_href_link(FILENAME_ORDERS)
+            'code' => cfg('FILENAME_ORDERS'),
+            'title' => __('BOX_ORDERS_ORDERS', _('Orders list')),
+            'link' => tep_href_link(cfg('FILENAME_ORDERS'))
         ),
         /*         * * Altered for Manual Order Maker ** */
         array(
-            'code' => FILENAME_CREATE_ORDER,
-            'title' => BOX_CUSTOMERS_CREATE_ORDER,
-            'link' => tep_href_link(FILENAME_CREATE_ORDER)
+            'code' => cfg('FILENAME_CREATE_ORDER'),
+            'title' => __('BOX_CUSTOMERS_CREATE_ORDER', _('Create order')),
+            'link' => tep_href_link(cfg('FILENAME_CREATE_ORDER'))
         )
     /*     * * EOF for Manual Order Maker ** */
     )
 );
-?>
+

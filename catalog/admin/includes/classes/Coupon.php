@@ -20,8 +20,6 @@ class Coupon extends \Ease\SQL\Engine
     public function __construct($identifier = null, $options = array())
     {
         $this->myKeyColumn = 'coupon_id';
-//        $this->takeMyTable($this->myTable);
-        $this->dblink->setKeyColumn($this->myKeyColumn);
         $this->setkeyColumn($this->myKeyColumn);
         if(!is_null($identifier)) {
             $this->setMyKey( intval($identifier));
@@ -45,7 +43,7 @@ class Coupon extends \Ease\SQL\Engine
             $newMembers[$products_id] = $products_id;
             $this->setDataValue('restrict_to_products',
                 implode(',', $newMembers));
-            $result = !empty($this->updateToSQL());
+            $result = $this->updateToSQL();
         }
 
         return $result;
