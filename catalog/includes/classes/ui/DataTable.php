@@ -76,16 +76,29 @@ class DataTable extends \Ease\Html\TableTag
         $this->columnDefs = $engine->columnDefs();
 
         parent::__construct(null,
-            ['class' => 'display', 'style' => 'width: 100%']);
+            ['class' => 'display', 'style' => 'width: 100%','class'=>'table']);
 
         $gridTagID     = $this->setTagId($engine->getObjectName());
         $this->columns = $this->prepareColumns($engine->getGetDataTableColumns());
 
         $this->includeJavaScript('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js');
         $this->includeJavaScript('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js');
-        $this->includeJavaScript('https://cdn.datatables.net/v/ju/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/r-2.2.2/datatables.min.js');
-        $this->includeCss('https://cdn.datatables.net/v/ju/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/r-2.2.2/datatables.min.css');
+        
+//        $this->includeJavaScript('catalog/ext/datatables/js/dataTables.dataTables.min.js');
+//        $this->includeJavaScript('catalog/ext/datatables/js/dataTables.bootstrap.min.js');
+        
+        $this->includeCss("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/datatables.min.css");
+        $this->includeJavaScript("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js");
+        $this->includeJavaScript("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js");
+        $this->includeJavaScript("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/datatables.min.js");
+        
+        
+//        $this->includeJavaScript('https://cdn.datatables.net/v/ju/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/r-2.2.2/datatables.min.js');
+//        $this->includeCss('https://cdn.datatables.net/v/ju/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/r-2.2.2/datatables.min.css');
 
+        $this->includeCss('catalog/ext/datatables/css/dataTables.bootstrap.min.css');
+        
+        
 //        $this->includeJavaScript('js/selectize.min.js');
 //        $this->includeCss('css/selectize.css');
 //        $this->includeCss('css/selectize.default.css');

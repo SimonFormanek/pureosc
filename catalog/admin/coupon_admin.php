@@ -142,7 +142,7 @@ switch ($_GET['action']) {
                 'coupon_type' => tep_db_prepare_input($coupon_type),
                 'uses_per_coupon' => tep_db_prepare_input($_POST['coupon_uses_coupon']),
                 'uses_per_user' => tep_db_prepare_input($_POST['coupon_uses_user']),
-                'coupon_minimum_order' => tep_db_prepare_input($_POST['coupon_min_order']),
+                'coupon_minimum_order' => floatval(tep_db_prepare_input($_POST['coupon_min_order'])),
                 'restrict_to_products' => is_array($_POST['coupon_products']) ? implode(',', $_POST['coupon_products']) : tep_db_prepare_input($_POST['coupon_products']),
                 'restrict_to_categories' => tep_db_prepare_input($_POST['coupon_categories']),
                 'coupon_start_date' => $coupon_start_date,
