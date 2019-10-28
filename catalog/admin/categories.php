@@ -475,21 +475,23 @@ if($action == 'setexclude') {
             if ($_POST['products_weight'] == '') {
             	$_POST['products_weight'] = '1'; 
             }
-            if (!isset($_GET['products_custom_date']))
+            if (!isset($_GET['products_custom_date'])) {
               $_POST['products_custom_date'] = date('Y-m-d');
-            if (!isset($_GET['products_price']))
+                }
+                if (!isset($_POST['products_price'])) {
               $_POST['products_price'] = 0;
+                }
 
             $sql_data_array = ['products_quantity' => (int)tep_db_prepare_input($_POST['products_quantity']),
                 'products_model' => tep_db_prepare_input($_POST['products_model']),
                 'products_price' => tep_db_prepare_input($_POST['products_price']),
                 'products_date_available' => is_null($products_date_available) ? (new \DateTime())->format('Y-m-d') : $products_date_available,
                 'products_weight' => (float)tep_db_prepare_input($_POST['products_weight']),
-                'products_status' =>  $_POST['products_status'] ? tep_db_prepare_input($_POST['products_status']) : 1,
-                'products_tax_class_id' => ($_POST['products_tax_class_id'] ? tep_db_prepare_input($_POST['products_tax_class_id']) : 0),
+                'products_status' => (int)(tep_db_prepare_input($_POST['products_status'])),
+                'products_tax_class_id' => (int)tep_db_prepare_input($_POST['products_tax_class_id']),
                 'manufacturers_id' => (int)tep_db_prepare_input($_POST['manufacturers_id']),
                 'product_template' => (int)tep_db_prepare_input($_POST['product_template']),
-                'products_custom_date' => empty($_POST['products_custom_date']) ? (new \DateTime())->format('Y-m-d')  : tep_db_prepare_input($_POST['products_custom_date']),
+                'products_custom_date' => empty($_POST['products_custom_date']) ?  date('Y-m-d')   : tep_db_prepare_input($_POST['products_custom_date']),
                 'products_sort_order' => (int)tep_db_prepare_input($_POST['products_sort_order'])
             ];
 
@@ -665,7 +667,7 @@ if($action == 'setexclude') {
                         $piArray) . ")");
             }
 
-            if (cfg('USE_CACHE') == 'true') {
+            if (cfg('USE_CACHE')) {
                 tep_reset_cache_block('categories');
                 tep_reset_cache_block('also_purchased');
             }
@@ -681,7 +683,7 @@ if($action == 'setexclude') {
 
             //pure:new reload page
 
-            if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            if (cfg('USE_FLEXIBEE')) {
                 $pricelist = new \PureOSC\flexibee\Cenik();
                 $pricelist->takeData($pricelist->convertOscData($sql_product_data_array));
                 foreach ($proLangs as $langCode => $langData) {
@@ -1093,7 +1095,11 @@ if ($action == 'new_product') {
         cfg('FILENAME_CATEGORIES'),
         'cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID']
             : '') . '&action=' . $form_action,
-        'post', 'enctype="multipart/form-data"'); ?>
+        'post', 'enctype="multipart/form-data" class="form-horizontal"'); 
+    
+        $twbcontainer = new \Ease\TWB\Container();
+    
+    ?>
     <table border="0" width="100%" cellspacing="0" cellpadding="2">
         <tr>
             <td class="smallText" align="right">
@@ -1318,7 +1324,7 @@ if ($action == 'new_product') {
                                 <table border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td class="main"
-                                            valign="top"><?php echo tep_image(tep_catalog_href_link(cfg('DIR_WS_LANGUAGES') . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'],
+                                            valign="top"><?php echo tep_image(tep_catalog_admin_href_link(cfg('DIR_WS_LANGUAGES') . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'],
                                                 '', 'SSL'),
                                                 $languages[$i]['name']); ?>&nbsp;
                                         </td>
@@ -1551,7 +1557,7 @@ if ($action == 'new_product') {
                                             <td><?php
                                                 if (tep_not_null(tep_get_products_name($pInfo->products_id,
                                                     $languages[$i]['id']))) {
-                                                    if (defined('ADD_MANUFACTURER_SEO_TITLE') && constant('ADD_MANUFACTURER_SEO_TITLE')
+                                                    if ( cfg('ADD_MANUFACTURER_SEO_TITLE')
                                                         == 'true'
                                                         && (tep_not_null($pInfo->manufacturers_id))
                                                         && (tep_not_null(tep_get_products_name($pInfo->products_id,
@@ -2461,7 +2467,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
 
                                         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
                                             $linker = new \FlexiPeeHP\Cenik(null, ['offline' => true]);
-                                            $linker->setMyKey('ext:products:' . $_GET['pID']);
+                                            $linker->setMyKey('ext:products:' . $pInfo->products_id);
                                             $buttons .= tep_draw_button(_('Open in FlexiBee'),
                                                 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcyIgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICB3aWR0aD0iMTIwIgogICBoZWlnaHQ9IjEyMCIKICAgdmlld0JveD0iMCAwIDEyMCAxMjAiCiAgIHNvZGlwb2RpOmRvY25hbWU9ImZsZXhpYmVlLWxvZ28uc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIwLjkyLjEgcjE1MzcxIj48bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE4Ij48cmRmOlJERj48Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+PGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+PGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPjxkYzp0aXRsZT48L2RjOnRpdGxlPjwvY2M6V29yaz48L3JkZjpSREY+PC9tZXRhZGF0YT48ZGVmcwogICAgIGlkPSJkZWZzNiIgLz48c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjNjY2NjY2IgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgb2JqZWN0dG9sZXJhbmNlPSIxMCIKICAgICBncmlkdG9sZXJhbmNlPSIxMCIKICAgICBndWlkZXRvbGVyYW5jZT0iMTAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjEyODAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iOTU1IgogICAgIGlkPSJuYW1lZHZpZXc0IgogICAgIHNob3dncmlkPSJmYWxzZSIKICAgICBpbmtzY2FwZTp6b29tPSIxLjMzNjI2NzQiCiAgICAgaW5rc2NhcGU6Y3g9IjI0My42ODg2MyIKICAgICBpbmtzY2FwZTpjeT0iMzAuODg2NjY3IgogICAgIGlua3NjYXBlOndpbmRvdy14PSIwIgogICAgIGlua3NjYXBlOndpbmRvdy15PSIzMiIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9ImcxMCIgLz48ZwogICAgIGlkPSJnMTAiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpbmtzY2FwZTpsYWJlbD0iaW5rX2V4dF9YWFhYWFgiCiAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMS4zMzMzMzMzLDAsMCwtMS4zMzMzMzMzLDAsMTIwKSI+PGcKICAgICAgIGlkPSJnNDU0MSIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMTIuMjUyOTgsMjEuMzI4MDY2KSI+PHBhdGgKICAgICAgICAgZD0iTSAxNzAuODY4LDAgMTg0LjI0NiwyMy4xNjE3IDE5Ny42MTcsMCBaIgogICAgICAgICBzdHlsZT0iZmlsbDojZjlhZTJkO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDowLjEiCiAgICAgICAgIGlkPSJwYXRoMjIiCiAgICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiIC8+PHBhdGgKICAgICAgICAgZD0ibSAxNzAuODY4LDAgLTEzLjM3NSwyMy4xNjE3IGggMjYuNzUzIHoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiNkMjhiMjU7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjAuMSIKICAgICAgICAgaWQ9InBhdGgyNCIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz48cGF0aAogICAgICAgICBkPSJtIDE1Ny40OTMsMjMuMTYxNyAxMy4zNzUsMjMuMTY4IDEzLjM3OCwtMjMuMTY4IHoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiM5MzYzMjc7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjAuMSIKICAgICAgICAgaWQ9InBhdGgyNiIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz48cGF0aAogICAgICAgICBkPSJNIDE3MC44NjgsNDYuMzI5NyBIIDE0NC4xMjEgTCAxMTcuMzY1LDAgaCAyNi43NTYgbCAyNi43NDcsNDYuMzI5NyIKICAgICAgICAgc3R5bGU9ImZpbGw6Izc2N2E3YztmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MC4xIgogICAgICAgICBpZD0icGF0aDI4IgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPjwvZz48L2c+PC9zdmc+',
                                                 $linker->getApiURL());

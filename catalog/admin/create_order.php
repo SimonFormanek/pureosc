@@ -46,7 +46,7 @@ if (tep_db_num_rows($result) > 0) {
     while ($db_Row            = tep_db_fetch_array($result)) {
         $SelectCurrencyBox .= "<option value='".$db_Row["code"]." , ".$db_Row["value"]."'";
 
-        if ($db_Row["code"] == DEFAULT_CURRENCY) {
+        if ($db_Row["code"] == cfg('DEFAULT_CURRENCY')) {
             $SelectCurrencyBox .= " SELECTED ";
         }
 

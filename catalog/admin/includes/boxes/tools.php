@@ -99,6 +99,11 @@ $cl_box_groups[] = [
             'code' => FILENAME_FLEXIBEE_SYNC,
             'title' => BOX_TOOLS_FLEXIBEE_SYNC,
             'link' => tep_href_link(FILENAME_FLEXIBEE_SYNC)
+        ],
+        [
+            'code' => 'userlog.php',
+            'title' => _('UserLog'),
+            'link' => tep_href_link('userlog.php')
         ]
     ]
 ];
