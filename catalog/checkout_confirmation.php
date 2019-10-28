@@ -63,7 +63,7 @@ if (isset($_POST['comments']) && tep_not_null($_POST['comments'])) {
 
   if ( ($payment_modules->selected_module != $payment) || ( is_array($payment_modules->modules) && (sizeof($payment_modules->modules) > 1) && !is_object($$payment) ) || (is_object($$payment) && ($$payment->enabled === false)) ) {
  */
-if ($credit_covers) $payment = ''; // CCGV
+if (isset($credit_covers)) $payment = ''; // CCGV
 $payment_modules = new payment($payment);
 $order = new order();
 

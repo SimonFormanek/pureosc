@@ -112,7 +112,7 @@ class order_total
         if (MODULE_ORDER_TOTAL_INSTALLED) {
             $header_string  = '<tr>'."\n";
             $header_string  .= '   <td><table border="0" width="100%" cellspacing="0" cellpadding="2">'."\n";
-            $output1_string .= '      <tr>'."\n";
+            $header_string .= '      <tr>'."\n";
             $header_string  .= '        <td class="main"><b>'.TABLE_HEADING_CREDIT.'</b></td>'."\n";
             $header_string  .= '      </tr>'."\n";
             $header_string  .= '    </table></td>'."\n";

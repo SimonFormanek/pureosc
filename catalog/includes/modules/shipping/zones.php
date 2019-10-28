@@ -137,7 +137,7 @@ class zones
         $this->enabled     = ((MODULE_SHIPPING_ZONES_STATUS == 'True') ? true : false);
 
         // CUSTOMIZE THIS SETTING FOR THE NUMBER OF ZONES NEEDED
-        if (!defined(NUM_ZONES)) define('NUM_ZONES', '10');
+        if (!intval(cfg('NUM_ZONES'))) define('NUM_ZONES', '10');
         $this->num_zones = NUM_ZONES;
     }
 
