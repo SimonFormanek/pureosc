@@ -484,7 +484,7 @@ if($action == 'setexclude') {
 
             $sql_data_array = ['products_quantity' => (int)tep_db_prepare_input($_POST['products_quantity']),
                 'products_model' => tep_db_prepare_input($_POST['products_model']),
-                'products_price' => tep_db_prepare_input($_POST['products_price']),
+                'products_price' => floatval(tep_db_prepare_input($_POST['products_price'])),
                 'products_date_available' => is_null($products_date_available) ? (new \DateTime())->format('Y-m-d') : $products_date_available,
                 'products_weight' => (float)tep_db_prepare_input($_POST['products_weight']),
                 'products_status' => (int)(tep_db_prepare_input($_POST['products_status'])),
@@ -1314,8 +1314,7 @@ if ($action == 'new_product') {
                         </script>
                         <?php
                     }
-                    $pbe =  new ui\ProductEditorBlock( _('Choose discount campagin') , new ui\DiscountSelector('discount_id', $_GET['pID'] ,'product') );
-                    echo $pbe;
+                    
                     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
                         ?>
                         <tr>
@@ -1713,8 +1712,26 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
         </tr>
     </table>
 
+<?php 
+
+
+                    $discSel = new ui\DiscountSelector('discount_id', (int)$_GET['pID'] ,'product');
+                    $discSel->finalize();
+       
+
+
+    $twbcontainer->addItem( new \Ease\TWB\FormGroup( _('Choose discount campagin') , $discSel,  ''  , _('Add this product to Coupon')) );
+                    
+
+$twbcontainer->addItem( new \Ease\TWB\SubmitButton(_('Save'), 'success') );
+$twbcontainer->addItem( new \Ease\TWB\LinkButton('categories.php?cPath='.$cPath.'&pID=' . $_GET['pID'] , _('Cancel'), 'warning') );
+
+   echo $twbcontainer->getRendered();
+
+?>        
+        
     <script type="text/javascript">
-        $('#products_date_availa                                                ble').datepicker({
+        $('#products_date_available').datepicker({
             dateFormat: 'yy-mm-dd'
         });
         $('#products_custom_date').datepicker({
@@ -1730,7 +1747,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
         = tep_db_query("select p.products_id, pd.language_id, pd.products_name, pd.products_description, pd.products_url, p.products_quantity, p.products_model, p.products_image, p.products_price, p.products_weight, p.products_date_added, p.products_last_modified, p.products_date_available, p.products_status, p.manufacturers_id, pd.products_seo_title, pd.products_seo_description, pd.products_seo_keywords, pd.products_mini_description, products_custom_date, products_sort_order from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id = pd.products_id and p.products_id = '" . (int)$_GET['pID'] . "'");
     $product = tep_db_fetch_array($product_query);
 
-    $pInfo = new objectInfo($product);
+    $pInfo = new \objectInfo($product);
     $products_image_name
         = $pInfo->products_image;
 
@@ -1779,7 +1796,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                     '1', '10'); ?></td>
         </tr>
         <tr>
-            <td class="main"><?php echo tep_image(HTTP_CATALOG_ADMIN_SERVER . DIR_WS_CATALOG_IMAGES . $products_image_name,
+            <td class="main"><?php echo tep_image( cfg('HTTP_CATALOG_ADMIN_SERVER') . cfg('DIR_WS_CATALOG_IMAGES') . $products_image_name,
                         $pInfo->products_name,
                         SMALL_IMAGE_WIDTH,
                         SMALL_IMAGE_HEIGHT,
@@ -2453,7 +2470,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                                   $cPath = $canonical_cPath['categories_id'];
                                                 }
                                                 $buttons = str_replace('<a ', '<a accesskey="' . ACCESSKEY_SELECT .'" ', tep_draw_button(IMAGE_EDIT, 'document',
-                                                tep_href_link(cfg('FILENAME_CATEGORIES',
+                                                tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product'))) . tep_draw_button(IMAGE_DELETE,
                                                 'trash',
                                                 tep_href_link(cfg('FILENAME_CATEGORIES'),
@@ -2463,7 +2480,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                                     'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=move_product')) . tep_draw_button(IMAGE_COPY_TO,
                                                 'copy',
                                                 tep_href_link(cfg('FILENAME_CATEGORIES'),
-                                                    'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to')));
+                                                    'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to'));
 
                                         if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
                                             $linker = new \FlexiPeeHP\Cenik(null, ['offline' => true]);

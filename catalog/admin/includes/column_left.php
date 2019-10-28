@@ -1,4 +1,5 @@
 <?php
+
 /*
   $Id$
 
@@ -59,7 +60,7 @@ if (tep_session_is_registered('admin')) {
 
 
 
-    $boxesMenu = new \Ease\TWB\Navbar('boxmenu','',['id'=>'adminAppMenu']);
+    $boxesMenu = new \Ease\TWB\Navbar('boxmenu', '', ['id' => 'adminAppMenu']);
     foreach ($cl_box_groups as $groups) {
         $apps = [];
         foreach ($groups['apps'] as $app) {
@@ -69,4 +70,11 @@ if (tep_session_is_registered('admin')) {
     }
 
     echo $boxesMenu;
+
+    \Ease\WebPage::singleton()->addJavaScript('
+$("#adminAppMenu").hover(function() {
+  $( this ).css( "font-size", "large" );
+}).mouseleave( function() {
+  $( this ).css( "font-size", "small" );
+} ); ');
 }    

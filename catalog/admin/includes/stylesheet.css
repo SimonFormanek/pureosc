@@ -122,7 +122,7 @@ FORM { display: inline; }
 }
 
 #adminAppMenu {
-    float: left;
+    font-size: small;
 }
 
 #adminAppMenu .navbar-collapse{
