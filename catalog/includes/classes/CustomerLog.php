@@ -344,6 +344,16 @@ class CustomerLog extends Engine {
                             break;
 
                         default:
+                             
+                            
+                            if($data['data'][$rowId]['answer'][0]=='{'){
+                                $newAnswer = '';
+                                foreach (json_decode( stripslashes( $data['data'][$rowId]['answer'])) as $key => $value){
+                                    $newAnswer .= $key.': '.$value.' ';
+                                }
+                                $data['data'][$rowId]['answer'] = $newAnswer;
+                            }
+                            
                             break;
                     }
                 }

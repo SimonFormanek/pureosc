@@ -15,14 +15,5 @@ namespace PureOSC\Admin\ui;
  */
 class UserlogDataTable extends \PureOSC\ui\DataTable {
 
- /**
-     * @link https://datatables.net/examples/advanced_init/column_render.html 
-     * 
-     * @return string Column rendering
-     */
-    public function columnDefs()
-    {
-        return '';
-    }
-    
+
 }

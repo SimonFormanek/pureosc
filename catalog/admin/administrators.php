@@ -59,7 +59,7 @@ if (tep_not_null($action)) {
 
             if (tep_db_num_rows($check_query) < 1) {
             
-                tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, PASSWORD_ARGON2ID)."')");
+                tep_db_query("insert into ". cfg('TABLE_ADMINISTRATORS')." (user_name, user_password) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, PASSWORD_ARGON2ID)."')"));
 //TODO:                tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, constant('HASH_ALGO'))."')");
                 
                 if (is_array($htpasswd_array)) {

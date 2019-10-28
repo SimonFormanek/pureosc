@@ -47,8 +47,7 @@ if (tep_not_null($action)) {
             /*             * * Altered for PWA **		
               $check_status_query = tep_db_query("select customers_name, customers_email_address, orders_status, date_purchased from " . TABLE_ORDERS . " where orders_id = '" . (int)$oID . "'");
              */
-            $check_status_query = tep_db_query("select customers_name, ".( defined('MODULE_CONTENT_PWA_LOGIN_STATUS')
-                    ? "customers_guest, " : '' )." customers_email_address, orders_status, date_purchased from ".TABLE_ORDERS." where orders_id = '".(int) $oID."'");
+            $check_status_query = tep_db_query("select customers_name, " . ( defined('MODULE_CONTENT_PWA_LOGIN_STATUS') ? "customers_guest, " : '' ) . " customers_email_address, orders_status, date_purchased from " . TABLE_ORDERS . " where orders_id = '" . (int) $oID . "'");
             /*             * * EOE for PWA ** */
             $check_status       = tep_db_fetch_array($check_status_query);
 
@@ -58,8 +57,7 @@ if (tep_not_null($action)) {
                 $customer_notified = '0';
                 if (isset($_POST['notify']) && ($_POST['notify'] == 'on')) {
                     $notify_comments = '';
-                    if (isset($_POST['notify_comments']) && ($_POST['notify_comments']
-                        == 'on')) {
+                    if (isset($_POST['notify_comments']) && ($_POST['notify_comments'] == 'on')) {
                         $notify_comments = sprintf(EMAIL_TEXT_COMMENTS_UPDATE,
                                 $comments)."\n\n";
                     }
@@ -482,7 +480,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                       $orders_query_raw = "select o.orders_id, o.customers_name, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$languages_id . "' and ot.class = 'ot_total' order by o.orders_id DESC";
                                      */
 //old      $orders_query_raw = "select o.orders_id, o.customers_name,  " . ( defined('MODULE_CONTENT_PWA_LOGIN_STATUS') ? "o.customers_guest, " : '' ) . " o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.customer_service_id, s.orders_status_name, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$languages_id . "' and ot.class = 'ot_total' order by o.orders_id DESC";
-                                    $orders_query_raw = "select o.orders_id, o.customers_name, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.customer_service_id, o.customers_guest, s.orders_status_name, s.orders_status_id, ot.text as order_total from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where o.orders_status = s.orders_status_id and s.language_id = '".(int) $languages_id."' and ot.class = 'ot_total' order by o.orders_id DESC";
+                                    $orders_query_raw = "select o.orders_id, o.customers_name, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.customer_service_id, s.orders_status_name, s.orders_status_id, ot.text as order_total from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where o.orders_status = s.orders_status_id and s.language_id = '".(int) $languages_id."' and ot.class = 'ot_total' order by o.orders_id DESC";
 
                                     /*                                     * * EOE for Order Maker ** */
                                     /*                                     * * EOE for PWA ** */
@@ -514,8 +512,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                 ICON_PREVIEW).'</a>&nbsp;'.$orders['customers_name'];
                                             ?></td>
         <?php /*         * * Altered for PWA ** */ ?>
-                                    <td class="dataTableContent" align="right"><?php 
-                                    echo $orders['customers_guest'] == '1' ? tep_image(DIR_WS_ICONS.'tick.gif') : '';
+                                    <td class="dataTableContent" align="right"><?php echo $orders['customers_guest']
+        == '1' ? tep_image(DIR_WS_ICONS.'tick.gif') : '';
         ?></td>
         <?php /*         * * EOE for PWA ** */ ?>
                                     <td class="dataTableContent" align="right"><?php echo strip_tags($orders['order_total']); ?></td>
@@ -619,10 +617,24 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 /*                 * * EOF alteration for Order Editor ** */
 
     
-                if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+                        if (cfg('USE_FLEXIBEE')) {
+
+                            $invoiceNum = 'ext:orders:' . $oInfo->orders_id;
                     if($oInfo->orders_status_id != 9){ // TODO: Variable
-                                $contents[] = array('align' => 'center', 'text' => tep_draw_button('<img title="'._('Cash Desk payment').'" width="100" src="images/icons/cash.svg">',
+                                $orderer = new \FlexiPeeHP\FakturaVydana($invoiceNum);
+
+                                if ($orderer->getMyKey()) {
+
+                                    $contents[] = array('align' => 'center', 'text' => tep_draw_button('<img title="' . _('Print post Order') . '" width="100" src="images/icons/poukazka_c.jpg">', 'document', tep_href_link('getpdf.php?evidence=faktura-vydana&report-name=slozenkaA$$SUM&id=' . $invoiceNum . '&embed=true', _('print cheque'))));
+                                    
+                                    if($orderer->getDataValue('zbyvaUhradit')){
+                                        $contents[] = array('align' => 'center', 'text' => tep_draw_button('<img title="' . _('Cash Desk payment') . '" width="100" src="images/icons/cash.svg"><br> '. $orderer->getDataValue('zbyvaUhradit').' '. FlexiPeeHP\FlexiBeeRO::uncode($orderer->getDataValue('mena')) ,
                             'document', tep_href_link('flexibeecash.php?id=ext:orders:' . $oInfo->orders_id )));
+                                    }
+
+                                    $contents[] = array('align' => 'center', 'text' => tep_draw_button('<img title="' . _('FlexiBee') . '" width="100" src="images/icons/flexibee.svg"><br>'. \FlexiPeeHP\FlexiBeeRO::uncode( $orderer->getRecordCode()),
+                                                'document', $orderer->getApiUrl()));
+                                }
                             }
                         }
 
