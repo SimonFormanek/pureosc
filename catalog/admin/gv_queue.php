@@ -6,6 +6,9 @@
   Copyright (c) 2002 - 2003 osCommerce
   Released under the GNU General Public License
  */
+
+namespace PureOSC\Admin;
+
 require('includes/application_top.php');
 
 $currencies = new AdminCurrencies();
@@ -24,7 +27,7 @@ if ($_GET['action'] == 'confirmrelease' && isset($_GET['gid'])) {
                 $currencies->format($gv_amount));
             $message         .= TEXT_REDEEM_COUPON_MESSAGE_BODY;
             $message         .= TEXT_REDEEM_COUPON_MESSAGE_FOOTER;
-            $mimemessage     = new email(array('X-Mailer: osCommerce bulk mailer'));
+            $mimemessage     = new \email(array('X-Mailer: osCommerce bulk mailer'));
             // add the message to the object
             $mimemessage->add_text($message);
             $mimemessage->build_message();
@@ -76,14 +79,14 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $gv_query_raw = "select c.customers_firstname, c.customers_lastname, gv.unique_id, gv.date_created, gv.amount, gv.order_id from ".TABLE_CUSTOMERS." c, ".TABLE_COUPON_GV_QUEUE." gv where (gv.customer_id = c.customers_id and gv.release_flag = 'N')";
-                            $gv_split     = new AdminSplitPageResults($_GET['page'],
+                            $gv_split     = new \AdminSplitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS, $gv_query_raw,
                                 $gv_query_numrows);
                             $gv_query     = tep_db_query($gv_query_raw);
                             while ($gv_list      = tep_db_fetch_array($gv_query)) {
                                 if (((!$_GET['gid']) || (@$_GET['gid'] == $gv_list['unique_id']))
                                     && (!$gInfo)) {
-                                    $gInfo = new objectInfo($gv_list);
+                                    $gInfo = new \objectInfo($gv_list);
                                 }
                                 if ((is_object($gInfo)) && ($gv_list['unique_id']
                                     == $gInfo->unique_id)) {
@@ -149,7 +152,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
         }
         if ((tep_not_null($heading)) && (tep_not_null($contents))) {
             echo '            <td width="25%" valign="top">'."\n";
-            $box = new box;
+            $box = new \box;
             echo $box->infoBox($heading, $contents);
             echo '            </td>'."\n";
         }

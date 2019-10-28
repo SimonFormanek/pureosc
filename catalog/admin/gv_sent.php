@@ -6,6 +6,9 @@
   Copyright (c) 2014 osCommerce
   Released under the GNU General Public License
  */
+
+namespace PureOSC\Admin;
+
 require('includes/application_top.php');
 
 $currencies   = new AdminCurrencies();
@@ -32,7 +35,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                             </tr>
                             <?php
                             $gv_query_raw = "select c.coupon_amount, c.coupon_code, c.coupon_id, et.sent_firstname, et.sent_lastname, et.customer_id_sent, et.emailed_to, et.date_sent from ".TABLE_COUPONS." c, ".TABLE_COUPON_EMAIL_TRACK." et where c.coupon_id = et.coupon_id order by et.date_sent DESC";
-                            $gv_split     = new AdminSplitPageResults($_GET['page'],
+                            $gv_split     = new \AdminSplitPageResults($_GET['page'],
                                 MAX_DISPLAY_SEARCH_RESULTS, $gv_query_raw,
                                 $gv_query_numrows);
                             $gv_query     = tep_db_query($gv_query_raw);
@@ -107,7 +110,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
         }
         if ((tep_not_null($heading)) && (tep_not_null($contents))) {
             echo '            <td width="25%" valign="top">'."\n";
-            $box = new box;
+            $box = new \box;
             echo $box->infoBox($heading, $contents);
             echo '            </td>'."\n";
         }
