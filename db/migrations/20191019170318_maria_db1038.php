@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class MariaDb103 extends AbstractMigration
+class MariaDb1038 extends AbstractMigration
 {
 
     /**
@@ -34,8 +34,6 @@ class MariaDb103 extends AbstractMigration
    public function change()
     {
         $this->execute("
-alter table products_description MODIFY products_head_keywords_tag text DEFAULT '';
-alter table products_description MODIFY products_head_desc_tag longtext DEFAULT '';
 alter table orders_total modify value decimal(15,4) default 0.0000;
    ");
 

@@ -59,7 +59,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     }
     $country   = tep_db_prepare_input($_POST['country']);
     $telephone = tep_db_prepare_input($_POST['telephone']);
-    $password  = tep_db_prepare_input($_POST['password']);
+//    $password  = tep_db_prepare_input($_POST['password']);
 
     $error = false;
 

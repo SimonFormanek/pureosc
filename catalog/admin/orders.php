@@ -482,7 +482,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                       $orders_query_raw = "select o.orders_id, o.customers_name, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$languages_id . "' and ot.class = 'ot_total' order by o.orders_id DESC";
                                      */
 //old      $orders_query_raw = "select o.orders_id, o.customers_name,  " . ( defined('MODULE_CONTENT_PWA_LOGIN_STATUS') ? "o.customers_guest, " : '' ) . " o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.customer_service_id, s.orders_status_name, ot.text as order_total from " . TABLE_ORDERS . " o left join " . TABLE_ORDERS_TOTAL . " ot on (o.orders_id = ot.orders_id), " . TABLE_ORDERS_STATUS . " s where o.orders_status = s.orders_status_id and s.language_id = '" . (int)$languages_id . "' and ot.class = 'ot_total' order by o.orders_id DESC";
-                                    $orders_query_raw = "select o.orders_id, o.customers_name, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.customer_service_id, s.orders_status_name, s.orders_status_id, ot.text as order_total from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where o.orders_status = s.orders_status_id and s.language_id = '".(int) $languages_id."' and ot.class = 'ot_total' order by o.orders_id DESC";
+                                    $orders_query_raw = "select o.orders_id, o.customers_name, o.payment_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.customer_service_id, o.customers_guest, s.orders_status_name, s.orders_status_id, ot.text as order_total from ".TABLE_ORDERS." o left join ".TABLE_ORDERS_TOTAL." ot on (o.orders_id = ot.orders_id), ".TABLE_ORDERS_STATUS." s where o.orders_status = s.orders_status_id and s.language_id = '".(int) $languages_id."' and ot.class = 'ot_total' order by o.orders_id DESC";
 
                                     /*                                     * * EOE for Order Maker ** */
                                     /*                                     * * EOE for PWA ** */
@@ -514,8 +514,8 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                                 ICON_PREVIEW).'</a>&nbsp;'.$orders['customers_name'];
                                             ?></td>
         <?php /*         * * Altered for PWA ** */ ?>
-                                    <td class="dataTableContent" align="right"><?php echo $orders['customers_guest']
-        == '1' ? tep_image(DIR_WS_ICONS.'tick.gif') : '';
+                                    <td class="dataTableContent" align="right"><?php 
+                                    echo $orders['customers_guest'] == '1' ? tep_image(DIR_WS_ICONS.'tick.gif') : '';
         ?></td>
         <?php /*         * * EOE for PWA ** */ ?>
                                     <td class="dataTableContent" align="right"><?php echo strip_tags($orders['order_total']); ?></td>

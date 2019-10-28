@@ -390,6 +390,8 @@ define('BOX_CUSTOMERS_CREATE_ORDER', 'Vytvořit objednávku', true);
 define('IMAGE_DETAIL', 'Zobrazit podrobnosti', true);
 define('TABLE_HEADING_EDIT_ORDERS', 'Změnit objednávku', true);
 define('TEXT_IMAGE_CREATE', 'Vytvořit objednávku', true);
+define('TEXT_INFO_CUSTOMER_SERVICE_ID', 'Entered by:', true);
+
 // EOF Order Maker
 
 

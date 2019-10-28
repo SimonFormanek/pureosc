@@ -1314,7 +1314,7 @@ if ($action == 'new_product') {
                         </script>
                         <?php
                     }
-                    $pbe =  new ui\ProductEditorBlock( _('Choose discount campagin') , new ui\DiscountSelector('discount_id', $_GET['pID'] ,'product') );
+                    $pbe =  new ui\ProductEditorBlock( _('Choose discount campagin') , new ui\DiscountSelector('discount_id', array_key_exists($_GET['pID'], $_GET) ? $_GET['pID'] : 0,'product') );
                     echo $pbe;
                     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
                         ?>

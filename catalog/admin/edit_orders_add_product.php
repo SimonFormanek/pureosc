@@ -24,7 +24,7 @@ include(DIR_WS_LANGUAGES.$language.'/'.FILENAME_ORDERS_EDIT);
 
 // Include currencies class
 
-$currencies = new AdminCurrencies();
+$currencies = new \AdminCurrencies();
 
 $oID   = tep_db_prepare_input((int) $_GET['oID']);
 $order = new manualOrder($oID);
