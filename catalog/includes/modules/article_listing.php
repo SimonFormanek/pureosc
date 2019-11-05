@@ -29,7 +29,10 @@ if ($listing_split->number_of_rows > 0) {
         <div>
             <?php
             // osc-help.net: added class=main to the link.
-            echo '<a class="main" href="'.tep_href_link(FILENAME_ARTICLE_INFO,
+            if(isset($articles_listing['articles_image'])){
+            echo '<img style="float:left;padding: 0 15px 1em 0;width:100px" src="' . DIR_WS_IMAGES . 'article_manager_uploads/' . $articles_listing['articles_image'] . '">';
+            }
+            echo '<div stylex="float:left;border:3px solid #ccc"><a class="main" href="'.tep_href_link(FILENAME_ARTICLE_INFO,
                 'articles_id='.$articles_listing['articles_id']).'"><h3>'.$articles_listing['articles_name'].'</h3></a> ';
             if (DISPLAY_AUTHOR_ARTICLE_LISTING == 'true' && tep_not_null($articles_listing['authors_name'])) {
                 echo TEXT_BY.' '.'<a href="'.tep_href_link(FILENAME_ARTICLES,
