@@ -32,10 +32,10 @@
             "PureOSC\\ui\\": "catalog/includes/classes/ui/",
             "PureOSC\\flexibee\\": "catalog/ext/flexibee/",
             "PureOSC\\Admin\\": "catalog/admin/includes/classes/",
+            "PureOSC\\Admin\\ui\\": "catalog/admin/includes/classes/ui/",
             "PureOSC\\Admin\\flexibee\\": "catalog/admin/ext/flexibee/"
         },
-        "classmap": ["catalog/includes/classes/", "catalog/includes/modules/", "catalog/admin/includes/classes/", "catalog/admin/includes/modules/", "catalog/admin/ext/aas/classes"],
-         "files": ["catalog/includes/functions/information.php"]        
+        "classmap": ["catalog/includes/classes/", "catalog/includes/modules/", "catalog/admin/includes/classes/", "catalog/admin/includes/modules/", "catalog/admin/ext/aas/classes"]
     },
     "scripts": {
         "post-install-cmd": [
