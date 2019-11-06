@@ -1,5 +1,4 @@
 <?php
-define('MYSQL_DEBUG', 'on'); //on|off=default 'on' set only for DEVEL debug !!!
 //LANG dependent START 
 if (!defined('DEFAULT_CURRENCY')) {
   define('DEFAULT_CURRENCY','CZK');
@@ -9,16 +8,17 @@ if (!defined('DEFAULT_LANGUAGE')) {
 }
 //LANG dependent END
 
+define('PRODUCTS_CANONICAL_TYPE','path'); //config: path / manufacturer
 //TODO: future ver define('CATALOG_DOMAIN', 'XCATALOGDOMAINX'); //TODO: www.eshop.cz Need changed: eshop.cz + dynamicaly en,fr,de added
 define('CATALOG_DOMAIN', 'XCSDOMAINX');
 define('CATALOG_ADMIN_DOMAIN', 'XADMINDOMAINX'); //new!!!!!!!
 define('DIR_FS_MASTER_ROOT_DIR', 'XDIRFSMASTERROOTDIRX/'); //trailing slash YES, catalog subdir/catalog NO (!)
 if (!defined('OSC_DIR')) {define('OSC_DIR','osc/');}
-if (!defined('SERVER_INSTANCE')) {define('SERVER_INSTANCE', 'admin');} // admin or empty for shop ???? TODO
+define('MYSQL_DEBUG', 'on'); //on|off=default 'on' set only for DEVEL debug !!!
 if (!defined('MAX_DISPLAY_SEARCH_RESULTS')) {define('MAX_DISPLAY_SEARCH_RESULTS','30');} // > procucts count for all Products on one Page (controversal option)
 define('SESSION_FORCE_COOKIE_USE', 'True');
 if (!isset($_SERVER['REQUEST_SCHEME'])){
-  $_SERVER['REQUEST_SCHEME'] ='https';
+  $_SERVER['REQUEST_SCHEME'] ='https'; //productions: 'https' localhost: 'http' NEW!!!
   $_SERVER['HTTP_HOST'] = CATALOG_DOMAIN;
 }
 if ($_SERVER['REQUEST_SCHEME'] =='https') {
@@ -63,16 +63,35 @@ define('DIR_FS_CATALOG_MODULES', DIR_FS_CATALOG . 'includes/modules/');
 define('DIR_FS_BACKUP', DIR_FS_ADMIN . '../../data/backups/');
 define('DIR_FS_DOWNLOAD', DIR_FS_CATALOG . 'download/');
 define('DIR_FS_DOWNLOAD_PUBLIC', DIR_FS_CATALOG . 'pub/');
+define('DIR_WS_DOWNLOAD_PUBLIC', 'pub/'); //??? je potreba?
 define('WEBMASTER_EMAIL', '00420602604992@sms.cz.o2.com');
 
-//  define('MULTI_DATABASE','false'); //true if defined multipe databases
+//DELEATUR!  define('MULTI_DATABASE','false'); //true if defined multipe databases
 //local db
 
 define('USE_PCONNECT', 'false');
 define('STORE_SESSIONS', 'mysql');
 define('CFG_TIME_ZONE', 'Europe/Prague'); // <------ need to bee configured
-//TODO-opravit aby fungovalo z DB  new_products stripe generator (catgories.php)
-$imgWidth = 110;
-$imgWidthSmall = 64;
+//DELEATUR!TODO-opravit aby fungovalo z DB  new_products stripe generator (catgories.php)
+//DELEATUR?$imgWidth = 110;
+//DELEATUR?$imgWidthSmall = 64;
 //Path to DB Error log, assumed HOME of apache user
 define('DATABASE_ERRORS_LOG','/logs/db_error.log');
+
+//define('FLEXIBEE_URL', 'https://demo.flexibee.eu:5434');
+/*
+ * Uživatel FlexiBee API
+ */
+//define('FLEXIBEE_LOGIN', 'winstrom');
+/*
+ * Heslo FlexiBee API
+ */
+//define('FLEXIBEE_PASSWORD', 'winstrom');
+/*
+ * Společnost v FlexiBee
+ */
+//define('FLEXIBEE_COMPANY', 'demo');
+
+define('EASE_LOGGER', 'syslog');
+define('EASE_APPNAME', 'pureosc');
+//define('SEO_ENABLED','false'); //uncommnent for debug only 

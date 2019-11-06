@@ -20,12 +20,18 @@ if (!defined('MAX_DISPLAY_SEARCH_RESULTS')) {define('MAX_DISPLAY_SEARCH_RESULTS'
 define('GENERATOR_INSTANCE', 'true'); // set to 'true'for generator dir set 'false' for shop or admin  <------ need to bee configured ! ! !
 
 define('DIR_FS_CATALOG', DIR_FS_MASTER_ROOT_DIR . OSC_DIR . 'catalog/');
+if (!isset($_SERVER['REQUEST_SCHEME'])){
+  $_SERVER['REQUEST_SCHEME'] ='https'; //productions: 'https' localhost: 'http' NEW!!!
+  $_SERVER['HTTP_HOST'] = CATALOG_DOMAIN;
+}
 if ($_SERVER['REQUEST_SCHEME'] =='https') { 
   $https = 'https';
-  define('ENABLE_SSL', true); // <------ need to bee configured
+  define('ENABLE_SSL', true);
+  define('ENABLE_SSL_CATALOG', true);
 } else {
   $https = 'http';
-  define('ENABLE_SSL', false); // <------ need to bee configured
+  define('ENABLE_SSL', false);
+  define('ENABLE_SSL_CATALOG', false);
 }
 define('HTTP_SERVER', $https . '://' . $_SERVER['HTTP_HOST']);
 
