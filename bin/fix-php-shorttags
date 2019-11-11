@@ -1,0 +1,7 @@
+#!/bin/bash
+#for old addons with short tags
+find . -name "*.php" |\
+    while read txt; do
+    sed 's/<?$/<?php/g' -i $txt
+    sed 's/<? /<?php /g' -i $txt
+done
