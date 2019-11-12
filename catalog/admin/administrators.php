@@ -58,10 +58,9 @@ if (tep_not_null($action)) {
             $check_query = tep_db_query("select id from ".TABLE_ADMINISTRATORS." where user_name = '".tep_db_input($username)."' limit 1");
 
             if (tep_db_num_rows($check_query) < 1) {
-            
-                tep_db_query("insert into ". cfg('TABLE_ADMINISTRATORS')." (user_name, user_password) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, PASSWORD_ARGON2ID)."')"));
-//TODO:                tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, constant('HASH_ALGO'))."')");
-                
+                tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, PASSWORD_ARGON2ID))."')");
+//TODO algo configurable:                tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, constant('HASH_ALGO'))."')");
+
                 if (is_array($htpasswd_array)) {
                     for ($i = 0, $n = sizeof($htpasswd_array); $i < $n; $i++) {
                         list($ht_username, $ht_password) = explode(':',
@@ -149,7 +148,10 @@ if (tep_not_null($action)) {
                     }
                 }
 
-                tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".tep_db_input(tep_encrypt_password($password))."' where id = '".(int) $_GET['aID']."'");
+                //tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".tep_db_input(tep_encrypt_password($password))."' where id = '".(int) $_GET['aID']."'");
+                tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".tep_db_input(password_hash($password, PASSWORD_ARGON2ID))."' where id = '".(int) $_GET['aID']."'");
+                
+                
             } elseif (!isset($_POST['htaccess']) || ($_POST['htaccess'] != 'true')) {
                 if (is_array($htpasswd_array)) {
                     for ($i = 0, $n = sizeof($htpasswd_array); $i < $n; $i++) {
