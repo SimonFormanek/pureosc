@@ -61,8 +61,11 @@ if (tep_not_null($action)) {
 
             if (empty($banners_html_text)) {
                 if (empty($banners_image_local)) {
-                    $banners_image = new upload('banners_image');
-                    $banners_image->set_destination(DIR_FS_CATALOG_IMAGES.$banners_image_target);
+                    $banners_image = new upload('banners_image'); 
+                    
+                    //$banners_image->set_destination(DIR_FS_CATALOG_IMAGES.$banners_image_target); 
+                    $banners_image->set_destination(DIR_FS_CATALOG_IMAGES); 
+                    
                     if (($banners_image->parse() === false) || ($banners_image->save()
                         === false)) {
                         $banner_error = true;
