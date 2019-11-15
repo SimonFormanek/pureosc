@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_CATEGORY_TITLE_TITLE', 'kategórie Názov');
   define('MODULE_HEADER_TAGS_CATEGORY_TITLE_DESCRIPTION', 'Pridajte názov aktuálnej kategórie do názvu stránky');
-?>

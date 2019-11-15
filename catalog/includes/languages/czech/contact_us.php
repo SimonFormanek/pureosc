@@ -22,4 +22,3 @@ define('ENTRY_ENQUIRY', 'Dotaz/zpráva:', true);
 define('ERROR_ACTION_RECORDER',
     'Vaše zpráva nebyla odeslána! Chcete-li odeslat dotaz, zkuste to znovu za %s minut. Omlouváme se za případné nepohodlí, toto opatření slouží jako ochrana před automatizovanými útoky na poštovní server.',
     true);
-?>

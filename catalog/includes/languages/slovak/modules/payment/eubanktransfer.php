@@ -29,4 +29,3 @@ define('MODULE_PAYMENT_EU_BANKTRANSFER_TEXT_EMAIL_FOOTER', 'Preveďte celkovú s
 "Banka: " . MODULE_PAYMENT_EU_BANKNAME . "\n\n" . 
 'Poznámka: Rozhodli ste sa zaplatiť bankovým prevodom, uistite sa, že platba je v náš bankový účet do 7 dní, inak bude vaša objednávka vymazané.'. "\n" .
 'Máme loď, ak platba bola zapísaná v náš bankový účet!');
-?>

@@ -157,4 +157,3 @@ function tep_crypt_apr_md5($password, $salt = null)
 
     return '$apr1$'.$salt.'$'.$tmp;
 }
-?>

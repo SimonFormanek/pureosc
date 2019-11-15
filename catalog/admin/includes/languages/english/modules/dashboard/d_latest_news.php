@@ -20,4 +20,3 @@ define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_GOOGLE_PLUS', 'Circle osCommerce
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_FACEBOOK', 'Become an osCommerce Fan on Facebook',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_TWITTER', 'Follow osCommerce on Twitter',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_RSS', 'Subscribe to the osCommerce News RSS Feed',true);
-?>

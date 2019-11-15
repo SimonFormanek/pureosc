@@ -173,5 +173,3 @@ function ht_robot_noindex_edit_pages($values, $key) {
 
     return $output;
 }
-
-?>

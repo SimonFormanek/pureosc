@@ -70,5 +70,3 @@ class ht_opensearch {
     }
 
 }
-
-?>

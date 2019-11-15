@@ -32,4 +32,3 @@ define('TEXT_INFO_STATUS_CHANGE', 'Zmena stavu:');
 
 define('TEXT_INFO_HEADING_DELETE_SPECIALS', 'Odstrániť zľavu');
 define('TEXT_INFO_DELETE_INTRO', 'Naozaj chcete odstrániť zľavu na tento produkt?');
-?>

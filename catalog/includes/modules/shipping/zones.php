@@ -293,5 +293,3 @@ class zones
         return $keys;
     }
 }
-
-?>

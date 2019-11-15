@@ -247,5 +247,3 @@ class AdminPasswordHash
         return $hash == $stored_hash;
     }
 }
-
-?>

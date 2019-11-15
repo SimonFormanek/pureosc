@@ -87,5 +87,3 @@ class bm_information
             'MODULE_BOXES_INFORMATION_SORT_ORDER');
     }
 }
-
-?>

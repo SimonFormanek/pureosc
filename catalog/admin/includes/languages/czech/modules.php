@@ -19,4 +19,3 @@ define('TEXT_INFO_ONLINE_STATUS', 'online status',true);
 define('TEXT_INFO_API_VERSION', 'API Version:',true);
 
 define('TEXT_MODULE_DIRECTORY', 'Řízení modulů:',true);
-?>

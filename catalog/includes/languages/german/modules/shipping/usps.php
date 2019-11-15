@@ -16,4 +16,3 @@ define('MODULE_SHIPPING_USPS_TEXT_OPT_PP', 'Parcel Post',true);
 define('MODULE_SHIPPING_USPS_TEXT_OPT_PM', 'Priority Mail',true);
 define('MODULE_SHIPPING_USPS_TEXT_OPT_EX', 'Express Mail',true);
 define('MODULE_SHIPPING_USPS_TEXT_ERROR', 'An error occured with the USPS shipping calculations.<br />If you prefer to use USPS as your shipping method, please contact the store owner.',true);
-?>

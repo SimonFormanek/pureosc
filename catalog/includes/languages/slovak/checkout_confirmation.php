@@ -27,4 +27,3 @@ define('HEADING_PAYMENT_INFORMATION', 'Informácie o platbe');
 define('HEADING_ORDER_COMMENTS', 'Komentár k vašej objednávke');
 
 define('TEXT_EDIT', 'Upraviť');
-?>

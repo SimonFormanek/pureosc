@@ -15,4 +15,3 @@
   define('MODULE_BOXES_MANUFACTURER_INFO_BOX_TITLE', 'Información del Fabricante',true);
   define('MODULE_BOXES_MANUFACTURER_INFO_BOX_HOMEPAGE', '%s Página Principal',true);
   define('MODULE_BOXES_MANUFACTURER_INFO_BOX_OTHER_PRODUCTS', 'Otros productos',true);
-?>

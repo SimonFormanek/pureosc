@@ -21,4 +21,3 @@ define('TEXT_EDIT_NOTE', '<strong>Editando Definiciones</strong><br /><br />Cada
 define('TEXT_FILE_DOES_NOT_EXIST', 'No existe archivo.',true);
 
 define('ERROR_FILE_NOT_WRITEABLE', 'Error: No puedo escribir sobre este fichero. Asigne correctamente permisos sobre: %s',true);
-?>

@@ -32,4 +32,3 @@ define('TEXT_CREATE_NEW_PAYMENT_ADDRESS', 'Vytvořte novou fakturační adresu.'
 
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'pokračujte v placení', true);
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', 'vybrat způsob platby.', true);
-?>

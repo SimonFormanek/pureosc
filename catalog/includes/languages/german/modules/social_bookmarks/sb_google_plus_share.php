@@ -13,4 +13,3 @@
   define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_TITLE', 'Google+ Teilen',true);
   define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_DESCRIPTION', 'Teilen Sie Produkten auf Google+.',true);
   define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_PUBLIC_TITLE', 'Teilen Sie es in Google+',true);
-?>

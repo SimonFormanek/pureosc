@@ -36,5 +36,3 @@ class securityCheck_install_directory
         return WARNING_INSTALL_DIRECTORY_EXISTS;
     }
 }
-
-?>

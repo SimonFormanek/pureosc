@@ -18,4 +18,3 @@
   define('MODULE_CONTENT_LOGIN_TEXT_PASSWORD_FORGOTTEN', 'Passwort vergessen? Hier anklicken!',true);
 
   define('MODULE_CONTENT_LOGIN_TEXT_LOGIN_ERROR', 'Fehler: Keine übereinstimmung mit dieser E-Mail Addresse und/oder Passwort.',true);
-?>

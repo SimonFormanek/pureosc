@@ -31,4 +31,3 @@ define('EMAIL_CONTACT',
     'Falls Sie Fragen zu unserem Kunden-Service haben, wenden Sie sich bitte an den Vertrieb: '.STORE_OWNER_EMAIL_ADDRESS.'.'."\n\n");
 define('EMAIL_WARNING',
     '<strong>Achtung:</strong> Diese eMail-Adresse wurde uns von einem Kunden bekannt gegeben. Falls Sie sich nicht angemeldet haben, senden Sie bitte eine eMail an '.STORE_OWNER_EMAIL_ADDRESS.'.'."\n");
-?>

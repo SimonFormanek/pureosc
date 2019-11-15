@@ -29,4 +29,3 @@ define('TEXT_INFO_HEADING_EDIT_LANGUAGE', 'Upraviť jazyk');
 define('TEXT_INFO_HEADING_DELETE_LANGUAGE', 'Odstrániť jazyk');
 
 define('ERROR_REMOVE_DEFAULT_LANGUAGE', 'Chyba: Predvolený jazyk sa nedá odstrániť. Vyberte prosím iný jazyk ako predvolený a akciu opakujte.');
-?>

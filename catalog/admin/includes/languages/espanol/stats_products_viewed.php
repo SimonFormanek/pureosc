@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'Productos Más Vistos',true);
 define('TABLE_HEADING_NUMBER', 'No.',true);
 define('TABLE_HEADING_PRODUCTS', 'Productos',true);
 define('TABLE_HEADING_VIEWED', 'Visto',true);
-?>

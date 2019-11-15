@@ -47,4 +47,3 @@ define('ERROR_FROM_ADDRESS',
 define('ERROR_ACTION_RECORDER',
     'Fehler: Es wurde bereits einen E-Mail verschickt. Versuchen Sie es in %s minuten noch einmal.',
     true);
-?>

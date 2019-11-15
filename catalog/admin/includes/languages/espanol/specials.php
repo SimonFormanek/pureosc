@@ -32,4 +32,3 @@ define('TEXT_INFO_STATUS_CHANGE', 'Cambio de Estado:',true);
 
 define('TEXT_INFO_HEADING_DELETE_SPECIALS', 'Eliminar Oferta',true);
 define('TEXT_INFO_DELETE_INTRO', 'Seguro que desea eliminar este precio de oferta ?',true);
-?>

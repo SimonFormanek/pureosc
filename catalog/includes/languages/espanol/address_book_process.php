@@ -46,4 +46,3 @@ define('ERROR_NONEXISTING_ADDRESS_BOOK_ENTRY',
 define('ERROR_ADDRESS_BOOK_FULL',
     'Su libreta de direcciones está llena. Por favor, elimine una dirección que no sea necesaria para guardar una nueva.',
     true);
-?>

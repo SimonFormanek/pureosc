@@ -16,4 +16,3 @@
   define('MODULE_BOXES_REVIEWS_BOX_WRITE_REVIEW', 'Escribir un comentario de este producto!',true);
   define('MODULE_BOXES_REVIEWS_BOX_NO_REVIEWS', 'En este momento no hay ningún comentario',true);
   define('MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS', '%s de 5 Estrellas!',true);
-?>

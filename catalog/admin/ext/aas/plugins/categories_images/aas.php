@@ -74,5 +74,3 @@ switch($action){
 	break;
 	
 }
-
-?>

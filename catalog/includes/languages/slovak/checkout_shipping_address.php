@@ -28,4 +28,3 @@ define('TEXT_CREATE_NEW_SHIPPING_ADDRESS', 'Použite prosím následujúcí form
 
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Pokračovať v objednávaní');
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', 'k výberu zvoleného spôsobu dopravy.');
-?>

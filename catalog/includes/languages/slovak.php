@@ -244,5 +244,3 @@ define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'Zadané číslo kreditnej karty je ne
 define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'Prvé štvorčíslie zadaného čísla kreditnej karty je: %s<br>Pokiaľ je toto číslo správne, tento typ kreditných kariet neprijímame.');
 
 define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . tep_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a><br />Powered by <a href="http://www.shopwebshop.eu/osc_shop/catalog/" target="_blank">shopwebshop.eu</a>');
-
-?>

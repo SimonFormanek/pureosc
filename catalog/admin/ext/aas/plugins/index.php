@@ -9,4 +9,3 @@
  */
 
 defined('AAS') or die;
-?>

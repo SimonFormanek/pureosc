@@ -14,4 +14,3 @@
   define('MODULE_BOXES_SHOPPING_CART_DESCRIPTION', 'Zobraziť Obsah košíku');
   define('MODULE_BOXES_SHOPPING_CART_BOX_TITLE', 'vozík');
   define('MODULE_BOXES_SHOPPING_CART_BOX_CART_EMPTY', 'Váš košík je prázdny');
-?>

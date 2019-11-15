@@ -11,4 +11,3 @@
 */
 
 define('WARNING_FILE_UPLOADS_DISABLED', 'Upozornenie: Nahrávanie súborov sú zakázané v konfiguračnom súbore php.ini.');
-?>

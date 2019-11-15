@@ -28,4 +28,3 @@ define('TABLE_HEADING_COMMENTS', 'Napísať komentár k objednávke:');
 
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Pokračovať v objednávaní');
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', 'pre potvrdenie tejto objednávky');
-?>

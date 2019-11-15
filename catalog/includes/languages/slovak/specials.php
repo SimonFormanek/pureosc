@@ -12,4 +12,3 @@
 
 define('NAVBAR_TITLE', 'Zľavy');
 define('HEADING_TITLE', 'Získajte ich pokiaľ sú Žhavé!');
-?>

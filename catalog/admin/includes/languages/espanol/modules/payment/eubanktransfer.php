@@ -28,4 +28,3 @@ define('MODULE_PAYMENT_EU_BANKTRANSFER_TEXT_EMAIL_FOOTER', 'Favor de transferir 
 "Banco: " . MODULE_PAYMENT_EU_BANKNAME . "\n\n" . 
 'Atenci&oacute;n:</b> Ha elegido el pago por transferencia bancaria, aseg&uacute;rese de que recibamos su pago antes de 7 dias o su orden ser&aacute; cancelada.'. "\n\n" .
 'Su orden no ser&aacute; enviada hasta que recibamos su pago!');
-?>

@@ -13,4 +13,3 @@
   define('MODULE_BOXES_AUTHORS_TITLE', 'Authors');
   define('MODULE_BOXES_AUTHORS_DESCRIPTION', 'Show Article Manager Authors InfoBox');
   define('MODULE_BOXES_AUTHORS_BOX_TITLE', 'Authors');
-?>

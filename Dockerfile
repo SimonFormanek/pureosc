@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -my wget gnupg \
 && curl -ssL -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
 && sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list' \
 && apt-get update \
-&& apt-get -y install  php7.3-fpm php7.3-mysqli php7.3-mbstring php7.3-curl php7.3-intl php7.3-gd php7.3-xml locales-all ssmtp bash \
+&& apt-get -y install  php7.3-fpm php7.3-mysqli php7.3-mbstring php7.3-curl php7.3-intl php7.3-gd php7.3-xml locales-all ssmtp bash webp \
 && sed -i '/listen =/c\listen = 9000' /etc/php/7.3/fpm/pool.d/www.conf
 
 #RUN apt-get update &&     apt-get install -y composer &&     apt-get clean

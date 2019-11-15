@@ -28,4 +28,3 @@ define('TEXT_EXPORT_INFO', 'Exportar la información del Servidor',true);
 
 define('SUCCESS_INFO_SUBMIT', 'Su información se ha enviado con éxito.',true);
 define('ERROR_INFO_SUBMIT', 'No se pudo conectar al sitio web osCommerce para enviar su configuración. Por favor, inténtelo de nuevo más tarde',true);
-?>

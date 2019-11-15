@@ -148,4 +148,3 @@ if ($password_reset_initiated === true) {
 
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

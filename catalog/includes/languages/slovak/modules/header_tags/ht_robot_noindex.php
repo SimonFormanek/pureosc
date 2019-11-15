@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_ROBOT_NOINDEX_TITLE', 'Robot NoIndex');
   define('MODULE_HEADER_TAGS_ROBOT_NOINDEX_DESCRIPTION', 'Pridať robot NOINDEX tagy zadanej stránky');
-?>

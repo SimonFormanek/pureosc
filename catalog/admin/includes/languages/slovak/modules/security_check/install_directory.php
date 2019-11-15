@@ -11,4 +11,3 @@
 */
 
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Inštalačný adresár existuje v: ' . DIR_FS_CATALOG . 'nainštalovať. Prosím, odstráňte tento adresár z bezpečnostných dôvodov.');
-?>

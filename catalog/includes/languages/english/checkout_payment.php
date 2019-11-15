@@ -33,4 +33,3 @@ define('TABLE_HEADING_COMMENTS', 'Add Comments About Your Order', true);
 
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Continue Checkout Procedure', true);
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', 'to confirm this order.', true);
-?>

@@ -77,5 +77,3 @@ class sb_google_buzz
         return array('MODULE_SOCIAL_BOOKMARKS_GOOGLE_BUZZ_STATUS', 'MODULE_SOCIAL_BOOKMARKS_GOOGLE_BUZZ_SORT_ORDER');
     }
 }
-
-?>

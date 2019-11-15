@@ -31,4 +31,3 @@ define('HEADING_TITLE', 'Vitajte na ' . STORE_NAME);
   define('TEXT_NOW', '\' teraz');
   define('TEXT_ALL_CATEGORIES', 'Všetky kategórie');
   define('TEXT_ALL_MANUFACTURERS', 'Všetci výrobcovia');
-?>

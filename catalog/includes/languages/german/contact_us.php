@@ -25,4 +25,3 @@ define('OPENING_HOURS', 'öffnungszeiten:', true);
 define('ERROR_ACTION_RECORDER',
     'Fehler: Es wurde bereits eine Anfrage gesendet. Versuchen Sie es in %s Minuten noch einmal.',
     true);
-?>

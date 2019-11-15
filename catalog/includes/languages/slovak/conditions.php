@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'Podmienky používania');
 
 define('TEXT_INFORMATION', 'Dajte sem svoje podmienky informácií.
 ');
-?>

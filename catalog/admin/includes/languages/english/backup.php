@@ -46,4 +46,3 @@ define('SUCCESS_LAST_RESTORE_CLEARED', 'Success: The last restoration date has b
 define('SUCCESS_DATABASE_SAVED', 'Success: The database has been saved.',true);
 define('SUCCESS_DATABASE_RESTORED', 'Success: The database has been restored.',true);
 define('SUCCESS_BACKUP_DELETED', 'Success: The backup has been removed.',true);
-?>

@@ -152,5 +152,3 @@ class table
         return $order_total;
     }
 }
-
-?>

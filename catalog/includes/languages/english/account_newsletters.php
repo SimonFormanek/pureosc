@@ -22,4 +22,3 @@ define('MY_NEWSLETTERS_GENERAL_NEWSLETTER_DESCRIPTION',
 
 define('SUCCESS_NEWSLETTER_UPDATED',
     'Your newsletter subscriptions have been successfully updated.', true);
-?>

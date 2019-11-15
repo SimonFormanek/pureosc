@@ -12,4 +12,3 @@
 
 define('MODULE_SECURITY_CHECK_EXTENDED_VERSION_CHECK_TITLE', 'Version Check',true);
 define('MODULE_SECURITY_CHECK_EXTENDED_VERSION_CHECK_ERROR', 'Sie haben schon über 30 Tage keinen Versions-Check gemacht. Bitte überprüfen Sie, ob eine neuere Version verfügbar ist.',true);
-?>

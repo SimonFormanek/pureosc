@@ -21,4 +21,3 @@ define('TEXT_BAD', '<small><font color="#ff0000"><b>ZLÝ</b></font></small>');
 define('TEXT_GOOD', '<small><font color="#ff0000"><b>DOBRÝ</b></font></small>');
 
 define('TEXT_CLICK_TO_ENLARGE', 'Kliknite pre zväčšenie');
-?>

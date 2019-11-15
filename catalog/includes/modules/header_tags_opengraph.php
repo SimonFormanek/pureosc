@@ -155,4 +155,3 @@ if ($showOG) {
         echo '<meta property="og:'.$tag.'" content="'.$data.'" />'."\n";
     }
 }
-?> 

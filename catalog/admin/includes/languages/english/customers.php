@@ -29,4 +29,3 @@ define('TEXT_DELETE_REVIEWS', 'Delete %s review(s)',true);
 define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Delete Customer',true);
 define('TYPE_BELOW', 'Type below',true);
 define('PLEASE_SELECT', 'Select One',true);
-?>

@@ -11,4 +11,3 @@
 */
 
   define('MODULES_ADMIN_MENU_TOOLS_DATABASE_TABLES', 'Tablas de la base de datos',true);
-?>

@@ -90,4 +90,3 @@ function calc_inpay_invoice_status_md5key($pars) {
     $md5v = md5($q);
     return $md5v;
 }
-?>

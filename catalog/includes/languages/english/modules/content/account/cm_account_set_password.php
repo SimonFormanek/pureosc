@@ -23,4 +23,3 @@
   define('MODULE_CONTENT_ACCOUNT_SET_PASSWORD_SET_PASSWORD_TITLE', 'Set Password',true);
 
   define('MODULE_CONTENT_ACCOUNT_SET_PASSWORD_SUCCESS_PASSWORD_SET', 'Your password has been successfully saved.',true);
-?>

@@ -17,4 +17,3 @@
   define('MODULE_BOXES_INFORMATION_BOX_CONDITIONS', 'Podmínky použití',true);
   define('MODULE_BOXES_INFORMATION_BOX_SHIPPING', 'Doprava &amp; vracení',true); //cs?
   define('MODULE_BOXES_INFORMATION_BOX_CONTACT', 'Kontakt',true);
-?>

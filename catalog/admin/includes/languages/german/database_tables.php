@@ -32,4 +32,3 @@ define('ACTION_UTF8_CONVERSION_FROM', 'from %s',true);
 define('ACTION_UTF8_DRY_RUN', 'Show queries only? %s&nbsp;',true);
 
 define('BUTTON_ACTION_GO', 'GO',true);
-?>

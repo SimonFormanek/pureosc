@@ -29,4 +29,3 @@ define('TEXT_INFO_HEADING_EDIT_LANGUAGE', 'Editar Idioma',true);
 define('TEXT_INFO_HEADING_DELETE_LANGUAGE', 'Eliminar Idioma',true);
 
 define('ERROR_REMOVE_DEFAULT_LANGUAGE', 'Error: El idioma seleccionado por defecto no se puede eliminar. Seleccione otro idioma predeterminado y pruebe de nuevo.',true);
-?>

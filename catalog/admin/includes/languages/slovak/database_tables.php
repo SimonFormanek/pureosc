@@ -32,4 +32,3 @@ define('ACTION_UTF8_CONVERSION_FROM', 'od %s');
 define('ACTION_UTF8_DRY_RUN', 'Zobraziť iba dotazy? %s&nbsp;');
 
 define('BUTTON_ACTION_GO', 'GO');
-?>

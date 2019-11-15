@@ -318,5 +318,3 @@ switch($action){
 
 	
 }
-
-?>

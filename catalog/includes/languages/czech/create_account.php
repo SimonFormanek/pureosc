@@ -60,4 +60,3 @@ define('EMAIL_COUPON_INCENTIVE_HEADER',
 define('EMAIL_COUPON_REDEEM',
     'To use the coupon enter the redeem code which is %s during checkout while making a purchase',
     true);
-?>

@@ -215,4 +215,3 @@ echo tep_draw_form('product_reviews_write',
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

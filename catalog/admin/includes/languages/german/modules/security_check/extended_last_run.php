@@ -11,4 +11,3 @@
 */
 
 define('MODULE_SECURITY_CHECK_EXTENDED_LAST_RUN_OLD', 'Es ist über 30 Tage her, das der extendend Sexurity Check durchgeführt wurde. Bitte machen Sie den Security Check under Tools -&gt; Sicherheitschecks (Security Checks).',true);
-?>

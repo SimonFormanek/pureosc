@@ -33,4 +33,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Naozaj chcete odstrániť túto hodnotu dane?'
 define('TEXT_INFO_HEADING_NEW_TAX_RATE', 'Nová hodnota dane');
 define('TEXT_INFO_HEADING_EDIT_TAX_RATE', 'Upraviť hodnotu dane');
 define('TEXT_INFO_HEADING_DELETE_TAX_RATE', 'Odstrániť hodnotu dane');
-?>

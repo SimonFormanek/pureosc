@@ -66,4 +66,3 @@ if (tep_db_num_rows($hts_tags_query)) {
     '  <div class="ui-widget-content infoBoxContents" style="padding-top:10px; text-align:center; color:#fff;">'.$content.'</div>'.
     '</div>';
 }
-?>

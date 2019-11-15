@@ -756,4 +756,3 @@ EOD;
       return isset($response_array['RESULT']) ? 1 : -1;
     }
   }
-?>

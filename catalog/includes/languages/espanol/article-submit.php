@@ -42,4 +42,3 @@ define('ERROR_INVALID_TOPIC', 'A topic must be selected.');
 define('ERROR_FAILED_IMAGE_UPLOAD', 'Image failed to upload.');
 define('ERROR_FAILED_IMAGE_INVALID',
     'Invalid image type. Only gif\'s, jpg\'s and png\'s are accepted image types.');
-?>

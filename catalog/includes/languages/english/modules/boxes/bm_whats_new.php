@@ -13,4 +13,3 @@
   define('MODULE_BOXES_WHATS_NEW_TITLE', 'What\'s New',true);
   define('MODULE_BOXES_WHATS_NEW_DESCRIPTION', 'Show the newest products',true);
   define('MODULE_BOXES_WHATS_NEW_BOX_TITLE', 'What\'s New?',true);
-?>

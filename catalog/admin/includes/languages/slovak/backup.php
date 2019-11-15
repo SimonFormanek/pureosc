@@ -46,4 +46,3 @@ define('SUCCESS_LAST_RESTORE_CLEARED', 'Posledný dátum obnovy bol úspešne vy
 define('SUCCESS_DATABASE_SAVED', 'Databáza bola úspešne uložená.');
 define('SUCCESS_DATABASE_RESTORED', 'Databáza bola úspešne obnovená.');
 define('SUCCESS_BACKUP_DELETED', 'Záloha bola úspešne odstránená.');
-?>

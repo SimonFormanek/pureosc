@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_PRODUCT_TITLE_TITLE', 'Título del Producto',true);
   define('MODULE_HEADER_TAGS_PRODUCT_TITLE_DESCRIPTION', 'Adicionar el título del producto actual para el título de la página',true);
-?>

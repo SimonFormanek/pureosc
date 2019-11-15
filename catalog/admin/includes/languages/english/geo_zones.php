@@ -45,4 +45,3 @@ define('TEXT_INFO_COUNTRY_ZONE', 'Zone:',true);
 define('TYPE_BELOW', 'All Zones',true);
 define('PLEASE_SELECT', 'All Zones',true);
 define('TEXT_ALL_COUNTRIES', 'All Countries',true);
-?>

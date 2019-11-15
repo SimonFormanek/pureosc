@@ -31,4 +31,3 @@ if (GZIP_COMPRESSION == 'true') {
         tep_gzip_output(GZIP_LEVEL);
     }
 }
-?>

@@ -21,4 +21,3 @@ define('TEXT_ALSO_PURCHASED_PRODUCTS', 'Zákazníci zároveň koupili také:', t
 define('TEXT_RELATED_PRODUCTS', 'Související produkty:', true);
 define('TEXT_PRODUCT_OPTIONS', 'možnosti:', true);
 define('TEXT_CLICK_TO_ENLARGE', 'klikněte pro zvětšení', true);
-?>

@@ -12,4 +12,3 @@
 
   define('MODULE_ORDER_TOTAL_TOTAL_TITLE', 'Total',true);
   define('MODULE_ORDER_TOTAL_TOTAL_DESCRIPTION', 'Total del pedido',true);
-?>

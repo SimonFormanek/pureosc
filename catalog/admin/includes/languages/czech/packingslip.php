@@ -17,4 +17,3 @@ define('TABLE_HEADING_PRODUCTS', 'Zboží',true);
 define('ENTRY_SOLD_TO', 'Adresa plátce:',true);
 define('ENTRY_SHIP_TO', 'Adresa dodání:',true);
 define('ENTRY_PAYMENT_METHOD', 'Způsob platby:',true);
-?>

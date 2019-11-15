@@ -31,4 +31,3 @@ define('TITLE_MONTH', 'Mes:',true);
 
 define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST', 'Error: El directorio de gráficos no existe. Por favor, cree un directorio \'graphs\' dentro de \'images\'.',true);
 define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE', 'Error: No se puede escribir en el directorio de gráficos.',true);
-?>

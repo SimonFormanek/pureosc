@@ -28,4 +28,3 @@
       $this->title = MODULE_CFG_MODULE_ACTION_RECORDER_TITLE;
     }
   }
-?>

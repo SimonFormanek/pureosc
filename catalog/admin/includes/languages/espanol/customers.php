@@ -29,4 +29,3 @@ define('TEXT_DELETE_REVIEWS', 'Eliminar %s comentario(s)',true);
 define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Eliminar Cliente',true);
 define('TYPE_BELOW', 'Escriba debajo',true);
 define('PLEASE_SELECT', 'Seleccionar uno',true);
-?>

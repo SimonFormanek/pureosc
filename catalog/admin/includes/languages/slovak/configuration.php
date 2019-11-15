@@ -17,4 +17,3 @@ define('TABLE_HEADING_ACTION', 'Akcia');
 define('TEXT_INFO_EDIT_INTRO', 'Spravte prosím potrebné zmeny');
 define('TEXT_INFO_DATE_ADDED', 'Pridané dňa:');
 define('TEXT_INFO_LAST_MODIFIED', 'Posledná úprava:');
-?>

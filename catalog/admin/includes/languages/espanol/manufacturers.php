@@ -39,4 +39,3 @@ define('TEXT_DELETE_WARNING_PRODUCTS', '<strong>ADVERTENCIA:</strong> Aùn hay p
 
 define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Error: No puedo escribir en este directorio. Asigne los permisos adecuados a: %s',true);
 define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Error: El directorio no existe: %s',true);
-?>

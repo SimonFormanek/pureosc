@@ -26,4 +26,3 @@ define('NOTIFICATIONS_DESCRIPTION', 'Pre odstránenie oznamu o produkte, zrušte
 define('NOTIFICATIONS_NON_EXISTING', 'Momentálne nemáte označený žiadny produkt pre zasielanie oznámení.<br><br>Pre pridanie produktov do vášho zoznamu kliknite na odkaz na stránke Detailné informácie o produkte.');
 
 define('SUCCESS_NOTIFICATIONS_UPDATED', 'Váš zoznam oznámení bol úspešne aktualizovaný.');
-?>

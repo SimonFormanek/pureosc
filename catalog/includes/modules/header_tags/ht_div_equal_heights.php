@@ -172,4 +172,3 @@ function ht_div_equal_heights_edit_pages($values, $key) {
 
     return $output;
 }
-?>

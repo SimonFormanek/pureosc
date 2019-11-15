@@ -23,4 +23,3 @@ define('ENTRY_ENQUIRY', 'Consulta:', true);
 define('ERROR_ACTION_RECORDER',
     'Error: Una consulta ya ha sido enviada. Por favor vuelva a intentarlo en %s minutos.',
     true);
-?>

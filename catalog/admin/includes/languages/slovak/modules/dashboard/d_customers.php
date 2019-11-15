@@ -13,4 +13,3 @@
 define('MODULE_ADMIN_DASHBOARD_CUSTOMERS_TITLE', 'Zákazníci');
 define('MODULE_ADMIN_DASHBOARD_CUSTOMERS_DESCRIPTION', 'Zobraziť najnovšie zákazníkmi');
 define('MODULE_ADMIN_DASHBOARD_CUSTOMERS_DATE', 'Dátum');
-?>

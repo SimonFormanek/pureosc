@@ -21,4 +21,3 @@ define('TEXT_NO_RESET_LINK_FOUND', 'Chyba: odkaz pre resetovanie hesla nebola n�
 define('TEXT_NO_EMAIL_ADDRESS_FOUND', 'Chyba:. E-mailová adresa nebola nájdená v našich záznamoch, skúste to prosím znova');
 
 define('SUCCESS_PASSWORD_RESET', 'Vaše heslo bolo úspešne aktualizované prosím prihláste sa s Vaším novým heslom .');
-?>

@@ -29,4 +29,3 @@ define('TEXT_DELETE_REVIEWS', 'Smazat %s Hodnocení',true);
 define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Smazat zákazníka',true);
 define('TYPE_BELOW', 'Vyplňte',true);
 define('PLEASE_SELECT', 'Vyberte',true);
-?>

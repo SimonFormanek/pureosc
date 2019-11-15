@@ -88,5 +88,3 @@ class bm_search
             'MODULE_BOXES_SEARCH_SORT_ORDER');
     }
 }
-
-?>

@@ -117,5 +117,3 @@ class sb_pinterest
             'MODULE_SOCIAL_BOOKMARKS_PINTEREST_SORT_ORDER');
     }
 }
-
-?>

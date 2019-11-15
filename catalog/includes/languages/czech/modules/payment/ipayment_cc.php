@@ -19,4 +19,3 @@
   define('MODULE_PAYMENT_IPAYMENT_CC_TEXT_CREDIT_CARD_NUMBER', 'Credit Card Number:',true);
   define('MODULE_PAYMENT_IPAYMENT_CC_TEXT_CREDIT_CARD_EXPIRES', 'Credit Card Expiry Date:',true);
   define('MODULE_PAYMENT_IPAYMENT_CC_TEXT_CREDIT_CARD_CHECKNUMBER', 'Credit Card Checknumber:',true);
-?>

@@ -12,4 +12,3 @@
 
 define('ERROR_NO_DEFAULT_LANGUAGE_DEFINED', 'Chyba: V súčasnej dobe neexistuje predvolený jazyk set. Prosím nastavte jednu na: Nástroj pre správu-> Lokalizácia-> Jazyky
 ');
-?>

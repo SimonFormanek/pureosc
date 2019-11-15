@@ -1140,4 +1140,3 @@ define('AAS_AAC_DISABLE_SEARCH', 'Disable search');
 define('AAS_AAC_DISABLE_PRINT', 'Disable print page');
 define('AAS_AAC_DISABLE_ALL_EDIT', 'Disable All Edit!');
 define('AAS_AAC_DISABLE_MASS_COLUMNS_EDIT', 'Disable Mass Columns Edit');
-?>

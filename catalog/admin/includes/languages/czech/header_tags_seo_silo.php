@@ -53,4 +53,3 @@ define('ENTRY_SILO_SORT_NAME', 'Name');
 define('ENTRY_SILO_SORT_CUSTOM', 'Custom');
 
 define('ERROR_INCORRECT_MAX_LINKS', 'Error - Number of links must be greater than 0 for %s language.');
-?>

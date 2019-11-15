@@ -1260,4 +1260,3 @@ echo tep_draw_form('header_tags_pseudo', FILENAME_HEADER_TAGS_SEO, '', 'post').t
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

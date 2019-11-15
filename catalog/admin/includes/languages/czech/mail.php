@@ -22,4 +22,3 @@ define('TEXT_NEWSLETTER_CUSTOMERS', 'Všichni adresáti novinek',true);
 
 define('NOTICE_EMAIL_SENT_TO', 'pozn.: e-mail zaslán: %s',true);
 define('ERROR_NO_CUSTOMER_SELECTED', 'Chyba: nebyl vybrán žádný zákazník.',true);
-?>

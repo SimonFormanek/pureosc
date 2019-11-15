@@ -12,4 +12,3 @@
 
   define('MODULE_ACTION_RECORDER_CONTACT_US_TITLE', 'Kontakt',true);
   define('MODULE_ACTION_RECORDER_CONTACT_US_DESCRIPTION', 'Loggt die Verwendung des Kontakt-Feature.',true);
-?>

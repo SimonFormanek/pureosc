@@ -170,4 +170,3 @@ function tep_cfg_google_adwords_conversion_get_format($value)
 
     return $format[$value];
 }
-?>

@@ -13,4 +13,3 @@
   define('MODULE_BOXES_SPECIALS_TITLE', 'ponuky');
   define('MODULE_BOXES_SPECIALS_DESCRIPTION', 'Zobraziť ponuku produktov');
   define('MODULE_BOXES_SPECIALS_BOX_TITLE', 'ponuky');
-?>

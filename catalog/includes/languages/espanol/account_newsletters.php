@@ -23,4 +23,3 @@ define('MY_NEWSLETTERS_GENERAL_NEWSLETTER_DESCRIPTION',
 
 define('SUCCESS_NEWSLETTER_UPDATED',
     'Sus suscripciones a boletines se han actualizado correctamente.', true);
-?>

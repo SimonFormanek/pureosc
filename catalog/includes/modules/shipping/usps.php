@@ -578,5 +578,3 @@ class usps
         return $list;
     }
 }
-
-?>

@@ -40,4 +40,3 @@ function quote_xe_currency($to, $from = DEFAULT_CURRENCY)
         return false;
     }
 }
-?>

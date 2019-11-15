@@ -17,7 +17,7 @@ function tep_href_link($page = '', $parameters = '', $connection = 'SSL',
 {
     global $request_type;
 
-    $page = tep_output_string($page);
+    $page = is_null($page) ? '' : tep_output_string($page);
 
     if ($page == '') {
         die('</td></tr></table></td></tr></table><br /><br /><font color="#ff0000"><strong>Error!</strong></font><br /><br /><strong>Unable to determine the page link!<br /><br />Function used:<br /><br />tep_href_link(\''.$page.'\', \''.$parameters.'\', \''.$connection.'\')</strong>');

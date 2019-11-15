@@ -72,5 +72,3 @@ class ht_product_title {
     }
 
 }
-
-?>

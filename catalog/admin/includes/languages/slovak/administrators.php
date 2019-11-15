@@ -32,4 +32,3 @@ define('HTPASSWD_SECURED', '<strong>Dodatočná ochrana s htaccess / htpasswd</s
 define('HTPASSWD_PERMISSIONS', '<strong>Dodatočná ochrana s htaccess / htpasswd</strong><p>Táto inštalácia osCommerce prihlásený Merchant Administration Tool nie je ďalej zaistená pomocou htaccess / htpasswd prostriedky.
 </p><p>Nasledujúce súbory musia byť zapisovateľný webovým serverom na to, aby htaccess / bezpečnostné htpasswd vrstvy:</p><ul><li>' . DIR_FS_ADMIN . '.htaccess</li><li>' . DIR_FS_ADMIN . '.htpasswd_oscommerce</li></ul><p>Obnoviť túto stránku pre potvrdenie, či boli nastavené správne povolenia súborov.
 </p>');
-?>

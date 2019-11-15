@@ -21,4 +21,3 @@ define('BOX_INFORMATION_HEADING', 'Cookie Privacy and Security', true);
 define('BOX_INFORMATION',
     'Cookies must be enabled to purchase online on this store to embrace privacy and security related issues regarding your visit to this site.<br /><br />By enabling cookie support on your browser, the communication between you and this site is strengthened to be certain it is you who are making transactions on your own behalf, and to prevent leakage of your privacy information.',
     true);
-?>

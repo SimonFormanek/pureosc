@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'Ochrana súkromia');
 
 define('TEXT_INFORMATION', 'Dajte nám tu svoje súkromie oznámenia.
 ');
-?>

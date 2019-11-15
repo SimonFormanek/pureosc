@@ -16,4 +16,3 @@ define('MODULE_SHIPPING_ZONES2_TEXT_WAY', 'Air'); //no longer used
 define('MODULE_SHIPPING_ZONES2_TEXT_UNITS', 'lb(s)');
 define('MODULE_SHIPPING_ZONES2_INVALID_ZONE', 'No shipping available to the selected country');
 define('MODULE_SHIPPING_ZONES2_UNDEFINED_RATE', 'The shipping rate cannot be determined at this time');
-?>

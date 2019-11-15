@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'Verificaciones de Seguridad',true);
 define('TABLE_HEADING_TITLE', 'Título',true);
 define('TABLE_HEADING_MODULE', 'Módulo',true);
 define('TABLE_HEADING_INFO', 'Información',true);
-?>

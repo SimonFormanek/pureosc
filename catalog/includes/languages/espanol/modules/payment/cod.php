@@ -11,4 +11,3 @@
 */
 
   define('MODULE_PAYMENT_COD_TEXT_DESCRIPTION', 'Pago contra entrega',true);
-?>

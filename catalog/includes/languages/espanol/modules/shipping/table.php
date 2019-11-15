@@ -15,4 +15,3 @@ define('MODULE_SHIPPING_TABLE_TEXT_DESCRIPTION', 'Tabla de Tarifas',true);
 define('MODULE_SHIPPING_TABLE_TEXT_WAY', 'Mejor manera',true);
 define('MODULE_SHIPPING_TABLE_TEXT_WEIGHT', 'Peso',true);
 define('MODULE_SHIPPING_TABLE_TEXT_AMOUNT', 'Cantidad',true);
-?>

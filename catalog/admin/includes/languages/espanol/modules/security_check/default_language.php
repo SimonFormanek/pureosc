@@ -11,4 +11,3 @@
 */
 
 define('ERROR_NO_DEFAULT_LANGUAGE_DEFINED', 'Error: No existe actualmente ningún conjunto de idioma predeterminado. Por favor, configure una en: Herramienta de Administración->Localización->Idiomas',true);
-?>

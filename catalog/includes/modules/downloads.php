@@ -79,4 +79,3 @@ if (tep_db_num_rows($downloads_query) > 0) {
 
     <?php
 }
-?>

@@ -49,4 +49,3 @@ function tep_whos_online_update_session_id($old_id, $new_id)
 {
     tep_db_query("update ".TABLE_WHOS_ONLINE." set session_id = '".tep_db_input($new_id)."' where session_id = '".tep_db_input($old_id)."'");
 }
-?>

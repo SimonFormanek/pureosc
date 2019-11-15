@@ -700,4 +700,3 @@ switch (ARTICLE_ENABLE_HTML_EDITOR) {
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

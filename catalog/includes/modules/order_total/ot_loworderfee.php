@@ -109,5 +109,3 @@ class ot_loworderfee
                 $this->keys())."')");
     }
 }
-
-?>

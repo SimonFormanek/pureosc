@@ -11,4 +11,3 @@
 */
 
 define('WARNING_CONFIG_FILE_WRITEABLE', 'No se puede escribir en el archivo de configuración: ' . DIR_FS_CATALOG . 'includes/configure.php. Este es un riesgo potencial de seguridad - por favor corrija los permisos de este archivo.',true);
-?>

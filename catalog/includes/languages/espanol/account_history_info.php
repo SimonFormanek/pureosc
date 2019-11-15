@@ -38,4 +38,3 @@ define('TEXT_NO_COMMENTS_AVAILABLE', 'No hay comentarios.', true);
 define('TABLE_HEADING_DOWNLOAD_DATE', 'Enlace Caducidad: ', true);
 define('TABLE_HEADING_DOWNLOAD_COUNT', ' descargas restantes', true);
 define('HEADING_DOWNLOAD', 'Enlaces de descarga', true);
-?>

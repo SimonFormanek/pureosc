@@ -202,4 +202,3 @@ echo tep_draw_button(IMAGE_BUTTON_WRITE_REVIEW, 'fa fa-commenting',
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

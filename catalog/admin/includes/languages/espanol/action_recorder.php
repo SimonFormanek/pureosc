@@ -25,4 +25,3 @@ define('TEXT_INFO_IDENTIFIER', 'Identificador:',true);
 define('TEXT_INFO_DATE_ADDED', 'Fecha de Alta:',true);
 
 define('SUCCESS_EXPIRED_ENTRIES', 'Exito: %s entradas vencidas se eliminaron.',true);
-?>

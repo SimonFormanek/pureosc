@@ -15,5 +15,3 @@
   define('MODULE_PAYMENT_GPWEBPAY_ERR_LIMIT', "Chyba platby: Limit karty překročen, nedostatek peněz na účtu nebo karta nepodporuje online platbu. Kontaktujte vydavatelskou banku vaší karty.");
   define('MODULE_PAYMENT_GPWEBPAY_ERR_TECHNICAL', "Chyba platby: Technický problém. Kontaktujte podporu eshopu.");
   define('MODULE_PAYMENT_GPWEBPAY_ERR_CANCELED', "Platba zrušena zákazníkem.");
-
-?>

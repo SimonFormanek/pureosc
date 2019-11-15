@@ -12,4 +12,3 @@
 
 define('MODULE_SECURITY_CHECK_EXTENDED_VERSION_CHECK_TITLE', 'Kontrola Verzie');
 define('MODULE_SECURITY_CHECK_EXTENDED_VERSION_CHECK_ERROR', 'Nová kontrola verzia bola vykonaná viac ako 30 dni. Preveďte prosím kontrolu, či je k dispozícii nová verzia.');
-?>

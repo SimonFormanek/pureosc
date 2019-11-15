@@ -12,4 +12,3 @@
 
 define('MODULE_SECURITY_CHECK_EXTENDED_MYSQL_UTF8_TITLE', 'MySQL UTF-8');
 define('MODULE_SECURITY_CHECK_EXTENDED_MYSQL_UTF8_ERROR', 'Niektoré databázové tabuľky je potrebné previesť na UTF-8 (utf8_unicode_ci). Prečítajte si prosím tabuľky pod Nástroje -&gt; Databázovej Tabuľky.');
-?>

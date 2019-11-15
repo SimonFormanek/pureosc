@@ -21,4 +21,3 @@ define('TEXT_CACHE_DIRECTORY', 'Directorio para la Caché: ',true);
 
 define('ERROR_CACHE_DIRECTORY_DOES_NOT_EXIST', 'Error: No existe el directorio para la caché. Configurelo en configure.php.',true);
 define('ERROR_CACHE_DIRECTORY_NOT_WRITEABLE', 'Error: No se ha podido escribir en el directorio para la caché.',true);
-?>

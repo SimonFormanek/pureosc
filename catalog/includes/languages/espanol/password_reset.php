@@ -28,4 +28,3 @@ define('TEXT_NO_EMAIL_ADDRESS_FOUND',
 define('SUCCESS_PASSWORD_RESET',
     'Su contraseña, se ha actualizado correctamente. Por favor Ingrese con su nueva contraseña.',
     true);
-?>

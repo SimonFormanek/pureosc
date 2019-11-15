@@ -21,4 +21,3 @@ define('TEXT_EDIT_NOTE', '<strong>Definition editieren</strong><br /><br />Jede 
 define('TEXT_FILE_DOES_NOT_EXIST', 'Datei nicht vorhanden.',true);
 
 define('ERROR_FILE_NOT_WRITEABLE', 'Fehler: Die Datei ist schreibgeschützt. Bitte korrigieren Sie die Zugriffsrechte für: %s',true);
-?>

@@ -67,5 +67,3 @@ class ht_pages_meta {
     }
 
 }
-
-?>

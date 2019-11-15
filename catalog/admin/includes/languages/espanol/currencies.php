@@ -40,4 +40,3 @@ define('TEXT_INFO_CURRENCY_UPDATED', 'El tipo de cambio para %s (%s) se ha actua
 define('ERROR_REMOVE_DEFAULT_CURRENCY', 'Error: La moneda seleccionada por defecto no se puede eliminar. Seleccione otra moneda predeterminada y pruebe de nuevo.',true);
 define('ERROR_CURRENCY_INVALID', 'Error: El tipo de cambio para %s (%s) no fue actualizado v&iacute;a %s. Se trata de un código de moneda válido ?',true);
 define('WARNING_PRIMARY_SERVER_FAILED', 'Advertencia: El tipo de cambio primario (%s) fallo por %s (%s) - probando el servidor de tipo de cambio secundario.',true);
-?>

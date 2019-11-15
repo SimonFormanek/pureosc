@@ -64,4 +64,3 @@ define('ERROR_UNKNOWN_STATUS_FLAG', 'Chyba: Neznámy príznak stavu.');
 
 define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST', 'Chyba: Priečinok pre grafy neexistuje. Prosím vytvorte priečinok \'graphs\' vo vnútri priečinka \'images\'.');
 define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE', 'Chyba: Do priečinka grafov sa nedá zapisovať.');
-?>

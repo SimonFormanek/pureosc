@@ -13,4 +13,3 @@
   define('MODULE_BOXES_BEST_SELLERS_TITLE', 'najpredávanejšie');
   define('MODULE_BOXES_BEST_SELLERS_DESCRIPTION', 'Všetky a kategórie Najpredávanejšie');
   define('MODULE_BOXES_BEST_SELLERS_BOX_TITLE', 'najpredávanejšie');
-?>

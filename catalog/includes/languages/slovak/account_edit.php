@@ -18,4 +18,3 @@ define('HEADING_TITLE', 'Informácie o mojom účte');
 define('MY_ACCOUNT_TITLE', 'Môj účet');
 
 define('SUCCESS_ACCOUNT_UPDATED', 'Váš účet bol úspešne aktualizovaný.');
-?>

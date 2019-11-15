@@ -105,5 +105,3 @@ class bm_currencies
             'MODULE_BOXES_CURRENCIES_SORT_ORDER');
     }
 }
-
-?>

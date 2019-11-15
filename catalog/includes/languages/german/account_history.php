@@ -25,4 +25,3 @@ define('TEXT_ORDER_COST', 'Summe:', true);
 define('TEXT_VIEW_ORDER', 'Bestellung ansehen', true);
 
 define('TEXT_NO_PURCHASES', 'Sie haben noch keine Bestellungen getätigt.', true);
-?>

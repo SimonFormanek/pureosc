@@ -32,4 +32,3 @@ define('TABLE_HEADING_COMMENTS', 'Agregue los comentarios sobre su pedido', true
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE',
     'Continuar con el proceso de Compra', true);
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', 'para confirmar este pedido.', true);
-?>

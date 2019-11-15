@@ -101,5 +101,3 @@ class bm_languages
             'MODULE_BOXES_LANGUAGES_SORT_ORDER');
     }
 }
-
-?>

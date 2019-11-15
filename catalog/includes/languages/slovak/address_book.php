@@ -23,4 +23,3 @@ define('ADDRESS_BOOK_TITLE', 'Položky adresára');
 define('PRIMARY_ADDRESS', '(primárna adresa)');
 
 define('TEXT_MAXIMUM_ENTRIES', '<font color="#ff0000"><b>POZNÁMKA.</b></font> Maximálny počet záznamov v adresári %s.');
-?>

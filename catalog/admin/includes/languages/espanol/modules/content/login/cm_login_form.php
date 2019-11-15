@@ -18,4 +18,3 @@
   define('MODULE_CONTENT_LOGIN_TEXT_PASSWORD_FORGOTTEN', 'Password forgotten? Click here.',true);
 
   define('MODULE_CONTENT_LOGIN_TEXT_LOGIN_ERROR', 'Error: No match for E-Mail Address and/or Password.',true);
-?>

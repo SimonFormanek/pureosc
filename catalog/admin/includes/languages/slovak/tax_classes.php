@@ -25,4 +25,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Naozaj chcete odstrániť túto skupinu dane?'
 define('TEXT_INFO_HEADING_NEW_TAX_CLASS', 'Nová skupina dane');
 define('TEXT_INFO_HEADING_EDIT_TAX_CLASS', 'Upraviť skupinu dane');
 define('TEXT_INFO_HEADING_DELETE_TAX_CLASS', 'Odstrániť skupinu dane');
-?>

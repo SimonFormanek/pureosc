@@ -52,5 +52,3 @@ if(tep_not_null($name) && tep_not_null($email) && tep_not_null($subject) && tep_
     else echo '0';
     
 }else echo '0';
-
-?>

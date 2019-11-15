@@ -19,4 +19,3 @@
   define('MODULE_PAYMENT_IPAYMENT_ELV_TEXT_BANK_ACCOUNT_NUMBER', 'N&uacute;mero de la Cuenta Bancaria:',true);
   define('MODULE_PAYMENT_IPAYMENT_ELV_TEXT_BANK_CODE', 'C&oacute;digo del Banco:',true);
   define('MODULE_PAYMENT_IPAYMENT_ELV_TEXT_BANK_NAME', 'Nombre del Banco:',true);
-?>

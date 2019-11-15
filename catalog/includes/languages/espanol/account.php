@@ -32,4 +32,3 @@ define('EMAIL_NOTIFICATIONS_NEWSLETTERS',
     'Suscribirse o cancelar la suscripción a boletines de noticias.', true);
 define('EMAIL_NOTIFICATIONS_PRODUCTS',
     'Ver o modificar mis notificaciones de producto.', true);
-?>

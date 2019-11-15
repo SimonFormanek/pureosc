@@ -151,5 +151,3 @@ class ht_google_analytics
             'MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_SORT_ORDER');
     }
 }
-
-?>

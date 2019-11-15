@@ -29,4 +29,3 @@
   define('MODULE_PAYMENT_PAYPAL_STANDARD_DIALOG_CONNECTION_SUCCESS', 'Úspech!');
   define('MODULE_PAYMENT_PAYPAL_STANDARD_DIALOG_CONNECTION_FAILED', 'Nepodarilo! Prečítajte si prosím overte, nastavenie SSL certifikát a skúste to znova.');
   define('MODULE_PAYMENT_PAYPAL_STANDARD_DIALOG_CONNECTION_ERROR', 'Došlo k chybe. Prosím aktualizujte stránku, skontrolujte nastavenia a skúste to znova.');
-?>

@@ -23,4 +23,3 @@ define('TEXT_REDEEM_COUPON_MESSAGE_AMOUNT', 'The Gift Voucher(s) you purchased a
 define('TEXT_REDEEM_COUPON_MESSAGE_BODY', '',true);
 define('TEXT_REDEEM_COUPON_MESSAGE_FOOTER', '',true);
 define('TEXT_REDEEM_COUPON_SUBJECT', 'Gift Voucher Purchase',true);
-?>

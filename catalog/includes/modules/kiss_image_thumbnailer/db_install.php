@@ -191,4 +191,3 @@ if (!defined('KISSIT_IMAGE_MODULE')) {
 		tep_db_query("UPDATE `configuration` SET `sort_order`='34'  WHERE configuration_key= 'KISSIT_THUMBS_MAIN_DIR';");
 		tep_db_query("UPDATE `configuration` SET `sort_order`='35'  WHERE configuration_key= 'KISSIT_RESET_IMAGE_THUMBS';");
 }
-?>

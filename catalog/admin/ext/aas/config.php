@@ -286,4 +286,3 @@ $_table_td_rules = array(
     'date_added' => array('style' => '', 'class' => ''),
     'last_modified' => array('style' => '', 'class' => '')
 );
-?>

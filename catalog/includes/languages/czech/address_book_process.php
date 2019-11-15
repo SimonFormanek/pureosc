@@ -44,4 +44,3 @@ define('ERROR_NONEXISTING_ADDRESS_BOOK_ENTRY', 'Tato adresa v adresáři není.'
 define('ERROR_ADDRESS_BOOK_FULL',
     'Váš adresář je plný. Smažte některou nepoužívanou adresu a potom přidejte novou.',
     true);
-?>

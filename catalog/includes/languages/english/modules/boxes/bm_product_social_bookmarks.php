@@ -13,4 +13,3 @@
   define('MODULE_BOXES_PRODUCT_SOCIAL_BOOKMARKS_TITLE', 'Product Social Bookmarks',true);
   define('MODULE_BOXES_PRODUCT_SOCIAL_BOOKMARKS_DESCRIPTION', 'Show social bookmarks on the product information page',true);
   define('MODULE_BOXES_PRODUCT_SOCIAL_BOOKMARKS_BOX_TITLE', 'Share Product',true);
-?>

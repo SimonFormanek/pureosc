@@ -326,4 +326,3 @@ function IsValidImageFile($imgName)
     $fileType       = pathinfo($imgName);
     return (in_array($fileType['extension'], $fileTypesArray));
 }
-?>

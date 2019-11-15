@@ -27,4 +27,3 @@
   define('MODULE_CONTENT_ACCOUNT_SAGE_PAY_CARDS_TEXT_NO_CARDS', '<p>Žiadne karty neboli doteraz ulo ¾ ené.</p>');
 
   define('MODULE_CONTENT_ACCOUNT_SAGE_PAY_CARDS_SUCCESS_DELETED', 'Karta bola úspešne zmazaná.');
-?>

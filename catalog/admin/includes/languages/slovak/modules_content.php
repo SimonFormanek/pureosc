@@ -22,4 +22,3 @@ define('TEXT_INFO_ONLINE_STATUS', 'online status');
 define('TEXT_INFO_API_VERSION', 'API Verzia:');
 
 define('TEXT_MODULE_DIRECTORY', 'Modul Kategória:');
-?>

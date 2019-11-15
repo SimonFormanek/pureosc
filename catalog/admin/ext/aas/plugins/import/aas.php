@@ -104,4 +104,3 @@ function get_extension($file_name){
 	$ext = array_pop($ext);
 	return strtolower($ext);
 }
-?>

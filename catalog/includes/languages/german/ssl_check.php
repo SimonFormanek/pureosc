@@ -21,4 +21,3 @@ define('BOX_INFORMATION_HEADING', 'Privatsphäre und Sicherheit', true);
 define('BOX_INFORMATION',
     'Die von Ihrem Browser erzeugte SSL-Session ID wird von uns bei jedem Zugriff auf eine sichere Seite überprüft.<br><br>Diese überprüfung garantiert, dass der Zugriff tatsächlich von Ihrem Browser erfolgte und nicht von einem anderen Browser stammt.',
     true);
-?>

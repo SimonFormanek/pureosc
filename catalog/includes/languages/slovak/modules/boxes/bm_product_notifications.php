@@ -15,4 +15,3 @@
   define('MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_TITLE', 'Katalóg oznámenia');
   define('MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_NOTIFY', 'Informujte ma o zmenách <strong>%s</strong>');
   define('MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_NOTIFY_REMOVE', 'Informujte ma nie pri aktualizácii <strong>%s</strong>');
-?>

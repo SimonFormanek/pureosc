@@ -12,4 +12,3 @@
 
   define('MODULE_ACTION_RECORDER_CONTACT_US_TITLE', 'Contact Us',true);
   define('MODULE_ACTION_RECORDER_CONTACT_US_DESCRIPTION', 'Record usage of the Contact Us feature.',true);
-?>

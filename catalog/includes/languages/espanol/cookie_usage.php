@@ -21,4 +21,3 @@ define('BOX_INFORMATION_HEADING', 'Privacidad y Seguridad de los Cookies', true)
 define('BOX_INFORMATION',
     'Se deben activar las Cookies para continuar comprando en esta tienda y para realzar la privacidad y seguridad de su visita a este sitio.<br /><br />Habilitando el soporte para cookies en su navegador, la comunicación entre usted y este sitio se ve fortalecida para asegurarnos que es Usted quien hace las transacciones en su nombre propio, y para evitar el robo de su información privada.',
     true);
-?>

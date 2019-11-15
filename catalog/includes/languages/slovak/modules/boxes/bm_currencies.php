@@ -13,4 +13,3 @@
   define('MODULE_BOXES_CURRENCIES_TITLE', 'Mena');
   define('MODULE_BOXES_CURRENCIES_DESCRIPTION', 'Zobraziť dostupné meny');
   define('MODULE_BOXES_CURRENCIES_BOX_TITLE', 'Meny');
-?>

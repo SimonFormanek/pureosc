@@ -32,4 +32,3 @@ define('BLOG_EMAIL_TEXT_BODY',
 define('BLOG_EMAIL_TEXT_SUBJECT', 'Článek blogu byl odeslán %s');
 
 define('ERROR_NO_COMMENT', 'Vyžaduje se komentář.');
-?>

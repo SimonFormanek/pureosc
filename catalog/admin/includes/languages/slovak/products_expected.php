@@ -17,4 +17,3 @@ define('TABLE_HEADING_DATE_EXPECTED', 'Dátum príchodu');
 define('TABLE_HEADING_ACTION', 'Akcia');
 
 define('TEXT_INFO_DATE_EXPECTED', 'Dátum príchodu:');
-?>

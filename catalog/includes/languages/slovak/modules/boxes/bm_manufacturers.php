@@ -13,4 +13,3 @@
   define('MODULE_BOXES_MANUFACTURERS_TITLE', 'Výrobca');
   define('MODULE_BOXES_MANUFACTURERS_DESCRIPTION', 'Zobraziť zoznam výrobcov');
   define('MODULE_BOXES_MANUFACTURERS_BOX_TITLE', 'Výrobca');
-?>

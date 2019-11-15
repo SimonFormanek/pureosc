@@ -18,4 +18,3 @@
   define('MODULE_CONTENT_LOGIN_TEXT_PASSWORD_FORGOTTEN', 'Zabudli ste heslo? Kliknite tu.');
 
   define('MODULE_CONTENT_LOGIN_TEXT_LOGIN_ERROR', 'Chyba: Žiadny zápas pre e-mailovú adresu a/alebo heslo.');
-?>

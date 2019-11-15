@@ -12,4 +12,3 @@
 
   define('MODULE_ACTION_RECORDER_RESET_PASSWORD_TITLE', 'Customer Password Reset',true);
   define('MODULE_ACTION_RECORDER_RESET_PASSWORD_DESCRIPTION', 'Record usage of customer password resets.',true);
-?>

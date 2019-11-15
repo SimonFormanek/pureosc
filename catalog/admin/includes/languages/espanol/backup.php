@@ -46,4 +46,3 @@ define('SUCCESS_LAST_RESTORE_CLEARED', 'Exito: La &uacute;ltima fecha de restaur
 define('SUCCESS_DATABASE_SAVED', 'Exito: La base de datos ha sido grabada.',true);
 define('SUCCESS_DATABASE_RESTORED', 'Exito: La base de datos ha sido restaurada.',true);
 define('SUCCESS_BACKUP_DELETED', 'Exito: La copia de seguridad ha sido borrada.',true);
-?>

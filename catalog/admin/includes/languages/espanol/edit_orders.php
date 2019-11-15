@@ -163,4 +163,3 @@ define('AJAX_WORKING', 'Working, please wait....',true);
 
 // Purchase Without Account
   define('EMAIL_WARNING', 'NOTE: This email address has been submitted by a visitor to our online-shop. If you were not this visitor, please send a message to:  ' . STORE_OWNER_EMAIL_ADDRESS . 'Thank you for your purchase and have a nice day.',true);
-?>

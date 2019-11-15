@@ -22,4 +22,3 @@ define('SUCCESS_PASSWORD_UPDATED', 'Ihr Passwort wurde erfolgreich geändert!',
 define('ERROR_CURRENT_PASSWORD_NOT_MATCHING',
     'Das eingegebene Passwort stimmt nicht mit dem gespeichertem Passwort überein. Bitte probieren Sie es noch einmal.',
     true);
-?>

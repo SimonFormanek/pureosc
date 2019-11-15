@@ -134,5 +134,3 @@ class item
         return $number_of_items;
     }
 }
-
-?>

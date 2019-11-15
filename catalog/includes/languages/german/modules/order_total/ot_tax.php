@@ -12,4 +12,3 @@
 
   define('MODULE_ORDER_TOTAL_TAX_TITLE', 'Steuern',true);
   define('MODULE_ORDER_TOTAL_TAX_DESCRIPTION', 'Auftrags Steuern',true);
-?>

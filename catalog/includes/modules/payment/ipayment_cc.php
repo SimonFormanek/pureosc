@@ -334,5 +334,3 @@ class ipayment_cc
         }
     }
 }
-
-?>

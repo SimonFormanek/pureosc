@@ -81,5 +81,3 @@ class ht_category_meta
             'MODULE_HEADER_TAGS_CATEGORY_META_KEYWORDS_STATUS', 'MODULE_HEADER_TAGS_CATEGORY_META_SORT_ORDER');
     }
 }
-
-?>

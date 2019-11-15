@@ -12,4 +12,3 @@
 
   define('MODULE_ORDER_TOTAL_TOTAL_TITLE', 'Celkom');
   define('MODULE_ORDER_TOTAL_TOTAL_DESCRIPTION', 'Objednávka celkom');
-?>

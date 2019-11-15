@@ -76,5 +76,3 @@ class sb_twitter
         return array('MODULE_SOCIAL_BOOKMARKS_TWITTER_STATUS', 'MODULE_SOCIAL_BOOKMARKS_TWITTER_SORT_ORDER');
     }
 }
-
-?>

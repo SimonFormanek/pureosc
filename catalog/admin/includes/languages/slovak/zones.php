@@ -26,4 +26,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Ste si istý že chcete odstrániť túto zón
 define('TEXT_INFO_HEADING_NEW_ZONE', 'Nová zóna');
 define('TEXT_INFO_HEADING_EDIT_ZONE', 'Upraviť zónu');
 define('TEXT_INFO_HEADING_DELETE_ZONE', 'Odstrániť zónu');
-?>

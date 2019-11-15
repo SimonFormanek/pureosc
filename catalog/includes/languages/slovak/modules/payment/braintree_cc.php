@@ -35,4 +35,3 @@
   define('MODULE_PAYMENT_BRAINTREE_CC_ERROR_CARDNUMBER', 'The card number was not able to be processed. Please try again and if problems persist, please try another payment method.');
   define('MODULE_PAYMENT_BRAINTREE_CC_ERROR_CARDEXPIRES', 'The card expiry date was not able to be processed. Please try again and if problems persist, please try another payment method.');
   define('MODULE_PAYMENT_BRAINTREE_CC_ERROR_CARDCVV', 'The card security code was not able to be processed. Please try again and if problems persist, please try another payment method.');
-?>

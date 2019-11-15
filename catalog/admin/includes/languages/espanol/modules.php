@@ -19,4 +19,3 @@ define('TEXT_INFO_ONLINE_STATUS', 'Estado de conexión',true);
 define('TEXT_INFO_API_VERSION', 'Versión de la API:',true);
 
 define('TEXT_MODULE_DIRECTORY', 'Directorio de Módulos:',true);
-?>

@@ -75,5 +75,3 @@ class ar_reset_password
         return array('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES', 'MODULE_ACTION_RECORDER_RESET_PASSWORD_ATTEMPTS');
     }
 }
-
-?>

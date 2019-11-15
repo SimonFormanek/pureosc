@@ -13,4 +13,3 @@
   define('MODULE_BOXES_MANUFACTURERS_TITLE', 'Manufacturers',true);
   define('MODULE_BOXES_MANUFACTURERS_DESCRIPTION', 'Show a list of manufacturers',true);
   define('MODULE_BOXES_MANUFACTURERS_BOX_TITLE', 'Manufacturers',true);
-?>

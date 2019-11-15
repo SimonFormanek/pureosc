@@ -32,4 +32,3 @@ define('TEXT_WARNING_OF_DELETE', 'Esta opción tiene productos y valores - no es
 define('TEXT_OK_TO_DELETE', 'Esta opci&oacute;n no esta en uso - es seguro eliminarla.',true);
 define('TEXT_OPTION_ID', 'ID de Opción',true);
 define('TEXT_OPTION_NAME', 'Nombre de Opción',true);
-?>

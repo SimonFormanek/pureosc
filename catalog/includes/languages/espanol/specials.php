@@ -12,4 +12,3 @@
 
 define('NAVBAR_TITLE', 'Ofertas', true);
 define('HEADING_TITLE', '¡Adquierelas mientras están calientes!', true);
-?>

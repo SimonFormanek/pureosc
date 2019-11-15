@@ -23,4 +23,3 @@ define('TEXT_ALSO_PURCHASED_PRODUCTS',
     'Clientes que compraron este producto, también han comprado', true);
 define('TEXT_PRODUCT_OPTIONS', 'Opciones:', true);
 define('TEXT_CLICK_TO_ENLARGE', 'Haga click para ampliar', true);
-?>

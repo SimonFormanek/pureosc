@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'meist besuchte Artikel',true);
 define('TABLE_HEADING_NUMBER', 'Nr.',true);
 define('TABLE_HEADING_PRODUCTS', 'Artikel',true);
 define('TABLE_HEADING_VIEWED', 'Besucher',true);
-?>

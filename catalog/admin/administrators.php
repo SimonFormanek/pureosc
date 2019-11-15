@@ -441,4 +441,3 @@ while ($admins       = tep_db_fetch_array($admins_query)) {
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

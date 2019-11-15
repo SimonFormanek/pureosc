@@ -16,4 +16,3 @@ define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_DATE', 'Naposledy');
 define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_CHECK_NOW', 'Skontrolovať teraz');
 define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_NEVER', 'Nikdy');
 define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_UPDATE_AVAILABLE', 'Aktualizácie pre osCommerce Online Merchant  je k dispozícii!');
-?>

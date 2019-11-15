@@ -24,4 +24,3 @@ define('SUB_HEADING_TEXT_3',
     'Si un asociado adiciona un artículo a su \'Cesta de Visitante\' y despues decide Ingresar a su Cuenta para usar su \'Cesta de Asociado\', el contenido de la \'Cesta de Visitante\' sera añadido a la \'Cesta de Asociado\' automáticamente.',
     true);
 define('TEXT_CLOSE_WINDOW', '[ cerrar ventana ]', true);
-?>

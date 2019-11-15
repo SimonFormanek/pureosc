@@ -91,5 +91,3 @@ class tableBlock
         return $tableBox_string;
     }
 }
-
-?>

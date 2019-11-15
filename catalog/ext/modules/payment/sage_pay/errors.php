@@ -206,4 +206,3 @@
                   '5998' => 'Duplicate vendor notification attempt.',
                   '5999' => 'The Session is invalid or has expired.',
                   '6000' => 'Data Access Error.');
-?>

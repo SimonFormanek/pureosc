@@ -742,4 +742,3 @@ echo tep_draw_form('create_account',
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

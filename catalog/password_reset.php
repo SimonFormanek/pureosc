@@ -156,4 +156,3 @@ echo tep_draw_form('password_reset',
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

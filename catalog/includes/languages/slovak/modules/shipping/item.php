@@ -13,4 +13,3 @@
 define('MODULE_SHIPPING_ITEM_TEXT_TITLE', 'Doprava');
 define('MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION', 'Doprava');
 define('MODULE_SHIPPING_ITEM_TEXT_WAY', 'Doprava');
-?>

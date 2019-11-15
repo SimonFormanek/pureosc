@@ -19,4 +19,3 @@
 
   define('MODULE_PAYMENT_SAGE_PAY_FORM_ERROR_TITLE', 'There has been an error processing your order transaction',true);
   define('MODULE_PAYMENT_SAGE_PAY_FORM_ERROR_GENERAL', 'Please try again and if problems persist, please try another payment method.',true);
-?>

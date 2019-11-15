@@ -17,4 +17,3 @@ define('TABLE_HEADING_WRITABLE', 'Writable',true);
 define('TABLE_HEADING_RECOMMENDED', 'Recommended',true);
 
 define('TEXT_DIRECTORY', 'Directory:',true);
-?>

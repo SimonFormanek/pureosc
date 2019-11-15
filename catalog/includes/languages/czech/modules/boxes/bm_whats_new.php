@@ -13,4 +13,3 @@
   define('MODULE_BOXES_WHATS_NEW_TITLE', 'Novinky',true);
   define('MODULE_BOXES_WHATS_NEW_DESCRIPTION', 'ukázat nejnovější zboží',true);
   define('MODULE_BOXES_WHATS_NEW_BOX_TITLE', 'Novinky',true);
-?>

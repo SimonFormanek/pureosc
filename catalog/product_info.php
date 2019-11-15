@@ -380,4 +380,3 @@ if ($product_check['total'] < 1) {
         }
         require(DIR_WS_INCLUDES.'template_bottom.php');
         require(DIR_WS_INCLUDES.'application_bottom.php');
-        ?>

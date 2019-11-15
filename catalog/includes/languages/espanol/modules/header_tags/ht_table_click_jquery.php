@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_TABLE_CLICK_JQUERY_TITLE', 'Table Row Click jQuery',true);
   define('MODULE_HEADER_TAGS_TABLE_CLICK_JQUERY_DESCRIPTION', 'Add Table Row Click jQuery to specified pages',true);
-?>

@@ -28,5 +28,3 @@ define('TEXT_EXPORT_INFO', 'Informácie Vývoz Server');
 
 define('SUCCESS_INFO_SUBMIT', 'Vaše informácie boli predložené úspešne.');
 define('ERROR_INFO_SUBMIT', 'Nedá sa pripojiť na webové stránky osCommerce, aby predložili svoje konfigurácii. Skúste to znova neskôr');
-
-?>

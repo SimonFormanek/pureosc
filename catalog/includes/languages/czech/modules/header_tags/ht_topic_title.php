@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_TOPIC_TITLE_TITLE', 'Topic Title',true);
   define('MODULE_HEADER_TAGS_TOPIC_TITLE_DESCRIPTION', 'Add the title of the current topic to the page title',true);
-?>

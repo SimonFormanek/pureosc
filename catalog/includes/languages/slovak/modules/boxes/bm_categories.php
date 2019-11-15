@@ -13,4 +13,3 @@
   define('MODULE_BOXES_CATEGORIES_TITLE', 'kategórie');
   define('MODULE_BOXES_CATEGORIES_DESCRIPTION', 'Zobraziť kategórie v navigačnom strome');
   define('MODULE_BOXES_CATEGORIES_BOX_TITLE', 'kategórie');
-?>

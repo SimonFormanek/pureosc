@@ -13,4 +13,3 @@
   define('MODULE_SOCIAL_BOOKMARKS_EMAIL_TITLE', 'E-mail');
   define('MODULE_SOCIAL_BOOKMARKS_EMAIL_DESCRIPTION', 'Zdieľať cez e-mail.');
   define('MODULE_SOCIAL_BOOKMARKS_EMAIL_PUBLIC_TITLE', 'Zdieľať cez e-mail.');
-?>

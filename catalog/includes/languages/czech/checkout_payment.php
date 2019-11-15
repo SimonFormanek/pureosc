@@ -30,4 +30,3 @@ define('TABLE_HEADING_COMMENTS', 'Pošlete nám vzkaz', true);
 
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Pokračujte v nákupu', true);
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', 'potvrďte objednávku', true);
-?>

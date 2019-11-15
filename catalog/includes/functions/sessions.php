@@ -210,4 +210,3 @@ function tep_session_recreate()
         tep_whos_online_update_session_id($old_id, tep_session_id());
     }
 }
-?>

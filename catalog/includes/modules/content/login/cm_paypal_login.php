@@ -748,4 +748,3 @@ EOD;
 
     return $output;
   }
-?>

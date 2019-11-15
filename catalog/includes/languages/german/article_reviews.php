@@ -18,4 +18,3 @@ define('TEXT_NO_ARTICLE_REVIEWS',
 define('TEXT_OF_5_STARS', '%s out of 5 Stars');
 define('TEXT_REVIEW_VIEWS', 'Number of times read: ');
 define('TEXT_READ_REVIEW', 'Read Review...');
-?>

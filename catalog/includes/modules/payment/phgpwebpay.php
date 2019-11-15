@@ -394,7 +394,7 @@ class phgpwebpay {
 
         list( $cartId, $orderId ) = explode('-', $cart_gpwebpay_Standard_ID);
 
-        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (cfg('USE_FLEXIBEE') == 'true') {
             $invoice = new PureOSC\flexibee\FakturaVydana();
             $invoice->setDataValue("firma", 'ext:customers:' . $customer_id);
             $invoice->setDataValue("typDokl", 'code:OBJEDNAVKA');
@@ -407,7 +407,7 @@ class phgpwebpay {
         foreach ($order_total_modules->process() as $orderTotalRow) {
             switch ($orderTotalRow['code']) {
                 case 'ot_shipping':
-                    if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+                    if (cfg('USE_FLEXIBEE') == 'true') {
                         $invoice->addArrayToBranch([
                             'nazev' => $orderTotalRow['title'],
                             'mnozMj' => 1,
@@ -430,7 +430,7 @@ class phgpwebpay {
         foreach ($order->products as $orderItem) {
             $products_info .= $orderItem['qty'] . "x" . $orderItem['model'] . ' ' . $orderItem['name'] . ";";
 
-            if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            if (cfg('USE_FLEXIBEE') == 'true') {
 
                 if (strstr($orderItem['id'], '{')) {
                     list($productId, $tmp) = explode('{', $orderItem['id']);
@@ -448,7 +448,7 @@ class phgpwebpay {
             }
         }
 
-        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (cfg('USE_FLEXIBEE') == 'true') {
             $invoice->setDataValue('id', 'ext:orders:' . $orderId);
             $invoice->setDataValue('kod', $orderId);
             if ($invoice->sync()) {
@@ -458,7 +458,7 @@ class phgpwebpay {
                 \Ease\Shared::instanced()->addStatusMessage(_('New order saved') . $invoice,
                         'success');
             } else {
-                trigger_error(print_r($invoice->errors, true) . _('Order not issued'));
+                trigger_error(print_r($invoice->errors, true) . _('FlexiBee Invoice not issued'));
                 $varSym = intval(str_replace('-', '', $cart_gpwebpay_Standard_ID));
             }
         } else {

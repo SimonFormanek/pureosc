@@ -37,4 +37,3 @@ define('TITLE_CONTINUE_CHECKOUT_PROCEDURE',
     'Continuar con el Proceso de Compra', true);
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE',
     'para seleccionar el método de pago preferido.', true);
-?>

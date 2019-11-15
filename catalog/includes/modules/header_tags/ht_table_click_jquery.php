@@ -147,5 +147,3 @@ function ht_table_click_jquery_edit_pages($values, $key) {
 
     return $output;
 }
-
-?>

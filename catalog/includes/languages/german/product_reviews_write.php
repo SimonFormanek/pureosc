@@ -31,4 +31,3 @@ define('TEXT_REVIEW_RECEIVED',
     true);
 define('TEXT_CLICK_TO_ENLARGE',
     'Für eine grössere Darstellung<br>klicken Sie auf das Bild.', true);
-?>

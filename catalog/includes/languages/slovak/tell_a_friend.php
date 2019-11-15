@@ -35,5 +35,3 @@ define('ERROR_TO_ADDRESS', 'Chyba: e-mail vášho priateľa musí byť platný.'
 define('ERROR_FROM_NAME', 'Chyba: Vaše meno nesmie zostať prázdne.');
 define('ERROR_FROM_ADDRESS', 'Chyba: Váš e-mail musí byť platný.');
 define('ERROR_ACTION_RECORDER', 'Chyba: E-mail bol už odoslaný, prosíme skúste znova za% s minút .');
-
-?>

@@ -12,4 +12,3 @@
 
   define('MODULE_ORDER_TOTAL_TAX_TITLE', 'DPH');
   define('MODULE_ORDER_TOTAL_TAX_DESCRIPTION', 'DPH objednávky');
-?>

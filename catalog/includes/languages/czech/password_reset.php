@@ -27,4 +27,3 @@ define('TEXT_NO_EMAIL_ADDRESS_FOUND',
 define('SUCCESS_PASSWORD_RESET',
     'Vaše heslo bylo úspěšně aktualizováno. Přihlaste se prosím s novým heslem.',
     true);
-?>

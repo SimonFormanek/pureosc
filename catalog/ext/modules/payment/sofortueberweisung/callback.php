@@ -96,4 +96,3 @@
       tep_db_query("update " . TABLE_ORDERS . " set orders_status = '" . $order_status . "', last_modified = now() where orders_id = '" . (int)$kunden_var_0 . "'");
     }
   }
-?>

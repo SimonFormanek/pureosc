@@ -26,5 +26,3 @@ define('TEXT_SORT', 'Třídění');
 define('SELECT_CATEGORY', 'Vyberte kategorii');
 define('TEXT_LINK_MAIN_PAGE', '<a href="%s">Klikněte zde</a> pro návrat na hlavní stránku.');
 define('TEXT_LINK_SORT_PRODUCTS', '<a href="%s">Klikněte zde</a> pro třídění produktů asociovaných s tímto článkem.<br><small>Poznámka: toto musí být provedeno pokaždé, když je výrobek přidán nebo smazán.</small>');
-
-?>

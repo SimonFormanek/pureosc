@@ -11,4 +11,3 @@
 */
 
 define('WARNING_SESSION_AUTO_START', 'session.auto_start je povolené - zakázať prosím tento php funkciu v php.ini a reštartujte webový server.');
-?>

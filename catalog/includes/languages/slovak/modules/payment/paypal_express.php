@@ -37,4 +37,3 @@
   define('MODULE_PAYMENT_PAYPAL_EXPRESS_ERROR_NO_SHIPPING_AVAILABLE_TO_SHIPPING_ADDRESS', 'Námorná doprava je v súčasnej dobe k dispozícii pre vybrané doručovaciu adresu. Prosím, vyberte alebo vytvorte novú dodaciu adresu pre použitie s nákupom.');
   define('MODULE_PAYMENT_PAYPAL_EXPRESS_WARNING_LOCAL_LOGIN_REQUIRED', 'Prosím, prihláste sa k svojmu účtu na overenie objednávky.');
   define('MODULE_PAYMENT_PAYPAL_EXPRESS_NOTICE_CHECKOUT_CONFIRMATION', 'Prosím skontrolujte a potvrďte objednávku nižšie. Vaša objednávka nebudú spracované, kým to bolo potvrdené.');
-?>

@@ -23,4 +23,3 @@ define('BUTTON_LOGIN', 'Login');
 define('BUTTON_CREATE_ADMINISTRATOR', 'Vytvoriť správca');
 
 define('ERROR_ACTION_RECORDER', 'Chyba: Bol dosiahnutý maximálny počet pokusov o prihlásenie Skúste to znova o %s minút.');
-?>

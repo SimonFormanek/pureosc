@@ -118,4 +118,3 @@ function GetGooglePosition($searchquery, $id, $searchurl, $pageCnt)
 
     return ($found > 0 ? $found : 'Not Found');
 }
-?>

@@ -115,5 +115,3 @@ class bm_authors
             'MODULE_BOXES_AUTHORS_SORT_ORDER');
     }
 }
-
-?>

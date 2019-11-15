@@ -38,4 +38,3 @@ define('TEXT_NO_COMMENTS_AVAILABLE', 'žádný vzkaz.', true);
 define('TABLE_HEADING_DOWNLOAD_DATE', 'Platnost odkazu do: ', true);
 define('TABLE_HEADING_DOWNLOAD_COUNT', ' zbývající počet stažení', true);
 define('HEADING_DOWNLOAD', 'Soubory ke stažení', true);
-?>

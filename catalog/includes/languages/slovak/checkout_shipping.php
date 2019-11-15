@@ -29,5 +29,3 @@ define('TABLE_HEADING_COMMENTS', 'Napíšte komentár k tejto objednávke:');
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Pokračovať v objednávaní');
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', 'pre výber spôsobu platby');
 define('ERROR_NO_SHIPPING_AVAILABLE_TO_SHIPPING_ADDRESS', 'Námorná doprava je v súčasnej dobe k dispozícii pre vybrané doručovaciu adresu. Prosím, vyberte alebo vytvorte novú dodaciu adresu pre použitie s nákupom.');
-
-?>

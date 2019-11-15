@@ -22,4 +22,3 @@ define('TEXT_INVALID_GV',
     true);
 define('TEXT_VALID_GV',
     'Blahopřejeme vám, že jste uplatnili dárkový poukaz v hodnotě %', true);
-?>

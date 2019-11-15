@@ -108,5 +108,3 @@ class cm_cs_product_notifications
             'MODULE_CONTENT_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_SORT_ORDER');
     }
 }
-
-?>

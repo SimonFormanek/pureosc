@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'Security Checks',true);
 define('TABLE_HEADING_TITLE', 'Title',true);
 define('TABLE_HEADING_MODULE', 'Module',true);
 define('TABLE_HEADING_INFO', 'Info',true);
-?>

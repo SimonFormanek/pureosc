@@ -44,4 +44,3 @@ define('TEXT_OF_5_STARS', '%s von 5 Sternen!',true);
 define('TEXT_GOOD', '<small><font color="#ff0000"><b>GUT</b></font></small>',true);
 define('TEXT_BAD', '<small><font color="#ff0000"><b>SCHLECHT</b></font></small>',true);
 define('TEXT_INFO_HEADING_DELETE_REVIEW', 'Bewertung löschen',true);
-?>

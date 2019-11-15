@@ -417,5 +417,3 @@ class bm_articles
             'MODULE_BOXES_ARTICLES_SORT_ORDER');
     }
 }
-
-?>

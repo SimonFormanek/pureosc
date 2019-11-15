@@ -11,4 +11,3 @@
 */
 
   define('MODULES_ADMIN_MENU_TOOLS_DATABASE_TABLES', 'Databázové Tabuľky');
-?>

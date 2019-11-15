@@ -24,4 +24,3 @@ define('VERSION_RUNNING_LATEST', 'Se está ejecutando la última versión de osC
 define('VERSION_UPGRADES_AVAILABLE', 'Una nueva versión esta disponible para su descarga ! (osCommerce Online Merchant v%s)',true);
 
 define('ERROR_COULD_NOT_CONNECT', 'No se pudo conectar al sitio web osCommerce para comprobar si hay nuevas versiones.',true);
-?>

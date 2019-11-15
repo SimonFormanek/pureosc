@@ -12,4 +12,3 @@
 
   define('MODULE_ACTION_RECORDER_RESET_PASSWORD_TITLE', 'Kunde Passwort zur&uml;cksetzen',true);
   define('MODULE_ACTION_RECORDER_RESET_PASSWORD_DESCRIPTION', 'Speichern Sie die Verwendung des Kunden-Passwort zur&uml;ckgesetzt.',true);
-?>

@@ -27,4 +27,3 @@ define('TABLE_HEADING_COMMENTS', 'Zadajte komentár pre objednávky processec');
 //define('TABLE_HEADING_DOWNLOAD_COUNT', ' stiahnutí zostáva.');
 //define('HEADING_DOWNLOAD', 'Vaše produkty si môžte stiahnuť tu:');
 //define('FOOTER_DOWNLOAD', 'Vaše produkty si môžte stiahnuť tiež neskôr na \'%s\'');
-?>

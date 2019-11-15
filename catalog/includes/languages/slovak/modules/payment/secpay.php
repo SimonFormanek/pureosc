@@ -14,4 +14,3 @@
   define('MODULE_PAYMENT_SECPAY_TEXT_DESCRIPTION', 'Testovacie informácie kreditnej karty:<br><br>CC#: 4444333322221111<br>Expirácia: žiadna');
   define('MODULE_PAYMENT_SECPAY_TEXT_ERROR', 'Chyba kreditnej karty!');
   define('MODULE_PAYMENT_SECPAY_TEXT_ERROR_MESSAGE', 'Nastala chyba pri spracovávaní vašej kreditnej karty. Skúste to znova prosím.');
-?>

@@ -38,4 +38,3 @@ define('TEXT_NO_COMMENTS_AVAILABLE', 'Kein Kommentar vorhanden.', true);
 define('TABLE_HEADING_DOWNLOAD_DATE', 'Herunterladen möglich bis:', true);
 define('TABLE_HEADING_DOWNLOAD_COUNT', 'max. Anz. Downloads', true);
 define('HEADING_DOWNLOAD', 'Artikel herunterladen:', true);
-?>

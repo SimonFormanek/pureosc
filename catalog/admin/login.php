@@ -25,8 +25,7 @@ if (tep_session_is_registered('admin')) {
 if (tep_not_null($action)) {
     switch ($action) {
         case 'process':
-            if (tep_session_is_registered('redirect_origin') && isset($redirect_origin['auth_user'])
-                && !isset($_POST['username'])) {
+            if (tep_session_is_registered('redirect_origin') && isset($redirect_origin['auth_user']) && !isset($_POST['username'])) {
                 $username = tep_db_prepare_input($redirect_origin['auth_user']);
                 $password = tep_db_prepare_input($redirect_origin['auth_pw']);
             } else {
@@ -35,30 +34,30 @@ if (tep_not_null($action)) {
             }
 
             $actionRecorder = new actionRecorderAdmin('ar_admin_login', null,
-                $username);
+                    $username);
 
             if ($actionRecorder->canPerform()) {
-                $check_query = tep_db_query("select id, user_name, user_password from ".TABLE_ADMINISTRATORS." where user_name = '".tep_db_input($username)."'");
+                $check_query = tep_db_query("select id, user_name, user_password from " . TABLE_ADMINISTRATORS . " where user_name = '" . tep_db_input($username) . "'");
 
                 if (tep_db_num_rows($check_query) == 1) {
                     $check = tep_db_fetch_array($check_query);
 
                     if (tep_validate_password($password, $check['user_password'])) {
-                    
+
 //migrate old hashed password ver2 = configurable
-                      $info = password_get_info($check['user_password']);
-                      if($info['algo'] < 1) { //unknown algo 
+                        $info = password_get_info($check['user_password']);
+                        if ($info['algo'] < 1) { //unknown algo 
 //                        tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".password_hash($password, PASSWORD_ARGON2ID)."' where id = '".(int) $check['id']."'");
-                        tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".password_hash($password, PASSWORD_ARGON2ID)."' where id = '".(int) $check['id']."'");
+                            tep_db_query("update " . TABLE_ADMINISTRATORS . " set user_password = '" . password_hash($password, PASSWORD_ARGON2ID) . "' where id = '" . (int) $check['id'] . "'");
 //TODO:                        tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".password_hash($password, constant('HASH_ALGO'))."' where id = '".(int) $check['id']."'");
-                      }
-                    
-/*                    
-// migrate old hashed password to new phpass password
-                        if (tep_password_type($check['user_password']) != 'phpass') {
-                            tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".tep_encrypt_password($password)."' where id = '".(int) $check['id']."'");
                         }
-*/
+
+                        /*
+                          // migrate old hashed password to new phpass password
+                          if (tep_password_type($check['user_password']) != 'phpass') {
+                          tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".tep_encrypt_password($password)."' where id = '".(int) $check['id']."'");
+                          }
+                         */
 
                         tep_session_register('admin');
 
@@ -69,11 +68,13 @@ if (tep_not_null($action)) {
                         $actionRecorder->record();
 
                         if (tep_session_is_registered('redirect_origin')) {
-                            $page       = $redirect_origin['page'];
+                            $page = 'index.php';
                             $get_string = '';
 
                             if (function_exists('http_build_query')) {
-                                $get_string = http_build_query($redirect_origin['get']);
+
+
+                                $get_string = is_array($get_string) ? http_build_query($redirect_origin['get']) : '';
                             }
 
                             tep_session_unregister('redirect_origin');
@@ -90,8 +91,7 @@ if (tep_not_null($action)) {
                 }
             } else {
                 $messageStack->add(sprintf(ERROR_ACTION_RECORDER,
-                        (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int) MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES
-                                : 5)));
+                                (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int) MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)));
             }
 
             if (isset($_POST['username'])) {
@@ -103,8 +103,7 @@ if (tep_not_null($action)) {
         case 'logoff':
             tep_session_unregister('admin');
 
-            if (isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) && !empty($HTTP_SERVER_VARS['PHP_AUTH_USER'])
-                && isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) && !empty($HTTP_SERVER_VARS['PHP_AUTH_PW'])) {
+            if (isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) && !empty($HTTP_SERVER_VARS['PHP_AUTH_USER']) && isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) && !empty($HTTP_SERVER_VARS['PHP_AUTH_PW'])) {
                 tep_session_register('auth_ignore');
                 $auth_ignore = true;
             }
@@ -114,26 +113,26 @@ if (tep_not_null($action)) {
             break;
 
         case 'create':
-            $check_query = tep_db_query("select id from ".TABLE_ADMINISTRATORS." limit 1");
+            $check_query = tep_db_query("select id from " . TABLE_ADMINISTRATORS . " limit 1");
 
             if (tep_db_num_rows($check_query) == 0) {
                 $username = tep_db_prepare_input($_POST['username']);
                 $password = tep_db_prepare_input($_POST['password']);
 
                 if (!empty($username)) {
-                    $adminCryptor       = new \PureCRYPTO\Admin\SslCrypto();
+                    $adminCryptor = new \PureCRYPTO\Admin\SslCrypto();
                     $password_encrypted = tep_encrypt_password($password);
                     $adminCryptor->createKey($password_encrypted);
 
-                    if (!file_put_contents(DIR_FS_MASTER_ROOT_DIR.'oscconfig/keys/privateKey.asc',
-                            $adminCryptor->getPrivateKey())) {
+                    if (!file_put_contents(DIR_FS_MASTER_ROOT_DIR . 'oscconfig/keys/privateKey.asc',
+                                    $adminCryptor->getPrivateKey())) {
                         $messageStack->add(sprintf(_('Error saving private key to %s'),
-                                DIR_FS_MASTER_ROOT_DIR.'oscconfig/keys/privateKey.asc'));
+                                        DIR_FS_MASTER_ROOT_DIR . 'oscconfig/keys/privateKey.asc'));
                     }
 
-                      tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password,pubkey) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, PASSWORD_ARGON2ID))."', '".$adminCryptor->getPublicKey()."')");
+                    tep_db_query("insert into " . TABLE_ADMINISTRATORS . " (user_name, user_password,pubkey) values ('" . tep_db_input($username) . "', '" . tep_db_input(password_hash($password, PASSWORD_ARGON2ID)) . "', '" . $adminCryptor->getPublicKey() . "')");
 //TODO:                      tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password,pubkey) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, constant('HASH_ALGO')))."', '".$adminCryptor->getPublicKey()."')");
-                      }
+                }
             }
 
             tep_redirect(tep_href_link(FILENAME_LOGIN));
@@ -142,8 +141,8 @@ if (tep_not_null($action)) {
     }
 }
 
-$languages          = tep_get_languages();
-$languages_array    = array();
+$languages = tep_get_languages();
+$languages_array = array();
 $languages_selected = DEFAULT_LANGUAGE;
 for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
     $languages_array[] = array('id' => $languages[$i]['code'],
@@ -153,12 +152,12 @@ for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
     }
 }
 
-$admins_check_query = tep_db_query("select id from ".TABLE_ADMINISTRATORS." limit 1");
+$admins_check_query = tep_db_query("select id from " . TABLE_ADMINISTRATORS . " limit 1");
 if (tep_db_num_rows($admins_check_query) < 1) {
     $messageStack->add(TEXT_CREATE_FIRST_ADMINISTRATOR, 'warning');
 }
 
-require(DIR_WS_INCLUDES.'template_top.php');
+require(DIR_WS_INCLUDES . 'template_top.php');
 ?>
 
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
@@ -167,20 +166,20 @@ require(DIR_WS_INCLUDES.'template_top.php');
                 <tr>
                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
 
-<?php
-if (sizeof($languages_array) > 1) {
-    ?>
+                    <?php
+                    if (sizeof($languages_array) > 1) {
+                        ?>
 
                         <td class="pageHeading" align="right"><?php
                             echo tep_draw_form('adminlanguage',
-                                FILENAME_DEFAULT, '', 'get').tep_draw_pull_down_menu('language',
-                                $languages_array, $languages_selected,
-                                'onchange="this.form.submit();"').tep_hide_session_id().'</form>';
+                                    FILENAME_DEFAULT, '', 'get') . tep_draw_pull_down_menu('language',
+                                    $languages_array, $languages_selected,
+                                    'onchange="this.form.submit();"') . tep_hide_session_id() . '</form>';
                             ?></td>
 
-    <?php
-}
-?>
+                        <?php
+                    }
+                    ?>
 
                 </tr>
             </table></td>
@@ -189,28 +188,28 @@ if (sizeof($languages_array) > 1) {
         <td>
 
             <?php
-            $heading  = array();
+            $heading = array();
             $contents = array();
 
             if (tep_db_num_rows($admins_check_query) > 0) {
-                $heading[] = array('text' => '<strong>'.HEADING_TITLE.'</strong>');
+                $heading[] = array('text' => '<strong>' . HEADING_TITLE . '</strong>');
 
-                $contents   = array('form' => tep_draw_form('login',
-                        FILENAME_LOGIN, 'action=process'));
-                $contents[] = array('text' => TEXT_USERNAME.'<br />'.tep_draw_input_field('username'));
-                $contents[] = array('text' => '<br />'.TEXT_PASSWORD.'<br />'.tep_draw_password_field('password'));
-                $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(BUTTON_LOGIN,
-                        'key'));
+                $contents = array('form' => tep_draw_form('login',
+                            FILENAME_LOGIN, 'action=process'));
+                $contents[] = array('text' => TEXT_USERNAME . '<br />' . tep_draw_input_field('username'));
+                $contents[] = array('text' => '<br />' . TEXT_PASSWORD . '<br />' . tep_draw_password_field('password'));
+                $contents[] = array('align' => 'center', 'text' => '<br />' . tep_draw_button(BUTTON_LOGIN,
+                            'key'));
             } else {
-                $heading[] = array('text' => '<strong>'.HEADING_TITLE.'</strong>');
+                $heading[] = array('text' => '<strong>' . HEADING_TITLE . '</strong>');
 
-                $contents   = array('form' => tep_draw_form('login',
-                        FILENAME_LOGIN, 'action=create'));
+                $contents = array('form' => tep_draw_form('login',
+                            FILENAME_LOGIN, 'action=create'));
                 $contents[] = array('text' => TEXT_CREATE_FIRST_ADMINISTRATOR);
-                $contents[] = array('text' => '<br />'.TEXT_USERNAME.'<br />'.tep_draw_input_field('username'));
-                $contents[] = array('text' => '<br />'.TEXT_PASSWORD.'<br />'.tep_draw_password_field('password'));
-                $contents[] = array('align' => 'center', 'text' => '<br />'.tep_draw_button(BUTTON_CREATE_ADMINISTRATOR,
-                        'key'));
+                $contents[] = array('text' => '<br />' . TEXT_USERNAME . '<br />' . tep_draw_input_field('username'));
+                $contents[] = array('text' => '<br />' . TEXT_PASSWORD . '<br />' . tep_draw_password_field('password'));
+                $contents[] = array('align' => 'center', 'text' => '<br />' . tep_draw_button(BUTTON_CREATE_ADMINISTRATOR,
+                            'key'));
             }
 
             $box = new box;
@@ -222,6 +221,6 @@ if (sizeof($languages_array) > 1) {
 </table>
 
 <?php
-require(DIR_WS_INCLUDES.'template_bottom.php');
-require(DIR_WS_INCLUDES.'application_bottom.php');
-?>
+require(DIR_WS_INCLUDES . 'template_bottom.php');
+require(DIR_WS_INCLUDES . 'application_bottom.php');
+

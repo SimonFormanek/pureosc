@@ -15,4 +15,3 @@
   define('MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_TITLE', 'Oznámení',true);
   define('MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_NOTIFY', 'Upozorněte mě na <strong>%s</strong>',true);
   define('MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_NOTIFY_REMOVE', 'nechci oznámení o tomto zboží <strong>%s</strong>',true); //cs?
-?>

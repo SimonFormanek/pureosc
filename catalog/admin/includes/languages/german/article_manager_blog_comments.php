@@ -47,4 +47,3 @@ define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Error: Directory does not exist: %s');
 define('ERROR_NO_AUTHORS_FOUND', 'At least one author must exist.');
 
 define('TEXT_DISPLAY_NUMBER_OF_COMMENTS', 'Comments in the above - ');
-?>

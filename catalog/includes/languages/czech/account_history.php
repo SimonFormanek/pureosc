@@ -25,4 +25,3 @@ define('TEXT_ORDER_COST', 'Cena celkem:', true);
 define('TEXT_VIEW_ORDER', 'Zobrazit objednávku', true);
 
 define('TEXT_NO_PURCHASES', 'Nemáte ještě žádný nákup.', true);
-?>

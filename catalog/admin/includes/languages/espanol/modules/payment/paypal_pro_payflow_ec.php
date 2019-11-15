@@ -20,4 +20,3 @@
   define('MODULE_PAYMENT_PAYPAL_PRO_PAYFLOW_EC_ERROR_ADDRESS', 'Error: La relaci&oacute;n de la Direcci&oacute;n de Env&iacute;o a la Ciudad, Estado y C&oacute;digo Postal ha fallado. Por favor, int&eacute;ntelo de nuevo.',true);
   define('MODULE_PAYMENT_PAYPAL_PRO_PAYFLOW_EC_ERROR_DECLINED', 'Error: Esta transacci&oacute;n ha sido rechazada. Por favor, int&eacute;ntelo de nuevo.',true);
   define('MODULE_PAYMENT_PAYPAL_PRO_PAYFLOW_EC_ERROR_EXPRESS_DISABLED', 'Error: El pago expr&eacute;s de PayPal ha sido desactivada para este vendedor. Por favor, p&oacute;ngase en contacto con Servicio al Cliente de PayPal.',true);
-?>

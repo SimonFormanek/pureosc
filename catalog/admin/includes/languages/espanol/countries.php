@@ -26,4 +26,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Seguro que desea eliminar este país ?',true);
 define('TEXT_INFO_HEADING_NEW_COUNTRY', 'Nuevo País',true);
 define('TEXT_INFO_HEADING_EDIT_COUNTRY', 'Editar País',true);
 define('TEXT_INFO_HEADING_DELETE_COUNTRY', 'Eliminar País',true);
-?>

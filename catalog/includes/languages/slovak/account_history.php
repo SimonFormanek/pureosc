@@ -25,4 +25,3 @@ define('TEXT_ORDER_COST', 'Cena objednávky:');
 define('TEXT_VIEW_ORDER', 'Zobraziť objednávku');
 
 define('TEXT_NO_PURCHASES', 'Ešte ste u nás nenakupovali');
-?>

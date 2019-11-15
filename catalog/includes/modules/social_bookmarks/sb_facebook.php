@@ -76,5 +76,3 @@ class sb_facebook
         return array('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_STATUS', 'MODULE_SOCIAL_BOOKMARKS_FACEBOOK_SORT_ORDER');
     }
 }
-
-?>

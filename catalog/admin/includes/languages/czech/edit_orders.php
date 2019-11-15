@@ -156,5 +156,3 @@ define('AJAX_NEW_ORDER_EMAIL', 'Opravdu chcete odeslat nový otvrzovací email p
 define('AJAX_INPUT_NEW_EMAIL_COMMENTS', 'Prosím dejte všechny připomínky, které zde můžete mít.  Je v pořádku nechat toto pole prázdné, pokud si nepřejete zahrnout komentáře.  Prosím nezapomeňte při psaní, že stisknutí klávesy "enter" bude mít za následek odeslání komentáře. Nový řídek není podporován.',true);
 define('AJAX_SUCCESS_EMAIL_SENT', 'Úspěch!  Nový potvrzovací email byl odeslán zákazníkovi %s',true);
 define('AJAX_WORKING', 'Pracuji, vyčkejte prosím....',true);
-
-?>

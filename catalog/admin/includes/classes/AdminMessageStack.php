@@ -88,5 +88,3 @@ class AdminMessageStack extends tableBlock
         return $this->tableBlock($this->errors);
     }
 }
-
-?>

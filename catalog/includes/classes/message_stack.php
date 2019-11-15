@@ -98,5 +98,3 @@ class messageStack extends alertBlock
         return $count;
     }
 }
-
-?>

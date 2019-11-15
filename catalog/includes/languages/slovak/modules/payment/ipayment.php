@@ -22,4 +22,3 @@
 
   define('MODULE_PAYMENT_IPAYMENT_TEXT_JS_CC_OWNER', '* Meno vlastníka kreditnej karty musí byť minimálne ' . CC_OWNER_MIN_LENGTH . ' znakov.\n');
   define('MODULE_PAYMENT_IPAYMENT_TEXT_JS_CC_NUMBER', '* Číslo kreditnej karty musí byť minimálne ' . CC_NUMBER_MIN_LENGTH . ' znakov.\n');
-?>

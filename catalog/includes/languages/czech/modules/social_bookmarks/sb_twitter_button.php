@@ -13,4 +13,3 @@
   define('MODULE_SOCIAL_BOOKMARKS_TWITTER_BUTTON_TITLE', 'Twitter Button',true);
   define('MODULE_SOCIAL_BOOKMARKS_TWITTER_BUTTON_DESCRIPTION', 'Share products with Twitter Button.',true);
   define('MODULE_SOCIAL_BOOKMARKS_TWITTER_BUTTON_PUBLIC_TITLE', 'Tweet',true);
-?>

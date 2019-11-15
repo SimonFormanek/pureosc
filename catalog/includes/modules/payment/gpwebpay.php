@@ -584,4 +584,3 @@ class gpwebpay
 }
 
 error_reporting($er);
-?>

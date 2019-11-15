@@ -473,4 +473,3 @@ if ((tep_not_null($heading)) && (tep_not_null($contents))) {
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

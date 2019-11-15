@@ -24,4 +24,3 @@ define('SUB_HEADING_TEXT_3',
     'Die Besuchereingaben werden automatisch bei der Registrierung als Kunde in den Kundenwarenkorb übernommen.',
     true);
 define('TEXT_CLOSE_WINDOW', '[ Fenster schließen ]', true);
-?>

@@ -2866,4 +2866,3 @@ class PHPlot
 
 // $graph = new PHPlot;
 // $graph->DrawGraph();
-?>

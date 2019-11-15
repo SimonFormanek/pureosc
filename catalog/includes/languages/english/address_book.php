@@ -27,4 +27,3 @@ define('PRIMARY_ADDRESS', '(primary address)', true);
 define('TEXT_MAXIMUM_ENTRIES',
     '<span class="inputRequirement">NOTE:</span> A maximum of %s address book entries allowed.',
     true);
-?>

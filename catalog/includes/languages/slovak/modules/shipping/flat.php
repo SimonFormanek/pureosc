@@ -13,4 +13,3 @@
 define('MODULE_SHIPPING_FLAT_TEXT_TITLE', 'Doprava');
 define('MODULE_SHIPPING_FLAT_TEXT_DESCRIPTION', 'Kuriér');
 define('MODULE_SHIPPING_FLAT_TEXT_WAY', 'Kuriér');
-?>

@@ -31,4 +31,3 @@ define('TEXT_LOGIN_ERROR',
 define('TEXT_VISITORS_CART',
     '<font color="#ff0000"><b>Achtung:</b></font> Ihre Besuchereingaben werden automatisch mit Ihrem Kundenkonto verbunden. <a href="javascript:session_win();">[Mehr Information]</a>',
     true);
-?>

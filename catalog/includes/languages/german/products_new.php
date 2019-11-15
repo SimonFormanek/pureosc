@@ -16,4 +16,3 @@ define('HEADING_TITLE', 'Neue Produkte', true);
 define('TEXT_DATE_ADDED', 'aufgenommen am:', true);
 define('TEXT_MANUFACTURER', 'Hersteller:', true);
 define('TEXT_PRICE', 'Preis:', true);
-?>

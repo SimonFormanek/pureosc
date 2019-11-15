@@ -13,4 +13,3 @@
   define('MODULE_BOXES_HEADERTAGS_SEO_TAGCLOUD_TITLE', 'Header Tags Tag Cloud');
   define('MODULE_BOXES_HEADERTAGS_SEO_TAGCLOUD_DESCRIPTION', 'Show Header Tags Tag Cloud');
   define('MODULE_BOXES_HEADERTAGS_SEO_TAGCLOUD_BOX_TITLE', 'Header Tags Tag Cloud');
-?>

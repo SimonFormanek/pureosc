@@ -17,4 +17,3 @@ define('TEXT_INFORMATION', 'Výsledek hledání - Správce článků');
 define('TEXT_NO_ARTICLES_FOUND',
     'Nebyly nalezeny žádné články, které by odpovídaly kritériím vyhledávání.');
 define('TEXT_SEARCH_SEE_MORE', '<span style="color:red">...další</span>');
-?>

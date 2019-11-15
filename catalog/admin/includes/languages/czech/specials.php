@@ -32,4 +32,3 @@ define('TEXT_INFO_STATUS_CHANGE', 'Status změn:',true);
 
 define('TEXT_INFO_HEADING_DELETE_SPECIALS', 'Smazat slevu',true);
 define('TEXT_INFO_DELETE_INTRO', 'Chcete smazat tuto slevu?',true);
-?>

@@ -76,4 +76,3 @@ define('EMAIL_TEXT_COMMENTS_UPDATE', 'Los comentarios para su pedido son' . "\n\
 define('ERROR_ORDER_DOES_NOT_EXIST', 'Error: No existe pedido.',true);
 define('SUCCESS_ORDER_UPDATED', 'Exito: Pedido actualizado correctamente.',true);
 define('WARNING_ORDER_NOT_UPDATED', 'Advertencia: Nada que cambiar. El pedido no fue actualizado.',true);
-?>

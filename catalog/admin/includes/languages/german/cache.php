@@ -21,4 +21,3 @@ define('TEXT_CACHE_DIRECTORY', 'Cache Verzeichnis:',true);
 
 define('ERROR_CACHE_DIRECTORY_DOES_NOT_EXIST', 'Fehler: Das Cache Verzeichnis ist nicht vorhanden. Please set it in Konfiguration / Cache',true);
 define('ERROR_CACHE_DIRECTORY_NOT_WRITEABLE', 'Fehler: Das Cache Verzeichnis ist schreibgeschützt.',true);
-?>

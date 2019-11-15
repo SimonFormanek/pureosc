@@ -348,5 +348,3 @@ class ot_gv
                 $this->keys())."')");
     }
 }
-
-?>

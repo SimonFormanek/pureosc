@@ -76,5 +76,3 @@ class ht_manufacturer_meta {
     }
 
 }
-
-?>

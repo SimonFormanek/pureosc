@@ -16,4 +16,3 @@ define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_DATE', 'Zuletzt geprüft',true);
 define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_CHECK_NOW', 'Prüfe jetzt',true);
 define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_NEVER', 'Nie',true);
 define('MODULE_ADMIN_DASHBOARD_VERSION_CHECK_UPDATE_AVAILABLE', 'Ein update füer osCommerce Online Merchant ist verfüegbar!',true);
-?>

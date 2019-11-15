@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_TITLE', 'Google Analytics');
   define('MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_DESCRIPTION', 'Pridať službu Google Analytics nakupovať');
-?>

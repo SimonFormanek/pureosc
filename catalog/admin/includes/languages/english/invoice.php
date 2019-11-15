@@ -27,4 +27,3 @@ define('ENTRY_SUB_TOTAL', 'Sub-Total:',true);
 define('ENTRY_TAX', 'Tax:',true);
 define('ENTRY_SHIPPING', 'Shipping:',true);
 define('ENTRY_TOTAL', 'Total:',true);
-?>

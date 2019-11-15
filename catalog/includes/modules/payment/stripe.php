@@ -963,5 +963,3 @@ EOD;
         return (tep_db_affected_rows() === 1);
     }
 }
-
-?>

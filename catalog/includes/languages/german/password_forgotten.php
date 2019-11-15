@@ -34,4 +34,3 @@ define('EMAIL_PASSWORD_RESET_BODY',
 define('ERROR_ACTION_RECORDER',
     ' Fehler: Ein Link zum Zurücksetzen des Passworts wurde bereits gesendet. Versuchen Sie es in %s Minuten.',
     true);
-?>

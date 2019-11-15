@@ -483,4 +483,3 @@ if (tep_not_null($column_post)) {
 		
 	}
 }
-?>

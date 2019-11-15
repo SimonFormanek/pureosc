@@ -16,4 +16,3 @@ define('HEADING_TITLE', 'Nové produkty');
 define('TEXT_DATE_ADDED', 'Dátum pridania:');
 define('TEXT_MANUFACTURER', 'Výrobca:');
 define('TEXT_PRICE', 'Cena:');
-?>

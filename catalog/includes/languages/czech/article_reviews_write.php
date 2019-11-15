@@ -21,4 +21,3 @@ define('TEXT_APPROVAL_WARNING',
     'Poznámka: Vaše recenze se nezobrazí, dokud nebude schválena.');
 define('TEXT_BAD', '<small><font color="#ff0000"><b>Špatný</b></font></small>');
 define('TEXT_GOOD', '<small><font color="#ff0000"><b>Výborný</b></font></small>');
-?>

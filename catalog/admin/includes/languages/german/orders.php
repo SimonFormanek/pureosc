@@ -76,4 +76,3 @@ define('EMAIL_TEXT_COMMENTS_UPDATE', 'Anmerkungen und Kommentare zu Ihrer Bestel
 define('ERROR_ORDER_DOES_NOT_EXIST', 'Fehler: Die Bestellung existiert nicht!.',true);
 define('SUCCESS_ORDER_UPDATED', 'Hinweis: Die Bestellung wurde erfolgreich aktualisiert.',true);
 define('WARNING_ORDER_NOT_UPDATED', 'Hinweis: Es wurde nichts geändert. Daher wurde diese Bestellung nicht aktualisiert.',true);
-?>

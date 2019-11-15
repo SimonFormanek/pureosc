@@ -11,4 +11,3 @@
 */
 
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'Installations-Verzeichnis ist existent: ' . DIR_FS_CATALOG . 'install. Bitte löschen Sie dieses Verzeichnis. Es stellt sonst ein grosses Sicherheitsrisiko dar.',true);
-?>

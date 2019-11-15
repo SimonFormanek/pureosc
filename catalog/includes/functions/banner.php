@@ -132,4 +132,3 @@ function tep_update_banner_click_count($banner_id)
 {
     tep_db_query("update ".TABLE_BANNERS_HISTORY." set banners_clicked = banners_clicked + 1 where banners_id = '".(int) $banner_id."' and date_format(banners_history_date, '%Y%m%d') = date_format(now(), '%Y%m%d')");
 }
-?>

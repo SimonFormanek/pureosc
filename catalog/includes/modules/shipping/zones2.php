@@ -281,5 +281,3 @@ class zones2
         return $keys;
     }
 }
-
-?>

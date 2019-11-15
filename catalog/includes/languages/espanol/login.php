@@ -31,4 +31,3 @@ define('TEXT_LOGIN_ERROR',
 define('TEXT_VISITORS_CART',
     '<font color="#ff0000"><strong>Nota:</strong></font> El contenido de su &quot;Cesta de Visitante&quot; será añadido a su &quot;Cesta de Asociado&quot; una vez que haya ingresado. <a href="javascript:session_win();">[Más información]</a>',
     true);
-?>

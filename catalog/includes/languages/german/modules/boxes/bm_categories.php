@@ -13,4 +13,3 @@
   define('MODULE_BOXES_CATEGORIES_TITLE', 'Kategorien',true);
   define('MODULE_BOXES_CATEGORIES_DESCRIPTION', 'Kategorien anzeigen',true);
   define('MODULE_BOXES_CATEGORIES_BOX_TITLE', 'Kategorien',true);
-?>

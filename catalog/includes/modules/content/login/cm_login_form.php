@@ -123,5 +123,3 @@ class cm_login_form {
     }
 
 }
-
-?>

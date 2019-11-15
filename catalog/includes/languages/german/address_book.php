@@ -27,4 +27,3 @@ define('PRIMARY_ADDRESS', '(Standardadresse)', true);
 define('TEXT_MAXIMUM_ENTRIES',
     '<font color="#ff0000"><b>Hinweis:</b></font> Ihnen stehen %s Adressbucheinträge zur Verfügung!',
     true);
-?>

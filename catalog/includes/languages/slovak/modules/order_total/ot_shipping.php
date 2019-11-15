@@ -15,4 +15,3 @@
 
   define('FREE_SHIPPING_TITLE', 'Doprava zdarma');
   define('FREE_SHIPPING_DESCRIPTION', 'Doprava zdarma pri objednávke nad %s');
-?>

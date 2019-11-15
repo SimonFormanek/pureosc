@@ -22,4 +22,3 @@ define('TEXT_NEWSLETTER_CUSTOMERS', 'Pre všetkých odberateľov správ');
 
 define('NOTICE_EMAIL_SENT_TO', 'Oznámenie: Email odoslaný pre: %s');
 define('ERROR_NO_CUSTOMER_SELECTED', 'Chyba: Nebol vybratý žiadny zákazník.');
-?>

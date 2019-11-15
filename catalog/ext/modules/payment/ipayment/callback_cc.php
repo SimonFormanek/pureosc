@@ -35,4 +35,3 @@
 
     $ipayment_cc->sendDebugEmail($checksum_pass);
   }
-?>

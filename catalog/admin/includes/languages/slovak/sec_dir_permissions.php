@@ -17,4 +17,3 @@ define('TABLE_HEADING_WRITABLE', 'na zápis');
 define('TABLE_HEADING_RECOMMENDED', 'Doporučený');
 
 define('TEXT_DIRECTORY', 'Adresár:');
-?>

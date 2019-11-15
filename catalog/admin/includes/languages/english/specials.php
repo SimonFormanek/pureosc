@@ -32,4 +32,3 @@ define('TEXT_INFO_STATUS_CHANGE', 'Status Change:',true);
 
 define('TEXT_INFO_HEADING_DELETE_SPECIALS', 'Delete Special',true);
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete the special products price?',true);
-?>

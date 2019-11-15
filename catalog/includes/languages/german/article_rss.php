@@ -11,4 +11,3 @@
  */
 define('NEWS_TITLE', 'RSS Articles Feed');
 define('NEWS_DESCRIPTION', 'Articles for '.STORE_NAME);
-?>
