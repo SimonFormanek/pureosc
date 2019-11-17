@@ -49,6 +49,11 @@ class AddVariantToCartForm extends \Ease\Html\Form {
 
         if (count($prices) > 1) {
             $select = new \Ease\Html\SelectTag('id[' . $oId . ']', $this->pricesToOptions($prices));
+            foreach ($prices as $priceInfo)  {
+                if($priceInfo['options_values_active'] != 1){
+                    $select->disableItem( $priceInfo['products_options_values_id']  );
+                }
+            }
         } else {
             $price = current($prices);
             $select = new \Ease\Html\InputHiddenTag('id[' . $oId . ']', current($prices)['products_options_values_id']);
@@ -58,6 +63,12 @@ class AddVariantToCartForm extends \Ease\Html\Form {
         $this->addItem($select);
     }
 
+    /**
+     * 
+     * @param array $prices
+     * 
+     * @return string
+     */
     public function pricesToOptions(array $prices) {
         $options = [];
 
@@ -69,7 +80,7 @@ class AddVariantToCartForm extends \Ease\Html\Form {
     }
 
     public function finalize() {
-        $this->addItem(new \Ease\Html\SubmitButton( _('To Cart') , '<i class=\'fa fa-shopping-cart\'></i> '. _('To Cart') ,  _('To Cart')));
+        $this->addItem(new \Ease\Html\SubmitButton('&nbsp;'._('To Cart'), ' '. _('Add To Cart'), _('To Cart')));
         parent::finalize();
     }
 

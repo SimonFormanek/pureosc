@@ -45,7 +45,7 @@ class d_latest_news
         $output = '<table border="0" width="100%" cellspacing="0" cellpadding="4">'.
             '  <tr class="dataTableHeadingRow">'.
             '    <td class="dataTableHeadingContent">'._('Latest News').'</td>'.
-            '    <td class="dataTableHeadingContent" align="right">'.MODULE_ADMIN_DASHBOARD_LATEST_NEWS_DATE.'</td>'.
+            '    <td class="dataTableHeadingContent" align="right">'._('Date').'</td>'.
             '  </tr>';
 
         if (is_array($feed) && !empty($feed)) {
@@ -58,18 +58,17 @@ class d_latest_news
             }
         } else {
             $output .= '  <tr class="dataTableRow">'.
-                '    <td class="dataTableContent" colspan="2">'.MODULE_ADMIN_DASHBOARD_LATEST_NEWS_FEED_ERROR.'</td>'.
+                '    <td class="dataTableContent" colspan="2">'._('Could not connect to the osCommerce News feed. The next attempt will be performed within 24 hours.').'</td>'.
                 '  </tr>';
         }
 
         $output .= '  <tr class="dataTableRow">'.
             '    <td class="dataTableContent" align="right" colspan="2"><a href="http://www.oscommerce.com/Us&News" target="_blank">'.tep_image(DIR_WS_IMAGES.'icon_oscommerce.png',
-                MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_NEWS).'</a>&nbsp;<a href="http://www.oscommerce.com/newsletter/subscribe" target="_blank">'.tep_image(DIR_WS_IMAGES.'icon_newsletter.png',
-                MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_NEWSLETTER).'</a>&nbsp;<a href="http://plus.google.com/+osCommerce" target="_blank">'.tep_image(DIR_WS_IMAGES.'icon_google_plus.png',
-                MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_GOOGLE_PLUS).'</a>&nbsp;<a href="http://www.facebook.com/pages/osCommerce/33387373079" target="_blank">'.tep_image(DIR_WS_IMAGES.'icon_facebook.png',
-                MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_FACEBOOK).'</a>&nbsp;<a href="http://twitter.com/osCommerce" target="_blank">'.tep_image(DIR_WS_IMAGES.'icon_twitter.png',
-                MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_TWITTER).'</a>&nbsp;<a href="http://feeds.feedburner.com/osCommerceNewsAndBlogs" target="_blank">'.tep_image(DIR_WS_IMAGES.'icon_rss.png',
-                MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_RSS).'</a></td>'.
+                _('Read the latest osCommerce News')).'</a>&nbsp;<a href="http://www.oscommerce.com/newsletter/subscribe" target="_blank">'.tep_image(DIR_WS_IMAGES.'icon_newsletter.png',
+                _('Sign-Up for the osCommerce Newsletter')).'</a>&nbsp;<a href="http://www.facebook.com/pages/osCommerce/33387373079" target="_blank">'.tep_image(DIR_WS_IMAGES.'icon_facebook.png',
+                _('Become an osCommerce Fan on Facebook')).'</a>&nbsp;<a href="http://twitter.com/osCommerce" target="_blank">'.tep_image(DIR_WS_IMAGES.'icon_twitter.png',
+                _('Follow osCommerce on Twitter')).'</a>&nbsp;<a href="http://feeds.feedburner.com/osCommerceNewsAndBlogs" target="_blank">'.tep_image(DIR_WS_IMAGES.'icon_rss.png',
+                _('Subscribe to the osCommerce News RSS Feed')).'</a></td>'.
             '  </tr>'.
             '</table>';
 

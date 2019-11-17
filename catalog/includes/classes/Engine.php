@@ -99,7 +99,7 @@ class Engine extends \Ease\SQL\Engine
     public function __construct($init = null, $filter = [])
     {
         $this->setUp();
-        parent::__construct($init, $filter);
+//        $this->takemyTable($this->getMyTable());
 
         if (is_numeric($init)) {
             $this->loadFromSQL($init);
@@ -113,16 +113,6 @@ class Engine extends \Ease\SQL\Engine
         }
     }
 
-    public function takemyTable($myTable)
-    {
-        if (is_null($this->subject)) {
-            $this->subject = $myTable;
-        }
-        if (is_null($this->keyword)) {
-            $this->keyword = $myTable;
-        }
-        return parent::takemyTable($myTable);
-    }
 
     /**
      * Set page where to work wiht one row detail

@@ -17,10 +17,10 @@ class Strom extends \FlexiPeeHP\Strom
 
     use \Ease\SQL\Orm;
 
-    public $myTable = 'categories';
 
     public function __construct($init = null, $options = array())
     {
+        $this->myTable = 'categories';
         parent::__construct($init, $options);
         $this->setDataValue('strom', self::code('STR_CEN'));
     }

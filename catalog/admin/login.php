@@ -25,7 +25,8 @@ if (tep_session_is_registered('admin')) {
 if (tep_not_null($action)) {
     switch ($action) {
         case 'process':
-            if (tep_session_is_registered('redirect_origin') && isset($redirect_origin['auth_user']) && !isset($_POST['username'])) {
+            if (tep_session_is_registered('redirect_origin') && isset($redirect_origin['auth_user'])
+                && !isset($_POST['username'])) {
                 $username = tep_db_prepare_input($redirect_origin['auth_user']);
                 $password = tep_db_prepare_input($redirect_origin['auth_pw']);
             } else {
@@ -72,8 +73,6 @@ if (tep_not_null($action)) {
                             $get_string = '';
 
                             if (function_exists('http_build_query')) {
-
-
                                 $get_string = is_array($get_string) ? http_build_query($redirect_origin['get']) : '';
                             }
 
@@ -91,7 +90,8 @@ if (tep_not_null($action)) {
                 }
             } else {
                 $messageStack->add(sprintf(ERROR_ACTION_RECORDER,
-                                (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int) MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)));
+                        (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int) MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES
+                                : 5)));
             }
 
             if (isset($_POST['username'])) {
@@ -103,7 +103,8 @@ if (tep_not_null($action)) {
         case 'logoff':
             tep_session_unregister('admin');
 
-            if (isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) && !empty($HTTP_SERVER_VARS['PHP_AUTH_USER']) && isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) && !empty($HTTP_SERVER_VARS['PHP_AUTH_PW'])) {
+            if (isset($HTTP_SERVER_VARS['PHP_AUTH_USER']) && !empty($HTTP_SERVER_VARS['PHP_AUTH_USER'])
+                && isset($HTTP_SERVER_VARS['PHP_AUTH_PW']) && !empty($HTTP_SERVER_VARS['PHP_AUTH_PW'])) {
                 tep_session_register('auth_ignore');
                 $auth_ignore = true;
             }
@@ -160,7 +161,7 @@ if (tep_db_num_rows($admins_check_query) < 1) {
 require(DIR_WS_INCLUDES . 'template_top.php');
 ?>
 
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
+<table border="0" width="100%" cellspacing="2" cellpadding="2" class="table" >
     <tr>
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0" height="40">
                 <tr>
@@ -195,7 +196,7 @@ require(DIR_WS_INCLUDES . 'template_top.php');
                 $heading[] = array('text' => '<strong>' . HEADING_TITLE . '</strong>');
 
                 $contents = array('form' => tep_draw_form('login',
-                            FILENAME_LOGIN, 'action=process'));
+                            FILENAME_LOGIN, 'action=process','POST','class="form-inline"'));
                 $contents[] = array('text' => TEXT_USERNAME . '<br />' . tep_draw_input_field('username'));
                 $contents[] = array('text' => '<br />' . TEXT_PASSWORD . '<br />' . tep_draw_password_field('password'));
                 $contents[] = array('align' => 'center', 'text' => '<br />' . tep_draw_button(BUTTON_LOGIN,

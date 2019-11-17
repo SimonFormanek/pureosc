@@ -49,6 +49,7 @@ class CustomerLog extends Engine {
     private static $instance = null;
 
 
+  use \Ease\SQL\Orm;
     /**
      * Log Customer events
      * 
@@ -58,6 +59,7 @@ class CustomerLog extends Engine {
      */
     public function __construct($venue = null, $customers_id = null,
             $administrators_id = null) {
+    $this->myTable = 'user_log';
         parent::__construct();
         $this->setVenue($venue);
         $this->setCustomerID($customers_id);
@@ -85,7 +87,7 @@ class CustomerLog extends Engine {
      * 
      * @return boolean success
      */
-    public function logEvent($question, $answer, $venue = null, $extId = '',
+  public function logEvent($question, $answer, $venue = null, $extId = 'none',
             $customers_id = null, $administrators_id = null) {
         return $this->insertToSQL([
                     'customers_id' => empty($customers_id) ? $this->customers_id : $customers_id,

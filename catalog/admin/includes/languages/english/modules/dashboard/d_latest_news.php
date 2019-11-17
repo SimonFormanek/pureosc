@@ -17,6 +17,6 @@ define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_FEED_ERROR', 'Could not connect to th
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_NEWS', 'Read the latest osCommerce News',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_NEWSLETTER', 'Sign-Up for the osCommerce Newsletter',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_GOOGLE_PLUS', 'Circle osCommerce on Google+',true);
-define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_FACEBOOK', 'Become an osCommerce Fan on Facebook',true);
+define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_FACEBOOK', '',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_TWITTER', 'Follow osCommerce on Twitter',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_RSS', 'Subscribe to the osCommerce News RSS Feed',true);

@@ -38,7 +38,8 @@ class AdminPasswordHash {
     var $portable_hashes;
     var $random_state;
 
-    public function __construct($iteration_count_log2, $portable_hashes) {
+    public function __construct($iteration_count_log2, $portable_hashes)
+    {
         $this->itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
         if ($iteration_count_log2 < 4 || $iteration_count_log2 > 31) {
@@ -116,7 +117,10 @@ class AdminPasswordHash {
         return $output;
     }
 
-    function crypt_private($password, $setting) {
+    function crypt_private($password, $setting)
+    {
+        $output = '*0';
+        if (substr($setting, 0, 2) == $output) $output = '*1';
         
         $id = substr($setting, 0, 3);
         # We use "$P$", phpBB3 uses "$H$" for the same thing

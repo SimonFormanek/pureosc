@@ -16,11 +16,11 @@ class Cenik extends \FlexiPeeHP\Cenik
 {
 
     use \Ease\SQL\Orm;
-    public $nameColumn = 'nazev';
-    public $myTable = 'products';
 
     public function __construct($init = null, $options = array())
     {
+        $this->myTable = 'products';
+        $this->nameColumn = 'nazev';
         parent::__construct($init, $options);
     }
 

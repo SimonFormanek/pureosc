@@ -16,11 +16,11 @@ class FakturaVydana extends \FlexiPeeHP\FakturaVydana
 {
 
     use \Ease\SQL\Orm;
-    public $nameColumn = 'nazev';
-    public $myTable = 'orders';
     
     public function __construct($init = null, $options = array())
     {
+        $this->nameColumn = 'nazev';
+        $this->myTable = 'orders';
         parent::__construct($init, $options);
     }
     
