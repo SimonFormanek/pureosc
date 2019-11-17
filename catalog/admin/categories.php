@@ -236,7 +236,7 @@ if($action == 'setexclude') {
                 $coupouner->assignCategory((int)$categories_id);
             }
 
-            if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
                 $strom = new \PureOSC\flexibee\Strom();
                 foreach ($catLangs as $langCode => $langData) {
                     $strom->takeData($strom->convertOscData($langData, $langCode));
@@ -429,7 +429,7 @@ if($action == 'setexclude') {
                 tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'shop' AND section='all'");
                 tep_db_query("UPDATE " . TABLE_RESET . " SET reset='1' WHERE admin = 'admin' AND section='all'");
             }
-            if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
 
                 $sokoban = new PureOSC\flexibee\StromCenik();
                 $pricelist = new PureOSC\flexibee\Cenik('ext:products:' . $products_id,
@@ -1576,7 +1576,7 @@ if ($action == 'new_product') {
                                                     $emptytitle = '';
                                                 }
                                                 
-                                                echo '<input onKeyUp="count_title(' . $languages[$i]['id'] . ', '. (constant('META_TITLE_LENGHT') - mb_strlen(constant('STORE_NAME'))) . ')" name="products_seo_title[' . $languages[$i]['id'] . ']" id="seotitle_' . $languages[$i]['id'] . '" size="80" value="' . (empty(tep_get_products_seo_title($pInfo->products_id,
+                                                echo '<input onKeyUp="count_title(' . $languages[$i]['id'] . ', '. (cfg('META_TITLE_LENGHT') - mb_strlen(cfg('STORE_NAME'))) . ')" name="products_seo_title[' . $languages[$i]['id'] . ']" id="seotitle_' . $languages[$i]['id'] . '" size="80" value="' . (empty(tep_get_products_seo_title($pInfo->products_id,
                                                         $languages[$i]['id']))
                                                         ? $emptytitle
                                                         : tep_get_products_seo_title($pInfo->products_id,
@@ -1590,7 +1590,7 @@ function count_title(langId, len) {
 document.getElementById('counter_title_'+langId).innerHTML = len - document.getElementById('seotitle_'+langId).value.length;
 }
 
-count_title(<?php echo $languages[$i]['id']; ?>, <?php echo constant('META_TITLE_LENGHT') - mb_strlen(constant('STORE_NAME')); ?>);
+count_title(<?php echo $languages[$i]['id']; ?>, <?php echo cfg('META_TITLE_LENGHT') - mb_strlen(cfg('STORE_NAME')); ?>);
 </script>
                                                 
                                                 
@@ -2200,7 +2200,7 @@ $twbcontainer->addItem( new \Ease\TWB\LinkButton('categories.php?cPath='.$cPath.
                                     $languages[$i]['id']);
 //		$category_seo_title_string .= '<input onKeyUp="count_title()" name="categories_seo_title[' . $languages[$i]['id'] . ']" id="seotitle" size="80" value="' . (empty(tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id'])) ? $emptytitle : tep_get_category_seo_title($cInfo->categories_id)) . '">';
 //		$category_seo_title_string .= '<br />Počet znaků limit max: 70 aktuálně ULOŽENO: <strong>' . (empty(tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id'])) ? mb_strlen($emptytitle) : mb_strlen(tep_get_category_seo_title($cInfo->categories_id, $languages[$i]['id']))) . '</strong>  Editace aktuálně zbývá: <span id="counter_title"></span>';
-                                $category_seo_title_string .= '<input onKeyUp="count_title(' . $languages[$i]['id'] . ', '. (constant('META_TITLE_LENGHT') - mb_strlen(constant('STORE_NAME'))) . ')" name="categories_seo_title[' . $languages[$i]['id'] . ']" id="seotitle_' . $languages[$i]['id'] . '" size="80" value="' . (empty(tep_get_category_seo_title($cInfo->categories_id,
+                                $category_seo_title_string .= '<input onKeyUp="count_title(' . $languages[$i]['id'] . ', '. (cfg('META_TITLE_LENGHT') - mb_strlen(cfg('STORE_NAME'))) . ')" name="categories_seo_title[' . $languages[$i]['id'] . ']" id="seotitle_' . $languages[$i]['id'] . '" size="80" value="' . (empty(tep_get_category_seo_title($cInfo->categories_id,
                                         $languages[$i]['id'])) ? $emptytitle : tep_get_category_seo_title($cInfo->categories_id,
                                         $languages[$i]['id'])) . '">';
                                 $category_seo_title_string .= '<br />' . TEXT_META_TITLE_LENGHT_REMAINING_CHARACTERS . ': <span id="counter_title_' . $languages[$i]['id'] . '"></span> (max: ' . META_TITLE_LENGHT . ')';
@@ -2212,7 +2212,7 @@ function count_title(langId, len) {
 document.getElementById('counter_title_'+langId).innerHTML = len - document.getElementById('seotitle_'+langId).value.length;
 }
 
-count_title(<?php echo $languages[$i]['id']; ?>, <?php echo constant('META_TITLE_LENGHT') - mb_strlen(constant('STORE_NAME')); ?>);
+count_title(<?php echo $languages[$i]['id']; ?>, <?php echo cfg('META_TITLE_LENGHT') - mb_strlen(cfg('STORE_NAME')); ?>);
 </script>
                                 
                                 
@@ -2480,7 +2480,7 @@ count_description(<?php echo $languages[$i]['id']; ?>, <?php echo META_DESCRIPTI
                                                 tep_href_link(cfg('FILENAME_CATEGORIES'),
                                                     'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to'));
 
-                                        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+                                        if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
                                             $linker = new \FlexiPeeHP\Cenik(null, ['offline' => true]);
                                             $linker->setMyKey('ext:products:' . $pInfo->products_id);
                                             $buttons .= tep_draw_button(_('Open in FlexiBee'),

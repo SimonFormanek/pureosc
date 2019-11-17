@@ -10,7 +10,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
 include './includes/filenames.php';
 include './includes/database_tables.php';
 
-require_once constant('DIR_FS_CATALOG') . '../vendor/autoload.php';
+require_once cfg('DIR_FS_CATALOG') . '../vendor/autoload.php';
 
 function cfg($key) {
     return defined($key) ? constant($key) : null;
@@ -67,7 +67,7 @@ if (!array_key_exists('language', $_SESSION) || isset($_GET['language'])) {
         if (preg_match('/^en/', $browser_language)) {
             $browser_language = 'en';
         }
-        $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES'));
+        $languages_all_query = tep_db_query("SELECT code FROM " . cfg('TABLE_LANGUAGES'));
         while ($languages_all = tep_db_fetch_array($languages_all_query)) {
             if ($languages_all['code'] == $browser_language) {
                 $new_language = $browser_language;
@@ -76,13 +76,13 @@ if (!array_key_exists('language', $_SESSION) || isset($_GET['language'])) {
         if ($new_language) {
             $lng->set_language($new_language);
         } else {
-            $lng->set_language(constant('DEFAULT_LANGUAGE'));
+            $lng->set_language(cfg('DEFAULT_LANGUAGE'));
         }
     }
 } else {
     $lng = new language();
     //$lng->set_language($_SESSION['language']);
-    $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
+    $language_code_query = tep_db_query("SELECT code FROM " . cfg('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
     $language_code = tep_db_fetch_array($language_code_query);
     $lng->set_language($language_code['code']);
 }

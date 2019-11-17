@@ -12,7 +12,7 @@ namespace PureOSC\Admin;
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class AddressBook extends \Ease\Brick
+class AddressBook extends \Ease\SQL\Engine
 {
 
     /**
@@ -22,11 +22,8 @@ class AddressBook extends \Ease\Brick
      */
     public function __construct($init, $options = [])
     {
-        $this->takemyTable('address_book');
-        $this->setkeyColumn('address_book_id');
+        $this->myTable = 'address_book';
+        $this->keyColumn = 'address_book_id';
         parent::__construct($init, $options);
-        if(is_integer($init)){
-            $this->loadFromSQL($init);
-        }
     }
 }

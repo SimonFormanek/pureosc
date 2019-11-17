@@ -74,7 +74,7 @@ class authorizenet_cc_dpm
         if (($this->enabled === true) && ((int) MODULE_PAYMENT_AUTHORIZENET_CC_DPM_ZONE
             > 0)) {
             $check_flag  = false;
-            $check_query = tep_db_query("select zone_id from ".constant('TABLE_ZONES_TO_GEO_ZONES')." where geo_zone_id = '".MODULE_PAYMENT_AUTHORIZENET_CC_DPM_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
+            $check_query = tep_db_query("select zone_id from ".cfg('TABLE_ZONES_TO_GEO_ZONES')." where geo_zone_id = '".MODULE_PAYMENT_AUTHORIZENET_CC_DPM_ZONE."' and zone_country_id = '".$order->billing['country']['id']."' order by zone_id");
             while ($check       = tep_db_fetch_array($check_query)) {
                 if ($check['zone_id'] < 1) {
                     $check_flag = true;
@@ -320,7 +320,7 @@ EOD;
 
         if (isset($_POST['x_avs_code']) && is_string($_POST['x_avs_code']) && !empty($_POST['x_avs_code'])) {
             if (defined('MODULE_PAYMENT_AUTHORIZENET_CC_DPM_TEXT_AVS_'.$_POST['x_avs_code'])) {
-                $avs_response = constant('MODULE_PAYMENT_AUTHORIZENET_CC_DPM_TEXT_AVS_'.$_POST['x_avs_code']).' ('.$_POST['x_avs_code'].')';
+                $avs_response = cfg('MODULE_PAYMENT_AUTHORIZENET_CC_DPM_TEXT_AVS_'.$_POST['x_avs_code']).' ('.$_POST['x_avs_code'].')';
             } else {
                 $avs_response = $_POST['x_avs_code'];
             }
@@ -333,7 +333,7 @@ EOD;
         if (isset($_POST['x_cvv2_resp_code']) && is_string($_POST['x_cvv2_resp_code'])
             && !empty($_POST['x_cvv2_resp_code'])) {
             if (defined('MODULE_PAYMENT_AUTHORIZENET_CC_DPM_TEXT_CVV2_'.$_POST['x_cvv2_resp_code'])) {
-                $cvv2_response = constant('MODULE_PAYMENT_AUTHORIZENET_CC_DPM_TEXT_CVV2_'.$_POST['x_cvv2_resp_code']).' ('.$_POST['x_cvv2_resp_code'].')';
+                $cvv2_response = cfg('MODULE_PAYMENT_AUTHORIZENET_CC_DPM_TEXT_CVV2_'.$_POST['x_cvv2_resp_code']).' ('.$_POST['x_cvv2_resp_code'].')';
             } else {
                 $cvv2_response = $_POST['x_cvv2_resp_code'];
             }
@@ -346,7 +346,7 @@ EOD;
         if (isset($_POST['x_cavv_response']) && is_string($_POST['x_cavv_response'])
             && !empty($_POST['x_cavv_response'])) {
             if (defined('MODULE_PAYMENT_AUTHORIZENET_CC_DPM_TEXT_CAVV_'.$_POST['x_cavv_response'])) {
-                $cavv_response = constant('MODULE_PAYMENT_AUTHORIZENET_CC_DPM_TEXT_CAVV_'.$_POST['x_cavv_response']).' ('.$_POST['x_cavv_response'].')';
+                $cavv_response = cfg('MODULE_PAYMENT_AUTHORIZENET_CC_DPM_TEXT_CAVV_'.$_POST['x_cavv_response']).' ('.$_POST['x_cavv_response'].')';
             } else {
                 $cavv_response = $_POST['x_cavv_response'];
             }

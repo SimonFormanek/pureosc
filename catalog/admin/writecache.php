@@ -626,7 +626,7 @@ if ($updated == 1) {
 
 if (GENERATE_MANUFACTURERS_INDEX == 'true') {
 if ($debug_level > 2)      echo 'Generating Manufacturers index' . "\n";
-$newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remove_accents(constant('MANUFACTURERS')) . '/';
+$newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remove_accents(cfg('MANUFACTURERS')) . '/';
 
 /*
       $output = "<\?php
@@ -673,7 +673,7 @@ $newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/'. remo
 
 if (GENERATE_PRODUCTS_NEW_PAGE == 'true') {
 if ($debug_level > 2)      echo 'Generating New Products All Page' . "\n";
-$newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . remove_accents(constant('PRODUCTS_NEW_PAGE')) . '/';
+$newpath = RSYNC_LOCAL_DEST_PATH . OSC_DIR . DIR_FS_RELATIVE_CATALOG . '/' . remove_accents(cfg('PRODUCTS_NEW_PAGE')) . '/';
 /*
       $output = "<\?php
       if (isset(\$_COOKIE['osCsid']) || !empty(\$_POST) || !empty(\$_GET['osCsid'])){

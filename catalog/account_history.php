@@ -74,7 +74,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                 'SSL'), 'primary', NULL, 'btn-primary btn-xs');
                         ?>
                         <?php
-                        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE')
+                        if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE')
                             == 'true')) {
                             $docId = 'ext:orders:'.$history['orders_id'];
 

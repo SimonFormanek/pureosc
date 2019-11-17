@@ -122,7 +122,7 @@ function tep_href_link($page = '', $parameters = '', $connection = 'NONSSL',
         global $languages_id;
         $seo_urls = new SEO_URL($languages_id);
     }
-    if ($page == constant('FILENAME_PRODUCT_INFO') && constant('PRODUCTS_CANONICAL_TYPE') == 'manufacturer'){
+    if ($page == cfg('FILENAME_PRODUCT_INFO') && cfg('PRODUCTS_CANONICAL_TYPE') == 'manufacturer'){
       preg_match('~products_id=(\d+)~', $parameters, $myid );
       $products_id = str_replace('products_id=', '', $myid[0]);
       $manufacturers_id_query = tep_db_query("SELECT manufacturers_id FROM " . TABLE_PRODUCTS . " WHERE products_id=" . $products_id);

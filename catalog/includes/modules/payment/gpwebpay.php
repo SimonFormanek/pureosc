@@ -143,14 +143,14 @@ class gpwebpay
         $this->title       = _('GlobalPayment\'s GPWebPay');
         $this->description = __('MODULE_PAYMENT_GPWEBPAY_TEXT_DESCRIPTION',
             _('Provided by Global Payment'));
-        $this->sort_order  = defined('MODULE_PAYMENT_GPWEBPAY_SORT_ORDER') ? constant('MODULE_PAYMENT_GPWEBPAY_SORT_ORDER')
+        $this->sort_order  = defined('MODULE_PAYMENT_GPWEBPAY_SORT_ORDER') ? cfg('MODULE_PAYMENT_GPWEBPAY_SORT_ORDER')
                 : 0;
-        $this->enabled     = (defined('MODULE_PAYMENT_GPWEBPAY_STATUS') && (constant('MODULE_PAYMENT_GPWEBPAY_STATUS')
+        $this->enabled     = (defined('MODULE_PAYMENT_GPWEBPAY_STATUS') && (cfg('MODULE_PAYMENT_GPWEBPAY_STATUS')
             == 'True') ? true : false);
 
-        if (defined('MODULE_PAYMENT_GPWEBPAY_ORDER_STATUS_ID') && (int) constant('MODULE_PAYMENT_GPWEBPAY_ORDER_STATUS_ID')
+        if (defined('MODULE_PAYMENT_GPWEBPAY_ORDER_STATUS_ID') && (int) cfg('MODULE_PAYMENT_GPWEBPAY_ORDER_STATUS_ID')
             > 0) {
-            $this->order_status = constant('MODULE_PAYMENT_GPWEBPAY_ORDER_STATUS_ID');
+            $this->order_status = cfg('MODULE_PAYMENT_GPWEBPAY_ORDER_STATUS_ID');
             $payment            = 'gpwebpay';
         } else {
             if ($payment == 'gpwebpay') {
@@ -161,8 +161,8 @@ class gpwebpay
         if (is_object($order)) $this->update_status();
 
         $this->email_footer    = defined('MODULE_PAYMENT_GPWEBPAY_TEXT_EMAIL_FOOTER')
-                ? constant('MODULE_PAYMENT_GPWEBPAY_TEXT_EMAIL_FOOTER') : '';
-        $this->form_action_url = defined('MODULE_PAYMENT_GPWEBPAY_GPWEBPAYURL') ? constant('MODULE_PAYMENT_GPWEBPAY_GPWEBPAYURL')
+                ? cfg('MODULE_PAYMENT_GPWEBPAY_TEXT_EMAIL_FOOTER') : '';
+        $this->form_action_url = defined('MODULE_PAYMENT_GPWEBPAY_GPWEBPAYURL') ? cfg('MODULE_PAYMENT_GPWEBPAY_GPWEBPAYURL')
                 : '';
     }
 
@@ -237,16 +237,16 @@ class gpwebpay
         $currencyCodes = array("CZK" => 203, "EUR" => 978, "GBP" => 826, "USD" => 840);
         $order_total   = $order->info['total'] * $order->info['currency_value'];
 
-        //$is_native_currency = isset($currencyCodes[$order_currency]) && trim(constant('MODULE_PAYMENT_GPWEBPAY_MERCHANTNUMBER_' . $order_currency)) != '';
+        //$is_native_currency = isset($currencyCodes[$order_currency]) && trim(cfg('MODULE_PAYMENT_GPWEBPAY_MERCHANTNUMBER_' . $order_currency)) != '';
         $is_native_currency = true;
         if ($is_native_currency) {
-            //$gpwebpay_merchant = constant('MODULE_PAYMENT_GPWEBPAY_MERCHANTNUMBER_' . $order_currency);
-            $gpwebpay_merchant = constant('MODULE_PAYMENT_GPWEBPAY_MERCHANTNUMBER');
+            //$gpwebpay_merchant = cfg('MODULE_PAYMENT_GPWEBPAY_MERCHANTNUMBER_' . $order_currency);
+            $gpwebpay_merchant = cfg('MODULE_PAYMENT_GPWEBPAY_MERCHANTNUMBER');
             $gpwebpay_currency = $currencyCodes[$order_currency];
             $amount            = $order_total;
             $transtable_note   = "";
         } else {
-            $gpwebpay_merchant = constant('MODULE_PAYMENT_GPWEBPAY_MERCHANTNUMBER_CZK');
+            $gpwebpay_merchant = cfg('MODULE_PAYMENT_GPWEBPAY_MERCHANTNUMBER_CZK');
             $gpwebpay_currency = '203';
             $rate              = $this->get_cnb_currency_rate($order_currency);
             $amount            = $order_total * $rate;
@@ -266,16 +266,16 @@ class gpwebpay
         $description = trim(self::convertToAscii($this->fixDescription($description)));
 
 
-        $lastIdQueryRaw = tep_db_query('SELECT id FROM '.constant('TABLE_GPWEBPAY_TRANS').' ORDER BY id DESC limit 1');
+        $lastIdQueryRaw = tep_db_query('SELECT id FROM '.cfg('TABLE_GPWEBPAY_TRANS').' ORDER BY id DESC limit 1');
         if (tep_db_num_rows($lastIdQueryRaw)) {
-            $gpwebpay_order_number = tep_db_fetch_fields($lastIdQueryRaw) + constant('MODULE_PAYMENT_GPWEBPAY_ORDNUM_OFFSET');
+            $gpwebpay_order_number = tep_db_fetch_fields($lastIdQueryRaw) + cfg('MODULE_PAYMENT_GPWEBPAY_ORDNUM_OFFSET');
         } else {
-            $gpwebpay_order_number = constant('MODULE_PAYMENT_GPWEBPAY_ORDNUM_OFFSET');
+            $gpwebpay_order_number = cfg('MODULE_PAYMENT_GPWEBPAY_ORDNUM_OFFSET');
         }
 
         $_SESSION['gpwebpay_order_number'] = $gpwebpay_order_number;
 
-        $sql = "insert into ".constant('TABLE_GPWEBPAY_TRANS')." set gpwebpay_order_number = $gpwebpay_order_number, note = '$transtable_note'";
+        $sql = "insert into ".cfg('TABLE_GPWEBPAY_TRANS')." set gpwebpay_order_number = $gpwebpay_order_number, note = '$transtable_note'";
         tep_db_query($sql);
 
 

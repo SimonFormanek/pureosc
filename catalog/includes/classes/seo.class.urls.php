@@ -1295,8 +1295,8 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('PRODUCT_NAME_'.$pID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                        = (tep_not_null($cName) ? $cName.'xslashx'.constant('PRODUCT_NAME_'.$pID)
-                        : constant('PRODUCT_NAME_'.$pID));
+                $return                        = (tep_not_null($cName) ? $cName.'xslashx'.cfg('PRODUCT_NAME_'.$pID)
+                        : cfg('PRODUCT_NAME_'.$pID));
                 $this->cache['PRODUCTS'][$pID] = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['PRODUCTS'][$pID])):
@@ -1390,7 +1390,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('CATEGORY_NAME_'.$full_cPath)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                 = constant('CATEGORY_NAME_'.$full_cPath);
+                $return                                 = cfg('CATEGORY_NAME_'.$full_cPath);
                 $this->cache['CATEGORIES'][$full_cPath] = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['CATEGORIES'][$full_cPath])):
@@ -1456,7 +1456,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('MANUFACTURER_NAME_'.$mID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                          = constant('MANUFACTURER_NAME_'.$mID);
+                $return                                          = cfg('MANUFACTURER_NAME_'.$mID);
                 $this->cache['MANUFACTURERS'][$mID]              = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['MANUFACTURERS'][$mID])):
@@ -1501,7 +1501,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('ARTICLE_NAME_'.$aID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                        = constant('ARTICLE_NAME_'.$aID);
+                $return                        = cfg('ARTICLE_NAME_'.$aID);
                 $this->cache['ARTICLES'][$aID] = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['ARTICLES'][$aID])):
@@ -1552,7 +1552,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('AUTHORS_NAME_'.$auID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                    = constant('AUTHORS_NAME_'.$auID);
+                $return                                    = cfg('AUTHORS_NAME_'.$auID);
                 $this->cache['AUTHORS'][$auID]             = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['AUTHORS'][$auID])):
@@ -1592,7 +1592,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('TOPIC_NAME_'.$tID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                   = constant('TOPIC_NAME_'.$tID);
+                $return                                   = cfg('TOPIC_NAME_'.$tID);
                 $this->cache['TOPICS'][$tID]              = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['TOPICS'][$tID])):
@@ -1633,7 +1633,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('FAQDESK_NAME_'.$fID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                    = constant('FAQDESK_NAME_'.$fID);
+                $return                                    = cfg('FAQDESK_NAME_'.$fID);
                 $this->cache['FAQDESK'][$fID]              = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['FAQDESK'][$fID])):
@@ -1674,7 +1674,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('FAQDESK_CATEGORIES_'.$fcID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                               = constant('FAQDESK_CATEGORIES_'.$fcID);
+                $return                                               = cfg('FAQDESK_CATEGORIES_'.$fcID);
                 $this->cache['FAQDESK_CATEGORIES'][$fcID]             = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['FAQDESK_CATEGORIES'][$fcID])):
@@ -1715,7 +1715,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('LINK_NAME_'.$lPath)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                       = constant('LINK_NAME_'.$lPath);
+                $return                       = cfg('LINK_NAME_'.$lPath);
                 $this->cache['LINKS'][$lPath] = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['LINKS'][$lPath])):
@@ -1761,7 +1761,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('INFO_NAME_'.$iID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                 = constant('INFO_NAME_'.$iID);
+                $return                                 = cfg('INFO_NAME_'.$iID);
                 $this->cache['INFO'][$iID]              = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['INFO'][$iID])):
@@ -1802,7 +1802,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('PAGE_EDITOR_'.$pmID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                  = constant('PAGE_EDITOR_'.$pmID);
+                $return                                  = cfg('PAGE_EDITOR_'.$pmID);
                 $this->cache['PAGES'][$pmID]             = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['PAGES'][$pmID])):
@@ -1843,7 +1843,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('POLLBOOTH_'.$poID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                      = constant('POLLBOOTH_'.$poID);
+                $return                                      = cfg('POLLBOOTH_'.$poID);
                 $this->cache['POLLBOOTH'][$poID]             = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['POLLBOOTH'][$poID])):
@@ -1884,7 +1884,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('NEWSDESK_NAME_'.$nID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                     = constant('NEWSDESK_NAME_'.$nID);
+                $return                                     = cfg('NEWSDESK_NAME_'.$nID);
                 $this->cache['NEWSDESK'][$nID]              = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['NEWSDESK'][$nID])):
@@ -1925,7 +1925,7 @@ class SEO_URL
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && defined('NEWSDESK_CATEGORIES_'.$ncID)):
                 if ($this->attributes['USE_SEO_PERFORMANCE_CHECK'] == 'true')
                         $this->performance['CACHE_QUERY_SAVINGS'] ++;
-                $return                                                = constant('NEWSDESK_CATEGORIES_'.$ncID);
+                $return                                                = cfg('NEWSDESK_CATEGORIES_'.$ncID);
                 $this->cache['NEWSDESK_CATEGORIES'][$ncID]             = $return;
                 break;
             case ($this->attributes['USE_SEO_CACHE_GLOBAL'] == 'true' && isset($this->cache['NEWSDESK_CATEGORIES'][$ncID])):

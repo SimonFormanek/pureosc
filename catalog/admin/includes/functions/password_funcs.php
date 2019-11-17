@@ -1,4 +1,5 @@
 <?php
+
 /*
   $Id$
 
@@ -13,14 +14,15 @@
 ////
 // This function validates a plain text password with a
 // salted or phpass password
-function tep_validate_password($plain, $encrypted)
-{
+function tep_validate_password($plain, $encrypted) {
     if (tep_not_null($plain) && tep_not_null($encrypted)) {
-    
-        $info = password_get_info($encrypted);
-        if($info['algo'] > 0) return password_verify($plain, $encrypted);
 
-    
+        $info = password_get_info($encrypted);
+        if (($info['algo'] == 'argon2id') || $info['algo'] > 0) { //PHP73- gives here int 3 
+            return password_verify($plain, $encrypted);
+        }
+
+
         if (tep_password_type($encrypted) == 'salt') {
             return tep_validate_old_password($plain, $encrypted);
         }
@@ -36,15 +38,15 @@ function tep_validate_password($plain, $encrypted)
 ////
 // This function validates a plain text password with a
 // salted password
-function tep_validate_old_password($plain, $encrypted)
-{
+function tep_validate_old_password($plain, $encrypted) {
     if (tep_not_null($plain) && tep_not_null($encrypted)) {
 // split apart the hash / salt
         $stack = explode(':', $encrypted);
 
-        if (sizeof($stack) != 2) return false;
+        if (sizeof($stack) != 2)
+            return false;
 
-        if (md5($stack[1].$plain) == $stack[0]) {
+        if (md5($stack[1] . $plain) == $stack[0]) {
             return true;
         }
     }
@@ -55,8 +57,7 @@ function tep_validate_old_password($plain, $encrypted)
 ////
 // This function encrypts a phpass password from a plaintext
 // password.
-function tep_encrypt_password($plain)
-{
+function tep_encrypt_password($plain) {
     $hasher = new AdminPasswordHash(10, true);
 
     return $hasher->HashPassword($plain);
@@ -65,8 +66,7 @@ function tep_encrypt_password($plain)
 ////
 // This function encrypts a salted password from a plaintext
 // password.
-function tep_encrypt_old_password($plain)
-{
+function tep_encrypt_old_password($plain) {
     $password = '';
 
     for ($i = 0; $i < 10; $i++) {
@@ -75,7 +75,7 @@ function tep_encrypt_old_password($plain)
 
     $salt = substr(md5($password), 0, 2);
 
-    $password = md5($salt.$plain).':'.$salt;
+    $password = md5($salt . $plain) . ':' . $salt;
 
     return $password;
 }
@@ -83,8 +83,7 @@ function tep_encrypt_old_password($plain)
 ////
 // This function returns the type of the encrpyted password
 // (phpass or salt)
-function tep_password_type($encrypted)
-{
+function tep_password_type($encrypted) {
     if (preg_match('/^[A-Z0-9]{32}\:[A-Z0-9]{2}$/i', $encrypted) === 1) {
         return 'salt';
     }
@@ -95,8 +94,7 @@ function tep_password_type($encrypted)
 ////
 // This function produces a crypted string using the APR-MD5 algorithm
 // Source: http://www.php.net/crypt
-function tep_crypt_apr_md5($password, $salt = null)
-{
+function tep_crypt_apr_md5($password, $salt = null) {
     if (empty($salt)) {
         $salt_string = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
@@ -109,9 +107,9 @@ function tep_crypt_apr_md5($password, $salt = null)
 
     $len = strlen($password);
 
-    $result = $password.'$apr1$'.$salt;
+    $result = $password . '$apr1$' . $salt;
 
-    $bin = pack('H32', md5($password.$salt.$password));
+    $bin = pack('H32', md5($password . $salt . $password));
 
     for ($i = $len; $i > 0; $i -= 16) {
         $result .= substr($bin, 0, min(16, $i));
@@ -147,13 +145,13 @@ function tep_crypt_apr_md5($password, $salt = null)
             $j = 5;
         }
 
-        $tmp = $bin[$i].$bin[$k].$bin[$j].$tmp;
+        $tmp = $bin[$i] . $bin[$k] . $bin[$j] . $tmp;
     }
 
-    $tmp = chr(0).chr(0).$bin[11].$tmp;
+    $tmp = chr(0) . chr(0) . $bin[11] . $tmp;
     $tmp = strtr(strrev(substr(base64_encode($tmp), 2)),
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
-        './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
+            './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
 
-    return '$apr1$'.$salt.'$'.$tmp;
+    return '$apr1$' . $salt . '$' . $tmp;
 }

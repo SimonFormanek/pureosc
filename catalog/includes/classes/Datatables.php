@@ -25,11 +25,11 @@ class Datatables extends \Ozdemir\Datatables\Datatables
     public function __construct(Engine $engine = null)
     {
         $config = [
-            'host' => constant('DB_SERVER'),
-            'port' => defined('DB_PORT') ? constant('DB_PORT') : 3306,
-            'username' => constant('DB_SERVER_USERNAME'),
-            'password' => constant('DB_SERVER_PASSWORD'),
-            'database' => constant('DB_DATABASE')
+            'host' => cfg('DB_SERVER'),
+            'port' => defined('DB_PORT') ? cfg('DB_PORT') : 3306,
+            'username' => cfg('DB_SERVER_USERNAME'),
+            'password' => cfg('DB_SERVER_PASSWORD'),
+            'database' => cfg('DB_DATABASE')
             ];
         
         parent::__construct( new MySQL($config));

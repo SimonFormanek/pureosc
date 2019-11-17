@@ -14,6 +14,7 @@
 
 <?php require(DIR_WS_INCLUDES.'footer.php');
 
+echo $oPage->getStatusMessagesAsHTML();
 
 echo \Ease\Html\HeadTag::getScriptsRendered(\PureOSC\ui\WebPage::singleton()->javaScripts);
 

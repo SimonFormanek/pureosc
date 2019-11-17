@@ -78,7 +78,7 @@ if (!isset($_REQUEST['PRCODE']) || ($_REQUEST['PRCODE'] == 0)) {
                 <?php
             }
         }
-        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
             $invoice = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$order_id);
             if (floatval($invoice->getDataValue('zbyvaUhradit'))) {
                 $qrImage = _('QR Payment').' '.new \Ease\Html\ImgTag($invoice->getQrCodeBase64(),

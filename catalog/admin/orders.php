@@ -145,7 +145,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                           <td class="smallText" align="right"><?php echo tep_draw_button(IMAGE_EDIT, 'document', tep_href_link(FILENAME_ORDERS_EDIT, tep_get_all_get_params(array('oID', 'action')) . 'oID=' . $HTTP_GET_VARS['oID'] . '&action=edit')) . tep_draw_button(IMAGE_ORDERS_INVOICE, 'document', tep_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $HTTP_GET_VARS['oID'])) . tep_draw_button(IMAGE_ORDERS_PACKINGSLIP, 'document', tep_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $HTTP_GET_VARS['oID']), null, array('newwindow' => true)) . tep_draw_button(IMAGE_BACK, 'triangle-1-w', tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('action')))); ?></td>
                          */ ?>
                         <td class="smallText" align="right"><?php
-                            if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE')
+                            if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE')
                                 == 'true')) {
 
                                 $invoice    = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$oID);

@@ -29,7 +29,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'deleteconfirm') && isset($_GE
     } else {
         tep_db_query("delete from ".TABLE_ADDRESS_BOOK." where address_book_id = '".(int) $_GET['delete']."' and customers_id = '".(int) $customer_id."'");
 
-        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
             $kontakter = new \PureOSC\flexibee\Kontakt();
             $kontakter->deleteFromFlexiBee('ext:contact:'.(int) $_GET['delete']);
         }
@@ -230,7 +230,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
         }
 
 
-        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
 
             $adresar = new \PureOSC\flexibee\Adresar();
             $adresar->setDataValue('id',

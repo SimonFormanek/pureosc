@@ -25,9 +25,9 @@ class cash
         $this->title        = _('Cash');
         $this->public_title = _('Cash desk payment');
         $this->description  = _('Cash on table');
-        $this->sort_order   = defined('MODULE_PAYMENT_CASH_SORT_ORDER') ? constant('MODULE_PAYMENT_CASH_SORT_ORDER')
+        $this->sort_order   = defined('MODULE_PAYMENT_CASH_SORT_ORDER') ? cfg('MODULE_PAYMENT_CASH_SORT_ORDER')
                 : '';
-        $this->enabled      = ((defined('MODULE_PAYMENT_CASH_STATUS') && constant('MODULE_PAYMENT_CASH_STATUS')
+        $this->enabled      = ((defined('MODULE_PAYMENT_CASH_STATUS') && cfg('MODULE_PAYMENT_CASH_STATUS')
             == 'True') ? true : false);
 
 
@@ -290,7 +290,7 @@ class cash
 
         list( $cartId, $orderId ) = explode('-', $cart_cash_Standard_ID);
 
-        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
             $invoice = new PureOSC\flexibee\FakturaVydana();
             $invoice->setDataValue("firma", 'ext:customers:'.$customer_id);
             $invoice->setDataValue("typDokl", 'code:FAKTURA');
@@ -303,7 +303,7 @@ class cash
         foreach ($order_total_modules->process() as $orderTotalRow) {
             switch ($orderTotalRow['code']) {
                 case 'ot_shipping':
-                    if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+                    if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
                         $invoice->addArrayToBranch([
                             'nazev' => $orderTotalRow['title'],
                             'mnozMj' => 1,
@@ -326,7 +326,7 @@ class cash
         foreach ($order->products as $orderItem) {
             $products_info .= $orderItem['qty']."x".$orderItem['model'].' '.$orderItem['name'].";";
 
-            if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+            if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
                 $invoice->addArrayToBranch([
                     'cenik' => 'ext:products:'.$orderItem['id'],
                     'nazev' => $orderItem['name'],
@@ -337,7 +337,7 @@ class cash
             }
         }
 
-        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
             $invoice->setDataValue('id', 'ext:orders:'.$orderId);
             if ($invoice->sync()) {
                 $varSym    = $invoice->getDataValue('varSym');

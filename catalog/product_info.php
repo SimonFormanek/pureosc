@@ -116,8 +116,8 @@ if ($product_check['total'] < 1) {
 
                 <?php
                 if (tep_not_null($product_info['products_image'])) {
-                    $kmpiw = constant('KISSIT_MAIN_PRODUCT_IMAGE_WIDTH');
-                    $kmpih = constant('KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT');
+                    $kmpiw = cfg('KISSIT_MAIN_PRODUCT_IMAGE_WIDTH');
+                    $kmpih = cfg('KISSIT_MAIN_PRODUCT_IMAGE_HEIGHT');
                     echo tep_image(DIR_WS_IMAGES.$product_info['products_image'],
                         NULL, $kmpiw,
                         $kmpih,

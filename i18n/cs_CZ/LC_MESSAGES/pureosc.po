@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-25 23:12+0200\n"
-"PO-Revision-Date: 2019-08-25 23:15+0200\n"
+"POT-Creation-Date: 2019-11-16 16:39+0100\n"
+"PO-Revision-Date: 2019-11-16 16:43+0100\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: \n"
 "Language: cs_CZ\n"
@@ -24,8 +24,8 @@ msgid "Changed by customer"
 msgstr "Změněno zákazníkem"
 
 #: account_edit.php:196 account_password.php:89 account_pwa.php:273
-#: admin/create_account.php:401 contact_us.php:97 create_account.php:408
-#: ext/modules/content/account/set_password.php:80
+#: admin/create_account.php:401 contact_us.php:97 create_account.php:409
+#: ext/modules/content/account/set_password.php:82
 #: includes/modules/address_book_details.php:16 tell_a_friend.php:166
 msgid "Requied Information"
 msgstr "Vyžadovaná informace"
@@ -46,13 +46,13 @@ msgstr "Vyžadovaná informace"
 #: admin/create_account.php:639 admin/create_account.php:657
 #: admin/create_account.php:702 admin/create_account.php:715
 #: advanced_search.php:132 contact_us.php:106 contact_us.php:117
-#: contact_us.php:128 create_account.php:439 create_account.php:452
-#: create_account.php:464 create_account.php:479 create_account.php:495
-#: create_account.php:556 create_account.php:586 create_account.php:598
-#: create_account.php:621 create_account.php:625 create_account.php:630
-#: create_account.php:646 create_account.php:664 create_account.php:709
-#: create_account.php:722 ext/modules/content/account/set_password.php:87
-#: ext/modules/content/account/set_password.php:95
+#: contact_us.php:128 create_account.php:440 create_account.php:453
+#: create_account.php:465 create_account.php:480 create_account.php:496
+#: create_account.php:557 create_account.php:587 create_account.php:599
+#: create_account.php:622 create_account.php:626 create_account.php:631
+#: create_account.php:647 create_account.php:665 create_account.php:710
+#: create_account.php:723 ext/modules/content/account/set_password.php:89
+#: ext/modules/content/account/set_password.php:97
 #: includes/modules/address_book_details.php:46
 #: includes/modules/address_book_details.php:63
 #: includes/modules/address_book_details.php:75
@@ -60,7 +60,7 @@ msgstr "Vyžadovaná informace"
 #: includes/modules/address_book_details.php:169
 #: includes/modules/address_book_details.php:182
 #: includes/modules/address_book_details.php:235 password_forgotten.php:127
-#: password_reset.php:128 password_reset.php:139 product_reviews_write.php:173
+#: password_reset.php:130 password_reset.php:141 product_reviews_write.php:173
 #: tell_a_friend.php:177 tell_a_friend.php:188 tell_a_friend.php:203
 #: tell_a_friend.php:214 tell_a_friend.php:229
 msgid "Required"
@@ -69,20 +69,20 @@ msgstr "Vyžadováno"
 #: account_edit.php:271 account_edit.php:276 account_pwa.php:352
 #: account_pwa.php:356 admin/create_account.php:482
 #: admin/create_account.php:486 admin/customers.php:542
-#: admin/edit_orders.php:1194 admin/includes/modules/account_details.php:180
-#: admin/includes/modules/create_order_details.php:60 admin/orders.php:201
-#: create_account.php:489 create_account.php:493
+#: admin/edit_orders.php:1131 admin/includes/modules/account_details.php:180
+#: admin/includes/modules/create_order_details.php:60 admin/orders.php:199
+#: create_account.php:490 create_account.php:494
 #: includes/modules/content/login/templates/login_form.php:11
 #: password_forgotten.php:120 password_forgotten.php:124
 msgid "E-Mail Address"
 msgstr "E-Mailová adresa"
 
-#: account_history.php:81 account_history_info.php:174 admin/orders.php:157
+#: account_history.php:81 account_history_info.php:174 admin/orders.php:155
 #: checkout_success.php:91
 msgid "PDF Invoice"
 msgstr "PDF Faktura"
 
-#: account_history.php:82 account_history_info.php:176 admin/orders.php:158
+#: account_history.php:82 account_history_info.php:176 admin/orders.php:156
 #: checkout_success.php:92
 msgid "ISDOC Invoice"
 msgstr "ISDOC Faktura"
@@ -96,7 +96,7 @@ msgstr "Informace o objednávce"
 msgid "Order #%s"
 msgstr "Objednávka %s čeká na úhradu"
 
-#: account_history_info.php:70 account_history_info.php:78
+#: account_history_info.php:70 account_history_info.php:78 admin/search.php:31
 #: includes/modules/content/navbar/templates/cm_nb_categories.php:16
 #: includes/modules/content/navbar/templates/cm_nb_categories_full.php:17
 msgid "Products"
@@ -105,7 +105,7 @@ msgstr "Produkty"
 #: account_history_info.php:71
 #, fuzzy
 msgid "Tax"
-msgstr "Daňový rezident mimo ČR"
+msgstr "Daň"
 
 #: account_history_info.php:72 account_history_info.php:79
 #: account_history_info.php:126
@@ -115,27 +115,29 @@ msgstr "Celkem"
 
 #: account_history_info.php:138
 msgid "Delivery Address"
-msgstr ""
+msgstr "Dodací adresa"
 
 #: account_history_info.php:144
 msgid "Billing Address"
-msgstr ""
+msgstr "Fakturační adresa"
 
 #: account_history_info.php:151
 msgid "Shipping Method"
-msgstr ""
+msgstr "Způsob dopravy"
 
 #: account_history_info.php:162
+#, fuzzy
 msgid "Payment Method"
-msgstr ""
+msgstr "Platební metoda"
 
 #: account_history_info.php:164 checkout_success.php:84
 msgid "QR Payment"
 msgstr "QR Platba"
 
 #: account_history_info.php:170
+#, fuzzy
 msgid "Payment method"
-msgstr ""
+msgstr "Platební metoda"
 
 #: account_history_info.php:172
 msgid "Already settled"
@@ -147,14 +149,14 @@ msgstr "XLS Faktura"
 
 #: account_history_info.php:195
 msgid "Order History"
-msgstr ""
+msgstr "Historie objednávek"
 
 #: account_pwa.php:368 account_pwa.php:372 admin/create_account.php:503
 #: admin/create_account.php:507 admin/customers.php:583
-#: admin/edit_orders.php:1112 admin/edit_orders.php:1244
-#: admin/edit_orders.php:1355 admin/includes/modules/account_details.php:216
-#: admin/includes/modules/create_order_details.php:80 create_account.php:510
-#: create_account.php:514 includes/modules/address_book_details.php:85
+#: admin/edit_orders.php:1048 admin/edit_orders.php:1182
+#: admin/edit_orders.php:1294 admin/includes/modules/account_details.php:216
+#: admin/includes/modules/create_order_details.php:80 create_account.php:511
+#: create_account.php:515 includes/modules/address_book_details.php:85
 #: includes/modules/address_book_details.php:90
 #: includes/modules/checkout_new_address.php:79
 #: includes/modules/checkout_new_address.php:83
@@ -162,28 +164,28 @@ msgid "Company Name"
 msgstr "Název firmy"
 
 #: account_pwa.php:378 account_pwa.php:382 admin/create_account.php:523
-#: admin/create_account.php:527 admin/edit_orders.php:1118
-#: admin/edit_orders.php:1250 admin/edit_orders.php:1361 create_account.php:520
-#: create_account.php:524 includes/modules/address_book_details.php:96
+#: admin/create_account.php:527 admin/edit_orders.php:1054
+#: admin/edit_orders.php:1188 admin/edit_orders.php:1300 create_account.php:521
+#: create_account.php:525 includes/modules/address_book_details.php:96
 #: includes/modules/address_book_details.php:102
 #: includes/modules/checkout_new_address.php:89
 #: includes/modules/checkout_new_address.php:93
 msgid "Vat Number"
 msgstr "DIČ"
 
-#: admin/action_recorder.php:139 admin/administrators.php:275
+#: admin/action_recorder.php:139 admin/administrators.php:279
 #: admin/article_manager_blog_comments.php:434 admin/article_reviews.php:240
 #: admin/articles.php:1549 admin/articles_config.php:58 admin/authors.php:566
-#: admin/backup.php:367 admin/banner_manager.php:406 admin/cache.php:54
-#: admin/categories.php:1634 admin/configuration.php:57 admin/countries.php:72
-#: admin/coupon_admin.php:198 admin/coupon_admin.php:817
+#: admin/backup.php:367 admin/banner_manager.php:409 admin/cache.php:54
+#: admin/categories.php:1930 admin/configuration.php:57 admin/countries.php:72
+#: admin/coupon_admin.php:205 admin/coupon_admin.php:860
 #: admin/currencies.php:236 admin/customers.php:887 admin/geo_zones.php:147
-#: admin/geo_zones.php:234 admin/gv_queue.php:75 admin/gv_sent.php:31
+#: admin/geo_zones.php:234 admin/gv_queue.php:78 admin/gv_sent.php:34
 #: admin/languages.php:144 admin/manufacturers.php:146
 #: admin/mm_bulkmail.php:625 admin/mm_responsemail.php:320
 #: admin/mm_templates.php:234 admin/modules.php:151
 #: admin/modules_content.php:212 admin/modules_content.php:264
-#: admin/newsletters.php:352 admin/orders.php:461 admin/orders_status.php:125
+#: admin/newsletters.php:352 admin/orders.php:459 admin/orders_status.php:125
 #: admin/products_attributes.php:272 admin/products_attributes.php:474
 #: admin/products_attributes.php:644 admin/products_expected.php:38
 #: admin/reviews.php:394 admin/specials.php:191 admin/tax_classes.php:68
@@ -192,67 +194,155 @@ msgid "Action"
 msgstr "Akce"
 
 #: admin/article_manager_blog_comments.php:518 admin/articles.php:1895
-#: admin/articles.php:1912 admin/authors.php:673 admin/categories.php:2156
-#: admin/categories.php:2195 admin/manufacturers.php:374 article_blog.php:118
+#: admin/articles.php:1912 admin/authors.php:673 admin/categories.php:2454
+#: admin/categories.php:2493 admin/manufacturers.php:374 article_blog.php:118
 #: article_info.php:88
 #, php-format
 msgid "DATE ADDED"
 msgstr "Přidáno dne"
 
-#: admin/articles.php:1528 admin/categories.php:1609
+#: admin/articles.php:1528 admin/categories.php:1905
 msgid "Go to"
 msgstr "Jdi na"
 
-#: admin/articles.php:1546 admin/banner_manager.php:405
-#: admin/categories.php:1632 admin/edit_orders.php:2068
-#: admin/edit_orders_ajax.php:745
+#: admin/articles.php:1546 admin/banner_manager.php:408
+#: admin/categories.php:1139 admin/categories.php:1928
+#: admin/edit_orders.php:1981 admin/edit_orders_ajax.php:745
 #: admin/includes/modules/dashboard/d_orders.php:46
 #: admin/includes/modules/dashboard/d_reviews.php:44 admin/mm_bulkmail.php:624
-#: admin/mm_responsemail.php:319 admin/newsletters.php:351 admin/orders.php:340
-#: admin/orders.php:460 admin/reviews.php:392 admin/specials.php:190
+#: admin/mm_responsemail.php:319 admin/newsletters.php:351 admin/orders.php:338
+#: admin/orders.php:458 admin/reviews.php:392 admin/specials.php:190
 msgid "Status"
 msgstr "Status"
 
-#: admin/categories.php:901
+#: admin/bin/toFlexiBee.php:26
+#, php-format
+msgid "Image attach %s"
+msgstr ""
+
+#: admin/categories.php:1124
+#, fuzzy, php-format
+#| msgid "New Products"
+msgid "New product in %s"
+msgstr "Nový produkt v %s"
+
+#: admin/categories.php:1142
+#, fuzzy
+msgid "Availble"
+msgstr "Dostupné %s"
+
+#: admin/categories.php:1143
+#, fuzzy
+msgid "Not Availble"
+msgstr "Dostupné %s"
+
+#: admin/categories.php:1151
+msgid "Canonical"
+msgstr ""
+
+#: admin/categories.php:1169
 msgid "WARNING: Canonical category AutoDetection"
 msgstr ""
 
-#: admin/categories.php:955
+#: admin/categories.php:1178
+#, fuzzy
+#| msgid "Date added"
+msgid "Date Availble"
+msgstr "Přidáno dne"
+
+#: admin/categories.php:1231
+msgid "Manufacturer"
+msgstr ""
+
+#: admin/categories.php:1235
 msgid "Add new"
 msgstr "Přidat nový"
 
-#: admin/categories.php:1021
-msgid "Discount"
+#: admin/categories.php:1274
+msgid "Tax Class"
+msgstr "Sazba daně"
+
+#: admin/categories.php:1283
+msgid "Price NET"
 msgstr ""
 
-#: admin/categories.php:1173
+#: admin/categories.php:1301
+msgid "Discount"
+msgstr "Sleva"
+
+#: admin/categories.php:1320
+#, fuzzy
+#| msgid "question"
+msgid "Description"
+msgstr "Popis"
+
+#: admin/categories.php:1452
 msgid "image for Gallery"
 msgstr "Obrázek pro galerie"
 
-#: admin/categories.php:1173
+#: admin/categories.php:1452
 msgid "HTML Replacement"
 msgstr "HTML náhrada"
 
-#: admin/categories.php:1630
+#: admin/categories.php:1721
+#, fuzzy
+msgid "Choose discount campagin"
+msgstr "Zvolte slevovou kampaň"
+
+#: admin/categories.php:1721
+msgid "Add this product to Coupon"
+msgstr ""
+
+#: admin/categories.php:1724
+#, fuzzy
+msgid "Save"
+msgstr "Ulož"
+
+#: admin/categories.php:1725
+msgid "Cancel"
+msgstr ""
+
+#: admin/categories.php:1894 admin/includes/classes/ui/WebPage.php:105
+#: admin/includes/column_left.php:66 includes/modules/boxes/bm_search.php:29
+#: includes/modules/boxes/bm_search.php:50
+msgid "Search"
+msgstr "Hledat"
+
+#: admin/categories.php:1926
 msgid "Categories / Products"
 msgstr "Kategorie / Produkty"
 
-#: admin/categories.php:1793 admin/categories.php:2086
+#: admin/categories.php:2089 admin/categories.php:2384 admin/search.php:37
 #: includes/modules/boxes/bm_categories.php:24
+#: includes/modules/content/navbar/cm_nb_categories_full.php:30
+#: includes/modules/content/navbar/cm_nb_categories_full.php:31
 msgid "Categories"
 msgstr "Kategorie"
 
-#: admin/categories.php:1817
+#: admin/categories.php:2113
 msgid "New Category / Article"
 msgstr "Nová kategorie / článek"
 
-#: admin/categories.php:1862
+#: admin/categories.php:2158
 msgid "The Category name"
 msgstr "Nadpis kategorie"
 
-#: admin/categories.php:2188
+#: admin/categories.php:2279
+msgid "Assign all products to discount campagin"
+msgstr ""
+
+#: admin/categories.php:2279
+msgid "Onetime tool"
+msgstr ""
+
+#: admin/categories.php:2486
 msgid "Open in FlexiBee"
 msgstr "Otevřít ve FlexiBee"
+
+#: admin/coupon_admin.php:978 admin/coupon_admin.php:982
+#, fuzzy
+msgid "none"
+msgstr "žádné"
 
 #: admin/create_account.php:118
 msgid ""
@@ -269,7 +359,7 @@ msgid "New Customer"
 msgstr "Nový zákazník"
 
 #: admin/create_account.php:513 admin/create_account.php:517
-#: create_account.php:534 create_account.php:536
+#: create_account.php:535 create_account.php:537
 #: includes/modules/checkout_new_address.php:98
 #: includes/modules/checkout_new_address.php:102
 msgid "Company Number"
@@ -288,39 +378,48 @@ msgstr "Heslo znovu"
 msgid "Vat number"
 msgstr "Dič"
 
-#: admin/customers.php:611 create_account.php:530
+#: admin/customers.php:611 admin/edit_orders.php:1060
+#: admin/edit_orders.php:1194 admin/edit_orders.php:1306 create_account.php:531
 msgid "Company number"
 msgstr "Ičo"
 
-#: admin/flexibeecash.php:26
+#: admin/flexibeecash.php:29
 msgid "Cash payment"
 msgstr "Platba hotově"
 
-#: admin/flexibeecash.php:56
+#: admin/flexibeecash.php:45
+msgid "Invoice settlement"
+msgstr ""
+
+#: admin/flexibeecash.php:78
 msgid "Payment"
 msgstr "Platba"
 
-#: admin/flexibeecash.php:61
+#: admin/flexibeecash.php:83
 msgid "Invoice"
 msgstr "Faktura"
 
-#: admin/flexibeesync.php:41
+#: admin/flexibeecash.php:89
+msgid "Invoice does nont exists"
+msgstr ""
+
+#: admin/flexibeesync.php:45 admin/includes/boxes/tools.php:101
 msgid "FlexiBee sync"
 msgstr "FlexiBee synchronizace"
 
-#: admin/flexibeesync.php:68
+#: admin/flexibeesync.php:72
 msgid "Already exists in database"
 msgstr "Již existuje v databázi"
 
-#: admin/flexibeesync.php:106
+#: admin/flexibeesync.php:110
 msgid "FlexiBee server not connected."
 msgstr "FlexiBee server není připojen"
 
-#: admin/flexibeesync.php:107
+#: admin/flexibeesync.php:111
 msgid "Please change  FlexiBee options"
 msgstr "Prosím změňte nastavení vašeho FlexiBee"
 
-#: admin/flexibeesync.php:107
+#: admin/flexibeesync.php:111
 msgid "Here"
 msgstr "Zde"
 
@@ -328,9 +427,396 @@ msgstr "Zde"
 msgid "Wrong call"
 msgstr "Špatné volání"
 
-#: admin/includes/header.php:31
+#: admin/includes/boxes/aas.php:14
+msgid "AAS"
+msgstr ""
+
+#: admin/includes/boxes/aas.php:18
+msgid "Access AAS"
+msgstr ""
+
+#: admin/includes/boxes/aas.php:23
+msgid "ASS support"
+msgstr ""
+
+#: admin/includes/boxes/aas.php:28
+msgid "Discussion board"
+msgstr ""
+
+#: admin/includes/boxes/aas.php:33
+#, fuzzy
+#| msgid "Options"
+msgid "Donations"
+msgstr "Možnosti"
+
+#: admin/includes/boxes/articles.php:14
+#: includes/modules/boxes/bm_articles.php:24
+#: includes/modules/boxes/bm_articles.php:384
+msgid "Articles"
+msgstr "Články"
+
+#: admin/includes/boxes/articles.php:18
+#, fuzzy
+#| msgid "Articles"
+msgid "Aricles"
+msgstr "Články"
+
+#: admin/includes/boxes/articles.php:23
+#, fuzzy
+msgid "Config"
+msgstr "Použití: %s /cesta/k/souboru.json"
+
+#: admin/includes/boxes/articles.php:28
+msgid "Authors"
+msgstr ""
+
+#: admin/includes/boxes/articles.php:33
+msgid "Comments"
+msgstr ""
+
+#: admin/includes/boxes/articles.php:38 admin/includes/boxes/catalog.php:33
+#: admin/includes/modules/dashboard/d_reviews.php:26
+#: admin/includes/modules/dashboard/d_reviews.php:40
+msgid "Reviews"
+msgstr "Recenze"
+
+#: admin/includes/boxes/articles.php:43
+msgid "xSell"
+msgstr ""
+
+#: admin/includes/boxes/catalog.php:14 admin/includes/classes/ui/WebPage.php:45
+#: admin/includes/header.php:27
+msgid "Catalog"
+msgstr ""
+
+#: admin/includes/boxes/catalog.php:18
+#, fuzzy
+#| msgid "Categories / Products"
+msgid "Categories/Products"
+msgstr "Kategorie / Produkty"
+
+#: admin/includes/boxes/catalog.php:23
+#, fuzzy
+#| msgid "Product Title"
+msgid "Products Attributes"
+msgstr "Název produktu"
+
+#: admin/includes/boxes/catalog.php:28
+#, fuzzy
+msgid "Manufacturers"
+msgstr "Autoři"
+
+#: admin/includes/boxes/catalog.php:38
+msgid "Specials"
+msgstr ""
+
+#: admin/includes/boxes/catalog.php:43
+#, fuzzy
+#| msgid "Product Meta"
+msgid "Products expected"
+msgstr "Metainformace Produktu"
+
+#: admin/includes/boxes/configuration.php:15
+#, fuzzy
+#| msgid "Information"
+msgid "Configuration"
+msgstr "Konfigurace tématu"
+
+#: admin/includes/boxes/configuration.php:19
+#, fuzzy
+#| msgid "Last Administrator Logins"
+msgid "Administrators"
+msgstr "Poslední přihlášení Administrátora"
+
+#: admin/includes/boxes/customers.php:14 admin/includes/boxes/customers.php:18
+#: admin/includes/modules/dashboard/d_customers.php:28
+#: admin/includes/modules/dashboard/d_customers.php:41 admin/search.php:42
+msgid "Customers"
+msgstr "Zákazníci"
+
+#: admin/includes/boxes/customers.php:24
+#, fuzzy
+#| msgid "Create Account"
+msgid "Create account"
+msgstr "Vytvořit účet"
+
+#: admin/includes/boxes/customers.php:29 admin/includes/boxes/orders.php:25
+#, fuzzy
+#| msgid "Created"
+msgid "Create order"
+msgstr "Vytvořeno"
+
+#: admin/includes/boxes/gv_admin.php:14
+msgid "GV Admin"
+msgstr ""
+
+#: admin/includes/boxes/gv_admin.php:18
+msgid "Coupoun Admin"
+msgstr ""
+
+#: admin/includes/boxes/gv_admin.php:23
+#, fuzzy
+#| msgid "Admin Name"
+msgid "Admin Queue"
+msgstr "Jméno admina"
+
+#: admin/includes/boxes/gv_admin.php:28
+#, fuzzy
+#| msgid "Admin Name"
+msgid "Admin Email"
+msgstr "Jméno admina"
+
+#: admin/includes/boxes/gv_admin.php:33
+#, fuzzy
+msgid "Sent"
+msgstr "Upomínka  %d  byla již odeslána"
+
+#: admin/includes/boxes/header_tags_seo.php:14
+msgid "SEO Tags"
+msgstr ""
+
+#: admin/includes/boxes/header_tags_seo.php:18
+#, fuzzy
+#| msgid "All pages"
+msgid "Add page"
+msgstr "Všechny stránky"
+
+#: admin/includes/boxes/header_tags_seo.php:23
+msgid "Silo"
+msgstr ""
+
+#: admin/includes/boxes/header_tags_seo.php:28
+msgid "Keywords"
+msgstr ""
+
+#: admin/includes/boxes/header_tags_seo.php:33
+msgid "Fill"
+msgstr ""
+
+#: admin/includes/boxes/header_tags_seo.php:38
+msgid "Social"
+msgstr ""
+
+#: admin/includes/boxes/header_tags_seo.php:43
+msgid "Test"
+msgstr "Test\t"
+
+#: admin/includes/boxes/information.php:18
+#: includes/modules/content/footer/templates/cm_footer_information_links.php:3
+msgid "Information"
+msgstr "Informace"
+
+#: admin/includes/boxes/localization.php:15
+msgid "Localization"
+msgstr ""
+
+#: admin/includes/boxes/localization.php:19
+#, fuzzy
+msgid "Currencies"
+msgstr "Měny"
+
+#: admin/includes/boxes/localization.php:24
+#: includes/modules/navbar_modules/nb_languages.php:22
+#, fuzzy
+#| msgid "Selected Language"
+msgid "Languages"
+msgstr "Zvolený jazyk"
+
+#: admin/includes/boxes/localization.php:29
+#, fuzzy
+msgid "Orders status"
+msgstr "Objednávka %s čeká na úhradu"
+
+#: admin/includes/boxes/modules.php:15
+#: admin/includes/boxes/modules_content.php:14
+#, fuzzy
+msgid "Modules"
+msgstr "Moduly"
+
+#: admin/includes/boxes/modules_content.php:16
+#, fuzzy
+msgid "Content"
+msgstr "Obsah"
+
+#: admin/includes/boxes/orders.php:15
+#: admin/includes/modules/dashboard/d_orders.php:28
+#: admin/includes/modules/dashboard/d_orders.php:43
+#: includes/classes/Orders.php:56
+msgid "Orders"
+msgstr "Objednávky"
+
+#: admin/includes/boxes/orders.php:19
+#, fuzzy
+#| msgid "Orders"
+msgid "Orders list"
+msgstr "Objednávky"
+
+#: admin/includes/boxes/reports.php:15
+msgid "Reports"
+msgstr ""
+
+#: admin/includes/boxes/reports.php:19
+#, fuzzy
+msgid "Products viewed"
+msgstr "Název produktu"
+
+#: admin/includes/boxes/reports.php:24 includes/classes/Orders.php:80
+msgid "Purchased"
+msgstr ""
+
+#: admin/includes/boxes/reports.php:29
+#, fuzzy
+#| msgid "Total"
+msgid "Totals"
+msgstr "Celkem"
+
+#: admin/includes/boxes/reports.php:34
+msgid "Stats sales"
+msgstr ""
+
+#: admin/includes/boxes/taxes.php:14
+msgid "Location and taxes"
+msgstr ""
+
+#: admin/includes/boxes/taxes.php:18
+#, fuzzy
+#| msgid "Categories"
+msgid "Countries"
+msgstr "Kategorie"
+
+#: admin/includes/boxes/taxes.php:23
+msgid "Tax zones"
+msgstr ""
+
+#: admin/includes/boxes/taxes.php:28
+msgid "Geo zones"
+msgstr ""
+
+#: admin/includes/boxes/taxes.php:33
+msgid "Tax Classes"
+msgstr ""
+
+#: admin/includes/boxes/taxes.php:38
+msgid "Tax Rates"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:23
+#: admin/includes/boxes/tools_database_tables.php:15
+#: admin/includes/boxes/tools_security_checks.php:14
+#, fuzzy
+msgid "Tools"
+msgstr "Nástroje"
+
+#: admin/includes/boxes/tools.php:27
+msgid "Action recorder"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:32
+msgid "Backup"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:37
+msgid "Database optimizer"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:42
+msgid "Banner manager"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:47
+msgid "Cache"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:52
+#, fuzzy
+#| msgid "Selected Language"
+msgid "Define language"
+msgstr "Zvolený jazyk"
+
+#: admin/includes/boxes/tools.php:57
+msgid "Tools Mail"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:62
+#, fuzzy
+#| msgid "Newsletter Consent"
+msgid "Newsletter nanager"
+msgstr "Souhlas se zasíláním novinek"
+
+#: admin/includes/boxes/tools.php:67
+msgid "Dir permissions"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:72
+#, fuzzy
+msgid "Server Info"
+msgstr "Informace o serveru"
+
+#: admin/includes/boxes/tools.php:77
+msgid "Version check"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:83
+msgid "Database Checks"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:90
+msgid "Mail Manager"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:96
+msgid "Whois Online"
+msgstr ""
+
+#: admin/includes/boxes/tools.php:106
+msgid "UserLog"
+msgstr ""
+
+#: admin/includes/boxes/tools_database_tables.php:17
+msgid "Database Tables"
+msgstr ""
+
+#: admin/includes/boxes/tools_security_checks.php:16
+#: admin/includes/modules/dashboard/d_security_checks.php:28
+msgid "Security Checks"
+msgstr ""
+
+#: admin/includes/classes/ui/DiscountSelector.php:30
+#, fuzzy
+msgid "None"
+msgstr "žádné"
+
+#: admin/includes/classes/ui/WebPage.php:41 admin/includes/header.php:23
+msgid "Store logo"
+msgstr ""
+
+#: admin/includes/classes/ui/WebPage.php:43 admin/includes/header.php:25
+#, fuzzy
+msgid "Administration"
+msgstr "Poslední přihlášení Administrátora"
+
+#: admin/includes/classes/ui/WebPage.php:47 admin/includes/header.php:29
 msgid "Static generator reset"
 msgstr ""
+
+#: admin/includes/classes/ui/WebPage.php:55 admin/includes/header.php:37
+#, php-format
+msgid "Logged in as: %s"
+msgstr ""
+
+#: admin/includes/classes/ui/WebPage.php:55 admin/includes/header.php:37
+msgid "Logoff"
+msgstr ""
+
+#: admin/includes/functions/html_output.php:496
+msgid "Text field requied"
+msgstr ""
+
+#: admin/includes/init.php:93
+#, fuzzy
+#| msgid "Search"
+msgid "Search Results"
+msgstr "Výsledky hledání"
 
 #: admin/includes/modules/dashboard/d_admin_logins.php:28
 #: admin/includes/modules/dashboard/d_admin_logins.php:42
@@ -344,14 +830,9 @@ msgstr ""
 #: admin/includes/modules/dashboard/d_admin_logins.php:43
 #: admin/includes/modules/dashboard/d_customers.php:42
 #: admin/includes/modules/dashboard/d_orders.php:45
-#: admin/includes/modules/dashboard/d_reviews.php:41
+#: admin/includes/modules/dashboard/d_reviews.php:41 admin/invoice.php:43
 msgid "Date"
 msgstr "Datum"
-
-#: admin/includes/modules/dashboard/d_customers.php:28
-#: admin/includes/modules/dashboard/d_customers.php:41
-msgid "Customers"
-msgstr "Zákazníci"
 
 #: admin/includes/modules/dashboard/d_customers.php:29
 msgid "Show the newest customers"
@@ -377,11 +858,6 @@ msgstr "Nejnovější zprávy"
 msgid "Show latest Oscommerce News"
 msgstr "Zobraz poslední objednávky"
 
-#: admin/includes/modules/dashboard/d_orders.php:28
-#: admin/includes/modules/dashboard/d_orders.php:43
-msgid "Orders"
-msgstr "Objednávky"
-
 #: admin/includes/modules/dashboard/d_orders.php:29
 msgid "Show the latest orders"
 msgstr "Zobraz poslední objednávky"
@@ -401,14 +877,10 @@ msgstr "Zobraz poslední objednávky"
 msgid "More partner news"
 msgstr "Novinky partnerů"
 
-#: admin/includes/modules/dashboard/d_reviews.php:26
-#: admin/includes/modules/dashboard/d_reviews.php:40
-msgid "Reviews"
-msgstr "Recenze"
-
 #: admin/includes/modules/dashboard/d_reviews.php:27
+#, fuzzy
 msgid "Show the latest reviews"
-msgstr ""
+msgstr "Recenze"
 
 #: admin/includes/modules/dashboard/d_reviews.php:42
 msgid "Reviewer"
@@ -418,21 +890,19 @@ msgstr "Recenzent"
 msgid "Rating"
 msgstr "Hodnocení"
 
-#: admin/includes/modules/dashboard/d_security_checks.php:28
-msgid "Security Checks"
-msgstr ""
-
 #: admin/includes/modules/dashboard/d_security_checks.php:29
 msgid "Run security checks"
 msgstr ""
 
 #: admin/includes/modules/dashboard/d_total_customers.php:28
+#, fuzzy
 msgid "Total Customers Chart (last 30 days)"
-msgstr ""
+msgstr "Graf Zákazníků (posledních 30 dní)"
 
 #: admin/includes/modules/dashboard/d_total_customers.php:29
+#, fuzzy
 msgid "Show the total customers chart of the last 30 days"
-msgstr ""
+msgstr "Graf Zákazníků (posledních 30 dní)"
 
 #: admin/includes/modules/dashboard/d_total_customers.php:62
 msgid "Total Customers"
@@ -459,34 +929,58 @@ msgstr ""
 msgid "Show the version check results"
 msgstr ""
 
-#: admin/login.php:119
+#: admin/invoice.php:45
+msgid "Variable Symbol"
+msgstr ""
+
+#: admin/login.php:129
 #, php-format
 msgid "Error saving private key to %s"
 msgstr ""
 
-#: admin/orders.php:156 admin/orders.php:616 checkout_success.php:90
+#: admin/orders.php:154 admin/orders.php:614 admin/orders.php:628
+#: checkout_success.php:90
 msgid "print cheque"
 msgstr "tisk složenky"
 
-#: admin/orders.php:616 admin/orders.php:624
+#: admin/orders.php:614 admin/orders.php:631
 msgid "Cash Desk payment"
 msgstr "Platba na pokladně"
 
-#: checkout_process.php:343 includes/modules/payment/cash.php:346
-#: includes/modules/payment/gpwebpay.php:410
+#: admin/orders.php:628
+msgid "Print post Order"
+msgstr ""
+
+#: admin/orders.php:635
+#, fuzzy
+#| msgid "FlexiBee sync"
+msgid "FlexiBee"
+msgstr "FlexiBee"
+
+#: admin/search.php:29
+#, php-format
+msgid "Serch for %s in"
+msgstr ""
+
+#: checkout_process.php:342 includes/modules/payment/cash.php:346
+#: includes/modules/payment/phgpwebpay.php:458
 msgid "New order saved"
 msgstr "Nová objednávka uložena"
 
-#: create_account.php:535
+#: checkout_process.php:355
+msgid "Variable symbol"
+msgstr ""
+
+#: create_account.php:536
 msgid "Company Number2"
 msgstr "DIČ"
 
-#: ext/flexibee/Cenik.php:89 ext/flexibee/FakturaVydana.php:43
+#: ext/flexibee/Cenik.php:89 ext/flexibee/FakturaVydana.php:42
 #: ext/flexibee/Strom.php:45
 msgid "FlexiBee import"
 msgstr "Import z FlexiBee "
 
-#: ext/flexibee/FakturaVydana.php:97
+#: ext/flexibee/FakturaVydana.php:96
 msgid "The Card holder canceled the payment"
 msgstr "The Card holder canceled the payment"
 
@@ -499,140 +993,179 @@ msgstr "Nové knihy za %s"
 msgid "Not found -> advanced search"
 msgstr ""
 
-#: includes/application_top.php:34
+#: includes/application_top.php:42
+#, fuzzy
 msgid "DB_SERVER not defined"
-msgstr ""
+msgstr "DB_SERVER není definován"
 
-#: includes/classes/CustomerLog.php:240
+#: includes/classes/CustomerLog.php:246
 msgid "Gdpr Log"
 msgstr "Gdpr Log"
 
-#: includes/classes/CustomerLog.php:259
+#: includes/classes/CustomerLog.php:265
 msgid "affected client"
 msgstr "dotčený klient"
 
-#: includes/classes/CustomerLog.php:260
+#: includes/classes/CustomerLog.php:266
 msgid "admin user"
 msgstr "administrátor"
 
-#: includes/classes/CustomerLog.php:261
+#: includes/classes/CustomerLog.php:267
 msgid "place of occurence"
 msgstr "Místo výskytu"
 
-#: includes/classes/CustomerLog.php:262
+#: includes/classes/CustomerLog.php:268
 msgid "question"
 msgstr "Otázka"
 
-#: includes/classes/CustomerLog.php:263
+#: includes/classes/CustomerLog.php:269
 msgid "answer"
 msgstr "odpověď"
 
-#: includes/classes/CustomerLog.php:264
+#: includes/classes/CustomerLog.php:270
 msgid "extid"
 msgstr "extid"
 
-#: includes/classes/CustomerLog.php:265
+#: includes/classes/CustomerLog.php:271
 msgid "predecessor"
 msgstr "Předchůdce"
 
-#: includes/classes/CustomerLog.php:268
+#: includes/classes/CustomerLog.php:274
 msgid "Customer Name"
 msgstr "Jméno klienta"
 
-#: includes/classes/CustomerLog.php:270
+#: includes/classes/CustomerLog.php:276
 msgid "Admin Name"
 msgstr "Jméno admina"
 
-#: includes/classes/Engine.php:139
+#: includes/classes/CustomerLog.php:400
+#, fuzzy
+msgid "GPWebPay Request Prepared"
+msgstr "Požadavek platby kartou připraven"
+
+#: includes/classes/Engine.php:153
 #, php-format
 msgid "New %s"
 msgstr "Nový %s"
 
-#: includes/classes/Engine.php:140
+#: includes/classes/Engine.php:154
 #, php-format
 msgid "Edit %s"
 msgstr "Uprav %s"
 
-#: includes/classes/Engine.php:141
+#: includes/classes/Engine.php:155
 #, php-format
 msgid "Remove %s"
 msgstr "Odstraň %s"
 
-#: includes/classes/Engine.php:142
+#: includes/classes/Engine.php:156
 #, php-format
 msgid "Create new %s"
 msgstr "Vytvořit nový %s"
 
-#: includes/classes/Engine.php:143
+#: includes/classes/Engine.php:157
 #, php-format
 msgid "Editing %s"
 msgstr "Upravuji %s"
 
-#: includes/classes/Engine.php:144
+#: includes/classes/Engine.php:158
 #, php-format
 msgid "Removing %s"
 msgstr "Odstranit %s"
 
-#: includes/classes/Engine.php:145
+#: includes/classes/Engine.php:159
 #, php-format
 msgid "Are you sure you wish to delete %%d row of %s ?"
 msgstr "Opravdu chcete  smazat %%d řádek z %s"
 
-#: includes/classes/Engine.php:186
+#: includes/classes/Engine.php:200
 #, php-format
 msgid "Missing ColumnInfo name for %s/%s"
 msgstr "Chybějící informace o názvu sloupce pro %s/%s"
 
-#: includes/classes/Engine.php:190
+#: includes/classes/Engine.php:204
 #, php-format
 msgid "Missing ColumnInfo type for %s/%s"
 msgstr "Chybějící typ slouce pro %s/%s"
 
-#: includes/classes/Engine.php:198
+#: includes/classes/Engine.php:212
 #, fuzzy
 msgid "Id"
 msgstr "Id"
 
-#: includes/classes/Engine.php:205
+#: includes/classes/Engine.php:219
 msgid "Updated"
 msgstr "Aktualizováno"
 
-#: includes/classes/Engine.php:211
+#: includes/classes/Engine.php:225
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: includes/classes/Engine.php:428
+#: includes/classes/Engine.php:443
 #, php-format
 msgid "%s is not valid email"
 msgstr "%s není korektní email"
 
-#: includes/classes/Engine.php:456
+#: includes/classes/Engine.php:471
 #, php-format
 msgid "A %s is required"
 msgstr "%s je vyžadováno"
 
-#: includes/classes/Engine.php:461
+#: includes/classes/Engine.php:476
 #, php-format
 msgid "A %s is not unique"
 msgstr "%s je již použito"
 
-#: includes/classes/Engine.php:586
+#: includes/classes/Engine.php:601
 #, php-format
 msgid "Field Type is not set for %s "
 msgstr "Typ sloupečku není nastaven pro %s"
 
-#: includes/classes/Engine.php:798
+#: includes/classes/Engine.php:813
 #, php-format
 msgid "Column \"%s\" of %s without type definition"
 msgstr "Sloupec \"%s\" z %s bez definice typu"
 
-#: includes/classes/Engine.php:965
+#: includes/classes/Engine.php:980
 msgid "Yes"
 msgstr "Ano"
 
-#: includes/classes/Engine.php:965
+#: includes/classes/Engine.php:980
 msgid "No"
 msgstr "Ne"
+
+#: includes/classes/Langugages.php:55 includes/classes/OrdersStatus.php:71
+#, fuzzy
+#| msgid "Selected Language"
+msgid "Languague"
+msgstr "Zvolený jazyk"
+
+#: includes/classes/Langugages.php:70
+#, fuzzy
+#| msgid "Selected Language"
+msgid "Language"
+msgstr "Jazyk"
+
+#: includes/classes/Langugages.php:71
+#, fuzzy
+msgid "Code"
+msgstr "Kód"
+
+#: includes/classes/Langugages.php:72
+#, fuzzy
+msgid "Image"
+msgstr "Obrázek"
+
+#: includes/classes/Langugages.php:73
+#, fuzzy
+msgid "Directory"
+msgstr "Složka kam se budou každý den ukládat zálohy"
+
+#: includes/classes/Langugages.php:74
+#, fuzzy
+#| msgid "My Orders"
+msgid "Sort Order"
+msgstr "Mé Objednávky"
 
 #: includes/classes/NewsletterConsentMailer.php:21
 msgid "Newsletter GDPR Consent"
@@ -651,12 +1184,74 @@ msgstr "Chcete se přihlásit k odběru emailových novinek z %s ?"
 msgid "Click here to Agree"
 msgstr "Klikněte zde pro vyjádření souhlasu"
 
-#: includes/classes/ui/DataTable.php:272
+#: includes/classes/Orders.php:77
+#, fuzzy
+#| msgid "Customer Name"
+msgid "Customer name"
+msgstr "Jméno klienta"
+
+#: includes/classes/Orders.php:79
+msgid "Customer"
+msgstr "Zákazník"
+
+#: includes/classes/Orders.php:82
+#, fuzzy
+#| msgid "Payment Icons"
+msgid "Payment amount"
+msgstr "Částka platby"
+
+#: includes/classes/Orders.php:254
+#, fuzzy, php-format
+msgid "Contract %s was added to broker diary"
+msgstr "Smlouva %s byla přidána do makléřského dníku"
+
+#: includes/classes/Orders.php:294
+#, fuzzy, php-format
+msgid "Product type %s Require attachment of document type %s"
+msgstr "Produkt typu %s vyžaduje přílohu která je typu dokumentu %s"
+
+#: includes/classes/OrdersStatus.php:54
+#, fuzzy
+#| msgid "Contact Us"
+msgid "Contract"
+msgstr "Smlouva"
+
+#: includes/classes/OrdersStatus.php:68
+msgid "Order Status name"
+msgstr "Název stavu objednávky"
+
+#: includes/classes/OrdersStatus.php:76
+#, fuzzy
+msgid "Public"
+msgstr "Neprohlížím tuto stránku na veřejnosti"
+
+#: includes/classes/OrdersStatus.php:77
+#, fuzzy
+msgid "Downloads"
+msgstr "Stažení"
+
+#: includes/classes/ui/AddVariantToCartForm.php:72
+#, fuzzy
+#| msgid "View Cart"
+msgid "To Cart"
+msgstr "Do Košíku"
+
+#: includes/classes/ui/DataTable.php:111
+#, fuzzy
+msgid "Reload"
+msgstr "Načíst znovu"
+
+#: includes/classes/ui/DataTable.php:284
 msgid "All pages"
 msgstr "Všechny stránky"
 
 #: includes/classes/ui/QRFaktura.php:23
+#, fuzzy
 msgid "QR Invoice"
+msgstr "QR Faktura"
+
+#: includes/functions/html_output.php:192
+msgid "Cannot crete thumbnails directory"
 msgstr ""
 
 #: includes/modules/action_recorder/ar_admin_login.php:25
@@ -685,19 +1280,14 @@ msgstr "Dpopruč příteli %s"
 msgid "Record usage of the Tell A Friend feature."
 msgstr ""
 
-#: includes/modules/article_listing.php:44
+#: includes/modules/article_listing.php:47
 #: includes/modules/articles_upcoming.php:43
 msgid "Topic"
 msgstr "Kategorie článků"
 
-#: includes/modules/article_listing.php:63
+#: includes/modules/article_listing.php:66
 msgid "Date added"
 msgstr "Přidáno dne"
-
-#: includes/modules/boxes/bm_articles.php:24
-#: includes/modules/boxes/bm_articles.php:384
-msgid "Articles"
-msgstr "Články"
 
 #: includes/modules/boxes/bm_articles.php:25
 msgid "Show Article Manager Articles InfoBox"
@@ -706,11 +1296,6 @@ msgstr ""
 #: includes/modules/boxes/bm_categories.php:25
 msgid "Show the category navigation tree"
 msgstr ""
-
-#: includes/modules/boxes/bm_search.php:29
-#: includes/modules/boxes/bm_search.php:50
-msgid "Search"
-msgstr "Hledat"
 
 #: includes/modules/boxes/bm_search.php:30
 #, fuzzy
@@ -857,10 +1442,6 @@ msgstr "Email"
 msgid "Contact Us"
 msgstr "Napište nám"
 
-#: includes/modules/content/footer/templates/cm_footer_information_links.php:3
-msgid "Information"
-msgstr "Informace"
-
 #: includes/modules/content/footer_suffix/cm_footer_extra_copyright.php:27
 msgid "Copyright Details"
 msgstr "Licenční detaily"
@@ -925,8 +1506,9 @@ msgid "Front Page New Products"
 msgstr ""
 
 #: includes/modules/content/front_page/cm_fp_new_products.php:29
+#, fuzzy
 msgid "Show the new products block on the front page."
-msgstr ""
+msgstr "Zobraz nejnovější produkty."
 
 #: includes/modules/content/front_page/cm_fp_text_main.php:28
 msgid "Front Page Main Text"
@@ -939,7 +1521,7 @@ msgstr ""
 #: includes/modules/content/front_page/cm_fp_title.php:28
 #, fuzzy
 msgid "Front Page Title"
-msgstr "Název produktu"
+msgstr "Pozdrav klientovi na titulní straně"
 
 #: includes/modules/content/front_page/cm_fp_title.php:29
 msgid "Show the title block on the front page."
@@ -960,6 +1542,15 @@ msgstr "Zobrazit"
 msgid "Buy"
 msgstr "Koupit"
 
+#: includes/modules/content/header/cm_carousel.php:27
+msgid "Carousel Banners For Home Page"
+msgstr ""
+
+#: includes/modules/content/header/cm_carousel.php:28
+msgid ""
+"Adds a carousel to Home Page with banner images set from Banner Manager."
+msgstr ""
+
 #: includes/modules/content/header/cm_header_breadcrumb.php:27
 msgid "Breadrcumb"
 msgstr ""
@@ -967,7 +1558,7 @@ msgstr ""
 #: includes/modules/content/header/cm_header_breadcrumb.php:28
 #, fuzzy
 msgid "Adds a Breadrcumb Trail into the Header Area of your site."
-msgstr "Přidá vyhledávací políčko do patičky vašich stránek"
+msgstr "Přidá vyhledávací políčko do patičky vašich stránek."
 
 #: includes/modules/content/header/cm_header_search.php:28
 msgid "Header Search Bar"
@@ -999,7 +1590,7 @@ msgstr "Přihlašovací formulář"
 msgid "Show a login form on the login page"
 msgstr "Zobrazit přihlašovací formulář na přihlašovací stránce"
 
-#: includes/modules/content/login/cm_login_form.php:68
+#: includes/modules/content/login/cm_login_form.php:93
 msgid "Error: No match for E-Mail Address and/or Password."
 msgstr "Chyba: Nesouhlasí E-Mailová adresa či Heslo."
 
@@ -1017,7 +1608,7 @@ msgstr "Vytvořit účet"
 
 #: includes/modules/content/login/templates/create_account_link.php:6
 msgid "I am a new customer."
-msgstr "Jsem nový zákazník"
+msgstr "Jsem nový zákazník."
 
 #: includes/modules/content/login/templates/create_account_link.php:7
 #, php-format
@@ -1032,7 +1623,7 @@ msgstr "Login"
 
 #: includes/modules/content/login/templates/login_form.php:6
 msgid "I am a returning customer."
-msgstr "Jsem stávající zákazník"
+msgstr "Jsem stávající zákazník."
 
 #: includes/modules/content/login/templates/login_form.php:24
 msgid "Password forgotten? Click here."
@@ -1044,7 +1635,7 @@ msgstr "Nákup bez registrace"
 
 #: includes/modules/content/login/templates/pwa_login.php:6
 msgid "Purchase without creating user account."
-msgstr ""
+msgstr "Objednávka bez registrace"
 
 #: includes/modules/content/navbar/cm_nb_account.php:29
 #, fuzzy
@@ -1053,7 +1644,7 @@ msgstr "Můj účet"
 
 #: includes/modules/content/navbar/cm_nb_account.php:30
 msgid "Show the account menu in the navbar."
-msgstr ""
+msgstr "Zobraz nabídku účtu v menu."
 
 #: includes/modules/content/navbar/cm_nb_cart.php:29
 #, fuzzy
@@ -1070,6 +1661,22 @@ msgstr "Menu kategorií navbaru"
 
 #: includes/modules/content/navbar/cm_nb_categories.php:30
 msgid "Show the categories menu in the navbar."
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_generic1.php:29
+#, fuzzy
+msgid "Navbar Generic1"
+msgstr "Menu kategorií navbaru"
+
+#: includes/modules/content/navbar/cm_nb_generic1.php:30
+msgid "Show the Navbar generic1 icon on your site."
+msgstr ""
+
+#: includes/modules/content/navbar/cm_nb_generic1.php:31
+msgid ""
+"External links in osCommerce are extremely dangerous. Read the warnings in "
+"the User's Manual concerning external links before adding an external link "
+"to this module."
 msgstr ""
 
 #: includes/modules/content/navbar/cm_nb_settings.php:29
@@ -1173,6 +1780,11 @@ msgstr ""
 msgid "Show the Modular Navigation Bar on your site."
 msgstr ""
 
+#: includes/modules/content/navigation/cm_modular_navbar.php:67
+#, php-format
+msgid "Class %s not found"
+msgstr "Třída %s nebyla nalezena"
+
 #: includes/modules/content/navigation/templates/navbar.php:113
 msgid "VIEW CART"
 msgstr "Košík"
@@ -1180,7 +1792,7 @@ msgstr "Košík"
 #: includes/modules/content/product_info/cm_pi_reviews.php:27
 #, fuzzy
 msgid "Product Reviews"
-msgstr "Název produktu"
+msgstr "Recenze"
 
 #: includes/modules/content/product_info/cm_pi_reviews.php:28
 msgid " Show review block on the product info page."
@@ -1261,8 +1873,9 @@ msgid "Google Analytics"
 msgstr ""
 
 #: includes/modules/header_tags/ht_google_analytics.php:26
+#, fuzzy
 msgid "Add Google Analytics to the shop"
-msgstr ""
+msgstr "ui"
 
 #: includes/modules/header_tags/ht_grid_list_view.php:26
 msgid "Grid List Javascript (jQuery)"
@@ -1485,6 +2098,10 @@ msgstr "Není skladem"
 msgid "CONTACT US"
 msgstr "Napište nám"
 
+#: includes/modules/navbar_modules/nb_languages.php:23
+msgid "Language Chooser"
+msgstr ""
+
 #: includes/modules/payment/cash.php:25
 msgid "Cash"
 msgstr "Hotovost"
@@ -1502,44 +2119,77 @@ msgid "Completed [cash]"
 msgstr "Hotovo [hotově]"
 
 #: includes/modules/payment/cod.php:27 includes/modules/payment/cod.php:28
+#: includes/modules/payment/moneyorder.php:28
+#, fuzzy
 msgid "Cash on Delivery"
+msgstr "Dobírka"
+
+#: includes/modules/payment/gpwebpay.php:143
+msgid "GlobalPayment's GPWebPay"
 msgstr ""
 
-#: includes/modules/payment/gpwebpay.php:41
-msgid "GP WebPay"
+#: includes/modules/payment/gpwebpay.php:145
+msgid "Provided by Global Payment"
+msgstr ""
+
+#: includes/modules/payment/ipayment_cc.php:31
+#: includes/modules/payment/ipayment_cc.php:32
+#, fuzzy
+#| msgid "Payment"
+msgid "Ipayment"
+msgstr "Platba"
+
+#: includes/modules/payment/ipayment_cc.php:33
+#, fuzzy
+#| msgid "Payment Icons"
+msgid "Ipayment description"
+msgstr "Platební ikony"
+
+#: includes/modules/payment/moneyorder.php:29
+#, fuzzy
+#| msgid "My Orders"
+msgid "Money order"
+msgstr "Mé Objednávky"
+
+#: includes/modules/payment/phgpwebpay.php:69
+#, fuzzy
+#| msgid "GP WebPay"
+msgid "PureOSC's GP WebPay"
 msgstr "GP WebPay"
 
-#: includes/modules/payment/gpwebpay.php:43
+#: includes/modules/payment/phgpwebpay.php:71
 msgid "Card Payment"
 msgstr "Platba Kartou"
 
-#: includes/modules/payment/gpwebpay.php:44
-msgid "GP WebPay Payment"
-msgstr "GP WebPay Platba"
+#: includes/modules/payment/phgpwebpay.php:72
+msgid "PureHTML provided GP WebPay Payment with optional FlexiBee support"
+msgstr ""
 
-#: includes/modules/payment/gpwebpay.php:469
+#: includes/modules/payment/phgpwebpay.php:461
+#, fuzzy
+#| msgid "FlexiBee server not connected."
+msgid "FlexiBee Invoice not issued"
+msgstr "FlexiBee server není připojen"
+
+#: includes/modules/payment/phgpwebpay.php:539
 msgid "Payment failed"
 msgstr "Platba selhala"
 
-#: includes/modules/payment/gpwebpay.php:808
+#: includes/modules/payment/phgpwebpay.php:899
 msgid "Your secret key"
 msgstr "Váš tajný klíč"
 
-#: includes/modules/payment/gpwebpay.php:808
+#: includes/modules/payment/phgpwebpay.php:899
 msgid "Your secret key (supplied by gpwebpay)"
 msgstr "Váš tajný klíč (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:809
+#: includes/modules/payment/phgpwebpay.php:900
 msgid "Your secret key password (supplied by gpwebpay)"
 msgstr "heslo vašeho tajného klíče  (dodaný gpwebpay)"
 
-#: includes/modules/payment/gpwebpay.php:810
+#: includes/modules/payment/phgpwebpay.php:901
 msgid "Your public key (supplied by gpwebpay)"
 msgstr "váš veřejný klíč (dodaný gpwebpay)"
-
-#: includes/modules/payment/gpwebpay.php:915
-msgid "Testing payment"
-msgstr "Testovací platba"
 
 #: includes/modules/product_listing.php:51
 msgid "Sort by"
@@ -1568,6 +2218,10 @@ msgid ""
 "account with USPS at http://www.uspsprioritymail.com/et_regcert.html to use "
 "this module<br /><br />USPS expects you to use pounds as weight measure for "
 "your products."
+msgstr ""
+
+#: includes/modules/shipping/zones.php:131
+msgid "Shiping zones"
 msgstr ""
 
 #: includes/modules/shipping/zones2.php:124
@@ -1610,6 +2264,12 @@ msgstr "Souhlas k odběru mailových novinek byl přijat"
 msgid "Newsletter subscription consent was not accepted"
 msgstr "Souhlas k odběru mailových novinek nebyl přijat"
 
+#: order_confirmed.php:13
+#, fuzzy
+#| msgid "Payment failed"
+msgid "Payment Initiated"
+msgstr "Platba selhala"
+
 #: product_info.php:40
 msgid "Product not found"
 msgstr "Produkt nenalezen"
@@ -1629,6 +2289,12 @@ msgstr "citace"
 #: admin/ext/aas/editors/tinymce/js/tinymce/tinymce.min.js:6
 msgid "p"
 msgstr "p"
+
+#~ msgid "GP WebPay Payment"
+#~ msgstr "GP WebPay Platba"
+
+#~ msgid "Testing payment"
+#~ msgstr "Testovací platba"
 
 #~ msgid "Informations about my account"
 #~ msgstr "Informace o mém účtu"

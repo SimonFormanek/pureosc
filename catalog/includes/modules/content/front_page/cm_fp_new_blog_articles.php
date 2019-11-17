@@ -27,8 +27,8 @@ class cm_fp_new_blog_articles
 
 
         if (defined('MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_STATUS')) {
-            $this->sort_order = constant('MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_SORT_ORDER');
-            $this->enabled    = (constant('MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_STATUS')
+            $this->sort_order = cfg('MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_SORT_ORDER');
+            $this->enabled    = (cfg('MODULE_CONTENT_FRONT_PAGE_NEW_BLOG_ARTICLES_STATUS')
                 == 'True');
         }
     }

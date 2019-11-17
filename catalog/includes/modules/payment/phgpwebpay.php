@@ -120,7 +120,7 @@ class phgpwebpay {
                 tep_db_query("update " . cfg('TABLE_ORDERS') . " set orders_status = '" . $order->info['order_status'] . "', last_modified = now() where orders_id = '" . (int) $order_id . "'");
                 break;
             case 14: //Payment ID Duplicity
-//                if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+//                if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
 //                    $invoice = new PureOSC\flexibee\FakturaVydana();
 //                    $invoice->deleteFromFlexiBee('ext:orders:'.$order_id);
 //                }
@@ -507,7 +507,7 @@ class phgpwebpay {
                 $gpwpcurrency, 1, $successUrl, $varSym);
 
         $request->setDescription(self::convertToAscii(\Ease\Functions::rip($products_info)));
-        $request->setMerchantNumber(constant('MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID'));
+        $request->setMerchantNumber(cfg('MODULE_PAYMENT_GPWEBPAY_MERCHANT_ID'));
         try {
             $parameters = $api->createPaymentParam($request);
 
@@ -592,7 +592,7 @@ return true;
                     tep_db_query("update " . cfg('TABLE_ORDERS') . " set orders_status = '" . $order->info['order_status'] . "', last_modified = now() where orders_id = '" . (int) $order_id . "'");
                     \Ease\Shared::singleton()->addStatusMessage($_REQUEST['RESULTTEXT'], 'warning');
 
-                    tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));
+                    tep_redirect(tep_href_link(cfg('FILENAME_SHOPPING_CART')));
                     exit;
                     break;
                 case 0:
@@ -620,7 +620,7 @@ return true;
                 default:
                     $order_status_id = (int) 109; //Unknow OSC Error
                     tep_db_query("update " . cfg('TABLE_ORDERS') . " set orders_status = '" . $order_status_id . "', last_modified = now() where orders_id = '" . (int) $order_id . "'");
-                    tep_redirect(tep_href_link(constant('FILENAME_SHOPPING_CART')));
+                    tep_redirect(tep_href_link(cfg('FILENAME_SHOPPING_CART')));
                     exit();
                     break;
             }

@@ -14,6 +14,10 @@ namespace PureOSC\Admin\ui;
  * @author vitex
  */
 class WebPage extends \Ease\TWB\WebPage {
+    /**
+     * Saves obejct instace (singleton...).
+     */
+    private static $instance = null;
 
     /**
      *
@@ -48,7 +52,7 @@ class WebPage extends \Ease\TWB\WebPage {
                 $pageTop->addMenuItem(new \FlexiPeeHP\ui\TWB\StatusInfoBox(), 'right');
             }
 
-            $pageTop->addDropDownMenu(sprintf(_('Logged in as: %s'), $admin['username']), [cfg('FILENAME_LOGIN') . '?action=logoff' => _('Logoff')], 'right');
+            $pageTop->addDropDownMenu(sprintf(_('Logged in as: %s'), $_SESSION['admin']['username']), [cfg('FILENAME_LOGIN') . '?action=logoff' => _('Logoff')], 'right');
         }
 
         return $pageTop;
@@ -130,4 +134,14 @@ $("#adminAppMenu").hover(function() {
         return strcasecmp($a['title'], $b['title']);
     }
 
+    /**
+     * @return WebPage
+     */
+    public static function singleton($webPage = null)
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = is_object($webPage) ? $webPage : new self();
+        }
+        return self::$instance;
+    }
 }

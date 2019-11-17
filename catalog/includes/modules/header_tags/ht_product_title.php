@@ -28,8 +28,8 @@ class ht_product_title {
       $this->description = _('Add the title of the current product to the page title');
 
         if (defined('MODULE_HEADER_TAGS_PRODUCT_TITLE_STATUS')) {
-            $this->sort_order = constant('MODULE_HEADER_TAGS_PRODUCT_TITLE_SORT_ORDER');
-            $this->enabled = (constant('MODULE_HEADER_TAGS_PRODUCT_TITLE_STATUS') == 'True');
+            $this->sort_order = cfg('MODULE_HEADER_TAGS_PRODUCT_TITLE_SORT_ORDER');
+            $this->enabled = (cfg('MODULE_HEADER_TAGS_PRODUCT_TITLE_STATUS') == 'True');
         }
     }
 

@@ -49,7 +49,7 @@ if (tep_not_null($action)) {
                         if ($info['algo'] < 1) { //unknown algo 
 //                        tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".password_hash($password, PASSWORD_ARGON2ID)."' where id = '".(int) $check['id']."'");
                             tep_db_query("update " . TABLE_ADMINISTRATORS . " set user_password = '" . password_hash($password, PASSWORD_ARGON2ID) . "' where id = '" . (int) $check['id'] . "'");
-//TODO:                        tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".password_hash($password, constant('HASH_ALGO'))."' where id = '".(int) $check['id']."'");
+//TODO:                        tep_db_query("update ".TABLE_ADMINISTRATORS." set user_password = '".password_hash($password, cfg('HASH_ALGO'))."' where id = '".(int) $check['id']."'");
                         }
 
                         /*
@@ -124,18 +124,18 @@ if (tep_not_null($action)) {
                     $password_encrypted = tep_encrypt_password($password);
                     $adminCryptor->createKey($password_encrypted);
 
-                    if (!file_put_contents(DIR_FS_MASTER_ROOT_DIR . 'oscconfig/keys/privateKey.asc',
+                    if (!file_put_contents(cfg('DIR_FS_MASTER_ROOT_DIR') . 'oscconfig/keys/privateKey.asc',
                                     $adminCryptor->getPrivateKey())) {
                         $messageStack->add(sprintf(_('Error saving private key to %s'),
                                         DIR_FS_MASTER_ROOT_DIR . 'oscconfig/keys/privateKey.asc'));
                     }
 
                     tep_db_query("insert into " . TABLE_ADMINISTRATORS . " (user_name, user_password,pubkey) values ('" . tep_db_input($username) . "', '" . tep_db_input(password_hash($password, PASSWORD_ARGON2ID)) . "', '" . $adminCryptor->getPublicKey() . "')");
-//TODO:                      tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password,pubkey) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, constant('HASH_ALGO')))."', '".$adminCryptor->getPublicKey()."')");
+//TODO:                      tep_db_query("insert into ".TABLE_ADMINISTRATORS." (user_name, user_password,pubkey) values ('".tep_db_input($username)."', '".tep_db_input(password_hash($password, cfg('HASH_ALGO')))."', '".$adminCryptor->getPublicKey()."')");
                 }
             }
 
-            tep_redirect(tep_href_link(FILENAME_LOGIN));
+            tep_redirect(tep_href_link(cfg('FILENAME_LOGIN')));
 
             break;
     }

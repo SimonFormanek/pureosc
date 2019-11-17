@@ -165,7 +165,7 @@ for ($i = 0, $n = sizeof($order_totals); $i < $n; $i++) {
     tep_db_perform(TABLE_ORDERS_TOTAL, $sql_data_array);
 }
 
-$customer_notification = ( constant('SEND_EMAILS') == 'true') ? '1' : '0';
+$customer_notification = ( cfg('SEND_EMAILS') == 'true') ? '1' : '0';
 $sql_data_array = array('orders_id' => $insert_id,
     'orders_status_id' => $order->info['order_status'],
     'date_added' => 'now()',

@@ -48,6 +48,8 @@ class AdminMessageStack extends tableBlock
 
     function add($message, $type = 'error')
     {
+        \Ease\Shared::singleton()->addStatusMessage($message,$type);
+        
         if ($type == 'error') {
             $this->errors[] = array('params' => 'class="messageStackError"', 'text' => tep_image(DIR_WS_ICONS.'error.gif',
                     ICON_ERROR).'&nbsp;'.$message);

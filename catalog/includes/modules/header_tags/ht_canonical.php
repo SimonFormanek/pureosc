@@ -26,8 +26,8 @@ class ht_canonical {
         $this->description = _('Add header canonical links to category and product pages');
 
         if (defined('MODULE_HEADER_TAGS_CANONICAL_STATUS')) {
-            $this->sort_order = constant('MODULE_HEADER_TAGS_CANONICAL_SORT_ORDER');
-            $this->enabled = (constant('MODULE_HEADER_TAGS_CANONICAL_STATUS') == 'True');
+            $this->sort_order = cfg('MODULE_HEADER_TAGS_CANONICAL_SORT_ORDER');
+            $this->enabled = (cfg('MODULE_HEADER_TAGS_CANONICAL_STATUS') == 'True');
         }
     }
 

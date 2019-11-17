@@ -211,15 +211,15 @@ if (tep_not_null($action)) {
                     }
                 }
 
-                tep_db_perform(constant('TABLE_ADDRESS_BOOK'), $sql_data_array,
+                tep_db_perform(cfg('TABLE_ADDRESS_BOOK'), $sql_data_array,
                     'update',
                     "customers_id = '" . (int)$customers_id . "' and address_book_id = '" . (int)$default_address_id . "'");
 
                 $adminLog->logMySQLChange($adresator->getData(),
-                    $sql_data_array, constant('TABLE_ADDRESS_BOOK'),
+                    $sql_data_array, cfg('TABLE_ADDRESS_BOOK'),
                     $customers_id, array_keys($sql_data_array));
 
-                if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+                if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
 
                     $nazev = strlen($company) ? $company : $customers_firstname . ' ' . $customers_lastname;
 

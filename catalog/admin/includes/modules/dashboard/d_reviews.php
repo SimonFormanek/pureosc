@@ -27,8 +27,8 @@
       $this->description = _('Show the latest reviews');
 
       if ( defined('MODULE_ADMIN_DASHBOARD_REVIEWS_STATUS') ) {
-        $this->sort_order = constant('MODULE_ADMIN_DASHBOARD_REVIEWS_SORT_ORDER');
-        $this->enabled = (constant('MODULE_ADMIN_DASHBOARD_REVIEWS_STATUS') == 'True');
+        $this->sort_order = cfg('MODULE_ADMIN_DASHBOARD_REVIEWS_SORT_ORDER');
+        $this->enabled = (cfg('MODULE_ADMIN_DASHBOARD_REVIEWS_STATUS') == 'True');
       }
     }
 

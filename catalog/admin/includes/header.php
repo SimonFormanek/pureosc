@@ -30,11 +30,11 @@ $pageTop->addMenuItem(new \Ease\TWB\LinkButton(tep_href_link(cfg('FILENAME_STATI
 
 if (tep_session_is_registered('admin')) {
 
-    if (defined('USE_FLEXIBEE') && constant('USE_FLEXIBEE') == 'true') {
+    if (defined('USE_FLEXIBEE') && cfg('USE_FLEXIBEE') == 'true') {
         $pageTop->addMenuItem(new \FlexiPeeHP\ui\TWB\StatusInfoBox(), 'right');
     }
 
-    $pageTop->addDropDownMenu(sprintf(_('Logged in as: %s'), $admin['username']), [cfg('FILENAME_LOGIN') . '?action=logoff' => _('Logoff')], 'right');
+    $pageTop->addDropDownMenu(sprintf(_('Logged in as: %s'), $_SESSION['admin']['username']), [cfg('FILENAME_LOGIN') . '?action=logoff' => _('Logoff')], 'right');
 }
 
 

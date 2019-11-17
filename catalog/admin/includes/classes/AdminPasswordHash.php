@@ -1,4 +1,5 @@
 <?php
+
 #
 # Portable PHP password hashing framework.
 #
@@ -30,32 +31,33 @@
 # requirements (there can be none), but merely suggestions.
 #
 
-class AdminPasswordHash
-{
+class AdminPasswordHash {
+
     var $itoa64;
     var $iteration_count_log2;
     var $portable_hashes;
     var $random_state;
 
-    public function __construct($iteration_count_log2, $portable_hashes)
-    {
+    public function __construct($iteration_count_log2, $portable_hashes) {
         $this->itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
-        if ($iteration_count_log2 < 4 || $iteration_count_log2 > 31)
-                $iteration_count_log2       = 8;
+        if ($iteration_count_log2 < 4 || $iteration_count_log2 > 31) {
+            $iteration_count_log2 = 8;
+        }
         $this->iteration_count_log2 = $iteration_count_log2;
 
         $this->portable_hashes = $portable_hashes;
 
         $this->random_state = microtime();
-        if (function_exists('getmypid')) $this->random_state .= getmypid();
+        if (function_exists('getmypid')) {
+            $this->random_state .= getmypid();
+        }
     }
 
-    function get_random_bytes($count)
-    {
+    function get_random_bytes($count) {
         $output = '';
         if (@is_readable('/dev/urandom') &&
-            ($fh     = @fopen('/dev/urandom', 'rb'))) {
+                ($fh = @fopen('/dev/urandom', 'rb'))) {
             if (function_exists('stream_set_read_buffer')) {
                 stream_set_read_buffer($fh, 0);
             }
@@ -74,8 +76,8 @@ class AdminPasswordHash
         if (strlen($output) < $count) {
             $output = '';
             for ($i = 0; $i < $count; $i += 16) {
-                $this->random_state = md5(microtime().$this->random_state);
-                $output             .= pack('H*', md5($this->random_state));
+                $this->random_state = md5(microtime() . $this->random_state);
+                $output .= pack('H*', md5($this->random_state));
             }
             $output = substr($output, 0, $count);
         }
@@ -83,40 +85,39 @@ class AdminPasswordHash
         return $output;
     }
 
-    function encode64($input, $count)
-    {
+    function encode64($input, $count) {
         $output = '';
-        $i      = 0;
+        $i = 0;
         do {
-            $value  = ord($input[$i++]);
+            $value = ord($input[$i++]);
             $output .= $this->itoa64[$value & 0x3f];
-            if ($i < $count) $value  |= ord($input[$i]) << 8;
+            if ($i < $count)
+                $value |= ord($input[$i]) << 8;
             $output .= $this->itoa64[($value >> 6) & 0x3f];
-            if ($i++ >= $count) break;
-            if ($i < $count) $value  |= ord($input[$i]) << 16;
+            if ($i++ >= $count)
+                break;
+            if ($i < $count)
+                $value |= ord($input[$i]) << 16;
             $output .= $this->itoa64[($value >> 12) & 0x3f];
-            if ($i++ >= $count) break;
+            if ($i++ >= $count)
+                break;
             $output .= $this->itoa64[($value >> 18) & 0x3f];
         } while ($i < $count);
 
         return $output;
     }
 
-    function gensalt_private($input)
-    {
+    function gensalt_private($input) {
         $output = '$P$';
         $output .= $this->itoa64[min($this->iteration_count_log2 +
-                ((PHP_VERSION >= '5') ? 5 : 3), 30)];
+                        ((PHP_VERSION >= '5') ? 5 : 3), 30)];
         $output .= $this->encode64($input, 6);
 
         return $output;
     }
 
-    function crypt_private($password, $setting)
-    {
-        $output = '*0';
-        if (substr($setting, 0, 2) == $output) $output = '*1';
-
+    function crypt_private($password, $setting) {
+        
         $id = substr($setting, 0, 3);
         # We use "$P$", phpBB3 uses "$H$" for the same thing
         if ($id != '$P$' && $id != '$H$') return $output;
@@ -145,7 +146,7 @@ class AdminPasswordHash
             do {
                 $hash = pack('H*', md5($hash.$password));
             } while (--$count);
-        }
+    }
 
         $output = substr($setting, 0, 12);
         $output .= $this->encode64($hash, 16);
@@ -158,7 +159,7 @@ class AdminPasswordHash
         $count_log2 = min($this->iteration_count_log2 + 8, 24);
         # This should be odd to not reveal weak DES keys, and the
         # maximum valid value is (2**24 - 1) which is odd anyway.
-        $count      = (1 << $count_log2) - 1;
+        $count = (1 << $count_log2) - 1;
 
         $output = '_';
         $output .= $this->itoa64[$count & 0x3f];
@@ -171,8 +172,7 @@ class AdminPasswordHash
         return $output;
     }
 
-    function gensalt_blowfish($input)
-    {
+    function gensalt_blowfish($input) {
         # This one needs to use a different order of characters and a
         # different encoding scheme from the one in encode64() above.
         # We care because the last character in our encoded string will
@@ -190,21 +190,21 @@ class AdminPasswordHash
 
         $i = 0;
         do {
-            $c1     = ord($input[$i++]);
+            $c1 = ord($input[$i++]);
             $output .= $itoa64[$c1 >> 2];
-            $c1     = ($c1 & 0x03) << 4;
+            $c1 = ($c1 & 0x03) << 4;
             if ($i >= 16) {
                 $output .= $itoa64[$c1];
                 break;
             }
 
-            $c2     = ord($input[$i++]);
-            $c1     |= $c2 >> 4;
+            $c2 = ord($input[$i++]);
+            $c1 |= $c2 >> 4;
             $output .= $itoa64[$c1];
-            $c1     = ($c2 & 0x0f) << 2;
+            $c1 = ($c2 & 0x0f) << 2;
 
-            $c2     = ord($input[$i++]);
-            $c1     |= $c2 >> 6;
+            $c2 = ord($input[$i++]);
+            $c1 |= $c2 >> 6;
             $output .= $itoa64[$c1];
             $output .= $itoa64[$c2 & 0x3f];
         } while (1);
@@ -212,26 +212,30 @@ class AdminPasswordHash
         return $output;
     }
 
-    function HashPassword($password)
-    {
+    function HashPassword($password) {
         $random = '';
 
         if (CRYPT_BLOWFISH == 1 && !$this->portable_hashes) {
             $random = $this->get_random_bytes(16);
-            $hash   = crypt($password, $this->gensalt_blowfish($random));
-            if (strlen($hash) == 60) return $hash;
+            $hash = crypt($password, $this->gensalt_blowfish($random));
+            if (strlen($hash) == 60)
+                return $hash;
         }
 
         if (CRYPT_EXT_DES == 1 && !$this->portable_hashes) {
-            if (strlen($random) < 3) $random = $this->get_random_bytes(3);
-            $hash   = crypt($password, $this->gensalt_extended($random));
-            if (strlen($hash) == 20) return $hash;
+            if (strlen($random) < 3)
+                $random = $this->get_random_bytes(3);
+            $hash = crypt($password, $this->gensalt_extended($random));
+            if (strlen($hash) == 20)
+                return $hash;
         }
 
-        if (strlen($random) < 6) $random = $this->get_random_bytes(6);
-        $hash   = $this->crypt_private($password,
-            $this->gensalt_private($random));
-        if (strlen($hash) == 34) return $hash;
+        if (strlen($random) < 6)
+            $random = $this->get_random_bytes(6);
+        $hash = $this->crypt_private($password,
+                $this->gensalt_private($random));
+        if (strlen($hash) == 34)
+            return $hash;
 
         # Returning '*' on error is safe here, but would _not_ be safe
         # in a crypt(3)-like function used _both_ for generating new
@@ -239,11 +243,11 @@ class AdminPasswordHash
         return '*';
     }
 
-    function CheckPassword($password, $stored_hash)
-    {
+    function CheckPassword($password, $stored_hash) {
         $hash = $this->crypt_private($password, $stored_hash);
         if ($hash[0] == '*') $hash = crypt($password, $stored_hash);
 
         return $hash == $stored_hash;
     }
+
 }

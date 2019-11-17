@@ -50,8 +50,8 @@ $apacheuser = posix_getpwuid(posix_getuid());
         error_log('Database connection Error' . "\n" . date("Y-m-d h:i:s") . "\n\n", 3,  $apacheuser['dir'] . DATABASE_ERRORS_LOG);
 
     }
-    if (constant('MYSQL_DEBUG') == 'on') {
-        trigger_error($errno.' - '.$error. ' '.$query, constant('E_USER_ERROR'));
+    if (cfg('MYSQL_DEBUG') == 'on') {
+        trigger_error($errno.' - '.$error. ' '.$query, cfg('E_USER_ERROR'));
         die('<font color="#000000"><strong>'.$errno.' - '.$error.'<br /><br />'.$query.'<br /><br /><small><font color="#ff0000">[TEP STOP]</font></small><br /><br /></strong></font>');
     } else {
         die('<font color="#000000"><strong>Mysql Error<br /></strong></font>');

@@ -117,7 +117,7 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
         if (preg_match('/^en/', $browser_language)) {
             $browser_language = 'en';
         }
-        $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES'));
+        $languages_all_query = tep_db_query("SELECT code FROM " . cfg('TABLE_LANGUAGES'));
         while ($languages_all = tep_db_fetch_array($languages_all_query)) {
             if ($languages_all['code'] == $browser_language) {
                 $new_language = $browser_language;
@@ -126,7 +126,7 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
         if ($new_language) {
             $lng->set_language($new_language);
         } else {
-            $lng->set_language(constant('DEFAULT_LANGUAGE'));
+            $lng->set_language(cfg('DEFAULT_LANGUAGE'));
         }
     }
 } else {
@@ -136,7 +136,7 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     } else {
         $lng->set_language($_SESSION['language']);
     }
-    $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
+    $language_code_query = tep_db_query("SELECT code FROM " . cfg('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
     $language_code = tep_db_fetch_array($language_code_query);
     if (empty($language_code['code'])) {
         
