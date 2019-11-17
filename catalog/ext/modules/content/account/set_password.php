@@ -86,7 +86,7 @@
       <label for="inputNew" class="control-label col-sm-3"><?php echo ENTRY_PASSWORD_NEW; ?></label>
       <div class="col-sm-9">
         <?php echo tep_draw_input_field('password_new', NULL, 'required aria-required="true" aria-describedby="atPasswordNew" autofocus="autofocus" id="inputNew" placeholder="' . ENTRY_PASSWORD_NEW . '"', 'password'); ?>
-        <?php echo _('Required'); ?>
+        &#10033;
         <?php if (tep_not_null(ENTRY_PASSWORD_NEW_TEXT)) echo '<span id="atPasswordNew" class="help-block">' . ENTRY_PASSWORD_NEW_TEXT . '</span>'; ?>
       </div>
     </div>
@@ -94,7 +94,7 @@
       <label for="inputConfirmation" class="control-label col-sm-3"><?php echo ENTRY_PASSWORD_CONFIRMATION; ?></label>
       <div class="col-sm-9">
         <?php echo tep_draw_input_field('password_confirmation', NULL, 'required aria-required="true" aria-describedby="atPasswordConfirmation" id="inputConfirmation" placeholder="' . ENTRY_PASSWORD_CONFIRMATION . '"', 'password'); ?>
-        <?php echo _('Required'); ?>
+        &#10033;
         <?php if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT)) echo '<span id="atPasswordConfirmation" class="help-block">' . ENTRY_PASSWORD_CONFIRMATION_TEXT . '</span>'; ?>
       </div>
     </div>

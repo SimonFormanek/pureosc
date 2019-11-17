@@ -127,7 +127,7 @@ echo tep_draw_form('password_reset',
                     'required aria-required="true"  autofocus="autofocus" id="inputPassword" placeholder="'.ENTRY_PASSWORD.'"',
                     'password');
                 ?>
-                <?php echo _('Required'); ?>
+                &#10033;
             </div>
         </div>
         <div class="form-group has-feedback">
@@ -138,7 +138,7 @@ echo tep_draw_form('password_reset',
                     'required aria-required="true" id="inputConfirm" placeholder="'.ENTRY_PASSWORD_CONFIRMATION.'"',
                     'password');
                 ?>
-                <?php echo _('Required'); ?>
+                &#10033;
             </div>
         </div>
     </div>

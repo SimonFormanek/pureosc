@@ -43,7 +43,7 @@ if (!isset($process)) $process = false;
                         'f', $female).' '.FEMALE;
                     ?>
                 </label>
-    <?php echo _('Required'); ?>
+    &#10033;
     <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
             </div>
         </div>
@@ -60,7 +60,7 @@ if (!isset($process)) $process = false;
                 (isset($entry['entry_firstname']) ? $entry['entry_firstname'] : ''),
                 'required aria-required="true" aria-describedby="atFirstName" id="inputFirstName" placeholder="'.ENTRY_FIRST_NAME.'"');
             ?>
-<?php echo _('Required'); ?>
+&#10033;
 <?php if (tep_not_null(ENTRY_FIRST_NAME_TEXT)) echo '<span id="atFirstName" class="help-block">'.ENTRY_FIRST_NAME_TEXT.'</span>'; ?>
         </div>
     </div>
@@ -72,7 +72,7 @@ if (!isset($process)) $process = false;
                 (isset($entry['entry_lastname']) ? $entry['entry_lastname'] : ''),
                 'required aria-required="true" aria-describedby="atLastName" id="inputLastName" placeholder="'.ENTRY_LAST_NAME.'"');
             ?>
-    <?php echo _('Required'); ?>
+    &#10033;
     <?php if (tep_not_null(ENTRY_LAST_NAME_TEXT)) echo '<span id="atLastName" class="help-block">'.ENTRY_LAST_NAME_TEXT.'</span>'; ?>
         </div>
     </div>

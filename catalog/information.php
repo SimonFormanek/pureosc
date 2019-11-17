@@ -19,7 +19,7 @@ require('includes/application_top.php');
 
 // Added for information pages
 if (!isset($_GET['info_id']) || !tep_not_null($_GET['info_id']) || !is_numeric($_GET['info_id'])) {
-    $title = 'Sorry. Page Not Found.';
+    $title = _('Sorry. Page Not Found.');
     $breadcrumb->add($INFO_TITLE,
         tep_href_link(FILENAME_INFORMATION, 'info_id='.$_GET['info_id'],
             'NONSSL'));

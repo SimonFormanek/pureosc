@@ -26,3 +26,6 @@ host reboot/shutdown
 ## restart xen
   systemctl restart xen
 
+## resize
+  lvextend -L+2000 /dev/vg1/client.pureosc.com-disk
+  

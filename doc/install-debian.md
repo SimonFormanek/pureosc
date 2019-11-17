@@ -7,6 +7,11 @@ apt install libapache2-mpm-itk locales-all mysql-server php5.6-cli libapache2-mo
 #php 7.3 
 apt install libapache2-mpm-itk locales-all mariadb-server php7.3-cli libapache2-mod-php7.3 php7.3 php7.3-intl php7.3-intl php7.3-dom php7.3-mbstring php7.3-curl php7.3-mysql php7.3-gettext
 
+7.4
+apt install libapache2-mpm-itk locales-all mariadb-server php7.4-cli libapache2-mod-php7.4 php7.4 php7.4-intl php7.4-intl php7.4-dom php7.4-mbstring php7.4-curl php7.4-mysql php7.4-gettext
+
+
+
 #apache conf
   a2enmod headers
   a2enmod rewrite

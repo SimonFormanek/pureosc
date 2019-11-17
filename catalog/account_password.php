@@ -97,7 +97,7 @@ echo tep_draw_form('account_password',
                     'required aria-required="true" aria-describedby="atPassword" autofocus="autofocus" id="inputCurrent" placeholder="'.ENTRY_PASSWORD_CURRENT.'"',
                     'password');
                 ?>
-                <?php echo _('Required'); ?>
+                &#10033;
                 <?php if (tep_not_null(ENTRY_PASSWORD_CURRENT_TEXT)) echo '<span id="atPassword" class="help-block">'.ENTRY_PASSWORD_CURRENT_TEXT.'</span>'; ?>
             </div>
         </div>
@@ -109,7 +109,7 @@ echo tep_draw_form('account_password',
                     'required aria-required="true" aria-describedby="atNewPassword" id="inputNew" placeholder="'.ENTRY_PASSWORD_NEW.'"',
                     'password');
                 ?>
-                <?php echo _('Required'); ?>
+                &#10033;
                 <?php if (tep_not_null(ENTRY_PASSWORD_NEW_TEXT)) echo '<span id="atNewPassword" class="help-block">'.ENTRY_PASSWORD_NEW_TEXT.'</span>'; ?>
             </div>
         </div>
@@ -121,7 +121,7 @@ echo tep_draw_form('account_password',
                     'required aria-required="true"  aria-describedby="atNewPasswordConfirmation" id="inputConfirmation" placeholder="'.ENTRY_PASSWORD_CONFIRMATION.'"',
                     'password');
                 ?>
-                <?php echo _('Required'); ?>
+                &#10033;
                 <?php if (tep_not_null(ENTRY_PASSWORD_CONFIRMATION_TEXT)) echo '<span id="atNewPasswordConfirmation" class="help-block">'.ENTRY_PASSWORD_CONFIRMATION_TEXT.'</span>'; ?>
             </div>
         </div>

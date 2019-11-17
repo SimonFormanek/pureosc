@@ -124,7 +124,7 @@ if ($password_reset_initiated === true) {
                         'required aria-required="true" autofocus="autofocus" id="inputEmail" placeholder="'._('E-Mail Address').'"',
                         'email');
                     ?>
-                    <?php echo _('Required'); ?>
+                    &#10033;
                 </div>
             </div>
         </div>
