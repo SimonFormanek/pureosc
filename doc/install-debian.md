@@ -1,14 +1,14 @@
 # install devel debian
 
-apt install libapache2-mpm-itk locales-all mysql-server php7.1-cli libapache2-mod-php7.1 php7.1 php7.1-intl php7.1-dom php7.1-mbstring php7.1-curl php7.1-mysql php7.1-gettext
+apt install libapache2-mpm-itk locales-all mysql-server php7.1-cli libapache2-mod-php7.1 php7.1 php7.1-intl php7.1-dom php7.1-mbstring php7.1-curl php7.1-mysql php7.1-gettext php7.1-gd
 
-apt install libapache2-mpm-itk locales-all mysql-server php5.6-cli libapache2-mod-php5.6 php5.6 php5.6-intl php5.6-dom php5.6-mbstring php5.6-curl php5.6-mysql php5.6-gettext
+apt install libapache2-mpm-itk locales-all mysql-server php5.6-cli libapache2-mod-php5.6 php5.6 php5.6-intl php5.6-dom php5.6-mbstring php5.6-curl php5.6-mysql php5.6-gettext php7.2-gd
 
 #php 7.3 
-apt install libapache2-mpm-itk locales-all mariadb-server php7.3-cli libapache2-mod-php7.3 php7.3 php7.3-intl php7.3-intl php7.3-dom php7.3-mbstring php7.3-curl php7.3-mysql php7.3-gettext
+apt install libapache2-mpm-itk locales-all mariadb-server php7.3-cli libapache2-mod-php7.3 php7.3 php7.3-intl php7.3-intl php7.3-dom php7.3-mbstring php7.3-curl php7.3-mysql php7.3-gettext php7.3-gd
 
 7.4
-apt install libapache2-mpm-itk locales-all mariadb-server php7.4-cli libapache2-mod-php7.4 php7.4 php7.4-intl php7.4-intl php7.4-dom php7.4-mbstring php7.4-curl php7.4-mysql php7.4-gettext
+apt install libapache2-mpm-itk locales-all mariadb-server php7.4-cli libapache2-mod-php7.4 php7.4 php7.4-intl php7.4-intl php7.4-dom php7.4-mbstring php7.4-curl php7.4-mysql php7.4-gettext php7.4-gd
 
 
 
