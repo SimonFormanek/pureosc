@@ -20,4 +20,3 @@ define('MY_PASSWORD_TITLE', 'Moje heslo', true);
 define('SUCCESS_PASSWORD_UPDATED', 'Vaše heslo bylo úspěšně změněno.', true);
 define('ERROR_CURRENT_PASSWORD_NOT_MATCHING',
     'Zadali jste chybné heslo. Zadejte jej znovu.', true);
-?>

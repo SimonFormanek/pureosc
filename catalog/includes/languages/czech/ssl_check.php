@@ -22,4 +22,3 @@ define('BOX_INFORMATION_HEADING', 'Ochrana osobních údajů a zabezpečení', t
 define('BOX_INFORMATION',
     'Ověřujeme ID relace SSL automaticky vygenerované vaším prohlížečem při každé žádosti o bezpečnostní stránku na tomto serveru.<br /><br />Tímto ověřením zajistíte, že ten kdo používá právě tuto stránku s vaším účtem jste opravdu vy a ne někdo jiný.',
     true);
-?>

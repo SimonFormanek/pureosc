@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'Kunden mit den höchsten Umsätzen',true);
 define('TABLE_HEADING_NUMBER', 'Nr.',true);
 define('TABLE_HEADING_CUSTOMERS', 'Kunde',true);
 define('TABLE_HEADING_TOTAL_PURCHASED', 'Gesamtsumme',true);
-?>

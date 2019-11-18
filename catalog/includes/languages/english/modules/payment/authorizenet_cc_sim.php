@@ -55,4 +55,3 @@
   define('MODULE_PAYMENT_AUTHORIZENET_CC_SIM_ERROR_VERIFICATION', 'The credit card transaction could not be verified with this order. Please try again and if problems persist, please try another payment method.',true);
   define('MODULE_PAYMENT_AUTHORIZENET_CC_SIM_ERROR_DECLINED', 'This credit card transaction has been declined. Please try again and if problems persist, please try another payment method.',true);
   define('MODULE_PAYMENT_AUTHORIZENET_CC_SIM_ERROR_GENERAL', 'Please try again and if problems persist, please try another payment method.',true);
-?>

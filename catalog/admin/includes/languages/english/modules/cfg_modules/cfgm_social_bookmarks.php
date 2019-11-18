@@ -11,4 +11,3 @@
 */
 
 define('MODULE_CFG_MODULE_SOCIAL_BOOKMARKS_TITLE', 'Social Bookmarks',true);
-?>

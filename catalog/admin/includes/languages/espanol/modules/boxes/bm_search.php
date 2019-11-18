@@ -15,4 +15,3 @@
   define('MODULE_BOXES_SEARCH_BOX_TITLE', 'Búsqueda Rápida',true);
   define('MODULE_BOXES_SEARCH_BOX_TEXT', 'Use palabras clave para encontrar el producto que busca.',true);
   define('MODULE_BOXES_SEARCH_BOX_ADVANCED_SEARCH', 'Búsqueda Avanzada',true);
-?>

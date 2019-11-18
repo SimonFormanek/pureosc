@@ -59,5 +59,3 @@ $idsArray = (isset($_GET['idsArray']) ? $_GET['idsArray'] : '');
 	}
 
 	header('Location: ../../../../'.FILENAME_AAS.'?cPath='.$cPath.'&page='.$page.'&entriesPerPage='.$entriesPerPage);
-
-?>

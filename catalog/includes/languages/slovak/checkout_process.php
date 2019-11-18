@@ -25,4 +25,3 @@ define('EMAIL_TEXT_PAYMENT_METHOD', 'Spôsob platby');
 
 define('EMAIL_SEPARATOR', '------------------------------------------------------');
 define('TEXT_EMAIL_VIA', 'cez');
-?>

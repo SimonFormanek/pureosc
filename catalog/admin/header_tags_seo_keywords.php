@@ -460,4 +460,3 @@ echo tep_draw_input_field('page_count',
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

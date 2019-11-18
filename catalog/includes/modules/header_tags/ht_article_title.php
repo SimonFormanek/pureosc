@@ -24,8 +24,8 @@ class ht_article_title {
       $this->description = _('Add the title of the current article to the page title');
 
         if (defined('MODULE_HEADER_TAGS_ARTICLE_TITLE_STATUS')) {
-            $this->sort_order = constant('MODULE_HEADER_TAGS_ARTICLE_TITLE_SORT_ORDER');
-            $this->enabled = (constant('MODULE_HEADER_TAGS_ARTICLE_TITLE_STATUS') == 'True');
+            $this->sort_order = cfg('MODULE_HEADER_TAGS_ARTICLE_TITLE_SORT_ORDER');
+            $this->enabled = (cfg('MODULE_HEADER_TAGS_ARTICLE_TITLE_STATUS') == 'True');
         }
     }
 

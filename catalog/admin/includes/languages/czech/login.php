@@ -23,4 +23,3 @@ define('BUTTON_LOGIN', 'Login',true);
 define('BUTTON_CREATE_ADMINISTRATOR', 'Vytvořit administrátora',true);
 
 define('ERROR_ACTION_RECORDER', 'Chyba: Dosažen maximální počet pokusů o přihlášení. Opakujte přihlášení po uplunutí %s minut.',true);
-?>

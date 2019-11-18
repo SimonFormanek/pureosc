@@ -35,4 +35,3 @@ define('TEXT_CREATE_NEW_PAYMENT_ADDRESS',
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Continue Checkout Procedure', true);
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE',
     'to select the preferred payment method.', true);
-?>

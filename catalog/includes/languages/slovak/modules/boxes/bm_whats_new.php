@@ -13,4 +13,3 @@
   define('MODULE_BOXES_WHATS_NEW_TITLE', 'Najnovšie produkty');
   define('MODULE_BOXES_WHATS_NEW_DESCRIPTION', 'Zobraziť najnovšie produkty');
   define('MODULE_BOXES_WHATS_NEW_BOX_TITLE', 'Najnovšie produkty');
-?>

@@ -19,5 +19,3 @@ define('ENTRY_NAME', 'Celé meno:');
 define('ENTRY_EMAIL', 'E-Mail:');
 define('ENTRY_ENQUIRY', 'Dotaz:');
 define('ERROR_ACTION_RECORDER', 'Chyba: otázka už bola odoslaná. Skúste to znova o %s minút.');
-
-?>

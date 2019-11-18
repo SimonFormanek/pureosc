@@ -129,7 +129,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
             'updated');
 
 
-        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
 
             $nazev = strlen($company) ? $company : $firstname.' '.$lastname;
 
@@ -318,4 +318,3 @@ echo tep_draw_form('account_edit',
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

@@ -43,4 +43,3 @@ define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Chyba: do tohoto adresáře se nedá za
 define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Chyba: Adresář neexistuje: %s');
 define('ERROR_NO_AUTHORS_FOUND', 'Musí existovat alespoň jeden autor.');
 define('ERROR_FAILED_IMAGE_UPLOAD', 'Obrázek se nenahrál.');
-?>

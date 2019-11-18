@@ -727,4 +727,3 @@ if (isset($_SESSION['admin']['AAS']['modules'])) {
 $_SESSION['admin']['AAS']['fieldsArray'] = $fieldsArray;
 $cats_fields                             = tep_aas_draw_categories_tree(0,
     '&nbsp;', $cPath_back, 'selectedOptionCategoryClass', false);
-?>

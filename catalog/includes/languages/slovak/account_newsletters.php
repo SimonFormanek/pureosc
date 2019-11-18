@@ -20,4 +20,3 @@ define('MY_NEWSLETTERS_GENERAL_NEWSLETTER', 'Hlavné novinky');
 define('MY_NEWSLETTERS_GENERAL_NEWSLETTER_DESCRIPTION', 'Zahrňuje novinky obchodu, nových produktov, zliav, a ďaľších propagačných oznámení.');
 
 define('SUCCESS_NEWSLETTER_UPDATED', 'Nastavenia zasielania noviniek boli úspešne aktualizované.');
-?>

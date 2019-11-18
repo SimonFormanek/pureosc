@@ -15,4 +15,3 @@ define('MODULE_SHIPPING_TABLE_TEXT_DESCRIPTION', 'Tabuľková sadzba');
 define('MODULE_SHIPPING_TABLE_TEXT_WAY', 'Doprava');
 define('MODULE_SHIPPING_TABLE_TEXT_WEIGHT', 'Hmotnosť');
 define('MODULE_SHIPPING_TABLE_TEXT_AMOUNT', 'Suma');
-?>

@@ -13,4 +13,3 @@
 define('HEADING_ARTICLE_TOPICS', 'Všechny kategorie článků');
 define('TEXT_ARTICLE_TOPICS_NOT_FOUND', 'Kategorie článků neexistují.');
 define('TEXT_MAIN', '');
-?>

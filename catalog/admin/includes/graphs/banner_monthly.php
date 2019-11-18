@@ -51,4 +51,3 @@ $graph->SetDataColors(array('blue', 'red'), array('blue', 'red'));
 $graph->DrawGraph();
 
 $graph->PrintImage();
-?>

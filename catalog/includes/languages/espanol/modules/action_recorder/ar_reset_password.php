@@ -12,4 +12,3 @@
 
   define('MODULE_ACTION_RECORDER_RESET_PASSWORD_TITLE', 'Reinicializar Contraseña de Cliente',true);
   define('MODULE_ACTION_RECORDER_RESET_PASSWORD_DESCRIPTION', 'Registro de uso de los reinicios de la contraseña de clientes.',true);
-?>

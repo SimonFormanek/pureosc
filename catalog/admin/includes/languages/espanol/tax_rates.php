@@ -33,4 +33,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Seguro que desea eliminar este porcentaje ?',t
 define('TEXT_INFO_HEADING_NEW_TAX_RATE', 'Nuevo Porcentaje',true);
 define('TEXT_INFO_HEADING_EDIT_TAX_RATE', 'Editar Porcentaje',true);
 define('TEXT_INFO_HEADING_DELETE_TAX_RATE', 'Eliminar Porcentaje',true);
-?>

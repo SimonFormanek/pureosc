@@ -65,5 +65,3 @@ class ht_pages_title {
     }
 
 }
-
-?>

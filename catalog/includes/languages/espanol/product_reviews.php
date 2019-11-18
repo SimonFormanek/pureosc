@@ -15,4 +15,3 @@ define('NAVBAR_TITLE', 'Comentarios', true);
 define('TEXT_CLICK_TO_ENLARGE', 'Haga Click para Ampliar', true);
 
 define('TEXT_OF_5_STARS', '%s de 5 Estrellas!', true);
-?>

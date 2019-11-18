@@ -21,4 +21,3 @@ define('TEXT_CACHE_DIRECTORY', 'Cache priečinok:');
 
 define('ERROR_CACHE_DIRECTORY_DOES_NOT_EXIST', 'Chyba: Cache priečinok neexistuje. Nastavte ho prosím v Konfigurácia->Cache.');
 define('ERROR_CACHE_DIRECTORY_NOT_WRITEABLE', 'Chyba: Do priečinka Cache sa nedá zapisovať.');
-?>

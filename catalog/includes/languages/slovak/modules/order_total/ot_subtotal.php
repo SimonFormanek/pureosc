@@ -12,4 +12,3 @@
 
   define('MODULE_ORDER_TOTAL_SUBTOTAL_TITLE', 'Medzisúčet');
   define('MODULE_ORDER_TOTAL_SUBTOTAL_DESCRIPTION', 'Medzisúčet objednávky');
-?>

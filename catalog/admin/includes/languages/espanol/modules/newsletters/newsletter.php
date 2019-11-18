@@ -11,4 +11,3 @@
 */
 
 define('TEXT_COUNT_CUSTOMERS', 'Los clientes que reciben boletín: %s',true);
-?>

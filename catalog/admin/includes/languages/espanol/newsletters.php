@@ -36,4 +36,3 @@ define('ERROR_NEWSLETTER_MODULE', 'Error: Se requiere un módulo para el boletí
 define('ERROR_REMOVE_UNLOCKED_NEWSLETTER', 'Error: Bloquee el boletín antes de eliminarlo.',true);
 define('ERROR_EDIT_UNLOCKED_NEWSLETTER', 'Error: Bloquee el boletín antes de editarlo.',true);
 define('ERROR_SEND_UNLOCKED_NEWSLETTER', 'Error: Bloquee el boletín antes de enviarlo.',true);
-?>

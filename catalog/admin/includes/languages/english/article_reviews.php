@@ -47,5 +47,3 @@ define('TEXT_DISAPPROVE', 'Disapprove') ;
 define('TEXT_YES', 'Yes') ;
 define('TEXT_NO', 'No') ;
 /* </Mav was here!> */
-
-?>

@@ -194,5 +194,3 @@ class trustpilot extends mailbeez
     }
 
 }
-
-?>

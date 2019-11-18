@@ -23,4 +23,3 @@ define('TABLE_HEADING_ACTION', 'Aktion',true);
 define('TABLE_HEADING_SHOPPING_CART', 'Warenkorb',true);
 define('TEXT_SHOPPING_CART_SUBTOTAL', 'Insgesamt',true);
 define('TEXT_NUMBER_OF_CUSTOMERS', 'Es sind zur Zeit %s Kunden online',true);
-?>

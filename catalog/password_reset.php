@@ -82,7 +82,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['fo
     if ($error === false) {
 
         tep_db_query("update ".TABLE_CUSTOMERS." set customers_password = '".password_hash($password_new, PASSWORD_ARGON2ID)."' where customers_id = '".(int) $check_customer['customers_id']."'");
-//TODO:        tep_db_query("update ".TABLE_CUSTOMERS." set customers_password = '".password_hash($password_new, constant('HASH_ALGO'))."' where customers_id = '".(int) $check_customer['customers_id']."'");
+//TODO:        tep_db_query("update ".TABLE_CUSTOMERS." set customers_password = '".password_hash($password_new, cfg('HASH_ALGO'))."' where customers_id = '".(int) $check_customer['customers_id']."'");
 
         tep_db_query("update ".TABLE_CUSTOMERS_INFO." set customers_info_date_account_last_modified = now(), password_reset_key = null, password_reset_date = null where customers_info_id = '".(int) $check_customer['customers_id']."'");
 
@@ -156,4 +156,3 @@ echo tep_draw_form('password_reset',
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

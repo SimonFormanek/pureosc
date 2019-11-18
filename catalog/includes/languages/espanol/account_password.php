@@ -22,4 +22,3 @@ define('SUCCESS_PASSWORD_UPDATED',
 define('ERROR_CURRENT_PASSWORD_NOT_MATCHING',
     'Su contraseña actual no coincide con la contraseña en nuestros registros. Por favor, inténtelo de nuevo.',
     true);
-?>

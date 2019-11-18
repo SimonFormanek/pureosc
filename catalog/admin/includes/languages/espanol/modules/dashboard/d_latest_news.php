@@ -18,4 +18,3 @@ define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_NEWSLETTER', 'Inscríbase para r
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_FACEBOOK', 'Conviértete en un Fan de osCommerce en Facebook',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_TWITTER', 'Seguir a osCommerce en Twitter',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_RSS', 'Suscríbase a las noticias de osCommerce con RSS Feed',true);
-?>

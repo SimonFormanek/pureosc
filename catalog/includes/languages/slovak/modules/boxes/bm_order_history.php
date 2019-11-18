@@ -13,4 +13,3 @@
   define('MODULE_BOXES_ORDER_HISTORY_TITLE', 'História objednávok');
   define('MODULE_BOXES_ORDER_HISTORY_DESCRIPTION', 'Zobraziť predchádzajúce objednávky pre prihláseného v zákazníkom');
   define('MODULE_BOXES_ORDER_HISTORY_BOX_TITLE', 'História objednávok');
-?>

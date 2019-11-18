@@ -58,4 +58,3 @@
   define('MODULE_PAYMENT_AUTHORIZENET_CC_SIM_ERROR_VERIFICATION', 'Die Transaktion konnte nicht dieser Bestellung zugeordnet werden. Versuchen Sie es bitte noch einmal oder wechseln Sie die Zahlungsweise.',true);
   define('MODULE_PAYMENT_AUTHORIZENET_CC_SIM_ERROR_DECLINED', 'Die Transaktion wurde abgelehnt. Versuchen Sie es bitte noch einmal oder wechseln Sie die Zahlungsweise.',true);
   define('MODULE_PAYMENT_AUTHORIZENET_CC_SIM_ERROR_GENERAL', 'Versuchen Sie es bitte noch einmal oder wechseln Sie die Zahlungsweise.',true);
-?>

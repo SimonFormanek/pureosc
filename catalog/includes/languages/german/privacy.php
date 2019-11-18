@@ -19,4 +19,3 @@ define('HEADING_TITLE', 'Privatsphäre und Datenschutz', true);
 
 define('TEXT_INFORMATION',
     'Geben Sie Ihre Privatsphäre und Datenschutz Informationen hier ein! ', true);
-?>

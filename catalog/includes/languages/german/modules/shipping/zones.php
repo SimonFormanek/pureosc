@@ -16,4 +16,3 @@ define('MODULE_SHIPPING_ZONES_TEXT_WAY', 'Versand zu',true);
 define('MODULE_SHIPPING_ZONES_TEXT_UNITS', ' kg ',true);
 define('MODULE_SHIPPING_ZONES_INVALID_ZONE', 'Keine Lieferung in Ihr Land.',true);
 define('MODULE_SHIPPING_ZONES_UNDEFINED_RATE', 'Keine Liefertariff',true);
-?>

@@ -36,4 +36,3 @@ define('ERROR_NEWSLETTER_MODULE', 'Chyba: Modul odberu správ je povinný');
 define('ERROR_REMOVE_UNLOCKED_NEWSLETTER', 'Chyba: Pred odstránením, odber správ uzamknite prosím.');
 define('ERROR_EDIT_UNLOCKED_NEWSLETTER', 'Chyba: Pred upravením, odber správ uzamknite prosím.');
 define('ERROR_SEND_UNLOCKED_NEWSLETTER', 'Chyba: Pred zaslaním, odber správ uzamknite prosím.');
-?>

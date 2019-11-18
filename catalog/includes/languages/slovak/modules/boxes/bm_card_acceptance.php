@@ -18,4 +18,3 @@
   define('MODULE_BOXES_CARD_ACCEPTANCE_DRAG_HERE', 'Pretiahnite Tu');
 
   define('MODULE_BOXES_CARD_ACCEPTANCE_BOX_TITLE', 'Akceptujeme');
-?>

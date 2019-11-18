@@ -442,5 +442,3 @@ switch($item_post){
 	<?php
 
 }
-
-?>

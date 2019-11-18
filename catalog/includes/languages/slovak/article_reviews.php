@@ -18,4 +18,3 @@ define('TEXT_NO_ARTICLE_REVIEWS',
 define('TEXT_OF_5_STARS', '%s z 5 hvězdiček');
 define('TEXT_REVIEW_VIEWS', 'Počet přečtení: ');
 define('TEXT_READ_REVIEW', 'Přečtěte si recenzi...');
-?>

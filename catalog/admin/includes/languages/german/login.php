@@ -23,4 +23,3 @@ define('BUTTON_LOGIN', 'Login',true);
 define('BUTTON_CREATE_ADMINISTRATOR', 'Administrator Erstellen',true);
 
 define('ERROR_ACTION_RECORDER', 'Fehler: Die maximale Anzahl von Login-Versuchen gemacht worden. Versuchen Sie es in %s Minuten.',true);
-?>

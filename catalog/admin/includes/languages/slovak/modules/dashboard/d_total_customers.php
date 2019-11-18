@@ -13,4 +13,3 @@
 define('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_TITLE', 'Celkom zákazníci Graf (posledných 30 dní)');
 define('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_DESCRIPTION', 'Zobraziť celkový zákazníkov graf za posledných 30 dní');
 define('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_CHART_LINK', 'Celkom zákazníci');
-?>

@@ -608,4 +608,3 @@ function tep_banner_graph_daily($banner_id)
 
     return html_graph($names, $values, $bars, $graph_vals, $dvalues, $dbars);
 }
-?>

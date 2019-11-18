@@ -31,4 +31,3 @@ define('TEXT_SET_DOWNLOADS_STATUS', 'Permitir la descarga de productos virtuales
 define('ERROR_REMOVE_DEFAULT_ORDER_STATUS', 'Error: El estado de pedido por defecto no se puede eliminar. Establezca otro estado de pedido predeterminado y pruebe de nuevo.',true);
 define('ERROR_STATUS_USED_IN_ORDERS', 'Error: Este estado de pedido esta siendo usado actualmente.',true);
 define('ERROR_STATUS_USED_IN_HISTORY', 'Error: Este estado de pedido se esta usando en alg&uacute;n hist&oacute;rico de estados de pedidos.',true);
-?>

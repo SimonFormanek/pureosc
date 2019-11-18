@@ -13,4 +13,3 @@
 define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_TITLE', 'Celkové príjmy Chart (posledných 30 dní)');
 define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_DESCRIPTION', 'Zobraziť na celkových tržbách graf za posledných 30 dní');
 define('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_CHART_LINK', 'Príjmy spolu');
-?>

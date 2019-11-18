@@ -69,5 +69,3 @@ class box extends tableBlock
         return $this->heading.$this->contents;
     }
 }
-
-?>

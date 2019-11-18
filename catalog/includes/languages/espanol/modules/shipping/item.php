@@ -13,4 +13,3 @@
 define('MODULE_SHIPPING_ITEM_TEXT_TITLE', 'Por Artículo',true);
 define('MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION', 'Por Artículo',true);
 define('MODULE_SHIPPING_ITEM_TEXT_WAY', 'Mejor manera',true);
-?>

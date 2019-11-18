@@ -39,4 +39,3 @@ define('TEXT_INFO_CURRENCY_UPDATED', 'Ceny mien %s (%s) boli úspešne aktualizo
 define('ERROR_REMOVE_DEFAULT_CURRENCY', 'Chyba: Predvolená mena sa nedá odstrániť. Vyberte prosím inú menu ako predvolenú a akciu opakujte.');
 define('ERROR_CURRENCY_INVALID', 'Chyba: Kurz meny pre %s (%s) nebol aktualizovaný cez %s. Je správny kód meny?');
 define('WARNING_PRIMARY_SERVER_FAILED', 'Upozornenie: Primárny server pre kurz meny (%s) bol neúspešný pre %s (%s) - skúšam sekundárny server.');
-?>

@@ -23,4 +23,3 @@ define('BUTTON_LOGIN', 'Ingresar',true);
 define('BUTTON_CREATE_ADMINISTRATOR', 'Crear Administrador',true);
 
 define('ERROR_ACTION_RECORDER', 'Error: El máximo número de intentos de ingresos ha sido realizado. Por favor intente nuevamente en %s minutos.',true);
-?>

@@ -13,4 +13,3 @@
   define('MODULE_SOCIAL_BOOKMARKS_EMAIL_TITLE', 'E-Mail',true);
   define('MODULE_SOCIAL_BOOKMARKS_EMAIL_DESCRIPTION', 'Share products via e-mail.',true);
   define('MODULE_SOCIAL_BOOKMARKS_EMAIL_PUBLIC_TITLE', 'Share via E-Mail',true);
-?>

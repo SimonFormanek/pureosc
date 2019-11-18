@@ -1,4 +1,5 @@
 <?php
+
 /*
   $Id: banner_rotator.php v1.1.2 20110108 Kymation $
 
@@ -10,8 +11,8 @@
   Released under the GNU General Public License
  */
 
-class cm_carousel
-{
+class cm_carousel {
+
     var $code;
     var $group;
     var $title;
@@ -19,22 +20,20 @@ class cm_carousel
     var $sort_order;
     var $enabled = false;
 
-    function cm_carousel()
-    {
-        $this->code  = get_class($this);
+    function cm_carousel() {
+        $this->code = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       =  MODULE_FRONT_PAGE_BANNER_ROTATOR_TITLE;
-        $this->description = MODULE_FRONT_PAGE_BANNER_ROTATOR_DESCRIPTION;
+        $this->title = _('Carousel Banners For Home Page');
+        $this->description = _('Adds a carousel to Home Page with banner images set from Banner Manager.');
 
-        if (defined('MODULE_FRONT_PAGE_BANNER_ROTATOR_STATUS')) {
+        if (cfg('MODULE_FRONT_PAGE_BANNER_ROTATOR_STATUS')) {
             $this->sort_order = MODULE_FRONT_PAGE_BANNER_ROTATOR_SORT_ORDER;
-            $this->enabled    = (MODULE_FRONT_PAGE_BANNER_ROTATOR_STATUS == 'True');
+            $this->enabled = cfg('MODULE_FRONT_PAGE_BANNER_ROTATOR_STATUS') == 'True';
         }
     }
 
-    function execute()
-    {
+    function execute() {
 
         global $oscTemplate, $cPath;
 
@@ -43,7 +42,7 @@ class cm_carousel
 
         if ($_SERVER['PHP_SELF'] == 'index.php' && $cPath == '') {
             // Set the Javascript to go in the header
-            $footer_scripts = '<script>'.'$(\'#carousel-example-generic.carousel\').carousel({ interval: '.(int) MODULE_FRONT_PAGE_BANNER_ROTATOR_HOLD_TIME.'})'."\n".'</script>';
+            $footer_scripts = '<script>' . '$(\'#carousel-example-generic.carousel\').carousel({ interval: ' . (int) MODULE_FRONT_PAGE_BANNER_ROTATOR_HOLD_TIME . '})' . "\n" . '</script>';
 
             $oscTemplate->addBlock($footer_scripts, 'footer_scripts');
 
@@ -56,39 +55,37 @@ class cm_carousel
                     banners_image,
                     banners_html_text
                   from
-                    ".TABLE_BANNERS."
+                    " . TABLE_BANNERS . "
                   where
-                    banners_group = '".MODULE_FRONT_PAGE_BANNER_ROTATOR_GROUP."'
+                    banners_group = '" . MODULE_FRONT_PAGE_BANNER_ROTATOR_GROUP . "'
                     and status
-                  order by banners_id ".MODULE_FRONT_PAGE_BANNER_ROTATOR_BANNER_ORDER."
+                  order by banners_id " . MODULE_FRONT_PAGE_BANNER_ROTATOR_BANNER_ORDER . "
                   limit
-                    ".MODULE_FRONT_PAGE_BANNER_ROTATOR_MAX_DISPLAY;
+                    " . MODULE_FRONT_PAGE_BANNER_ROTATOR_MAX_DISPLAY;
 
 
             $banner_query = tep_db_query($banner_query_raw);
 
             if (tep_db_num_rows($banner_query) > 0) {
-                $body_text = '<!-- Banner Rotator BOF -->'."\n";
-                $body_text .= '  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">'."\n";
+                $body_text = '<!-- Banner Rotator BOF -->' . "\n";
+                $body_text .= '  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">' . "\n";
 
-                $indicators     = '<!-- Indicators -->
+                $indicators = '<!-- Indicators -->
           <ol class="carousel-indicators">';
-                $wrapper_slides = '<!-- Wrapper for slides -->'."\n".
-                    '<div class="carousel-inner">';
+                $wrapper_slides = '<!-- Wrapper for slides -->' . "\n" .
+                        '<div class="carousel-inner">';
 
                 $background = $this->createImage(MODULE_FRONT_PAGE_BANNER_ROTATOR_IMG_WIDTH,
-                    MODULE_FRONT_PAGE_BANNER_ROTATOR_IMG_HEIGHT, 255, 255, 255);
+                        MODULE_FRONT_PAGE_BANNER_ROTATOR_IMG_HEIGHT, 255, 255, 255);
 
                 $counter = 0;
-                while ($banner  = tep_db_fetch_array($banner_query)) {
-                    $indicators .= '  <li data-target="#carousel-example-generic" data-slide-to="'.$counter.'"'.($counter
-                        == 0 ? 'class="active"' : '').'></li>';
+                while ($banner = tep_db_fetch_array($banner_query)) {
+                    $indicators .= '  <li data-target="#carousel-example-generic" data-slide-to="' . $counter . '"' . ($counter == 0 ? 'class="active"' : '') . '></li>';
 
-                    $wrapper_slides .= '      <div class="item'.($counter == 0 ? ' active'
-                            : '').'">';
+                    $wrapper_slides .= '      <div class="item' . ($counter == 0 ? ' active' : '') . '">';
                     if ($banner['banners_url'] != '') {
-                        $wrapper_slides .= '<a href="'.tep_href_link('redirect.php',
-                                'action=banner&goto='.$banner['banners_id']).'">';
+                        $wrapper_slides .= '<a href="' . tep_href_link('redirect.php',
+                                        'action=banner&goto=' . $banner['banners_id']) . '">';
                     }
 
                     //$wrapper_slides .= tep_image(DIR_WS_IMAGES . $banner['banners_image'], $banner['banners_html_text']);
@@ -96,21 +93,21 @@ class cm_carousel
 
                     if ($banner['banners_image'] !== '') {
                         //$wrapper_slides .= tep_image(DIR_WS_IMAGES . $banner['banners_image'], $banner['banners_html_text']);
-                        $wrapper_slides .= tep_image(DIR_WS_IMAGES.$banner['banners_image'],
-                            '', MODULE_FRONT_PAGE_BANNER_ROTATOR_IMG_WIDTH,
-                            MODULE_FRONT_PAGE_BANNER_ROTATOR_IMG_HEIGHT);
+                        $wrapper_slides .= tep_image(DIR_WS_IMAGES . $banner['banners_image'],
+                                '', MODULE_FRONT_PAGE_BANNER_ROTATOR_IMG_WIDTH,
+                                MODULE_FRONT_PAGE_BANNER_ROTATOR_IMG_HEIGHT);
                         $wrapper_slides .= '<div class="carousel-caption">&nbsp;</div>';
                     } else {
                         //$wrapper_slides .= tep_image(DIR_WS_IMAGES . 'pixel_silver.gif', 'alt', 544, 172 );
-                        $wrapper_slides .= '<img class="img-responsive" alt="" src="'.$background.'" />';
-                        $wrapper_slides .= '<div class="carousel-caption">'.$banner['banners_html_text'].'</div>';
+                        $wrapper_slides .= '<img class="img-responsive" alt="" src="' . $background . '" />';
+                        $wrapper_slides .= '<div class="carousel-caption">' . $banner['banners_html_text'] . '</div>';
                     }
 
                     if ($banner['banners_url'] != '') {
                         $wrapper_slides .= '</a>';
                     }
 
-                    $wrapper_slides .= ' </div>'."\n";
+                    $wrapper_slides .= ' </div>' . "\n";
                     $counter++;
                 }
 
@@ -127,36 +124,33 @@ class cm_carousel
           </a>';
 
                 // öszefuzés
-                $body_text .= $indicators.$wrapper_slides.$controls;
+                $body_text .= $indicators . $wrapper_slides . $controls;
 
-                $body_text .= '  </div>'."\n";
-                $body_text .= '  <div class="clearfix"></div>'."\n";
-                $body_text .= '<!-- Banner Rotator EOF -->'."\n";
+                $body_text .= '  </div>' . "\n";
+                $body_text .= '  <div class="clearfix"></div>' . "\n";
+                $body_text .= '<!-- Banner Rotator EOF -->' . "\n";
 
                 $carousel = $body_text;
             }
 
 
             ob_start();
-            include(DIR_WS_MODULES.'content/'.$this->group.'/templates/carousel.php');
+            include(DIR_WS_MODULES . 'content/' . $this->group . '/templates/carousel.php');
             $template = ob_get_clean();
 
             $oscTemplate->addContent($template, $this->group);
         }
     }
 
-    function isEnabled()
-    {
+    function isEnabled() {
         return $this->enabled;
     }
 
-    function check()
-    {
+    function check() {
         return defined('MODULE_FRONT_PAGE_BANNER_ROTATOR_STATUS');
     }
 
-    function install()
-    {
+    function install() {
         tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_FRONT_PAGE_BANNER_ROTATOR_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
         tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Content Width', 'MODULE_FRONT_PAGE_BANNER_ROTATOR_CONTENT_WIDTH', '12', 'What width container should the content be shown in?', '6', '1', 'tep_cfg_select_option(array(\'12\', \'11\', \'10\', \'9\', \'8\', \'7\', \'6\', \'5\', \'4\', \'3\', \'2\', \'1\'), ', now())");
         tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Banner Rotator', 'MODULE_FRONT_PAGE_BANNER_ROTATOR_STATUS', 'True', 'Do you want to show the banner rotator?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
@@ -169,14 +163,12 @@ class cm_carousel
         tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Banner Rotator Height', 'MODULE_FRONT_PAGE_BANNER_ROTATOR_IMG_HEIGHT', '', 'Banner Height', '6', '2', now())");
     }
 
-    function remove()
-    {
-        tep_db_query("delete from ".TABLE_CONFIGURATION." where configuration_key in ('".implode("', '",
-                $this->keys())."')");
+    function remove() {
+        tep_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '",
+                        $this->keys()) . "')");
     }
 
-    function keys()
-    {
+    function keys() {
         return array(
             'MODULE_FRONT_PAGE_BANNER_ROTATOR_CONTENT_WIDTH',
             'MODULE_FRONT_PAGE_BANNER_ROTATOR_STATUS',
@@ -191,8 +183,7 @@ class cm_carousel
     }
 
     function createImage($width = 900, $height = 500, $red = 255, $green = 0,
-                         $blue = 0)
-    {
+            $blue = 0) {
         $im = imagecreatetruecolor($width, $height);
 
         // sets background to red
@@ -207,9 +198,8 @@ class cm_carousel
         imagedestroy($im);
 
         $imgData = base64_encode($contents);
-        $src     = 'data: image/png;base64,'.$imgData;
+        $src = 'data: image/png;base64,' . $imgData;
         return $src;
     }
-}
 
-?>
+}

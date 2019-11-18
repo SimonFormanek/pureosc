@@ -19,4 +19,3 @@ define('SUB_TITLE_REVIEW', 'Komentár:');
 define('SUB_TITLE_RATING', 'Hodnotenie:');
 define('TEXT_OF_5_STARS', '%s z 5 hviezdičiek!');
 define('TEXT_CLICK_TO_ENLARGE', 'Kliknite pre zväčšenie');
-?>

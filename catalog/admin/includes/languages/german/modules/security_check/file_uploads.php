@@ -11,4 +11,3 @@
 */
 
 define('WARNING_FILE_UPLOADS_DISABLED', 'Warning: File uploads ist inaktiv in dem php.ini konfigurations file.',true);
-?>

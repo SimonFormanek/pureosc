@@ -58,4 +58,3 @@ define('ERROR_ACTION_RECORDER',
 // Mail Manager
 define('TEXT_RECOMMEND', 'Doporučil', true);
 define('TEXT_FROM', 'od', true);
-?>

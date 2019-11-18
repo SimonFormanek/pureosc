@@ -883,4 +883,3 @@ echo $attributes_split->display_links($attributes_query_numrows,
 <?php
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

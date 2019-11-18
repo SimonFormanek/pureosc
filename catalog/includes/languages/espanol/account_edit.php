@@ -19,4 +19,3 @@ define('MY_ACCOUNT_TITLE', 'Mi Cuenta', true);
 
 define('SUCCESS_ACCOUNT_UPDATED', 'Su cuenta se ha actualizado correctamente.',
     true);
-?>

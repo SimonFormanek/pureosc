@@ -23,4 +23,3 @@ define('TEXT_AUTHOR', 'Autor:');
 define('TEXT_TOPIC', 'Kategorie:');
 define('TEXT_BY', 'Autor');
 define('TEXT_READ_MORE', 'Více');
-?>

@@ -13,4 +13,3 @@
   define('MODULE_BOXES_ARTICLES_TITLE', 'Články');
   define('MODULE_BOXES_ARTICLES_DESCRIPTION', 'Zobrazit InfoBox Správce článků');
   define('MODULE_BOXES_ARTICLES_BOX_TITLE', 'Články');
-?>

@@ -17,4 +17,3 @@
   define('TABLE_HEADING_DOWNLOAD_COUNT', ' downloads remaining',true);
   define('HEADING_DOWNLOAD', 'Download your products here:',true);
   define('FOOTER_DOWNLOAD', 'You can also download your products at a later time at \'%s\'',true);
-?>

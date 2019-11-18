@@ -58,5 +58,3 @@ function is_valid_callback($subject){
     return preg_match($identifier_syntax, $subject)
         && ! in_array(mb_strtolower($subject, 'UTF-8'), $reserved_words);
 }
-
-?>

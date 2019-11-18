@@ -40,4 +40,3 @@ define('TEXT_INFO_CURRENCY_UPDATED', 'Die Verbrauchssteuer fÃ¼r %s (%s) wurde 
 define('ERROR_REMOVE_DEFAULT_CURRENCY', 'Fehler: Die Standardwährung darf nicht gelöscht werden. Bitte definieren Sie eine neue Standardwährung und wiederholen Sie den Vorgang.',true);
 define('ERROR_CURRENCY_INVALID', 'Error: Die Verbrauchssteuer fÃ¼r %s (%s) wurde nicht aktualisiert via %s. Ist es ein gültiger Währungcode?',true);
 define('WARNING_PRIMARY_SERVER_FAILED', 'Vorsicht: Der primäre Server für den Austausch (%s) konnte %s (%s) aktualisieren - Versuche von dem sekundären Server.',true);
-?>

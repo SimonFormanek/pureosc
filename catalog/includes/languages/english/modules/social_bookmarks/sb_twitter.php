@@ -13,4 +13,3 @@
   define('MODULE_SOCIAL_BOOKMARKS_TWITTER_TITLE', 'Twitter',true);
   define('MODULE_SOCIAL_BOOKMARKS_TWITTER_DESCRIPTION', 'Share products on Twitter.',true);
   define('MODULE_SOCIAL_BOOKMARKS_TWITTER_PUBLIC_TITLE', 'Share on Twitter',true);
-?>

@@ -4,8 +4,8 @@
         <address>
             <strong><?php echo STORE_NAME; ?></strong><br>
             <?php echo nl2br(STORE_ADDRESS); ?><br>
-            <abbr title="<?php echo _('Phone'); ?>"><?php echo _('P'); ?>:</abbr> <?php echo constant('STORE_PHONE'); ?><br>
-            <abbr title="<?php echo _('Email'); ?>">E:</abbr> <?php echo constant('STORE_OWNER_EMAIL_ADDRESS'); ?>
+            <abbr title="<?php echo _('Phone'); ?>"><?php echo _('P'); ?>:</abbr> <?php echo cfg('STORE_PHONE'); ?><br>
+            <abbr title="<?php echo _('Email'); ?>">E:</abbr> <?php echo cfg('STORE_OWNER_EMAIL_ADDRESS'); ?>
         </address>
         <ul class="list-unstyled">
             <?php

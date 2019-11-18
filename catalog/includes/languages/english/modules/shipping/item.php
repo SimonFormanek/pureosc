@@ -13,4 +13,3 @@
 define('MODULE_SHIPPING_ITEM_TEXT_TITLE', 'Per Item',true);
 define('MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION', 'Per Item',true);
 define('MODULE_SHIPPING_ITEM_TEXT_WAY', '',true);
-?>

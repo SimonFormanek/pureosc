@@ -20,4 +20,3 @@
 
   define('MODULE_PAYMENT_RBSWORLDPAY_HOSTED_TEXT_SUCCESSFUL_TRANSACTION', 'The payment has been successfully performed! You will be automatically redirected back to our website in 3 seconds.',true);
   define('MODULE_PAYMENT_RBSWORLDPAY_HOSTED_TEXT_CONTINUE_BUTTON', 'Continue to %s',true);
-?>

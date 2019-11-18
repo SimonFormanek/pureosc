@@ -14,4 +14,3 @@ define('NAVBAR_TITLE', 'Preprava a vrátenie');
 define('HEADING_TITLE', 'Preprava a vrátenie');
 
 define('TEXT_INFORMATION', 'Vložte tu svoju nakupovať informácií.');
-?>

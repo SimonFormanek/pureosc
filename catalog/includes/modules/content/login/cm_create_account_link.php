@@ -66,5 +66,3 @@ class cm_create_account_link {
     }
 
 }
-
-?>

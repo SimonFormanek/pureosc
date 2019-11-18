@@ -25,10 +25,10 @@ function tep_get_version()
 {
     static $v;
 
-    if (!isset($v) && file_exists(constant('DIR_FS_CATALOG').'includes/version.php')) {
+    if (!isset($v) && file_exists(cfg('DIR_FS_CATALOG').'includes/version.php')) {
 
         $v = trim(implode('',
-                file(constant('DIR_FS_CATALOG').'includes/version.php')));
+                file(cfg('DIR_FS_CATALOG').'includes/version.php')));
     }
 
     return $v;
@@ -402,7 +402,7 @@ function tep_get_tax_rate($class_id, $country_id = -1, $zone_id = -1)
     }
 
     if (!isset($tax_rates[$class_id][$country_id][$zone_id]['rate'])) {
-        $tax_query = tep_db_query("select sum(tax_rate) as tax_rate from ".TABLE_TAX_RATES." tr left join ".constant('TABLE_ZONES_TO_GEO_ZONES')." za on (tr.tax_zone_id = za.geo_zone_id) left join ".TABLE_GEO_ZONES." tz on (tz.geo_zone_id = tr.tax_zone_id) where (za.zone_country_id is null or za.zone_country_id = '0' or za.zone_country_id = '".(int) $country_id."') and (za.zone_id is null or za.zone_id = '0' or za.zone_id = '".(int) $zone_id."') and tr.tax_class_id = '".(int) $class_id."' group by tr.tax_priority");
+        $tax_query = tep_db_query("select sum(tax_rate) as tax_rate from ".TABLE_TAX_RATES." tr left join ".cfg('TABLE_ZONES_TO_GEO_ZONES')." za on (tr.tax_zone_id = za.geo_zone_id) left join ".TABLE_GEO_ZONES." tz on (tz.geo_zone_id = tr.tax_zone_id) where (za.zone_country_id is null or za.zone_country_id = '0' or za.zone_country_id = '".(int) $country_id."') and (za.zone_id is null or za.zone_id = '0' or za.zone_id = '".(int) $zone_id."') and tr.tax_class_id = '".(int) $class_id."' group by tr.tax_priority");
         if (tep_db_num_rows($tax_query)) {
             $tax_multiplier = 1.0;
             while ($tax            = tep_db_fetch_array($tax_query)) {
@@ -427,7 +427,7 @@ function tep_get_tax_description($class_id, $country_id, $zone_id)
     static $tax_rates = array();
 
     if (!isset($tax_rates[$class_id][$country_id][$zone_id]['description'])) {
-        $tax_query = tep_db_query("select tax_description from ".TABLE_TAX_RATES." tr left join ".constant('TABLE_ZONES_TO_GEO_ZONES')." za on (tr.tax_zone_id = za.geo_zone_id) left join ".TABLE_GEO_ZONES." tz on (tz.geo_zone_id = tr.tax_zone_id) where (za.zone_country_id is null or za.zone_country_id = '0' or za.zone_country_id = '".(int) $country_id."') and (za.zone_id is null or za.zone_id = '0' or za.zone_id = '".(int) $zone_id."') and tr.tax_class_id = '".(int) $class_id."' order by tr.tax_priority");
+        $tax_query = tep_db_query("select tax_description from ".TABLE_TAX_RATES." tr left join ".cfg('TABLE_ZONES_TO_GEO_ZONES')." za on (tr.tax_zone_id = za.geo_zone_id) left join ".TABLE_GEO_ZONES." tz on (tz.geo_zone_id = tr.tax_zone_id) where (za.zone_country_id is null or za.zone_country_id = '0' or za.zone_country_id = '".(int) $country_id."') and (za.zone_id is null or za.zone_id = '0' or za.zone_id = '".(int) $zone_id."') and tr.tax_class_id = '".(int) $class_id."' order by tr.tax_priority");
         if (tep_db_num_rows($tax_query)) {
             $tax_description = '';
             while ($tax             = tep_db_fetch_array($tax_query)) {

@@ -23,4 +23,3 @@ define('ENTRY_ENQUIRY', 'Enquiry', true);
 define('ERROR_ACTION_RECORDER',
     'Error: An enquiry has already been sent. Please try again in %s minutes.',
     true);
-?>

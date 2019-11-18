@@ -13,4 +13,3 @@
 define('MODULE_SHIPPING_FLAT_TEXT_TITLE', 'Tarifa Plana',true);
 define('MODULE_SHIPPING_FLAT_TEXT_DESCRIPTION', 'Tarifa Plana',true);
 define('MODULE_SHIPPING_FLAT_TEXT_WAY', 'Mejor manera',true);
-?>

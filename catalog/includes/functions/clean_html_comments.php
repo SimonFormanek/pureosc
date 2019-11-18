@@ -23,4 +23,3 @@ function clean_html_comments($clean_html)
     }
     return $its_cleaned;
 }
-?>

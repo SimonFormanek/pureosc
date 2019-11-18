@@ -18,4 +18,3 @@
   define('MODULE_CONTENT_LOGIN_TEXT_PASSWORD_FORGOTTEN', 'Zapomenuté heslo? Klikněte zde.',true);
 
   define('MODULE_CONTENT_LOGIN_TEXT_LOGIN_ERROR', 'CHYBA: jméno/heslo nenalezeno.',true);
-?>

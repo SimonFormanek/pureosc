@@ -12,4 +12,3 @@
 
   define('MODULE_ACTION_RECORDER_CONTACT_US_TITLE', 'Kontaktujte nás');
   define('MODULE_ACTION_RECORDER_CONTACT_US_DESCRIPTION', 'Ukladanie použitie Kontaktujte nás zvláštne');
-?>

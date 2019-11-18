@@ -29,8 +29,8 @@ class d_orders
         $this->description = _('Show the latest orders');
 
         if (defined('MODULE_ADMIN_DASHBOARD_ORDERS_STATUS')) {
-            $this->sort_order = constant('MODULE_ADMIN_DASHBOARD_ORDERS_SORT_ORDER');
-            $this->enabled    = (constant('MODULE_ADMIN_DASHBOARD_ORDERS_STATUS') == 'True');
+            $this->sort_order = cfg('MODULE_ADMIN_DASHBOARD_ORDERS_SORT_ORDER');
+            $this->enabled    = (cfg('MODULE_ADMIN_DASHBOARD_ORDERS_STATUS') == 'True');
         }
     }
 

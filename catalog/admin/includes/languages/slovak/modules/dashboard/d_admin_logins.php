@@ -13,4 +13,3 @@
 define('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_TITLE', 'Posledné prihlásenie správcu');
 define('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_DESCRIPTION', 'Zobraziť posledný úspešné a neúspešné prihlásenie správcu');
 define('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_DATE', 'Dátum');
-?>

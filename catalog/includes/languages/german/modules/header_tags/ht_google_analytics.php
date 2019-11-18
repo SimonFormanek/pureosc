@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_TITLE', 'Google Analytics',true);
   define('MODULE_HEADER_TAGS_GOOGLE_ANALYTICS_DESCRIPTION', 'Google Analytics dem Shop hinzufügen',true);
-?>

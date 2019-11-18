@@ -26,4 +26,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Seguro que desea eliminar esta zona ?',true);
 define('TEXT_INFO_HEADING_NEW_ZONE', 'Nueva Zona',true);
 define('TEXT_INFO_HEADING_EDIT_ZONE', 'Editar Zona',true);
 define('TEXT_INFO_HEADING_DELETE_ZONE', 'Eliminar Zona',true);
-?>

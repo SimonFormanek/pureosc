@@ -678,4 +678,3 @@ if (!function_exists('tep_db_prepare_input')) {
 
 }
 */
-?>

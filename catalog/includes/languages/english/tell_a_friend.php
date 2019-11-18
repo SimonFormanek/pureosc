@@ -62,4 +62,3 @@ define('ERROR_ACTION_RECORDER',
 // Mail Manager
 define('TEXT_RECOMMEND', 'has recommended', true);
 define('TEXT_FROM', 'from the', true);
-?>

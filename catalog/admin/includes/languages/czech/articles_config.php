@@ -19,5 +19,3 @@ define('TABLE_HEADING_ACTION', 'Akce');
 define('TEXT_INFO_EDIT_INTRO', 'Proveďte potřebné změny');
 define('TEXT_INFO_DATE_ADDED', 'Datum přidání:');
 define('TEXT_INFO_LAST_MODIFIED', 'Poslední změna:');
-
-?>

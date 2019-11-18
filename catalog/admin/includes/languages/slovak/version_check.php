@@ -24,4 +24,3 @@ define('VERSION_RUNNING_LATEST', 'Ste beží na najnovšiu verziu osCommerce pri
 define('VERSION_UPGRADES_AVAILABLE', 'Nová verzia je k dispozícii na stiahnutie! (osCommerce Online Merchant v%s)');
 
 define('ERROR_COULD_NOT_CONNECT', 'Nedá sa pripojiť na webové stránky osCommerce pre kontrolu novej verzie.');
-?>

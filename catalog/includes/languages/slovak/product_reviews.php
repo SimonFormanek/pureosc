@@ -15,4 +15,3 @@ define('NAVBAR_TITLE', 'Komentáre');
 define('TEXT_CLICK_TO_ENLARGE', 'Kliknite pre zväčšenie');
 
 define('TEXT_OF_5_STARS', '%s z 5 hviezdičiek!');
-?>

@@ -94,5 +94,3 @@ class bm_header_tags
             'MODULE_BOXES_HEADER_TAGS_SORT_ORDER');
     }
 }
-
-?>

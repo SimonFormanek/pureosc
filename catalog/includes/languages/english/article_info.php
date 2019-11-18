@@ -26,4 +26,3 @@ define('BOX_TEXT_TELL_A_FRIEND', 'Tell a friend');
 define('TEXT_TELL_A_FRIEND', 'Tell a friend about this article:');
 define('TEXT_XSELL_ARTICLES', 'Products related to this article:');
 define('IMAGE_PRINT_ARTICLE', 'Print This Article');
-?>

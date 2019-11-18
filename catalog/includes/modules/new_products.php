@@ -57,4 +57,3 @@ if ($num_new_products > 0) {
 
     <?php
 }
-?>

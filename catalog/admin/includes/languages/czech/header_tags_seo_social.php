@@ -41,4 +41,3 @@ define('RESULT_SUCCESS_REMOVED_TWITTER', '&nbsp;&nbsp;Byla odstraněna karta Twi
 define('RESULT_SUCCESS_UPDATED', '&nbsp;&nbsp;Změna dat úspěšně uložena');
 
 define('RESULT_TWITTER_DATA_MISSING', 'Obě pole jsou povinná');
-?>

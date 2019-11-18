@@ -25,4 +25,3 @@ define('TEXT_ORDER_COST', 'Importe Total:', true);
 define('TEXT_VIEW_ORDER', 'Ver Pedido', true);
 
 define('TEXT_NO_PURCHASES', 'No ha realizado ningún pedido aún.', true);
-?>

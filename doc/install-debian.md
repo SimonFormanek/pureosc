@@ -16,3 +16,7 @@ apt install libapache2-mpm-itk locales-all mariadb-server php7.4-cli libapache2-
   a2enmod headers
   a2enmod rewrite
   a2enmod deflate
+
+## disable dangerous PHP functions
+  disable_functions = pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority, apache_setenv, exec,  curl_multi_exec, chgrp, chown, disk_free_space, disk_total_space, diskfreespace, dl, fileinode, highlight_file, shell_exec, show_source, passthru,proc_close, proc_open, proc_get_status, proc_nice, proc_open, proc_terminate,  popen, pclose, phpinfo, posix_kill, posix_mkfifo, posix_setpgid, posix_setsid, posix_setuid,  putenv, system,ini_set
+

@@ -79,5 +79,3 @@ class bm_header_tags_social
             'MODULE_BOXES_HEADER_TAGS_SOCIAL_SORT_ORDER');
     }
 }
-
-?>

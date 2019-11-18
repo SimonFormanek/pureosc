@@ -23,4 +23,3 @@
   define('MODULE_PAYMENT_AUTHORIZENET_CC_AIM_ERROR_INVALID_EXP_DATE', 'La fecha de caducidad de la tarjeta de cr&eacute;dito no es v&aacute;lida. Por favor, compruebe la informaci&oacute;n de la tarjeta e int&eacute;ntelo de nuevo.',true);
   define('MODULE_PAYMENT_AUTHORIZENET_CC_AIM_ERROR_EXPIRED', 'La tarjeta de cr&eacute;dito ha caducado. Por favor, int&eacute;ntelo de nuevo con otra tarjeta o m&eacute;todo de pago.',true);
   define('MODULE_PAYMENT_AUTHORIZENET_CC_AIM_ERROR_CVC', 'El N&uacute;mero de Comprobaci&oacute;n de la Tarjeta de Cr&eacute;dito (CVC)no es v&aacute;lido. Por favor, compruebe la informaci&oacute;n de la tarjeta y vuelva a intentarlo.',true);
-?>

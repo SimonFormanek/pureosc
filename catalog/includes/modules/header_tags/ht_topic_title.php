@@ -75,5 +75,3 @@ class ht_topic_title {
     }
 
 }
-
-?>

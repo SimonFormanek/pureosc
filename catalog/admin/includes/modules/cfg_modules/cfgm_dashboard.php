@@ -29,4 +29,3 @@
       $this->title = MODULE_CFG_MODULE_DASHBOARD_TITLE;
     }
   }
-?>

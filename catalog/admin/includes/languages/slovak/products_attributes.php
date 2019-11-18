@@ -32,4 +32,3 @@ define('TEXT_WARNING_OF_DELETE', 'Toto nastavenie je spojené s produktami a hod
 define('TEXT_OK_TO_DELETE', 'Toto nastavenie nie je spojené s produktami a hodnotami - je bezpečné odstrániť ho.');
 define('TEXT_OPTION_ID', 'ID nastavenia');
 define('TEXT_OPTION_NAME', 'Názov nastavenia');
-?>

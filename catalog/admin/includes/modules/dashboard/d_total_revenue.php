@@ -29,8 +29,8 @@ class d_total_revenue
         $this->description = _('Show the total revenue chart of the last 30 days');
 
         if (defined('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_STATUS')) {
-            $this->sort_order = constant('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_SORT_ORDER');
-            $this->enabled    = (constant('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_STATUS') == 'True');
+            $this->sort_order = cfg('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_SORT_ORDER');
+            $this->enabled    = (cfg('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_STATUS') == 'True');
         }
     }
 

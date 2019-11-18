@@ -33,4 +33,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Skutečně chcete smazat tuto sazbu?',true);
 define('TEXT_INFO_HEADING_NEW_TAX_RATE', 'Nová sazba',true);
 define('TEXT_INFO_HEADING_EDIT_TAX_RATE', 'Upravte sazbu',true);
 define('TEXT_INFO_HEADING_DELETE_TAX_RATE', 'Smažte sazbu',true);
-?>

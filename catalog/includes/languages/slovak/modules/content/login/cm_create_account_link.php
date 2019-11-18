@@ -16,4 +16,3 @@
   define('MODULE_CONTENT_LOGIN_HEADING_NEW_CUSTOMER', 'Registrácia nového zákazníka');
   define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER', 'Som nový zákazník.');
   define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER_INTRODUCTION', 'Vytvorením účtu na ' . STORE_NAME . ' budete môcť nakupovať rýchlejšie, byť až do dnešného dňa o stave objednávky a sledovať objednávok ktoré ste predtým vykonali.');
-?>

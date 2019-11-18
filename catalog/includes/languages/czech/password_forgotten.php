@@ -33,4 +33,3 @@ define('EMAIL_PASSWORD_RESET_BODY',
 define('ERROR_ACTION_RECORDER',
     'Chyba: Odkaz na obnovení hesla již byl odeslán. Zkuste to prosím znovu po % minutách.',
     true);
-?>

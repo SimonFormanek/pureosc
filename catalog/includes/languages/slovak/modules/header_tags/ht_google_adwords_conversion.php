@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_TITLE', 'Sledovanie konverzií Google AdWords');
   define('MODULE_HEADER_TAGS_GOOGLE_ADWORDS_CONVERSION_DESCRIPTION', 'Pridať Satelitné sledovanie konverzií AdWords na stránku Checkout Úspech');
-?>

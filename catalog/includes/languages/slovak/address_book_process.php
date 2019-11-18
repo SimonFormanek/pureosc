@@ -36,4 +36,3 @@ define('WARNING_PRIMARY_ADDRESS_DELETION', 'Primárna adresa nemôže byť odstr
 
 define('ERROR_NONEXISTING_ADDRESS_BOOK_ENTRY', 'Položka adresára neexistuje.');
 define('ERROR_ADDRESS_BOOK_FULL', 'Váš adresár je plný. Odstráňte prosím nepotrebnú adresu a akciu opakujte.');
-?>

@@ -499,4 +499,3 @@ function generateToken($length = 24)
 
     return $token;
 }
-?>

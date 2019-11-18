@@ -29,7 +29,7 @@ class d_customers
         $this->description = _('Show the newest customers');
 
         if (defined('MODULE_ADMIN_DASHBOARD_CUSTOMERS_STATUS')) {
-            $this->sort_order = constant('MODULE_ADMIN_DASHBOARD_CUSTOMERS_SORT_ORDER');
+            $this->sort_order = cfg('MODULE_ADMIN_DASHBOARD_CUSTOMERS_SORT_ORDER');
             $this->enabled    = (MODULE_ADMIN_DASHBOARD_CUSTOMERS_STATUS == 'True');
         }
     }

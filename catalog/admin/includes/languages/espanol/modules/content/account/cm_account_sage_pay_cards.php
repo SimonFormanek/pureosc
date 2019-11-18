@@ -27,4 +27,3 @@
   define('MODULE_CONTENT_ACCOUNT_SAGE_PAY_CARDS_TEXT_NO_CARDS', '<p>No cards have been saved yet.</p>',true);
 
   define('MODULE_CONTENT_ACCOUNT_SAGE_PAY_CARDS_SUCCESS_DELETED', 'The card has been successfully deleted.',true);
-?>

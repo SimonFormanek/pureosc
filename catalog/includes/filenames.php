@@ -109,4 +109,3 @@ define('FILENAME_NEW_ARTICLES', 'new_articles.php');
 // BOF: Information Pages Unlimited
 define('FILENAME_INFORMATION', 'information.php');
 // EOF: Information Pages Unlimited
-?>

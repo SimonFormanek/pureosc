@@ -31,4 +31,3 @@ define('TEXT_CREATE_NEW_SHIPPING_ADDRESS',
 
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'pokračujte v placení', true);
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', 'Vyberte platební metodu.', true);
-?>

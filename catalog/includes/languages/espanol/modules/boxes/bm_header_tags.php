@@ -13,4 +13,3 @@
   define('MODULE_BOXES_HEADER_TAGS_TITLE', 'Header Tags');
   define('MODULE_BOXES_HEADER_TAGS_DESCRIPTION', 'Show Header Tags page link');
   define('MODULE_BOXES_HEADER_TAGS_BOX_TITLE', 'Header Tags');
-?>

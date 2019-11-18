@@ -62,5 +62,3 @@ class ht_robot_control {
     }
 
 }
-
-?>

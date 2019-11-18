@@ -11,4 +11,3 @@
 */
 
 define('MODULE_CFG_MODULE_ACTION_RECORDER_TITLE', 'Grabadora de acciones',true);
-?>

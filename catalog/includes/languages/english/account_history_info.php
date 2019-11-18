@@ -38,4 +38,3 @@ define('TEXT_NO_COMMENTS_AVAILABLE', 'No comments available.', true);
 define('TABLE_HEADING_DOWNLOAD_DATE', 'Link expires: ', true);
 define('TABLE_HEADING_DOWNLOAD_COUNT', ' downloads remaining', true);
 define('HEADING_DOWNLOAD', 'Download links', true);
-?>

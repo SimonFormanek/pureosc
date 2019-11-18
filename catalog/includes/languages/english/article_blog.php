@@ -32,4 +32,3 @@ define('BLOG_EMAIL_TEXT_BODY',
 define('BLOG_EMAIL_TEXT_SUBJECT', 'A blog article has been submitted for %s');
 
 define('ERROR_NO_COMMENT', 'A comment is required.');
-?>

@@ -11,4 +11,3 @@
  */
 define('NEWS_TITLE', 'RSS kanál článků');
 define('NEWS_DESCRIPTION', 'Články na '.STORE_NAME);
-?>

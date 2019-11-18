@@ -27,4 +27,3 @@ define('PRIMARY_ADDRESS', '(Hlavní adresa)', true);
 define('TEXT_MAXIMUM_ENTRIES',
     '<span class="inputRequirement">POZNÁMKA:</span> Maximálně zde můžete mít uloženo %s addres.',
     true);
-?>

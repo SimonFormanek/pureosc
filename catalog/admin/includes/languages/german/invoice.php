@@ -27,4 +27,3 @@ define('ENTRY_SUB_TOTAL', 'Zwischensumme:',true);
 define('ENTRY_TAX', 'MwSt.:',true);
 define('ENTRY_SHIPPING', 'Versandkosten:',true);
 define('ENTRY_TOTAL', 'Gesamtsumme:',true);
-?>

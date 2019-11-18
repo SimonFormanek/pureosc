@@ -18,4 +18,3 @@
   define('MODULE_BOXES_CARD_ACCEPTANCE_DRAG_HERE', 'Drag Here',true);
 
   define('MODULE_BOXES_CARD_ACCEPTANCE_BOX_TITLE', 'We Accept',true);
-?>

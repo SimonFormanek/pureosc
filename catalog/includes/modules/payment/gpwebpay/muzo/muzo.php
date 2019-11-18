@@ -102,5 +102,3 @@ function GpeMuzoVerify($text, $sigb64, $keyFile) {
   openssl_free_key($pubkeyid);
   return (($vysledek==1) ? true : false);
 }
-
-?>

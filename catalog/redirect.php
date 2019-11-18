@@ -70,4 +70,3 @@ switch ($_GET['action']) {
 }
 
 tep_redirect(tep_href_link(FILENAME_DEFAULT));
-?>

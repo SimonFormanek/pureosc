@@ -47,4 +47,3 @@ function tep_encrypt_password_for_create_account($plain)
 
     return $password;
 }
-?>

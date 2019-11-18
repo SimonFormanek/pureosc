@@ -48,4 +48,3 @@ function tep_gzip_output($level = 5)
         ob_end_flush();
     }
 }
-?>

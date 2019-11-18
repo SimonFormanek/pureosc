@@ -74,5 +74,3 @@ class cfg_modules
         return false;
     }
 }
-
-?>

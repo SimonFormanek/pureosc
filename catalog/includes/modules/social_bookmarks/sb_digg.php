@@ -76,5 +76,3 @@ class sb_digg
         return array('MODULE_SOCIAL_BOOKMARKS_DIGG_STATUS', 'MODULE_SOCIAL_BOOKMARKS_DIGG_SORT_ORDER');
     }
 }
-
-?>

@@ -673,7 +673,7 @@ EOD;
     foreach ( cm_paypal_login_get_attributes() as $group => $attributes ) {
       foreach ( $attributes as $attribute => $scope ) {
         if ( in_array($attribute, $active) ) {
-          $output .= constant('MODULE_CONTENT_PAYPAL_LOGIN_ATTR_' . $attribute) . '<br />';
+          $output .= cfg('MODULE_CONTENT_PAYPAL_LOGIN_ATTR_' . $attribute) . '<br />';
         }
       }
     }
@@ -693,7 +693,7 @@ EOD;
     $output = '';
 
     foreach ( cm_paypal_login_get_attributes() as $group => $attributes ) {
-      $output .= '<strong>' . constant('MODULE_CONTENT_PAYPAL_LOGIN_ATTR_GROUP_' . $group) . '</strong><br />';
+      $output .= '<strong>' . cfg('MODULE_CONTENT_PAYPAL_LOGIN_ATTR_GROUP_' . $group) . '</strong><br />';
 
       foreach ( $attributes as $attribute => $scope ) {
         if ( in_array($attribute, $required_array) ) {
@@ -702,7 +702,7 @@ EOD;
           $output .= tep_draw_checkbox_field('cm_paypal_login_attributes[]', $attribute, in_array($attribute, $values_array)) . '&nbsp;';
         }
 
-        $output .= constant('MODULE_CONTENT_PAYPAL_LOGIN_ATTR_' . $attribute) . '<br />';
+        $output .= cfg('MODULE_CONTENT_PAYPAL_LOGIN_ATTR_' . $attribute) . '<br />';
       }
     }
 
@@ -748,4 +748,3 @@ EOD;
 
     return $output;
   }
-?>

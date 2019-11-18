@@ -19,4 +19,3 @@ define('TEXT_INFORMATION',
 
 define('BOX_INFORMATION_HEADING', 'bezpečnost cookies', true);
 define('BOX_INFORMATION', 'Pro bezpečný nákup musí být Cookies zapnuté.', true);
-?>

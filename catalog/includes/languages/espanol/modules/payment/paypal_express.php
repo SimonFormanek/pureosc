@@ -25,4 +25,3 @@
   define('MODULE_PAYMENT_PAYPAL_EXPRESS_LANGUAGE_LOCALE', 'es_ES',true);
 
   unset($paypal_express_ping_button);
-?>

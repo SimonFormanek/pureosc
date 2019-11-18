@@ -25,8 +25,8 @@ class ht_div_equal_heights
       $this->description = _('Add Equal Heights javascript to specified pages, which solves a potential problem in grid layouts');
 
         if (defined('MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_STATUS')) {
-            $this->sort_order = constant('MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_SORT_ORDER');
-            $this->enabled = (constant('MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_STATUS') == 'True');
+            $this->sort_order = cfg('MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_SORT_ORDER');
+            $this->enabled = (cfg('MODULE_HEADER_TAGS_DIV_EQUAL_HEIGHTS_STATUS') == 'True');
         }
     }
 
@@ -172,4 +172,3 @@ function ht_div_equal_heights_edit_pages($values, $key) {
 
     return $output;
 }
-?>

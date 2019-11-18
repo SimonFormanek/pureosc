@@ -204,4 +204,3 @@ table.BorderedBoxWhite {border: ridge #ddd 3px; background-color: #fff; }
 <?php
   require(DIR_WS_INCLUDES . 'template_bottom.php');
   require(DIR_WS_INCLUDES . 'application_bottom.php');
-?>

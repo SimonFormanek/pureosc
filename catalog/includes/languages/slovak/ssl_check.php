@@ -17,4 +17,3 @@ define('TEXT_INFORMATION', 'Zistili sme, že váš prehliadač vygeneroval iné 
 
 define('BOX_INFORMATION_HEADING', 'Súkromie a zabezpečenie');
 define('BOX_INFORMATION', 'Overujeme SSL Session ID automaticky generované vašim prehliadačom u každej vašej SSL požiadavky smerovanej na tento server.<br><br>Táto validácia zaručuje že ste to vy, kto prehliada naše stránky s použitím vášho účtu.');
-?>

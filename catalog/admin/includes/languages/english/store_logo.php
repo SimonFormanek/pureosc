@@ -18,4 +18,3 @@ define('TEXT_FORMAT_AND_LOCATION', 'The store logo must be in .png or .jpg or .g
 define('SUCCESS_LOGO_UPDATED', 'Success: The store logo has successfully been updated!',true);
 
 define('ERROR_IMAGES_DIRECTORY_NOT_WRITEABLE', 'Error: The images directory cannot be uploaded to. (<a href="%s">click here to review the directory permissions</a>)',true);
-?>

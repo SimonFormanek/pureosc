@@ -17,4 +17,3 @@ define('TABLE_HEADING_PRODUCTS', 'Produkty');
 define('ENTRY_SOLD_TO', 'PLATITEĽ:');
 define('ENTRY_SHIP_TO', 'PRÍJEMCA:');
 define('ENTRY_PAYMENT_METHOD', 'Spôsob platby:');
-?>

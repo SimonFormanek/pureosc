@@ -19,4 +19,3 @@ define('TABLE_HEADING_SORT_ORDER', 'Triedenie');
 define('TABLE_HEADING_ACTION', 'Akcia');
 
 define('TEXT_MODULE_DIRECTORY', 'Priečinok modulov:');
-?>

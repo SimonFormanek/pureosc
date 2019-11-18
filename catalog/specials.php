@@ -117,4 +117,3 @@ include(DIR_WS_MODULES.FILENAME_PRODUCT_LISTING);
 
 require(DIR_WS_INCLUDES.'template_bottom.php');
 require(DIR_WS_INCLUDES.'application_bottom.php');
-?>

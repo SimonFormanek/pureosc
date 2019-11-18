@@ -46,4 +46,3 @@ define('RESULT_SUCCESS_REMOVED_TWITTER', '&nbsp;&nbsp;Removed Twitter Card');
 define('RESULT_SUCCESS_UPDATED', '&nbsp;&nbsp;Data Change was successful');
 
 define('RESULT_TWITTER_DATA_MISSING', 'Both fields are required');
-?>

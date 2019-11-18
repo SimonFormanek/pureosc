@@ -21,4 +21,3 @@ define('BOX_INFORMATION_HEADING', 'Privacidad y Seguridad', true);
 define('BOX_INFORMATION',
     'Validamos el Identificador de Sesion SSL generado autom&aacute;ticamente por su navegador en cada petici&oacute;n que realiza a este servidor.<br /><br />Esta validaci&oacute;n asegura que es usted quien navega en este sitio con su cuenta y no otra persona o equipo.',
     true);
-?>

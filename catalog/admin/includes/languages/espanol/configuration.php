@@ -29,4 +29,3 @@ define('CONFIG_DESCRIPTION_SEO_DESCRIPTION_LENGHT','Set max chars count for META
 //Monthly Products Sales Report 
 define('CONFIG_TITLE_COMISSION_PERCENTAGE','Monthly Sales Report Comision');
 define('CONFIG_DESCRIPTION_COMISSION_PERCENTAGE','Set comision percentage for Monthly Sales Report  0 = do not display');
-?>

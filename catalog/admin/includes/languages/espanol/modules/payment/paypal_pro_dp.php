@@ -23,4 +23,3 @@
   define('MODULE_PAYMENT_PAYPAL_PRO_DP_CARD_ISSUE_NUMBER', ' N&uacute;mero de publicaci&oacute;n de la Tarjeta:',true);
   define('MODULE_PAYMENT_PAYPAL_PRO_DP_CARD_ISSUE_NUMBER_INFO', '(para tarjetas Maestro y Solo solamente)',true);
   define('MODULE_PAYMENT_PAYPAL_PRO_DP_ERROR_ALL_FIELDS_REQUIRED', 'Error: Todos los datos del pago son necesarios.',true);
-?>

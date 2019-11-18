@@ -18,4 +18,3 @@ define('SUB_HEADING_TEXT_1', 'Každý návštevník v našom obchode ma k dispoz
 define('SUB_HEADING_TEXT_2', 'Každý registrovaný zákazník, ktorý sa prihlási, dostane k dispozícii tzv. zákaznícky košík. Ten umožňuje zákazníkovi vkladať do neho produkty, pokiaľ zákazník odíde mimo obchod, po príchode späť môže dokončiť objednávku. Obsah zákazníckeho košíka sa nevyprázdňuje odchodom z týchto stránok.');
 define('SUB_HEADING_TEXT_3', 'Pokiaľ si neregistrovaný návštevník vloží produkty do hosťovského košíka a až potom sa zaregistruje a prihlási, hosťovský košík sa automaticky prevedie na zákaznícky košík vrátane všetkých produktov z hosťovského košíka.');
 define('TEXT_CLOSE_WINDOW', '[ zavrieť okno ]');
-?>

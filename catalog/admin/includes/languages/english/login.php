@@ -23,4 +23,3 @@ define('BUTTON_LOGIN', 'Login',true);
 define('BUTTON_CREATE_ADMINISTRATOR', 'Create Administrator',true);
 
 define('ERROR_ACTION_RECORDER', 'Error: The maximum number of login attempts has been reached. Please try again in %s minutes.',true);
-?>

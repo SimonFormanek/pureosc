@@ -17,4 +17,3 @@
   define('MODULE_BOXES_INFORMATION_BOX_CONDITIONS', 'podmienky');
   define('MODULE_BOXES_INFORMATION_BOX_SHIPPING', 'Ako nakupovať');
   define('MODULE_BOXES_INFORMATION_BOX_CONTACT', 'Kontaktujte nás');
-?>

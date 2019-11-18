@@ -12,16 +12,13 @@ namespace PureOSC\Admin;
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class Customers extends \Ease\Brick
+class Customers extends \Ease\SQL\Engine
 {
 
-    public function __construct($init, $optins = [])
+    public function __construct($init, $options = [])
     {
-        $this->takemyTable('customers');
-        $this->setkeyColumn('customers_id');
-        parent::__construct($init, $optins);
-        if (is_integer($init)) {
-            $this->loadFromSQL($init);
-        }
+        $this->keyColumn = 'customers_id';
+        $this->myTable = 'customers';
+        parent::__construct($init, $options);
     }
 }

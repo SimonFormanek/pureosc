@@ -20,7 +20,7 @@ foreach ($products as $progress => $productData) {
     if ($cenik->sync()) {
         $cenik->addStatusMessage(($progress + 1).'/'.count($products).':'.$cenik->getApiURL().' '.FlexiPeeHP\FlexiBeeRO::uncode($cenik->getRecordCode()),
             'success');
-        $imagePath = constant('DIR_FS_CATALOG_IMAGES').$productData['products_image'];
+        $imagePath = cfg('DIR_FS_CATALOG_IMAGES').$productData['products_image'];
 
         if (file_exists($imagePath)) {
             $cenik->addStatusMessage(sprintf(_('Image attach %s'),

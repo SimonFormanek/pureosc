@@ -339,7 +339,7 @@ echo tep_draw_form('checkout_confirmation', $form_action_url, 'post','onsubmit="
                 if (is_array($payment_modules->modules)) {
                     echo $payment_modules->process_button();
                 }
-                echo tep_draw_button(constant('IMAGE_BUTTON_CONFIRM_ORDER'), 'fa fa-ok', null,
+                echo tep_draw_button(cfg('IMAGE_BUTTON_CONFIRM_ORDER'), 'fa fa-ok', null,
                     'primary', null, 'btn-success');
                 ?>
             </div>

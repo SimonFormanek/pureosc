@@ -13,4 +13,3 @@
   define('MODULE_BOXES_BEST_SELLERS_TITLE', 'Bestseller',true);
   define('MODULE_BOXES_BEST_SELLERS_DESCRIPTION', 'Zeige Bestseller',true);
   define('MODULE_BOXES_BEST_SELLERS_BOX_TITLE', 'Bestseller',true);
-?>

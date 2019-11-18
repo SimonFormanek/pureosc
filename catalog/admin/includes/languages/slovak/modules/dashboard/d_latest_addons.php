@@ -17,6 +17,4 @@ define('MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_FEED_ERROR', 'Nedá sa pripojiť ku
 define('MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_ICON_RSS', 'Prihlásiť sa k odberu osCommerce Add-Ons RSS Feed');
 // added for 2.3.4 bof 
 define('MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_ICON_SITE', 'Navštívte osCommerce Doplnky na stránku'); 
-// added for 2.3.4 eof 
-
-?>
+// added for 2.3.4 eof

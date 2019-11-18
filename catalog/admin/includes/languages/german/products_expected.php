@@ -17,4 +17,3 @@ define('TABLE_HEADING_DATE_EXPECTED', 'verfügbar ab:',true);
 define('TABLE_HEADING_ACTION', 'Aktion',true);
 
 define('TEXT_INFO_DATE_EXPECTED', 'verfügbar ab:',true);
-?>

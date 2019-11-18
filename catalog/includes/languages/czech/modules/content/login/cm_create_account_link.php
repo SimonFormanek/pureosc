@@ -16,4 +16,3 @@
   define('MODULE_CONTENT_LOGIN_HEADING_NEW_CUSTOMER', 'Registrace',true);
   define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER', 'Jsem nový zákazník.',true);
   define('MODULE_CONTENT_LOGIN_TEXT_NEW_CUSTOMER_INTRODUCTION', 'Vytvořením účtu v obchodě ' . STORE_NAME . ' budete moci nakupovat rychleji a sledovat zpracování svých objednávek.',true);
-?>

@@ -18,4 +18,3 @@ define('TEXT_LOGO_1', 'Logo text for the second image');
 define('TEXT_LOGO_2', 'Logo text for the third image');
 define('TEXT_LOGO_3', 'Logo text for the fourth image');
 define('TEXT_LOGO_4', 'Logo text for the fifth image');
-?> 

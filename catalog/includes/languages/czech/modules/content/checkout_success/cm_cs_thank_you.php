@@ -20,4 +20,3 @@
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_CONTACT_STORE_OWNER', 'Máte-li jakýkoli dotaz, využijte <a class="btn btn-info" role="button" href="%s">kontaktní formulář</a>, nebo nám napište <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.',true);
 
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_THANKS_FOR_SHOPPING', '<strong>Děkujeme za vaši objednávku.</strong>',true);
-?>

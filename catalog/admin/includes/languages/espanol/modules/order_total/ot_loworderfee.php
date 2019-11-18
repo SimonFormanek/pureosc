@@ -12,4 +12,3 @@
 
   define('MODULE_ORDER_TOTAL_LOWORDERFEE_TITLE', 'Valor mínimo del pedido',true);
   define('MODULE_ORDER_TOTAL_LOWORDERFEE_DESCRIPTION', 'Valor mínimo del pedido',true);
-?>

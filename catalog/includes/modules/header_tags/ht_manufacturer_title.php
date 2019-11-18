@@ -82,5 +82,3 @@ class ht_manufacturer_title
         return array('MODULE_HEADER_TAGS_MANUFACTURER_TITLE_STATUS', 'MODULE_HEADER_TAGS_MANUFACTURER_TITLE_SORT_ORDER');
     }
 }
-
-?>

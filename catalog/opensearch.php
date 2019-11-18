@@ -57,4 +57,3 @@ echo '<?xml version="1.0"?>'."\n";
 </OpenSearchDescription>
 <?php
 require('includes/application_bottom.php');
-?>

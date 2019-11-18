@@ -15,4 +15,3 @@
   define('MODULE_BOXES_MANUFACTURER_INFO_BOX_TITLE', 'Výrobce',true);
   define('MODULE_BOXES_MANUFACTURER_INFO_BOX_HOMEPAGE', '%s Homepage',true);
   define('MODULE_BOXES_MANUFACTURER_INFO_BOX_OTHER_PRODUCTS', 'Jiné zboží',true);
-?>

@@ -27,4 +27,3 @@ define('ENTRY_SUB_TOTAL', 'Medzisúčet:');
 define('ENTRY_TAX', 'Daň:');
 define('ENTRY_SHIPPING', 'Doprava:');
 define('ENTRY_TOTAL', 'Celkom:');
-?>

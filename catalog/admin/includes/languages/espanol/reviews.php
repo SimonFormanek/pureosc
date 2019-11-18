@@ -44,4 +44,3 @@ define('TEXT_OF_5_STARS', '%s de 5 Estrellas!',true);
 define('TEXT_GOOD', '<small><font color="#ff0000"><strong>BUENO</strong></font></small>',true);
 define('TEXT_BAD', '<small><font color="#ff0000"><strong>MALO</strong></font></small>',true);
 define('TEXT_INFO_HEADING_DELETE_REVIEW', 'Eliminar Comentario',true);
-?>

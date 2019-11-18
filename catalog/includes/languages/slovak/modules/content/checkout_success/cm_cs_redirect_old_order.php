@@ -12,4 +12,3 @@
 
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_TITLE', 'Presmerovanie starých poriadkov');
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_DESCRIPTION', 'Presmerovanie na zákazníka, keď je starý, aby bol zobrazený.');
-?>

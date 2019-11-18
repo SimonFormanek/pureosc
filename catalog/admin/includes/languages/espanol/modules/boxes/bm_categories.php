@@ -13,4 +13,3 @@
   define('MODULE_BOXES_CATEGORIES_TITLE', 'Categorías',true);
   define('MODULE_BOXES_CATEGORIES_DESCRIPTION', 'Mostrar el árbol de navegación de categoría',true);
   define('MODULE_BOXES_CATEGORIES_BOX_TITLE', 'Categorías',true);
-?>

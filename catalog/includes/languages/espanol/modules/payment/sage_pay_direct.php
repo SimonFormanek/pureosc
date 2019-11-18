@@ -34,4 +34,3 @@
   define('MODULE_PAYMENT_SAGE_PAY_DIRECT_ERROR_CARDEXPIRES', 'La fecha de caducidad de la tarjeta no fue procesada correctamente. Por favor, int&eacute;ntelo de nuevo y si el problema persiste, pruebe otro m&eacute;todo de pago.',true);
   define('MODULE_PAYMENT_SAGE_PAY_DIRECT_ERROR_CARDISSUE', 'El n&uacute;mero de emisi&oacute;n de la tarjeta no fue procesada correctamente. Por favor, int&eacute;ntelo de nuevo y si el problema persiste, pruebe otro m&eacute;todo de pago.',true);
   define('MODULE_PAYMENT_SAGE_PAY_DIRECT_ERROR_CARDCVC', 'El n&uacute;mero de verificaci&oacute;n de la tarjeta (CVC) no fue procesada correctamente. Por favor, int&eacute;ntelo de nuevo y si el problema persiste, pruebe otro m&eacute;todo de pago.',true);
-?>

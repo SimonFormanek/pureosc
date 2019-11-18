@@ -34,4 +34,3 @@ define('NOTIFICATIONS_NON_EXISTING',
 
 define('SUCCESS_NOTIFICATIONS_UPDATED',
     'Sus notificaciones de productos se han actualizado correctamente.', true);
-?>

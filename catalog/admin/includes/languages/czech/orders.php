@@ -95,5 +95,4 @@ define('WARNING_ORDER_NOT_UPDATED', 'Pozor: Nebyla provedena žádná změna. Ob
   define('EMAIL_HTML_STATUS_UPDATE','Your order has been updated to: ',true);
   
 // Purchase Without Account
-  define('GUEST', 'Guest',true);  
-?>
+  define('GUEST', 'Guest',true);

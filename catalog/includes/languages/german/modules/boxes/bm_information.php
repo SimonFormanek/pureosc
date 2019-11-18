@@ -17,4 +17,3 @@
   define('MODULE_BOXES_INFORMATION_BOX_CONDITIONS', 'Unsere AGBs',true);
   define('MODULE_BOXES_INFORMATION_BOX_SHIPPING', 'Versandkosten',true);
   define('MODULE_BOXES_INFORMATION_BOX_CONTACT', 'Kontakt',true);
-?>

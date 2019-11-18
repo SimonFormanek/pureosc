@@ -23,4 +23,3 @@
   define('MODULE_CONTENT_ACCOUNT_SET_PASSWORD_SET_PASSWORD_TITLE', 'Nastavenie hesla');
 
   define('MODULE_CONTENT_ACCOUNT_SET_PASSWORD_SUCCESS_PASSWORD_SET', 'Vaše heslo bolo úspešne uložené.');
-?>

@@ -28,4 +28,3 @@ define('HEADING_PAYMENT_INFORMATION', 'Platební informace', true);
 define('HEADING_ORDER_COMMENTS', 'Pošlete nám vzkaz', true);
 
 define('TEXT_EDIT', 'Upravit', true);
-?>

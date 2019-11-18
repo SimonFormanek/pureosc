@@ -29,7 +29,7 @@ if (file_exists('includes/local/configure.php')) { // for developers
     include('../../../oscconfig/dbconfigure.php');
 }
 
-require_once constant('DIR_FS_CATALOG') . '../vendor/autoload.php';
+require_once constant('DIR_FS_MASTER_ROOT_DIR') . constant('OSC_DIR') . 'vendor/autoload.php';
 \Ease\Locale::singleton(null, '../i18n', 'pureosc');
 
 // some code to solve compatibility issues
@@ -103,19 +103,13 @@ if (function_exists('session_set_cookie_params')) {
 // lets start our session
 tep_session_start();
 
-if ((PHP_VERSION >= 4.3) && function_exists('ini_get') && (ini_get('register_globals') === false)) {
-    extract($_SESSION, EXTR_OVERWRITE + EXTR_REFS);
-}
-
-// set the language
+//set the language 
 if (!tep_session_is_registered('language') || isset($_GET['language'])) {
     if (!tep_session_is_registered('language')) {
         tep_session_register('language');
         tep_session_register('languages_id');
     }
-
-    $lng = new language();
-
+    $lng = new \language();
     if (isset($_GET['language']) && tep_not_null($_GET['language'])) {
         $lng->set_language($_GET['language']);
     } else {
@@ -123,7 +117,7 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
         if (preg_match('/^en/', $browser_language)) {
             $browser_language = 'en';
         }
-        $languages_all_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES'));
+        $languages_all_query = tep_db_query("SELECT code FROM " . cfg('TABLE_LANGUAGES'));
         while ($languages_all = tep_db_fetch_array($languages_all_query)) {
             if ($languages_all['code'] == $browser_language) {
                 $new_language = $browser_language;
@@ -132,22 +126,28 @@ if (!tep_session_is_registered('language') || isset($_GET['language'])) {
         if ($new_language) {
             $lng->set_language($new_language);
         } else {
-            $lng->set_language(constant('DEFAULT_LANGUAGE'));
+            $lng->set_language(cfg('DEFAULT_LANGUAGE'));
         }
     }
 } else {
-    $lng = new language();
-    //$lng->set_language($_SESSION['language']);
-    $language_code_query = tep_db_query("SELECT code FROM " . constant('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
+    $lng = new \language();
+    if (empty($_SESSION['language'])) {
+        $lng->set_language($lng->get_browser_language($lng->languages));
+    } else {
+        $lng->set_language($_SESSION['language']);
+    }
+    $language_code_query = tep_db_query("SELECT code FROM " . cfg('TABLE_LANGUAGES') . " WHERE languages_id =  '" . $_SESSION['languages_id'] . "'");
     $language_code = tep_db_fetch_array($language_code_query);
-    $lng->set_language($language_code['code']);
+    if (empty($language_code['code'])) {
+        
+    } else {
+        $lng->set_language($language_code['code']);
+    }
 }
-
-
-\Ease\Locale::singleton()->useLocale($lng->language['locale']);
 
 $language = $lng->language['directory'];
 $languages_id = $lng->language['id'];
+
 
 // redirect to login page if administrator is not yet logged in
 if (!tep_session_is_registered('admin')) {
@@ -181,7 +181,7 @@ if (!tep_session_is_registered('admin')) {
         $redirect = true;
     }
 
-    if (!isset($login_request) || isset($_GET['login_request']) || isset($_POST['login_request']) || isset($HTTP_COOKIE_VARS['login_request']) || isset($HTTP_SESSION_VARS['login_request']) || isset($HTTP_POST_FILES['login_request']) || isset($HTTP_SERVER_VARS['login_request'])) {
+    if (!isset($login_request) || isset($_GET['login_request']) || isset($_POST['login_request']) || isset($_COOKIE['login_request']) || isset($HTTP_SESSION_VARS['login_request']) || isset($HTTP_POST_FILES['login_request']) || isset($HTTP_SERVER_VARS['login_request'])) {
         $redirect = true;
     }
 
@@ -204,7 +204,11 @@ if (!tep_session_is_registered('admin')) {
 
 // include the language translations
 $_system_locale_numeric = setlocale(LC_NUMERIC, 0);
-require(DIR_WS_LANGUAGES . $language . '.php');
+
+\Ease\Locale::singleton()->useLocale($_system_locale_numeric);
+//require(DIR_WS_LANGUAGES.$language.'.php');
+require(DIR_WS_LANGUAGES . 'czech.php');
+
 setlocale(LC_NUMERIC, $_system_locale_numeric); // Prevent LC_ALL from setting LC_NUMERIC to a locale with 1,0 float/decimal values instead of 1.0 (see bug #634)
 
 $current_page = basename($_SERVER['PHP_SELF']);
@@ -275,9 +279,10 @@ if (tep_not_null($tPath)) {
 }
 /* * ** END ARTICLE MANAGER *** */
 
-$oPage = new \PureOSC\ui\WebPage();
+$oPage = \PureOSC\Admin\ui\WebPage::singleton();
 
 // include the breadcrumb class and start the breadcrumb trail
+
 $breadcrumb = new breadcrumb();
 
 if (isset($_SESSION['admin']['id'])) {

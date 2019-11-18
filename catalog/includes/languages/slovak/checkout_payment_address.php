@@ -28,4 +28,3 @@ define('TEXT_CREATE_NEW_PAYMENT_ADDRESS', 'Použite prosím následujúcí formu
 
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Pokračovať v objednávaní');
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', 'pre vybranie zvoleného spôsobu platby.');
-?>

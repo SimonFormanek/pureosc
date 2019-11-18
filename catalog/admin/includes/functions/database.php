@@ -317,4 +317,3 @@ if (!function_exists('mysqli_connect')) {
         return mysql_get_server_info($link);
     }
 }
-?>

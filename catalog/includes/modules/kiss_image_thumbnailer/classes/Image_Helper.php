@@ -85,7 +85,7 @@ class Image_Helper extends ArrayObject
             $this->src                = $this->_thumb_src;
             return 'no_thumb_required';
         }
-        if (constant('KISSIT_MAIN_PRODUCT_WATERMARK_SIZE') == 0) {
+        if (cfg('KISSIT_MAIN_PRODUCT_WATERMARK_SIZE') == 0) {
             if (!$this->_original_image_info = getimagesize($this->src)) {
                 return 'abort';
             }

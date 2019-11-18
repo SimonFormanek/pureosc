@@ -25,4 +25,3 @@ define('TEXT_INFO_IDENTIFIER', 'Identifikátor:');
 define('TEXT_INFO_DATE_ADDED', 'Dátum pridania:');
 
 define('SUCCESS_EXPIRED_ENTRIES', 'Úspech: %s prejdenej záznamy boli odstránené.');
-?>

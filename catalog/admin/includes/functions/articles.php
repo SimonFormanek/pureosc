@@ -407,4 +407,3 @@ function tep_get_topic_description($topic_id, $language_id)
     $topic       = tep_db_fetch_array($topic_query);
     return $topic['topics_description'];
 }
-?>

@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_OPENSEARCH_TITLE', 'OpenSearch-Suche',true);
   define('MODULE_HEADER_TAGS_OPENSEARCH_DESCRIPTION', 'Dem Browser erlauben im Shop via OpenSearch zu suchen',true);
-?>

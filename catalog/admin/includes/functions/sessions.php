@@ -175,5 +175,3 @@ function tep_session_save_path($path = '') {
         return session_save_path();
     }
 }
-
-?>

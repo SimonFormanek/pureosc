@@ -28,4 +28,3 @@
   define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_TEXT_NO_CARDS', '<p>Žiadne karty neboli doteraz ulo ¾ ené.</p>');
 
   define('MODULE_CONTENT_ACCOUNT_STRIPE_CARDS_SUCCESS_DELETED', 'Karta bola úspešne zmazaná.');
-?>

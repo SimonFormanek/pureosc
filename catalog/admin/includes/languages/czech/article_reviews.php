@@ -47,5 +47,3 @@ define('TEXT_DISAPPROVE', 'Neschválený') ;
 define('TEXT_YES', 'Ano') ;
 define('TEXT_NO', 'Ne') ;
 /* </Mav was here!> */
-
-?>

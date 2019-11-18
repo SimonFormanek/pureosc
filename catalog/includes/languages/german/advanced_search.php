@@ -66,4 +66,3 @@ define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM',
 define('ERROR_INVALID_KEYWORDS', 'Suchbegriff unzul&aumässig', true);
 //pure:new
 define('IMAGE_BUTTON_BACK_ADVANCED_SEARCH', 'back to advanced search', true);
-?>

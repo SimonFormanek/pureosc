@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_PRODUCT_COLORBOX_TITLE', 'Colorbox Script',true);
   define('MODULE_HEADER_TAGS_PRODUCT_COLORBOX_DESCRIPTION', 'Add Colorbox Script to specified pages',true);
-?>

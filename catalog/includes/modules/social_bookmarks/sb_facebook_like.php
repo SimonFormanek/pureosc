@@ -94,5 +94,3 @@ class sb_facebook_like
             'MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_SORT_ORDER');
     }
 }
-
-?>

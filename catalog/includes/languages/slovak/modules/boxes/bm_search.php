@@ -15,4 +15,3 @@
   define('MODULE_BOXES_SEARCH_BOX_TITLE', 'rýchle vyhľadávanie');
   define('MODULE_BOXES_SEARCH_BOX_TEXT', 'Použite kľúčové slová pre nájdenie tovaru ktoré hľadáte.');
   define('MODULE_BOXES_SEARCH_BOX_ADVANCED_SEARCH', 'Rozšírené vyhľadávanie');
-?>

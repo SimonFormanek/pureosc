@@ -18,4 +18,3 @@ define('SUB_TITLE_DATE', 'Datum:');
 define('SUB_TITLE_REVIEW', 'Recenze:');
 define('SUB_TITLE_RATING', 'Hodnocení:');
 define('TEXT_OF_5_STARS', '%s z 5 hvězdiček');
-?>

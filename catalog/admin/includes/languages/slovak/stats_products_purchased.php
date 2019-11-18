@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'Najviac kupované produkty');
 define('TABLE_HEADING_NUMBER', 'Poradie');
 define('TABLE_HEADING_PRODUCTS', 'Produkty');
 define('TABLE_HEADING_PURCHASED', 'Zakúpený');
-?>

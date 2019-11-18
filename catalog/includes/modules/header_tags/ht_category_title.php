@@ -76,5 +76,3 @@ class ht_category_title
         return array('MODULE_HEADER_TAGS_CATEGORY_TITLE_STATUS', 'MODULE_HEADER_TAGS_CATEGORY_TITLE_SORT_ORDER');
     }
 }
-
-?>

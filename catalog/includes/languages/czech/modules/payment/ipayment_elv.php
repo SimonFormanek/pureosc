@@ -19,4 +19,3 @@
   define('MODULE_PAYMENT_IPAYMENT_ELV_TEXT_BANK_ACCOUNT_NUMBER', 'Bank Account Number:',true);
   define('MODULE_PAYMENT_IPAYMENT_ELV_TEXT_BANK_CODE', 'Bank Code:',true);
   define('MODULE_PAYMENT_IPAYMENT_ELV_TEXT_BANK_NAME', 'Bank Name:',true);
-?>

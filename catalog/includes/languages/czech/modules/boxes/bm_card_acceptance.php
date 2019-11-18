@@ -18,4 +18,3 @@
   define('MODULE_BOXES_CARD_ACCEPTANCE_DRAG_HERE', 'přetáhnout sem',true);
 
   define('MODULE_BOXES_CARD_ACCEPTANCE_BOX_TITLE', 'Přijímáme platby',true);
-?>

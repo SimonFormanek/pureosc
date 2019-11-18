@@ -11,4 +11,3 @@
 */
 
 define('ERROR_NO_DEFAULT_CURRENCY_DEFINED', 'Chyba: V súčasnej dobe neexistuje predvolený menu set. Prosím nastavte jednu na: Nástroj pre správu-> Lokalizácia-> Meny');
-?>

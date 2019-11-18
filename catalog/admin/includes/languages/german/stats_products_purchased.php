@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'meist verkaufte Artikel',true);
 define('TABLE_HEADING_NUMBER', 'Nr.',true);
 define('TABLE_HEADING_PRODUCTS', 'Artikel',true);
 define('TABLE_HEADING_PURCHASED', 'verkaufte Anzahl',true);
-?>

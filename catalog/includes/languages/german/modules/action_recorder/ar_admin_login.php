@@ -12,4 +12,3 @@
 
   define('MODULE_ACTION_RECORDER_ADMIN_LOGIN_TITLE', 'Admin-Panel Logins',true);
   define('MODULE_ACTION_RECORDER_ADMIN_LOGIN_DESCRIPTION', 'Logt die Verwendung des Admin-Panel logins.',true);
-?>

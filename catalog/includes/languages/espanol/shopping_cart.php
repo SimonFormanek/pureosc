@@ -27,4 +27,3 @@ define('OUT_OF_STOCK_CAN_CHECKOUT',
 define('TEXT_ALTERNATIVE_CHECKOUT_METHODS', '- OR -', true);
 define('TEXT_OR', 'o ', true);
 define('TEXT_REMOVE', 'quitar', true);
-?>

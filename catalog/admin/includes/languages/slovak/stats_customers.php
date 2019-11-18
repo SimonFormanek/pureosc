@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'Najlepší zákazník podľa celkovej platby');
 define('TABLE_HEADING_NUMBER', 'Poradie');
 define('TABLE_HEADING_CUSTOMERS', 'Zákazníci');
 define('TABLE_HEADING_TOTAL_PURCHASED', 'Celková platba');
-?>

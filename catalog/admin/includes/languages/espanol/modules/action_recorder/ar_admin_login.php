@@ -12,4 +12,3 @@
 
   define('MODULE_ACTION_RECORDER_ADMIN_LOGIN_TITLE', 'Ingreso a la Herramienta de Administración',true);
   define('MODULE_ACTION_RECORDER_ADMIN_LOGIN_DESCRIPTION', 'Registro de uso de los inicios de sesión de herramientas de administración.',true);
-?>

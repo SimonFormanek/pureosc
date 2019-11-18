@@ -22,4 +22,3 @@ define('TEXT_APPROVAL_WARNING',
 define('TEXT_BAD', '<small><font color="#ff0000"><b>Poor</b></font></small>');
 define('TEXT_GOOD',
     '<small><font color="#ff0000"><b>Excellent</b></font></small>');
-?>

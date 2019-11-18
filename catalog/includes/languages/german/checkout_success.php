@@ -17,4 +17,3 @@ define('HEADING_TITLE', 'Ihr Bestellung ist ausgeführt worden.', true);
 
 define('TABLE_HEADING_COMMENTS',
     'Tragen Sie eine Anmerkung für die Bestellung ein', true);
-?>

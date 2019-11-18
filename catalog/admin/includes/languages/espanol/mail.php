@@ -22,4 +22,3 @@ define('TEXT_NEWSLETTER_CUSTOMERS', 'Todos los Inscritos',true);
 
 define('NOTICE_EMAIL_SENT_TO', 'Aviso: Correo Electrónico enviado a: %s',true);
 define('ERROR_NO_CUSTOMER_SELECTED', 'Error: No ha seleccionado ningún cliente.',true);
-?>

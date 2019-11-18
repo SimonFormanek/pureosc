@@ -19,4 +19,3 @@
   define('MODULE_PAYMENT_IPAYMENT_CC_TEXT_CREDIT_CARD_NUMBER', 'N&uacute;mero de la Tarjeta de Cr&eacute;dito:',true);
   define('MODULE_PAYMENT_IPAYMENT_CC_TEXT_CREDIT_CARD_EXPIRES', ' Fecha de caducidad de la Tarjeta de Cr&eacute;dito:',true);
   define('MODULE_PAYMENT_IPAYMENT_CC_TEXT_CREDIT_CARD_CHECKNUMBER', 'N&uacute;mero de verificaci&oacute;n de la Tarjeta de Cr&eacute;dito:',true);
-?>

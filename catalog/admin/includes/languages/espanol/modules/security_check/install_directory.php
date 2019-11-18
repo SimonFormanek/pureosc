@@ -11,4 +11,3 @@
 */
 
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'El directorio de instalación existe en: ' . DIR_FS_CATALOG . 'install. Por favor, elimine este directorio por razones de seguridad.',true);
-?>

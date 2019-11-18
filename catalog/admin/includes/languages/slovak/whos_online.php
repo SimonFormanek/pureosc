@@ -23,4 +23,3 @@ define('TABLE_HEADING_ACTION', 'Akcia');
 define('TABLE_HEADING_SHOPPING_CART', 'Nákupný košík zákazníka');
 define('TEXT_SHOPPING_CART_SUBTOTAL', 'Medzisúčet');
 define('TEXT_NUMBER_OF_CUSTOMERS', 'Momentálne je pripojených %s zákazníkov');
-?>

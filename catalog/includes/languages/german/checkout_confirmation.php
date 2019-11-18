@@ -28,4 +28,3 @@ define('HEADING_PAYMENT_INFORMATION', 'Zahlungsinformationen', true);
 define('HEADING_ORDER_COMMENTS', 'Anmerkung zu Ihrer Bestellung', true);
 
 define('TEXT_EDIT', 'Bearbeiten', true);
-?>

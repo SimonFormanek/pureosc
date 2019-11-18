@@ -14,4 +14,3 @@
 define('INFORMATION_PAGE404_TITLE', 'Stránka nebyla nalezena');
 define('INFORMATION_PAGE404_DESCRIPTION',
     'Požadovaná stránka s informacemi nebyla nalezena na tomto serveru.');
-?>

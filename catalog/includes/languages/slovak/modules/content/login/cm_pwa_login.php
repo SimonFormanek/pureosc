@@ -15,4 +15,3 @@
 
   define('MODULE_CONTENT_PWA_LOGIN_TEXT', 'Zadejte dodací údaje bez registrace a vytvoření účtu.',true);
   define('MODULE_CONTENT_PWA_LOGIN_HEADING', 'Nákup bez registrace',true);
-?>

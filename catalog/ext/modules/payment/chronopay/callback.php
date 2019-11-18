@@ -47,4 +47,3 @@
   }
 
   require('includes/application_bottom.php');
-?>

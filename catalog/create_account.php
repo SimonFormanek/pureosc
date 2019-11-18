@@ -29,7 +29,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
   
     $process = true;
 
-    if (ACCOUNT_GENDER == 'true') {
+    if (cfg('ACCOUNT_GENDER') == 'true') {
         if (isset($_POST['gender'])) {
             $gender = tep_db_prepare_input($_POST['gender']);
         } else {
@@ -38,20 +38,21 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     }
     $firstname     = tep_db_prepare_input($_POST['firstname']);
     $lastname      = tep_db_prepare_input($_POST['lastname']);
-    if (ACCOUNT_DOB == 'true') $dob           = tep_db_prepare_input($_POST['dob']);
+    if (cfg('ACCOUNT_DOB') == 'true')
+        $dob = tep_db_prepare_input($_POST['dob']);
     $email_address = tep_db_prepare_input($_POST['email_address']);
-    if (ACCOUNT_COMPANY == 'true')
+    if (cfg('ACCOUNT_COMPANY') == 'true')
             $company       = tep_db_prepare_input($_POST['company']);
-    if (ACCOUNT_COMPANY == 'true') {
+    if (cfg('ACCOUNT_COMPANY') == 'true') {
         $vat_number     = tep_db_prepare_input($_POST['vat_number']);
         $company_number = tep_db_prepare_input($_POST['company_number']);
     }
     $street_address = tep_db_prepare_input($_POST['street_address']);
-    if (ACCOUNT_SUBURB == 'true')
+    if (cfg('ACCOUNT_SUBURB') == 'true')
             $suburb         = tep_db_prepare_input($_POST['suburb']);
     $postcode       = tep_db_prepare_input($_POST['postcode']);
     $city           = tep_db_prepare_input($_POST['city']);
-    if (ACCOUNT_STATE == 'true') {
+    if (cfg('ACCOUNT_STATE') == 'true') {
         $state = tep_db_prepare_input($_POST['state']);
         if (isset($_POST['zone_id'])) {
             $zone_id = tep_db_prepare_input($_POST['zone_id']);
@@ -72,7 +73,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
 
     $error = false;
 
-    if (ACCOUNT_GENDER == 'true') {
+    if (cfg('ACCOUNT_GENDER') == 'true') {
         if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
@@ -92,14 +93,13 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
         $messageStack->add('create_account', ENTRY_LAST_NAME_ERROR);
     }
 
-    if (ACCOUNT_DOB == 'true') {
-        if ((strlen($dob) < ENTRY_DOB_MIN_LENGTH) || (!empty($dob) && (!is_numeric(tep_date_raw($dob))
-            || !@checkdate(substr(tep_date_raw($dob), 4, 2),
+    if (cfg('ACCOUNT_DOB') == 'true') {
+        if ((strlen($dob) < cfg('ENTRY_DOB_MIN_LENGTH')) || (!empty($dob) && (!is_numeric(tep_date_raw($dob)) || !@checkdate(substr(tep_date_raw($dob), 4, 2),
                 substr(tep_date_raw($dob), 6, 2),
                 substr(tep_date_raw($dob), 0, 4))))) {
             $error = true;
 
-            $messageStack->add('create_account', ENTRY_DATE_OF_BIRTH_ERROR);
+            $messageStack->add('create_account', __('ENTRY_DATE_OF_BIRTH_ERROR', _('Your Date of Birth must be in this format: MM/DD/YYYY (eg 05/21/1970)')));
         }
     }
 
@@ -110,19 +110,19 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     } elseif (tep_validate_email($email_address) === false) {
         $error = true;
 
-        $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
+        $messageStack->add('create_account', __('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', _('Your E-Mail Address does not appear to be valid - please make any necessary corrections.')));
     } else {
-        $check_email_query = tep_db_query("select count(*) as total from ".TABLE_CUSTOMERS." where customers_email_address = '".tep_db_input($email_address)."'");
+        $check_email_query = tep_db_query("select count(*) as total from " . cfg('TABLE_CUSTOMERS') . " where customers_email_address = '" . tep_db_input($email_address) . "'");
         $check_email       = tep_db_fetch_array($check_email_query);
         if ($check_email['total'] > 0) {
             $error = true;
 
             $messageStack->add('create_account',
-                ENTRY_EMAIL_ADDRESS_ERROR_EXISTS);
+                    __('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', _('Your E-Mail Address already exists in our records - please log in with the e-mail address or create an account with a different address.')));
         }
     }
 
-    if (strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
+    if (strlen($street_address) < cfg('ENTRY_STREET_ADDRESS_MIN_LENGTH')) {
         $error = true;
 
         $messageStack->add('create_account', ENTRY_STREET_ADDRESS_ERROR);
@@ -131,22 +131,22 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
     if (strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
         $error = true;
 
-        $messageStack->add('create_account', ENTRY_POST_CODE_ERROR);
+        $messageStack->add('create_account', __('ENTRY_POST_CODE_ERROR', sprintf(_('Your Post Code must contain a minimum of %s characters'), cfg('ENTRY_POSTCODE_MIN_LENGTH'))));
     }
 
-    if (strlen($city) < ENTRY_CITY_MIN_LENGTH) {
+    if (strlen($city) < cfg('ENTRY_CITY_MIN_LENGTH')) {
         $error = true;
 
-        $messageStack->add('create_account', ENTRY_CITY_ERROR);
+        $messageStack->add('create_account', __('ENTRY_CITY_ERROR', sprintf(_('Your City must contain a minimum of %d characters.'), cfg('ENTRY_CITY_MIN_LENGTH'))));
     }
 
     if (is_numeric($country) === false) {
         $error = true;
 
-        $messageStack->add('create_account', ENTRY_COUNTRY_ERROR);
+        $messageStack->add('create_account', __('ENTRY_COUNTRY_ERROR', _('You must select a country from the Countries pull down menu.')));
     }
 
-    if (ACCOUNT_STATE == 'true') {
+    if (cfg('ACCOUNT_STATE') == 'true') {
         $zone_id               = 0;
         $check_query           = tep_db_query("select count(*) as total from ".TABLE_ZONES." where zone_country_id = '".(int) $country."'");
         $check                 = tep_db_fetch_array($check_query);
@@ -159,10 +159,10 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
             } else {
                 $error = true;
 
-                $messageStack->add('create_account', ENTRY_STATE_ERROR_SELECT);
+                $messageStack->add('create_account', __('ENTRY_STATE_ERROR_SELECT', _('Please select a state from the States pull down menu.')));
             }
         } else {
-            if (strlen($state) < ENTRY_STATE_MIN_LENGTH) {
+            if (strlen($state) < cfg('ENTRY_STATE_MIN_LENGTH')) {
                 $error = true;
 
                 $messageStack->add('create_account', ENTRY_STATE_ERROR);
@@ -170,14 +170,14 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
         }
     }
 
-    if (strlen($telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
+    if (strlen($telephone) < cfg('ENTRY_TELEPHONE_MIN_LENGTH')) {
         $error = true;
 
-        $messageStack->add('create_account', ENTRY_TELEPHONE_NUMBER_ERROR);
+        $messageStack->add('create_account', __('ENTRY_TELEPHONE_NUMBER_ERROR', sprintf('Your Telephone Number must contain a minimum of %d characters.', cfg('ENTRY_TELEPHONE_MIN_LENGTH'))));
     }
 
 
-    if (strlen($password) < ENTRY_PASSWORD_MIN_LENGTH) {
+    if (strlen($password) < cfg('ENTRY_PASSWORD_MIN_LENGTH')) {
         $error = true;
 
         $messageStack->add('create_account', ENTRY_PASSWORD_ERROR);
@@ -196,29 +196,31 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
             'customers_newsletter' => $newsletter,
             'customers_password' => tep_encrypt_password($password));
 
-        if (ACCOUNT_GENDER == 'true')
+        if (cfg('ACCOUNT_GENDER') == 'true') {
                 $sql_data_array['customers_gender'] = $gender;
-        if (ACCOUNT_DOB == 'true')
+        }
+        if (cfg('ACCOUNT_DOB') == 'true') {
                 $sql_data_array['customers_dob']    = tep_date_raw($dob);
+        }
 
-        $sqlResult = tep_db_perform(TABLE_CUSTOMERS, $sql_data_array);
+        $sqlResult = tep_db_perform(cfg('TABLE_CUSTOMERS'), $sql_data_array);
 
         $customer_id = tep_db_insert_id();
 
         $userLog->setCustomerID($customer_id);
-        $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_password',
+        $userLog->logMySQLEvent(cfg('TABLE_CUSTOMERS'), 'customers_password',
             $customer_id, 'created');
-        $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_firstname',
+        $userLog->logMySQLEvent(cfg('TABLE_CUSTOMERS'), 'customers_firstname',
             $customer_id, 'created');
-        $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_lastname',
+        $userLog->logMySQLEvent(cfg('TABLE_CUSTOMERS'), 'customers_lastname',
             $customer_id, 'created');
-        $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_telephone',
+        $userLog->logMySQLEvent(cfg('TABLE_CUSTOMERS'), 'customers_telephone',
             $customer_id, 'created');
-        $userLog->logMySQLEvent(TABLE_CUSTOMERS, 'customers_newsletter',
+        $userLog->logMySQLEvent(cfg('TABLE_CUSTOMERS'), 'customers_newsletter',
             $customer_id, $newsletter);
 
 
-        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (cfg('USE_FLEXIBEE') == 'true') {
 
             $nazev = strlen($company) ? $company : $firstname.' '.$lastname;
 
@@ -256,15 +258,20 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
             'entry_city' => $city,
             'entry_country_id' => $country);
 
-        if (ACCOUNT_GENDER == 'true') $sql_data_array['entry_gender']  = $gender;
-        if (ACCOUNT_COMPANY == 'true')
+        if (cfg('ACCOUNT_GENDER') == 'true') {
+            $sql_data_array['entry_gender'] = $gender;
+        }
+        if (cfg('ACCOUNT_COMPANY') == 'true') {
                 $sql_data_array['entry_company'] = $company;
-        if (ACCOUNT_COMPANY == 'true') {
+        }
+        if (cfg('ACCOUNT_COMPANY') == 'true') {
             $sql_data_array['entry_vat_number']     = $vat_number;
             $sql_data_array['entry_company_number'] = $company_number;
         }
-        if (ACCOUNT_SUBURB == 'true') $sql_data_array['entry_suburb'] = $suburb;
-        if (ACCOUNT_STATE == 'true') {
+        if (cfg('ACCOUNT_SUBURB') == 'true') {
+            $sql_data_array['entry_suburb'] = $suburb;
+        }
+        if (cfg('ACCOUNT_STATE') == 'true') {
             if ($zone_id > 0) {
                 $sql_data_array['entry_zone_id'] = $zone_id;
                 $sql_data_array['entry_state']   = '';
@@ -278,7 +285,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
 
         $address_id = tep_db_insert_id();
 
-        if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+        if (cfg('USE_FLEXIBEE') == 'true') {
             $kontakter = new \PureOSC\flexibee\Kontakt([
                 'id' => 'ext:customers:'.$addres_id,
                 'firma' => $adresar,
@@ -300,11 +307,11 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
             }
         }
 
-        tep_db_query("update ".TABLE_CUSTOMERS." set customers_default_address_id = '".(int) $address_id."' where customers_id = '".(int) $customer_id."'");
+        tep_db_query("update " . cfg('TABLE_CUSTOMERS') . " set customers_default_address_id = '" . (int) $address_id . "' where customers_id = '" . (int) $customer_id . "'");
 
         tep_db_query("insert into ".TABLE_CUSTOMERS_INFO." (customers_info_id, customers_info_number_of_logons, customers_info_date_account_created) values ('".(int) $customer_id."', '0', now())");
 
-        if (SESSION_RECREATE == 'True') {
+        if (cfg('SESSION_RECREATE') == 'True') {
             tep_session_recreate();
         }
 
@@ -327,7 +334,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
 // build the message content
         $name = $firstname.' '.$lastname;
 
-        if (ACCOUNT_GENDER == 'true') {
+        if (cfg('ACCOUNT_GENDER') == 'true') {
             if ($gender == 'm') {
                 $email_text = sprintf(EMAIL_GREET_MR, $lastname);
             } else {
@@ -339,19 +346,19 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
 
         $email_text .= EMAIL_WELCOME.EMAIL_TEXT.EMAIL_CONTACT.EMAIL_WARNING;
         /*         * * Altered for CCGV ** */
-        if (NEW_SIGNUP_GIFT_VOUCHER_AMOUNT > 0) {
+        if (cfg('NEW_SIGNUP_GIFT_VOUCHER_AMOUNT') > 0) {
             $coupon_code  = create_coupon_code();
             $insert_query = tep_db_query("insert into ".TABLE_COUPONS." (coupon_code, coupon_type, coupon_amount, date_created) values ('".$coupon_code."', 'G', '".NEW_SIGNUP_GIFT_VOUCHER_AMOUNT."', now())");
             $coupon_id    = tep_db_insert_id();
             $insert_query = tep_db_query("insert into ".TABLE_COUPON_EMAIL_TRACK." (coupon_id, customer_id_sent, sent_firstname, sent_lastname, emailed_to, date_sent) values ('".(int) $coupon_id."', '".(int) $customer_id."', '".$firstname."', '".$lastname."', '".$email_address."', now() )");
             $email_text   .= sprintf(EMAIL_GV_INCENTIVE_HEADER,
-                    $currencies->format(NEW_SIGNUP_GIFT_VOUCHER_AMOUNT))."\n\n".
-                sprintf(EMAIL_GV_REDEEM, $coupon_code)."\n\n".
+                            $currencies->format(cfg('NEW_SIGNUP_GIFT_VOUCHER_AMOUNT'))) . "\n\n" .
+                    sprintf(_('The redeem code for the e-Gift Voucher is %s, you can enter the redeem code when checking out while making a purchase'), $coupon_code) . "\n\n" .
                 STORE_NAME.
                 "\n\n";
         }
-        if (NEW_SIGNUP_DISCOUNT_COUPON != '') {
-            $coupon_code       = NEW_SIGNUP_DISCOUNT_COUPON;
+        if (cfg('NEW_SIGNUP_DISCOUNT_COUPON') != '') {
+            $coupon_code = cfg('NEW_SIGNUP_DISCOUNT_COUPON');
             $coupon_query      = tep_db_query("select * from ".TABLE_COUPONS." where coupon_active = 'Y' and coupon_status = '1' and coupon_code = '".$coupon_code."'");
             $coupon            = tep_db_fetch_array($coupon_query);
             $coupon_id         = $coupon['coupon_id'];
@@ -368,8 +375,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
         /*         * * Altered for Mail Manager **
           tep_mail($name, $email_address, EMAIL_SUBJECT, $email_text, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
          */
-        if (file_exists(DIR_WS_MODULES.'mail_manager/create_account.php') && EMAIL_USE_HTML
-            == 'true') {
+        if (file_exists(DIR_WS_MODULES . 'mail_manager/create_account.php') && EMAIL_USE_HTML == 'true') {
             include(DIR_WS_MODULES.'mail_manager/create_account.php');
         } else {
             tep_mail($name, $email_address, EMAIL_SUBJECT, $email_text,
@@ -383,7 +389,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['
             $gdprNewsLetterConsentReq->send();
         }
 
-        tep_redirect(tep_href_link(FILENAME_CREATE_ACCOUNT_SUCCESS, '', 'SSL'));
+        tep_redirect(tep_href_link(cfg('FILENAME_CREATE_ACCOUNT_SUCCESS'), '', 'SSL'));
     }
 }
 
@@ -437,7 +443,7 @@ echo tep_draw_form('create_account',
                         echo tep_draw_radio_field('gender', 'f').' '.FEMALE;
                         ?>
                     </label>
-                    &#10033;
+                    <?php echo _('Required'); ?>
                     <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
                 </div>
             </div>

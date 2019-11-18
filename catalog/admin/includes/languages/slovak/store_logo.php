@@ -18,4 +18,3 @@ define('TEXT_FORMAT_AND_LOCATION', 'obchod logo musí byť vo formáte PNG a bud
 define('SUCCESS_LOGO_UPDATED', 'Úspech: obchod logo bol úspešne aktualizovaný!');
 
 define('ERROR_IMAGES_DIRECTORY_NOT_WRITEABLE', 'Chyba: adresár zábery nedajú nahrať. (<a href="%s">kliknite tu pre preskúmanie oprávnenia pre adresár</a>)');
-?>

@@ -40,4 +40,3 @@
   define('MB_ACTIVATION_CONTINUE_BUTTON', 'Continue and configure payment module');
   define('MB_ACTIVATION_SUPPORT_TITLE', 'Support');
   define('MB_ACTIVATION_SUPPORT_TEXT', 'Do you have questions? Contact Moneybookers by e-mail at <a href="mailto:ecommerce@moneybookers.com">ecommerce@moneybookers.com</a> or by phone +44 (0) 870 383 0762. Your question may also already be answered on the <a href="http://forums.oscommerce.com/forum/78-moneybookers/" target="_blank">osCommerce Community Support forum</a>.');
-?>

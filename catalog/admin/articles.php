@@ -1948,4 +1948,3 @@ $('#articles_date_available').datepicker({
         <?php
         require(DIR_WS_INCLUDES . 'template_bottom.php');
         require(DIR_WS_INCLUDES . 'application_bottom.php');
-        ?>

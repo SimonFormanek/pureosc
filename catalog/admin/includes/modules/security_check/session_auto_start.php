@@ -32,4 +32,3 @@
       return WARNING_SESSION_AUTO_START;
     }
   }
-?>

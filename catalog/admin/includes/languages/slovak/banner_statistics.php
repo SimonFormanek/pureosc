@@ -31,4 +31,3 @@ define('TITLE_MONTH', 'Mesiac:');
 
 define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST', 'Chyba: Priečinok pre grafy neexistuje. Prosím vytvorte priečinok \'graphs\' vo vnútri priečinka \'images\'.');
 define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE', 'Chyba: Do priečinka grafov sa nedá zapisovať.');
-?>

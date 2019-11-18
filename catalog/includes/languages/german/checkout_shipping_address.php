@@ -36,4 +36,3 @@ define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Fortsetzung des Bestellvorganges',
     true);
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE',
     'zur Auswahl der gewünschten Versandart.', true);
-?>

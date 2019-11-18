@@ -18,4 +18,3 @@ define('TEXT_FORMAT_AND_LOCATION', 'Logo obchodu musí být ve formátu png.',tr
 define('SUCCESS_LOGO_UPDATED', 'Povedlo se: logo Vašeho obchodu bylo změněno!',true);
 
 define('ERROR_IMAGES_DIRECTORY_NOT_WRITEABLE', 'chyba: nelze zapisovat. (<a href="%s">zkontrolujte práva k zápisu adresáře</a>)',true);
-?>

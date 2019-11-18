@@ -48,4 +48,3 @@ define('GIFT_VOUCHER_COUPON', 'dárkový poukaz/kupon:', true);
 define('CCGV_BALANCE', 'dárkový poukaz hodnota:', true);
 define('CCGV_SENDVOUCHER', 'zaslat dárkový poukaz.', true);
 define('CCGV_FAQ', 'dárkový poukaz FAQ.', true);
-?>

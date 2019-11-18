@@ -13,4 +13,3 @@
 define('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_TITLE', 'Bezpečnostné kontroly');
 define('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_DESCRIPTION', 'Beh bezpečnostné kontroly');
 define('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_SUCCESS', 'To je správne nakonfigurovaný inštalácia osCommerce Online Merchant!');
-?>

@@ -26,15 +26,14 @@ class cm_nb_generic1
         $this->code  = get_class($this);
         $this->group = basename(dirname(__FILE__));
 
-        $this->title       =  MODULE_CONTENT_NAVBAR_GENERIC1_TITLE;
-        $this->description = MODULE_CONTENT_NAVBAR_GENERIC1_DESCRIPTION;
-        $this->description .= '<div class="secWarning">'.MODULE_CONTENT_NAVBAR_GENERIC1_ERROR_MAIN_MODULE.'</div>';
+        $this->title       = _('Navbar Generic1');
+        $this->description = _('Show the Navbar generic1 icon on your site.');
+        $this->description .= '<div class="secWarning">'._('External links in osCommerce are extremely dangerous. Read the warnings in the User\'s Manual concerning external links before adding an external link to this module.').'</div>';
 
-        if (defined('MODULE_CONTENT_NAVBAR_GENERIC1_STATUS')) {
-            $this->sort_order = MODULE_CONTENT_NAVBAR_GENERIC1_SORT_ORDER;
-            $this->enabled    = (MODULE_CONTENT_NAVBAR_GENERIC1_STATUS == 'True');
-            $this->side       = ((MODULE_CONTENT_NAVBAR_GENERIC1_CONTENT_PLACEMENT
-                === 'left') ? 'left' : 'right');
+        if (cfg('MODULE_CONTENT_NAVBAR_GENERIC1_STATUS')) {
+            $this->sort_order = cfg('MODULE_CONTENT_NAVBAR_GENERIC1_SORT_ORDER');
+            $this->enabled    = cfg('MODULE_CONTENT_NAVBAR_GENERIC1_STATUS') == 'True';
+            $this->side       = (cfg('MODULE_CONTENT_NAVBAR_GENERIC1_CONTENT_PLACEMENT') === 'left') ? 'left' : 'right';
         }
     }
 

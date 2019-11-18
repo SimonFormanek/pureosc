@@ -39,4 +39,3 @@ define('TEXT_CONTINUE_CHECKOUT_PROCEDURE',
 define('Fehler - An diese Adresse ist keine Zustellung möglich',
     'Zustellung ist derzeit an die gewählte Adresse nicht möglich. Bitte wählen Sie eine andere Zustelladresse.',
     true);
-?>

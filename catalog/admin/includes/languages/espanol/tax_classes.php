@@ -25,4 +25,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Seguro que desea eliminar este tipo de impuest
 define('TEXT_INFO_HEADING_NEW_TAX_CLASS', 'Nuevo Tipo de Impuesto',true);
 define('TEXT_INFO_HEADING_EDIT_TAX_CLASS', 'Editar Tipo de Impuesto',true);
 define('TEXT_INFO_HEADING_DELETE_TAX_CLASS', 'Eliminar Tipo de Impuesto',true);
-?>

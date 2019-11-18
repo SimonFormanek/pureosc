@@ -13,4 +13,3 @@
   define('MODULE_BOXES_HEADERTAGS_SEO_SILO_TITLE', 'Header Tags Silo');
   define('MODULE_BOXES_HEADERTAGS_SEO_SILO_DESCRIPTION', 'Show Header Tags Silo');
   define('MODULE_BOXES_HEADERTAGS_SEO_SILO_BOX_TITLE', 'Header Tags Silo');
-?>

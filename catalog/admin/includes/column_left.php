@@ -14,7 +14,7 @@
 if (tep_session_is_registered('admin')) {
     $cl_box_groups = array();
 
-    $boxesDir = constant('DIR_FS_ADMIN') . 'includes/boxes';
+    $boxesDir = cfg('DIR_FS_ADMIN') . 'includes/boxes';
 
 
     if (is_dir($boxesDir)) {

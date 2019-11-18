@@ -21,4 +21,3 @@ define('BUTTON_SELECT', '>>>',true);
 define('BUTTON_UNSELECT', '<<<',true);
 define('BUTTON_SUBMIT', 'Enviar',true);
 define('BUTTON_CANCEL', 'Cancelar',true);
-?>

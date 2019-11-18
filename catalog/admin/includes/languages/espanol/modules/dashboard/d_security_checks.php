@@ -13,4 +13,3 @@
 define('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_TITLE', 'Controles de Seguridad',true);
 define('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_DESCRIPTION', 'Ejecutar controles de Seguridad',true);
 define('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_SUCCESS', 'Es una instalación correctamente configurada de osCommerce Online Merchant!',true);
-?>

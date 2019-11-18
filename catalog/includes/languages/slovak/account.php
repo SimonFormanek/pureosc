@@ -28,4 +28,3 @@ define('MY_ORDERS_VIEW', 'Zobraziť moje objednávky');
 define('EMAIL_NOTIFICATIONS_TITLE', 'Oznamovanie e-mailom');
 define('EMAIL_NOTIFICATIONS_NEWSLETTERS', 'Prihlásiť alebo odhlásiť zasielanie noviniek');
 define('EMAIL_NOTIFICATIONS_PRODUCTS', 'Zobraziť alebo zmeniť môj zoznam oznámení na produkty');
-?>

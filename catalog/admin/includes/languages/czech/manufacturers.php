@@ -57,4 +57,3 @@ define('TEXT_EDIT_MANUFACTURERS_DESCRIPTION', 'Edit the Manufacturer Description
 define('TEXT_MANUFACTURERS_SEO_TITLE', 'Manufacturers SEO Title:<br><small>Over-rides the Manufacturers Name in the TITLE element of the page.</small>',true);
 define('TEXT_MANUFACTURERS_SEO_DESCRIPTION', 'Manufacturer Meta Description for SEO:<br><small>Add a &lt;description&gt; Meta Element.</small>',true);
 define('TEXT_MANUFACTURERS_SEO_KEYWORDS', 'Manufacturer Meta Keywords for SEO:<br><small>Add a &lt;keyword&gt; Meta Element.<br>Must be comma separated.</small>',true);
-?>

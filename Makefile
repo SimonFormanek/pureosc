@@ -2,6 +2,8 @@ all: 	 fresh dbreset upgrade
 
 adminreset:
 	vendor/bin/phinx seed:run -s ResetAdmin -c ./phinx-adapter.php
+usersreset:
+	vendor/bin/phinx seed:run -s ResetUsers -c ./phinx-adapter.php
 dbreset:
 	vendor/bin/phinx seed:run -s Oscommerce -c ./phinx-adapter.php
 	vendor/bin/phinx migrate  -c ./phinx-adapter.php

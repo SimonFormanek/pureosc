@@ -13,4 +13,3 @@
   define('MODULE_SOCIAL_BOOKMARKS_DIGG_TITLE', 'Digg');
   define('MODULE_SOCIAL_BOOKMARKS_DIGG_DESCRIPTION', 'Zdieľať produkt na Digg.');
   define('MODULE_SOCIAL_BOOKMARKS_DIGG_PUBLIC_TITLE', 'Zdieľať na Digg.');
-?>

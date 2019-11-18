@@ -16,4 +16,3 @@ define('MODULE_SHIPPING_USPS_TEXT_OPT_PP', 'Servicio de paquetes postales en cor
 define('MODULE_SHIPPING_USPS_TEXT_OPT_PM', 'Prioridad del Env&iacute;o',true);
 define('MODULE_SHIPPING_USPS_TEXT_OPT_EX', 'Env&iacute;o Expreso',true);
 define('MODULE_SHIPPING_USPS_TEXT_ERROR', 'Un error ha ocurrido con los c&aacute;lculos de env&iacute;o de USPS.<br />Si usted prefiere usar USPS como su m&eacute;todo de env&iacute;o, por favor p&oacute;ngase en contacto con el due&ntilde;o de la tienda.',true);
-?>

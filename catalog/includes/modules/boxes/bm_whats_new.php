@@ -30,10 +30,10 @@ class bm_whats_new
         $this->description = _('Show the newest products');
 
         if (defined('MODULE_BOXES_WHATS_NEW_STATUS')) {
-            $this->sort_order = constant('MODULE_BOXES_WHATS_NEW_SORT_ORDER');
-            $this->enabled    = (constant('MODULE_BOXES_WHATS_NEW_STATUS') == 'True');
+            $this->sort_order = cfg('MODULE_BOXES_WHATS_NEW_SORT_ORDER');
+            $this->enabled    = (cfg('MODULE_BOXES_WHATS_NEW_STATUS') == 'True');
 
-            $this->group = ((constant('MODULE_BOXES_WHATS_NEW_CONTENT_PLACEMENT') == 'Left Column')
+            $this->group = ((cfg('MODULE_BOXES_WHATS_NEW_CONTENT_PLACEMENT') == 'Left Column')
                     ? 'boxes_column_left' : 'boxes_column_right');
         }
     }

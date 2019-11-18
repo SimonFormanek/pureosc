@@ -22,4 +22,3 @@ define('SUCCESS_PASSWORD_UPDATED',
 define('ERROR_CURRENT_PASSWORD_NOT_MATCHING',
     'Your Current Password did not match the password in our records. Please try again.',
     true);
-?>

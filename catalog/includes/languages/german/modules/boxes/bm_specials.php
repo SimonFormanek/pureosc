@@ -13,4 +13,3 @@
   define('MODULE_BOXES_SPECIALS_TITLE', 'Angebote',true);
   define('MODULE_BOXES_SPECIALS_DESCRIPTION', 'Zeige Produkt-Angebote',true);
   define('MODULE_BOXES_SPECIALS_BOX_TITLE', 'Angebote',true);
-?>

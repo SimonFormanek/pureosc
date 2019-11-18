@@ -2122,5 +2122,3 @@ switch($item_post){
 	break;
 
 }
-
-?>

@@ -22,4 +22,3 @@ define('BOX_INFORMATION_HEADING',
 define('BOX_INFORMATION',
     'Durch den Einsatz von Cookies wird die Sicherheit verbessert und Ihre Privatsphäre besser geschützt.<br><br>Im Cookie sind keine persönlichen Daten enthalten.',
     true);
-?>

@@ -22,4 +22,3 @@ define('OUT_OF_STOCK_CAN_CHECKOUT', 'Produkty označené s ' . STOCK_MARK_PRODUC
 define('TEXT_ALTERNATIVE_CHECKOUT_METHODS', '- ALEBO -');
 define('TEXT_OR', 'alebo ');
 define('TEXT_REMOVE', 'odstrániť');
-?>

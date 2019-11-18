@@ -13,7 +13,7 @@
 <!-- Start cm_modular_navbar -->
 <nav class="navbar navbar-inverse navbar-no-corners navbar-no-margin" role="navigation">
     <div class="<?php echo BOOTSTRAP_CONTAINER; ?>">
-        <div class="navbar-header"><?php if (constant('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_LOGO_ENABLED')
+        <div class="navbar-header"><?php if (cfg('MODULE_CONTENT_NAVIGATION_MODULAR_NAVBAR_LOGO_ENABLED')
     == 'True')
         echo '<a class="fl navbar_logo" href="' .  tep_href_link('/'). '"><img src="'.DIR_WS_IMAGES.STORE_LOGO.'" title="'.STORE_NAME.'"></a>';
 ?>

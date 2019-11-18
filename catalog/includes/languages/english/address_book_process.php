@@ -46,4 +46,3 @@ define('ERROR_NONEXISTING_ADDRESS_BOOK_ENTRY',
 define('ERROR_ADDRESS_BOOK_FULL',
     'Your address book is full. Please delete an unneeded address to save a new one.',
     true);
-?>

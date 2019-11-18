@@ -146,4 +146,3 @@ $sslret = openssl_private_decrypt($crypttext, $newsource, $res);
 return $newsource;
 }
 //-----------------------------------------------------------
-?>

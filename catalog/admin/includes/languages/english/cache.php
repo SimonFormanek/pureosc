@@ -21,4 +21,3 @@ define('TEXT_CACHE_DIRECTORY', 'Cache Directory:',true);
 
 define('ERROR_CACHE_DIRECTORY_DOES_NOT_EXIST', 'Error: Cache directory does not exist. Please set this Configuration->Cache.',true);
 define('ERROR_CACHE_DIRECTORY_NOT_WRITEABLE', 'Error: Cache directory is not writeable.',true);
-?>

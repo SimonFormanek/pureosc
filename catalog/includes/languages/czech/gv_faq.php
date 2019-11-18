@@ -64,4 +64,3 @@ dostanete na stránku Uplatnění dárkového poukazu. Budete požádáni o vytv
         define('SUB_HEADING_TEXT', 'Vyberte jednu z výše uvedených otázek.',
             true);
 }
-?>

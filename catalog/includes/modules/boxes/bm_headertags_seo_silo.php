@@ -163,5 +163,3 @@ class bm_headertags_seo_silo
             'MODULE_BOXES_HEADERTAGS_SEO_SILO_SORT_ORDER');
     }
 }
-
-?>

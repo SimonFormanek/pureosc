@@ -76,4 +76,3 @@ define('EMAIL_TEXT_COMMENTS_UPDATE', 'Komentár pre vašu objednávku je' . "\n\
 define('ERROR_ORDER_DOES_NOT_EXIST', 'Chyba: Objednávka neexistuje.');
 define('SUCCESS_ORDER_UPDATED', 'Objednávka bola úspešne aktualizovaná.');
 define('WARNING_ORDER_NOT_UPDATED', 'Upozornenie: Žiadna zmena, objednávka nebola aktualizovaná.');
-?>

@@ -75,7 +75,7 @@ class cm_login_form {
                     if(($info['algo'] < 1) || $beRehash) { //unknown algo 
 
                       tep_db_query("UPDATE " . TABLE_CUSTOMERS . " SET customers_password = '" . password_hash($password, PASSWORD_ARGON2ID) . "' WHERE customers_id = '" . (int) $custId . "'");
-//TODO:                      tep_db_query("UPDATE " . TABLE_CUSTOMERS . " SET customers_password = '" . password_hash($password, constant('HASH_ALGO')) . "' WHERE customers_id = '" . (int) $custId . "'");
+//TODO:                      tep_db_query("UPDATE " . TABLE_CUSTOMERS . " SET customers_password = '" . password_hash($password, cfg('HASH_ALGO')) . "' WHERE customers_id = '" . (int) $custId . "'");
                     }
 
 // migrate old hashed password to new phpass password
@@ -123,5 +123,3 @@ class cm_login_form {
     }
 
 }
-
-?>

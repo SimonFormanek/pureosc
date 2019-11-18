@@ -13,4 +13,3 @@
 define('MODULE_SHIPPING_FLAT_TEXT_TITLE', 'Flat Rate',true);
 define('MODULE_SHIPPING_FLAT_TEXT_DESCRIPTION', 'Flat Rate',true);
 define('MODULE_SHIPPING_FLAT_TEXT_WAY', '',true);
-?>

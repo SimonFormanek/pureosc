@@ -21,6 +21,4 @@ define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_RSS', 'Prihlásiť sa k odberu o
 // added for ver 2.3.4 bof 
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_NEWS', 'Prečítajte si najnovšie osCommerce správy'); 
 define('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_ICON_GOOGLE_PLUS', 'osCommerce okruh vo Google+'); 
-// added for ver 2.3.4 eof 
-
-?>
+// added for ver 2.3.4 eof

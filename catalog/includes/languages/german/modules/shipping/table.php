@@ -15,4 +15,3 @@ define('MODULE_SHIPPING_TABLE_TEXT_DESCRIPTION', 'Tabellenpreis',true);
 define('MODULE_SHIPPING_TABLE_TEXT_WAY', 'Ambesten',true);
 define('MODULE_SHIPPING_TABLE_TEXT_WEIGHT', 'Gewicht',true);
 define('MODULE_SHIPPING_TABLE_TEXT_AMOUNT', 'Menge',true);
-?>

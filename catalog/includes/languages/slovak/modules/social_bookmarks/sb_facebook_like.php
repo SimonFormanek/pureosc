@@ -13,4 +13,3 @@
   define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_TITLE', 'Facebook Like');
   define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_DESCRIPTION', 'Zdieľať produkt na Facebooku páči.');
   define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_LIKE_PUBLIC_TITLE', 'Zdieľať na Facebooku.');
-?>

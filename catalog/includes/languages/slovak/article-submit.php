@@ -42,4 +42,3 @@ define('ERROR_INVALID_TOPIC', 'Musí být vybrána kategorie.');
 define('ERROR_FAILED_IMAGE_UPLOAD', 'Obrázek se nenahrál.');
 define('ERROR_FAILED_IMAGE_INVALID',
     'Špatný typ obrázku. Pouze gif\'s, jpg\'s a png\ je správně.');
-?>

@@ -17,7 +17,7 @@ function tep_href_link($page = '', $parameters = '', $connection = 'SSL',
 {
     global $request_type;
 
-    $page = tep_output_string($page);
+    $page = is_null($page) ? '' : tep_output_string($page);
 
     if ($page == '') {
         die('</td></tr></table></td></tr></table><br /><br /><font color="#ff0000"><strong>Error!</strong></font><br /><br /><strong>Unable to determine the page link!<br /><br />Function used:<br /><br />tep_href_link(\''.$page.'\', \''.$parameters.'\', \''.$connection.'\')</strong>');
@@ -75,13 +75,13 @@ function tep_catalog_href_link($page = '', $parameters = '',
                                $connection = 'NONSSL')
 {
     if ($connection == 'NONSSL') {
-        $link = constant('HTTP_CATALOG_SERVER').constant('DIR_WS_CATALOG');
+        $link = cfg('HTTP_CATALOG_SERVER').cfg('DIR_WS_CATALOG');
     } elseif ($connection == 'SSL') {
-        if (constant('ENABLE_SSL_CATALOG') == 'true') {
-            $link = constant('HTTPS_CATALOG_SERVER').(defined('DIR_WS_HTTPS_CATALOG') ? constant('DIR_WS_HTTPS_CATALOG')
-                    : constant('DIR_WS_CATALOG'));
+        if (cfg('ENABLE_SSL_CATALOG') == 'true') {
+            $link = cfg('HTTPS_CATALOG_SERVER').(defined('DIR_WS_HTTPS_CATALOG') ? cfg('DIR_WS_HTTPS_CATALOG')
+                    : cfg('DIR_WS_CATALOG'));
         } else {
-            $link = constant('HTTP_CATALOG_SERVER').constant('DIR_WS_CATALOG');
+            $link = cfg('HTTP_CATALOG_SERVER').cfg('DIR_WS_CATALOG');
         }
     } else {
         die('</td></tr></table></td></tr></table><br /><br /><font color="#ff0000"><strong>Error!</strong></font><br /><br /><strong>Unable to determine connection method on a link!<br /><br />Known methods: NONSSL SSL<br /><br />Function used:<br /><br />tep_href_link(\''.$page.'\', \''.$parameters.'\', \''.$connection.'\')</strong>');
@@ -102,13 +102,13 @@ function tep_catalog_admin_href_link($page = '', $parameters = '',
                                $connection = 'NONSSL')
 {
     if ($connection == 'NONSSL') {
-        $link = constant('HTTP_CATALOG_ADMIN_SERVER').constant('DIR_WS_CATALOG');
+        $link = cfg('HTTP_CATALOG_ADMIN_SERVER').cfg('DIR_WS_CATALOG');
     } elseif ($connection == 'SSL') {
-        if (constant('ENABLE_SSL_CATALOG') == 'true') {
-            $link = constant('HTTPS_CATALOG_ADMIN_SERVER').(defined('DIR_WS_HTTPS_CATALOG') ? constant('DIR_WS_HTTPS_CATALOG')
-                    : constant('DIR_WS_CATALOG'));
+        if (cfg('ENABLE_SSL_CATALOG') == 'true') {
+            $link = cfg('HTTPS_CATALOG_ADMIN_SERVER').(defined('DIR_WS_HTTPS_CATALOG') ? cfg('DIR_WS_HTTPS_CATALOG')
+                    : cfg('DIR_WS_CATALOG'));
         } else {
-            $link = (defined('HTTP_CATALOG_ADMIN_SERVER') ? constant('HTTP_CATALOG_ADMIN_SERVER') : '') .constant('DIR_WS_CATALOG');
+            $link = (defined('HTTP_CATALOG_ADMIN_SERVER') ? cfg('HTTP_CATALOG_ADMIN_SERVER') : '') .cfg('DIR_WS_CATALOG');
         }
     } else {
         die('</td></tr></table></td></tr></table><br /><br /><font color="#ff0000"><strong>Error!</strong></font><br /><br /><strong>Unable to determine connection method on a link!<br /><br />Known methods: NONSSL SSL<br /><br />Function used:<br /><br />tep_href_link(\''.$page.'\', \''.$parameters.'\', \''.$connection.'\')</strong>');
@@ -532,7 +532,7 @@ function tep_draw_button($title = null, $icon = null, $link = null,
             $button .= ' target="_blank"';
         }
     } else {
-        $button .= '<button '. (defined('ACCESSKEY_SAVE') ? 'accesskey="'. constant('ACCESSKEY_SAVE').'"' : '' ) .' id="tdb'.$button_counter.'" type="'.tep_output_string($params['type']).'"';
+        $button .= '<button '. (defined('ACCESSKEY_SAVE') ? 'accesskey="'. cfg('ACCESSKEY_SAVE').'"' : '' ) .' id="tdb'.$button_counter.'" type="'.tep_output_string($params['type']).'"';
     }
 
     if (isset($params['params'])) {

@@ -17,4 +17,3 @@
   define('MODULE_BOXES_INFORMATION_BOX_CONDITIONS', 'Condiciones de Uso',true);
   define('MODULE_BOXES_INFORMATION_BOX_SHIPPING', 'Envíos y Devoluciones',true);
   define('MODULE_BOXES_INFORMATION_BOX_CONTACT', 'Contáctenos',true);
-?>

@@ -15,4 +15,3 @@
 
   define('MODULE_CONTENT_PWA_LOGIN_TEXT', 'Your introduction text....Change in includes/languages/english/modules/content/login/cm_pwa_login.php',true);
   define('MODULE_CONTENT_PWA_LOGIN_HEADING', 'Purchase without account',true);
-?>

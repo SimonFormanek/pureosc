@@ -13,4 +13,3 @@
   define('MODULE_BOXES_ARTICLES_TITLE', 'Articles');
   define('MODULE_BOXES_ARTICLES_DESCRIPTION', 'Show Article Manager Articles InfoBox');
   define('MODULE_BOXES_ARTICLES_BOX_TITLE', 'Articles');
-?>

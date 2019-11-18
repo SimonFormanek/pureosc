@@ -65,4 +65,3 @@ define('ERROR_PRICE_TO_MUST_BE_NUM', 'Precio Hasta debe ser un n&uacute;mero.',
 define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM',
     'Precio Hasta debe ser mayor o igual al Precio Desde.', true);
 define('ERROR_INVALID_KEYWORDS', 'Palabra(s) clave(s) no válida(s).', true);
-?>

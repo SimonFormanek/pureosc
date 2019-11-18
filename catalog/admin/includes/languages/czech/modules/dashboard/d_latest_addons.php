@@ -16,4 +16,3 @@ define('MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_DATE', 'Date',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_FEED_ERROR', 'Could not connect to the osCommerce Add-Ons feed. The next attempt will be performed within 24 hours.',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_ICON_SITE', 'Visit the osCommerce Add-Ons Site',true);
 define('MODULE_ADMIN_DASHBOARD_LATEST_ADDONS_ICON_RSS', 'Subscribe to the osCommerce Add-Ons RSS Feed',true);
-?>

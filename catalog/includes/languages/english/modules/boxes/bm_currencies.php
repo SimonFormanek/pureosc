@@ -13,4 +13,3 @@
   define('MODULE_BOXES_CURRENCIES_TITLE', 'Currencies',true);
   define('MODULE_BOXES_CURRENCIES_DESCRIPTION', 'Show available currencies',true);
   define('MODULE_BOXES_CURRENCIES_BOX_TITLE', 'Currencies',true);
-?>

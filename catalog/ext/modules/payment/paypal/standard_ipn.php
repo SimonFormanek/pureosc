@@ -43,4 +43,3 @@
   tep_session_destroy();
 
   require('includes/application_bottom.php');
-?>

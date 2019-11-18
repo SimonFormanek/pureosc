@@ -177,4 +177,3 @@ function tep_cache_also_purchased($auto_expire = false, $refresh = false)
 
     return $cache_output;
 }
-?>

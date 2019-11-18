@@ -17,4 +17,3 @@
   define('MODULE_PAYMENT_PAYPOINT_SECPAY_TEXT_ERROR_MESSAGE', 'Se ha producido un error al procesar su Tarjeta de Cr&eacute;dito. Por favor, int&eacute;ntelo de nuevo.',true);
   define('MODULE_PAYMENT_PAYPOINT_SECPAY_TEXT_ERROR_MESSAGE_N', 'La transacci&oacute;n no estaba autorizada. Por favor, intente otra tarjeta.',true);
   define('MODULE_PAYMENT_PAYPOINT_SECPAY_TEXT_ERROR_MESSAGE_C', 'Existe un problema de comunicaci&oacute;n con el banco, por favor, int&eacute;ntelo de nuevo.',true);
-?>

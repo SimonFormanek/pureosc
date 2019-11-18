@@ -32,4 +32,3 @@ define('TEXT_INFO_STATUS_CHANGE', 'Status geändert:',true);
 
 define('TEXT_INFO_HEADING_DELETE_SPECIALS', 'Sonderangebot löschen',true);
 define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher, dass Sie das Sonderangebot löschen möchten?',true);
-?>

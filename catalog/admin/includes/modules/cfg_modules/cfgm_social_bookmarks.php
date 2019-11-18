@@ -28,4 +28,3 @@
       $this->title = MODULE_CFG_MODULE_SOCIAL_BOOKMARKS_TITLE;
     }
   }
-?>

@@ -29,4 +29,3 @@ define('TEXT_DELETE_REVIEWS', 'Odstrániť %s komentár(e)');
 define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Odstrániť zákazníka');
 define('TYPE_BELOW', 'Vložte nižšie');
 define('PLEASE_SELECT', 'Vyberte');
-?>

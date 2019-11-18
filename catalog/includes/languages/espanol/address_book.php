@@ -27,4 +27,3 @@ define('PRIMARY_ADDRESS', '(Dirección principal)', true);
 define('TEXT_MAXIMUM_ENTRIES',
     '<font color="#ff0000"><b>NOTA:</b></font> Se permiten un máximo de %s direcciones.',
     true);
-?>

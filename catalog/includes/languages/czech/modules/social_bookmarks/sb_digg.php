@@ -13,4 +13,3 @@
   define('MODULE_SOCIAL_BOOKMARKS_DIGG_TITLE', 'Digg',true);
   define('MODULE_SOCIAL_BOOKMARKS_DIGG_DESCRIPTION', 'Share products on Digg.',true);
   define('MODULE_SOCIAL_BOOKMARKS_DIGG_PUBLIC_TITLE', 'Share on Digg',true);
-?>

@@ -17,4 +17,3 @@
   define('MODULE_PAYMENT_PAYPOINT_SECPAY_TEXT_ERROR_MESSAGE', 'There has been an error processing your credit card. Please try again.',true);
   define('MODULE_PAYMENT_PAYPOINT_SECPAY_TEXT_ERROR_MESSAGE_N', 'Transaction was not authorised. Please try another card.',true);
   define('MODULE_PAYMENT_PAYPOINT_SECPAY_TEXT_ERROR_MESSAGE_C', 'There was a communications problem in contacing the bank, please try again.',true);
-?>

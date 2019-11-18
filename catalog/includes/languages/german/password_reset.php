@@ -27,4 +27,3 @@ define('TEXT_NO_EMAIL_ADDRESS_FOUND',
 define('SUCCESS_PASSWORD_RESET',
     'Ihr Passwort wurde aktualisiert. Bitte loggen Sie sich mit Ihrem neuen Passwort ein.',
     true);
-?>

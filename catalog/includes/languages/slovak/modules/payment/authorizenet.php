@@ -21,4 +21,3 @@
   define('MODULE_PAYMENT_AUTHORIZENET_TEXT_ERROR_MESSAGE', 'Nastala chyba pri spracovávaní vašej kreditnej karty. Skúste to znova prosím.');
   define('MODULE_PAYMENT_AUTHORIZENET_TEXT_DECLINED_MESSAGE', 'Vaša karta bola odmietnutá. Prosím skúste inú kartu alebo kontaktuje vašu banku pre ďalšie informácie.');
   define('MODULE_PAYMENT_AUTHORIZENET_TEXT_ERROR', 'Chyba kreditnej karty!');
-?>

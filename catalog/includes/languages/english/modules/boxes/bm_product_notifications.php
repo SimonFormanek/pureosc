@@ -15,4 +15,3 @@
   define('MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_TITLE', 'Notifications',true);
   define('MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_NOTIFY', 'Notify me of updates to <strong>%s</strong>',true);
   define('MODULE_BOXES_PRODUCT_NOTIFICATIONS_BOX_NOTIFY_REMOVE', 'Do not notify me of updates to <strong>%s</strong>',true);
-?>

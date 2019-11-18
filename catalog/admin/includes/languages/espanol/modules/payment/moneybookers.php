@@ -40,4 +40,3 @@
   define('MB_ACTIVATION_CONTINUE_BUTTON', 'Continue y configure el m&oacute;dulo de pago',true);
   define('MB_ACTIVATION_SUPPORT_TITLE', 'Soporte',true);
   define('MB_ACTIVATION_SUPPORT_TEXT', 'Tiene preguntas ? Contacte a Moneybookers por Correo Electr&oacute;nico a <a href="mailto:ecommerce@moneybookers.com">ecommerce@moneybookers.com</a> o por tel&eacute;fono +44 (0) 870 383 0762. Su pregunta tambi&eacute;n puede ser contestada en el <a href="http://forums.oscommerce.com/forum/78-moneybookers/" target="_blank">Foro de soporte de la Comunidad osCommerce</a>.',true);
-?>

@@ -203,4 +203,3 @@ class mc360
 }
 
 //mc360 class
-?>

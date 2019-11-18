@@ -110,5 +110,3 @@ class bm_reviews
             'MODULE_BOXES_REVIEWS_SORT_ORDER');
     }
 }
-
-?>

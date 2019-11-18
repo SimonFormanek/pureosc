@@ -28,5 +28,3 @@ define('TEXT_EXPORT_INFO', 'Exportieren der Server Informationen',true);
 
 define('SUCCESS_INFO_SUBMIT', 'Ihre Informationen wurden übermittelt.',true);
 define('ERROR_INFO_SUBMIT', 'Konnte keine Verbindung zu osCommerce Website, um die Konfiguration zu senden. Bitte versuchen Sie es später noch einmal',true);
-
-?>

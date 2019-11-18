@@ -34,4 +34,3 @@ define('EMAIL_PASSWORD_RESET_BODY',
 define('ERROR_ACTION_RECORDER',
     'Error: Un enlace de restablecimiento de contraseña ya ha sido enviado. Vuelva a intentarlo en %s minutos.',
     true);
-?>

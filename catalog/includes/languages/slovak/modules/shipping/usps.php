@@ -16,4 +16,3 @@ define('MODULE_SHIPPING_USPS_TEXT_OPT_PP', 'Parcel Post');
 define('MODULE_SHIPPING_USPS_TEXT_OPT_PM', 'Priority Mail');
 define('MODULE_SHIPPING_USPS_TEXT_OPT_EX', 'Express Mail');
 define('MODULE_SHIPPING_USPS_TEXT_ERROR', 'Nastala chyba pri spracovávaní USPS kalkulácií dodávky.<br>Ak preferujete použitie USPS ako vašu dodaciu metódu, kontaktujte majiteľa obchodu.');
-?>

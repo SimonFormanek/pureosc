@@ -55,4 +55,3 @@ define('ERROR_PRICE_FROM_MUST_BE_NUM', 'Cena Od musí byť číslo.');
 define('ERROR_PRICE_TO_MUST_BE_NUM', 'Cena Do musí byť číslo.');
 define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM', 'Cena Do musí byť väčšia, alebo rovná cene Od.');
 define('ERROR_INVALID_KEYWORDS', 'Neplatné kľúčové slová.');
-?>

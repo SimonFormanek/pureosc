@@ -382,5 +382,3 @@ if ($result == 'VERIFIED')
 }
 
 require ('includes/application_bottom.php');
-
-?>

@@ -17,5 +17,3 @@
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_SEE_ORDERS', 'Môžete zobraziť stav Vašej objednávky kedykoľvek na vašom účte <a href="%s">zobraziť Objednávky</a> strana.');
  define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_CONTACT_STORE_OWNER', 'Prosím, odovzdal nejaké otázky, ktoré môžete mať na nás <a href="%s">Kontaktujte nás</a> strana.');
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_THANKS_FOR_SHOPPING', 'Vďaka za nákupy s nami on-line!');
-
-?>

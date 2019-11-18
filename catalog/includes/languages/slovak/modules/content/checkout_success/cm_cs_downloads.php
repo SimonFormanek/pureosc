@@ -17,4 +17,3 @@
   define('TABLE_HEADING_DOWNLOAD_COUNT', ' sťahovanie zostávajúce');
   define('HEADING_DOWNLOAD', 'Stiahnite si svoje výrobky tu:');
   define('FOOTER_DOWNLOAD', 'Môžete si tiež stiahnuť svoje výrobky na neskoršiu dobu na \'%s\'');
-?>

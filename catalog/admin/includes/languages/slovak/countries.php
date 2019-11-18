@@ -26,4 +26,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Naozaj chcete odstrániť túto krajinu?');
 define('TEXT_INFO_HEADING_NEW_COUNTRY', 'Nová krajina');
 define('TEXT_INFO_HEADING_EDIT_COUNTRY', 'Upraviť krajinu');
 define('TEXT_INFO_HEADING_DELETE_COUNTRY', 'Odstrániť krajinu');
-?>

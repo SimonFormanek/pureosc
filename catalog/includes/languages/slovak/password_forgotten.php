@@ -25,4 +25,3 @@ define('EMAIL_PASSWORD_RESET_SUBJECT', STORE_NAME . ' - Nové heslo');
 define('EMAIL_PASSWORD_RESET_BODY', 'bolo vyžiadané nové heslo pre Váš účet na ' . STORE_NAME . '.' . "\n\n" . 'Prosím , postupujte podľa tohto osobného odkaz bezpečne zmeniť svoje heslo : ' . "\n\n" . '%s' . "\n\n" . 'Tento odkaz bude automaticky vyradené po 24 hodinách alebo po vykonaní zmeny hesla .' . "\n\n" . 'Pre pomoc s niektorou z našich on - line .. služby , prosím , napíšte na obchod - majiteľ : ' . STORE_OWNER_EMAIL_ADDRESS . '.' . "\n\n");
 
 define('ERROR_ACTION_RECORDER', 'Chyba : link Password Reset je už odoslaný , prosíme skúste znova za %s minút.');
-?>

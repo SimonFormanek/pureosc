@@ -21,4 +21,3 @@ define('BUTTON_SELECT', '>>>');
 define('BUTTON_UNSELECT', '<<<');
 define('BUTTON_SUBMIT', 'Predložiť');
 define('BUTTON_CANCEL', 'Zrušiť');
-?>

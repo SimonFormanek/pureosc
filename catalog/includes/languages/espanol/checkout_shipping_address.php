@@ -36,4 +36,3 @@ define('TITLE_CONTINUE_CHECKOUT_PROCEDURE',
     'Continuar con el proceso de Compra', true);
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE',
     'para seleccionar la forma de envío.', true);
-?>

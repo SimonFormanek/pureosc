@@ -106,4 +106,3 @@
 
 <?php
   tep_session_destroy();
-?>

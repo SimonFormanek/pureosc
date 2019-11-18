@@ -98,8 +98,8 @@ class language
             $this->language        = $this->catalog_languages[$language];
             $this->language['lng'] = $language;
         } else {
-            $this->language        = $this->catalog_languages[constant('DEFAULT_LANGUAGE')];
-            $this->language['lng'] = constant('DEFAULT_LANGUAGE');
+            $this->language        = $this->catalog_languages[cfg('DEFAULT_LANGUAGE')];
+            $this->language['lng'] = cfg('DEFAULT_LANGUAGE');
         }
         $this->language['locale'] = \Ease\Locale::langToLocale($this->language['lng']);
     }

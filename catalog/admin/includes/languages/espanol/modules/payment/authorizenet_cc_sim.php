@@ -17,4 +17,3 @@
   define('MODULE_PAYMENT_AUTHORIZENET_CC_SIM_ERROR_VERIFICATION', 'La transacci&oacute;n con la tarjeta de cr&eacute;dito no pudo ser verificada con este pedido. Por favor, int&eacute;ntelo de nuevo y si el problema persiste, pruebe con otro m&eacute;todo de pago.',true);
   define('MODULE_PAYMENT_AUTHORIZENET_CC_SIM_ERROR_DECLINED', 'Esta transacci&oacute;n de tarjeta de cr&eacute;dito ha sido rechazada. Por favor, int&eacute;ntelo de nuevo y si el problema persiste, pruebe otro m&eacute;todo de pago.',true);
   define('MODULE_PAYMENT_AUTHORIZENET_CC_SIM_ERROR_GENERAL', 'Por favor, int&eacute;ntelo de nuevo y si el problema persiste, pruebe otro m&eacute;todo de pago.',true);
-?>

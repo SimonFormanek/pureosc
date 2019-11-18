@@ -177,7 +177,7 @@ class CustomerLog extends Engine {
      * @return string
      */
     static public function sqlUri($tableName, $recordID, $columnName) {
-        return 'mysql://' . constant('DB_HOST') . '/' . constant('DB_DATABASE') . '/' . $tableName . '/' . $recordID . '#' . $columnName;
+        return 'mysql://' . cfg('DB_HOST') . '/' . cfg('DB_DATABASE') . '/' . $tableName . '/' . $recordID . '#' . $columnName;
     }
 
     /**

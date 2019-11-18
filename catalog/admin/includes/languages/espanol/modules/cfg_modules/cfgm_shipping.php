@@ -11,4 +11,3 @@
 */
 
 define('MODULE_CFG_MODULE_SHIPPING_TITLE', 'Envío',true);
-?>

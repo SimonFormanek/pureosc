@@ -17,4 +17,3 @@
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_SEE_ORDERS', 'Sie k&oml;nnen den aktuellen Bestellstatus jederzeit im Kundenkonto &uml;ber die <a href="%s">View Orders</a> - Seite sehen.',true);
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_CONTACT_STORE_OWNER', 'Falls Sie Fragen haben steht Ihnen dafür unsere <a href="%s">Contact Us</a> -Seite zur Verfügung.',true);
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_THANKS_FOR_SHOPPING', 'Vielen Dank für Ihren Einkauf bei uns!',true);
-?>

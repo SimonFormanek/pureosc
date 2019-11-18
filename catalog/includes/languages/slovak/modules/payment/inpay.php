@@ -41,6 +41,4 @@ With inpay there is no risk of credit card fraud or any kind of chargebacks. Thi
   define('EMAIL_TEXT_BILLING_ADDRESS', 'Billing Address');
   define('EMAIL_TEXT_PAYMENT_METHOD', 'Payment Method');
   define('EMAIL_SEPARATOR', '------------------------------------------------------');
-  define('TEXT_EMAIL_VIA', 'via'); 
-  
-?>
+  define('TEXT_EMAIL_VIA', 'via');

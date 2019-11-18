@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'Liefer- und Versandkosten', true);
 
 define('TEXT_INFORMATION',
     'Geben Sie Ihre Liefer- und Versandkosten  Informationen hier an', true);
-?>

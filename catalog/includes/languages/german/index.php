@@ -30,4 +30,3 @@ define('TEXT_BUY', 'Bestelle \'', true);
 define('TEXT_NOW', '\' jetzt', true);
 define('TEXT_ALL_CATEGORIES', 'Alle Kategorien', true);
 define('TEXT_ALL_MANUFACTURERS', 'Alle Hersteller', true);
-?>

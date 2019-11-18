@@ -94,5 +94,3 @@ class bm_manufacturer_info
             'MODULE_BOXES_MANUFACTURER_INFO_SORT_ORDER');
     }
 }
-
-?>

@@ -19,4 +19,3 @@ define('SUB_TITLE_REVIEW', 'Comentario:', true);
 define('SUB_TITLE_RATING', 'Valoración:', true);
 define('TEXT_OF_5_STARS', '%s de 5 Estrellas!', true);
 define('TEXT_CLICK_TO_ENLARGE', 'Haga click para ampliar', true);
-?>

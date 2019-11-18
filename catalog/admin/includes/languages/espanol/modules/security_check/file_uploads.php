@@ -11,4 +11,3 @@
 */
 
 define('WARNING_FILE_UPLOADS_DISABLED', 'Advertencia: La carga de archivos está  desactivado en el archivo de configuración php.ini.',true);
-?>

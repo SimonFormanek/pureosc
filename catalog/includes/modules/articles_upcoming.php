@@ -78,5 +78,3 @@ if (tep_db_num_rows($expected_query) > 0) {
     <!-- eof upcoming_articles //-->
     <?php
 }
-?>
-

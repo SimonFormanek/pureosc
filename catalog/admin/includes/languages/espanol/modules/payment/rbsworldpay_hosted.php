@@ -16,4 +16,3 @@
   define('MODULE_PAYMENT_RBSWORLDPAY_HOSTED_TEXT_WARNING_DEMO_MODE', 'En comentario: Transacci&oacute;n realizada en modo demostrativo.',true);
   define('MODULE_PAYMENT_RBSWORLDPAY_HOSTED_TEXT_SUCCESSFUL_TRANSACTION', 'La transacci&oacute;n de pago se ha realizado con &eacute;xito!',true);
   define('MODULE_PAYMENT_RBSWORLDPAY_HOSTED_TEXT_CONTINUE_BUTTON', 'Haga clic aqu&iacute; para continuar %s',true);
-?>

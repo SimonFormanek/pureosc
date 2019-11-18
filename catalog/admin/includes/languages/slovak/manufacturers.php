@@ -39,4 +39,3 @@ define('TEXT_DELETE_WARNING_PRODUCTS', '<b>UPOZORNENIE:</b> S týmto výrobcom s
 
 define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Chyba: Nemôžno zapisovať do tohoto priečinka. Prosím nastavte správne prístupové práva na: %s');
 define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Chyba: Priečinok neexistuje: %s');
-?>

@@ -20,4 +20,3 @@ define('TEXT_EDIT_NOTE', '<strong>Editácia Definícia</strong><br /><br />Každ
 define('TEXT_FILE_DOES_NOT_EXIST', 'Súbor neexistuje.');
 
 define('ERROR_FILE_NOT_WRITEABLE', 'Chyba: Nemožno zapisovať do súboru. Nastavte prosím správne prístupové práva na: %s');
-?>

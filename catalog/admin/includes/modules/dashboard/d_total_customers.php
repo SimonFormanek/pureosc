@@ -29,8 +29,8 @@ class d_total_customers
         $this->description = _('Show the total customers chart of the last 30 days');
 
         if (defined('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_STATUS')) {
-            $this->sort_order = constant('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_SORT_ORDER');
-            $this->enabled    = ( constant('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_STATUS')
+            $this->sort_order = cfg('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_SORT_ORDER');
+            $this->enabled    = ( cfg('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_STATUS')
                 == 'True');
         }
     }

@@ -45,4 +45,3 @@ define('ERROR_NONEXISTING_ADDRESS_BOOK_ENTRY',
 define('ERROR_ADDRESS_BOOK_FULL',
     'Ihr Adressbuch kann keine weiteren Adressen aufnehmen. Bitte löschen Sie eine nicht mehr benötigte Adresse. Danach können Sie einen neuen Eintrag speichern.',
     true);
-?>

@@ -50,7 +50,7 @@
     if ($error === false) {
 
       tep_db_query("update customers set customers_password = '" . password_hash($password_new, PASSWORD_ARGON2ID) . "' where customers_id = '" . (int)$customer_id . "'");
-//TODO:      tep_db_query("update customers set customers_password = '" . password_hash($password_new, constant('HASH_ALGO')) . "' where customers_id = '" . (int)$customer_id . "'");
+//TODO:      tep_db_query("update customers set customers_password = '" . password_hash($password_new, cfg('HASH_ALGO')) . "' where customers_id = '" . (int)$customer_id . "'");
 
       tep_db_query("update customers_info set customers_info_date_account_last_modified = now() where customers_info_id = '" . (int)$customer_id . "'");
 
@@ -111,4 +111,3 @@
 <?php
   require(DIR_WS_INCLUDES . 'template_bottom.php');
   require(DIR_WS_INCLUDES . 'application_bottom.php');
-?>

@@ -20,4 +20,3 @@ define('MY_NEWSLETTERS_GENERAL_NEWSLETTER_DESCRIPTION',
     'Zasílání novinek, nových produktů, speciálních nabídek, atd.', true);
 
 define('SUCCESS_NEWSLETTER_UPDATED', 'Změna v zasílání novinek potvrzena.', true);
-?>

@@ -100,5 +100,3 @@ define('ERROR_CANNOT_LINK_TO_SAME_TOPIC', 'Chyba: nelze linkovat články v té 
 define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Chyba: adresář na obrázky neí zapisovatelný: ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CATALOG_IMAGE_DIRECTORY_DOES_NOT_EXIST', 'Chyba: adresář na obrázky neexistuje: ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CANNOT_MOVE_TOPIC_TO_PARENT', 'Chyba: Kategorii nelze přesunout do podřízené kategorie.');
-
-?>

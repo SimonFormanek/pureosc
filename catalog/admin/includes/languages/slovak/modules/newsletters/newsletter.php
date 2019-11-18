@@ -11,4 +11,3 @@
 */
 
 define('TEXT_COUNT_CUSTOMERS', 'Zákazníci dostanú informačný bulletin: %s');
-?>

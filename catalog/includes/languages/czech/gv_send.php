@@ -54,4 +54,3 @@ define('EMAIL_GV_FIXED_FOOTER',
     'Pokud máte problémy s uplatněním dárkového poukazu pomocí automatického odkazu výše, '."\n".
     'můžete také vložit kód dárkového poukazu během procesu platby v našem obchodě.'."\n\n");
 define('EMAIL_GV_SHOP_FOOTER', '', true);
-?>

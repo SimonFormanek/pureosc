@@ -12,4 +12,3 @@
 
   define('MODULE_HEADER_TAGS_CANONICAL_TITLE', 'Canonical záhlavie odkazy');
   define('MODULE_HEADER_TAGS_CANONICAL_DESCRIPTION', 'Pridať záhlavie kánonické odkazy na kategórie a produktov strán');
-?>

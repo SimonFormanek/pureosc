@@ -17,4 +17,3 @@ define('TEXT_INFORMATION', 'Zistili sme, že váš prehliadač nepodporuje použ
 
 define('BOX_INFORMATION_HEADING', 'Použitie cookies a Bezpečnosť');
 define('BOX_INFORMATION', 'Cookies musia byť povolené pri nákupe v tomto obchode.<br><br>Povolením cookies vo vašom prehliadači bude komunikácia medzi vami a týmto obchodom bezpečnejšia, bez použitia cookies môžte byť vystavený úniku vašich osobných údajov.');
-?>

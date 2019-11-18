@@ -15,4 +15,3 @@ define('HEADING_TITLE', 'Envío y Devoluciones', true);
 
 define('TEXT_INFORMATION', 'Introduzca su información de envío y flete aquí!
 ');
-?>

@@ -13,4 +13,3 @@
 define('NAVBAR_TITLE', 'Komentáre');
 define('HEADING_TITLE', 'Prečítajte si komentáre iných zákazníkov.');
 define('TEXT_OF_5_STARS', '%s z 5 hviezdičiek!');
-?>

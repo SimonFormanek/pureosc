@@ -18,4 +18,3 @@ define('TEXT_DATE_AVAILABLE', '<font color="#ff0000">Tento produkt bude na sklad
 define('TEXT_ALSO_PURCHASED_PRODUCTS', 'Zákazníci ktorí kúpili tento produkt, kúpili u nás tiež ');
 define('TEXT_PRODUCT_OPTIONS', 'Dostupné možnosti:');
 define('TEXT_CLICK_TO_ENLARGE', 'Kliknite pre zväčšenie');
-?>

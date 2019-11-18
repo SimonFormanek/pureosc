@@ -26,4 +26,3 @@ define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher, dass Sie dieses Bundesland lÃ
 define('TEXT_INFO_HEADING_NEW_ZONE', 'neues Bundesland',true);
 define('TEXT_INFO_HEADING_EDIT_ZONE', 'Bundesland bearbeiten',true);
 define('TEXT_INFO_HEADING_DELETE_ZONE', 'Bundesland lÃ¶schen',true);
-?>

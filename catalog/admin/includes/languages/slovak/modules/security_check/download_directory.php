@@ -11,4 +11,3 @@
 */
 
 define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Adresár k stiahnutiu produkty neexistuje: ' . DIR_FS_DOWNLOAD . '. Na stiahnutie produkty nebudú fungovať, kým nebude tento adresár je platný.');
-?>

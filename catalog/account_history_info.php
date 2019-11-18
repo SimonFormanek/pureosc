@@ -37,7 +37,7 @@ $breadcrumb->add(sprintf(NAVBAR_TITLE_3, $_GET['order_id']),
         'SSL'));
 
 $order = new order($_GET['order_id']);
-if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
     $invoice = new PureOSC\flexibee\FakturaVydana('ext:orders:'.$_GET['order_id']);
 
     $invoiceNum = 'ext:src:faktura-vydana:'.$invoice->getRecordID();
@@ -157,7 +157,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
 
     $oPage = new Ease\TWB\WebPage();
 
-    if (defined('USE_FLEXIBEE') && (constant('USE_FLEXIBEE') == 'true')) {
+    if (defined('USE_FLEXIBEE') && (cfg('USE_FLEXIBEE') == 'true')) {
         if (floatval($invoice->getDataValue('zbyvaUhradit'))) {
             $paymentInfo = new Ease\TWB\Panel(_('Payment Method'), 'warning');
             $paymentInfo->addItem($order->info['payment_method']);
@@ -178,7 +178,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                     _('XLS Invoice'), 'success'));
         }
     } else {
-        $paymentInfo = new Ease\TWB\Panel(constant('HEADING_PAYMENT_METHOD'),
+        $paymentInfo = new Ease\TWB\Panel(cfg('HEADING_PAYMENT_METHOD'),
             'warning', $order->info['payment_method']);
     }
 

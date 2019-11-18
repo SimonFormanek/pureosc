@@ -157,7 +157,7 @@ class zones
         $error        = false;
 
         for ($i = 1; $i <= $this->num_zones; $i++) {
-            $countries_table = constant('MODULE_SHIPPING_ZONES_COUNTRIES_'.$i);
+            $countries_table = cfg('MODULE_SHIPPING_ZONES_COUNTRIES_'.$i);
             $country_zones   = preg_split("/[,]/i", $countries_table);
             if (in_array($dest_country, $country_zones)) {
                 $dest_zone = $i;
@@ -175,14 +175,14 @@ class zones
             $error = true;
         } else {
             $shipping   = -1;
-            $zones_cost = constant('MODULE_SHIPPING_ZONES_COST_'.$dest_zone);
+            $zones_cost = cfg('MODULE_SHIPPING_ZONES_COST_'.$dest_zone);
 
             $zones_table = preg_split("/[:,]/i", $zones_cost);
             $size        = sizeof($zones_table);
             for ($i = 0; $i < $size; $i += 2) {
                 if ($order_total <= $zones_table[$i]) {
                     $shipping        = $zones_table[$i + 1];
-                    $shipping_method = constant('MODULE_SHIPPING_ZONES_TITLE_'.$dest_zone);
+                    $shipping_method = cfg('MODULE_SHIPPING_ZONES_TITLE_'.$dest_zone);
                     if (MODULE_SHIPPING_ZONES_MODE == 'weight')
                             $shipping_method .= " : ".$shipping_weight.' '.MODULE_SHIPPING_ZONES_TEXT_UNITS;
                     break;
@@ -201,10 +201,10 @@ class zones
 
 
                 if (strpos($shipping, "%") === false) {
-                    $shipping_cost = ($shipping * $shipping_num_boxes) + constant('MODULE_SHIPPING_ZONES_HANDLING_'.$dest_zone);
+                    $shipping_cost = ($shipping * $shipping_num_boxes) + cfg('MODULE_SHIPPING_ZONES_HANDLING_'.$dest_zone);
                 } else {
                     $shipcost      = (str_replace("%", "", $shipping) / 100);
-                    $shipping_cost = ($order_total * $shipcost) + constant('MODULE_SHIPPING_ZONES_HANDLING_'.$dest_zone);
+                    $shipping_cost = ($order_total * $shipcost) + cfg('MODULE_SHIPPING_ZONES_HANDLING_'.$dest_zone);
                 }
 
 
@@ -293,5 +293,3 @@ class zones
         return $keys;
     }
 }
-
-?>

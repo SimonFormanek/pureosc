@@ -19,4 +19,3 @@ define('MY_PASSWORD_TITLE', 'Moje heslo');
 
 define('SUCCESS_PASSWORD_UPDATED', 'Vaše heslo bolo úspešne aktualizované.');
 define('ERROR_CURRENT_PASSWORD_NOT_MATCHING', 'Zadané heslo nesúhlasí s heslom uloženým v našich záznamoch. Skúste to prosím znova.');
-?>

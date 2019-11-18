@@ -38,4 +38,3 @@ define('TABLE_HEADING_DOWNLOAD_COUNT', 'descargas restantes', true);
 define('HEADING_DOWNLOAD', 'Descargue sus productos aquí:', true);
 define('FOOTER_DOWNLOAD', 'Puede descargar sus productos más tarde en \'%s\'',
     true);
-?>

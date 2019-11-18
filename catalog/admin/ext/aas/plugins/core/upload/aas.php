@@ -51,5 +51,3 @@ if(tep_not_null($products_id)){
 	if($messageStack->size > 0) echo $status_change.$messageStack->output();
 
 }else echo $status_change.AAS_TEXT_NO_PRODUCT_ID_FOUND;
-
-?>

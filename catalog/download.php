@@ -100,4 +100,3 @@ if (DOWNLOAD_BY_REDIRECT == 'true') {
 
 // Fallback to readfile() delivery method. This will work on all systems, but will need considerable resources
 readfile(DIR_FS_DOWNLOAD.$downloads['orders_products_filename']);
-?>

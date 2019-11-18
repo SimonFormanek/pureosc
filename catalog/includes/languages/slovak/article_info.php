@@ -26,4 +26,3 @@ define('BOX_TEXT_TELL_A_FRIEND', 'Upozorněte přítele');
 define('TEXT_TELL_A_FRIEND', 'Řekněte příteli o tomto článku:');
 define('TEXT_XSELL_ARTICLES', 'Produkty související s tímto článkem:');
 define('IMAGE_PRINT_ARTICLE', 'Vytisknout tento článek');
-?>

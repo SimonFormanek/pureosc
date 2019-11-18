@@ -76,5 +76,3 @@ class sb_email
         return array('MODULE_SOCIAL_BOOKMARKS_EMAIL_STATUS', 'MODULE_SOCIAL_BOOKMARKS_EMAIL_SORT_ORDER');
     }
 }
-
-?>

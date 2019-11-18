@@ -15,4 +15,3 @@
 
   define('FREE_SHIPPING_TITLE', 'Freier Versand',true);
   define('FREE_SHIPPING_DESCRIPTION', 'Freier Versand für Bestellungen über %s',true);
-?>

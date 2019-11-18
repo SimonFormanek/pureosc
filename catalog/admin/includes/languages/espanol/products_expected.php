@@ -17,4 +17,3 @@ define('TABLE_HEADING_DATE_EXPECTED', 'Fecha Lanzamiento',true);
 define('TABLE_HEADING_ACTION', 'Acción',true);
 
 define('TEXT_INFO_DATE_EXPECTED', 'Fecha Lanzamiento:',true);
-?>

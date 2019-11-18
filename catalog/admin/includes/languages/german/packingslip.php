@@ -17,4 +17,3 @@ define('TABLE_HEADING_PRODUCTS', 'Artikel',true);
 define('ENTRY_SOLD_TO', 'Rechnungsanschrift:',true);
 define('ENTRY_SHIP_TO', 'Lieferanschrift:',true);
 define('ENTRY_PAYMENT_METHOD', 'Zahlungsweise:',true);
-?>

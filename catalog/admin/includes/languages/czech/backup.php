@@ -46,4 +46,3 @@ define('SUCCESS_LAST_RESTORE_CLEARED', 'Povedlo se: poslední obnovení bylo vy�
 define('SUCCESS_DATABASE_SAVED', 'Povedlo se: databáze byla uložena.',true);
 define('SUCCESS_DATABASE_RESTORED', 'Povedlo se: databáze byla obnovena.',true);
 define('SUCCESS_BACKUP_DELETED', 'Povedlo se: záloha byla odstraněna.',true);
-?>

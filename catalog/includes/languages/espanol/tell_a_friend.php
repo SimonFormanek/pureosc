@@ -49,4 +49,3 @@ define('ERROR_FROM_ADDRESS',
 define('ERROR_ACTION_RECORDER',
     'Error: Un correo electrónico ya ha sido enviado. Por favor intente de nuevo en %s minutos.',
     true);
-?>

@@ -19,4 +19,3 @@
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_SEE_ORDERS', 'You can view the status of your order any time in your account <a class="btn btn-success" role="button" href="%s">View Orders</a> page.',true);
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_CONTACT_STORE_OWNER', 'Please forward any questions you may have  <a class="btn btn-info" role="button" href="%s">Contact Us</a>',true);
   define('MODULE_CONTENT_CHECKOUT_SUCCESS_TEXT_THANKS_FOR_SHOPPING', '<strong>Thanks for shopping with us</strong>',true);
-?>

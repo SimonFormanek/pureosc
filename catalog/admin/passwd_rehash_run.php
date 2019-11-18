@@ -185,5 +185,3 @@ tep_db_close();
 echo "\n------------- KONEC " . date('j.n.Y H:i:s') . " -------------\n\n";
 
 exit(0);
-?>
-

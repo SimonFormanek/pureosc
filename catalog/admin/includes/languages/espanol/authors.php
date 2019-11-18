@@ -43,4 +43,3 @@ define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Error: I can not write to this director
 define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Error: Directory does not exist: %s');
 define('ERROR_NO_AUTHORS_FOUND', 'At least one author must exist.');
 define('ERROR_FAILED_IMAGE_UPLOAD', 'Image failed to upload.');
-?>

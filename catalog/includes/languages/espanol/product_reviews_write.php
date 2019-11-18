@@ -29,4 +29,3 @@ define('TEXT_REVIEW_RECEIVED',
     true);
 
 define('TEXT_CLICK_TO_ENLARGE', 'Haga click para Ampliar', true);
-?>

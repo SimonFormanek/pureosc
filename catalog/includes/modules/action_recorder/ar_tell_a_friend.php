@@ -73,5 +73,3 @@ class ar_tell_a_friend
         return array('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES');
     }
 }
-
-?>

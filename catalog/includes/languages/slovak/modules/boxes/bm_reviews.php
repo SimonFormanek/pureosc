@@ -16,4 +16,3 @@
   define('MODULE_BOXES_REVIEWS_BOX_WRITE_REVIEW', 'Napíšte recenziu na tento produkt!');
   define('MODULE_BOXES_REVIEWS_BOX_NO_REVIEWS', 'Momentálne tu nie sú žiadne komentáre');
   define('MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS', '%s z 5 hviezdičiek!');
-?>

@@ -76,5 +76,3 @@ class ar_admin_login
         return array('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES', 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS');
     }
 }
-
-?>

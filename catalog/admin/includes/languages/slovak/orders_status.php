@@ -26,4 +26,3 @@ define('TEXT_INFO_HEADING_DELETE_ORDERS_STATUS', 'Odstrániť stav objednávky')
 define('ERROR_REMOVE_DEFAULT_ORDER_STATUS', 'Chyba: Predvolený stav objednávky sa nedá odstrániť. Vyberte prosím iný stav objednávky ako predvolený a akciu opakujte.');
 define('ERROR_STATUS_USED_IN_ORDERS', 'Chyba: Tento stav objednávky je už použitý v objednávkach.');
 define('ERROR_STATUS_USED_IN_HISTORY', 'Chyba: Tento stav objednávky je už použitý v histórii objednávok.');
-?>

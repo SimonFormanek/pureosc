@@ -29,4 +29,3 @@ define('TEXT_INFO_HEADING_EDIT_LANGUAGE', 'Sprache bearbeiten',true);
 define('TEXT_INFO_HEADING_DELETE_LANGUAGE', 'Sprache löschen',true);
 
 define('ERROR_REMOVE_DEFAULT_LANGUAGE', 'Fehler: Die Standardsprache darf nicht gelöscht werden. Bitte definieren Sie eine neue Standardsprache und wiederholen Sie den Vorgang.',true);
-?>

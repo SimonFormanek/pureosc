@@ -13,4 +13,3 @@
   define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_TITLE', 'Facebook',true);
   define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_DESCRIPTION', 'Compartir productos con Facebook.',true);
   define('MODULE_SOCIAL_BOOKMARKS_FACEBOOK_PUBLIC_TITLE', 'Compartir con Facebook',true);
-?>

@@ -26,4 +26,3 @@ define('TEXT_ALSO_PURCHASED_PRODUCTS',
 define('TEXT_PRODUCT_OPTIONS', 'Verfügbare Optionen:', true);
 define('TEXT_CLICK_TO_ENLARGE',
     'Für eine grössere Darstellung<br>klicken Sie auf das Bild.', true);
-?>
