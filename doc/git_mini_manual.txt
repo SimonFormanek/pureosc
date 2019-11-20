@@ -8,7 +8,8 @@ Modification-Date: Fri, 29 Mar 2019 04:09:29 +0100
 
 ==== Git Book - manual: ====
 	https://git-scm.com/book/cs/v1/
-
+Verze2:
+  https://git-scm.com/book/cs/v2/
 ===== Vytvořte (upravte) si  ~/.gitconfig =====
 
 '''
