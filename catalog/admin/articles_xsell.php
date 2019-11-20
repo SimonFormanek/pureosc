@@ -150,7 +150,7 @@ require(DIR_WS_INCLUDES.'template_top.php');
                                     } else if (isset($_POST['xsell_id'])) {
                                         $id = $_GET['add_related_article_ID'];
                                         foreach ($_POST['xsell_id'] as $temp) {
-                                            $query = "INSERT INTO ".TABLE_ARTICLES_XSELL." VALUES ('',$id,$temp,1)";
+                                            $query = "INSERT INTO ".TABLE_ARTICLES_XSELL." (articles_id,xsell_id,sort_order) VALUES ($id,$temp,1)";
                                             if (!tep_db_query($query))
                                                     exit(TEXT_NO_INSERT);
                                         }
