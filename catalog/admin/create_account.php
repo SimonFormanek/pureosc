@@ -429,7 +429,7 @@ echo tep_draw_form('create_account', 'create_account.php', '', 'post',
                         echo tep_draw_radio_field('gender', 'f').' '.FEMALE;
                         ?>
                     </label>
-                    <?php echo _('Required'); ?>
+                    &#10033;
                     <?php if (tep_not_null(ENTRY_GENDER_TEXT)) echo '<span id="atGender" class="help-block">'.ENTRY_GENDER_TEXT.'</span>'; ?>
                 </div>
             </div>

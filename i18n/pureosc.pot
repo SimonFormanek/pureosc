@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-25 23:10+0200\n"
+"POT-Creation-Date: 2019-11-12 02:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,94 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: db/migrations/20190129203806_config_default_manufacturer.php:17
-msgid "Default manufacturer"
+#: catalog/admin/includes/classes/ui/DiscountSelector.php:30
+msgid "None"
 msgstr ""
 
-#: db/migrations/20190129203806_config_default_manufacturer.php:25
-msgid "Only manufacturer yet"
+#: catalog/admin/includes/classes/ui/WebPage.php:37
+msgid "Store logo"
+msgstr ""
+
+#: catalog/admin/includes/classes/ui/WebPage.php:39
+msgid "Administration"
+msgstr ""
+
+#: catalog/admin/includes/classes/ui/WebPage.php:41
+msgid "Catalog"
+msgstr ""
+
+#: catalog/admin/includes/classes/ui/WebPage.php:43
+msgid "Static generator reset"
+msgstr ""
+
+#: catalog/admin/includes/classes/ui/WebPage.php:51
+#, php-format
+msgid "Logged in as: %s"
+msgstr ""
+
+#: catalog/admin/includes/classes/ui/WebPage.php:51
+msgid "Logoff"
+msgstr ""
+
+#: catalog/admin/includes/classes/ui/WebPage.php:101
+msgid "Search"
+msgstr ""
+
+#: catalog/admin/includes/init.php:93
+msgid "Search Results"
+msgstr ""
+
+#: catalog/admin/modules_content.php:212 catalog/admin/modules_content.php:264
+#: catalog/admin/version_check.php:121 catalog/admin/articles_config.php:58
+#: catalog/admin/orders.php:459 catalog/admin/orders_status.php:125
+#: catalog/admin/products_expected.php:38 catalog/admin/geo_zones.php:147
+#: catalog/admin/geo_zones.php:234
+#: catalog/admin/article_manager_blog_comments.php:434
+msgid "Action"
+msgstr ""
+
+#: catalog/admin/orders.php:154 catalog/admin/orders.php:614
+#: catalog/admin/orders.php:628
+msgid "print cheque"
+msgstr ""
+
+#: catalog/admin/orders.php:155
+msgid "PDF Invoice"
+msgstr ""
+
+#: catalog/admin/orders.php:156
+msgid "ISDOC Invoice"
+msgstr ""
+
+#: catalog/admin/orders.php:199 catalog/account_edit.php:271
+#: catalog/account_edit.php:276
+msgid "E-Mail Address"
+msgstr ""
+
+#: catalog/admin/orders.php:338 catalog/admin/orders.php:458
+msgid "Status"
+msgstr ""
+
+#: catalog/admin/orders.php:614 catalog/admin/orders.php:631
+msgid "Cash Desk payment"
+msgstr ""
+
+#: catalog/admin/orders.php:628
+msgid "Print post Order"
+msgstr ""
+
+#: catalog/admin/orders.php:635
+msgid "FlexiBee"
+msgstr ""
+
+#: catalog/admin/article_manager_blog_comments.php:518
+msgid "DATE ADDED"
+msgstr ""
+
+#: catalog/account_edit.php:138
+msgid "Changed by customer"
+msgstr ""
+
+#: catalog/account_edit.php:196
+msgid "Requied Information"
 msgstr ""
