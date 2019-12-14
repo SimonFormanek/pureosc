@@ -267,7 +267,7 @@ for ($i = 0, $n = sizeof($order->products); $i < $n; $i++) {
                 'price_prefix' => $attributes_values['price_prefix']);
             tep_db_perform(TABLE_ORDERS_PRODUCTS_ATTRIBUTES, $sql_data_array);
 
-            if ((DOWNLOAD_ENABLED == 'true') && isset($attributes_values['products_attributes_filename']) && tep_not_null($attributes_values['products_attributes_filename'])) {
+            if ((cfg('DOWNLOAD_ENABLED') == 'true') && isset($attributes_values['products_attributes_filename']) && tep_not_null($attributes_values['products_attributes_filename'])) {
                 $sql_data_array = array('orders_id' => $insert_id,
                     'orders_products_id' => $order_products_id,
                     'orders_products_filename' => $attributes_values['products_attributes_filename'],
@@ -403,7 +403,7 @@ if (cfg('ORDER_SEND_CUSTOMERS_EMAIL_PHONE') == 'true') {
     $email_order .= CUSTOMERS_PHONE . $order->customer['telephone'] . "\n\n";
 }
 /* * * Altered for Mail Manager **
-  tep_mail($order->customer['firstname'] . ' ' . $order->customer['lastname'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+  tep_mail($order->customer['firstname'] . ' ' . $order->customer['lastname'], $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order, cfg('STORE_OWNER'), cfg('STORE_OWNERSTORE_OWNER_EMAIL_ADDRESS'));
  */
 //get status of mail manager create account  email
 $mail_manager_status_query = tep_db_query("select status, template, htmlcontent, txtcontent from  " . TABLE_MM_RESPONSEMAIL . "  where mail_id = '1'");
@@ -417,17 +417,17 @@ if (isset($mail_manager_status['status']) && ($mail_manager_status['status'] == 
         'navratovy-reklamacni-list.doc' => 'pub/navratovy-reklamacni-list.doc');
     tep_mail($order->customer['firstname'] . ' ' . $order->customer['lastname'],
             $order->customer['email_address'], EMAIL_TEXT_SUBJECT, $email_order,
-            STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+            cfg('STORE_OWNER'), cfg('STORE_OWNERSTORE_OWNER_EMAIL_ADDRESS'));
 }
 /* * * EOf alterations for Mail Manager ** */
 
 tep_mail($custFirstName . ' ' . $custLastName, $custEmail, EMAIL_TEXT_SUBJECT,
-        $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $attachArr);
+        $email_order, cfg('STORE_OWNER'), cfg('STORE_OWNERSTORE_OWNER_EMAIL_ADDRESS'), $attachArr);
 
 // send emails to other people
-if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
+if (cfg('SEND_EXTRA_ORDER_EMAILS_TO') != '') {
     tep_mail('', SEND_EXTRA_ORDER_EMAILS_TO, EMAIL_TEXT_SUBJECT, $email_order,
-            STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+            cfg('STORE_OWNER'), cfg('STORE_OWNERSTORE_OWNER_EMAIL_ADDRESS'));
 }
 // load the after_process function from the payment modules
 $payment_modules->after_process();
