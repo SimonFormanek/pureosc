@@ -53,6 +53,7 @@ if (($action == 'send_email_to_user') && isset($_POST['customers_email_address']
 
     $mimemessage->build_message();
     while ($mail = tep_db_fetch_array($mail_query)) {
+        $mimemessage->To = [];
         $mimemessage->send($mail['customers_firstname'] . ' ' . $mail['customers_lastname'],
                 $mail['customers_email_address'], '', $from, $subject);
     }
