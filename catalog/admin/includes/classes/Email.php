@@ -21,8 +21,9 @@
  */
 
 
+namespace PureOSC\Admin;
 
-class AdminEmail
+class Email
 {
     var $html;
     var $text;
