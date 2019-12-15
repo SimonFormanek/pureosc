@@ -23,6 +23,7 @@ class DiscountSelector extends SelectTag {
         $this->memberType = $mode;
         $this->memberId = $memberId;
         parent::__construct($name,$memberId);
+        $this->addItems($this->loadItems());
     }
 
     public function loadItems(): array {
