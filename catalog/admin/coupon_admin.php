@@ -129,12 +129,16 @@ switch ($_GET['action']) {
             $_GET['action'] = 'new';
         } else {
             $coupon_type = "F";  // F =  fixed amount discount code
-            if (isset($_GET['cid']))
+            if (isset($_GET['cid'])) {
                 $coupon_id = tep_db_prepare_input($_GET['cid']);
-            if (substr($_POST['coupon_amount'], -1) == '%')
-                $coupon_type = 'P'; // P = percentage amount discount code
-            if ($_POST['coupon_free_ship'])
-                $coupon_type = 'S'; // S = free shipping coupon
+            }
+            if (substr($_POST['coupon_amount'], -1) == '%') {
+                $coupon_type = 'P';
+                $_POST['coupon_amount'] = str_replace('%','',$_POST['coupon_amount']);
+            } // P = percentage amount discount code
+            if (!empty($_POST['coupon_free_ship'])) {
+                $coupon_type = 'S';
+            } // S = free shipping coupon
             $coupon_start_date = tep_db_prepare_input($_POST['coupon_start_date']);
             $coupon_start_date = (date('Y-m-d') < $coupon_start_date) ? $coupon_start_date : 'now()';
             $sql_data_array = array('coupon_code' => tep_db_prepare_input($_POST['coupon_code']),
